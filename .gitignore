@@ -1,4 +1,5 @@
-*
-!.gitignore
-!Resources/*
-!Classes/*
+.gitignore
+cocos2d
+proj.*
+build
+Resources

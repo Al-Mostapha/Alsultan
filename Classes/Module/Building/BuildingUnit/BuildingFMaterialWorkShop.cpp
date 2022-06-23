@@ -1,0 +1,84 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "BuildingFMaterialWorkShop.h"
+
+
+BuildingFMaterialWorkShop::BuildingFMaterialWorkShop() {
+
+	BuildingSpriteImage  = "gongfang.png";
+	BuildingIconMiracle  = "armyicon_s_10004711.png";
+	BuildingSpriteOffset = { -2, 38 };
+
+}
+
+
+bool BuildingFMaterialWorkShop::init() {
+
+	
+	if (!CityBuildingBase::init())
+		return false;
+
+	setBuildingSprite();
+	//setBuildingLvBg();
+	//setUpgradeSprite();
+	//setBuildingLvlText();
+	setBuildingSleepSprite();
+	//setBuildingIconMiracle();
+	setBuildingParticle();
+
+
+	return true;
+}
+
+void BuildingFMaterialWorkShop::onEnter() {
+
+	CityBuildingBase::onEnter();
+
+}
+
+void BuildingFMaterialWorkShop::setBuildingParticle() {
+
+	auto Part1 = ParticleSystemQuad::create("Particle/et_gongfang_working_01.plist");
+	Part1->setPosition(-5, 0);
+	Part1->setScaleX(2.7);
+	Part1->setScaleY(1.34);
+	Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
+	addChild(Part1, 10);
+
+
+	auto Part2 = ParticleSystemQuad::create("Particle/et_gongfang_working_02.plist");
+	Part2->setPosition(5, -7);
+	Part2->setScaleX(2.8);
+	Part2->setScaleY(2.7);
+	Part2->setPositionType(ParticleSystem::PositionType::RELATIVE);
+	addChild(Part2, 10);
+
+	auto Part3 = ParticleSystemQuad::create("Particle/et_gongfang_complete_01.plist");
+	Part3->setPosition(-5, 0);
+	Part3->setScaleX(2.11);
+	Part3->setScaleY(1.04);
+	Part3->setPositionType(ParticleSystem::PositionType::RELATIVE);
+	addChild(Part3, 10);
+
+
+	auto Part4 = ParticleSystemQuad::create("Particle/et_gongfang_complete_02.plist");
+	Part4->setPosition(10, 20);
+	Part4->setScaleX(1.76);
+	Part4->setScaleY(1.76);
+	Part4->setPositionType(ParticleSystem::PositionType::RELATIVE);
+	addChild(Part4, 10);
+
+
+	auto Part5 = ParticleSystemQuad::create("Particle/et_gongfang_complete_03.plist");
+	Part5->setPosition(0, 10);
+	Part5->setScaleX(1.99);
+	Part5->setScaleY(1.99);
+	Part5->setPositionType(ParticleSystem::PositionType::RELATIVE);
+	addChild(Part5, 10);
+
+}
+
+
+
+

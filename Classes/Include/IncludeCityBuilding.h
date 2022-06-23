@@ -1,0 +1,33 @@
+#pragma once
+
+#include "Module/Building/Building.h"
+#include "Module/Building/BuildingUnit/BuildingABarrack.h"
+#include "Module/Building/BuildingUnit/BuildingAStable.h"
+#include "Module/Building/BuildingUnit/BuildingARange.h"
+#include "Module/Building/BuildingUnit/BuildingAChariotPlant.h"
+#include "Module/Building/BuildingUnit/BuildingAFortress.h"
+
+#include "Module/Building/BuildingUnit/BuildingIMarket.h"
+#include "Module/Building/BuildingUnit/BuildingIWishWell.h"
+#include "Module/Building/BuildingUnit/BuildingIBlackSmith.h"
+#include "Module/Building/BuildingUnit/BuildingICollege.h"
+#include "Module/Building/BuildingUnit/BuildingIEmbassy.h"
+
+#include "Module/Building/BuildingUnit/BuildingFLeisureCenter.h"
+#include "Module/Building/BuildingUnit/BuildingFServiceCenter.h"
+#include "Module/Building/BuildingUnit/BuildingFPetCenter.h"
+#include "Module/Building/BuildingUnit/BuildingFElitePalace.h"
+#include "Module/Building/BuildingUnit/BuildingFEpicBattle.h"
+#include "Module/Building/BuildingUnit/BuildingFHarbor.h"
+#include "Module/Building/BuildingUnit/BuildingFMaterialWorkShop.h"
+#include "Module/Building/BuildingUnit/BuildingFMiracle.h"
+#include "Module/Building/BuildingUnit/BuildingFPrison.h"
+#include "Module/Building/BuildingUnit/BuildingFRevivalHall.h"
+#include "Module/Building/BuildingUnit/BuildingFTrainHall.h"
+
+#include "Module/Building/BuildingUnit/BuildingOFarm.h"
+#include "Module/Building/BuildingUnit/BuildingOCrystalMine.h"
+#include "Module/Building/BuildingUnit/BuildingOIronMine.h"
+#include "Module/Building/BuildingUnit/BuildingOSawmill.h"
+#include "Module/Building/BuildingUnit/BuildingOHosptial.h"
+#include "Module/Building/BuildingUnit/BuildingOMilitaryTent.h"
