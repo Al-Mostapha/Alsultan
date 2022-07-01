@@ -1,16 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BuildingABarrack.h"
+#include "BuildingFMonument.h"
 
-BuildingABarrack::BuildingABarrack()
+BuildingFMonument::BuildingFMonument()
 {
 
-	BuildingSpriteImage = "chebingying.png";
+	BuildingSpriteImage = "map_build_history.png";
 	BuildingIconMiracle = "armyicon_s_10004711.png";
-	BuildingSpriteOffset = {0, 39};
+	BuildingSpriteOffset = {-5, 64};
 }
 
-bool BuildingABarrack::init()
+bool BuildingFMonument::init()
 {
 
 	if (!CityBuildingBase::init())
@@ -21,12 +21,13 @@ bool BuildingABarrack::init()
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	setBuildingIconMiracle();
+	// setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingABarrack::onEnter()
+void BuildingFMonument::onEnter()
 {
+
 	CityBuildingBase::onEnter();
 }

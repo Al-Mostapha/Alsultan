@@ -1,6 +1,8 @@
 #include "Building.Service.h"
 #include "Module/Net/NetBase.Module.h"
 #include "Module/Player/Player.DT.h"
+#include "Scene/CityScene.h"
+#include "Module/Building/Building.Module.h"
 
 void BuildingService::getCityBuilding(int32 idCity)
 {
@@ -17,5 +19,8 @@ void BuildingService::getCityBuilding(int32 idCity)
                 DTPlayer::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
             else
                 cocos2d::log("Error Fetching CityBuilding From Server ....");
+            auto newScene = CityScene::createScene();
+            // cocos2d::Director::getInstance()->popScene();
+            cocos2d::Director::getInstance()->pushScene(newScene);
         });
 }

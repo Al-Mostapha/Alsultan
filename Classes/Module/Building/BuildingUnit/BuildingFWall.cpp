@@ -1,16 +1,17 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BuildingABarrack.h"
+#include "BuildingFWall.h"
 
-BuildingABarrack::BuildingABarrack()
+BuildingFWall::BuildingFWall()
 {
 
-	BuildingSpriteImage = "chebingying.png";
+	BuildingSpriteImage = "chengmen_lv1.png";
 	BuildingIconMiracle = "armyicon_s_10004711.png";
-	BuildingSpriteOffset = {0, 39};
+	BuildingSpriteOffset = {0, 0};
+	LvlBgOffset = {110, -110};
 }
 
-bool BuildingABarrack::init()
+bool BuildingFWall::init()
 {
 
 	if (!CityBuildingBase::init())
@@ -21,12 +22,12 @@ bool BuildingABarrack::init()
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	setBuildingIconMiracle();
+	// setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingABarrack::onEnter()
+void BuildingFWall::onEnter()
 {
 	CityBuildingBase::onEnter();
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Module/Building/Building.h"
+#include "Module/Building/BuildingUnit/BuildingNone.h"
 #include "Module/Building/BuildingUnit/BuildingABarrack.h"
 #include "Module/Building/BuildingUnit/BuildingAStable.h"
 #include "Module/Building/BuildingUnit/BuildingARange.h"
@@ -10,9 +11,15 @@
 #include "Module/Building/BuildingUnit/BuildingIMarket.h"
 #include "Module/Building/BuildingUnit/BuildingIWishWell.h"
 #include "Module/Building/BuildingUnit/BuildingIBlackSmith.h"
-#include "Module/Building/BuildingUnit/BuildingICollege.h"
+#include "Module/Building/BuildingUnit/BuildingIDrillGrounds.h"
+#include "Module/Building/BuildingUnit/BuildingIHallOfWar.h"
+#include "Module/Building/BuildingUnit/BuildingIInstitute.h"
 #include "Module/Building/BuildingUnit/BuildingIEmbassy.h"
+#include "Module/Building/BuildingUnit/BuildingIWareHouse.h"
 
+#include "Module/Building/BuildingUnit/BuildingFArrowTower.h"
+#include "Module/Building/BuildingUnit/BuildingFBraveStatue.h"
+#include "Module/Building/BuildingUnit/BuildingFCastle.h"
 #include "Module/Building/BuildingUnit/BuildingFLeisureCenter.h"
 #include "Module/Building/BuildingUnit/BuildingFServiceCenter.h"
 #include "Module/Building/BuildingUnit/BuildingFPetCenter.h"
@@ -21,9 +28,11 @@
 #include "Module/Building/BuildingUnit/BuildingFHarbor.h"
 #include "Module/Building/BuildingUnit/BuildingFMaterialWorkShop.h"
 #include "Module/Building/BuildingUnit/BuildingFMiracle.h"
+#include "Module/Building/BuildingUnit/BuildingFMonument.h"
 #include "Module/Building/BuildingUnit/BuildingFPrison.h"
 #include "Module/Building/BuildingUnit/BuildingFRevivalHall.h"
 #include "Module/Building/BuildingUnit/BuildingFTrainHall.h"
+#include "Module/Building/BuildingUnit/BuildingFWall.h"
 
 #include "Module/Building/BuildingUnit/BuildingOFarm.h"
 #include "Module/Building/BuildingUnit/BuildingOCrystalMine.h"
@@ -31,3 +40,4 @@
 #include "Module/Building/BuildingUnit/BuildingOSawmill.h"
 #include "Module/Building/BuildingUnit/BuildingOHosptial.h"
 #include "Module/Building/BuildingUnit/BuildingOMilitaryTent.h"
+#include "Module/Building/BuildingUnit/BuildingOSilver.h"

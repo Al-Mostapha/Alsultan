@@ -7,16 +7,15 @@
 /**
  *
  */
-class BuildingFElitePalace : public CityBuildingBase
+class BuildingFMonument : public CityBuildingBase
 {
-	void showWorkingEffect();
 
 public:
-	BuildingFElitePalace();
+	BuildingFMonument();
 	bool init();
 	void onEnter();
 
-	CREATE_FUNC(BuildingFElitePalace);
+	CREATE_FUNC(BuildingFMonument);
 
 	/**
 

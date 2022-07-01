@@ -7,18 +7,15 @@
 /**
  *
  */
-class BuildingOSteel : public CityBuildingBase
+class BuildingFWall : public CityBuildingBase
 {
 
 public:
-	BuildingOSteel();
+	BuildingFWall();
 	bool init();
 	void onEnter();
 
-	void setBuildingSprite();
-	void setBuildingAnimation();
-
-	CREATE_FUNC(BuildingOSteel);
+	CREATE_FUNC(BuildingFWall);
 
 	/**
 

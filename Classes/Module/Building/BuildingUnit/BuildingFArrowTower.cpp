@@ -1,0 +1,65 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#include "BuildingFArrowTower.h"
+#include "Module/Player/Player.DT.h"
+
+BuildingFArrowTower::BuildingFArrowTower()
+{
+
+	BuildingSpriteImage = "jianta_lv1_base.png";
+	BuildingIconMiracle = "armyicon_s_10004711.png";
+	BuildingSpriteOffset = {0, 0};
+	LvlBgOffset = {107, -52};
+}
+
+bool BuildingFArrowTower::init()
+{
+	if (!CityBuildingBase::init())
+		return false;
+	// setBuildingIconMiracle();
+	return true;
+}
+
+void BuildingFArrowTower::onEnter()
+{
+
+	CityBuildingBase::onEnter();
+
+	auto _vm = getViewModel(
+		DTPlayer::SultanPlayer
+			.City.CityBuilding
+			.CityBuildingFixed
+			.wall.buildingLvl);
+	BuildingSpriteImage = StringUtils::format(
+		"jianta_lv%d_base.png",
+		static_cast<int32>(_vm));
+	setBuildingSprite();
+	setTowerOffet();
+	setBuildingLvBg();
+	setUpgradeSprite();
+	setBuildingLvlText();
+	setBuildingSleepSprite();
+}
+
+void BuildingFArrowTower::setTowerOffet()
+{
+
+	if (BuildingUnitData.BuildingPlace == "arrowTowerR")
+		BuildingSprite->setPosition(BuildingSprite->getPosition() + Vec2(-7, 27));
+	else
+		BuildingSprite->setPosition(BuildingSprite->getPosition() + Vec2(-10, 32));
+}
+
+EBuildingViewModel BuildingFArrowTower::getViewModel(int32 walLvl)
+{
+	if (walLvl <= 2)
+		return EBuildingViewModel::ViewModel_1;
+	if (walLvl <= 6)
+		return EBuildingViewModel::ViewModel_2;
+	if (walLvl <= 10)
+		return EBuildingViewModel::ViewModel_3;
+	if (walLvl <= 14)
+		return EBuildingViewModel::ViewModel_4;
+	if (walLvl <= 130)
+		return EBuildingViewModel::ViewModel_5;
+}

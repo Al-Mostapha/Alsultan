@@ -5,4 +5,5 @@ class BuildingModule
 {
 public:
     static void init();
+    static void buildCity();
 };

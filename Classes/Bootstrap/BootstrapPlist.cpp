@@ -1,8 +1,8 @@
 
 #include "BootstrapPlist.h"
 
-
-void BootstrapPlist::loadCitySpriteSheet() {
+void BootstrapPlist::loadCitySpriteSheet()
+{
 
 	auto spritecache = SpriteFrameCache::getInstance();
 	spritecache->addSpriteFramesWithFile("MainCity/mainCityInner.plist");
@@ -17,7 +17,6 @@ void BootstrapPlist::loadCitySpriteSheet() {
 
 	spritecache->addSpriteFramesWithFile("SingleModule/itemUI1.plist");
 
-
 	spritecache->addSpriteFramesWithFile("NormalUI/NormalUI1.plist");
 	spritecache->addSpriteFramesWithFile("NormalUI/NormalUI2.plist");
 	spritecache->addSpriteFramesWithFile("NormalUI/NormalUI3.plist");
@@ -27,14 +26,15 @@ void BootstrapPlist::loadCitySpriteSheet() {
 	spritecache->addSpriteFramesWithFile("CommonUI/CommonUI2.plist");
 
 	spritecache->addSpriteFramesWithFile("FrameAnimation/mainCityNpc.plist");
+	spritecache->addSpriteFramesWithFile("FrameAnimation/diaoxiangFA.plist");
+	spritecache->addSpriteFramesWithFile("FrameAnimation/mainCityOutGfsc.plist");
 
 	spritecache->addSpriteFramesWithFile("secondaryUI/soldiersUI1.plist");
 	spritecache->addSpriteFramesWithFile("secondaryUI/soldiersUI2.plist");
 	spritecache->addSpriteFramesWithFile("secondaryUI/soldiersUI3.plist");
-
 }
 
-void BootstrapPlist::loadSpriteSheet() {
+void BootstrapPlist::loadSpriteSheet()
+{
 	loadCitySpriteSheet();
-
 }

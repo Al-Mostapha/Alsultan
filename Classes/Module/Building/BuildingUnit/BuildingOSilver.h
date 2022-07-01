@@ -7,15 +7,18 @@
 /**
  *
  */
-class BuildingICollege : public CityBuildingBase
+class BuildingOSilver : public CityBuildingBase
 {
 
 public:
-	BuildingICollege();
+	BuildingOSilver();
 	bool init();
 	void onEnter();
 
-	CREATE_FUNC(BuildingICollege);
+	void setBuildingSprite();
+	void setBuildingAnimation();
+
+	CREATE_FUNC(BuildingOSilver);
 
 	/**
 

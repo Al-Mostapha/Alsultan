@@ -1,21 +1,18 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "BuildingNone.h"
 
-#include "BuildingIMonument.h"
+BuildingNone::BuildingNone()
+{
 
-
-BuildingIMonument::BuildingIMonument() {
-
-	BuildingSpriteImage  = "map_build_history.png";
-	BuildingSpriteOffset = { -5 , 64 };
-
-
+	BuildingSpriteImage = "inner_city_building_tile.png";
+	BuildingIconMiracle = "armyicon_s_10004711.png";
+	BuildingSpriteOffset = {0, 39};
 }
 
+bool BuildingNone::init()
+{
 
-bool BuildingIMonument::init() {
-
-	
 	if (!CityBuildingBase::init())
 		return false;
 
@@ -24,30 +21,15 @@ bool BuildingIMonument::init() {
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	//setBuildingIconMiracle();
-
-	/*
-	  nodeType = "sprite",
-      nodeName = "buildImg",
-      nodeImg = "bg_map_history.png",
-      offset = {x = -45, y = 12},
-      alone = true,
-      zOrder = 1
-	  
-	  */
+	setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingIMonument::onEnter() {
-
-
+void BuildingNone::onEnter()
+{
+	CityBuildingBase::onEnter();
 }
-
-
-
-
-
 
 /**
 void BuildingClassBarrack::setBarrackInfantry() {}
@@ -68,7 +50,7 @@ void ASBuildingClassBarrack::showTrainSol() {
 		TrainInfantry->SetFlipbook(InfantryFB);
 	}
 	else {
-	
+
 		GLog->Log("---------------------- Animation Not Found");
 	}
 
@@ -156,7 +138,7 @@ void ASBuildingClassBarrack::setOperatingProgressBar() {
 		Widget->OperationIcon->SetBrush(Brush);
 	}
 	else {
-	
+
 		GLog->Log("((((((((((((((((((((()))))))))))))))))))))))))");
 	}
 }
@@ -167,14 +149,14 @@ void ASBuildingClassBarrack::getLvlData(TSharedPtr<FJsonObject> JsonValue) {
 	for (auto& T : JsonValue->Values) {
 
 		int32 buildingLvl = FCString::Atoi(*T.Key);
-		if (!T.Value || T.Value->IsNull()) 
+		if (!T.Value || T.Value->IsNull())
 			continue;
-		
+
 		FBuildingLvlDataBarrack BuildingLvlData;
 
 		FJsonObjectConverter::JsonObjectToUStruct(T.Value->AsObject().ToSharedRef(), &BuildingLvlData);
 		LvlData.Add(buildingLvl, BuildingLvlData);
-		
+
 
 	}
 

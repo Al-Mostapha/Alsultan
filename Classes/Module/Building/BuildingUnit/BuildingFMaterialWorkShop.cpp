@@ -1,43 +1,61 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "BuildingFMaterialWorkShop.h"
 
+BuildingFMaterialWorkShop::BuildingFMaterialWorkShop()
+{
 
-BuildingFMaterialWorkShop::BuildingFMaterialWorkShop() {
-
-	BuildingSpriteImage  = "gongfang.png";
-	BuildingIconMiracle  = "armyicon_s_10004711.png";
-	BuildingSpriteOffset = { -2, 38 };
-
+	BuildingSpriteImage = "gongfang.png";
+	BuildingIconMiracle = "armyicon_s_10004711.png";
+	BuildingSpriteOffset = {-2, 38};
 }
 
+bool BuildingFMaterialWorkShop::init()
+{
 
-bool BuildingFMaterialWorkShop::init() {
-
-	
 	if (!CityBuildingBase::init())
 		return false;
 
 	setBuildingSprite();
-	//setBuildingLvBg();
-	//setUpgradeSprite();
-	//setBuildingLvlText();
+	// setBuildingLvBg();
+	// setUpgradeSprite();
+	// setBuildingLvlText();
 	setBuildingSleepSprite();
-	//setBuildingIconMiracle();
+	// setBuildingIconMiracle();
 	setBuildingParticle();
-
+	setBuildingAnimation();
 
 	return true;
 }
 
-void BuildingFMaterialWorkShop::onEnter() {
+void BuildingFMaterialWorkShop::setBuildingAnimation()
+{
+	auto frames = getAnimation("gongfangfengche_%02d.png", 1, 8);
+	auto frames_1 = getAnimation("gongfangshuiche_%02d.png", 1, 8);
+	auto sprite = Sprite::createWithSpriteFrame(frames.front());
+	auto sprite_1 = Sprite::createWithSpriteFrame(frames_1.front());
 
-	CityBuildingBase::onEnter();
+	sprite->setPosition(86, 40);
+	sprite_1->setPosition(10, 100);
 
+	auto animation = Animation::createWithSpriteFrames(frames, 1.0f / 8);
+	auto animation_1 = Animation::createWithSpriteFrames(frames, 1.0f / 8);
+
+	sprite->runAction(RepeatForever::create(Animate::create(animation)));
+	sprite_1->runAction(RepeatForever::create(Animate::create(animation_1)));
+
+	addChild(sprite);
+	addChild(sprite_1);
 }
 
-void BuildingFMaterialWorkShop::setBuildingParticle() {
+void BuildingFMaterialWorkShop::onEnter()
+{
+
+	CityBuildingBase::onEnter();
+}
+
+void BuildingFMaterialWorkShop::setBuildingParticle()
+{
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_gongfang_working_01.plist");
 	Part1->setPosition(-5, 0);
@@ -45,7 +63,6 @@ void BuildingFMaterialWorkShop::setBuildingParticle() {
 	Part1->setScaleY(1.34);
 	Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part1, 10);
-
 
 	auto Part2 = ParticleSystemQuad::create("Particle/et_gongfang_working_02.plist");
 	Part2->setPosition(5, -7);
@@ -61,7 +78,6 @@ void BuildingFMaterialWorkShop::setBuildingParticle() {
 	Part3->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part3, 10);
 
-
 	auto Part4 = ParticleSystemQuad::create("Particle/et_gongfang_complete_02.plist");
 	Part4->setPosition(10, 20);
 	Part4->setScaleX(1.76);
@@ -69,16 +85,10 @@ void BuildingFMaterialWorkShop::setBuildingParticle() {
 	Part4->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part4, 10);
 
-
 	auto Part5 = ParticleSystemQuad::create("Particle/et_gongfang_complete_03.plist");
 	Part5->setPosition(0, 10);
 	Part5->setScaleX(1.99);
 	Part5->setScaleY(1.99);
 	Part5->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part5, 10);
-
 }
-
-
-
-

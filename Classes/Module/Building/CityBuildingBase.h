@@ -2,7 +2,10 @@
 
 #include "cocos2d.h"
 #include "Include/IncludeBase.h"
+#include "Module/Building/Building.Const.h"
 #include "Module/City/CityBuildingUtils/CityBuildingBtnAction.h"
+#include "Module/Building/Building.DT.h"
+
 USING_NS_CC;
 
 struct DSBuilding : public GStruct
@@ -46,6 +49,7 @@ public:
 	Sprite *UpgradeSprite;
 	Label *BuildingLvText;
 	Sprite *BuildingLvBg;
+	DSCityBuildingUnit BuildingUnitData = DSCityBuildingUnit();
 	struct
 	{
 		int32 x = 110, y = -17;
@@ -67,6 +71,6 @@ public:
 	virtual void setBuildingIconMiracle();
 	virtual void setBuildingParticle();
 	virtual void setBuildingAnimation();
-
+	void setBuildingUnitData(DSCityBuildingUnit &_CBUD);
 	static Vector<SpriteFrame *> getAnimation(GString Frame, int32 start, int32 end);
 };

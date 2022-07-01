@@ -40,6 +40,7 @@ public:
     void initDraggingEvent();
     void initCityLayers();
     void menuCloseCallback(cocos2d::Ref *pSender);
+    void onEnter();
 
     // implement the "static create()" method manually
     CREATE_FUNC(CityScene);

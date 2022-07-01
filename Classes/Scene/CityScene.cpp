@@ -28,6 +28,7 @@ THE SOFTWARE.
 #include "external/json/document.h"
 #include "Include/IncludeCityBuilding.h"
 #include "Module/City/CityBuildingUtils/CityBuildingTopTip.h"
+#include "Module/Building/Building.Module.h"
 
 USING_NS_CC;
 
@@ -61,29 +62,13 @@ bool CityScene::init()
     BaseScrollLayer->setContentSize(Director::getInstance()->getWinSize());
     BaseScrollLayer->setScrollBarEnabled(false);
     BaseScrollLayer->setBounceEnabled(false);
-
     addChild(BaseScrollLayer);
-
     BootstrapPlist::loadSpriteSheet();
-
     // FileUtils::getInstance()->addSearchPath("cocosstudio");
-
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
     initCityLayers();
     initDraggingEvent();
-
-    /**auto mysprite = Sprite::createWithSpriteFrameName("prison.png");
-    mysprite->setLocalZOrder(10);
-    mysprite->setPosition(150, 150);
-    mysprite->setSpriteFrame("qibingying.png");
-    this->addChild(mysprite);
-    const char json[] = " { \"hello\" : \"world\", \"t\" : true , \"f\" : false, \"n\": null, \"i\":123, \"pi\": 3.1416, \"a\":[1, 2, 3, 4] } ";
-    cocos2d::log("Original JSON:\n %s\n", json);
-    rapidjson::Document document;
-    document.Parse(json);
-    cocos2d::log("hello = %s\n", document["hello"].GetString());*/
     return true;
 }
 
@@ -107,23 +92,6 @@ void CityScene::initCityLayers()
     this->CityUiLayer->addChild(TopUi, -1);
 
     BaseScrollLayer->setInnerContainerSize(CityBuildingLayer->getContentSize());
-
-    auto T1 = BuildingIEmbassy::create();
-    auto Building = CityBuildingLayer->getChildByName("build_1059");
-    auto Building2 = CityBuildingLayer->getChildByName("build_1060");
-    auto Building3 = CityBuildingLayer->getChildByName("build_1061");
-    Building2->setAnchorPoint(Vec2(0, 0));
-    Building->setAnchorPoint(Vec2(0, 0));
-    Building3->setAnchorPoint(Vec2(0, 0));
-
-    T1->setAnchorPoint(Vec2(0.5, 0.5));
-    Building2->addChild(T1);
-    Building3->addChild(BuildingARange::create());
-
-    auto T = CityBuildingTopTip::tipTypeHasPrisoner();
-    T->setLocalZOrder(100);
-    T->setPosition(0, 30);
-    Building3->addChild(T);
 
     if (this->CityFloorLayer)
         BaseScrollLayer->addChild(this->CityFloorLayer);
@@ -167,4 +135,10 @@ void CityScene::menuCloseCallback(Ref *pSender)
 
     // EventCustom customEndEvent("game_scene_close_event");
     //_eventDispatcher->dispatchEvent(&customEndEvent);
+}
+
+void CityScene::onEnter()
+{
+    Scene::onEnter();
+    BuildingModule::buildCity();
 }

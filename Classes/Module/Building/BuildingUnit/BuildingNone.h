@@ -7,15 +7,15 @@
 /**
  *
  */
-class BuildingIMonument : public CityBuildingBase
+class BuildingNone : public CityBuildingBase
 {
 
 public:
-	BuildingIMonument();
+	BuildingNone();
 	bool init();
 	void onEnter();
 
-	CREATE_FUNC(BuildingIMonument);
+	CREATE_FUNC(BuildingNone);
 
 	/**
 

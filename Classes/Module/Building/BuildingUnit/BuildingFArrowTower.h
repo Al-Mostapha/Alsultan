@@ -7,16 +7,17 @@
 /**
  *
  */
-class BuildingFElitePalace : public CityBuildingBase
+class BuildingFArrowTower : public CityBuildingBase
 {
-	void showWorkingEffect();
+	EBuildingViewModel getViewModel(int32 wallLvl);
+	void setTowerOffet();
 
 public:
-	BuildingFElitePalace();
+	BuildingFArrowTower();
 	bool init();
 	void onEnter();
 
-	CREATE_FUNC(BuildingFElitePalace);
+	CREATE_FUNC(BuildingFArrowTower);
 
 	/**
 

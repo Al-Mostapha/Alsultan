@@ -1,22 +1,19 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "BuildingOSilver.h"
 
-#include "BuildingOSteel.h"
+BuildingOSilver::BuildingOSilver()
+{
 
-
-BuildingOSteel::BuildingOSteel() {
-
-	BuildingSpriteImage  = "miyinkuangchang.png";
-	BuildingIconMiracle  = "armyicon_s_10004711.png";
-	BuildingSpriteOffset = { 0, 0 };
+	BuildingSpriteImage = "miyinkuangchang.png";
+	BuildingIconMiracle = "armyicon_s_10004711.png";
+	BuildingSpriteOffset = {0, 0};
 	LvlBgOffset = {64, -6};
-
 }
 
+bool BuildingOSilver::init()
+{
 
-bool BuildingOSteel::init() {
-
-	
 	if (!CityBuildingBase::init())
 		return false;
 
@@ -25,24 +22,23 @@ bool BuildingOSteel::init() {
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	//setBuildingIconMiracle();
+	// setBuildingIconMiracle();
 	setBuildingAnimation();
 	BuildingLvBg->setLocalZOrder(6);
 	BuildingLvText->setLocalZOrder(8);
 	return true;
 }
 
-void BuildingOSteel::onEnter() {
+void BuildingOSilver::onEnter()
+{
 
 	CityBuildingBase::onEnter();
-
 }
 
-void BuildingOSteel::setBuildingSprite() {
+void BuildingOSilver::setBuildingSprite()
+{
 
 	CityBuildingBase::setBuildingSprite();
-
 }
 
-
-void BuildingOSteel::setBuildingAnimation() {};
+void BuildingOSilver::setBuildingAnimation(){};

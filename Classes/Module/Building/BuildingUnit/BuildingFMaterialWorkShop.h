@@ -15,6 +15,7 @@ public:
 	bool init();
 	void onEnter();
 	void setBuildingParticle();
+	void setBuildingAnimation();
 
 	CREATE_FUNC(BuildingFMaterialWorkShop);
 

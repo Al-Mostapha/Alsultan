@@ -1,21 +1,17 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "BuildingIInstitute.h"
 
-#include "BuildingICollege.h"
+BuildingIInstitute::BuildingIInstitute()
+{
 
-
-BuildingICollege::BuildingICollege() {
-
-	BuildingSpriteImage  = "xueyuan.png";
-	BuildingSpriteOffset = { -2 , 64 };
-
-
+	BuildingSpriteImage = "xueyuan.png";
+	BuildingSpriteOffset = {-2, 64};
 }
 
+bool BuildingIInstitute::init()
+{
 
-bool BuildingICollege::init() {
-
-	
 	if (!CityBuildingBase::init())
 		return false;
 
@@ -24,20 +20,16 @@ bool BuildingICollege::init() {
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	//setBuildingIconMiracle();
+	// setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingICollege::onEnter() {
+void BuildingIInstitute::onEnter()
+{
 
 	CityBuildingBase::onEnter();
 }
-
-
-
-
-
 
 /**
 void BuildingClassBarrack::setBarrackInfantry() {}
@@ -58,7 +50,7 @@ void ASBuildingClassBarrack::showTrainSol() {
 		TrainInfantry->SetFlipbook(InfantryFB);
 	}
 	else {
-	
+
 		GLog->Log("---------------------- Animation Not Found");
 	}
 
@@ -146,7 +138,7 @@ void ASBuildingClassBarrack::setOperatingProgressBar() {
 		Widget->OperationIcon->SetBrush(Brush);
 	}
 	else {
-	
+
 		GLog->Log("((((((((((((((((((((()))))))))))))))))))))))))");
 	}
 }
@@ -157,14 +149,14 @@ void ASBuildingClassBarrack::getLvlData(TSharedPtr<FJsonObject> JsonValue) {
 	for (auto& T : JsonValue->Values) {
 
 		int32 buildingLvl = FCString::Atoi(*T.Key);
-		if (!T.Value || T.Value->IsNull()) 
+		if (!T.Value || T.Value->IsNull())
 			continue;
-		
+
 		FBuildingLvlDataBarrack BuildingLvlData;
 
 		FJsonObjectConverter::JsonObjectToUStruct(T.Value->AsObject().ToSharedRef(), &BuildingLvlData);
 		LvlData.Add(buildingLvl, BuildingLvlData);
-		
+
 
 	}
 

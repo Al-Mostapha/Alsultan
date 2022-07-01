@@ -7,7 +7,7 @@ bool CityBuildingBase::init()
 
     if (!Node::init())
         return false;
-    cocos2d::log("--------------------================---------------------");
+
     // setAnchorPoint(Vec2(0, 0));
     return true;
 }
@@ -149,4 +149,9 @@ void CityBuildingBase::setBuildingParticle()
 
 void CityBuildingBase::setBuildingAnimation()
 {
+}
+
+void CityBuildingBase::setBuildingUnitData(DSCityBuildingUnit &_CBUD)
+{
+    BuildingUnitData = _CBUD;
 }

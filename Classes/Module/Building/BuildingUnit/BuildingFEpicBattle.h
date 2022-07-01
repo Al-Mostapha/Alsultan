@@ -16,19 +16,4 @@ public:
 	void onEnter();
 
 	CREATE_FUNC(BuildingFEpicBattle);
-
-	/**
-
-	void OnBtnClickedDetail();
-	void OnBtnClickedUpgrade();
-	void OnBtnClickedTrain();
-	void initBuilding();
-	void setSprite();
-	void showTrainSol();
-	void hideTrainSol(
-	void setBarrackInfantry();
-	void bindBtnActionFunction();
-	void setOperatingProgressBar();
-	static void getLvlData();
-	*/
 };
