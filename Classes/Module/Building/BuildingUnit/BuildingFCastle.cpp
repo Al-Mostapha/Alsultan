@@ -31,7 +31,7 @@ bool BuildingFCastle::init()
 void BuildingFCastle::setBuildingSprite()
 {
 
-	auto CastleSkin = CSLoader::createNode("csb/CastleSkin/castleSkin_1_bzt.csb");
+	auto CastleSkin = CSLoader::createNode("SceneParts/CastleSkin/castleSkin_1_bzt.csb");
 	CastleSkin->setPosition(BuildingSpriteOffset.x, BuildingSpriteOffset.y);
 	addChild(CastleSkin);
 }
