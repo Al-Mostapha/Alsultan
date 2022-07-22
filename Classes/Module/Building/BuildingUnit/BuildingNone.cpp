@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingNone.h"
+#include "Module/Player/Player.DT.h"
 
 BuildingNone::BuildingNone()
 {
@@ -16,19 +17,25 @@ bool BuildingNone::init()
 	if (!CityBuildingBase::init())
 		return false;
 
-	setBuildingSprite();
-	setBuildingLvBg();
-	setUpgradeSprite();
-	setBuildingLvlText();
-	setBuildingSleepSprite();
-	setBuildingIconMiracle();
-
 	return true;
 }
 
 void BuildingNone::onEnter()
 {
 	CityBuildingBase::onEnter();
+
+	cocos2d::log("Building ------------------------ Pos Place %d", static_cast<int32>(this->BuildingUnitData.eBuildingPos));
+	if (BuildingUnitData.eBuildingPos == EBuildingPos::CBPlace_Inner)
+		BuildingSpriteImage = "inner_city_building_tile.png";
+	else if (BuildingUnitData.eBuildingPos == EBuildingPos::CBPlace_Outer)
+		BuildingSpriteImage = "res_tile.png";
+
+	setBuildingSprite();
+	setBuildingLvBg();
+	setUpgradeSprite();
+	setBuildingLvlText();
+	setBuildingSleepSprite();
+	setBuildingIconMiracle();
 }
 
 /**

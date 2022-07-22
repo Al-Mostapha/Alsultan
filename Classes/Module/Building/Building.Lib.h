@@ -11,4 +11,7 @@ public:
     static DSCityBuildingUnit &getBuildingAt(const char *BuildingPlace);
     static CityBuildingBase *getBuildingNodeAt(const char *BuildingPlace);
     static CityBuildingBase *getBuildingClassByType(EBuildingType buildingType);
+    static DSCityBuilding &getCurentCityBuilding();
+    static GVector<DSCityBuildingUnit> getBuildingList(EBuildingType buildingType);
+    static GVector<DSCityBuildingUnit> getBuildingResList();
 };

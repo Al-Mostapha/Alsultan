@@ -14,6 +14,7 @@ public:
 	BuildingFRevivalHall();
 	bool init();
 	void onEnter();
+	void setBuildingParticle();
 
 	CREATE_FUNC(BuildingFRevivalHall);
 

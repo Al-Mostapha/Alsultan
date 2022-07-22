@@ -5,6 +5,11 @@
 #include "Module/Army/Army.Module.h"
 #include "Module/CityResource/Resource.Module.h"
 #include "Module/Player/Player.Module.h"
+#include "Module/Building/Building.Module.h"
+#include "Module/Building/Building.DT.h"
+#include "Module/City/City.Const.h"
+#include "Module/City/City.DT.h"
+#include "Module/Player/Player.DT.h"
 
 class CityModule
 {
@@ -22,5 +27,10 @@ public:
                 // SultanPlayer.City.CityBuilding.fromJson(json);
                 //  city.CityBuilding.fromJson(json);
             });
+    }
+    static void showCityBuilding();
+    static void showCityEffect();
+    static DSCity& getCurrentCity(){
+        return DTPlayer::SultanPlayer.City;
     }
 };

@@ -5,8 +5,10 @@
 #include "Module/Building/Building.Const.h"
 #include "Module/City/CityBuildingUtils/CityBuildingBtnAction.h"
 #include "Module/Building/Building.DT.h"
+#include "ui/UILayout.h"
 
 USING_NS_CC;
+using namespace ui;
 
 struct DSBuilding : public GStruct
 {
@@ -47,9 +49,12 @@ public:
 
 	Sprite *BuildingSprite;
 	Sprite *UpgradeSprite;
-	Label *BuildingLvText;
+	Label  *BuildingLvText;
 	Sprite *BuildingLvBg;
-	DSCityBuildingUnit BuildingUnitData = DSCityBuildingUnit();
+	Layout *BuildingBtn;
+	
+	DSCityBuildingUnit BuildingUnitData;
+
 	struct
 	{
 		int32 x = 110, y = -17;
@@ -71,6 +76,7 @@ public:
 	virtual void setBuildingIconMiracle();
 	virtual void setBuildingParticle();
 	virtual void setBuildingAnimation();
+	virtual void setBuildingBtn();
 	void setBuildingUnitData(DSCityBuildingUnit &_CBUD);
 	static Vector<SpriteFrame *> getAnimation(GString Frame, int32 start, int32 end);
 };

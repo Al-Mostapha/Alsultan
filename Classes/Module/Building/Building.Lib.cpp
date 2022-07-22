@@ -1,6 +1,7 @@
 #include "Module/Building/Building.Lib.h"
 #include "Module/Building/Building.Const.h"
 #include "Include/IncludeCityBuilding.h"
+#include "Module/Player/Player.DT.h"
 
 void BuildingLib::buildCity()
 {
@@ -18,12 +19,11 @@ DSCityBuildingUnit &BuildingLib::getBuildingAt(const char *BuildingPlace)
 }
 CityBuildingBase *BuildingLib::getBuildingNodeAt(const char *BuildingPlace)
 {
-    return nullptr;
+	return nullptr;
 }
 
 CityBuildingBase *BuildingLib::getBuildingClassByType(EBuildingType buildingType)
 {
-    cocos2d::log("Building Type %d", static_cast<int32>(buildingType));
     switch (buildingType)
     {
     case EBuildingType::CBType_None:
@@ -64,6 +64,8 @@ CityBuildingBase *BuildingLib::getBuildingClassByType(EBuildingType buildingType
         return BuildingFPrison::create();
     case EBuildingType::CBType_ResurrectionHall:
         return BuildingFRevivalHall::create();
+    case EBuildingType::CBType_ServiceCenter:
+        return BuildingFServiceCenter::create();
     case EBuildingType::CBType_HeroTrainGround:
         return BuildingFTrainHall::create();
     case EBuildingType::CBType_Wall:
@@ -103,3 +105,38 @@ CityBuildingBase *BuildingLib::getBuildingClassByType(EBuildingType buildingType
         return BuildingNone::create();
     }
 };
+
+DSCityBuilding &BuildingLib::getCurentCityBuilding(){
+	return DTPlayer::SultanPlayer.City.CityBuilding;
+}
+
+GVector<DSCityBuildingUnit> BuildingLib::getBuildingList(EBuildingType buildingType){
+	GVector<DSCityBuildingUnit> BuildingList;
+	auto buildings = getCurentCityBuilding().BuildingList;
+	for( auto building : buildings){
+		if(buildingType == building.second.eBuildingType)
+			BuildingList.push_back(building.second);
+	}
+	for(auto it = buildings.begin(); it != buildings.end() ; it++){
+			if(buildingType == it->second.eBuildingType)
+			BuildingList.push_back(it->second);
+	}
+	return BuildingList;
+}
+
+GVector<DSCityBuildingUnit> BuildingLib::getBuildingResList(){
+    GVector<DSCityBuildingUnit> BuildingList;
+    auto Frams        = getBuildingList(EBuildingType::CBType_Farm);
+    auto SawMills     = getBuildingList(EBuildingType::CBType_LumberMill);
+    auto IronMines    = getBuildingList(EBuildingType::CBType_IronMine);
+    auto SilverMines  = getBuildingList(EBuildingType::CBType_SilverMine);
+    auto CrystalMines = getBuildingList(EBuildingType::CBType_CrystalMine);
+
+    BuildingList.insert(BuildingList.end(), Frams.begin(), Frams.end());
+    BuildingList.insert(BuildingList.end(), SawMills.begin(), SawMills.end());
+    BuildingList.insert(BuildingList.end(), IronMines.begin(), IronMines.end());
+    BuildingList.insert(BuildingList.end(), SilverMines.begin(), SilverMines.end());
+    BuildingList.insert(BuildingList.end(), CrystalMines.begin(), CrystalMines.end());
+
+    return BuildingList;
+}

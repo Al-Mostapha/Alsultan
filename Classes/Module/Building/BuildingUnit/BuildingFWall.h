@@ -14,6 +14,8 @@ public:
 	BuildingFWall();
 	bool init();
 	void onEnter();
+	EBuildingViewModel getViewModel(int32 wallLvl);
+	void setBuildingSprite();
 
 	CREATE_FUNC(BuildingFWall);
 

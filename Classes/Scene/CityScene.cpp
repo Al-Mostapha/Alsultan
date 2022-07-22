@@ -29,6 +29,7 @@ THE SOFTWARE.
 #include "Include/IncludeCityBuilding.h"
 #include "Module/City/CityBuildingUtils/CityBuildingTopTip.h"
 #include "Module/Building/Building.Module.h"
+#include "Module/City/City.Module.h"
 
 USING_NS_CC;
 
@@ -62,13 +63,8 @@ bool CityScene::init()
     BaseScrollLayer->setContentSize(Director::getInstance()->getWinSize());
     BaseScrollLayer->setScrollBarEnabled(false);
     BaseScrollLayer->setBounceEnabled(false);
+    BaseScrollLayer->setPropagateTouchEvents(true);
     addChild(BaseScrollLayer);
-    BootstrapPlist::loadSpriteSheet();
-    // FileUtils::getInstance()->addSearchPath("cocosstudio");
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    initCityLayers();
-    initDraggingEvent();
     return true;
 }
 
@@ -77,6 +73,23 @@ void CityScene::initCityLayers()
 
     CityFloorLayer = CSLoader::createNode("Scene/City/mainCityViewBG.csb");
     CityBuildingLayer = CSLoader::createNode("Scene/City/mainCityViewInfo.csb");
+    containerView = CityBuildingLayer;
+    batchNodeXiyiNpc = Node::create();
+    batchNodeNpc = Node::create();
+    batchNodeSoldierGuards = Node::create();
+
+    CityBuildingLayer->addChild(batchNodeXiyiNpc);
+    CityBuildingLayer->addChild(batchNodeNpc);
+    CityBuildingLayer->addChild(batchNodeSoldierGuards);
+
+    batchNodeXiyiNpc->setLocalZOrder(static_cast<int32>(ECityTargetZOrder::banyungong));
+    batchNodeNpc->setLocalZOrder(static_cast<int32>(ECityTargetZOrder::banyungong));
+    batchNodeSoldierGuards->setLocalZOrder(static_cast<int32>(ECityTargetZOrder::soldiers));
+    
+    batchNodeXiyiNpc->setPosition(0, 0);
+    batchNodeNpc->setPosition(0, 0);
+    batchNodeSoldierGuards->setPosition(0, 0);
+    
     auto Cloud = CSLoader::createNode("Scene/City/mainCityViewCloud.csb");
     CityUiLayer = CSLoader::createNode("UiParts/MainUi/mainUIBottom.csb");
     auto ResBox = CSLoader::createNode("UiParts/MainUi/commonResourcesMenu.csb");
@@ -102,28 +115,26 @@ void CityScene::initCityLayers()
 void CityScene::initDraggingEvent()
 {
 
-    auto MouseListiner = EventListenerTouchOneByOne::create();
+    // auto MouseListiner = EventListenerTouchOneByOne::create();
 
-    MouseListiner->setSwallowTouches(true);
-    static bool isDragging = false;
+    // MouseListiner->setSwallowTouches(true);
+    // static bool isDragging = false;
 
-    MouseListiner->onTouchBegan = [](Touch *T, Event *event)
-    {
-        isDragging = true;
-        return true;
-    };
+    // MouseListiner->onTouchBegan = [](Touch *T, Event *event)
+    // {
+    //     isDragging = true;
+    //     return true;
+    // };
+    // MouseListiner->onTouchMoved = [=](Touch *T, Event *event)
+    // {
+    //     this->CityFloorLayer->setPosition(this->CityFloorLayer->getPosition() + T->getDelta());
+    // };
+    // MouseListiner->onTouchEnded = [=](Touch *touch, Event *event)
+    // {
+    //     // your code
+    // };
 
-    MouseListiner->onTouchMoved = [=](Touch *T, Event *event)
-    {
-        this->CityFloorLayer->setPosition(this->CityFloorLayer->getPosition() + T->getDelta());
-    };
-
-    MouseListiner->onTouchEnded = [=](Touch *touch, Event *event)
-    {
-        // your code
-    };
-
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(MouseListiner, this);
+    //_eventDispatcher->addEventListenerWithSceneGraphPriority(MouseListiner, this);
 }
 
 void CityScene::menuCloseCallback(Ref *pSender)
@@ -140,5 +151,17 @@ void CityScene::menuCloseCallback(Ref *pSender)
 void CityScene::onEnter()
 {
     Scene::onEnter();
-    BuildingModule::buildCity();
+    BootstrapPlist::loadSpriteSheet(nullptr);
+    initCityLayers();
+    initDraggingEvent();
+    CityModule::showCityBuilding();
+    CityModule::showCityEffect();
+    
+}
+
+CityScene *CityScene::getCityScene()
+{
+    Scene *RunningScene = Director::getInstance()->getRunningScene();
+    CityScene *_scene = dynamic_cast<CityScene *>(RunningScene);
+    return _scene;
 }

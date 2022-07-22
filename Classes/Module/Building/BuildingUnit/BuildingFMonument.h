@@ -14,6 +14,8 @@ public:
 	BuildingFMonument();
 	bool init();
 	void onEnter();
+	void setBuildingAnimation() override;
+	void setBuildingParticle() override;
 
 	CREATE_FUNC(BuildingFMonument);
 

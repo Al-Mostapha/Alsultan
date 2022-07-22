@@ -25,29 +25,33 @@ enum class EBuildingType
     CBType_Barrack = 118,
     CBType_Workshop = 119,
     CBType_Fortress = 120,
-
     CBType_DrillGrounds = 121,
     CBType_HallOfWar = 122,
     CBType_HeroTrainGround = 123,
     CBType_HeroPrison = 125,
+
+    // Outer Building
     CBType_Farm = 201,
     CBType_LumberMill = 202,
     CBType_IronMine = 203,
     CBType_SilverMine = 204,
     CBType_MarchingTent = 205,
     CBType_FirstAidTent = 206,
-
     CBType_CrystalMine = 207,
     CBType_MaterialWorkShop = 210,
+
+    // un upgradable
     CBType_Miracle = 301,
     CBType_ElitePalace = 302,
     CBType_Monument = 303,
     CBType_StarBraveStatue = 304,
 
+    // Brebuilt fixed
     CBType_LeisureHouse = 30001,
     CARGO_SHIP = 30002,
     CBType_PetHouse = 30003,
     CBType_ResurrectionHall = 30004,
+    CBType_ServiceCenter = 30005,
     CBType_EpicBattle = 30006,
 
 };

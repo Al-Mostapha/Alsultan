@@ -8,9 +8,9 @@ USING_NS_CC;
 class BootstrapPlist : public cocos2d::Ref {
 
 private: 
-	static void loadCitySpriteSheet();
+	static void loadCitySpriteSheet(CallFunc* afterFinish);
 
 public:
-	static void loadSpriteSheet();
+	static void loadSpriteSheet(CallFunc* afterFinish);
 
 };

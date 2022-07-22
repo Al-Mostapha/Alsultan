@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <vector>
+#include <map>
 #include "cocos2d.h"
 #include "external/json/document.h"
 
@@ -18,5 +20,12 @@ typedef unsigned long int uint64;
 
 typedef rapidjson::Document GJsonObject;
 
+
+
 template <class T>
 using GArray = cocos2d::Vector<T>;
+
+template <class T>
+using GVector = std::vector<T>;
+template <class K, class V>
+using GMap = std::map<K, V>;

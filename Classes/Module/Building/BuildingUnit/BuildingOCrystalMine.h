@@ -17,6 +17,7 @@ public:
 
 	void setBuildingSprite();
 	void setBuildingAnimation();
+	void setBuildingParticle();
 
 	CREATE_FUNC(BuildingOCrystalMine);
 

@@ -3,7 +3,7 @@
 #include "Base/Json.h"
 #include "Module/Building/Building.Const.h"
 
-struct DSCityBuildingUnit
+struct DSCityBuildingUnit 
 {
 
     int32 buildingLvl;
@@ -14,15 +14,19 @@ struct DSCityBuildingUnit
 
     DSCityBuildingUnit(char *nodeName, char *buildingPlace, EBuildingPos eBP)
         : NodeName(nodeName), BuildingPlace(buildingPlace), eBuildingPos(eBP){};
-    DSCityBuildingUnit(){};
+    DSCityBuildingUnit()
+        : NodeName(""), BuildingPlace(""), eBuildingPos(EBuildingPos::CBPlace_Inner){};
     void fromJson(GJson *json);
-    void buildUnit();
+    DSCityBuildingUnit& buildUnit();
+    DSCityBuildingUnit& addToBuildingList();
 };
 
-struct DSCityBuilding
+struct DSCityBuilding 
 {
     int32 idPlayer;
     int32 idCity;
+    GMap<GString, DSCityBuildingUnit> BuildingList;
+
     struct
     {
         int idCity;
@@ -42,6 +46,7 @@ struct DSCityBuilding
         DSCityBuildingUnit braveStatue = DSCityBuildingUnit("build_1205", "braveStatue", EBuildingPos::CBPlace_Fixed);
         DSCityBuildingUnit petCenter = DSCityBuildingUnit("build_30003", "petCenter", EBuildingPos::CBPlace_Fixed);
         DSCityBuildingUnit resurrectionHall = DSCityBuildingUnit("build_30004", "resurrectionHall", EBuildingPos::CBPlace_Fixed);
+        DSCityBuildingUnit serviceCenter = DSCityBuildingUnit("build_30005", "serviceCenter", EBuildingPos::CBPlace_Fixed); // this is error
         DSCityBuildingUnit eventCenter = DSCityBuildingUnit("build_30005", "eventCenter", EBuildingPos::CBPlace_Fixed);
         DSCityBuildingUnit epicBattle = DSCityBuildingUnit("build_30006", "epicBattle", EBuildingPos::CBPlace_Fixed);
         DSCityBuildingUnit monument = DSCityBuildingUnit("build_30007", "Monument", EBuildingPos::CBPlace_Fixed);
@@ -66,12 +71,15 @@ struct DSCityBuilding
             miracle.fromJson(json->GetJsonObject("miracle"));
             braveStatue.fromJson(json->GetJsonObject("braveStatue"));
             petCenter.fromJson(json->GetJsonObject("petCenter"));
+            resurrectionHall.fromJson(json->GetJsonObject("resurrectionHall"));
+            serviceCenter.fromJson(json->GetJsonObject("serviceCenter"));
             eventCenter.fromJson(json->GetJsonObject("eventCenter"));
             epicBattle.fromJson(json->GetJsonObject("epicBattle"));
             monument.fromJson(json->GetJsonObject("monument"));
             veteransHall.fromJson(json->GetJsonObject("veteransHall"));
         }
     } CityBuildingFixed;
+
     struct
     {
         int idCity;
@@ -213,4 +221,6 @@ struct DSCityBuilding
         CityBuildingInner.fromJson(json->GetJsonObject("CityBuildingInner"));
         CityBuildingOuter.fromJson(json->GetJsonObject("CityBuildingOuter"));
     }
+
+    
 };

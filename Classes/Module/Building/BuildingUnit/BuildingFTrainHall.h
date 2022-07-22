@@ -14,6 +14,7 @@ public:
 	BuildingFTrainHall();
 	bool init();
 	void onEnter();
+	void setBuildingParticle();
 
 	CREATE_FUNC(BuildingFTrainHall);
 

@@ -53,7 +53,7 @@ bool WorldScene::init()
         return false;
     }
 
-    BootstrapPlist::loadSpriteSheet();
+    //BootstrapPlist::loadSpriteSheet();
 
     // FileUtils::getInstance()->addSearchPath("cocosstudio");
 

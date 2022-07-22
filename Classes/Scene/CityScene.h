@@ -22,15 +22,21 @@
 #define __CITYSCENE_H_
 
 #include "cocos2d.h"
+
 #include "ui/CocosGUI.h"
 
 class CityScene : public cocos2d::Scene
 {
 public:
-    Node *CityFloorLayer;
-    Node *CityBuildingLayer;
-    Node *CityDecoreLayer;
-    Node *CityUiLayer;
+    cocos2d::Node *CityFloorLayer;
+    cocos2d::Node *CityBuildingLayer;
+    cocos2d::Node *containerView;
+    cocos2d::Node *batchNodeXiyiNpc;
+    cocos2d::Node *batchNodeNpc;
+    cocos2d::Node *batchNodeSoldierGuards;
+    cocos2d::Node *CityDecoreLayer;
+    cocos2d::Node *CityUiLayer;
+    cocos2d::Map<std::string, Node *> bufferNodeArray;
 
     static cocos2d::Scene *createScene();
 
@@ -41,6 +47,7 @@ public:
     void initCityLayers();
     void menuCloseCallback(cocos2d::Ref *pSender);
     void onEnter();
+    static CityScene *getCityScene();
 
     // implement the "static create()" method manually
     CREATE_FUNC(CityScene);

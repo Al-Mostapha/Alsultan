@@ -7,23 +7,20 @@ BuildingFMiracle::BuildingFMiracle()
 
 	BuildingSpriteImage = "BG_statue.png";
 	BuildingIconMiracle = "armyicon_s_10004711.png";
-	BuildingSpriteOffset = {-29, 105};
+	BuildingSpriteOffset = {-40, 94};
 	LvlBgOffset = {50, -9};
 }
 
 bool BuildingFMiracle::init()
 {
-
 	if (!CityBuildingBase::init())
 		return false;
-
 	setBuildingSprite();
 	setBuildingLvBg();
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	// setBuildingIconMiracle();
-
 	return true;
 }
 

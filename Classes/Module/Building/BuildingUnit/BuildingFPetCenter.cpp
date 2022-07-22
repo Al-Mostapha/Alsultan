@@ -1,21 +1,18 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "BuildingFPetCenter.h"
 
+BuildingFPetCenter::BuildingFPetCenter()
+{
 
-BuildingFPetCenter::BuildingFPetCenter() {
-
-	BuildingSpriteImage  = "chongwuguan.png";
-	BuildingIconMiracle  = "armyicon_s_10004711.png";
-	BuildingSpriteOffset = { 5, 27 };
-
+	BuildingSpriteImage = "chongwuguan.png";
+	BuildingIconMiracle = "armyicon_s_10004711.png";
+	BuildingSpriteOffset = {-105, 50};
 }
 
+bool BuildingFPetCenter::init()
+{
 
-bool BuildingFPetCenter::init() {
-
-	
 	if (!CityBuildingBase::init())
 		return false;
 
@@ -27,19 +24,15 @@ bool BuildingFPetCenter::init() {
 
 	BuildingSprite->setLocalZOrder(2);
 	auto _Sp = Sprite::createWithSpriteFrameName("frame_chongwuguan_shadow.png");
-	_Sp->setPosition(-25, 25);
+	_Sp->setPosition(-80, 48);
 	addChild(_Sp, 1);
-	//setBuildingIconMiracle();
+	//  setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingFPetCenter::onEnter() {
+void BuildingFPetCenter::onEnter()
+{
 
 	CityBuildingBase::onEnter();
-
 }
-
-
-
-

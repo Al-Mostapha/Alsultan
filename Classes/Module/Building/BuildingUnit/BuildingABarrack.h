@@ -14,6 +14,7 @@ public:
 	BuildingABarrack();
 	bool init();
 	void onEnter();
+	void setBuildingBtn() override;
 
 	CREATE_FUNC(BuildingABarrack);
 };

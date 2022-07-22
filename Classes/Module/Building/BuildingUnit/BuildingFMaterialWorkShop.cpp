@@ -39,13 +39,13 @@ void BuildingFMaterialWorkShop::setBuildingAnimation()
 	sprite_1->setPosition(10, 100);
 
 	auto animation = Animation::createWithSpriteFrames(frames, 1.0f / 8);
-	auto animation_1 = Animation::createWithSpriteFrames(frames, 1.0f / 8);
+	auto animation_1 = Animation::createWithSpriteFrames(frames_1, 1.0f / 8);
 
 	sprite->runAction(RepeatForever::create(Animate::create(animation)));
 	sprite_1->runAction(RepeatForever::create(Animate::create(animation_1)));
 
-	addChild(sprite);
-	addChild(sprite_1);
+	addChild(sprite, 5);
+	addChild(sprite_1, -1);
 }
 
 void BuildingFMaterialWorkShop::onEnter()

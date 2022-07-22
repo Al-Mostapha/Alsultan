@@ -14,7 +14,7 @@ public:
 	BuildingFPrison();
 	bool init();
 	void onEnter();
-
+	void setBuildingParticle();
 	CREATE_FUNC(BuildingFPrison);
 
 	/**

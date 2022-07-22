@@ -7,7 +7,7 @@ BuildingFElitePalace::BuildingFElitePalace()
 
   BuildingSpriteImage = "jingyingdiantang.png";
   BuildingIconMiracle = "armyicon_s_10004711.png";
-  BuildingSpriteOffset = {7, 38};
+  BuildingSpriteOffset = {-46, 55};
   LvlBgOffset = {135, -15};
 }
 
@@ -16,7 +16,6 @@ bool BuildingFElitePalace::init()
 
   if (!CityBuildingBase::init())
     return false;
-
   setBuildingSprite();
   setBuildingLvBg();
   setUpgradeSprite();
@@ -24,7 +23,6 @@ bool BuildingFElitePalace::init()
   setBuildingSleepSprite();
   showWorkingEffect();
   // setBuildingIconMiracle();
-
   return true;
 }
 

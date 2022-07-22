@@ -155,3 +155,7 @@ void CityBuildingBase::setBuildingUnitData(DSCityBuildingUnit &_CBUD)
 {
     BuildingUnitData = _CBUD;
 }
+
+void CityBuildingBase::setBuildingBtn()
+{
+}
