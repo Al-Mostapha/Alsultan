@@ -3,3 +3,5 @@ cocos2d
 proj.*
 build
 .vs
+Server/
+cocos-sultan/
