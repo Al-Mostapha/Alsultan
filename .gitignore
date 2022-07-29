@@ -3,3 +3,4 @@ cocos2d
 proj.*
 build
 .vs
+CMakeFiles
