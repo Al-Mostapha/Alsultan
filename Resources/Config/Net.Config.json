@@ -1,0 +1,5 @@
+{
+    "ApiUrl": "http://localhost",
+    "ApiPort": "8080",
+    "ApiFullUrl": "http://localhost:8080"
+}
