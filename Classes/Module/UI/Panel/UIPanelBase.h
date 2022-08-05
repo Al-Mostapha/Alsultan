@@ -6,5 +6,7 @@ class UIPanelBase : public UIElment
 protected:
   cocos2d::ui::Layout *m_Panel;
 public: 
-  virtual void initPanel() = 0;
+  virtual void initPanel(){};
+   // implement the "static create()" method manually
+  CREATE_FUNC(UIPanelBase);
 };

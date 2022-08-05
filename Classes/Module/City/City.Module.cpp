@@ -2,6 +2,8 @@
 #include "CitySceneEffect.h"
 #include "Scene/CityScene.h"
 
+#include "Module/UI/Panel/Building/UICreateBuildingPanel.h"
+
 void CityModule::showCityEffect()
 {
   CitySceneEffect::showPyramidHonourBuildEffect();
@@ -47,6 +49,13 @@ void CityModule::showCityEffect()
   CitySceneEffect::addMatouEffect();
   CitySceneEffect::addWallEffect();
   CitySceneEffect::cloudRunEffect();
+
+  auto p = UICreateBuildingPanel::create();
+  p->initPanel();
+  Scene *scene = Director::getInstance()->getRunningScene();
+  scene->addChild(p);
+
+  
   
 
 }

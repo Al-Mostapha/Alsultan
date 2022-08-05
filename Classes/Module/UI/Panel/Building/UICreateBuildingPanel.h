@@ -2,7 +2,7 @@
 #include "Module/UI/Panel/UIPanelBase.h"
 
 
-class UICreateBuiling : public UIPanelBase
+class UICreateBuildingPanel : public UIPanelBase
 {
 
 private:
@@ -15,9 +15,11 @@ private:
   cocos2d::ui::Widget *m_BackGround;
   
 public:
-  UICreateBuiling();
-  ~UICreateBuiling();
+  UICreateBuildingPanel();
+  ~UICreateBuildingPanel();
   void initPanel() override;
+
+  CREATE_FUNC(UICreateBuildingPanel);
 
 };
 
