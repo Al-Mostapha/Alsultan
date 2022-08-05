@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>frame_hymz_bj.pkm</string>
+            <string>frame_hymz_bj.png</string>
             <key>size</key>
             <string>{640,1329}</string>
             <key>smartupdate</key>
             <string>$TexturePacker:SmartUpdate:0ad775b3156af24c453f48dcf752b3aa:1/1$</string>
             <key>textureFileName</key>
-            <string>frame_hymz_bj.pkm</string>
+            <string>frame_hymz_bj.png</string>
         </dict>
     </dict>
 </plist>
