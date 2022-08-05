@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>bg_ygg_cl_03.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0,0},{640,1386}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{640,1386}}</string>
+                <key>sourceSize</key>
+                <string>{640,1386}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>bg_ygg_cl_03.pkm</string>
+            <key>size</key>
+            <string>{640,1386}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:5576c3341454628074ef2d0f068d8117:1/1$</string>
+            <key>textureFileName</key>
+            <string>bg_ygg_cl_03.pkm</string>
+        </dict>
+    </dict>
+</plist>
