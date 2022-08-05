@@ -1,0 +1,328 @@
+{
+    "frames": {
+        "switcher_01": {
+            "frame": {
+                "x": "1931",
+                "y": "813",
+                "w": "652",
+                "h": "81"
+            },
+            "rotated": "true",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "652",
+                "h": "81"
+            },
+            "sourceSize": {
+                "w": "652",
+                "h": "81"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_02": {
+            "frame": {
+                "x": "1312",
+                "y": "729",
+                "w": "652",
+                "h": "81"
+            },
+            "rotated": "false",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "652",
+                "h": "81"
+            },
+            "sourceSize": {
+                "w": "652",
+                "h": "81"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_03": {
+            "frame": {
+                "x": "1312",
+                "y": "645",
+                "w": "652",
+                "h": "81"
+            },
+            "rotated": "false",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "652",
+                "h": "81"
+            },
+            "sourceSize": {
+                "w": "652",
+                "h": "81"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_04": {
+            "frame": {
+                "x": "657",
+                "y": "1787",
+                "w": "652",
+                "h": "81"
+            },
+            "rotated": "false",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "652",
+                "h": "81"
+            },
+            "sourceSize": {
+                "w": "652",
+                "h": "81"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_05": {
+            "frame": {
+                "x": "2",
+                "y": "1814",
+                "w": "652",
+                "h": "81"
+            },
+            "rotated": "false",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "652",
+                "h": "81"
+            },
+            "sourceSize": {
+                "w": "652",
+                "h": "81"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_bg": {
+            "frame": {
+                "x": "645",
+                "y": "2",
+                "w": "640",
+                "h": "1386"
+            },
+            "rotated": "true",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "640",
+                "h": "1386"
+            },
+            "sourceSize": {
+                "w": "640",
+                "h": "1386"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_bg_ex": {
+            "frame": {
+                "x": "1288",
+                "y": "813",
+                "w": "640",
+                "h": "960"
+            },
+            "rotated": "false",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "640",
+                "h": "960"
+            },
+            "sourceSize": {
+                "w": "640",
+                "h": "960"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_bg_ex_pre": {
+            "frame": {
+                "x": "645",
+                "y": "645",
+                "w": "640",
+                "h": "960"
+            },
+            "rotated": "false",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "640",
+                "h": "960"
+            },
+            "sourceSize": {
+                "w": "640",
+                "h": "960"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_bg_pre": {
+            "frame": {
+                "x": "2",
+                "y": "2",
+                "w": "640",
+                "h": "1386"
+            },
+            "rotated": "false",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "640",
+                "h": "1386"
+            },
+            "sourceSize": {
+                "w": "640",
+                "h": "1386"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_bg_title_arab": {
+            "frame": {
+                "x": "389",
+                "y": "1391",
+                "w": "349",
+                "h": "199"
+            },
+            "rotated": "true",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "3",
+                "y": "0",
+                "w": "349",
+                "h": "199"
+            },
+            "sourceSize": {
+                "w": "355",
+                "h": "199"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_bg_title_arab_normal": {
+            "frame": {
+                "x": "2",
+                "y": "1391",
+                "w": "420",
+                "h": "250"
+            },
+            "rotated": "true",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "119",
+                "y": "20",
+                "w": "420",
+                "h": "250"
+            },
+            "sourceSize": {
+                "w": "640",
+                "h": "290"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_bg_title_en": {
+            "frame": {
+                "x": "255",
+                "y": "1391",
+                "w": "389",
+                "h": "131"
+            },
+            "rotated": "true",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "0",
+                "y": "0",
+                "w": "389",
+                "h": "131"
+            },
+            "sourceSize": {
+                "w": "389",
+                "h": "131"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "switcher_bg_title_en_normal": {
+            "frame": {
+                "x": "591",
+                "y": "1608",
+                "w": "532",
+                "h": "176"
+            },
+            "rotated": "false",
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": "55",
+                "y": "58",
+                "w": "532",
+                "h": "176"
+            },
+            "sourceSize": {
+                "w": "640",
+                "h": "290"
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    },
+    "meta": {
+        "app": "https://www.codeandweb.com/texturepacker",
+        "version": "1.0",
+        "format": "RGBA8888",
+        "target": "paper2d",
+        "image": "switcher.png",
+        "size": {
+            "w": "2033",
+            "h": "1897"
+        },
+        "scale": "1"
+    }
+}
