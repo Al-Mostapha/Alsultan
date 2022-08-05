@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>bg_shmc_ryb_bj.pkm</string>
+            <string>bg_shmc_ryb_bj.png</string>
             <key>size</key>
             <string>{852,1386}</string>
             <key>smartupdate</key>
             <string>$TexturePacker:SmartUpdate:7c365aa5854ac124969a1dc7ee54b069:1/1$</string>
             <key>textureFileName</key>
-            <string>bg_shmc_ryb_bj.pkm</string>
+            <string>bg_shmc_ryb_bj.png</string>
         </dict>
     </dict>
 </plist>

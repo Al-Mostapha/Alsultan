@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>bg_zcjn_bj.pkm</string>
+            <string>bg_zcjn_bj.png</string>
             <key>size</key>
             <string>{640,1386}</string>
             <key>smartupdate</key>
             <string>$TexturePacker:SmartUpdate:9ccfb5544823f7f1228dc61b0b02dfa3:1/1$</string>
             <key>textureFileName</key>
-            <string>bg_zcjn_bj.pkm</string>
+            <string>bg_zcjn_bj.png</string>
         </dict>
     </dict>
 </plist>
