@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>frame_ygg_bj.pkm</string>
+            <string>frame_ygg_bj.png</string>
             <key>size</key>
             <string>{640,1386}</string>
             <key>smartupdate</key>
             <string>$TexturePacker:SmartUpdate:48940680a304805a9525d8b2ee44c6ee:1/1$</string>
             <key>textureFileName</key>
-            <string>frame_ygg_bj.pkm</string>
+            <string>frame_ygg_bj.png</string>
         </dict>
     </dict>
 </plist>

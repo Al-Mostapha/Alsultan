@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>framer_znqdjs_bj.pkm</string>
+            <string>framer_znqdjs_bj.png</string>
             <key>size</key>
             <string>{640,1251}</string>
             <key>smartupdate</key>
             <string>$TexturePacker:SmartUpdate:a307bc2ca0613f262f0b31537514ae40:1/1$</string>
             <key>textureFileName</key>
-            <string>framer_znqdjs_bj.pkm</string>
+            <string>framer_znqdjs_bj.png</string>
         </dict>
     </dict>
 </plist>

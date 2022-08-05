@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>bg_icewolfcastlerank.pkm</string>
+            <string>bg_icewolfcastlerank.png</string>
             <key>size</key>
             <string>{852,1386}</string>
             <key>smartupdate</key>
             <string>$TexturePacker:SmartUpdate:19039bf0dab6332626e6223f9d39edd2:1/1$</string>
             <key>textureFileName</key>
-            <string>bg_icewolfcastlerank.pkm</string>
+            <string>bg_icewolfcastlerank.png</string>
         </dict>
     </dict>
 </plist>
