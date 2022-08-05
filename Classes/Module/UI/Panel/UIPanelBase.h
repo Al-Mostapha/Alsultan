@@ -3,9 +3,8 @@
 
 class UIPanelBase : public UIElment
 {
-
-  public: 
+protected:
+  cocos2d::ui::Layout *m_Panel;
+public: 
   virtual void initPanel() = 0;
-
-
 };
