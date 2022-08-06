@@ -14,7 +14,7 @@ public:
 	BuildingIHallOfWar();
 	bool init();
 	void onEnter();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingIHallOfWar);
 
 	/**

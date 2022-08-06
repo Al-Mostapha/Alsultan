@@ -16,7 +16,7 @@ public:
 	void onEnter();
 	void setBuildingParticle();
 	void setBuildingAnimation();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingFMaterialWorkShop);
 
 	/**

@@ -16,7 +16,7 @@ public:
 	void onEnter();
 	void setBuildingAnimation() override;
 	void setBuildingParticle() override;
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingFMonument);
 
 	/**

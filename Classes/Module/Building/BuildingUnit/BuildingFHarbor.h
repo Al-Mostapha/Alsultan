@@ -14,7 +14,7 @@ public:
 	BuildingFHarbor();
 	bool init();
 	void onEnter();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingFHarbor);
 
 	/**

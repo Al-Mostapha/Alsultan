@@ -3,6 +3,7 @@
 #include "BuildingABarrack.h"
 #include "ui/UIButton.h"
 #include "Scene/CityScene.h"
+#include "Include/IncludeBuildingBase.h"
 #include <iostream>
 
 BuildingABarrack::BuildingABarrack()
@@ -13,6 +14,10 @@ BuildingABarrack::BuildingABarrack()
 	BuildingSpriteOffset = {0, 39};
 }
 
+void BuildingABarrack::initBuilingData()
+{
+	
+}
 bool BuildingABarrack::init()
 {
 

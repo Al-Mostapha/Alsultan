@@ -15,6 +15,7 @@ public:
 	bool init();
 	void onEnter();
 	void setBuildingParticle();
+	static void initBuilingData();
 	CREATE_FUNC(BuildingFPrison);
 
 	/**

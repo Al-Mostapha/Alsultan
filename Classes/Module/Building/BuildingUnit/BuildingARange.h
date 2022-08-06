@@ -16,7 +16,7 @@ public:
 	void onEnter();
 	void setBuildingAnimation();
 	void setBuildingIconMiracle();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingARange);
 
 	/**

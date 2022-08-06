@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Include/IncludeBuildingBase.h"
 
 class BuildingService
 {

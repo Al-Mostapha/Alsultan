@@ -14,7 +14,7 @@ public:
 	BuildingNone();
 	bool init();
 	void onEnter();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingNone);
 
 	/**

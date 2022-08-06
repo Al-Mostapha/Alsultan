@@ -21,6 +21,7 @@ bool BuildingAFortress::init()
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
+	
 	// setBuildingIconMiracle();
 
 	return true;

@@ -6,6 +6,8 @@
 class BuildingLib
 {
 public:
+    static GMap<EBuildingType, DSBuildingTypeUnit> BuildingTypes;
+    static GVector<EBuildingType> getCityBuilding(int32 idCity);
     static void buildCity();
     static void buildAt(const char *BuildingPlace);
     static DSCityBuildingUnit &getBuildingAt(const char *BuildingPlace);
@@ -14,4 +16,6 @@ public:
     static DSCityBuilding &getCurentCityBuilding();
     static GVector<DSCityBuildingUnit> getBuildingList(EBuildingType buildingType);
     static GVector<DSCityBuildingUnit> getBuildingResList();
+    static GVector<DSBuildingTypeUnit> getCanBuildList(EBuildingType buildingType);
+
 };

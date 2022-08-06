@@ -1,12 +1,10 @@
 #include "Include/IncludeEngine.h"
-#include "Module/UI/UIElment.h"
+#include "Include/IncludeUiBase.h"
 
 class UIPanelBase : public UIElment
 {
 protected:
   cocos2d::ui::Layout *m_Panel;
 public: 
-  virtual void initPanel(){};
-   // implement the "static create()" method manually
-  CREATE_FUNC(UIPanelBase);
+  virtual void initPanel() = 0;
 };

@@ -7,18 +7,24 @@ class UICreateBuildingPanel : public UIPanelBase
 
 private:
 
-  cocos2d::ui::Widget *m_LableDes;
-  cocos2d::ui::Widget *m_LabelCount;
-  cocos2d::ui::Widget *m_LabelNeed;
-  cocos2d::ui::Widget *m_LabelName;
-  cocos2d::ui::Widget *m_NodeCenter;
-  cocos2d::ui::Widget *m_BackGround;
+  Label *m_LabelDes;
+  Label *m_LabelCount;
+  Label *m_LabelNeed;
+  Label *m_LabelName;
+  Node *m_NodeCenter;
+  ui::ImageView *m_BackGround;
+  ui::Button *m_BtnBuild;
+
+  ui::Layout *m_NodeLeft;
+  ui::Layout *m_NodeRight;
+  ui::Layout *m_NodeTop;
+  ui::Layout *m_NodeBottom;
   
 public:
   UICreateBuildingPanel();
   ~UICreateBuildingPanel();
   void initPanel() override;
-
+  void setBuildingTypeAndData(EBuildingType p_BuildingType = EBuildingType::CBType_None, int32 p_BuildingIndex = 0);
   CREATE_FUNC(UICreateBuildingPanel);
 
 };

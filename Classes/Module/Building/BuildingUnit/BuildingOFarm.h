@@ -14,7 +14,7 @@ public:
 	BuildingOFarm();
 	bool init();
 	void onEnter();
-
+	static void initBuilingData();
 	void setBuildingSprite();
 	void setBuildingAnimation();
 

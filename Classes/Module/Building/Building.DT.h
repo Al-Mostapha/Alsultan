@@ -21,12 +21,21 @@ struct DSCityBuildingUnit
     DSCityBuildingUnit& addToBuildingList();
 };
 
+
+struct DSBuildingTypeUnit{
+    int32 idBuildingType;
+    GString buildingTypeName;
+    EBuildingType buildingType;
+
+
+};
+
 struct DSCityBuilding 
 {
     int32 idPlayer;
     int32 idCity;
     GMap<GString, DSCityBuildingUnit> BuildingList;
-
+    static GMap<GString, DSBuildingTypeUnit> BuildingTypeList;
     struct
     {
         int idCity;
@@ -221,6 +230,5 @@ struct DSCityBuilding
         CityBuildingInner.fromJson(json->GetJsonObject("CityBuildingInner"));
         CityBuildingOuter.fromJson(json->GetJsonObject("CityBuildingOuter"));
     }
-
-    
 };
+

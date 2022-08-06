@@ -16,7 +16,7 @@ public:
 	void onEnter();
 	EBuildingViewModel getViewModel(int32 wallLvl);
 	void setBuildingSprite();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingFWall);
 
 	/**

@@ -17,7 +17,7 @@ public:
 
 	void setBuildingSprite();
 	void setBuildingAnimation();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingOIronMine);
 
 	/**

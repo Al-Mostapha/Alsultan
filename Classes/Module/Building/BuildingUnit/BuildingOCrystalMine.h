@@ -14,7 +14,7 @@ public:
 	BuildingOCrystalMine();
 	bool init();
 	void onEnter();
-
+	static void initBuilingData();
 	void setBuildingSprite();
 	void setBuildingAnimation();
 	void setBuildingParticle();

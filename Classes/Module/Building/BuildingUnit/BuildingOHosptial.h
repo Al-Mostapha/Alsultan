@@ -18,7 +18,7 @@ public:
 	void setBuildingSprite();
 	void setBuildingAnimation();
 	void setBuildingParticle();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingOHosptial);
 
 	/**

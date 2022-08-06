@@ -15,6 +15,7 @@ public:
 	bool init();
 	void onEnter();
 	void setBuildingBtn() override;
+	static void initBuilingData();
 
 	CREATE_FUNC(BuildingABarrack);
 };

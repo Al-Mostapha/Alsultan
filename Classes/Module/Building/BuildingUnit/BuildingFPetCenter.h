@@ -14,7 +14,7 @@ public:
 	BuildingFPetCenter();
 	bool init();
 	void onEnter();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingFPetCenter);
 
 	/**

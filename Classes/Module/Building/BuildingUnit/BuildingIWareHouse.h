@@ -14,7 +14,7 @@ public:
 	BuildingIWareHouse();
 	bool init();
 	void onEnter();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingIWareHouse);
 
 	/**

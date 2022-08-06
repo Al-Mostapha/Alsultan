@@ -16,7 +16,7 @@ public:
 	BuildingFArrowTower();
 	bool init();
 	void onEnter();
-
+	static void initBuilingData();
 	CREATE_FUNC(BuildingFArrowTower);
 
 	/**
