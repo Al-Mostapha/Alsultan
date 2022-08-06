@@ -5,7 +5,9 @@
 
 void BuildingModule::init()
 {
+    BuildingService::fetchBuildingInfo();
     BuildingService::getCityBuilding(DTPlayer::SultanPlayer.idCurrentCity);
+
 }
 
 void BuildingModule::buildCity()

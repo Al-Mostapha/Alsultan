@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CityArmyModule } from "../Army/CityArmy.module";
+import { BuildingModule } from "../Building/Building.module";
 import { CityController } from "./City.controller";
 import { CityService } from "./City.service";
 import { CityBuildingModule } from "./CityBuilding/CityBuilding.module";
@@ -16,6 +17,7 @@ import { CityResourceModule } from "./CityResource/CityBuilding.module";
         CityBuildingModule,
         CityArmyModule,
         CityResourceModule,
+        BuildingModule,
         TypeOrmModule.forFeature([
             CityBuildingInnerModel,
             CityBuildingOuterModel,

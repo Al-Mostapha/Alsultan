@@ -3,6 +3,7 @@
 #include "Base/Json.h"
 #include "Module/Building/Building.Const.h"
 
+
 struct DSCityBuildingUnit 
 {
 
@@ -22,12 +23,41 @@ struct DSCityBuildingUnit
 };
 
 
-struct DSBuildingTypeUnit{
-    int32 idBuildingType;
-    GString buildingTypeName;
-    EBuildingType buildingType;
-
-
+struct DSBuildingInfoUnit{
+   
+    int32 index = 0;
+    int32 idBuilding = 0;
+    bool isDemolish = false;
+    bool isExchange = false;
+    bool isBuild = false;
+    bool isUpgrade = false;
+    EBuildingType buildingType = EBuildingType::CBType_None;
+    int32 bType = 0;
+    int32 maxCount = 0;
+    int32 maxLvl = 0;
+    int32 initLvl = 0;
+    int32 openWl = 0;
+    int32 openStar = 0;
+    int32 maxStarLv = 0;
+    GString buildingTypeName = "";
+    static DSBuildingInfoUnit fromJson(GJson *json){
+        DSBuildingInfoUnit  temp;
+        temp.index        = json->GetInt("index");
+        temp.idBuilding   = json->GetInt("idBuilding");
+        temp.isDemolish   = json->GetBool("isdemolish");
+        temp.isExchange   = json->GetBool("isExchange");
+        temp.isBuild      = json->GetBool("isBuild");
+        temp.isUpgrade    = json->GetBool("isUpgrade");
+        temp.buildingType = static_cast<EBuildingType>(json->GetInt("buildingType")) ;
+        temp.bType        = json->GetInt("bType");
+        temp.maxCount     = json->GetInt("maxCount");
+        temp.maxLvl       = json->GetInt("maxLvl");
+        temp.initLvl      = json->GetInt("initLvl");
+        temp.openWl       = json->GetInt("openWl");
+        temp.openStar     = json->GetInt("openStar");
+        temp.maxStarLv    = json->GetInt("maxStarLv");
+        return temp;
+    }
 };
 
 struct DSCityBuilding 
@@ -35,7 +65,6 @@ struct DSCityBuilding
     int32 idPlayer;
     int32 idCity;
     GMap<GString, DSCityBuildingUnit> BuildingList;
-    static GMap<GString, DSBuildingTypeUnit> BuildingTypeList;
     struct
     {
         int idCity;

@@ -1,6 +1,6 @@
 
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
-import { BuildingColumnOption, ECityBuildingType, ICityBuildingUnit } from "./CityBuilding.const";
+import { BuildingColumnOption, EBuildingType, IBuildingUnit } from "src/Module/Building/Building.Const";
 
 
 @Entity({
@@ -13,29 +13,29 @@ export class CityBuildingInnerModel {
     @Column({ type: "int" })
     idPlayer: number;
     @Column(BuildingColumnOption)
-    innerBuilding_1: ICityBuildingUnit;
+    innerBuilding_1: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_2: ICityBuildingUnit;
+    innerBuilding_2: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_3: ICityBuildingUnit;
+    innerBuilding_3: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_4: ICityBuildingUnit;
+    innerBuilding_4: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_5: ICityBuildingUnit;
+    innerBuilding_5: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_6: ICityBuildingUnit;
+    innerBuilding_6: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_7: ICityBuildingUnit;
+    innerBuilding_7: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_8: ICityBuildingUnit;
+    innerBuilding_8: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_9: ICityBuildingUnit;
+    innerBuilding_9: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_10: ICityBuildingUnit;
+    innerBuilding_10: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_11: ICityBuildingUnit;
+    innerBuilding_11: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_12: ICityBuildingUnit;
+    innerBuilding_12: IBuildingUnit;
     @Column(BuildingColumnOption)
-    innerBuilding_13: ICityBuildingUnit;
+    innerBuilding_13: IBuildingUnit;
 }

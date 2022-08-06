@@ -34,7 +34,7 @@ import { CityResourceModel } from './Module/City/CityResource/CityResource.model
       synchronize: true,
       logger: "advanced-console"
     }),
-    CityModule,
+    CityModule
   ],
   controllers: [AppController],
   providers: [AppService],

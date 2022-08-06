@@ -2,9 +2,9 @@
 
 #include "cocos2d.h"
 #include "Include/IncludeBase.h"
+#include "Include/IncludeBuildingBase.h"
 #include "Module/Building/Building.Const.h"
 #include "Module/City/CityBuildingUtils/CityBuildingBtnAction.h"
-#include "Module/Building/Building.DT.h"
 #include "ui/UILayout.h"
 
 USING_NS_CC;

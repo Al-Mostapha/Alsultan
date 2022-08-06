@@ -24,3 +24,30 @@ void BuildingService::getCityBuilding(int32 idCity)
             cocos2d::Director::getInstance()->pushScene(newScene);
         });
 }
+
+void BuildingService::fetchBuildingInfo(){
+    NetBaseModule::getJson(
+        "/api/Building/fetchBuildingInfo",
+        [](GJson *json)
+        {
+            if (json == nullptr)
+            {
+                cocos2d::log("Error Null ptr From getBuildingInfo Fetch");
+                return;
+            }
+            if (GString(json->GetString("state")) == "ok"){
+                GJson *BuildingInfo = json->GetJsonObject("BuildingInfo");
+                for(auto it  = BuildingInfo->MemberBegin(); it != BuildingInfo->MemberEnd(); ++it ){
+                    EBuildingType l_BuildingType =  EBuildingType::CBType_None;
+                    if(it->name.IsInt())
+                        l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
+                    else if(it->name.IsString())
+                        l_BuildingType = static_cast<EBuildingType>(std::stoi(it->name.GetString()));
+                    //BuildingStatic::BuildingInfo[l_BuildingType] =  DSBuildingInfoUnit::fromJson(GJson(it->value.GetObjectW()));
+                }
+
+                DTPlayer::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
+            }else
+                cocos2d::log("Error Fetching CityBuilding From Server ....");
+        });
+}

@@ -1,7 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
 #include "Base/Json.h"
-#include "Module/Building/Building.DT.h"
+#include "Include/IncludeBuildingBase.h"
 #include "Module/Army/Army.DT.h"
 #include "Module/CityResource/CityResource.DT.h"
 

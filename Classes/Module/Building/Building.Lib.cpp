@@ -142,3 +142,9 @@ GVector<DSCityBuildingUnit> BuildingLib::getBuildingResList(){
 
     return BuildingList;
 }
+
+
+GVector<CityBuildingBase *> BuildingLib::getCanBuildList(EBuildingType p_BuildingType)
+{
+    
+}

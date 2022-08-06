@@ -1,6 +1,6 @@
 
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
-import { BuildingColumnOption, ICityBuildingUnit } from "./CityBuilding.const";
+import { BuildingColumnOption, IBuildingUnit } from "src/Module/Building/Building.Const";
 
 
 
@@ -18,77 +18,77 @@ export class CityBuildingOuterModel {
     idPlayer: number;
 
     @Column(BuildingColumnOption)
-    resBuilding_1: ICityBuildingUnit;
+    resBuilding_1: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_2: ICityBuildingUnit;
+    resBuilding_2: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_3: ICityBuildingUnit;
+    resBuilding_3: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_4: ICityBuildingUnit;
+    resBuilding_4: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_5: ICityBuildingUnit;
+    resBuilding_5: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_6: ICityBuildingUnit;
+    resBuilding_6: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_7: ICityBuildingUnit;
+    resBuilding_7: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_8: ICityBuildingUnit;
+    resBuilding_8: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_9: ICityBuildingUnit;
+    resBuilding_9: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_10: ICityBuildingUnit;
+    resBuilding_10: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_11: ICityBuildingUnit;
+    resBuilding_11: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_12: ICityBuildingUnit;
+    resBuilding_12: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_13: ICityBuildingUnit;
+    resBuilding_13: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_14: ICityBuildingUnit;
+    resBuilding_14: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_15: ICityBuildingUnit;
+    resBuilding_15: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_16: ICityBuildingUnit;
+    resBuilding_16: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_17: ICityBuildingUnit;
+    resBuilding_17: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_18: ICityBuildingUnit;
+    resBuilding_18: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_19: ICityBuildingUnit;
+    resBuilding_19: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_20: ICityBuildingUnit;
+    resBuilding_20: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_21: ICityBuildingUnit;
+    resBuilding_21: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_22: ICityBuildingUnit;
+    resBuilding_22: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_23: ICityBuildingUnit;
+    resBuilding_23: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_24: ICityBuildingUnit;
+    resBuilding_24: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_25: ICityBuildingUnit;
+    resBuilding_25: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_26: ICityBuildingUnit;
+    resBuilding_26: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_27: ICityBuildingUnit;
+    resBuilding_27: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_28: ICityBuildingUnit;
+    resBuilding_28: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_29: ICityBuildingUnit;
+    resBuilding_29: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_30: ICityBuildingUnit;
+    resBuilding_30: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_31: ICityBuildingUnit;
+    resBuilding_31: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_32: ICityBuildingUnit;
+    resBuilding_32: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_33: ICityBuildingUnit;
+    resBuilding_33: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_34: ICityBuildingUnit;
+    resBuilding_34: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_35: ICityBuildingUnit;
+    resBuilding_35: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_36: ICityBuildingUnit;
+    resBuilding_36: IBuildingUnit;
     @Column(BuildingColumnOption)
-    resBuilding_37: ICityBuildingUnit;
+    resBuilding_37: IBuildingUnit;
 }
