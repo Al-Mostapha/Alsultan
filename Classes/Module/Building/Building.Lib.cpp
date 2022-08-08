@@ -3,8 +3,6 @@
 #include "Include/IncludeCityBuilding.h"
 #include "Module/Player/Player.DT.h"
 
-
-
 void BuildingLib::buildCity()
 {
 }
@@ -21,7 +19,7 @@ DSCityBuildingUnit &BuildingLib::getBuildingAt(const char *BuildingPlace)
 }
 CityBuildingBase *BuildingLib::getBuildingNodeAt(const char *BuildingPlace)
 {
-	return nullptr;
+    return nullptr;
 }
 
 CityBuildingBase *BuildingLib::getBuildingClassByType(EBuildingType buildingType)
@@ -108,30 +106,35 @@ CityBuildingBase *BuildingLib::getBuildingClassByType(EBuildingType buildingType
     }
 };
 
-DSCityBuilding &BuildingLib::getCurentCityBuilding(){
-	return DTPlayer::SultanPlayer.City.CityBuilding;
+DSCityBuilding &BuildingLib::getCurentCityBuilding()
+{
+    return DTPlayer::SultanPlayer.City.CityBuilding;
 }
 
-GVector<DSCityBuildingUnit> BuildingLib::getBuildingList(EBuildingType buildingType){
-	GVector<DSCityBuildingUnit> BuildingList;
-	auto buildings = getCurentCityBuilding().BuildingList;
-	for( auto building : buildings){
-		if(buildingType == building.second.eBuildingType)
-			BuildingList.push_back(building.second);
-	}
-	for(auto it = buildings.begin(); it != buildings.end() ; it++){
-			if(buildingType == it->second.eBuildingType)
-			BuildingList.push_back(it->second);
-	}
-	return BuildingList;
-}
-
-GVector<DSCityBuildingUnit> BuildingLib::getBuildingResList(){
+GVector<DSCityBuildingUnit> BuildingLib::getBuildingList(EBuildingType buildingType)
+{
     GVector<DSCityBuildingUnit> BuildingList;
-    auto Frams        = getBuildingList(EBuildingType::CBType_Farm);
-    auto SawMills     = getBuildingList(EBuildingType::CBType_LumberMill);
-    auto IronMines    = getBuildingList(EBuildingType::CBType_IronMine);
-    auto SilverMines  = getBuildingList(EBuildingType::CBType_SilverMine);
+    auto buildings = getCurentCityBuilding().BuildingList;
+    for (auto building : buildings)
+    {
+        if (buildingType == building.second.eBuildingType)
+            BuildingList.push_back(building.second);
+    }
+    for (auto it = buildings.begin(); it != buildings.end(); it++)
+    {
+        if (buildingType == it->second.eBuildingType)
+            BuildingList.push_back(it->second);
+    }
+    return BuildingList;
+}
+
+GVector<DSCityBuildingUnit> BuildingLib::getBuildingResList()
+{
+    GVector<DSCityBuildingUnit> BuildingList;
+    auto Frams = getBuildingList(EBuildingType::CBType_Farm);
+    auto SawMills = getBuildingList(EBuildingType::CBType_LumberMill);
+    auto IronMines = getBuildingList(EBuildingType::CBType_IronMine);
+    auto SilverMines = getBuildingList(EBuildingType::CBType_SilverMine);
     auto CrystalMines = getBuildingList(EBuildingType::CBType_CrystalMine);
 
     BuildingList.insert(BuildingList.end(), Frams.begin(), Frams.end());
@@ -143,8 +146,7 @@ GVector<DSCityBuildingUnit> BuildingLib::getBuildingResList(){
     return BuildingList;
 }
 
+// GVector<CityBuildingBase *> BuildingLib::getCanBuildList(EBuildingType p_BuildingType)
+// {
 
-GVector<CityBuildingBase *> BuildingLib::getCanBuildList(EBuildingType p_BuildingType)
-{
-    
-}
+// }
