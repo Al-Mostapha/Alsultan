@@ -18,6 +18,7 @@ void UICreateBuildingPanel::initPanel(){
     cocos2d::log("UICreateBuildingPanel::initPanel error No find %s", CsbUiFilePath::UIPanelCreatBuilding.c_str());
     return;
   }
+  auto test =  panel->getChildByName("Text_count");
   m_LabelDes   = panel->getChildByName<Label*>("Text_des");
   m_LabelCount = panel->getChildByName<Label*>("Text_count");
   m_LabelNeed  = panel->getChildByName<Label*>("Text_need");

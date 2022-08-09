@@ -43,10 +43,15 @@ void BuildingService::fetchBuildingInfo()
                 for (auto it = BuildingInfo->MemberBegin(); it != BuildingInfo->MemberEnd(); ++it)
                 {
                     EBuildingType l_BuildingType = EBuildingType::CBType_None;
-                    // if (it->name.IsInt())
-                    l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
-                    CCASSERT(it->name.IsString(), "Error BuildingType Should Not Be None");
-                    cocos2d::log("BuildingType: %d", it->name.GetInt());
+                    if (it->name.IsInt())
+                        l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
+                    else if(it->name.IsString())
+                        l_BuildingType = static_cast<EBuildingType>(std::stoi(it->name.GetString()));
+                    GJson doc;
+
+                    GJson *JsonObject = new GJson();
+                    JsonObject->CopyFrom(it->value, JsonObject->GetAllocator());
+                    // BuildingStatic::BuildingInfo[l_BuildingType] = DSBuildingInfoUnit::fromJson(JsonObject);
                 }
 
                 DTPlayer::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
