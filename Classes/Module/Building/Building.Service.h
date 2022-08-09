@@ -6,6 +6,6 @@ class BuildingService
 {
 
 public:
-    static void getCityBuilding(int32 idCity);
+    static void fetchCityBuilding(int32 idCity);
     static void fetchBuildingInfo();
 };

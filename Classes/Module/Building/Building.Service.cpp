@@ -4,10 +4,10 @@
 #include "Scene/CityScene.h"
 #include "Module/Building/Building.Module.h"
 
-void BuildingService::getCityBuilding(int32 idCity)
+void BuildingService::fetchCityBuilding(int32 idCity)
 {
     NetBaseModule::getJson(
-        "/api/CityBuilding/getCityBuilding",
+        "/api/CityBuilding/fetchCityBuilding",
         [](GJson *json)
         {
             if (json == nullptr)
@@ -25,7 +25,8 @@ void BuildingService::getCityBuilding(int32 idCity)
         });
 }
 
-void BuildingService::fetchBuildingInfo(){
+void BuildingService::fetchBuildingInfo()
+{
     NetBaseModule::getJson(
         "/api/Building/fetchBuildingInfo",
         [](GJson *json)
@@ -35,19 +36,22 @@ void BuildingService::fetchBuildingInfo(){
                 cocos2d::log("Error Null ptr From getBuildingInfo Fetch");
                 return;
             }
-            if (GString(json->GetString("state")) == "ok"){
+            // cocos2d::log("Data Fetched %s", json->);
+            if (GString(json->GetString("state")) == "ok")
+            {
                 GJson *BuildingInfo = json->GetJsonObject("BuildingInfo");
-                for(auto it  = BuildingInfo->MemberBegin(); it != BuildingInfo->MemberEnd(); ++it ){
-                    EBuildingType l_BuildingType =  EBuildingType::CBType_None;
-                    if(it->name.IsInt())
-                        l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
-                    else if(it->name.IsString())
-                        l_BuildingType = static_cast<EBuildingType>(std::stoi(it->name.GetString()));
-                    //BuildingStatic::BuildingInfo[l_BuildingType] =  DSBuildingInfoUnit::fromJson(GJson(it->value.GetObjectW()));
+                for (auto it = BuildingInfo->MemberBegin(); it != BuildingInfo->MemberEnd(); ++it)
+                {
+                    EBuildingType l_BuildingType = EBuildingType::CBType_None;
+                    // if (it->name.IsInt())
+                    l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
+                    CCASSERT(it->name.IsString(), "Error BuildingType Should Not Be None");
+                    cocos2d::log("BuildingType: %d", it->name.GetInt());
                 }
 
                 DTPlayer::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
-            }else
+            }
+            else
                 cocos2d::log("Error Fetching CityBuilding From Server ....");
         });
 }

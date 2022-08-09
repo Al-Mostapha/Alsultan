@@ -7,8 +7,8 @@ export class CityBuildingController {
         private SCityBuilding: CityBuildingService
     ) { }
 
-    @Get("getCityBuilding")
-    async getCityBuilding() {
+    @Get("fetchCityBuilding")
+    async fetchCityBuilding() {
         const idPlayer = 1;
         const idCity = 1;
 
