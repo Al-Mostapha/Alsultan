@@ -15,6 +15,6 @@ public:
     static DSCityBuilding &getCurentCityBuilding();
     static GVector<DSCityBuildingUnit> getBuildingList(EBuildingType buildingType);
     static GVector<DSCityBuildingUnit> getBuildingResList();
-    static GVector<CityBuildingBase *> getCanBuildList(EBuildingType buildingType);
+    static GVector<DSBuildingInfoUnit> getCanBuildList(EBuildingType buildingType);
 
 };

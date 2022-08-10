@@ -55,6 +55,6 @@ void UICreateBuildingPanel::initPanel(){
 }
 
 void UICreateBuildingPanel::setBuildingTypeAndData(EBuildingType p_BuildingType, int32 p_BuildingIndex){
-
+  auto l_BuildableList = BuildingStatic::BuildableList(p_BuildingType);
 }
 
