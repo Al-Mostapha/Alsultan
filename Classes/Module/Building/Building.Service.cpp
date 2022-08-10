@@ -44,9 +44,9 @@ void BuildingService::fetchBuildingInfo()
                 {
                     EBuildingType l_BuildingType = EBuildingType::CBType_None;
                     // if (it->name.IsInt())
-                    l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
-                    CCASSERT(it->name.IsString(), "Error BuildingType Should Not Be None");
-                    cocos2d::log("BuildingType: %d", it->name.GetInt());
+                    // l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
+                    // CCASSERT(it->name.IsString(), "Error BuildingType Should Not Be None");
+                    // cocos2d::log("BuildingType: %d", it->name.GetInt());
                 }
 
                 DTPlayer::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
