@@ -56,6 +56,7 @@ struct DSBuildingInfoUnit{
         temp.openWl       = json->GetInt("openWl");
         temp.openStar     = json->GetInt("openStar");
         temp.maxStarLv    = json->GetInt("maxStarLv");
+        cocos2d::log("------------------------------------------- 1231321");
         return temp;
     }
 };
