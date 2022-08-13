@@ -3,6 +3,7 @@ class CsbUiFilePath
 {
 public:
   static GString UIPanelCreatBuilding;
+  static GString UIBuildCreateScrollSingle;
 public:
   CsbUiFilePath(/* args */);
   ~CsbUiFilePath();

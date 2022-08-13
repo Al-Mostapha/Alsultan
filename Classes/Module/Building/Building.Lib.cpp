@@ -151,6 +151,14 @@ GVector<DSBuildingInfoUnit> BuildingLib::getCanBuildList(EBuildingType p_Buildin
     GVector<DSBuildingInfoUnit> l_BuildableList;
 
     for(auto l_building : BuildingStatic::BuildableList)
-        l_BuildableList.push_back(l_building);
+    {
+        if(BuildingStatic::BuildingInfo.count(l_building))
+            l_BuildableList.push_back(BuildingStatic::BuildingInfo[l_building]);
+    }
+    return l_BuildableList;
+}
 
+bool BuildingLib::isCanBuild(EBuildingType p_BuildingType)
+{
+    return true;
 }

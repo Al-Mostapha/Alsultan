@@ -39,7 +39,14 @@ struct DSBuildingInfoUnit{
     int32 openWl = 0;
     int32 openStar = 0;
     int32 maxStarLv = 0;
-    GString buildingTypeName = "";
+    GString BuildingName  = "";
+    GString BuildingIcon  = "";
+    GString BuildingBrief = "";
+    GString UpgradeBrief  = "";
+    GString Describe      = "";
+    GString WarDescribe   = "";
+    GString StarDescribe  = "";
+
     static DSBuildingInfoUnit fromJson(GJson *json){
         DSBuildingInfoUnit  temp;
         temp.index        = json->GetInt("index");
@@ -56,7 +63,13 @@ struct DSBuildingInfoUnit{
         temp.openWl       = json->GetInt("openWl");
         temp.openStar     = json->GetInt("openStar");
         temp.maxStarLv    = json->GetInt("maxStarLv");
-        cocos2d::log("------------------------------------------- 1231321");
+        temp.BuildingName = json->GetInt("BuildingName");
+        temp.BuildingIcon = json->GetInt("BuildingIcon");
+        temp.BuildingBrief= json->GetInt("BuildingBrief");
+        temp.UpgradeBrief = json->GetInt("UpgradeBrief");
+        temp.Describe     = json->GetInt("Describe");
+        temp.WarDescribe  = json->GetInt("WarDescribe");
+        temp.StarDescribe = json->GetInt("StarDescribe");
         return temp;
     }
 };

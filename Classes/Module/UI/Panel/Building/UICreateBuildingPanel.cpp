@@ -2,6 +2,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "Include/IncludeConfig.h"
 #include "Include/IncludeBuildingBase.h"
+#include "Module/UI/Panel/Building/UIBuildCreateScrollSingle.h"
 
 
 UICreateBuildingPanel::UICreateBuildingPanel(){
@@ -19,17 +20,17 @@ void UICreateBuildingPanel::initPanel(){
     return;
   }
  
-  m_LabelDes   = static_cast<Label*>(GBase::getChildByName(panel, "Text_des"));
-  m_LabelCount = static_cast<Label*>(GBase::getChildByName(panel,"Text_count"));
-  m_LabelNeed  = static_cast<Label*>(GBase::getChildByName(panel,"Text_need"));
-  m_LabelName  = static_cast<Label*>(GBase::getChildByName(panel,"Text_name"));
-  m_BackGround = static_cast<ui::ImageView *> (GBase::getChildByName(panel,"Image_bbg"));
-  m_BtnBuild   = static_cast<ui::Button *>    (GBase::getChildByName(panel,"Button_build"));
-  m_NodeLeft   = static_cast<ui::Layout *>    (GBase::getChildByName(panel,"Center_Panel_left"));
-  m_NodeRight  = static_cast<ui::Layout *>    (GBase::getChildByName(panel,"Center_Panel_right"));
-  m_NodeTop    = static_cast<ui::Layout *>    (GBase::getChildByName(panel,"Top_Panel"));
-  m_NodeBottom = static_cast<ui::Layout *>    (GBase::getChildByName(panel,"Bottom_Panel"));
-  m_NodeCenter = GBase::getChildByName(panel,"Center_Node");
+  m_LabelDes   = GBase::getChildByName<Label*>(panel, "Text_des");
+  m_LabelCount = GBase::getChildByName<Label*>(panel,"Text_count");
+  m_LabelNeed  = GBase::getChildByName<Label*>(panel,"Text_need");
+  m_LabelName  = GBase::getChildByName<Label*>(panel,"Text_name");
+  m_BackGround = GBase::getChildByName<ui::ImageView *>(panel,"Image_bbg");
+  m_BtnBuild   = GBase::getChildByName<ui::Button *>(panel,"Button_build");
+  m_NodeLeft   = GBase::getChildByName<ui::Layout *>(panel,"Center_Panel_left");
+  m_NodeRight  = GBase::getChildByName<ui::Layout *>(panel,"Center_Panel_right");
+  m_NodeTop    = GBase::getChildByName<ui::Layout *>(panel,"Top_Panel");
+  m_NodeBottom = GBase::getChildByName<ui::Layout *>(panel,"Bottom_Panel");
+  m_NodeCenter = GBase::getChildByName<Node *>(panel,"Center_Node");
   m_LabelCount->setVisible(false);  
   m_LabelNeed->setVisible(false); 
  
@@ -54,7 +55,52 @@ void UICreateBuildingPanel::initPanel(){
   addChild(panel);
 }
 
-void UICreateBuildingPanel::setBuildingTypeAndData(EBuildingType p_BuildingType, int32 p_BuildingIndex){
-  auto l_BuildableList = BuildingStatic::BuildableList(p_BuildingType);
+void UICreateBuildingPanel::createWheelScrollView(){
+  GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
+  for(EBuildingType l_BuildingType : BuildingStatic::BuildableList){
+    UIBuildCreateScrollSingle *l_ScrollSingle = UIBuildCreateScrollSingle::create();
+    l_ScrollSingle->initPanel();
+    l_ScrollSingle->initData(l_BuildingType);
+    l_ScrollViews.push_back(l_ScrollSingle);
+  }
+
+  /*
+
+  local curChapterID = newPlayerTaskCtrl:getCurChapterID()
+  for i, v in ipairs(self.tableBuildList) do
+    if (curbid and curbid == v.bid or v.bid == BUILDID.MILITARY_TENT) and (curbid == BUILDID.MILITARY_TENT or not newPlayerTaskCtrl:isTaskFinish(4103203) and v.bid == BUILDID.MILITARY_TENT and curChapterID == 4103200) then
+      self.tableCurIndex = i
+      self.selectWheel:selectedCellIndex(self.tableCurIndex)
+      mildGuideManager:starMildByNewPlayerQuestID(gNewPLayerTaskType.TO_BUILD_MILITARY_TENT)
+    end
+  end
+  self.itemArray = itemArray*/
+  if(l_ScrollViews.size() <= 0){
+    return;
+  }
+  if(m_SelectWheel){
+    m_SelectWheel->removeFromParent();
+    m_SelectWheel = nullptr;
+  }
+
+    
+  // self.selectWheel = SoraDCreateWheelScrollView(itemArray, cc.size(500, math.max(600, display.height - 270)), 130, 450)
+  // if self.selectWheel then
+  //   self.selectWheel:setItemSelectedListener(function(index)
+  //     self:wheelScrollBack(self.tableBuildList[index], index)
+  //   end)
+  //   self.nodeCenter:addChild(self.selectWheel, 0)
+  //   self.selectWheel:setPosition(cc.p(0, math.min(-165, 270 - self.nodeCenter:getPositionY())))
+  //   self.selectWheel:selectedCellIndex(math.min(self.tableCurIndex, #itemArray))
+  //   self.selectWheel:setInertiaValue(0.1)
+  //   SoraDFTarget(self.selectWheel)
+  // end
+ // m_SelectWheel = 
 }
+
+void UICreateBuildingPanel::setBuildingTypeAndData(EBuildingType p_BuildingType, int32 p_BuildingIndex){
+ // auto l_BuildableList = BuildingStatic::BUildi;
+}
+
+
 

@@ -32,3 +32,5 @@ GVector<EBuildingType> BuildingStatic::BuildableList = {
   EBuildingType::CBType_Miracle ,
   EBuildingType::CBType_ElitePalace 
 };
+
+GMap<EBuildingType, DSBuildingInfoUnit> BuildingStatic::BuildingInfo;

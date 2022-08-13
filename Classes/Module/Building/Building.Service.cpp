@@ -51,12 +51,10 @@ void BuildingService::fetchBuildingInfo()
 
                     GJson *jsonObject = new GJson();
                     jsonObject->CopyFrom(it->value, jsonObject->GetAllocator());
-                    // BuildingStatic::BuildingInfo[l_BuildingType] = DSBuildingInfoUnit::fromJson(JsonObject);
+                    BuildingStatic::BuildingInfo[l_BuildingType] = DSBuildingInfoUnit::fromJson(jsonObject);
                 }
-
-                DTPlayer::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
             }
             else
-                cocos2d::log("Error Fetching CityBuilding From Server ....");
+                cocos2d::log("Error Fetching fetchBuildingInfo From Server ....");
         });
 }
