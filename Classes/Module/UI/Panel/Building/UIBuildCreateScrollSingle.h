@@ -1,3 +1,4 @@
+#pragma once
 #include "Include/IncludeEngine.h"
 #include "Module/UI/Panel/UIPanelBase.h"
 #include "Include/IncludeBuildingBase.h"
@@ -21,5 +22,3 @@ public:
   CREATE_FUNC(UIBuildCreateScrollSingle);
 
 };
-
-

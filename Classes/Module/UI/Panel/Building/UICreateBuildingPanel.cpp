@@ -63,7 +63,6 @@ void UICreateBuildingPanel::createWheelScrollView(){
     l_ScrollSingle->initData(l_BuildingType);
     l_ScrollViews.push_back(l_ScrollSingle);
   }
-
   /*
 
   local curChapterID = newPlayerTaskCtrl:getCurChapterID()

@@ -55,16 +55,10 @@ public:
 	
 	DSCityBuildingUnit BuildingUnitData;
 
-	struct
-	{
-		int32 x = 110, y = -17;
-	} LvlBgOffset;
+	Vec2 LvlBgOffset;
 	GString BuildingSpriteImage;
 	GString BuildingIconMiracle;
-	struct
-	{
-		int32 x, y;
-	} BuildingSpriteOffset;
+	Vec2 BuildingSpriteOffset;
 
 	virtual bool init();
 	virtual void onEnter();

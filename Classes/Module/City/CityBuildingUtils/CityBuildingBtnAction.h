@@ -108,8 +108,14 @@ struct DSCityBtnAction : GStruct
 
 		return cocos2d::StringUtils::format(
 			"DSCityBtnAction :\
-			 {btnId: %d, btnEnum: %d, ActionName: %s, BtnDesc: %s, BtnImage: %s, ActionSortIndex: %s, scale: %s, offset: %s}",
-			btnId, int(btnEnum), ActionName, BtnDesc, BtnImage, ActionSortIndex, scale,
-			cocos2d::StringUtils::format("{x: %d, y: %d}", offset.x, offset.y));
+			 {btnId: %d, btnEnum: %d, ActionName: %s, BtnDesc: %s, BtnImage: %s, ActionSortIndex: %d, scale: %d, offset: %s}",
+			btnId, 
+			int(btnEnum),
+			 ActionName.c_str(),
+			  BtnDesc.c_str(), 
+				BtnImage.c_str(),
+				ActionSortIndex, 
+				scale,
+			cocos2d::StringUtils::format("{x: %d, y: %d}", offset.x, offset.y).c_str());
 	}
 };

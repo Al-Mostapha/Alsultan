@@ -44,9 +44,5 @@ void UIBuildCreateScrollSingle::initData(EBuildingType p_BuildingType){
   m_ImgIcon = Sprite::createWithSpriteFrameName(l_BuildingInfoUnit.BuildingIcon.c_str());
   m_ImgIcon->setPosition(Vec2(170, 61));
   m_ImgIcon->setScale(110 / m_ImgIcon->getContentSize().width);
-  //m_ShowPanel->addChild(m_ImgIcon);
+  m_ShowPanel->addChild(m_ImgIcon);
 }
-
-
-
-

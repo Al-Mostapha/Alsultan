@@ -7,7 +7,9 @@ public:
   */
   template <typename T>
   static T getChildByName(Node* p_Node, const char* p_name);
-  
+
+  static void playSound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
+  static const char *getSoundPath(const char *p_SoundName);
 };
 
 

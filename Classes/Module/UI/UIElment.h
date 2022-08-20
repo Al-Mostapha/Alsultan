@@ -1,5 +1,7 @@
+#pragma once
 #include "Include/IncludeEngine.h"
-class UIElment : public cocos2d::Node
+#include "Include/IncludeConfig.h"
+class UIElment : public cocos2d::ui::Widget
 {
   
 };

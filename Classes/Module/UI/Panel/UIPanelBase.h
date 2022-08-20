@@ -1,3 +1,4 @@
+#pragma once
 #include "Include/IncludeEngine.h"
 #include "Include/IncludeUiBase.h"
 

@@ -29,7 +29,7 @@ public:
   static void addSoldierGuard();
   static void showEagle();
 
-  static void addBuildAnimBoostBottom(GString& BuildingPlace);
+  static void addBuildAnimBoostBottom(const GString& BuildingPlace);
   static void addHarvestEffect();
   static void addPortEffect();
   static void addMatouEffect(); // الخيمة الى جنب السفينة

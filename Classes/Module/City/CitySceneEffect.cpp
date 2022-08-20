@@ -741,7 +741,7 @@ void CitySceneEffect::showEagle(){
   eagleEffect->runAction(RepeatForever::create(seq));
 }
 
-void CitySceneEffect::addBuildAnimBoostBottom(GString& BuildingPlace){
+void CitySceneEffect::addBuildAnimBoostBottom(const GString& BuildingPlace){
 
   CityScene *mainCity = CityScene::getCityScene(); 
   if(!mainCity)
