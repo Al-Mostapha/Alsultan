@@ -56,15 +56,26 @@ void UICreateBuildingPanel::initPanel(){
 }
 
 void UICreateBuildingPanel::createWheelScrollView(){
-  GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
-  for(EBuildingType l_BuildingType : BuildingStatic::BuildableList){
-    UIBuildCreateScrollSingle *l_ScrollSingle = UIBuildCreateScrollSingle::create();
-    l_ScrollSingle->initPanel();
-    l_ScrollSingle->initData(l_BuildingType);
-    l_ScrollViews.push_back(l_ScrollSingle);
-  }
   /*
 
+  if #itemArray <= 0 then
+    return
+  end
+  if self.selectWheel then
+    self.selectWheel:removeFromParent()
+    self.selectWheel = nil
+  end
+  self.selectWheel = SoraDCreateWheelScrollView(itemArray, cc.size(500, math.max(600, display.height - 270)), 130, 450)
+  if self.selectWheel then
+    self.selectWheel:setItemSelectedListener(function(index)
+      self:wheelScrollBack(self.tableBuildList[index], index)
+    end)
+    self.nodeCenter:addChild(self.selectWheel, 0)
+    self.selectWheel:setPosition(cc.p(0, math.min(-165, 270 - self.nodeCenter:getPositionY())))
+    self.selectWheel:selectedCellIndex(math.min(self.tableCurIndex, #itemArray))
+    self.selectWheel:setInertiaValue(0.1)
+    SoraDFTarget(self.selectWheel)
+  end
   local curChapterID = newPlayerTaskCtrl:getCurChapterID()
   for i, v in ipairs(self.tableBuildList) do
     if (curbid and curbid == v.bid or v.bid == BUILDID.MILITARY_TENT) and (curbid == BUILDID.MILITARY_TENT or not newPlayerTaskCtrl:isTaskFinish(4103203) and v.bid == BUILDID.MILITARY_TENT and curChapterID == 4103200) then
@@ -74,6 +85,28 @@ void UICreateBuildingPanel::createWheelScrollView(){
     end
   end
   self.itemArray = itemArray*/
+  /* for i, v in ipairs(self.tableBuildList) do
+    local item = SoraDCreatePanel("buildCreateScrollSingle")
+    item:initData(v)
+    table.insert(itemArray, item)
+    if curbid and curbid == v.bid then
+      self.tableCurIndex = i
+      if curbid == BUILDID.MILITARY_TENT then
+        local guideCtrl = gametop.playertop_:getModule("guideCtrl")
+        if guideCtrl:isGuideNotCompleted(gGuideModule.BUILD_BUILDING) then
+        end
+      end
+    end
+  end*/
+ 
+  GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
+  for(auto l_BuildingUnit : m_BuildableList){
+    UIBuildCreateScrollSingle *l_ScrollSingle = UIBuildCreateScrollSingle::create();
+    l_ScrollSingle->initPanel();
+    l_ScrollSingle->initData(l_BuildingUnit.buildingType);
+    l_ScrollViews.push_back(l_ScrollSingle);
+  }
+  
   if(l_ScrollViews.size() <= 0){
     return;
   }
@@ -98,7 +131,55 @@ void UICreateBuildingPanel::createWheelScrollView(){
 }
 
 void UICreateBuildingPanel::setBuildingTypeAndData(EBuildingType p_BuildingType, int32 p_BuildingIndex){
- // auto l_BuildableList = BuildingStatic::BUildi;
+  m_BuildableList = BuildingLib::getCanBuildList(p_BuildingType);
+
+ /*if self.selectWheel == nil then
+    self:createWheelScrollView()
+    self.selectWheel:setVisible(false)
+    self:runAction(cca.seq({
+      cca.callFunc(function(...)
+        self.btnBuild:setScale(0.1)
+        self.nodeLeft:runAction(cca.fadeIn(0.5))
+        self.nodeRight:runAction(cca.fadeIn(0.5))
+        self.nodeTop:runAction(cca.fadeIn(0.5))
+        self.nodeBottom:runAction(cca.fadeIn(0.5))
+        self.labelDes:runAction(cca.fadeIn(0.5))
+        self.labelCount:runAction(cca.fadeIn(0.5))
+        self.labelNeed:runAction(cca.fadeIn(0.5))
+        self.btnBuild:runAction(cca.seq({
+          cca.scaleTo(0.3, 1.2),
+          cca.scaleTo(0.1, 1)
+        }))
+      end),
+      cca.delay(0.4),
+      cca.callFunc(function(...)
+        self.selectWheel:unfoldAction(0.5)
+        self.selectWheel:setVisible(true)
+      end),
+      cca.delay(0.6),
+      cca.callFunc(function(...)
+        local guideStep = SoraDIsGameGuide()
+        if guideStep then
+          if guideStep == 2003 then
+            print("\232\181\176\230\150\176\230\137\139\229\188\149\229\175\188\230\173\165\233\170\164 \229\187\186\231\173\145\229\187\186\233\128\160")
+            SoraDSendMessage({
+              msg = "MESSAGE_SERVER_GUIDE_STEP_ON",
+              step = 2004
+            })
+          elseif guideStep == 2013 then
+            SoraDSendMessage({
+              msg = "MESSAGE_SERVER_GUIDE_STEP_ON",
+              step = 2014
+            })
+          end
+        end
+        if GLOBAL_BUILD_PRE_BID then
+          self:selectWheelByBid(GLOBAL_BUILD_PRE_BID)
+          GLOBAL_BUILD_PRE_BID = nil
+        end
+      end)
+    }))
+  end*/
 }
 
 

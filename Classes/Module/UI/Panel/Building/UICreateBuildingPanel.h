@@ -21,6 +21,7 @@ private:
   ui::Layout *m_NodeTop;
   ui::Layout *m_NodeBottom;
   ui::Layout *m_SelectWheel;
+  GVector<DSBuildingInfoUnit> m_BuildableList;
 
   
 public:

@@ -17,7 +17,7 @@ private:
   bool m_IsScrollEnd = false;
   bool m_IsBounceEnd = false;
   bool m_IsSound = true;
-  int m_CurrentIndex;
+  int m_CurrentIndex  = -123456789;
   selectedItemListener m_SelectedItemListener;
    
 public:
@@ -38,5 +38,6 @@ public:
 
   void setTouchDetection(float delay);
   void bounceSingle();
+  void unfoldAction(float p_delay);
 };
 

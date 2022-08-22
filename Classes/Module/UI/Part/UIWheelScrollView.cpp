@@ -197,29 +197,6 @@ int UIWheelScrollView::pointCurSelectSingle(bool p_UpdateCurI)
   return l_MinI;
 }
 
-/*function wheelScrollView:bounceSingle()
-  
-  for i, v in ipairs(self.itemArray) do
-    local y = v:getPositionY() - centerY
-    if math.abs(minOffsetY) > math.abs(y) or i == 1 then
-      minOffsetY = y
-    end
-  end
-  offsetY = offsetY + minOffsetY
-  local scrollPercent = offsetY == 0 and 100 or 100 * (1 - offsetY / (scrollInner:getContentSize().height - self.scrollView:getContentSize().height))
-  if self.isBounceEnd then
-    scrollPercent = scrollPercent <= 50 and 0 or scrollPercent > 50 and 100
-    self.isBounceEnd = false
-  end
-  if scrollPercent <= 0 then
-    self.scrollView:scrollToTop(0.2, false)
-  elseif scrollPercent >= 100 then
-    self.scrollView:scrollToBottom(0.2, false)
-  else
-    self.scrollView:scrollToPercentVertical(scrollPercent, 0.2, true)
-  end
-  self.isScrollEnd = true
-end*/
 
 
 void UIWheelScrollView::bounceSingle(){
@@ -228,11 +205,38 @@ void UIWheelScrollView::bounceSingle(){
   auto l_OffsetY = -l_ScrollInner->getPositionY();
   auto l_CenterY = l_OffsetY + 0.5 * m_ScrollView->getContentSize().height;
   auto l_MinOffsetY = 0.0f;
+  for(uint32 i = 0; i < m_WidgetArray.size(); i++)
+  {
+    float l_Y = m_WidgetArray[i]->getPositionY() - l_CenterY;
+    if (std::abs(l_MinOffsetY) > std::abs(l_Y) || i == 1)
+    {
+      l_MinOffsetY = l_Y;
+    }
+  }
+  l_OffsetY = l_OffsetY + l_MinOffsetY;
+  float l_ScrollPercent = l_OffsetY == 0 ? 100 : 100 * (1 - l_OffsetY / (l_ScrollInner->getContentSize().height - m_ScrollView->getContentSize().height));
+  if (m_IsBounceEnd)
+  {
+    l_ScrollPercent = l_ScrollPercent <= 50 ? 0 : (l_ScrollPercent > 50 ? 100 : 50);
+    m_IsBounceEnd = false;
+  }
+  if(l_ScrollPercent <= 0)
+  {
+    m_ScrollView->scrollToTop(0.2, false);
+  }
+  else if(l_ScrollPercent >= 100)
+  {
+    m_ScrollView->scrollToBottom(0.2, false);
+  }
+  else
+  {
+    m_ScrollView->scrollToPercentVertical(l_ScrollPercent, 0.2, true);
+  }
+  m_IsScrollEnd = true;
 }
 
 void UIWheelScrollView::updateItems()
 {
-
   auto l_ScrollInner = m_ScrollView->getInnerContainer();
   auto l_OffsetY = -l_ScrollInner->getPositionY();
   auto l_CenterY = l_OffsetY + 0.5 * m_ScrollView->getContentSize().height;
@@ -261,4 +265,64 @@ void UIWheelScrollView::updateItems()
   }
 }
 
+void UIWheelScrollView::unfoldAction(float p_delay){
+
+  if(m_CurrentIndex == -123456789)
+    return;
+  runAction(
+    Sequence::create(
+      CallFunc::create([this](){
+        this->m_ScrollView->setTouchEnabled(false);
+      }),
+      DelayTime::create(p_delay),
+      CallFunc::create([this](){
+        this->m_ScrollView->setTouchEnabled(true);
+      }),
+      nullptr
+    )
+  );
+  int l_ShowCount = 1;
+  GVector<Vec2> l_OldPos;
+  for(int i = 0; i < m_WidgetArray.size(); i++)
+  {
+    if (i < m_CurrentIndex && m_WidgetArray[i]->getOpacity() > 0)
+    {
+      l_ShowCount = m_CurrentIndex - i;
+    }
+    else if (i > m_CurrentIndex && m_WidgetArray[i]->getOpacity() > 0)
+    {
+      l_ShowCount = std::max(i - m_CurrentIndex, l_ShowCount);
+    }
+    m_WidgetArray[i]->setLocalZOrder(i > m_CurrentIndex ? m_CurrentIndex - i : i);
+    l_OldPos.push_back(m_WidgetArray[i]->getPosition());
+    m_WidgetArray[i]->setVisible(i == m_CurrentIndex || m_WidgetArray[i]->getOpacity() == 0);
+  }
+  float l_Delay = p_delay / (l_ShowCount + 1);
+  for(int i =0; i < m_WidgetArray.size(); i++){
+    if(m_WidgetArray[i]->getOpacity() > 0 && i != m_CurrentIndex){
+      m_WidgetArray[i]->runAction(
+        Sequence::create(
+          DelayTime::create(l_Delay * std::abs(i - m_CurrentIndex)),
+          CallFunc::create([this, i](){
+            m_WidgetArray[i]->setVisible(true);
+          }),
+          MoveTo::create(l_Delay, m_WidgetArray[i]->getPosition()),
+          nullptr
+        )
+      );
+      if(i > m_CurrentIndex){
+        m_WidgetArray[i]->setPosition(l_OldPos[i - 1]);
+      }
+      else{
+        m_WidgetArray[i]->setPosition(l_OldPos[i + 1]);
+      }
+    }
+    else if(i == m_CurrentIndex){
+      m_WidgetArray[i]->setScaleY(0.1);
+      m_WidgetArray[i]->runAction(
+        ScaleTo::create(l_Delay, 1)
+      );
+    }
+  }
+}
 
