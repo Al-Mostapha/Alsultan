@@ -10,6 +10,7 @@ public:
 
   static void playSound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
   static const char *getSoundPath(const char *p_SoundName);
+  static void SoraDFTarget(Node *p_node){}
 };
 
 

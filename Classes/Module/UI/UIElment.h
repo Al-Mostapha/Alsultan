@@ -3,5 +3,9 @@
 #include "Include/IncludeConfig.h"
 class UIElment : public cocos2d::ui::Widget
 {
+public: 
+  bool init(){
+    return true;
+  }
   
 };

@@ -3,6 +3,7 @@
 #include "Include/IncludeConfig.h"
 #include "Include/IncludeBuildingBase.h"
 #include "Module/UI/Panel/Building/UIBuildCreateScrollSingle.h"
+#include "Module/UI/Part/UIWheelScrollView.h"
 
 
 UICreateBuildingPanel::UICreateBuildingPanel(){
@@ -12,6 +13,50 @@ UICreateBuildingPanel::UICreateBuildingPanel(){
 UICreateBuildingPanel::~UICreateBuildingPanel(){
 
 }
+
+
+void UICreateBuildingPanel::updateView(){
+  m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief.c_str()));
+  m_LabelCount->setVisible(m_CurrentBuilding.bType == 1);
+  m_LabelNeed->setVisible(!m_CurrentBuilding.isBuild);
+/*
+  self.labelCount:setVisible(self.buildType == 1)
+  self.labelNeed:setVisible(not self.tableCurBuild.iscanbuild)
+  self.labelName:setString(buildRead.getName(self.tableCurBuild.bid))
+  self.btnBuild:setTouchEnabled(self.tableCurBuild.iscanbuild)
+  self.btnBuild:setBright(self.tableCurBuild.iscanbuild)
+  local _iscanbuild, retdata = buildLogic.isCanBuild(self.tableCurBuild.bid)
+  self.tableCurRetdata = retdata
+  if not self.tableCurBuild.iscanbuild then
+    self.labelNeed:setString(i18n("common_text_763", {
+      name = buildRead.getName(self.tableCurRetdata._retPreCond[1].bid),
+      level = tostring(self.tableCurRetdata._retPreCond[1].blv)
+    }))
+  end
+  if self.buildType == 1 then
+    self.labelCount:setString(i18n("common_text_739", {
+      cur = cityCtrl:getBuildCount(self.tableCurBuild.bid),
+      max = cityltCtrl.buildAttr(self.tableCurBuild.bid, BUILD_ATTR.BMAXCOUNT)
+    }))
+  end
+  if self.buildIndex == 0 then
+    return
+  end
+  local index = self.buildIndex
+  local bid = self.tableCurBuild.bid
+  SoraDSendMessage({
+    msg = "MESSAGE_MAINCITYVIEW_ADD_BUILD_PREVIEW",
+    index = index,
+    bid = bid
+  })*/
+}
+
+void UICreateBuildingPanel::wheelScrollBack(const DSBuildingInfoUnit& p_BuildingInfoUnit, size_t p_Index){
+  m_CurrentIndex = p_Index;
+  m_CurrentBuilding = p_BuildingInfoUnit;
+  updateView();
+}
+
 
 void UICreateBuildingPanel::initPanel(){
   Node *panel = CSLoader::createNode(CsbUiFilePath::UIPanelCreatBuilding);
@@ -56,49 +101,7 @@ void UICreateBuildingPanel::initPanel(){
 }
 
 void UICreateBuildingPanel::createWheelScrollView(){
-  /*
 
-  if #itemArray <= 0 then
-    return
-  end
-  if self.selectWheel then
-    self.selectWheel:removeFromParent()
-    self.selectWheel = nil
-  end
-  self.selectWheel = SoraDCreateWheelScrollView(itemArray, cc.size(500, math.max(600, display.height - 270)), 130, 450)
-  if self.selectWheel then
-    self.selectWheel:setItemSelectedListener(function(index)
-      self:wheelScrollBack(self.tableBuildList[index], index)
-    end)
-    self.nodeCenter:addChild(self.selectWheel, 0)
-    self.selectWheel:setPosition(cc.p(0, math.min(-165, 270 - self.nodeCenter:getPositionY())))
-    self.selectWheel:selectedCellIndex(math.min(self.tableCurIndex, #itemArray))
-    self.selectWheel:setInertiaValue(0.1)
-    SoraDFTarget(self.selectWheel)
-  end
-  local curChapterID = newPlayerTaskCtrl:getCurChapterID()
-  for i, v in ipairs(self.tableBuildList) do
-    if (curbid and curbid == v.bid or v.bid == BUILDID.MILITARY_TENT) and (curbid == BUILDID.MILITARY_TENT or not newPlayerTaskCtrl:isTaskFinish(4103203) and v.bid == BUILDID.MILITARY_TENT and curChapterID == 4103200) then
-      self.tableCurIndex = i
-      self.selectWheel:selectedCellIndex(self.tableCurIndex)
-      mildGuideManager:starMildByNewPlayerQuestID(gNewPLayerTaskType.TO_BUILD_MILITARY_TENT)
-    end
-  end
-  self.itemArray = itemArray*/
-  /* for i, v in ipairs(self.tableBuildList) do
-    local item = SoraDCreatePanel("buildCreateScrollSingle")
-    item:initData(v)
-    table.insert(itemArray, item)
-    if curbid and curbid == v.bid then
-      self.tableCurIndex = i
-      if curbid == BUILDID.MILITARY_TENT then
-        local guideCtrl = gametop.playertop_:getModule("guideCtrl")
-        if guideCtrl:isGuideNotCompleted(gGuideModule.BUILD_BUILDING) then
-        end
-      end
-    end
-  end*/
- 
   GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
   for(auto l_BuildingUnit : m_BuildableList){
     UIBuildCreateScrollSingle *l_ScrollSingle = UIBuildCreateScrollSingle::create();
@@ -106,7 +109,6 @@ void UICreateBuildingPanel::createWheelScrollView(){
     l_ScrollSingle->initData(l_BuildingUnit.buildingType);
     l_ScrollViews.push_back(l_ScrollSingle);
   }
-  
   if(l_ScrollViews.size() <= 0){
     return;
   }
@@ -114,20 +116,36 @@ void UICreateBuildingPanel::createWheelScrollView(){
     m_SelectWheel->removeFromParent();
     m_SelectWheel = nullptr;
   }
+  UIWheelScrollViewArgs l_WheelScrollViewArgs;
+  l_WheelScrollViewArgs.m_WidgetArray = *(GVector<ui::Widget *> *) &l_ScrollViews; 
+  l_WheelScrollViewArgs.m_Size = Size(500, std::max(600.0f, Director::getInstance()->getVisibleSize().height - 270));
+  l_WheelScrollViewArgs.m_CellHeight = 130;
+  l_WheelScrollViewArgs.m_CircleRadius = 450;
+  m_SelectWheel = UICreate::wheelScrollView(l_WheelScrollViewArgs);
+  if(m_SelectWheel){
+
+    m_SelectWheel->setSelectedItemListener([this](size_t p_Index){
+      wheelScrollBack(m_BuildableList[p_Index], p_Index);
+    });
+
+    m_NodeCenter->addChild(m_SelectWheel, 0);
+    m_SelectWheel->setPosition(Vec2(0, std::min(-165.0f, 270.0f - m_NodeCenter->getPosition().y)));
+    m_SelectWheel->selectedCellIndex(std::min(m_CurrentIndex, (int)l_ScrollViews.size()));
+    m_SelectWheel->setInertiaValue(0.1);
+    GBase::SoraDFTarget(m_SelectWheel);
+  }
+  /*  This is Guide */
+  // local curChapterID = newPlayerTaskCtrl:getCurChapterID()
+  // for i, v in ipairs(self.tableBuildList) do
+  //   if (curbid and curbid == v.bid or v.bid == BUILDID.MILITARY_TENT) and (curbid == BUILDID.MILITARY_TENT or not newPlayerTaskCtrl:isTaskFinish(4103203) and v.bid == BUILDID.MILITARY_TENT and curChapterID == 4103200) then
+  //     self.tableCurIndex = i
+  //     self.selectWheel:selectedCellIndex(self.tableCurIndex)
+  //     mildGuideManager:starMildByNewPlayerQuestID(gNewPLayerTaskType.TO_BUILD_MILITARY_TENT)
+  //   end
+  // end
 
     
-  // self.selectWheel = SoraDCreateWheelScrollView(itemArray, cc.size(500, math.max(600, display.height - 270)), 130, 450)
-  // if self.selectWheel then
-  //   self.selectWheel:setItemSelectedListener(function(index)
-  //     self:wheelScrollBack(self.tableBuildList[index], index)
-  //   end)
-  //   self.nodeCenter:addChild(self.selectWheel, 0)
-  //   self.selectWheel:setPosition(cc.p(0, math.min(-165, 270 - self.nodeCenter:getPositionY())))
-  //   self.selectWheel:selectedCellIndex(math.min(self.tableCurIndex, #itemArray))
-  //   self.selectWheel:setInertiaValue(0.1)
-  //   SoraDFTarget(self.selectWheel)
-  // end
- // m_SelectWheel = 
+ 
 }
 
 void UICreateBuildingPanel::setBuildingTypeAndData(EBuildingType p_BuildingType, int32 p_BuildingIndex){

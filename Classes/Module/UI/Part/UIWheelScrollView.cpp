@@ -6,10 +6,19 @@ void UIWheelScrollView::setInertiaValue(bool p_Inertia)
 }
 void UIWheelScrollView::removeChildren() { m_ScrollView->removeAllChildren(); }
 
-UIWheelScrollView::UIWheelScrollView(Size p_Size)
+UIWheelScrollView::UIWheelScrollView()
 {
   m_ScrollView = ui::ScrollView::create();
-  m_ScrollView->setContentSize(p_Size);
+  
+}
+UIWheelScrollView::~UIWheelScrollView() {}
+bool UIWheelScrollView::init(){
+  UIElment::init();
+  return true;
+}
+void UIWheelScrollView::initData(const UIWheelScrollViewArgs& p_WheelScrollViewArgs)
+{
+  m_ScrollView->setContentSize(p_WheelScrollViewArgs.m_Size);
   m_ScrollView->setBounceEnabled(true);
   m_ScrollView->setDirection(ui::ScrollView::Direction::VERTICAL);
   m_ScrollView->setPosition(Vec2(0, 0));
@@ -17,20 +26,15 @@ UIWheelScrollView::UIWheelScrollView(Size p_Size)
   addChild(m_ScrollView, 1);
   m_ScrollView->addEventListener(CC_CALLBACK_2(UIWheelScrollView::scrollEventCallBack, this));
   m_ScrollView->addTouchEventListener(CC_CALLBACK_2(UIWheelScrollView::scrollTouchEventCallBack, this));
-}
-UIWheelScrollView::~UIWheelScrollView() {}
 
-void UIWheelScrollView::initData(
-    const GVector<ui::Widget *> &p_WidgetArray, const float p_OffsetPosX,
-    const float p_CellHeight, const float p_CircleRadius, bool p_IsSound, bool p_IgnoreOpacity)
-{
-  m_WidgetArray = p_WidgetArray;
-  m_CellHeight = p_CellHeight;
-  m_OffsetPosX = p_OffsetPosX;
-  p_IgnoreOpacity = p_IgnoreOpacity;
-  m_CircleRadius = std::max(p_CircleRadius, m_ScrollView->getContentSize().width);
+
+  m_WidgetArray = p_WheelScrollViewArgs.m_WidgetArray;
+  m_CellHeight  = p_WheelScrollViewArgs.m_CellHeight;
+  m_OffsetPosX  = p_WheelScrollViewArgs.m_OffsetPosX;
+  m_IgnoreOpacity = p_WheelScrollViewArgs.m_IgnoreOpacity;
+  m_CircleRadius = std::max(p_WheelScrollViewArgs.m_CircleRadius, m_ScrollView->getContentSize().width);
   m_TransparentOffset = std::floor(255 / (m_ScrollView->getContentSize().width / m_CellHeight)) + 1;
-  m_IsSound = p_IsSound;
+  m_IsSound = p_WheelScrollViewArgs.m_IsSound;
   float l_ScrollHeight = m_WidgetArray.size() * m_CellHeight + m_ScrollView->getContentSize().height - m_CellHeight;
 
   for (uint32 i = 0; i < m_WidgetArray.size(); i++)
