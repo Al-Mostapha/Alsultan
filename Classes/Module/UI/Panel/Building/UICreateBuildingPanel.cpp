@@ -18,13 +18,16 @@ UICreateBuildingPanel::~UICreateBuildingPanel(){
 void UICreateBuildingPanel::updateView(){
   m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief.c_str()));
   m_LabelCount->setVisible(m_CurrentBuilding.bType == 1);
-  m_LabelNeed->setVisible(!m_CurrentBuilding.isBuild);
+  m_LabelNeed->setVisible(!m_CurrentBuilding.isCanBuild);
+  m_LabelName->setString(Translate::i18n(m_CurrentBuilding.BuildingName.c_str()));
+  m_BtnBuild->setTouchEnabled(m_CurrentBuilding.isCanBuild);
+  m_BtnBuild->setBright(m_CurrentBuilding.isCanBuild);
+  bool l_ISCanBuild  = BuildingLib::isCanBuild(m_CurrentBuilding.buildingType);
+  if(!m_CurrentBuilding.isCanBuild){
+    m_LabelNeed->setString("");
+  }
 /*
-  self.labelCount:setVisible(self.buildType == 1)
-  self.labelNeed:setVisible(not self.tableCurBuild.iscanbuild)
-  self.labelName:setString(buildRead.getName(self.tableCurBuild.bid))
-  self.btnBuild:setTouchEnabled(self.tableCurBuild.iscanbuild)
-  self.btnBuild:setBright(self.tableCurBuild.iscanbuild)
+
   local _iscanbuild, retdata = buildLogic.isCanBuild(self.tableCurBuild.bid)
   self.tableCurRetdata = retdata
   if not self.tableCurBuild.iscanbuild then

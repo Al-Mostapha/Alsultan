@@ -1,5 +1,4 @@
 #pragma once
-
 #include "cocos2d.h"
 #include "Include/IncludeBase.h"
 #include "Include/IncludeBuildingBase.h"

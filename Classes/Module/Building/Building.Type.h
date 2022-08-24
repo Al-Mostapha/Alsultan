@@ -39,6 +39,7 @@ struct DSBuildingInfoUnit{
     int32 openWl = 0;
     int32 openStar = 0;
     int32 maxStarLv = 0;
+    bool isCanBuild = true;
     GString BuildingName  = "";
     GString BuildingIcon  = "";
     GString BuildingBrief = "";

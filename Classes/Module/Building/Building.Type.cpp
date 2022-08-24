@@ -4,6 +4,7 @@
 #include "Module/Building/Building.Lib.h"
 #include "Module/Player/Player.DT.h"
 #include "Module/City/City.Module.h"
+#include "Module/Building/CityBuildingBase.h"
 
 
 

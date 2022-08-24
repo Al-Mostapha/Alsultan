@@ -1,7 +1,7 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Include/IncludeBuildingBase.h"
-#include "Module/Building/CityBuildingBase.h"
+
 
 class BuildingLib
 {
@@ -10,8 +10,8 @@ public:
     static void buildCity();
     static void buildAt(const char *p_BuildingPlace);
     static DSCityBuildingUnit &getBuildingAt(const char *p_BuildingPlace);
-    static CityBuildingBase *getBuildingNodeAt(const char *p_BuildingPlace);
-    static CityBuildingBase *getBuildingClassByType(EBuildingType p_BuildingType);
+    static class CityBuildingBase *getBuildingNodeAt(const char *p_BuildingPlace);
+    static class CityBuildingBase *getBuildingClassByType(EBuildingType p_BuildingType);
     static DSCityBuilding &getCurentCityBuilding();
     static GVector<DSCityBuildingUnit> getBuildingList(EBuildingType p_BuildingType);
     static GVector<DSCityBuildingUnit> getBuildingResList();

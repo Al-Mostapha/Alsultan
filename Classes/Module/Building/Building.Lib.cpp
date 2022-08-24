@@ -2,6 +2,7 @@
 #include "Module/Building/Building.Const.h"
 #include "Include/IncludeCityBuilding.h"
 #include "Module/Player/Player.DT.h"
+#include "Module/Building/CityBuildingBase.h"
 
 void BuildingLib::buildCity()
 {
