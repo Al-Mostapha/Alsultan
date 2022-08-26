@@ -1,13 +1,16 @@
-module.exports = {
+import { EBuildingType } from "src/Module/Building/Building.Const";
+import { IReqBuilding } from "./Req.Building";
+
+export const ReqBuildingHallOfWar: {[Key: number] : IReqBuilding} = {
     1: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 300, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 60,
         exp: 6,
         kingdomPoint: 13,
         power: 5,
         capacity: 10000,
-        costTools: [{ 300601: 1 }],
+        costTools: [{ idTool: 300601, amount: 1}],
         costWEs: []
     },
     2: {
@@ -18,7 +21,7 @@ module.exports = {
         kingdomPoint: 16,
         power: 15,
         capacity: 20000,
-        costTools: [{ 300601: 2 }],
+        costTools: [{ idTool: 300601, amount: 2}],
         costWEs: []
     },
     3: {
@@ -29,7 +32,7 @@ module.exports = {
         kingdomPoint: 36,
         power: 35,
         capacity: 30000,
-        costTools: [{ 300601: 4 }],
+        costTools: [{ idTool: 300601, amount: 4}],
         costWEs: []
     },
     4: {
@@ -40,7 +43,7 @@ module.exports = {
         kingdomPoint: 131,
         power: 70,
         capacity: 40000,
-        costTools: [{ 300601: 8 }],
+        costTools: [{ idTool: 300601, amount: 8}],
         costWEs: []
     },
     5: {
@@ -51,7 +54,7 @@ module.exports = {
         kingdomPoint: 326,
         power: 135,
         capacity: 50000,
-        costTools: [{ 300601: 12 }],
+        costTools: [{ idTool: 300601, amount: 12}],
         costWEs: []
     },
     6: {
@@ -62,7 +65,7 @@ module.exports = {
         kingdomPoint: 671,
         power: 250,
         capacity: 60000,
-        costTools: [{ 300601: 20 }],
+        costTools: [{ idTool: 300601, amount: 20}],
         costWEs: []
     },
     7: {
@@ -73,7 +76,7 @@ module.exports = {
         kingdomPoint: 1380,
         power: 420,
         capacity: 80000,
-        costTools: [{ 300601: 30 }],
+        costTools: [{ idTool: 300601, amount: 30}],
         costWEs: []
     },
     8: {
@@ -84,7 +87,7 @@ module.exports = {
         kingdomPoint: 1950,
         power: 650,
         capacity: 100000,
-        costTools: [{ 300601: 50 }],
+        costTools: [{ idTool: 300601, amount: 50}],
         costWEs: []
     },
     9: {
@@ -95,7 +98,7 @@ module.exports = {
         kingdomPoint: 2698,
         power: 920,
         capacity: 120000,
-        costTools: [{ 300601: 80 }],
+        costTools: [{ idTool: 300601, amount: 80}],
         costWEs: []
     },
     10: {
@@ -106,7 +109,7 @@ module.exports = {
         kingdomPoint: 3763,
         power: 1240,
         capacity: 140000,
-        costTools: [{ 300601: 125 }],
+        costTools: [{ idTool: 300601, amount: 125}],
         costWEs: []
     },
     11: {
@@ -117,7 +120,7 @@ module.exports = {
         kingdomPoint: 5228,
         power: 1620,
         capacity: 160000,
-        costTools: [{ 300601: 175 }],
+        costTools: [{ idTool: 300601, amount: 175}],
         costWEs: []
     },
     12: {
@@ -128,7 +131,7 @@ module.exports = {
         kingdomPoint: 7283,
         power: 2080,
         capacity: 190000,
-        costTools: [{ 300601: 230 }],
+        costTools: [{ idTool: 300601, amount: 230}],
         costWEs: []
     },
     13: {
@@ -139,7 +142,7 @@ module.exports = {
         kingdomPoint: 10033,
         power: 2640,
         capacity: 220000,
-        costTools: [{ 300601: 290 }],
+        costTools: [{ idTool: 300601, amount: 290}],
         costWEs: []
     },
     14: {
@@ -150,7 +153,7 @@ module.exports = {
         kingdomPoint: 13961,
         power: 3330,
         capacity: 250000,
-        costTools: [{ 300601: 355 }],
+        costTools: [{ idTool: 300601, amount: 355}],
         costWEs: []
     },
     15: {
@@ -161,7 +164,7 @@ module.exports = {
         kingdomPoint: 19320,
         power: 4170,
         capacity: 280000,
-        costTools: [{ 300601: 425 }],
+        costTools: [{ idTool: 300601, amount: 425}],
         costWEs: []
     },
     16: {
@@ -172,7 +175,7 @@ module.exports = {
         kingdomPoint: 26618,
         power: 5195,
         capacity: 310000,
-        costTools: [{ 300601: 500 }],
+        costTools: [{ idTool: 300601, amount: 500}],
         costWEs: []
     },
     17: {
@@ -183,7 +186,7 @@ module.exports = {
         kingdomPoint: 36846,
         power: 6450,
         capacity: 350000,
-        costTools: [{ 300601: 580 }],
+        costTools: [{ idTool: 300601, amount: 580}],
         costWEs: []
     },
     18: {
@@ -194,7 +197,7 @@ module.exports = {
         kingdomPoint: 43006,
         power: 7985,
         capacity: 390000,
-        costTools: [{ 300601: 665 }],
+        costTools: [{ idTool: 300601, amount: 665}],
         costWEs: []
     },
     19: {
@@ -205,7 +208,7 @@ module.exports = {
         kingdomPoint: 49391,
         power: 9860,
         capacity: 430000,
-        costTools: [{ 300601: 755 }],
+        costTools: [{ idTool: 300601, amount: 755}],
         costWEs: []
     },
     20: {
@@ -216,7 +219,7 @@ module.exports = {
         kingdomPoint: 57400,
         power: 12150,
         capacity: 470000,
-        costTools: [{ 300601: 850 }],
+        costTools: [{ idTool: 300601, amount: 850}],
         costWEs: []
     },
     21: {
@@ -227,7 +230,7 @@ module.exports = {
         kingdomPoint: 65800,
         power: 14750,
         capacity: 510000,
-        costTools: [{ 300601: 950 }],
+        costTools: [{ idTool: 300601, amount: 950}],
         costWEs: []
     },
     22: {
@@ -238,7 +241,7 @@ module.exports = {
         kingdomPoint: 75600,
         power: 17695,
         capacity: 550000,
-        costTools: [{ 300601: 1055 }],
+        costTools: [{ idTool: 300601, amount: 1055}],
         costWEs: []
     },
     23: {
@@ -249,7 +252,7 @@ module.exports = {
         kingdomPoint: 86800,
         power: 21035,
         capacity: 590000,
-        costTools: [{ 300601: 1165 }],
+        costTools: [{ idTool: 300601, amount: 1165}],
         costWEs: []
     },
     24: {
@@ -260,7 +263,7 @@ module.exports = {
         kingdomPoint: 99866,
         power: 24820,
         capacity: 630000,
-        costTools: [{ 300601: 1280 }],
+        costTools: [{ idTool: 300601, amount: 1280}],
         costWEs: []
     },
     25: {
@@ -271,7 +274,7 @@ module.exports = {
         kingdomPoint: 114800,
         power: 29115,
         capacity: 680000,
-        costTools: [{ 300601: 1400 }],
+        costTools: [{ idTool: 300601, amount: 1400}],
         costWEs: []
     },
     26: {
@@ -282,7 +285,7 @@ module.exports = {
         kingdomPoint: 131600,
         power: 33990,
         capacity: 730000,
-        costTools: [{ 300601: 1525 }],
+        costTools: [{ idTool: 300601, amount: 1525}],
         costWEs: []
     },
     27: {
@@ -293,7 +296,7 @@ module.exports = {
         kingdomPoint: 150266,
         power: 39510,
         capacity: 780000,
-        costTools: [{ 300601: 1655 }],
+        costTools: [{ idTool: 300601, amount: 1655}],
         costWEs: []
     },
     28: {
@@ -304,7 +307,7 @@ module.exports = {
         kingdomPoint: 170800,
         power: 45775,
         capacity: 830000,
-        costTools: [{ 300601: 1790 }],
+        costTools: [{ idTool: 300601, amount: 1790}],
         costWEs: []
     },
     29: {
@@ -315,7 +318,7 @@ module.exports = {
         kingdomPoint: 193200,
         power: 52880,
         capacity: 880000,
-        costTools: [{ 300601: 1930 }],
+        costTools: [{ idTool: 300601, amount: 1930}],
         costWEs: []
     },
     30: {
@@ -326,7 +329,7 @@ module.exports = {
         kingdomPoint: 221200,
         power: 60930,
         capacity: 930000,
-        costTools: [{ 300601: 2075 }],
+        costTools: [{ idTool: 300601, amount: 2075}],
         costWEs: []
     },
     31: {
@@ -337,7 +340,7 @@ module.exports = {
         kingdomPoint: 13333,
         power: 61977,
         capacity: 930000,
-        costTools: [{ 300601: 220 }],
+        costTools: [{ idTool: 300601, amount: 220}],
         costWEs: [{ idTool: 301101, amount: 3 }]
     },
     32: {
@@ -348,7 +351,7 @@ module.exports = {
         kingdomPoint: 16000,
         power: 63024,
         capacity: 930000,
-        costTools: [{ 300601: 222 }],
+        costTools: [{ idTool: 300601, amount: 222}],
         costWEs: [{ idTool: 301101, amount: 6 }]
     },
     33: {
@@ -359,7 +362,7 @@ module.exports = {
         kingdomPoint: 18666,
         power: 64071,
         capacity: 930000,
-        costTools: [{ 300601: 224 }],
+        costTools: [{ idTool: 300601, amount: 224}],
         costWEs: [{ idTool: 301101, amount: 9 }]
     },
     34: {
@@ -370,7 +373,7 @@ module.exports = {
         kingdomPoint: 21333,
         power: 65118,
         capacity: 930000,
-        costTools: [{ 300601: 226 }],
+        costTools: [{ idTool: 300601, amount: 226}],
         costWEs: [{ idTool: 301101, amount: 12 }]
     },
     35: {
@@ -381,7 +384,7 @@ module.exports = {
         kingdomPoint: 24000,
         power: 66165,
         capacity: 930000,
-        costTools: [{ 300601: 228 }],
+        costTools: [{ idTool: 300601, amount: 228}],
         costWEs: [{ idTool: 301101, amount: 15 }]
     },
     36: {
@@ -392,7 +395,7 @@ module.exports = {
         kingdomPoint: 26666,
         power: 67212,
         capacity: 930000,
-        costTools: [{ 300601: 230 }],
+        costTools: [{ idTool: 300601, amount: 230}],
         costWEs: [{ idTool: 301101, amount: 18 }]
     },
     37: {
@@ -403,7 +406,7 @@ module.exports = {
         kingdomPoint: 29333,
         power: 68259,
         capacity: 930000,
-        costTools: [{ 300601: 232 }],
+        costTools: [{ idTool: 300601, amount: 232}],
         costWEs: [{ idTool: 301101, amount: 21 }]
     },
     38: {
@@ -414,7 +417,7 @@ module.exports = {
         kingdomPoint: 32000,
         power: 69306,
         capacity: 930000,
-        costTools: [{ 300601: 234 }],
+        costTools: [{ idTool: 300601, amount: 234}],
         costWEs: [{ idTool: 301101, amount: 24 }]
     },
     39: {
@@ -425,7 +428,7 @@ module.exports = {
         kingdomPoint: 34666,
         power: 70353,
         capacity: 930000,
-        costTools: [{ 300601: 236 }],
+        costTools: [{ idTool: 300601, amount: 236}],
         costWEs: [{ idTool: 301101, amount: 27 }]
     },
     40: {
@@ -436,7 +439,7 @@ module.exports = {
         kingdomPoint: 37333,
         power: 71400,
         capacity: 980000,
-        costTools: [{ 300601: 238 }],
+        costTools: [{ idTool: 300601, amount: 238}],
         costWEs: [{ idTool: 301101, amount: 30 }]
     },
     41: {
@@ -447,7 +450,7 @@ module.exports = {
         kingdomPoint: 40000,
         power: 73240,
         capacity: 980000,
-        costTools: [{ 300601: 240 }],
+        costTools: [{ idTool: 300601, amount: 240}],
         costWEs: [{ idTool: 301101, amount: 30 }]
     },
     42: {
@@ -458,7 +461,7 @@ module.exports = {
         kingdomPoint: 42666,
         power: 75080,
         capacity: 980000,
-        costTools: [{ 300601: 242 }],
+        costTools: [{ idTool: 300601, amount: 242}],
         costWEs: [{ idTool: 301101, amount: 36 }]
     },
     43: {
@@ -469,7 +472,7 @@ module.exports = {
         kingdomPoint: 45333,
         power: 76920,
         capacity: 980000,
-        costTools: [{ 300601: 244 }],
+        costTools: [{ idTool: 300601, amount: 244}],
         costWEs: [{ idTool: 301101, amount: 42 }]
     },
     44: {
@@ -480,7 +483,7 @@ module.exports = {
         kingdomPoint: 48000,
         power: 78760,
         capacity: 980000,
-        costTools: [{ 300601: 246 }],
+        costTools: [{ idTool: 300601, amount: 246}],
         costWEs: [{ idTool: 301101, amount: 48 }]
     },
     45: {
@@ -491,7 +494,7 @@ module.exports = {
         kingdomPoint: 50666,
         power: 80600,
         capacity: 980000,
-        costTools: [{ 300601: 248 }],
+        costTools: [{ idTool: 300601, amount: 248}],
         costWEs: [{ idTool: 301101, amount: 54 }]
     },
     46: {
@@ -502,7 +505,7 @@ module.exports = {
         kingdomPoint: 53333,
         power: 82440,
         capacity: 980000,
-        costTools: [{ 300601: 250 }],
+        costTools: [{ idTool: 300601, amount: 250}],
         costWEs: [{ idTool: 301101, amount: 60 }]
     },
     47: {
@@ -513,7 +516,7 @@ module.exports = {
         kingdomPoint: 56000,
         power: 84280,
         capacity: 980000,
-        costTools: [{ 300601: 252 }],
+        costTools: [{ idTool: 300601, amount: 252}],
         costWEs: [{ idTool: 301101, amount: 66 }]
     },
     48: {
@@ -524,7 +527,7 @@ module.exports = {
         kingdomPoint: 58666,
         power: 86120,
         capacity: 980000,
-        costTools: [{ 300601: 254 }],
+        costTools: [{ idTool: 300601, amount: 254}],
         costWEs: [{ idTool: 301101, amount: 72 }]
     },
     49: {
@@ -535,7 +538,7 @@ module.exports = {
         kingdomPoint: 61333,
         power: 87960,
         capacity: 980000,
-        costTools: [{ 300601: 256 }],
+        costTools: [{ idTool: 300601, amount: 256}],
         costWEs: [{ idTool: 301101, amount: 78 }]
     },
     50: {
@@ -546,7 +549,7 @@ module.exports = {
         kingdomPoint: 64000,
         power: 89800,
         capacity: 1035000,
-        costTools: [{ 300601: 258 }],
+        costTools: [{ idTool: 300601, amount: 258}],
         costWEs: [{ idTool: 301101, amount: 84 }]
     },
     51: {
@@ -557,7 +560,7 @@ module.exports = {
         kingdomPoint: 66666,
         power: 92420,
         capacity: 1035000,
-        costTools: [{ 300601: 260 }],
+        costTools: [{ idTool: 300601, amount: 260}],
         costWEs: [{ idTool: 301101, amount: 93 }]
     },
     52: {
@@ -568,7 +571,7 @@ module.exports = {
         kingdomPoint: 69333,
         power: 95040,
         capacity: 1035000,
-        costTools: [{ 300601: 262 }],
+        costTools: [{ idTool: 300601, amount: 262}],
         costWEs: [{ idTool: 301101, amount: 102 }]
     },
     53: {
@@ -579,7 +582,7 @@ module.exports = {
         kingdomPoint: 72000,
         power: 97660,
         capacity: 1035000,
-        costTools: [{ 300601: 264 }],
+        costTools: [{ idTool: 300601, amount: 264}],
         costWEs: [{ idTool: 301101, amount: 111 }]
     },
     54: {
@@ -590,7 +593,7 @@ module.exports = {
         kingdomPoint: 74666,
         power: 100280,
         capacity: 1035000,
-        costTools: [{ 300601: 266 }],
+        costTools: [{ idTool: 300601, amount: 266}],
         costWEs: [{ idTool: 301101, amount: 120 }]
     },
     55: {
@@ -601,7 +604,7 @@ module.exports = {
         kingdomPoint: 77333,
         power: 102900,
         capacity: 1035000,
-        costTools: [{ 300601: 268 }],
+        costTools: [{ idTool: 300601, amount: 268}],
         costWEs: [{ idTool: 301101, amount: 129 }]
     },
     56: {
@@ -612,7 +615,7 @@ module.exports = {
         kingdomPoint: 80000,
         power: 105520,
         capacity: 1035000,
-        costTools: [{ 300601: 270 }],
+        costTools: [{ idTool: 300601, amount: 270}],
         costWEs: [{ idTool: 301101, amount: 138 }]
     },
     57: {
@@ -623,7 +626,7 @@ module.exports = {
         kingdomPoint: 82666,
         power: 108140,
         capacity: 1035000,
-        costTools: [{ 300601: 272 }],
+        costTools: [{ idTool: 300601, amount: 272}],
         costWEs: [{ idTool: 301101, amount: 147 }]
     },
     58: {
@@ -634,7 +637,7 @@ module.exports = {
         kingdomPoint: 85333,
         power: 110760,
         capacity: 1035000,
-        costTools: [{ 300601: 274 }],
+        costTools: [{ idTool: 300601, amount: 274}],
         costWEs: [{ idTool: 301101, amount: 156 }]
     },
     59: {
@@ -645,7 +648,7 @@ module.exports = {
         kingdomPoint: 88000,
         power: 113380,
         capacity: 1035000,
-        costTools: [{ 300601: 276 }],
+        costTools: [{ idTool: 300601, amount: 276}],
         costWEs: [{ idTool: 301101, amount: 165 }]
     },
     60: {
@@ -656,7 +659,7 @@ module.exports = {
         kingdomPoint: 90666,
         power: 116000,
         capacity: 1095000,
-        costTools: [{ 300601: 278 }],
+        costTools: [{ idTool: 300601, amount: 278}],
         costWEs: [{ idTool: 301101, amount: 174 }]
     },
     61: {
@@ -667,7 +670,7 @@ module.exports = {
         kingdomPoint: 93333,
         power: 119390,
         capacity: 1095000,
-        costTools: [{ 300601: 280 }],
+        costTools: [{ idTool: 300601, amount: 280}],
         costWEs: [{ idTool: 301101, amount: 180 }]
     },
     62: {
@@ -678,7 +681,7 @@ module.exports = {
         kingdomPoint: 96000,
         power: 122780,
         capacity: 1095000,
-        costTools: [{ 300601: 282 }],
+        costTools: [{ idTool: 300601, amount: 282}],
         costWEs: [{ idTool: 301101, amount: 195 }]
     },
     63: {
@@ -689,7 +692,7 @@ module.exports = {
         kingdomPoint: 98666,
         power: 126170,
         capacity: 1095000,
-        costTools: [{ 300601: 284 }],
+        costTools: [{ idTool: 300601, amount: 284}],
         costWEs: [{ idTool: 301101, amount: 210 }]
     },
     64: {
@@ -700,7 +703,7 @@ module.exports = {
         kingdomPoint: 101333,
         power: 129560,
         capacity: 1095000,
-        costTools: [{ 300601: 286 }],
+        costTools: [{ idTool: 300601, amount: 286}],
         costWEs: [{ idTool: 301101, amount: 225 }]
     },
     65: {
@@ -711,7 +714,7 @@ module.exports = {
         kingdomPoint: 104000,
         power: 132950,
         capacity: 1095000,
-        costTools: [{ 300601: 288 }],
+        costTools: [{ idTool: 300601, amount: 288}],
         costWEs: [{ idTool: 301101, amount: 240 }]
     },
     66: {
@@ -722,7 +725,7 @@ module.exports = {
         kingdomPoint: 106666,
         power: 136340,
         capacity: 1095000,
-        costTools: [{ 300601: 290 }],
+        costTools: [{ idTool: 300601, amount: 290}],
         costWEs: [{ idTool: 301101, amount: 255 }]
     },
     67: {
@@ -733,7 +736,7 @@ module.exports = {
         kingdomPoint: 109333,
         power: 139730,
         capacity: 1095000,
-        costTools: [{ 300601: 292 }],
+        costTools: [{ idTool: 300601, amount: 292}],
         costWEs: [{ idTool: 301101, amount: 270 }]
     },
     68: {
@@ -744,7 +747,7 @@ module.exports = {
         kingdomPoint: 112000,
         power: 143120,
         capacity: 1095000,
-        costTools: [{ 300601: 294 }],
+        costTools: [{ idTool: 300601, amount: 294}],
         costWEs: [{ idTool: 301101, amount: 285 }]
     },
     69: {
@@ -755,7 +758,7 @@ module.exports = {
         kingdomPoint: 114666,
         power: 146510,
         capacity: 1095000,
-        costTools: [{ 300601: 296 }],
+        costTools: [{ idTool: 300601, amount: 296}],
         costWEs: [{ idTool: 301101, amount: 300 }]
     },
     70: {
@@ -766,7 +769,7 @@ module.exports = {
         kingdomPoint: 117333,
         power: 149900,
         capacity: 1160000,
-        costTools: [{ 300601: 298 }],
+        costTools: [{ idTool: 300601, amount: 298}],
         costWEs: [{ idTool: 301101, amount: 315 }]
     },
     71: {
@@ -777,7 +780,7 @@ module.exports = {
         kingdomPoint: 120000,
         power: 154060,
         capacity: 1160000,
-        costTools: [{ 300601: 300 }],
+        costTools: [{ idTool: 300601, amount: 300}],
         costWEs: [{ idTool: 301101, amount: 360 }]
     },
     72: {
@@ -788,7 +791,7 @@ module.exports = {
         kingdomPoint: 122666,
         power: 158220,
         capacity: 1160000,
-        costTools: [{ 300601: 302 }],
+        costTools: [{ idTool: 300601, amount: 302}],
         costWEs: [{ idTool: 301101, amount: 390 }]
     },
     73: {
@@ -799,7 +802,7 @@ module.exports = {
         kingdomPoint: 125333,
         power: 162380,
         capacity: 1160000,
-        costTools: [{ 300601: 304 }],
+        costTools: [{ idTool: 300601, amount: 304}],
         costWEs: [{ idTool: 301101, amount: 420 }]
     },
     74: {
@@ -810,7 +813,7 @@ module.exports = {
         kingdomPoint: 128000,
         power: 166540,
         capacity: 1160000,
-        costTools: [{ 300601: 306 }],
+        costTools: [{ idTool: 300601, amount: 306}],
         costWEs: [{ idTool: 301101, amount: 450 }]
     },
     75: {
@@ -821,7 +824,7 @@ module.exports = {
         kingdomPoint: 130666,
         power: 170700,
         capacity: 1160000,
-        costTools: [{ 300601: 308 }],
+        costTools: [{ idTool: 300601, amount: 308}],
         costWEs: [{ idTool: 301101, amount: 480 }]
     },
     76: {
@@ -832,7 +835,7 @@ module.exports = {
         kingdomPoint: 133333,
         power: 174860,
         capacity: 1160000,
-        costTools: [{ 300601: 310 }],
+        costTools: [{ idTool: 300601, amount: 310}],
         costWEs: [{ idTool: 301101, amount: 510 }]
     },
     77: {
@@ -843,7 +846,7 @@ module.exports = {
         kingdomPoint: 136000,
         power: 179020,
         capacity: 1160000,
-        costTools: [{ 300601: 312 }],
+        costTools: [{ idTool: 300601, amount: 312}],
         costWEs: [{ idTool: 301101, amount: 540 }]
     },
     78: {
@@ -854,7 +857,7 @@ module.exports = {
         kingdomPoint: 138666,
         power: 183180,
         capacity: 1160000,
-        costTools: [{ 300601: 314 }],
+        costTools: [{ idTool: 300601, amount: 314}],
         costWEs: [{ idTool: 301101, amount: 570 }]
     },
     79: {
@@ -865,7 +868,7 @@ module.exports = {
         kingdomPoint: 141333,
         power: 187340,
         capacity: 1160000,
-        costTools: [{ 300601: 316 }],
+        costTools: [{ idTool: 300601, amount: 316}],
         costWEs: [{ idTool: 301101, amount: 600 }]
     },
     80: {
@@ -876,7 +879,7 @@ module.exports = {
         kingdomPoint: 144000,
         power: 191500,
         capacity: 1230000,
-        costTools: [{ 300601: 318 }],
+        costTools: [{ idTool: 300601, amount: 318}],
         costWEs: [{ idTool: 301101, amount: 630 }]
     },
     81: {
@@ -887,7 +890,7 @@ module.exports = {
         kingdomPoint: 146666,
         power: 196220,
         capacity: 1230000,
-        costTools: [{ 300601: 320 }],
+        costTools: [{ idTool: 300601, amount: 320}],
         costWEs: [{ idTool: 301901, amount: 75 }]
     },
     82: {
@@ -898,7 +901,7 @@ module.exports = {
         kingdomPoint: 149333,
         power: 200940,
         capacity: 1230000,
-        costTools: [{ 300601: 322 }],
+        costTools: [{ idTool: 300601, amount: 322}],
         costWEs: [{ idTool: 301901, amount: 90 }]
     },
     83: {
@@ -909,7 +912,7 @@ module.exports = {
         kingdomPoint: 152000,
         power: 205660,
         capacity: 1230000,
-        costTools: [{ 300601: 324 }],
+        costTools: [{ idTool: 300601, amount: 324}],
         costWEs: [{ idTool: 301901, amount: 105 }]
     },
     84: {
@@ -920,7 +923,7 @@ module.exports = {
         kingdomPoint: 154666,
         power: 210380,
         capacity: 1230000,
-        costTools: [{ 300601: 326 }],
+        costTools: [{ idTool: 300601, amount: 326}],
         costWEs: [{ idTool: 301901, amount: 120 }]
     },
     85: {
@@ -931,7 +934,7 @@ module.exports = {
         kingdomPoint: 157333,
         power: 215100,
         capacity: 1230000,
-        costTools: [{ 300601: 328 }],
+        costTools: [{ idTool: 300601, amount: 328}],
         costWEs: [{ idTool: 301901, amount: 135 }]
     },
     86: {
@@ -942,7 +945,7 @@ module.exports = {
         kingdomPoint: 160000,
         power: 219820,
         capacity: 1230000,
-        costTools: [{ 300601: 330 }],
+        costTools: [{ idTool: 300601, amount: 330}],
         costWEs: [{ idTool: 301901, amount: 150 }]
     },
     87: {
@@ -953,7 +956,7 @@ module.exports = {
         kingdomPoint: 162666,
         power: 224540,
         capacity: 1230000,
-        costTools: [{ 300601: 332 }],
+        costTools: [{ idTool: 300601, amount: 332}],
         costWEs: [{ idTool: 301901, amount: 165 }]
     },
     88: {
@@ -964,7 +967,7 @@ module.exports = {
         kingdomPoint: 165333,
         power: 229260,
         capacity: 1230000,
-        costTools: [{ 300601: 334 }],
+        costTools: [{ idTool: 300601, amount: 334}],
         costWEs: [{ idTool: 301901, amount: 180 }]
     },
     89: {
@@ -975,7 +978,7 @@ module.exports = {
         kingdomPoint: 168000,
         power: 233980,
         capacity: 1230000,
-        costTools: [{ 300601: 336 }],
+        costTools: [{ idTool: 300601, amount: 336}],
         costWEs: [{ idTool: 301901, amount: 195 }]
     },
     90: {
@@ -986,7 +989,7 @@ module.exports = {
         kingdomPoint: 170666,
         power: 238700,
         capacity: 1300000,
-        costTools: [{ 300601: 338 }],
+        costTools: [{ idTool: 300601, amount: 338}],
         costWEs: [{ idTool: 301901, amount: 210 }]
     },
     91: {
@@ -997,7 +1000,7 @@ module.exports = {
         kingdomPoint: 173333,
         power: 243520,
         capacity: 1300000,
-        costTools: [{ 300601: 340 }],
+        costTools: [{ idTool: 300601, amount: 340}],
         costWEs: [{ idTool: 301901, amount: 234 }]
     },
     92: {
@@ -1008,7 +1011,7 @@ module.exports = {
         kingdomPoint: 176000,
         power: 248340,
         capacity: 1300000,
-        costTools: [{ 300601: 342 }],
+        costTools: [{ idTool: 300601, amount: 342}],
         costWEs: [{ idTool: 301901, amount: 258 }]
     },
     93: {
@@ -1019,7 +1022,7 @@ module.exports = {
         kingdomPoint: 178666,
         power: 253160,
         capacity: 1300000,
-        costTools: [{ 300601: 344 }],
+        costTools: [{ idTool: 300601, amount: 344}],
         costWEs: [{ idTool: 301901, amount: 282 }]
     },
     94: {
@@ -1030,7 +1033,7 @@ module.exports = {
         kingdomPoint: 181333,
         power: 257980,
         capacity: 1300000,
-        costTools: [{ 300601: 346 }],
+        costTools: [{ idTool: 300601, amount: 346}],
         costWEs: [{ idTool: 301901, amount: 306 }]
     },
     95: {
@@ -1041,7 +1044,7 @@ module.exports = {
         kingdomPoint: 184000,
         power: 262800,
         capacity: 1300000,
-        costTools: [{ 300601: 348 }],
+        costTools: [{ idTool: 300601, amount: 348}],
         costWEs: [{ idTool: 301901, amount: 330 }]
     },
     96: {
@@ -1052,7 +1055,7 @@ module.exports = {
         kingdomPoint: 186666,
         power: 267620,
         capacity: 1300000,
-        costTools: [{ 300601: 350 }],
+        costTools: [{ idTool: 300601, amount: 350}],
         costWEs: [{ idTool: 301901, amount: 354 }]
     },
     97: {
@@ -1063,7 +1066,7 @@ module.exports = {
         kingdomPoint: 189333,
         power: 272440,
         capacity: 1300000,
-        costTools: [{ 300601: 352 }],
+        costTools: [{ idTool: 300601, amount: 352}],
         costWEs: [{ idTool: 301901, amount: 378 }]
     },
     98: {
@@ -1074,7 +1077,7 @@ module.exports = {
         kingdomPoint: 192000,
         power: 277260,
         capacity: 1300000,
-        costTools: [{ 300601: 354 }],
+        costTools: [{ idTool: 300601, amount: 354}],
         costWEs: [{ idTool: 301901, amount: 402 }]
     },
     99: {
@@ -1085,7 +1088,7 @@ module.exports = {
         kingdomPoint: 194666,
         power: 282080,
         capacity: 1300000,
-        costTools: [{ 300601: 356 }],
+        costTools: [{ idTool: 300601, amount: 356}],
         costWEs: [{ idTool: 301901, amount: 426 }]
     },
     100: {
@@ -1096,7 +1099,7 @@ module.exports = {
         kingdomPoint: 197333,
         power: 286900,
         capacity: 1380000,
-        costTools: [{ 300601: 358 }],
+        costTools: [{ idTool: 300601, amount: 358}],
         costWEs: [{ idTool: 301901, amount: 450 }]
     },
     101: {
@@ -1107,7 +1110,7 @@ module.exports = {
         kingdomPoint: 200000,
         power: 292250,
         capacity: 1380000,
-        costTools: [{ 300601: 360 }],
+        costTools: [{ idTool: 300601, amount: 360}],
         costWEs: [{ idTool: 301901, amount: 480 }]
     },
     102: {
@@ -1118,7 +1121,7 @@ module.exports = {
         kingdomPoint: 202666,
         power: 297600,
         capacity: 1380000,
-        costTools: [{ 300601: 362 }],
+        costTools: [{ idTool: 300601, amount: 362}],
         costWEs: [{ idTool: 301901, amount: 510 }]
     },
     103: {
@@ -1129,7 +1132,7 @@ module.exports = {
         kingdomPoint: 205333,
         power: 302950,
         capacity: 1380000,
-        costTools: [{ 300601: 364 }],
+        costTools: [{ idTool: 300601, amount: 364}],
         costWEs: [{ idTool: 301901, amount: 540 }]
     },
     104: {
@@ -1140,7 +1143,7 @@ module.exports = {
         kingdomPoint: 208000,
         power: 308300,
         capacity: 1380000,
-        costTools: [{ 300601: 366 }],
+        costTools: [{ idTool: 300601, amount: 366}],
         costWEs: [{ idTool: 301901, amount: 570 }]
     },
     105: {
@@ -1151,7 +1154,7 @@ module.exports = {
         kingdomPoint: 210666,
         power: 313650,
         capacity: 1380000,
-        costTools: [{ 300601: 368 }],
+        costTools: [{ idTool: 300601, amount: 368}],
         costWEs: [{ idTool: 301901, amount: 600 }]
     },
     106: {
@@ -1162,7 +1165,7 @@ module.exports = {
         kingdomPoint: 213333,
         power: 319000,
         capacity: 1380000,
-        costTools: [{ 300601: 370 }],
+        costTools: [{ idTool: 300601, amount: 370}],
         costWEs: [{ idTool: 301901, amount: 630 }]
     },
     107: {
@@ -1173,7 +1176,7 @@ module.exports = {
         kingdomPoint: 216000,
         power: 324350,
         capacity: 1380000,
-        costTools: [{ 300601: 372 }],
+        costTools: [{ idTool: 300601, amount: 372}],
         costWEs: [{ idTool: 301901, amount: 660 }]
     },
     108: {
@@ -1184,7 +1187,7 @@ module.exports = {
         kingdomPoint: 218666,
         power: 329700,
         capacity: 1380000,
-        costTools: [{ 300601: 374 }],
+        costTools: [{ idTool: 300601, amount: 374}],
         costWEs: [{ idTool: 301901, amount: 690 }]
     },
     109: {
@@ -1195,7 +1198,7 @@ module.exports = {
         kingdomPoint: 221333,
         power: 335050,
         capacity: 1380000,
-        costTools: [{ 300601: 376 }],
+        costTools: [{ idTool: 300601, amount: 376}],
         costWEs: [{ idTool: 301901, amount: 720 }]
     },
     110: {
@@ -1206,7 +1209,7 @@ module.exports = {
         kingdomPoint: 224000,
         power: 340400,
         capacity: 1480000,
-        costTools: [{ 300601: 378 }],
+        costTools: [{ idTool: 300601, amount: 378}],
         costWEs: [{ idTool: 301901, amount: 750 }]
     },
     111: {
@@ -1217,7 +1220,7 @@ module.exports = {
         kingdomPoint: 226666,
         power: 346270,
         capacity: 1480000,
-        costTools: [{ 300601: 380 }],
+        costTools: [{ idTool: 300601, amount: 380}],
         costWEs: [{ idTool: 301901, amount: 786 }]
     },
     112: {
@@ -1228,7 +1231,7 @@ module.exports = {
         kingdomPoint: 229333,
         power: 352140,
         capacity: 1480000,
-        costTools: [{ 300601: 382 }],
+        costTools: [{ idTool: 300601, amount: 382}],
         costWEs: [{ idTool: 301901, amount: 822 }]
     },
     113: {
@@ -1239,7 +1242,7 @@ module.exports = {
         kingdomPoint: 232000,
         power: 358010,
         capacity: 1480000,
-        costTools: [{ 300601: 384 }],
+        costTools: [{ idTool: 300601, amount: 384}],
         costWEs: [{ idTool: 301901, amount: 858 }]
     },
     114: {
@@ -1250,7 +1253,7 @@ module.exports = {
         kingdomPoint: 234666,
         power: 363880,
         capacity: 1480000,
-        costTools: [{ 300601: 386 }],
+        costTools: [{ idTool: 300601, amount: 386}],
         costWEs: [{ idTool: 301901, amount: 894 }]
     },
     115: {
@@ -1261,7 +1264,7 @@ module.exports = {
         kingdomPoint: 237333,
         power: 369750,
         capacity: 1480000,
-        costTools: [{ 300601: 388 }],
+        costTools: [{ idTool: 300601, amount: 388}],
         costWEs: [{ idTool: 301901, amount: 930 }]
     },
     116: {
@@ -1272,7 +1275,7 @@ module.exports = {
         kingdomPoint: 240000,
         power: 375620,
         capacity: 1480000,
-        costTools: [{ 300601: 390 }],
+        costTools: [{ idTool: 300601, amount: 390}],
         costWEs: [{ idTool: 301901, amount: 966 }]
     },
     117: {
@@ -1283,7 +1286,7 @@ module.exports = {
         kingdomPoint: 242666,
         power: 381490,
         capacity: 1480000,
-        costTools: [{ 300601: 392 }],
+        costTools: [{ idTool: 300601, amount: 392}],
         costWEs: [{ idTool: 301901, amount: 1002 }]
     },
     118: {
@@ -1294,7 +1297,7 @@ module.exports = {
         kingdomPoint: 245333,
         power: 387360,
         capacity: 1480000,
-        costTools: [{ 300601: 394 }],
+        costTools: [{ idTool: 300601, amount: 394}],
         costWEs: [{ idTool: 301901, amount: 1038 }]
     },
     119: {
@@ -1305,7 +1308,7 @@ module.exports = {
         kingdomPoint: 248000,
         power: 393230,
         capacity: 1480000,
-        costTools: [{ 300601: 396 }],
+        costTools: [{ idTool: 300601, amount: 396}],
         costWEs: [{ idTool: 301901, amount: 1074 }]
     },
     120: {
@@ -1316,7 +1319,7 @@ module.exports = {
         kingdomPoint: 250666,
         power: 399100,
         capacity: 1600000,
-        costTools: [{ 300601: 398 }],
+        costTools: [{ idTool: 300601, amount: 398}],
         costWEs: [{ idTool: 301901, amount: 1110 }]
     },
     121: {
@@ -1327,7 +1330,7 @@ module.exports = {
         kingdomPoint: 253333,
         power: 405490,
         capacity: 1600000,
-        costTools: [{ 300601: 400 }],
+        costTools: [{ idTool: 300601, amount: 400}],
         costWEs: [{ idTool: 301901, amount: 1149 }]
     },
     122: {
@@ -1338,7 +1341,7 @@ module.exports = {
         kingdomPoint: 256000,
         power: 411880,
         capacity: 1600000,
-        costTools: [{ 300601: 402 }],
+        costTools: [{ idTool: 300601, amount: 402}],
         costWEs: [{ idTool: 301901, amount: 1800 }]
     },
     123: {
@@ -1349,7 +1352,7 @@ module.exports = {
         kingdomPoint: 258666,
         power: 418270,
         capacity: 1600000,
-        costTools: [{ 300601: 404 }],
+        costTools: [{ idTool: 300601, amount: 404}],
         costWEs: [{ idTool: 301901, amount: 1950 }]
     },
     124: {
@@ -1360,7 +1363,7 @@ module.exports = {
         kingdomPoint: 261333,
         power: 424660,
         capacity: 1600000,
-        costTools: [{ 300601: 406 }],
+        costTools: [{ idTool: 300601, amount: 406}],
         costWEs: [{ idTool: 301901, amount: 2100 }]
     },
     125: {
@@ -1371,7 +1374,7 @@ module.exports = {
         kingdomPoint: 264000,
         power: 431050,
         capacity: 1600000,
-        costTools: [{ 300601: 408 }],
+        costTools: [{ idTool: 300601, amount: 408}],
         costWEs: [{ idTool: 301901, amount: 2250 }]
     },
     126: {
@@ -1382,7 +1385,7 @@ module.exports = {
         kingdomPoint: 266666,
         power: 437440,
         capacity: 1600000,
-        costTools: [{ 300601: 410 }],
+        costTools: [{ idTool: 300601, amount: 410}],
         costWEs: [{ idTool: 301901, amount: 2400 }]
     },
     127: {
@@ -1393,7 +1396,7 @@ module.exports = {
         kingdomPoint: 269333,
         power: 443830,
         capacity: 1600000,
-        costTools: [{ 300601: 412 }],
+        costTools: [{ idTool: 300601, amount: 412}],
         costWEs: [{ idTool: 301901, amount: 2550 }]
     },
     128: {
@@ -1404,7 +1407,7 @@ module.exports = {
         kingdomPoint: 272000,
         power: 450220,
         capacity: 1600000,
-        costTools: [{ 300601: 414 }],
+        costTools: [{ idTool: 300601, amount: 414}],
         costWEs: [{ idTool: 301901, amount: 2700 }]
     },
     129: {
@@ -1415,7 +1418,7 @@ module.exports = {
         kingdomPoint: 274666,
         power: 456610,
         capacity: 1600000,
-        costTools: [{ 300601: 416 }],
+        costTools: [{ idTool: 300601, amount: 416}],
         costWEs: [{ idTool: 301901, amount: 2850 }]
     },
     130: {
@@ -1426,7 +1429,7 @@ module.exports = {
         kingdomPoint: 277333,
         power: 463000,
         capacity: 1740000,
-        costTools: [{ 300601: 418 }],
+        costTools: [{ idTool: 300601, amount: 418}],
         costWEs: [{ idTool: 301901, amount: 3000 }]
     }
 };

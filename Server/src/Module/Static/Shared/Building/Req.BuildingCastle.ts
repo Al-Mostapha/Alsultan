@@ -1,7 +1,6 @@
-const Config = require("../../Include/IncludeConfig");
-const CCity = require("../CCity");
+import { IReqBuilding } from "./Req.Building";
 
-module.exports = {
+export const ReqBuildingCastle : {[Key: number] : IReqBuilding} = {
     1: {
         kingdomLv: 0,
         preCond: [],
@@ -10,7 +9,7 @@ module.exports = {
         exp: 0,
         kingdomPoint: 0,
         power: 25,
-        unlockedBuild: 118,
+        unlockedBuild: 118, // Should Be EBuildingType
         costTools: [],
         costWEs: []
     },

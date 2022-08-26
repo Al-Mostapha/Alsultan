@@ -1,6 +1,9 @@
-module.exports = {
+import { EBuildingType } from "src/Module/Building/Building.Const";
+import { IReqBuilding } from "./Req.Building";
+
+export const ReqBuildingArrowTower : {[Key: number] : IReqBuilding} = {
     1: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 300, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 60,
         exp: 6,
@@ -10,11 +13,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1 }],
+        costTools: [{ idTool: 300501, amount: 1}],
         costWEs: []
     },
     2: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 500, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 90,
         exp: 7,
@@ -24,11 +27,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 2 }],
+        costTools: [{ idTool: 300501, amount: 2}],
         costWEs: []
     },
     3: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 700, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 150,
         exp: 10,
@@ -38,11 +41,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 4 }],
+        costTools: [{ idTool: 300501, amount: 4}],
         costWEs: []
     },
     4: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 900, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 450,
         exp: 25,
@@ -52,11 +55,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 8 }],
+        costTools: [{ idTool: 300501, amount: 8}],
         costWEs: []
     },
     5: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 1300, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 1080,
         exp: 46,
@@ -66,11 +69,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 12 }],
+        costTools: [{ idTool: 300501, amount: 12}],
         costWEs: []
     },
     6: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 2000, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 2160,
         exp: 87,
@@ -80,11 +83,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 20 }],
+        costTools: [{ idTool: 300501, amount: 20}],
         costWEs: []
     },
     7: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 3800, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 4320,
         exp: 128,
@@ -94,11 +97,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 30 }],
+        costTools: [{ idTool: 300501, amount: 30}],
         costWEs: []
     },
     8: {
-        preCond: [{ buildingType: 101, buildingLvl: 8 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 8 }],
         costRes: { Grain: 0, Lumber: 6000, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 5940,
         exp: 174,
@@ -108,11 +111,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 50 }],
+        costTools: [{ idTool: 300501, amount: 50}],
         costWEs: []
     },
     9: {
-        preCond: [{ buildingType: 101, buildingLvl: 9 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 9 }],
         costRes: { Grain: 0, Lumber: 13000, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 8010,
         exp: 233,
@@ -122,11 +125,11 @@ module.exports = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 80 }],
+        costTools: [{ idTool: 300501, amount: 80}],
         costWEs: []
     },
     10: {
-        preCond: [{ buildingType: 101, buildingLvl: 10 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 10 }],
         costRes: { Grain: 0, Lumber: 25000, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 10890,
         exp: 316,
@@ -136,11 +139,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 125 }],
+        costTools: [{ idTool: 300501, amount: 125}],
         costWEs: []
     },
     11: {
-        preCond: [{ buildingType: 101, buildingLvl: 11 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 11 }],
         costRes: { Grain: 0, Lumber: 40000, Iron: 5000, Silver: 0, Crystal: 0 },
         costTime: 14760,
         exp: 426,
@@ -150,11 +153,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 175 }],
+        costTools: [{ idTool: 300501, amount: 175}],
         costWEs: []
     },
     12: {
-        preCond: [{ buildingType: 101, buildingLvl: 12 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 12 }],
         costRes: { Grain: 0, Lumber: 80000, Iron: 10000, Silver: 0, Crystal: 0 },
         costTime: 20070,
         exp: 578,
@@ -164,11 +167,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 230 }],
+        costTools: [{ idTool: 300501, amount: 230}],
         costWEs: []
     },
     13: {
-        preCond: [{ buildingType: 101, buildingLvl: 13 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 13 }],
         costRes: { Grain: 0, Lumber: 153000, Iron: 19100, Silver: 0, Crystal: 0 },
         costTime: 27000,
         exp: 776,
@@ -178,11 +181,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 290 }],
+        costTools: [{ idTool: 300501, amount: 290}],
         costWEs: []
     },
     14: {
-        preCond: [{ buildingType: 101, buildingLvl: 14 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 14 }],
         costRes: { Grain: 0, Lumber: 275000, Iron: 34300, Silver: 0, Crystal: 0 },
         costTime: 36720,
         exp: 1054,
@@ -192,11 +195,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 355 }],
+        costTools: [{ idTool: 300501, amount: 355}],
         costWEs: []
     },
     15: {
-        preCond: [{ buildingType: 101, buildingLvl: 15 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 15 }],
         costRes: { Grain: 0, Lumber: 420000, Iron: 52500, Silver: 0, Crystal: 0 },
         costTime: 49680,
         exp: 1424,
@@ -206,11 +209,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 425 }],
+        costTools: [{ idTool: 300501, amount: 425}],
         costWEs: []
     },
     16: {
-        preCond: [{ buildingType: 101, buildingLvl: 16 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 16 }],
         costRes: { Grain: 0, Lumber: 550000, Iron: 68700, Silver: 9800, Crystal: 0 },
         costTime: 66960,
         exp: 1918,
@@ -220,11 +223,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 500 }],
+        costTools: [{ idTool: 300501, amount: 500}],
         costWEs: []
     },
     17: {
-        preCond: [{ buildingType: 101, buildingLvl: 17 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 17 }],
         costRes: { Grain: 0, Lumber: 770000, Iron: 96200, Silver: 13700, Crystal: 0 },
         costTime: 90720,
         exp: 2597,
@@ -234,11 +237,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 580 }],
+        costTools: [{ idTool: 300501, amount: 580}],
         costWEs: []
     },
     18: {
-        preCond: [{ buildingType: 101, buildingLvl: 18 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 18 }],
         costRes: { Grain: 0, Lumber: 1000000, Iron: 125000, Silver: 17800, Crystal: 0 },
         costTime: 103680,
         exp: 2967,
@@ -248,11 +251,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 665 }],
+        costTools: [{ idTool: 300501, amount: 665}],
         costWEs: []
     },
     19: {
-        preCond: [{ buildingType: 101, buildingLvl: 19 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 19 }],
         costRes: { Grain: 0, Lumber: 1300000, Iron: 162500, Silver: 23200, Crystal: 0 },
         costTime: 116640,
         exp: 3337,
@@ -262,11 +265,11 @@ module.exports = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 755 }],
+        costTools: [{ idTool: 300501, amount: 755}],
         costWEs: []
     },
     20: {
-        preCond: [{ buildingType: 101, buildingLvl: 20 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 20 }],
         costRes: { Grain: 0, Lumber: 1600000, Iron: 200000, Silver: 28600, Crystal: 0 },
         costTime: 132840,
         exp: 3800,
@@ -276,11 +279,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 850 }],
+        costTools: [{ idTool: 300501, amount: 850}],
         costWEs: []
     },
     21: {
-        preCond: [{ buildingType: 101, buildingLvl: 21 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 21 }],
         costRes: { Grain: 0, Lumber: 2000000, Iron: 250000, Silver: 35700, Crystal: 0 },
         costTime: 152280,
         exp: 4355,
@@ -290,11 +293,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 950 }],
+        costTools: [{ idTool: 300501, amount: 950}],
         costWEs: []
     },
     22: {
-        preCond: [{ buildingType: 101, buildingLvl: 22 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 22 }],
         costRes: { Grain: 0, Lumber: 2500000, Iron: 312500, Silver: 44600, Crystal: 0 },
         costTime: 174960,
         exp: 5003,
@@ -304,11 +307,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1055 }],
+        costTools: [{ idTool: 300501, amount: 1055}],
         costWEs: []
     },
     23: {
-        preCond: [{ buildingType: 101, buildingLvl: 23 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 23 }],
         costRes: { Grain: 0, Lumber: 3000000, Iron: 375000, Silver: 53600, Crystal: 0 },
         costTime: 200880,
         exp: 5744,
@@ -318,11 +321,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1165 }],
+        costTools: [{ idTool: 300501, amount: 1165}],
         costWEs: []
     },
     24: {
-        preCond: [{ buildingType: 101, buildingLvl: 24 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 24 }],
         costRes: { Grain: 0, Lumber: 4000000, Iron: 500000, Silver: 71500, Crystal: 0 },
         costTime: 231120,
         exp: 6608,
@@ -332,11 +335,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1280 }],
+        costTools: [{ idTool: 300501, amount: 1280}],
         costWEs: []
     },
     25: {
-        preCond: [{ buildingType: 101, buildingLvl: 25 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 25 }],
         costRes: { Grain: 0, Lumber: 5500000, Iron: 687500, Silver: 98300, Crystal: 0 },
         costTime: 265680,
         exp: 7595,
@@ -346,11 +349,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1400 }],
+        costTools: [{ idTool: 300501, amount: 1400}],
         costWEs: []
     },
     26: {
-        preCond: [{ buildingType: 101, buildingLvl: 26 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 26 }],
         costRes: { Grain: 0, Lumber: 7500000, Iron: 937500, Silver: 134000, Crystal: 0 },
         costTime: 304560,
         exp: 8706,
@@ -360,11 +363,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1525 }],
+        costTools: [{ idTool: 300501, amount: 1525}],
         costWEs: []
     },
     27: {
-        preCond: [{ buildingType: 101, buildingLvl: 27 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 27 }],
         costRes: { Grain: 0, Lumber: 10000000, Iron: 1250000, Silver: 178700, Crystal: 0 },
         costTime: 347760,
         exp: 9941,
@@ -374,11 +377,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1655 }],
+        costTools: [{ idTool: 300501, amount: 1655}],
         costWEs: []
     },
     28: {
-        preCond: [{ buildingType: 101, buildingLvl: 28 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 28 }],
         costRes: { Grain: 0, Lumber: 13000000, Iron: 1625000, Silver: 232300, Crystal: 0 },
         costTime: 395280,
         exp: 11298,
@@ -388,11 +391,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1790 }],
+        costTools: [{ idTool: 300501, amount: 1790}],
         costWEs: []
     },
     29: {
-        preCond: [{ buildingType: 101, buildingLvl: 29 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 29 }],
         costRes: { Grain: 0, Lumber: 17000000, Iron: 2125000, Silver: 303800, Crystal: 0 },
         costTime: 447120,
         exp: 12779,
@@ -402,11 +405,11 @@ module.exports = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 1930 }],
+        costTools: [{ idTool: 300501, amount: 1930}],
         costWEs: []
     },
     30: {
-        preCond: [{ buildingType: 101, buildingLvl: 30 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 30 }],
         costRes: { Grain: 0, Lumber: 22000000, Iron: 2750000, Silver: 393200, Crystal: 0 },
         costTime: 511920,
         exp: 14631,
@@ -416,11 +419,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 2075 }],
+        costTools: [{ idTool: 300501, amount: 2075}],
         costWEs: []
     },
     31: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1500000, Lumber: 1500000, Iron: 150000, Silver: 75000, Crystal: 0 },
         costTime: 36000,
         exp: 1205,
@@ -430,11 +433,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 220 }],
+        costTools: [{ idTool: 300501, amount: 220}],
         costWEs: [{ idTool: 301101, amount: 5 }]
     },
     32: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1550000, Lumber: 1550000, Iron: 155000, Silver: 77500, Crystal: 0 },
         costTime: 43200,
         exp: 1445,
@@ -444,11 +447,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 222 }],
+        costTools: [{ idTool: 300501, amount: 222}],
         costWEs: [{ idTool: 301101, amount: 10 }]
     },
     33: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1600000, Lumber: 1600000, Iron: 160000, Silver: 80000, Crystal: 0 },
         costTime: 50400,
         exp: 1685,
@@ -458,11 +461,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 224 }],
+        costTools: [{ idTool: 300501, amount: 224}],
         costWEs: [{ idTool: 301101, amount: 15 }]
     },
     34: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1650000, Lumber: 1650000, Iron: 165000, Silver: 82500, Crystal: 0 },
         costTime: 57600,
         exp: 1925,
@@ -472,11 +475,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 226 }],
+        costTools: [{ idTool: 300501, amount: 226}],
         costWEs: [{ idTool: 301101, amount: 20 }]
     },
     35: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1700000, Lumber: 1700000, Iron: 170000, Silver: 85000, Crystal: 0 },
         costTime: 64800,
         exp: 2165,
@@ -486,11 +489,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 228 }],
+        costTools: [{ idTool: 300501, amount: 228}],
         costWEs: [{ idTool: 301101, amount: 25 }]
     },
     36: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1750000, Lumber: 1750000, Iron: 175000, Silver: 87500, Crystal: 0 },
         costTime: 72000,
         exp: 2405,
@@ -500,11 +503,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 230 }],
+        costTools: [{ idTool: 300501, amount: 230}],
         costWEs: [{ idTool: 301101, amount: 30 }]
     },
     37: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1800000, Lumber: 1800000, Iron: 180000, Silver: 90000, Crystal: 0 },
         costTime: 79200,
         exp: 2645,
@@ -514,11 +517,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 232 }],
+        costTools: [{ idTool: 300501, amount: 232}],
         costWEs: [{ idTool: 301101, amount: 35 }]
     },
     38: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1850000, Lumber: 1850000, Iron: 185000, Silver: 92500, Crystal: 0 },
         costTime: 86400,
         exp: 2885,
@@ -528,11 +531,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 234 }],
+        costTools: [{ idTool: 300501, amount: 234}],
         costWEs: [{ idTool: 301101, amount: 40 }]
     },
     39: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1900000, Lumber: 1900000, Iron: 190000, Silver: 95000, Crystal: 0 },
         costTime: 93600,
         exp: 3125,
@@ -542,11 +545,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 236 }],
+        costTools: [{ idTool: 300501, amount: 236}],
         costWEs: [{ idTool: 301101, amount: 45 }]
     },
     40: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
         costRes: { Grain: 1950000, Lumber: 1950000, Iron: 195000, Silver: 97500, Crystal: 0 },
         costTime: 100800,
         exp: 3365,
@@ -556,11 +559,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 238 }],
+        costTools: [{ idTool: 300501, amount: 238}],
         costWEs: [{ idTool: 301101, amount: 50 }]
     },
     41: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2000000, Lumber: 2000000, Iron: 200000, Silver: 100000, Crystal: 0 },
         costTime: 108000,
         exp: 3605,
@@ -570,11 +573,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 240 }],
+        costTools: [{ idTool: 300501, amount: 240}],
         costWEs: [{ idTool: 301101, amount: 50 }]
     },
     42: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2050000, Lumber: 2050000, Iron: 205000, Silver: 102500, Crystal: 0 },
         costTime: 115200,
         exp: 3845,
@@ -584,11 +587,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 242 }],
+        costTools: [{ idTool: 300501, amount: 242}],
         costWEs: [{ idTool: 301101, amount: 60 }]
     },
     43: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2100000, Lumber: 2100000, Iron: 210000, Silver: 105000, Crystal: 0 },
         costTime: 122400,
         exp: 4085,
@@ -598,11 +601,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 244 }],
+        costTools: [{ idTool: 300501, amount: 244}],
         costWEs: [{ idTool: 301101, amount: 70 }]
     },
     44: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2150000, Lumber: 2150000, Iron: 215000, Silver: 107500, Crystal: 0 },
         costTime: 129600,
         exp: 4325,
@@ -612,11 +615,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 246 }],
+        costTools: [{ idTool: 300501, amount: 246}],
         costWEs: [{ idTool: 301101, amount: 80 }]
     },
     45: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2200000, Lumber: 2200000, Iron: 220000, Silver: 110000, Crystal: 0 },
         costTime: 136800,
         exp: 4565,
@@ -626,11 +629,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 248 }],
+        costTools: [{ idTool: 300501, amount: 248}],
         costWEs: [{ idTool: 301101, amount: 90 }]
     },
     46: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2250000, Lumber: 2250000, Iron: 225000, Silver: 112500, Crystal: 0 },
         costTime: 144000,
         exp: 4805,
@@ -640,11 +643,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 250 }],
+        costTools: [{ idTool: 300501, amount: 250}],
         costWEs: [{ idTool: 301101, amount: 100 }]
     },
     47: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2300000, Lumber: 2300000, Iron: 230000, Silver: 115000, Crystal: 0 },
         costTime: 151200,
         exp: 5045,
@@ -654,11 +657,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 252 }],
+        costTools: [{ idTool: 300501, amount: 252}],
         costWEs: [{ idTool: 301101, amount: 110 }]
     },
     48: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2350000, Lumber: 2350000, Iron: 235000, Silver: 117500, Crystal: 0 },
         costTime: 158400,
         exp: 5285,
@@ -668,11 +671,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 254 }],
+        costTools: [{ idTool: 300501, amount: 254}],
         costWEs: [{ idTool: 301101, amount: 120 }]
     },
     49: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2400000, Lumber: 2400000, Iron: 240000, Silver: 120000, Crystal: 0 },
         costTime: 165600,
         exp: 5525,
@@ -682,11 +685,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 256 }],
+        costTools: [{ idTool: 300501, amount: 256}],
         costWEs: [{ idTool: 301101, amount: 130 }]
     },
     50: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
         costRes: { Grain: 2450000, Lumber: 2450000, Iron: 245000, Silver: 122500, Crystal: 0 },
         costTime: 172800,
         exp: 5765,
@@ -696,11 +699,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 258 }],
+        costTools: [{ idTool: 300501, amount: 258}],
         costWEs: [{ idTool: 301101, amount: 140 }]
     },
     51: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2500000, Lumber: 2500000, Iron: 250000, Silver: 125000, Crystal: 0 },
         costTime: 180000,
         exp: 6005,
@@ -710,11 +713,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 260 }],
+        costTools: [{ idTool: 300501, amount: 260}],
         costWEs: [{ idTool: 301101, amount: 155 }]
     },
     52: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2550000, Lumber: 2550000, Iron: 255000, Silver: 127500, Crystal: 0 },
         costTime: 187200,
         exp: 6245,
@@ -724,11 +727,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 262 }],
+        costTools: [{ idTool: 300501, amount: 262}],
         costWEs: [{ idTool: 301101, amount: 170 }]
     },
     53: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2600000, Lumber: 2600000, Iron: 260000, Silver: 130000, Crystal: 0 },
         costTime: 194400,
         exp: 6485,
@@ -738,11 +741,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 264 }],
+        costTools: [{ idTool: 300501, amount: 264}],
         costWEs: [{ idTool: 301101, amount: 185 }]
     },
     54: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2650000, Lumber: 2650000, Iron: 265000, Silver: 132500, Crystal: 0 },
         costTime: 201600,
         exp: 6725,
@@ -752,11 +755,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 266 }],
+        costTools: [{ idTool: 300501, amount: 266}],
         costWEs: [{ idTool: 301101, amount: 200 }]
     },
     55: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2700000, Lumber: 2700000, Iron: 270000, Silver: 135000, Crystal: 0 },
         costTime: 208800,
         exp: 6965,
@@ -766,11 +769,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 268 }],
+        costTools: [{ idTool: 300501, amount: 268}],
         costWEs: [{ idTool: 301101, amount: 215 }]
     },
     56: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2750000, Lumber: 2750000, Iron: 275000, Silver: 137500, Crystal: 0 },
         costTime: 216000,
         exp: 7205,
@@ -780,11 +783,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 270 }],
+        costTools: [{ idTool: 300501, amount: 270}],
         costWEs: [{ idTool: 301101, amount: 230 }]
     },
     57: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2800000, Lumber: 2800000, Iron: 280000, Silver: 140000, Crystal: 0 },
         costTime: 223200,
         exp: 7445,
@@ -794,11 +797,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 272 }],
+        costTools: [{ idTool: 300501, amount: 272}],
         costWEs: [{ idTool: 301101, amount: 245 }]
     },
     58: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2850000, Lumber: 2850000, Iron: 285000, Silver: 142500, Crystal: 0 },
         costTime: 230400,
         exp: 7685,
@@ -808,11 +811,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 274 }],
+        costTools: [{ idTool: 300501, amount: 274}],
         costWEs: [{ idTool: 301101, amount: 260 }]
     },
     59: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2900000, Lumber: 2900000, Iron: 290000, Silver: 145000, Crystal: 0 },
         costTime: 237600,
         exp: 7925,
@@ -822,11 +825,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 276 }],
+        costTools: [{ idTool: 300501, amount: 276}],
         costWEs: [{ idTool: 301101, amount: 275 }]
     },
     60: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 2950000, Lumber: 2950000, Iron: 295000, Silver: 147500, Crystal: 0 },
         costTime: 244800,
         exp: 8165,
@@ -836,11 +839,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 278 }],
+        costTools: [{ idTool: 300501, amount: 278}],
         costWEs: [{ idTool: 301101, amount: 290 }]
     },
     61: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3000000, Lumber: 3000000, Iron: 300000, Silver: 150000, Crystal: 0 },
         costTime: 252000,
         exp: 8405,
@@ -850,11 +853,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 280 }],
+        costTools: [{ idTool: 300501, amount: 280}],
         costWEs: [{ idTool: 301101, amount: 300 }]
     },
     62: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3050000, Lumber: 3050000, Iron: 305000, Silver: 152500, Crystal: 0 },
         costTime: 259200,
         exp: 8645,
@@ -864,11 +867,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 282 }],
+        costTools: [{ idTool: 300501, amount: 282}],
         costWEs: [{ idTool: 301101, amount: 325 }]
     },
     63: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3100000, Lumber: 3100000, Iron: 310000, Silver: 155000, Crystal: 0 },
         costTime: 266400,
         exp: 8885,
@@ -878,11 +881,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 284 }],
+        costTools: [{ idTool: 300501, amount: 284}],
         costWEs: [{ idTool: 301101, amount: 350 }]
     },
     64: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3150000, Lumber: 3150000, Iron: 315000, Silver: 157500, Crystal: 0 },
         costTime: 273600,
         exp: 9125,
@@ -892,11 +895,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 286 }],
+        costTools: [{ idTool: 300501, amount: 286}],
         costWEs: [{ idTool: 301101, amount: 375 }]
     },
     65: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3200000, Lumber: 3200000, Iron: 320000, Silver: 160000, Crystal: 0 },
         costTime: 280800,
         exp: 9365,
@@ -906,11 +909,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 288 }],
+        costTools: [{ idTool: 300501, amount: 288}],
         costWEs: [{ idTool: 301101, amount: 400 }]
     },
     66: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3250000, Lumber: 3250000, Iron: 325000, Silver: 162500, Crystal: 0 },
         costTime: 288000,
         exp: 9605,
@@ -920,11 +923,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 290 }],
+        costTools: [{ idTool: 300501, amount: 290}],
         costWEs: [{ idTool: 301101, amount: 425 }]
     },
     67: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3300000, Lumber: 3300000, Iron: 330000, Silver: 165000, Crystal: 0 },
         costTime: 295200,
         exp: 9845,
@@ -934,11 +937,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 292 }],
+        costTools: [{ idTool: 300501, amount: 292}],
         costWEs: [{ idTool: 301101, amount: 450 }]
     },
     68: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3350000, Lumber: 3350000, Iron: 335000, Silver: 167500, Crystal: 0 },
         costTime: 302400,
         exp: 10085,
@@ -948,11 +951,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 294 }],
+        costTools: [{ idTool: 300501, amount: 294}],
         costWEs: [{ idTool: 301101, amount: 475 }]
     },
     69: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3400000, Lumber: 3400000, Iron: 340000, Silver: 170000, Crystal: 0 },
         costTime: 309600,
         exp: 10325,
@@ -962,11 +965,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 296 }],
+        costTools: [{ idTool: 300501, amount: 296}],
         costWEs: [{ idTool: 301101, amount: 500 }]
     },
     70: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
         costRes: { Grain: 3450000, Lumber: 3450000, Iron: 345000, Silver: 172500, Crystal: 0 },
         costTime: 316800,
         exp: 10565,
@@ -976,11 +979,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 298 }],
+        costTools: [{ idTool: 300501, amount: 298}],
         costWEs: [{ idTool: 301101, amount: 525 }]
     },
     71: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3500000, Lumber: 3500000, Iron: 350000, Silver: 175000, Crystal: 0 },
         costTime: 324000,
         exp: 10805,
@@ -990,11 +993,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 300 }],
+        costTools: [{ idTool: 300501, amount: 300}],
         costWEs: [{ idTool: 301101, amount: 600 }]
     },
     72: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3550000, Lumber: 3550000, Iron: 355000, Silver: 177500, Crystal: 0 },
         costTime: 331200,
         exp: 11045,
@@ -1004,11 +1007,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 302 }],
+        costTools: [{ idTool: 300501, amount: 302}],
         costWEs: [{ idTool: 301101, amount: 650 }]
     },
     73: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3600000, Lumber: 3600000, Iron: 360000, Silver: 180000, Crystal: 0 },
         costTime: 338400,
         exp: 11285,
@@ -1018,11 +1021,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 304 }],
+        costTools: [{ idTool: 300501, amount: 304}],
         costWEs: [{ idTool: 301101, amount: 700 }]
     },
     74: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3650000, Lumber: 3650000, Iron: 365000, Silver: 182500, Crystal: 0 },
         costTime: 345600,
         exp: 11525,
@@ -1032,11 +1035,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 306 }],
+        costTools: [{ idTool: 300501, amount: 306}],
         costWEs: [{ idTool: 301101, amount: 750 }]
     },
     75: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3700000, Lumber: 3700000, Iron: 370000, Silver: 185000, Crystal: 0 },
         costTime: 352800,
         exp: 11765,
@@ -1046,11 +1049,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 308 }],
+        costTools: [{ idTool: 300501, amount: 308}],
         costWEs: [{ idTool: 301101, amount: 800 }]
     },
     76: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3750000, Lumber: 3750000, Iron: 375000, Silver: 187500, Crystal: 0 },
         costTime: 360000,
         exp: 12005,
@@ -1060,11 +1063,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 310 }],
+        costTools: [{ idTool: 300501, amount: 310}],
         costWEs: [{ idTool: 301101, amount: 850 }]
     },
     77: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3800000, Lumber: 3800000, Iron: 380000, Silver: 190000, Crystal: 0 },
         costTime: 367200,
         exp: 12245,
@@ -1074,11 +1077,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 312 }],
+        costTools: [{ idTool: 300501, amount: 312}],
         costWEs: [{ idTool: 301101, amount: 900 }]
     },
     78: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3850000, Lumber: 3850000, Iron: 385000, Silver: 192500, Crystal: 0 },
         costTime: 374400,
         exp: 12485,
@@ -1088,11 +1091,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 314 }],
+        costTools: [{ idTool: 300501, amount: 314}],
         costWEs: [{ idTool: 301101, amount: 950 }]
     },
     79: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3900000, Lumber: 3900000, Iron: 390000, Silver: 195000, Crystal: 0 },
         costTime: 381600,
         exp: 12725,
@@ -1102,11 +1105,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 316 }],
+        costTools: [{ idTool: 300501, amount: 316}],
         costWEs: [{ idTool: 301101, amount: 1000 }]
     },
     80: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
         costRes: { Grain: 3900000, Lumber: 3900000, Iron: 390000, Silver: 195000, Crystal: 0 },
         costTime: 388800,
         exp: 12965,
@@ -1116,11 +1119,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 318 }],
+        costTools: [{ idTool: 300501, amount: 318}],
         costWEs: [{ idTool: 301101, amount: 1050 }]
     },
     81: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4000000, Lumber: 4000000, Iron: 400000, Silver: 200000, Crystal: 1000 },
         costTime: 396000,
         exp: 13205,
@@ -1130,11 +1133,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 320 }],
+        costTools: [{ idTool: 300501, amount: 320}],
         costWEs: [{ idTool: 301901, amount: 75 }]
     },
     82: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4100000, Lumber: 4100000, Iron: 405000, Silver: 202500, Crystal: 3000 },
         costTime: 403200,
         exp: 13445,
@@ -1144,11 +1147,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 322 }],
+        costTools: [{ idTool: 300501, amount: 322}],
         costWEs: [{ idTool: 301901, amount: 90 }]
     },
     83: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4200000, Lumber: 4200000, Iron: 410000, Silver: 205000, Crystal: 5000 },
         costTime: 410400,
         exp: 13685,
@@ -1158,11 +1161,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 324 }],
+        costTools: [{ idTool: 300501, amount: 324}],
         costWEs: [{ idTool: 301901, amount: 105 }]
     },
     84: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4300000, Lumber: 4300000, Iron: 415000, Silver: 207500, Crystal: 7000 },
         costTime: 417600,
         exp: 13925,
@@ -1172,11 +1175,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 326 }],
+        costTools: [{ idTool: 300501, amount: 326}],
         costWEs: [{ idTool: 301901, amount: 120 }]
     },
     85: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4400000, Lumber: 4400000, Iron: 420000, Silver: 210000, Crystal: 9000 },
         costTime: 424800,
         exp: 14165,
@@ -1186,11 +1189,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 328 }],
+        costTools: [{ idTool: 300501, amount: 328}],
         costWEs: [{ idTool: 301901, amount: 135 }]
     },
     86: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4500000, Lumber: 4500000, Iron: 425000, Silver: 212500, Crystal: 11500 },
         costTime: 432000,
         exp: 14405,
@@ -1200,11 +1203,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 330 }],
+        costTools: [{ idTool: 300501, amount: 330}],
         costWEs: [{ idTool: 301901, amount: 150 }]
     },
     87: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4600000, Lumber: 4600000, Iron: 430000, Silver: 215000, Crystal: 13500 },
         costTime: 439200,
         exp: 14645,
@@ -1214,11 +1217,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 332 }],
+        costTools: [{ idTool: 300501, amount: 332}],
         costWEs: [{ idTool: 301901, amount: 165 }]
     },
     88: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4700000, Lumber: 4700000, Iron: 435000, Silver: 217500, Crystal: 15500 },
         costTime: 446400,
         exp: 14885,
@@ -1228,11 +1231,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 334 }],
+        costTools: [{ idTool: 300501, amount: 334}],
         costWEs: [{ idTool: 301901, amount: 180 }]
     },
     89: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4800000, Lumber: 4800000, Iron: 440000, Silver: 220000, Crystal: 18000 },
         costTime: 453600,
         exp: 15125,
@@ -1242,11 +1245,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 336 }],
+        costTools: [{ idTool: 300501, amount: 336}],
         costWEs: [{ idTool: 301901, amount: 195 }]
     },
     90: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 4900000, Lumber: 4900000, Iron: 445000, Silver: 222500, Crystal: 20000 },
         costTime: 460800,
         exp: 15365,
@@ -1256,11 +1259,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 338 }],
+        costTools: [{ idTool: 300501, amount: 338}],
         costWEs: [{ idTool: 301901, amount: 210 }]
     },
     91: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5000000, Lumber: 5000000, Iron: 450000, Silver: 225000, Crystal: 22500 },
         costTime: 468000,
         exp: 15605,
@@ -1270,11 +1273,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 340 }],
+        costTools: [{ idTool: 300501, amount: 340}],
         costWEs: [{ idTool: 301901, amount: 234 }]
     },
     92: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5100000, Lumber: 5100000, Iron: 455000, Silver: 227500, Crystal: 25000 },
         costTime: 475200,
         exp: 15845,
@@ -1284,11 +1287,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 342 }],
+        costTools: [{ idTool: 300501, amount: 342}],
         costWEs: [{ idTool: 301901, amount: 258 }]
     },
     93: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5200000, Lumber: 5200000, Iron: 460000, Silver: 230000, Crystal: 27500 },
         costTime: 482400,
         exp: 16085,
@@ -1298,11 +1301,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 344 }],
+        costTools: [{ idTool: 300501, amount: 344}],
         costWEs: [{ idTool: 301901, amount: 282 }]
     },
     94: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5300000, Lumber: 5300000, Iron: 465000, Silver: 232500, Crystal: 30000 },
         costTime: 489600,
         exp: 16325,
@@ -1312,11 +1315,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 346 }],
+        costTools: [{ idTool: 300501, amount: 346}],
         costWEs: [{ idTool: 301901, amount: 306 }]
     },
     95: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5400000, Lumber: 5400000, Iron: 470000, Silver: 235000, Crystal: 32500 },
         costTime: 496800,
         exp: 16565,
@@ -1326,11 +1329,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 348 }],
+        costTools: [{ idTool: 300501, amount: 348}],
         costWEs: [{ idTool: 301901, amount: 330 }]
     },
     96: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5500000, Lumber: 5500000, Iron: 475000, Silver: 237500, Crystal: 35000 },
         costTime: 504000,
         exp: 16805,
@@ -1340,11 +1343,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 350 }],
+        costTools: [{ idTool: 300501, amount: 350}],
         costWEs: [{ idTool: 301901, amount: 354 }]
     },
     97: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5600000, Lumber: 5600000, Iron: 480000, Silver: 240000, Crystal: 37500 },
         costTime: 511200,
         exp: 17045,
@@ -1354,11 +1357,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 352 }],
+        costTools: [{ idTool: 300501, amount: 352}],
         costWEs: [{ idTool: 301901, amount: 378 }]
     },
     98: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5700000, Lumber: 5700000, Iron: 485000, Silver: 242500, Crystal: 40000 },
         costTime: 518400,
         exp: 17285,
@@ -1368,11 +1371,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 354 }],
+        costTools: [{ idTool: 300501, amount: 354}],
         costWEs: [{ idTool: 301901, amount: 402 }]
     },
     99: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5800000, Lumber: 5800000, Iron: 490000, Silver: 245000, Crystal: 43000 },
         costTime: 525600,
         exp: 17525,
@@ -1382,11 +1385,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 356 }],
+        costTools: [{ idTool: 300501, amount: 356}],
         costWEs: [{ idTool: 301901, amount: 426 }]
     },
     100: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 5900000, Lumber: 5900000, Iron: 495000, Silver: 247500, Crystal: 45500 },
         costTime: 532800,
         exp: 17765,
@@ -1396,11 +1399,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 358 }],
+        costTools: [{ idTool: 300501, amount: 358}],
         costWEs: [{ idTool: 301901, amount: 450 }]
     },
     101: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6000000, Lumber: 6000000, Iron: 500000, Silver: 250000, Crystal: 48500 },
         costTime: 540000,
         exp: 18005,
@@ -1410,11 +1413,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 360 }],
+        costTools: [{ idTool: 300501, amount: 360}],
         costWEs: [{ idTool: 301901, amount: 480 }]
     },
     102: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6100000, Lumber: 6100000, Iron: 505000, Silver: 252500, Crystal: 51500 },
         costTime: 547200,
         exp: 18245,
@@ -1424,11 +1427,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 362 }],
+        costTools: [{ idTool: 300501, amount: 362}],
         costWEs: [{ idTool: 301901, amount: 510 }]
     },
     103: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6200000, Lumber: 6200000, Iron: 510000, Silver: 255000, Crystal: 54000 },
         costTime: 554400,
         exp: 18485,
@@ -1438,11 +1441,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 364 }],
+        costTools: [{ idTool: 300501, amount: 364}],
         costWEs: [{ idTool: 301901, amount: 540 }]
     },
     104: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6300000, Lumber: 6300000, Iron: 515000, Silver: 257500, Crystal: 57000 },
         costTime: 561600,
         exp: 18725,
@@ -1452,11 +1455,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 366 }],
+        costTools: [{ idTool: 300501, amount: 366}],
         costWEs: [{ idTool: 301901, amount: 570 }]
     },
     105: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6400000, Lumber: 6400000, Iron: 520000, Silver: 260000, Crystal: 60000 },
         costTime: 568800,
         exp: 18965,
@@ -1466,11 +1469,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 368 }],
+        costTools: [{ idTool: 300501, amount: 368}],
         costWEs: [{ idTool: 301901, amount: 600 }]
     },
     106: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6500000, Lumber: 6500000, Iron: 525000, Silver: 262500, Crystal: 63000 },
         costTime: 576000,
         exp: 19205,
@@ -1480,11 +1483,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 370 }],
+        costTools: [{ idTool: 300501, amount: 370}],
         costWEs: [{ idTool: 301901, amount: 630 }]
     },
     107: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6600000, Lumber: 6600000, Iron: 530000, Silver: 265000, Crystal: 66500 },
         costTime: 583200,
         exp: 19445,
@@ -1494,11 +1497,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 372 }],
+        costTools: [{ idTool: 300501, amount: 372}],
         costWEs: [{ idTool: 301901, amount: 660 }]
     },
     108: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6700000, Lumber: 6700000, Iron: 535000, Silver: 267500, Crystal: 69500 },
         costTime: 590400,
         exp: 19685,
@@ -1508,11 +1511,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 374 }],
+        costTools: [{ idTool: 300501, amount: 374}],
         costWEs: [{ idTool: 301901, amount: 690 }]
     },
     109: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6800000, Lumber: 6800000, Iron: 540000, Silver: 270000, Crystal: 72500 },
         costTime: 597600,
         exp: 19925,
@@ -1522,11 +1525,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 376 }],
+        costTools: [{ idTool: 300501, amount: 376}],
         costWEs: [{ idTool: 301901, amount: 720 }]
     },
     110: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 6900000, Lumber: 6900000, Iron: 545000, Silver: 272500, Crystal: 76000 },
         costTime: 604800,
         exp: 20165,
@@ -1536,11 +1539,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 378 }],
+        costTools: [{ idTool: 300501, amount: 378}],
         costWEs: [{ idTool: 301901, amount: 750 }]
     },
     111: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7000000, Lumber: 7000000, Iron: 550000, Silver: 275000, Crystal: 79000 },
         costTime: 612000,
         exp: 20405,
@@ -1550,11 +1553,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 380 }],
+        costTools: [{ idTool: 300501, amount: 380}],
         costWEs: [{ idTool: 301901, amount: 786 }]
     },
     112: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7100000, Lumber: 7100000, Iron: 555000, Silver: 277500, Crystal: 82500 },
         costTime: 619200,
         exp: 20645,
@@ -1564,11 +1567,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 382 }],
+        costTools: [{ idTool: 300501, amount: 382}],
         costWEs: [{ idTool: 301901, amount: 822 }]
     },
     113: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7200000, Lumber: 7200000, Iron: 560000, Silver: 280000, Crystal: 85500 },
         costTime: 626400,
         exp: 20885,
@@ -1578,11 +1581,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 384 }],
+        costTools: [{ idTool: 300501, amount: 384}],
         costWEs: [{ idTool: 301901, amount: 858 }]
     },
     114: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7300000, Lumber: 7300000, Iron: 565000, Silver: 282500, Crystal: 89000 },
         costTime: 633600,
         exp: 21125,
@@ -1592,11 +1595,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 386 }],
+        costTools: [{ idTool: 300501, amount: 386}],
         costWEs: [{ idTool: 301901, amount: 894 }]
     },
     115: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7400000, Lumber: 7400000, Iron: 570000, Silver: 285000, Crystal: 92500 },
         costTime: 640800,
         exp: 21365,
@@ -1606,11 +1609,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 388 }],
+        costTools: [{ idTool: 300501, amount: 388}],
         costWEs: [{ idTool: 301901, amount: 930 }]
     },
     116: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7500000, Lumber: 7500000, Iron: 575000, Silver: 287500, Crystal: 96000 },
         costTime: 648000,
         exp: 21605,
@@ -1620,11 +1623,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 390 }],
+        costTools: [{ idTool: 300501, amount: 390}],
         costWEs: [{ idTool: 301901, amount: 966 }]
     },
     117: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7600000, Lumber: 7600000, Iron: 580000, Silver: 290000, Crystal: 99500 },
         costTime: 655200,
         exp: 21845,
@@ -1634,11 +1637,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 392 }],
+        costTools: [{ idTool: 300501, amount: 392}],
         costWEs: [{ idTool: 301901, amount: 1002 }]
     },
     118: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7700000, Lumber: 7700000, Iron: 585000, Silver: 292500, Crystal: 103000 },
         costTime: 662400,
         exp: 22085,
@@ -1648,11 +1651,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 394 }],
+        costTools: [{ idTool: 300501, amount: 394}],
         costWEs: [{ idTool: 301901, amount: 1038 }]
     },
     119: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7800000, Lumber: 7800000, Iron: 590000, Silver: 295000, Crystal: 107000 },
         costTime: 669600,
         exp: 22325,
@@ -1662,11 +1665,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 396 }],
+        costTools: [{ idTool: 300501, amount: 396}],
         costWEs: [{ idTool: 301901, amount: 1074 }]
     },
     120: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 7900000, Lumber: 7900000, Iron: 595000, Silver: 297500, Crystal: 110500 },
         costTime: 676800,
         exp: 22565,
@@ -1676,11 +1679,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 398 }],
+        costTools: [{ idTool: 300501, amount: 398}],
         costWEs: [{ idTool: 301901, amount: 1110 }]
     },
     121: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8000000, Lumber: 8000000, Iron: 600000, Silver: 300000, Crystal: 114500 },
         costTime: 684000,
         exp: 22805,
@@ -1690,11 +1693,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 400 }],
+        costTools: [{ idTool: 300501, amount: 400}],
         costWEs: [{ idTool: 301901, amount: 1149 }]
     },
     122: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8100000, Lumber: 8100000, Iron: 605000, Silver: 302500, Crystal: 118000 },
         costTime: 691200,
         exp: 23045,
@@ -1704,11 +1707,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 402 }],
+        costTools: [{ idTool: 300501, amount: 402}],
         costWEs: [{ idTool: 301901, amount: 1188 }]
     },
     123: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8200000, Lumber: 8200000, Iron: 610000, Silver: 305000, Crystal: 122000 },
         costTime: 698400,
         exp: 23285,
@@ -1718,11 +1721,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 404 }],
+        costTools: [{ idTool: 300501, amount: 404}],
         costWEs: [{ idTool: 301901, amount: 1227 }]
     },
     124: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8300000, Lumber: 8300000, Iron: 615000, Silver: 307500, Crystal: 126000 },
         costTime: 705600,
         exp: 23525,
@@ -1732,11 +1735,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 406 }],
+        costTools: [{ idTool: 300501, amount: 406}],
         costWEs: [{ idTool: 301901, amount: 1266 }]
     },
     125: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8400000, Lumber: 8400000, Iron: 620000, Silver: 310000, Crystal: 129500 },
         costTime: 712800,
         exp: 23765,
@@ -1746,11 +1749,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 408 }],
+        costTools: [{ idTool: 300501, amount: 408}],
         costWEs: [{ idTool: 301901, amount: 1305 }]
     },
     126: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8500000, Lumber: 8500000, Iron: 625000, Silver: 312500, Crystal: 133500 },
         costTime: 720000,
         exp: 24005,
@@ -1760,11 +1763,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 410 }],
+        costTools: [{ idTool: 300501, amount: 410}],
         costWEs: [{ idTool: 301901, amount: 1344 }]
     },
     127: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8600000, Lumber: 8600000, Iron: 630000, Silver: 315000, Crystal: 137500 },
         costTime: 727200,
         exp: 24245,
@@ -1774,11 +1777,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 412 }],
+        costTools: [{ idTool: 300501, amount: 412}],
         costWEs: [{ idTool: 301901, amount: 1383 }]
     },
     128: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8700000, Lumber: 8700000, Iron: 635000, Silver: 317500, Crystal: 141500 },
         costTime: 734400,
         exp: 24485,
@@ -1788,11 +1791,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 414 }],
+        costTools: [{ idTool: 300501, amount: 414}],
         costWEs: [{ idTool: 301901, amount: 1422 }]
     },
     129: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8800000, Lumber: 8800000, Iron: 640000, Silver: 320000, Crystal: 146000 },
         costTime: 741600,
         exp: 24725,
@@ -1802,11 +1805,11 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 416 }],
+        costTools: [{ idTool: 300501, amount: 416}],
         costWEs: [{ idTool: 301901, amount: 1461 }]
     },
     130: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 8900000, Lumber: 8900000, Iron: 645000, Silver: 322500, Crystal: 150000 },
         costTime: 748800,
         exp: 24965,
@@ -1816,7 +1819,7 @@ module.exports = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ 300501: 418 }],
+        costTools: [{ idTool: 300501, amount: 418}],
         costWEs: [{ idTool: 301901, amount: 1500 }]
     }
 };

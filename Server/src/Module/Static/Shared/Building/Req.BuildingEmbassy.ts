@@ -1,7 +1,10 @@
-module.exports = {
+import { EBuildingType } from "src/Module/Building/Building.Const";
+import { IReqBuilding } from "./Req.Building";
+
+export const ReqBuildingEmbassy: {[Key: number] : IReqBuilding} = {
     1: {
-        preCond: [{ buildingType: 101, buildingLvl: 6 }],
-        costRes: { Grain: 0, Lumber: 300, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 6 }],
+        costRes: { Grain: 0, Lumber: 300, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 60,
         exp: 6,
         kingdomPoint: 13,
@@ -13,8 +16,8 @@ module.exports = {
         costWEs: []
     },
     2: {
-        preCond: [{ buildingType: 101, buildingLvl: 6 }],
-        costRes: { Grain: 0, Lumber: 800, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 6 }],
+        costRes: { Grain: 0, Lumber: 800, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 100,
         exp: 7,
         kingdomPoint: 23,
@@ -26,8 +29,8 @@ module.exports = {
         costWEs: []
     },
     3: {
-        preCond: [{ buildingType: 101, buildingLvl: 6 }],
-        costRes: { Grain: 0, Lumber: 1100, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 6 }],
+        costRes: { Grain: 0, Lumber: 1100, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 160,
         exp: 7,
         kingdomPoint: 38,
@@ -39,8 +42,8 @@ module.exports = {
         costWEs: []
     },
     4: {
-        preCond: [{ buildingType: 101, buildingLvl: 6 }],
-        costRes: { Grain: 0, Lumber: 1500, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 6 }],
+        costRes: { Grain: 0, Lumber: 1500, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 400,
         exp: 25,
         kingdomPoint: 100,
@@ -52,8 +55,8 @@ module.exports = {
         costWEs: []
     },
     5: {
-        preCond: [{ buildingType: 101, buildingLvl: 6 }],
-        costRes: { Grain: 0, Lumber: 2300, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 6 }],
+        costRes: { Grain: 0, Lumber: 2300, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 1100,
         exp: 47,
         kingdomPoint: 285,
@@ -65,8 +68,8 @@ module.exports = {
         costWEs: []
     },
     6: {
-        preCond: [{ buildingType: 101, buildingLvl: 6 }],
-        costRes: { Grain: 0, Lumber: 3700, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 6 }],
+        costRes: { Grain: 0, Lumber: 3700, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 2300,
         exp: 90,
         kingdomPoint: 613,
@@ -78,8 +81,8 @@ module.exports = {
         costWEs: []
     },
     7: {
-        preCond: [{ buildingType: 101, buildingLvl: 7 }],
-        costRes: { Grain: 0, Lumber: 7000, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
+        costRes: { Grain: 0, Lumber: 7000, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 4600,
         exp: 136,
         kingdomPoint: 1260,
@@ -91,8 +94,8 @@ module.exports = {
         costWEs: []
     },
     8: {
-        preCond: [{ buildingType: 101, buildingLvl: 8 }],
-        costRes: { Grain: 0, Lumber: 13000, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 8 }],
+        costRes: { Grain: 0, Lumber: 13000, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 6300,
         exp: 185,
         kingdomPoint: 1773,
@@ -104,8 +107,8 @@ module.exports = {
         costWEs: []
     },
     9: {
-        preCond: [{ buildingType: 101, buildingLvl: 9 }],
-        costRes: { Grain: 0, Lumber: 26000, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 9 }],
+        costRes: { Grain: 0, Lumber: 26000, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 8500,
         exp: 247,
         kingdomPoint: 2455,
@@ -117,8 +120,8 @@ module.exports = {
         costWEs: []
     },
     10: {
-        preCond: [{ buildingType: 101, buildingLvl: 10 }],
-        costRes: { Grain: 0, Lumber: 50000, Iron: 0, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 10 }],
+        costRes: { Grain: 0, Lumber: 50000, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 11600,
         exp: 336,
         kingdomPoint: 3436,
@@ -130,8 +133,8 @@ module.exports = {
         costWEs: []
     },
     11: {
-        preCond: [{ buildingType: 101, buildingLvl: 11 }],
-        costRes: { Grain: 0, Lumber: 80000, Iron: 13600, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 11 }],
+        costRes: { Grain: 0, Lumber: 80000, Iron: 13600, Silver: 0, Crystal: 0 },
         costTime: 15700,
         exp: 453,
         kingdomPoint: 4766,
@@ -143,8 +146,8 @@ module.exports = {
         costWEs: []
     },
     12: {
-        preCond: [{ buildingType: 101, buildingLvl: 12 }],
-        costRes: { Grain: 0, Lumber: 160000, Iron: 27200, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 12 }],
+        costRes: { Grain: 0, Lumber: 160000, Iron: 27200, Silver: 0, Crystal: 0 },
         costTime: 21400,
         exp: 616,
         kingdomPoint: 6656,
@@ -156,8 +159,8 @@ module.exports = {
         costWEs: []
     },
     13: {
-        preCond: [{ buildingType: 101, buildingLvl: 13 }],
-        costRes: { Grain: 0, Lumber: 306000, Iron: 52000, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 13 }],
+        costRes: { Grain: 0, Lumber: 306000, Iron: 52000, Silver: 0, Crystal: 0 },
         costTime: 28800,
         exp: 827,
         kingdomPoint: 9173,
@@ -169,8 +172,8 @@ module.exports = {
         costWEs: []
     },
     14: {
-        preCond: [{ buildingType: 101, buildingLvl: 14 }],
-        costRes: { Grain: 0, Lumber: 550000, Iron: 93500, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 14 }],
+        costRes: { Grain: 0, Lumber: 550000, Iron: 93500, Silver: 0, Crystal: 0 },
         costTime: 39100,
         exp: 1122,
         kingdomPoint: 12743,
@@ -182,8 +185,8 @@ module.exports = {
         costWEs: []
     },
     15: {
-        preCond: [{ buildingType: 101, buildingLvl: 15 }],
-        costRes: { Grain: 0, Lumber: 840000, Iron: 142800, Silver: 0 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 15 }],
+        costRes: { Grain: 0, Lumber: 840000, Iron: 142800, Silver: 0, Crystal: 0 },
         costTime: 52900,
         exp: 1516,
         kingdomPoint: 17633,
@@ -195,8 +198,8 @@ module.exports = {
         costWEs: []
     },
     16: {
-        preCond: [{ buildingType: 101, buildingLvl: 16 }],
-        costRes: { Grain: 0, Lumber: 1100000, Iron: 187000, Silver: 37400 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 16 }],
+        costRes: { Grain: 0, Lumber: 1100000, Iron: 187000, Silver: 0, Crystal: 0 },
         costTime: 71400,
         exp: 2045,
         kingdomPoint: 24328,
@@ -208,8 +211,8 @@ module.exports = {
         costWEs: []
     },
     17: {
-        preCond: [{ buildingType: 101, buildingLvl: 17 }],
-        costRes: { Grain: 0, Lumber: 1540000, Iron: 261800, Silver: 52300 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 17 }],
+        costRes: { Grain: 0, Lumber: 1540000, Iron: 261800, Silver: 0, Crystal: 0 },
         costTime: 96700,
         exp: 2767,
         kingdomPoint: 33665,
@@ -221,8 +224,8 @@ module.exports = {
         costWEs: []
     },
     18: {
-        preCond: [{ buildingType: 101, buildingLvl: 18 }],
-        costRes: { Grain: 0, Lumber: 2000000, Iron: 340000, Silver: 68000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 18 }],
+        costRes: { Grain: 0, Lumber: 2000000, Iron: 340000, Silver: 0, Crystal: 0 },
         costTime: 110500,
         exp: 3162,
         kingdomPoint: 39288,
@@ -234,8 +237,8 @@ module.exports = {
         costWEs: []
     },
     19: {
-        preCond: [{ buildingType: 101, buildingLvl: 19 }],
-        costRes: { Grain: 0, Lumber: 2600000, Iron: 442000, Silver: 88400 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 19 }],
+        costRes: { Grain: 0, Lumber: 2600000, Iron: 442000, Silver: 0, Crystal: 0 },
         costTime: 124400,
         exp: 3559,
         kingdomPoint: 45151,
@@ -247,8 +250,8 @@ module.exports = {
         costWEs: []
     },
     20: {
-        preCond: [{ buildingType: 101, buildingLvl: 20 }],
-        costRes: { Grain: 0, Lumber: 3200000, Iron: 544000, Silver: 108800 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 20 }],
+        costRes: { Grain: 0, Lumber: 3200000, Iron: 544000, Silver: 0, Crystal: 0 },
         costTime: 141600,
         exp: 4050,
         kingdomPoint: 52443,
@@ -260,8 +263,8 @@ module.exports = {
         costWEs: []
     },
     21: {
-        preCond: [{ buildingType: 101, buildingLvl: 21 }],
-        costRes: { Grain: 0, Lumber: 4000000, Iron: 680000, Silver: 136000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 21 }],
+        costRes: { Grain: 0, Lumber: 4000000, Iron: 680000, Silver: 0, Crystal: 0 },
         costTime: 162400,
         exp: 4645,
         kingdomPoint: 60146,
@@ -273,8 +276,8 @@ module.exports = {
         costWEs: []
     },
     22: {
-        preCond: [{ buildingType: 101, buildingLvl: 22 }],
-        costRes: { Grain: 0, Lumber: 5000000, Iron: 850000, Silver: 170000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 22 }],
+        costRes: { Grain: 0, Lumber: 5000000, Iron: 850000, Silver: 0, Crystal: 0 },
         costTime: 186600,
         exp: 5336,
         kingdomPoint: 69110,
@@ -286,8 +289,8 @@ module.exports = {
         costWEs: []
     },
     23: {
-        preCond: [{ buildingType: 101, buildingLvl: 23 }],
-        costRes: { Grain: 0, Lumber: 6000000, Iron: 1020000, Silver: 204000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 23 }],
+        costRes: { Grain: 0, Lumber: 6000000, Iron: 1020000, Silver: 0, Crystal: 0 },
         costTime: 214200,
         exp: 6125,
         kingdomPoint: 79333,
@@ -299,8 +302,8 @@ module.exports = {
         costWEs: []
     },
     24: {
-        preCond: [{ buildingType: 101, buildingLvl: 24 }],
-        costRes: { Grain: 0, Lumber: 8000000, Iron: 1360000, Silver: 272000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 24 }],
+        costRes: { Grain: 0, Lumber: 8000000, Iron: 1360000, Silver: 0, Crystal: 0 },
         costTime: 246500,
         exp: 7047,
         kingdomPoint: 91295,
@@ -312,8 +315,8 @@ module.exports = {
         costWEs: []
     },
     25: {
-        preCond: [{ buildingType: 101, buildingLvl: 25 }],
-        costRes: { Grain: 0, Lumber: 11000000, Iron: 1870000, Silver: 374000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 25 }],
+        costRes: { Grain: 0, Lumber: 11000000, Iron: 1870000, Silver: 0, Crystal: 0 },
         costTime: 283300,
         exp: 8099,
         kingdomPoint: 104925,
@@ -325,8 +328,8 @@ module.exports = {
         costWEs: []
     },
     26: {
-        preCond: [{ buildingType: 101, buildingLvl: 26 }],
-        costRes: { Grain: 0, Lumber: 15000000, Iron: 2550000, Silver: 510000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 26 }],
+        costRes: { Grain: 0, Lumber: 15000000, Iron: 2550000, Silver: 0, Crystal: 0 },
         costTime: 324800,
         exp: 9285,
         kingdomPoint: 120295,
@@ -338,8 +341,8 @@ module.exports = {
         costWEs: []
     },
     27: {
-        preCond: [{ buildingType: 101, buildingLvl: 27 }],
-        costRes: { Grain: 0, Lumber: 20000000, Iron: 3400000, Silver: 680000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 27 }],
+        costRes: { Grain: 0, Lumber: 20000000, Iron: 3400000, Silver: 0, Crystal: 0 },
         costTime: 370900,
         exp: 10602,
         kingdomPoint: 137370,
@@ -351,8 +354,8 @@ module.exports = {
         costWEs: []
     },
     28: {
-        preCond: [{ buildingType: 101, buildingLvl: 28 }],
-        costRes: { Grain: 0, Lumber: 26000000, Iron: 4420000, Silver: 884000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 28 }],
+        costRes: { Grain: 0, Lumber: 26000000, Iron: 4420000, Silver: 0, Crystal: 0 },
         costTime: 421600,
         exp: 12050,
         kingdomPoint: 156146,
@@ -364,8 +367,8 @@ module.exports = {
         costWEs: []
     },
     29: {
-        preCond: [{ buildingType: 101, buildingLvl: 29 }],
-        costRes: { Grain: 0, Lumber: 34000000, Iron: 5780000, Silver: 1156000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 29 }],
+        costRes: { Grain: 0, Lumber: 34000000, Iron: 5780000, Silver: 0, Crystal: 0 },
         costTime: 476900,
         exp: 13630,
         kingdomPoint: 176628,
@@ -377,8 +380,8 @@ module.exports = {
         costWEs: []
     },
     30: {
-        preCond: [{ buildingType: 101, buildingLvl: 30 }],
-        costRes: { Grain: 0, Lumber: 44000000, Iron: 7480000, Silver: 1496000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 30 }],
+        costRes: { Grain: 0, Lumber: 44000000, Iron: 7480000, Silver: 0, Crystal: 0 },
         costTime: 546000,
         exp: 15605,
         kingdomPoint: 202221,
@@ -390,8 +393,8 @@ module.exports = {
         costWEs: []
     },
     31: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 12000000, Iron: 1200000, Silver: 600000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 12000000, Iron: 1200000, Silver: 0, Crystal: 0 },
         costTime: 54000,
         exp: 1805,
         kingdomPoint: 20000,
@@ -403,8 +406,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 3 }]
     },
     32: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 12300000, Iron: 1230000, Silver: 615000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 12300000, Iron: 1230000, Silver: 0, Crystal: 0 },
         costTime: 61200,
         exp: 2045,
         kingdomPoint: 22666,
@@ -416,8 +419,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 6 }]
     },
     33: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 12600000, Iron: 1260000, Silver: 630000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 12600000, Iron: 1260000, Silver: 0, Crystal: 0 },
         costTime: 68400,
         exp: 2285,
         kingdomPoint: 25333,
@@ -429,8 +432,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 9 }]
     },
     34: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 12900000, Iron: 1290000, Silver: 645000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 12900000, Iron: 1290000, Silver: 0, Crystal: 0 },
         costTime: 75600,
         exp: 2525,
         kingdomPoint: 28000,
@@ -442,8 +445,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 12 }]
     },
     35: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 13200000, Iron: 1320000, Silver: 660000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 13200000, Iron: 1320000, Silver: 0, Crystal: 0 },
         costTime: 82800,
         exp: 2765,
         kingdomPoint: 30666,
@@ -455,8 +458,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 15 }]
     },
     36: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 13500000, Iron: 1350000, Silver: 675000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 13500000, Iron: 1350000, Silver: 0, Crystal: 0 },
         costTime: 90000,
         exp: 3005,
         kingdomPoint: 33333,
@@ -468,8 +471,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 18 }]
     },
     37: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 13800000, Iron: 1380000, Silver: 690000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 13800000, Iron: 1380000, Silver: 0, Crystal: 0 },
         costTime: 97200,
         exp: 3245,
         kingdomPoint: 36000,
@@ -481,8 +484,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 21 }]
     },
     38: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 14100000, Iron: 1410000, Silver: 705000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 14100000, Iron: 1410000, Silver: 0, Crystal: 0 },
         costTime: 104400,
         exp: 3485,
         kingdomPoint: 38666,
@@ -494,8 +497,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 24 }]
     },
     39: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 14400000, Iron: 1440000, Silver: 720000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 14400000, Iron: 1440000, Silver: 0, Crystal: 0 },
         costTime: 111600,
         exp: 3725,
         kingdomPoint: 41333,
@@ -507,8 +510,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 27 }]
     },
     40: {
-        preCond: [{ buildingType: 101, buildingLvl: 40 }],
-        costRes: { Grain: 0, Lumber: 14700000, Iron: 1470000, Silver: 735000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
+        costRes: { Grain: 0, Lumber: 14700000, Iron: 1470000, Silver: 0, Crystal: 0 },
         costTime: 118800,
         exp: 3965,
         kingdomPoint: 44000,
@@ -520,8 +523,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 30 }]
     },
     41: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 15000000, Iron: 1500000, Silver: 750000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 15000000, Iron: 1500000, Silver: 0, Crystal: 0 },
         costTime: 126000,
         exp: 4205,
         kingdomPoint: 46666,
@@ -533,8 +536,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 30 }]
     },
     42: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 15300000, Iron: 1530000, Silver: 765000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 15300000, Iron: 1530000, Silver: 0, Crystal: 0 },
         costTime: 133200,
         exp: 4445,
         kingdomPoint: 49333,
@@ -546,8 +549,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 36 }]
     },
     43: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 15600000, Iron: 1560000, Silver: 780000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 15600000, Iron: 1560000, Silver: 0, Crystal: 0 },
         costTime: 140400,
         exp: 4685,
         kingdomPoint: 52000,
@@ -559,8 +562,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 42 }]
     },
     44: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 15900000, Iron: 1590000, Silver: 795000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 15900000, Iron: 1590000, Silver: 0, Crystal: 0 },
         costTime: 147600,
         exp: 4925,
         kingdomPoint: 54666,
@@ -572,8 +575,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 48 }]
     },
     45: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 16200000, Iron: 1620000, Silver: 810000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 16200000, Iron: 1620000, Silver: 0, Crystal: 0 },
         costTime: 154800,
         exp: 5165,
         kingdomPoint: 57333,
@@ -585,8 +588,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 54 }]
     },
     46: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 16500000, Iron: 1650000, Silver: 825000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 16500000, Iron: 1650000, Silver: 0, Crystal: 0 },
         costTime: 162000,
         exp: 5405,
         kingdomPoint: 60000,
@@ -598,8 +601,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 60 }]
     },
     47: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 16800000, Iron: 1680000, Silver: 840000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 16800000, Iron: 1680000, Silver: 0, Crystal: 0 },
         costTime: 169200,
         exp: 5645,
         kingdomPoint: 62666,
@@ -611,8 +614,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 66 }]
     },
     48: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 17100000, Iron: 1710000, Silver: 855000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 17100000, Iron: 1710000, Silver: 0, Crystal: 0 },
         costTime: 176400,
         exp: 5885,
         kingdomPoint: 65333,
@@ -624,8 +627,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 72 }]
     },
     49: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 17400000, Iron: 1740000, Silver: 870000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 17400000, Iron: 1740000, Silver: 0, Crystal: 0 },
         costTime: 183600,
         exp: 6125,
         kingdomPoint: 68000,
@@ -637,8 +640,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 78 }]
     },
     50: {
-        preCond: [{ buildingType: 101, buildingLvl: 50 }],
-        costRes: { Grain: 0, Lumber: 17700000, Iron: 1770000, Silver: 885000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
+        costRes: { Grain: 0, Lumber: 17700000, Iron: 1770000, Silver: 0, Crystal: 0 },
         costTime: 190800,
         exp: 6365,
         kingdomPoint: 70666,
@@ -650,8 +653,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 84 }]
     },
     51: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 18000000, Iron: 1800000, Silver: 900000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 18000000, Iron: 1800000, Silver: 0, Crystal: 0 },
         costTime: 198000,
         exp: 6605,
         kingdomPoint: 73333,
@@ -663,8 +666,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 93 }]
     },
     52: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 18300000, Iron: 1830000, Silver: 915000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 18300000, Iron: 1830000, Silver: 0, Crystal: 0 },
         costTime: 205200,
         exp: 6845,
         kingdomPoint: 76000,
@@ -676,8 +679,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 102 }]
     },
     53: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 18600000, Iron: 1860000, Silver: 930000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 18600000, Iron: 1860000, Silver: 0, Crystal: 0 },
         costTime: 212400,
         exp: 7085,
         kingdomPoint: 78666,
@@ -689,8 +692,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 111 }]
     },
     54: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 18900000, Iron: 1890000, Silver: 945000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 18900000, Iron: 1890000, Silver: 0, Crystal: 0 },
         costTime: 219600,
         exp: 7325,
         kingdomPoint: 81333,
@@ -702,8 +705,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 120 }]
     },
     55: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 19200000, Iron: 1920000, Silver: 960000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 19200000, Iron: 1920000, Silver: 0, Crystal: 0 },
         costTime: 226800,
         exp: 7565,
         kingdomPoint: 84000,
@@ -715,8 +718,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 129 }]
     },
     56: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 19500000, Iron: 1950000, Silver: 975000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 19500000, Iron: 1950000, Silver: 0, Crystal: 0 },
         costTime: 234000,
         exp: 7805,
         kingdomPoint: 86666,
@@ -728,8 +731,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 138 }]
     },
     57: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 19800000, Iron: 1980000, Silver: 990000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 19800000, Iron: 1980000, Silver: 0, Crystal: 0 },
         costTime: 241200,
         exp: 8045,
         kingdomPoint: 89333,
@@ -741,8 +744,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 147 }]
     },
     58: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 20100000, Iron: 2010000, Silver: 1005000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 20100000, Iron: 2010000, Silver: 0, Crystal: 0 },
         costTime: 248400,
         exp: 8285,
         kingdomPoint: 92000,
@@ -754,8 +757,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 156 }]
     },
     59: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 20400000, Iron: 2040000, Silver: 1020000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 20400000, Iron: 2040000, Silver: 0, Crystal: 0 },
         costTime: 255600,
         exp: 8525,
         kingdomPoint: 94666,
@@ -767,8 +770,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 165 }]
     },
     60: {
-        preCond: [{ buildingType: 101, buildingLvl: 60 }],
-        costRes: { Grain: 0, Lumber: 20700000, Iron: 2070000, Silver: 1035000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
+        costRes: { Grain: 0, Lumber: 20700000, Iron: 2070000, Silver: 0, Crystal: 0 },
         costTime: 262800,
         exp: 8765,
         kingdomPoint: 97333,
@@ -780,8 +783,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 174 }]
     },
     61: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 21000000, Iron: 2100000, Silver: 1050000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 21000000, Iron: 2100000, Silver: 0, Crystal: 0 },
         costTime: 270000,
         exp: 9005,
         kingdomPoint: 100000,
@@ -793,8 +796,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 180 }]
     },
     62: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 21300000, Iron: 2130000, Silver: 1065000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 21300000, Iron: 2130000, Silver: 0, Crystal: 0 },
         costTime: 277200,
         exp: 9245,
         kingdomPoint: 102666,
@@ -806,8 +809,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 195 }]
     },
     63: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 21600000, Iron: 2160000, Silver: 1080000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 21600000, Iron: 2160000, Silver: 0, Crystal: 0 },
         costTime: 284400,
         exp: 9485,
         kingdomPoint: 105333,
@@ -819,8 +822,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 210 }]
     },
     64: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 21900000, Iron: 2190000, Silver: 1095000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 21900000, Iron: 2190000, Silver: 0, Crystal: 0 },
         costTime: 291600,
         exp: 9725,
         kingdomPoint: 108000,
@@ -832,8 +835,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 225 }]
     },
     65: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 22200000, Iron: 2220000, Silver: 1110000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 22200000, Iron: 2220000, Silver: 0, Crystal: 0 },
         costTime: 298800,
         exp: 9965,
         kingdomPoint: 110666,
@@ -845,8 +848,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 240 }]
     },
     66: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 22500000, Iron: 2250000, Silver: 1125000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 22500000, Iron: 2250000, Silver: 0, Crystal: 0 },
         costTime: 306000,
         exp: 10205,
         kingdomPoint: 113333,
@@ -858,8 +861,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 255 }]
     },
     67: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 22800000, Iron: 2280000, Silver: 1140000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 22800000, Iron: 2280000, Silver: 0, Crystal: 0 },
         costTime: 313200,
         exp: 10445,
         kingdomPoint: 116000,
@@ -871,8 +874,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 270 }]
     },
     68: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 23100000, Iron: 2310000, Silver: 1155000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 23100000, Iron: 2310000, Silver: 0, Crystal: 0 },
         costTime: 320400,
         exp: 10685,
         kingdomPoint: 118666,
@@ -884,8 +887,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 285 }]
     },
     69: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 23400000, Iron: 2340000, Silver: 1170000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 23400000, Iron: 2340000, Silver: 0, Crystal: 0 },
         costTime: 327600,
         exp: 10925,
         kingdomPoint: 121333,
@@ -897,8 +900,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 300 }]
     },
     70: {
-        preCond: [{ buildingType: 101, buildingLvl: 70 }],
-        costRes: { Grain: 0, Lumber: 23700000, Iron: 2370000, Silver: 1185000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
+        costRes: { Grain: 0, Lumber: 23700000, Iron: 2370000, Silver: 0, Crystal: 0 },
         costTime: 334800,
         exp: 11165,
         kingdomPoint: 124000,
@@ -910,8 +913,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 315 }]
     },
     71: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 24000000, Iron: 2400000, Silver: 1200000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 24000000, Iron: 2400000, Silver: 0, Crystal: 0 },
         costTime: 342000,
         exp: 11405,
         kingdomPoint: 126666,
@@ -923,8 +926,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 360 }]
     },
     72: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 24300000, Iron: 2430000, Silver: 1215000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 24300000, Iron: 2430000, Silver: 0, Crystal: 0 },
         costTime: 349200,
         exp: 11645,
         kingdomPoint: 129333,
@@ -936,8 +939,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 390 }]
     },
     73: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 24600000, Iron: 2460000, Silver: 1230000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 24600000, Iron: 2460000, Silver: 0, Crystal: 0 },
         costTime: 356400,
         exp: 11885,
         kingdomPoint: 132000,
@@ -949,8 +952,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 420 }]
     },
     74: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 24900000, Iron: 2490000, Silver: 1245000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 24900000, Iron: 2490000, Silver: 0, Crystal: 0 },
         costTime: 363600,
         exp: 12125,
         kingdomPoint: 134666,
@@ -962,8 +965,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 450 }]
     },
     75: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 25200000, Iron: 2520000, Silver: 1260000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 25200000, Iron: 2520000, Silver: 0, Crystal: 0 },
         costTime: 370800,
         exp: 12365,
         kingdomPoint: 137333,
@@ -975,8 +978,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 480 }]
     },
     76: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 25500000, Iron: 2550000, Silver: 1275000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 25500000, Iron: 2550000, Silver: 0, Crystal: 0 },
         costTime: 378000,
         exp: 12605,
         kingdomPoint: 140000,
@@ -988,8 +991,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 510 }]
     },
     77: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 25800000, Iron: 2580000, Silver: 1290000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 25800000, Iron: 2580000, Silver: 0, Crystal: 0 },
         costTime: 385200,
         exp: 12845,
         kingdomPoint: 142666,
@@ -1001,8 +1004,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 540 }]
     },
     78: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 26100000, Iron: 2610000, Silver: 1305000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 26100000, Iron: 2610000, Silver: 0, Crystal: 0 },
         costTime: 392400,
         exp: 13085,
         kingdomPoint: 145333,
@@ -1014,8 +1017,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 570 }]
     },
     79: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 26400000, Iron: 2640000, Silver: 1320000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 26400000, Iron: 2640000, Silver: 0, Crystal: 0 },
         costTime: 399600,
         exp: 13325,
         kingdomPoint: 148000,
@@ -1027,8 +1030,8 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 600 }]
     },
     80: {
-        preCond: [{ buildingType: 101, buildingLvl: 80 }],
-        costRes: { Grain: 0, Lumber: 26700000, Iron: 2670000, Silver: 1335000 },
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
+        costRes: { Grain: 0, Lumber: 26700000, Iron: 2670000, Silver: 0, Crystal: 0 },
         costTime: 406800,
         exp: 13565,
         kingdomPoint: 150666,
@@ -1040,7 +1043,7 @@ module.exports = {
         costWEs: [{ idTool: 301101, amount: 630 }]
     },
     81: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 27000000, Iron: 2700000, Silver: 1350000, Crystal: 1000 },
         costTime: 414000,
         exp: 13805,
@@ -1053,7 +1056,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 75 }]
     },
     82: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 27600000, Iron: 2730000, Silver: 1365000, Crystal: 3000 },
         costTime: 421200,
         exp: 14045,
@@ -1066,7 +1069,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 90 }]
     },
     83: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 28200000, Iron: 2760000, Silver: 1380000, Crystal: 5000 },
         costTime: 428400,
         exp: 14285,
@@ -1079,7 +1082,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 105 }]
     },
     84: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 28800000, Iron: 2790000, Silver: 1395000, Crystal: 7000 },
         costTime: 435600,
         exp: 14525,
@@ -1092,7 +1095,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 120 }]
     },
     85: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 29400000, Iron: 2820000, Silver: 1410000, Crystal: 9000 },
         costTime: 442800,
         exp: 14765,
@@ -1105,7 +1108,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 135 }]
     },
     86: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 30000000, Iron: 2850000, Silver: 1425000, Crystal: 11500 },
         costTime: 450000,
         exp: 15005,
@@ -1118,7 +1121,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 150 }]
     },
     87: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 30600000, Iron: 2880000, Silver: 1440000, Crystal: 13500 },
         costTime: 457200,
         exp: 15245,
@@ -1131,7 +1134,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 165 }]
     },
     88: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 31200000, Iron: 2910000, Silver: 1455000, Crystal: 15500 },
         costTime: 464400,
         exp: 15485,
@@ -1144,7 +1147,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 180 }]
     },
     89: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 31800000, Iron: 2940000, Silver: 1470000, Crystal: 18000 },
         costTime: 471600,
         exp: 15725,
@@ -1157,7 +1160,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 195 }]
     },
     90: {
-        preCond: [{ buildingType: 101, buildingLvl: 90 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
         costRes: { Grain: 0, Lumber: 32400000, Iron: 2970000, Silver: 1485000, Crystal: 20000 },
         costTime: 478800,
         exp: 15965,
@@ -1170,7 +1173,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 210 }]
     },
     91: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 33000000, Iron: 3000000, Silver: 1500000, Crystal: 22500 },
         costTime: 486000,
         exp: 16205,
@@ -1183,7 +1186,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 234 }]
     },
     92: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 33600000, Iron: 3030000, Silver: 1515000, Crystal: 25000 },
         costTime: 493200,
         exp: 16445,
@@ -1196,7 +1199,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 258 }]
     },
     93: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 34200000, Iron: 3060000, Silver: 1530000, Crystal: 27500 },
         costTime: 500400,
         exp: 16685,
@@ -1209,7 +1212,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 282 }]
     },
     94: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 34800000, Iron: 3090000, Silver: 1545000, Crystal: 30000 },
         costTime: 507600,
         exp: 16925,
@@ -1222,7 +1225,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 306 }]
     },
     95: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 35400000, Iron: 3120000, Silver: 1560000, Crystal: 32500 },
         costTime: 514800,
         exp: 17165,
@@ -1235,7 +1238,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 330 }]
     },
     96: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 36000000, Iron: 3150000, Silver: 1575000, Crystal: 35000 },
         costTime: 522000,
         exp: 17405,
@@ -1248,7 +1251,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 354 }]
     },
     97: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 36600000, Iron: 3180000, Silver: 1590000, Crystal: 37500 },
         costTime: 529200,
         exp: 17645,
@@ -1261,7 +1264,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 378 }]
     },
     98: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 37200000, Iron: 3210000, Silver: 1605000, Crystal: 40000 },
         costTime: 536400,
         exp: 17885,
@@ -1274,7 +1277,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 402 }]
     },
     99: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 37800000, Iron: 3240000, Silver: 1620000, Crystal: 43000 },
         costTime: 543600,
         exp: 18125,
@@ -1287,7 +1290,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 426 }]
     },
     100: {
-        preCond: [{ buildingType: 101, buildingLvl: 100 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
         costRes: { Grain: 0, Lumber: 38400000, Iron: 3270000, Silver: 1635000, Crystal: 45500 },
         costTime: 550800,
         exp: 18365,
@@ -1300,7 +1303,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 450 }]
     },
     101: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 39000000, Iron: 3300000, Silver: 1650000, Crystal: 48500 },
         costTime: 558000,
         exp: 18605,
@@ -1313,7 +1316,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 480 }]
     },
     102: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 39600000, Iron: 3330000, Silver: 1665000, Crystal: 51500 },
         costTime: 565200,
         exp: 18845,
@@ -1326,7 +1329,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 510 }]
     },
     103: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 40200000, Iron: 3360000, Silver: 1680000, Crystal: 54000 },
         costTime: 572400,
         exp: 19085,
@@ -1339,7 +1342,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 540 }]
     },
     104: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 40800000, Iron: 3390000, Silver: 1695000, Crystal: 57000 },
         costTime: 579600,
         exp: 19325,
@@ -1352,7 +1355,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 570 }]
     },
     105: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 41400000, Iron: 3420000, Silver: 1710000, Crystal: 60000 },
         costTime: 586800,
         exp: 19565,
@@ -1365,7 +1368,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 600 }]
     },
     106: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 42000000, Iron: 3450000, Silver: 1725000, Crystal: 63000 },
         costTime: 594000,
         exp: 19805,
@@ -1378,7 +1381,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 630 }]
     },
     107: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 42600000, Iron: 3480000, Silver: 1740000, Crystal: 66500 },
         costTime: 601200,
         exp: 20045,
@@ -1391,7 +1394,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 660 }]
     },
     108: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 43200000, Iron: 3510000, Silver: 1755000, Crystal: 69500 },
         costTime: 608400,
         exp: 20285,
@@ -1404,7 +1407,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 690 }]
     },
     109: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 43800000, Iron: 3540000, Silver: 1770000, Crystal: 72500 },
         costTime: 615600,
         exp: 20525,
@@ -1417,7 +1420,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 720 }]
     },
     110: {
-        preCond: [{ buildingType: 101, buildingLvl: 110 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
         costRes: { Grain: 0, Lumber: 44400000, Iron: 3570000, Silver: 1785000, Crystal: 76000 },
         costTime: 622800,
         exp: 20765,
@@ -1430,7 +1433,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 750 }]
     },
     111: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 45000000, Iron: 3600000, Silver: 1800000, Crystal: 79000 },
         costTime: 630000,
         exp: 21005,
@@ -1443,7 +1446,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 786 }]
     },
     112: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 45600000, Iron: 3630000, Silver: 1815000, Crystal: 82500 },
         costTime: 637200,
         exp: 21245,
@@ -1456,7 +1459,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 822 }]
     },
     113: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 46200000, Iron: 3660000, Silver: 1830000, Crystal: 85500 },
         costTime: 644400,
         exp: 21485,
@@ -1469,7 +1472,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 858 }]
     },
     114: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 46800000, Iron: 3690000, Silver: 1845000, Crystal: 89000 },
         costTime: 651600,
         exp: 21725,
@@ -1482,7 +1485,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 894 }]
     },
     115: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 47400000, Iron: 3720000, Silver: 1860000, Crystal: 92500 },
         costTime: 658800,
         exp: 21965,
@@ -1495,7 +1498,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 930 }]
     },
     116: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 48000000, Iron: 3750000, Silver: 1875000, Crystal: 101000 },
         costTime: 703200,
         exp: 22205,
@@ -1508,7 +1511,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 1020 }]
     },
     117: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 48600000, Iron: 3780000, Silver: 1890000, Crystal: 113000 },
         costTime: 765900,
         exp: 22445,
@@ -1521,7 +1524,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 1140 }]
     },
     118: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 49200000, Iron: 3810000, Silver: 1905000, Crystal: 125000 },
         costTime: 825900,
         exp: 22685,
@@ -1534,7 +1537,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 1260 }]
     },
     119: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 49800000, Iron: 3840000, Silver: 1920000, Crystal: 137000 },
         costTime: 883500,
         exp: 22925,
@@ -1547,7 +1550,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 1380 }]
     },
     120: {
-        preCond: [{ buildingType: 101, buildingLvl: 120 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
         costRes: { Grain: 0, Lumber: 50400000, Iron: 3870000, Silver: 1935000, Crystal: 149000 },
         costTime: 938900,
         exp: 23165,
@@ -1560,7 +1563,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 1500 }]
     },
     121: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 51000000, Iron: 3900000, Silver: 1950000, Crystal: 164000 },
         costTime: 1008100,
         exp: 23405,
@@ -1573,7 +1576,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 1650 }]
     },
     122: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 51600000, Iron: 3930000, Silver: 1965000, Crystal: 179000 },
         costTime: 1074500,
         exp: 23645,
@@ -1586,7 +1589,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 1800 }]
     },
     123: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 52200000, Iron: 3960000, Silver: 1980000, Crystal: 194000 },
         costTime: 1138500,
         exp: 23885,
@@ -1599,7 +1602,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 1950 }]
     },
     124: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 52800000, Iron: 3990000, Silver: 1995000, Crystal: 209000 },
         costTime: 1200300,
         exp: 24125,
@@ -1612,7 +1615,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 2100 }]
     },
     125: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 53400000, Iron: 4020000, Silver: 2010000, Crystal: 223000 },
         costTime: 1260000,
         exp: 24365,
@@ -1625,7 +1628,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 2250 }]
     },
     126: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 54000000, Iron: 4050000, Silver: 2025000, Crystal: 238000 },
         costTime: 1317900,
         exp: 24605,
@@ -1638,7 +1641,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 2400 }]
     },
     127: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 54600000, Iron: 4080000, Silver: 2040000, Crystal: 254000 },
         costTime: 1374000,
         exp: 24845,
@@ -1651,7 +1654,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 2550 }]
     },
     128: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 55200000, Iron: 4110000, Silver: 2055000, Crystal: 269000 },
         costTime: 1428600,
         exp: 25085,
@@ -1664,7 +1667,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 2700 }]
     },
     129: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 55800000, Iron: 4140000, Silver: 2070000, Crystal: 285000 },
         costTime: 1481800,
         exp: 25325,
@@ -1677,7 +1680,7 @@ module.exports = {
         costWEs: [{ idTool: 301901, amount: 2850 }]
     },
     130: {
-        preCond: [{ buildingType: 101, buildingLvl: 130 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
         costRes: { Grain: 0, Lumber: 56400000, Iron: 4170000, Silver: 2085000, Crystal: 300000 },
         costTime: 1533600,
         exp: 25565,

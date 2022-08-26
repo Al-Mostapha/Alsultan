@@ -17,7 +17,7 @@ module.exports = {
         exp: 10,
         kingdomPoint: 31,
         power: 30,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -28,7 +28,7 @@ module.exports = {
         exp: 16,
         kingdomPoint: 68,
         power: 60,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -50,7 +50,7 @@ module.exports = {
         exp: 96,
         kingdomPoint: 623,
         power: 230,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -61,7 +61,7 @@ module.exports = {
         exp: 188,
         kingdomPoint: 1285,
         power: 420,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -83,7 +83,7 @@ module.exports = {
         exp: 383,
         kingdomPoint: 3731,
         power: 1090,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -94,7 +94,7 @@ module.exports = {
         exp: 515,
         kingdomPoint: 5165,
         power: 1550,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -116,7 +116,7 @@ module.exports = {
         exp: 946,
         kingdomPoint: 10010,
         power: 2715,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -127,7 +127,7 @@ module.exports = {
         exp: 1285,
         kingdomPoint: 13943,
         power: 3490,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -149,7 +149,7 @@ module.exports = {
         exp: 2347,
         kingdomPoint: 26725,
         power: 5590,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -160,7 +160,7 @@ module.exports = {
         exp: 3175,
         kingdomPoint: 36983,
         power: 7000,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -182,7 +182,7 @@ module.exports = {
         exp: 5793,
         kingdomPoint: 70533,
         power: 10830,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -193,7 +193,7 @@ module.exports = {
         exp: 6620,
         kingdomPoint: 82328,
         power: 13405,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -215,7 +215,7 @@ module.exports = {
         exp: 8481,
         kingdomPoint: 109876,
         power: 20395,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -226,7 +226,7 @@ module.exports = {
         exp: 9721,
         kingdomPoint: 125958,
         power: 24755,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -248,7 +248,7 @@ module.exports = {
         exp: 12823,
         kingdomPoint: 166158,
         power: 35305,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -259,7 +259,7 @@ module.exports = {
         exp: 14752,
         kingdomPoint: 191170,
         power: 41660,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -270,7 +270,7 @@ module.exports = {
         exp: 16957,
         kingdomPoint: 219758,
         power: 48870,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -292,7 +292,7 @@ module.exports = {
         exp: 22195,
         kingdomPoint: 287651,
         power: 66315,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -303,7 +303,7 @@ module.exports = {
         exp: 25227,
         kingdomPoint: 326958,
         power: 76825,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -314,7 +314,7 @@ module.exports = {
         exp: 28535,
         kingdomPoint: 369836,
         power: 88750,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: []
     },
@@ -336,7 +336,7 @@ module.exports = {
         exp: 2405,
         kingdomPoint: 26666,
         power: 103939,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 5 }]
     },
@@ -347,7 +347,7 @@ module.exports = {
         exp: 2645,
         kingdomPoint: 29333,
         power: 105612,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 10 }]
     },
@@ -358,7 +358,7 @@ module.exports = {
         exp: 2885,
         kingdomPoint: 32000,
         power: 107286,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 15 }]
     },
@@ -369,7 +369,7 @@ module.exports = {
         exp: 3125,
         kingdomPoint: 34666,
         power: 108959,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 20 }]
     },
@@ -380,7 +380,7 @@ module.exports = {
         exp: 3365,
         kingdomPoint: 37333,
         power: 110633,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 25 }]
     },
@@ -391,7 +391,7 @@ module.exports = {
         exp: 3605,
         kingdomPoint: 40000,
         power: 112306,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 30 }]
     },
@@ -402,7 +402,7 @@ module.exports = {
         exp: 3845,
         kingdomPoint: 42666,
         power: 113980,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 35 }]
     },
@@ -413,7 +413,7 @@ module.exports = {
         exp: 4085,
         kingdomPoint: 45333,
         power: 115653,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 40 }]
     },
@@ -424,7 +424,7 @@ module.exports = {
         exp: 4325,
         kingdomPoint: 48000,
         power: 117327,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 45 }]
     },
@@ -435,7 +435,7 @@ module.exports = {
         exp: 4565,
         kingdomPoint: 50666,
         power: 119000,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 50 }]
     },
@@ -446,7 +446,7 @@ module.exports = {
         exp: 4805,
         kingdomPoint: 53333,
         power: 122260,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 50 }]
     },
@@ -457,7 +457,7 @@ module.exports = {
         exp: 5045,
         kingdomPoint: 56000,
         power: 125520,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 60 }]
     },
@@ -468,7 +468,7 @@ module.exports = {
         exp: 5285,
         kingdomPoint: 58666,
         power: 128780,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 70 }]
     },
@@ -479,7 +479,7 @@ module.exports = {
         exp: 5525,
         kingdomPoint: 61333,
         power: 132040,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 80 }]
     },
@@ -490,7 +490,7 @@ module.exports = {
         exp: 5765,
         kingdomPoint: 64000,
         power: 135300,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 90 }]
     },
@@ -501,7 +501,7 @@ module.exports = {
         exp: 6005,
         kingdomPoint: 66666,
         power: 138560,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 100 }]
     },
@@ -512,7 +512,7 @@ module.exports = {
         exp: 6245,
         kingdomPoint: 69333,
         power: 141820,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 110 }]
     },
@@ -523,7 +523,7 @@ module.exports = {
         exp: 6485,
         kingdomPoint: 72000,
         power: 145080,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 120 }]
     },
@@ -534,7 +534,7 @@ module.exports = {
         exp: 6725,
         kingdomPoint: 74666,
         power: 148340,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 130 }]
     },
@@ -545,7 +545,7 @@ module.exports = {
         exp: 6965,
         kingdomPoint: 77333,
         power: 151600,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 140 }]
     },
@@ -556,7 +556,7 @@ module.exports = {
         exp: 7205,
         kingdomPoint: 80000,
         power: 156230,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 155 }]
     },
@@ -567,7 +567,7 @@ module.exports = {
         exp: 7445,
         kingdomPoint: 82666,
         power: 160860,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 170 }]
     },
@@ -578,7 +578,7 @@ module.exports = {
         exp: 7685,
         kingdomPoint: 85333,
         power: 165490,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 185 }]
     },
@@ -589,7 +589,7 @@ module.exports = {
         exp: 7925,
         kingdomPoint: 88000,
         power: 170120,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 200 }]
     },
@@ -600,7 +600,7 @@ module.exports = {
         exp: 8165,
         kingdomPoint: 90666,
         power: 174750,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 215 }]
     },
@@ -611,7 +611,7 @@ module.exports = {
         exp: 8405,
         kingdomPoint: 93333,
         power: 179380,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 230 }]
     },
@@ -622,7 +622,7 @@ module.exports = {
         exp: 8645,
         kingdomPoint: 96000,
         power: 184010,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 245 }]
     },
@@ -633,7 +633,7 @@ module.exports = {
         exp: 8885,
         kingdomPoint: 98666,
         power: 188640,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 260 }]
     },
@@ -644,7 +644,7 @@ module.exports = {
         exp: 9125,
         kingdomPoint: 101333,
         power: 193270,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 275 }]
     },
@@ -655,7 +655,7 @@ module.exports = {
         exp: 9365,
         kingdomPoint: 104000,
         power: 197900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 290 }]
     },
@@ -666,7 +666,7 @@ module.exports = {
         exp: 9605,
         kingdomPoint: 106666,
         power: 203900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 300 }]
     },
@@ -677,7 +677,7 @@ module.exports = {
         exp: 9845,
         kingdomPoint: 109333,
         power: 209900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 325 }]
     },
@@ -688,7 +688,7 @@ module.exports = {
         exp: 10085,
         kingdomPoint: 112000,
         power: 215900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 350 }]
     },
@@ -699,7 +699,7 @@ module.exports = {
         exp: 10325,
         kingdomPoint: 114666,
         power: 221900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 375 }]
     },
@@ -710,7 +710,7 @@ module.exports = {
         exp: 10565,
         kingdomPoint: 117333,
         power: 227900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 400 }]
     },
@@ -721,7 +721,7 @@ module.exports = {
         exp: 10805,
         kingdomPoint: 120000,
         power: 233900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 425 }]
     },
@@ -732,7 +732,7 @@ module.exports = {
         exp: 11045,
         kingdomPoint: 122666,
         power: 239900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 450 }]
     },
@@ -743,7 +743,7 @@ module.exports = {
         exp: 11285,
         kingdomPoint: 125333,
         power: 245900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 475 }]
     },
@@ -754,7 +754,7 @@ module.exports = {
         exp: 11525,
         kingdomPoint: 128000,
         power: 251900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 500 }]
     },
@@ -765,7 +765,7 @@ module.exports = {
         exp: 11765,
         kingdomPoint: 130666,
         power: 257900,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 525 }]
     },
@@ -776,7 +776,7 @@ module.exports = {
         exp: 12005,
         kingdomPoint: 133333,
         power: 265290,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 600 }]
     },
@@ -787,7 +787,7 @@ module.exports = {
         exp: 12245,
         kingdomPoint: 136000,
         power: 272680,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 650 }]
     },
@@ -798,7 +798,7 @@ module.exports = {
         exp: 12485,
         kingdomPoint: 138666,
         power: 280070,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 700 }]
     },
@@ -809,7 +809,7 @@ module.exports = {
         exp: 12725,
         kingdomPoint: 141333,
         power: 287460,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 750 }]
     },
@@ -820,7 +820,7 @@ module.exports = {
         exp: 12965,
         kingdomPoint: 144000,
         power: 294850,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 800 }]
     },
@@ -831,7 +831,7 @@ module.exports = {
         exp: 13205,
         kingdomPoint: 146666,
         power: 302240,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 850 }]
     },
@@ -842,7 +842,7 @@ module.exports = {
         exp: 13445,
         kingdomPoint: 149333,
         power: 309630,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 900 }]
     },
@@ -853,7 +853,7 @@ module.exports = {
         exp: 13685,
         kingdomPoint: 152000,
         power: 317020,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 950 }]
     },
@@ -864,7 +864,7 @@ module.exports = {
         exp: 13925,
         kingdomPoint: 154666,
         power: 324410,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 1000 }]
     },
@@ -886,7 +886,7 @@ module.exports = {
         exp: 14405,
         kingdomPoint: 160000,
         power: 339440,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 125 }]
     },
@@ -897,7 +897,7 @@ module.exports = {
         exp: 14645,
         kingdomPoint: 162666,
         power: 347080,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 150 }]
     },
@@ -908,7 +908,7 @@ module.exports = {
         exp: 14885,
         kingdomPoint: 165333,
         power: 354720,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 175 }]
     },
@@ -919,7 +919,7 @@ module.exports = {
         exp: 15125,
         kingdomPoint: 168000,
         power: 362360,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 200 }]
     },
@@ -930,7 +930,7 @@ module.exports = {
         exp: 15365,
         kingdomPoint: 170666,
         power: 370000,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 225 }]
     },
@@ -941,7 +941,7 @@ module.exports = {
         exp: 15605,
         kingdomPoint: 173333,
         power: 377640,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 250 }]
     },
@@ -952,7 +952,7 @@ module.exports = {
         exp: 15845,
         kingdomPoint: 176000,
         power: 385280,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 275 }]
     },
@@ -963,7 +963,7 @@ module.exports = {
         exp: 16085,
         kingdomPoint: 178666,
         power: 392920,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 300 }]
     },
@@ -974,7 +974,7 @@ module.exports = {
         exp: 16325,
         kingdomPoint: 181333,
         power: 400560,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 325 }]
     },
@@ -985,7 +985,7 @@ module.exports = {
         exp: 16565,
         kingdomPoint: 184000,
         power: 408200,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 350 }]
     },
@@ -996,7 +996,7 @@ module.exports = {
         exp: 16805,
         kingdomPoint: 186666,
         power: 416450,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 390 }]
     },
@@ -1007,7 +1007,7 @@ module.exports = {
         exp: 17045,
         kingdomPoint: 189333,
         power: 424700,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 430 }]
     },
@@ -1018,7 +1018,7 @@ module.exports = {
         exp: 17285,
         kingdomPoint: 192000,
         power: 432950,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 470 }]
     },
@@ -1029,7 +1029,7 @@ module.exports = {
         exp: 17525,
         kingdomPoint: 194666,
         power: 441200,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 510 }]
     },
@@ -1040,7 +1040,7 @@ module.exports = {
         exp: 17765,
         kingdomPoint: 197333,
         power: 449450,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 550 }]
     },
@@ -1051,7 +1051,7 @@ module.exports = {
         exp: 18005,
         kingdomPoint: 200000,
         power: 457700,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 590 }]
     },
@@ -1062,7 +1062,7 @@ module.exports = {
         exp: 18245,
         kingdomPoint: 202666,
         power: 465950,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 630 }]
     },
@@ -1073,7 +1073,7 @@ module.exports = {
         exp: 18485,
         kingdomPoint: 205333,
         power: 474200,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 670 }]
     },
@@ -1084,7 +1084,7 @@ module.exports = {
         exp: 18725,
         kingdomPoint: 208000,
         power: 482450,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 710 }]
     },
@@ -1095,7 +1095,7 @@ module.exports = {
         exp: 18965,
         kingdomPoint: 210666,
         power: 490700,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 750 }]
     },
@@ -1106,7 +1106,7 @@ module.exports = {
         exp: 19205,
         kingdomPoint: 213333,
         power: 499840,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 800 }]
     },
@@ -1117,7 +1117,7 @@ module.exports = {
         exp: 19445,
         kingdomPoint: 216000,
         power: 508980,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 850 }]
     },
@@ -1128,7 +1128,7 @@ module.exports = {
         exp: 19685,
         kingdomPoint: 218666,
         power: 518120,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 900 }]
     },
@@ -1139,7 +1139,7 @@ module.exports = {
         exp: 19925,
         kingdomPoint: 221333,
         power: 527260,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 950 }]
     },
@@ -1150,7 +1150,7 @@ module.exports = {
         exp: 20165,
         kingdomPoint: 224000,
         power: 536400,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1000 }]
     },
@@ -1161,7 +1161,7 @@ module.exports = {
         exp: 20405,
         kingdomPoint: 226666,
         power: 545540,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1050 }]
     },
@@ -1172,7 +1172,7 @@ module.exports = {
         exp: 20645,
         kingdomPoint: 229333,
         power: 554680,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1100 }]
     },
@@ -1183,7 +1183,7 @@ module.exports = {
         exp: 20885,
         kingdomPoint: 232000,
         power: 563820,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1150 }]
     },
@@ -1194,7 +1194,7 @@ module.exports = {
         exp: 21125,
         kingdomPoint: 234666,
         power: 572960,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1200 }]
     },
@@ -1205,7 +1205,7 @@ module.exports = {
         exp: 21365,
         kingdomPoint: 237333,
         power: 582100,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1250 }]
     },
@@ -1216,7 +1216,7 @@ module.exports = {
         exp: 21605,
         kingdomPoint: 240000,
         power: 592140,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1310 }]
     },
@@ -1227,7 +1227,7 @@ module.exports = {
         exp: 21845,
         kingdomPoint: 242666,
         power: 602180,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1370 }]
     },
@@ -1238,7 +1238,7 @@ module.exports = {
         exp: 22085,
         kingdomPoint: 245333,
         power: 612220,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1430 }]
     },
@@ -1249,7 +1249,7 @@ module.exports = {
         exp: 22325,
         kingdomPoint: 248000,
         power: 622260,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1490 }]
     },
@@ -1260,7 +1260,7 @@ module.exports = {
         exp: 22565,
         kingdomPoint: 250666,
         power: 632300,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1550 }]
     },
@@ -1271,7 +1271,7 @@ module.exports = {
         exp: 22805,
         kingdomPoint: 253333,
         power: 642340,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1700 }]
     },
@@ -1282,7 +1282,7 @@ module.exports = {
         exp: 23045,
         kingdomPoint: 256000,
         power: 652380,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1900 }]
     },
@@ -1293,7 +1293,7 @@ module.exports = {
         exp: 23285,
         kingdomPoint: 258666,
         power: 662420,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2100 }]
     },
@@ -1304,7 +1304,7 @@ module.exports = {
         exp: 23525,
         kingdomPoint: 261333,
         power: 672460,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2300 }]
     },
@@ -1315,7 +1315,7 @@ module.exports = {
         exp: 23765,
         kingdomPoint: 264000,
         power: 682500,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2500 }]
     },
@@ -1326,7 +1326,7 @@ module.exports = {
         exp: 24005,
         kingdomPoint: 266666,
         power: 693430,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2750 }]
     },
@@ -1337,7 +1337,7 @@ module.exports = {
         exp: 24245,
         kingdomPoint: 269333,
         power: 704360,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 3000 }]
     },
@@ -1348,7 +1348,7 @@ module.exports = {
         exp: 24485,
         kingdomPoint: 272000,
         power: 715290,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 3250 }]
     },
@@ -1359,7 +1359,7 @@ module.exports = {
         exp: 24725,
         kingdomPoint: 274666,
         power: 726220,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 3500 }]
     },
@@ -1370,7 +1370,7 @@ module.exports = {
         exp: 24965,
         kingdomPoint: 277333,
         power: 737150,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 3750 }]
     },
@@ -1381,7 +1381,7 @@ module.exports = {
         exp: 25205,
         kingdomPoint: 280000,
         power: 748080,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 4000 }]
     },
@@ -1392,7 +1392,7 @@ module.exports = {
         exp: 25445,
         kingdomPoint: 282666,
         power: 759010,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 4250 }]
     },
@@ -1403,7 +1403,7 @@ module.exports = {
         exp: 25685,
         kingdomPoint: 285333,
         power: 769940,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 4500 }]
     },
@@ -1414,7 +1414,7 @@ module.exports = {
         exp: 25925,
         kingdomPoint: 288000,
         power: 780870,
-        unlockedSoldier: 0,
+        unlockedSoldier: EArmyType.None,
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 4750 }]
     },

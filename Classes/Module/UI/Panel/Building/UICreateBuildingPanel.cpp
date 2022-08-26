@@ -4,6 +4,7 @@
 #include "Include/IncludeBuildingBase.h"
 #include "Module/UI/Panel/Building/UIBuildCreateScrollSingle.h"
 #include "Module/UI/Part/UIWheelScrollView.h"
+#include "Module/UI/UI.Create.h"
 
 
 UICreateBuildingPanel::UICreateBuildingPanel(){
@@ -119,12 +120,16 @@ void UICreateBuildingPanel::createWheelScrollView(){
     m_SelectWheel->removeFromParent();
     m_SelectWheel = nullptr;
   }
-  UIWheelScrollViewArgs l_WheelScrollViewArgs;
+  UIWheelScrollViewArgs l_WheelScrollViewArgs = UIWheelScrollViewArgs();
   l_WheelScrollViewArgs.m_WidgetArray = *(GVector<ui::Widget *> *) &l_ScrollViews; 
   l_WheelScrollViewArgs.m_Size = Size(500, std::max(600.0f, Director::getInstance()->getVisibleSize().height - 270));
   l_WheelScrollViewArgs.m_CellHeight = 130;
   l_WheelScrollViewArgs.m_CircleRadius = 450;
-  m_SelectWheel = UICreate::wheelScrollView(l_WheelScrollViewArgs);
+  m_SelectWheel
+    =
+        UICreate::wheelScrollView(
+          l_WheelScrollViewArgs
+          );
   if(m_SelectWheel){
 
     m_SelectWheel->setSelectedItemListener([this](size_t p_Index){

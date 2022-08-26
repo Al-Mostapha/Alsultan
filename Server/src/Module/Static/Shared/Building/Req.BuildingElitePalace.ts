@@ -1,4 +1,8 @@
-module.exports = {
+import { EBuildingType } from "src/Module/Building/Building.Const";
+import { EArmyType } from "../Army/Static.Army";
+import { IReqBuilding } from "./Req.Building";
+
+export const ReqBuildingElitPalace: {[Key: number] : IReqBuilding} = {
     1: {
         preCond: [],
         costRes: { Grain: 0, Lumber: 0, Iron: 0, Silver: 0, Crystal: 0 },
@@ -7,11 +11,11 @@ module.exports = {
         kingdomPoint: 0,
         power: 20000,
         maxSoldier: 10000,
-        unlockedSoldier: 906,
+        unlockedSoldier: EArmyType.VeteranGuard,
         ElitePointLimit: 60000
     },
     2: {
-        preCond: [{ buildingType: 101, buildingLvl: 19 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 19 }],
         costRes: { Grain: 6000000, Lumber: 6000000, Iron: 1000000, Silver: 250000, Crystal: 0 },
         costTime: 259200,
         exp: 7400,
@@ -22,7 +26,7 @@ module.exports = {
         ElitePointLimit: 60000
     },
     3: {
-        preCond: [{ buildingType: 101, buildingLvl: 22 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 22 }],
         costRes: { Grain: 12000000, Lumber: 12000000, Iron: 2000000, Silver: 500000, Crystal: 0 },
         costTime: 518400,
         exp: 14800,
@@ -33,7 +37,7 @@ module.exports = {
         ElitePointLimit: 60000
     },
     4: {
-        preCond: [{ buildingType: 101, buildingLvl: 26 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 26 }],
         costRes: { Grain: 30000000, Lumber: 30000000, Iron: 5000000, Silver: 1250000, Crystal: 0 },
         costTime: 777600,
         exp: 22200,
@@ -44,7 +48,7 @@ module.exports = {
         ElitePointLimit: 60000
     },
     5: {
-        preCond: [{ buildingType: 101, buildingLvl: 30 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 30 }],
         costRes: { Grain: 100000000, Lumber: 100000000, Iron: 16600000, Silver: 4160000, Crystal: 0 },
         costTime: 1296000,
         exp: 37000,

@@ -1,6 +1,9 @@
-module.exports = {
+import { EBuildingType } from "src/Module/Building/Building.Const";
+import { IReqBuilding } from "./Req.Building";
+
+export const ReqBuildingMiliTent: {[Key: number] : IReqBuilding} = {
     1: {
-        preCond: [{ buildingType: 101, buildingLvl: 2 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 2 }],
         costRes: { Grain: 0, Lumber: 100, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 60,
         exp: 6,

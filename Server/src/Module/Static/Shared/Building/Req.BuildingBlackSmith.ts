@@ -1,4 +1,6 @@
-module.exports = {
+import { IReqBuilding } from "./Req.Building";
+
+export const ReqBuildingBlackSmith : {[Key: number] : IReqBuilding} = {
     1: {
         preCond: [],
         costRes: { Grain: 0, Lumber: 0, Iron: 0, Silver: 0, Crystal: 0 },
