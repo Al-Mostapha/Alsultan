@@ -2,9 +2,75 @@
 #include "Base/BaseTypeDef.h"
 #include "Base/Json.h"
 #include "Module/Building/Building.Const.h"
+#include "Module/Building/Building.Enum.h"
+#include "Module/CityResource/CityResource.Type.h"
+#include "Module/Army/Army.Enum.h"
+#include "Module/Science/Science.Enum.h"
+#include "Module/Building/BuildingLib/BuildingWatchTower.Lib.h"
 
 
-struct DSCityBuildingUnit 
+struct TBuildingLvlSpecs{
+    struct TReqBuildingPreCond{
+        EBuildingType buildingType = EBuildingType::None;
+        uint32 buildingLvl = 0;
+        static TReqBuildingPreCond fromJson(GJson *json){
+            TReqBuildingPreCond temp;
+            
+        }
+    };
+    struct TCostItem{
+        uint32 idItem = 0;
+        uint32 buildingLvl = 0;
+    };
+    GVector<TReqBuildingPreCond> preCond;
+    TResource costRes;
+    uint32 costTime = 0;
+    uint32 exp = 0;
+    uint32 kingdomPoint = 0;
+    uint32 power = 0;
+    GVector<TCostItem> costTool;
+    GVector<TCostItem> costWEs;
+    uint32 atkAdd = 0;
+    uint32 atkSpeedAdd = 0;
+    uint32 baseAtkSpeed = 0;
+    uint32 gunshot = 0;
+    EArmyType unlockedSoldier;
+    uint32 forgeSpeed = 0;
+    uint32 steelReduce = 0;
+    uint32 kingdomLv = 0;
+    EBuildingType unlockedBuild = EBuildingType::None;
+    EScienceType unlockedTechnology = EScienceType::None;
+    uint32 capacity = 0;
+    uint32 output = 0;
+    uint32 addOutputCostGold = 0;
+    uint32 maxSoldier = 0;
+    uint32 ElitePointLimit = 0;
+    uint32 helpCount = 0;
+    uint32 reduceTime = 0;
+    uint32 reinforcements = 0;
+    uint32 prisonNum = 0;
+    uint32 attack = 0;
+    uint32 defense = 0;
+    uint32 life = 0;
+    uint32 speed = 0;
+    uint32 speedTime = 0;
+    uint32 heroNum = 0;
+    uint32 trainExpBonus = 0;
+    uint32 buildTime = 0;
+    uint32 baseExp = 0;
+    uint32 taxRate = 0;
+    uint32 trainSpeed = 0;
+    GString unlockDescribe = "";
+    uint32 defValue = 0;
+    TResource resCapacity;
+    EWatchTowerEffect watchTowerEffect = EWatchTowerEffect::None;
+    uint32 freeTime = 0;
+    static TBuildingLvlSpecs fromJson(GJson *json){
+
+    }
+};
+
+struct TCityBuildingUnit 
 {
 
     int32 buildingLvl;
@@ -12,18 +78,17 @@ struct DSCityBuildingUnit
     GString BuildingPlace;
     EBuildingType eBuildingType;
     EBuildingPos eBuildingPos;
-
-    DSCityBuildingUnit(char *nodeName, char *buildingPlace, EBuildingPos eBP)
+    TCityBuildingUnit(char *nodeName, char *buildingPlace, EBuildingPos eBP)
         : NodeName(nodeName), BuildingPlace(buildingPlace), eBuildingPos(eBP){};
-    DSCityBuildingUnit()
+    TCityBuildingUnit()
         : NodeName(""), BuildingPlace(""), eBuildingPos(EBuildingPos::CBPlace_Inner){};
     void fromJson(GJson *json);
-    DSCityBuildingUnit& buildUnit();
-    DSCityBuildingUnit& addToBuildingList();
+    TCityBuildingUnit& buildUnit();
+    TCityBuildingUnit& addToBuildingList();
 };
 
 
-struct DSBuildingInfoUnit{
+struct TBuildingInfoUnit{
    
     int32 index = 0;
     int32 idBuilding = 0;
@@ -31,7 +96,7 @@ struct DSBuildingInfoUnit{
     bool isExchange = false;
     bool isBuild = false;
     bool isUpgrade = false;
-    EBuildingType buildingType = EBuildingType::CBType_None;
+    EBuildingType buildingType = EBuildingType::None;
     int32 bType = 0;
     int32 maxCount = 0;
     int32 maxLvl = 0;
@@ -47,9 +112,10 @@ struct DSBuildingInfoUnit{
     GString Describe      = "";
     GString WarDescribe   = "";
     GString StarDescribe  = "";
+    GMap<uint32, TBuildingLvlSpecs> BuildingLvlSpecs;
 
-    static DSBuildingInfoUnit fromJson(GJson *json){
-        DSBuildingInfoUnit  temp;
+    static TBuildingInfoUnit fromJson(GJson *json){
+        TBuildingInfoUnit  temp;
         temp.index        = json->GetInt("index");
         temp.idBuilding   = json->GetInt("idBuilding");
         temp.isDemolish   = json->GetBool("isdemolish");
@@ -75,35 +141,35 @@ struct DSBuildingInfoUnit{
     }
 };
 
-struct DSCityBuilding 
+struct TCityBuilding 
 {
     int32 idPlayer;
     int32 idCity;
-    GMap<GString, DSCityBuildingUnit> BuildingList;
+    GMap<GString, TCityBuildingUnit> BuildingList;
     struct
     {
         int idCity;
         int idPlayer;
-        DSCityBuildingUnit castle = DSCityBuildingUnit("build_1050", "castle", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit arrowTowerL = DSCityBuildingUnit("build_1052", "arrowTowerL", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit wall = DSCityBuildingUnit("build_1053", "wall", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit arrowTowerR = DSCityBuildingUnit("build_1054", "arrowTowerR", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit watchTower = DSCityBuildingUnit("build_1055", "watchTower", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit merchant = DSCityBuildingUnit("Img_Lvxingshanren", "merchant", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit harbor = DSCityBuildingUnit("build_30002", "harbor", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit troopDetail = DSCityBuildingUnit("Node_flag", "troopDetail", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit leisureHouse = DSCityBuildingUnit("build_30001", "leisureHouse", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit prison = DSCityBuildingUnit("build_1203", "prison", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit trainHall = DSCityBuildingUnit("build_1204", "trainHall", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit miracle = DSCityBuildingUnit("build_1200", "miracle", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit braveStatue = DSCityBuildingUnit("build_1205", "braveStatue", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit petCenter = DSCityBuildingUnit("build_30003", "petCenter", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit resurrectionHall = DSCityBuildingUnit("build_30004", "resurrectionHall", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit serviceCenter = DSCityBuildingUnit("build_30005", "serviceCenter", EBuildingPos::CBPlace_Fixed); // this is error
-        DSCityBuildingUnit eventCenter = DSCityBuildingUnit("build_30005", "eventCenter", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit epicBattle = DSCityBuildingUnit("build_30006", "epicBattle", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit monument = DSCityBuildingUnit("build_30007", "Monument", EBuildingPos::CBPlace_Fixed);
-        DSCityBuildingUnit veteransHall = DSCityBuildingUnit("build_1201", "veteransHall", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit castle = TCityBuildingUnit("build_1050", "castle", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit arrowTowerL = TCityBuildingUnit("build_1052", "arrowTowerL", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit wall = TCityBuildingUnit("build_1053", "wall", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit arrowTowerR = TCityBuildingUnit("build_1054", "arrowTowerR", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit watchTower = TCityBuildingUnit("build_1055", "watchTower", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit merchant = TCityBuildingUnit("Img_Lvxingshanren", "merchant", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit harbor = TCityBuildingUnit("build_30002", "harbor", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit troopDetail = TCityBuildingUnit("Node_flag", "troopDetail", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit leisureHouse = TCityBuildingUnit("build_30001", "leisureHouse", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit prison = TCityBuildingUnit("build_1203", "prison", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit trainHall = TCityBuildingUnit("build_1204", "trainHall", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit miracle = TCityBuildingUnit("build_1200", "miracle", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit braveStatue = TCityBuildingUnit("build_1205", "braveStatue", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit petCenter = TCityBuildingUnit("build_30003", "petCenter", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit resurrectionHall = TCityBuildingUnit("build_30004", "resurrectionHall", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit serviceCenter = TCityBuildingUnit("build_30005", "serviceCenter", EBuildingPos::CBPlace_Fixed); // this is error
+        TCityBuildingUnit eventCenter = TCityBuildingUnit("build_30005", "eventCenter", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit epicBattle = TCityBuildingUnit("build_30006", "epicBattle", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit monument = TCityBuildingUnit("build_30007", "Monument", EBuildingPos::CBPlace_Fixed);
+        TCityBuildingUnit veteransHall = TCityBuildingUnit("build_1201", "veteransHall", EBuildingPos::CBPlace_Fixed);
         void fromJson(GJson *json)
         {
             if (json == nullptr)
@@ -137,19 +203,19 @@ struct DSCityBuilding
     {
         int idCity;
         int idPlayer;
-        DSCityBuildingUnit innerBuilding_1 = DSCityBuildingUnit("build_1051", "innerBuilding_1", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_2 = DSCityBuildingUnit("build_1056", "innerBuilding_2", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_3 = DSCityBuildingUnit("build_1057", "innerBuilding_3", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_4 = DSCityBuildingUnit("build_1058", "innerBuilding_4", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_5 = DSCityBuildingUnit("build_1059", "innerBuilding_5", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_6 = DSCityBuildingUnit("build_1060", "innerBuilding_6", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_7 = DSCityBuildingUnit("build_1061", "innerBuilding_7", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_8 = DSCityBuildingUnit("build_1062", "innerBuilding_8", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_9 = DSCityBuildingUnit("build_1063", "innerBuilding_9", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_10 = DSCityBuildingUnit("build_1064", "innerBuilding_10", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_11 = DSCityBuildingUnit("build_1065", "innerBuilding_11", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_12 = DSCityBuildingUnit("build_1066", "innerBuilding_12", EBuildingPos::CBPlace_Inner);
-        DSCityBuildingUnit innerBuilding_13 = DSCityBuildingUnit("build_1067", "innerBuilding_13", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_1  = TCityBuildingUnit("build_1051", "innerBuilding_1", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_2  = TCityBuildingUnit("build_1056", "innerBuilding_2", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_3  = TCityBuildingUnit("build_1057", "innerBuilding_3", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_4  = TCityBuildingUnit("build_1058", "innerBuilding_4", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_5  = TCityBuildingUnit("build_1059", "innerBuilding_5", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_6  = TCityBuildingUnit("build_1060", "innerBuilding_6", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_7  = TCityBuildingUnit("build_1061", "innerBuilding_7", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_8  = TCityBuildingUnit("build_1062", "innerBuilding_8", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_9  = TCityBuildingUnit("build_1063", "innerBuilding_9", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_10 = TCityBuildingUnit("build_1064", "innerBuilding_10", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_11 = TCityBuildingUnit("build_1065", "innerBuilding_11", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_12 = TCityBuildingUnit("build_1066", "innerBuilding_12", EBuildingPos::CBPlace_Inner);
+        TCityBuildingUnit innerBuilding_13 = TCityBuildingUnit("build_1067", "innerBuilding_13", EBuildingPos::CBPlace_Inner);
 
         void fromJson(GJson *json)
         {
@@ -176,48 +242,48 @@ struct DSCityBuilding
         int idCity;
         int idPlayer;
         /* Free Area*/
-        DSCityBuildingUnit resBuilding_1 = DSCityBuildingUnit("build_1100", "resBuilding_1", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_2 = DSCityBuildingUnit("build_1101", "resBuilding_2", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_3 = DSCityBuildingUnit("build_1102", "resBuilding_3", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_4 = DSCityBuildingUnit("build_1103", "resBuilding_4", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_5 = DSCityBuildingUnit("build_1104", "resBuilding_5", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_6 = DSCityBuildingUnit("build_1105", "resBuilding_6", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_7 = DSCityBuildingUnit("build_1106", "resBuilding_7", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_8 = DSCityBuildingUnit("build_1107", "resBuilding_8", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_9 = DSCityBuildingUnit("build_1108", "resBuilding_9", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_10 = DSCityBuildingUnit("build_1109", "resBuilding_10", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_11 = DSCityBuildingUnit("build_1110", "resBuilding_11", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_12 = DSCityBuildingUnit("build_1111", "resBuilding_12", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_13 = DSCityBuildingUnit("build_1112", "resBuilding_13", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_14 = DSCityBuildingUnit("build_1113", "resBuilding_14", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_15 = DSCityBuildingUnit("build_1114", "resBuilding_15", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_1 = TCityBuildingUnit("build_1100", "resBuilding_1", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_2 = TCityBuildingUnit("build_1101", "resBuilding_2", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_3 = TCityBuildingUnit("build_1102", "resBuilding_3", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_4 = TCityBuildingUnit("build_1103", "resBuilding_4", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_5 = TCityBuildingUnit("build_1104", "resBuilding_5", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_6 = TCityBuildingUnit("build_1105", "resBuilding_6", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_7 = TCityBuildingUnit("build_1106", "resBuilding_7", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_8 = TCityBuildingUnit("build_1107", "resBuilding_8", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_9 = TCityBuildingUnit("build_1108", "resBuilding_9", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_10 = TCityBuildingUnit("build_1109", "resBuilding_10", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_11 = TCityBuildingUnit("build_1110", "resBuilding_11", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_12 = TCityBuildingUnit("build_1111", "resBuilding_12", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_13 = TCityBuildingUnit("build_1112", "resBuilding_13", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_14 = TCityBuildingUnit("build_1113", "resBuilding_14", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_15 = TCityBuildingUnit("build_1114", "resBuilding_15", EBuildingPos::CBPlace_Outer);
 
         // First Locked Area Panel_Area_Lock_1220
-        DSCityBuildingUnit resBuilding_16 = DSCityBuildingUnit("build_1115", "resBuilding_16", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_17 = DSCityBuildingUnit("build_1116", "resBuilding_17", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_18 = DSCityBuildingUnit("build_1117", "resBuilding_18", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_19 = DSCityBuildingUnit("build_1118", "resBuilding_19", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_20 = DSCityBuildingUnit("build_1119", "resBuilding_20", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_16 = TCityBuildingUnit("build_1115", "resBuilding_16", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_17 = TCityBuildingUnit("build_1116", "resBuilding_17", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_18 = TCityBuildingUnit("build_1117", "resBuilding_18", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_19 = TCityBuildingUnit("build_1118", "resBuilding_19", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_20 = TCityBuildingUnit("build_1119", "resBuilding_20", EBuildingPos::CBPlace_Outer);
         // secound Locked Area Panel_Area_Lock_1223
-        DSCityBuildingUnit resBuilding_21 = DSCityBuildingUnit("build_1130", "resBuilding_21", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_22 = DSCityBuildingUnit("build_1131", "resBuilding_22", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_23 = DSCityBuildingUnit("build_1132", "resBuilding_23", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_24 = DSCityBuildingUnit("build_1133", "resBuilding_24", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_25 = DSCityBuildingUnit("build_1134", "resBuilding_25", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_21 = TCityBuildingUnit("build_1130", "resBuilding_21", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_22 = TCityBuildingUnit("build_1131", "resBuilding_22", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_23 = TCityBuildingUnit("build_1132", "resBuilding_23", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_24 = TCityBuildingUnit("build_1133", "resBuilding_24", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_25 = TCityBuildingUnit("build_1134", "resBuilding_25", EBuildingPos::CBPlace_Outer);
         // Third Locked Area Panel_Area_Lock_1222
-        DSCityBuildingUnit resBuilding_26 = DSCityBuildingUnit("build_1125", "resBuilding_26", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_27 = DSCityBuildingUnit("build_1126", "resBuilding_27", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_28 = DSCityBuildingUnit("build_1127", "resBuilding_28", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_29 = DSCityBuildingUnit("build_1128", "resBuilding_29", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_30 = DSCityBuildingUnit("build_1129", "resBuilding_30", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_26 = TCityBuildingUnit("build_1125", "resBuilding_26", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_27 = TCityBuildingUnit("build_1126", "resBuilding_27", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_28 = TCityBuildingUnit("build_1127", "resBuilding_28", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_29 = TCityBuildingUnit("build_1128", "resBuilding_29", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_30 = TCityBuildingUnit("build_1129", "resBuilding_30", EBuildingPos::CBPlace_Outer);
         // Forth Locked Area Panel_Area_Lock_1221
-        DSCityBuildingUnit resBuilding_31 = DSCityBuildingUnit("build_1120", "resBuilding_31", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_32 = DSCityBuildingUnit("build_1121", "resBuilding_32", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_33 = DSCityBuildingUnit("build_1122", "resBuilding_33", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_34 = DSCityBuildingUnit("build_1123", "resBuilding_34", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_35 = DSCityBuildingUnit("build_1124", "resBuilding_35", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_36 = DSCityBuildingUnit("build_1151", "resBuilding_36", EBuildingPos::CBPlace_Outer);
-        DSCityBuildingUnit resBuilding_37 = DSCityBuildingUnit("build_1152", "resBuilding_37", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_31 = TCityBuildingUnit("build_1120", "resBuilding_31", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_32 = TCityBuildingUnit("build_1121", "resBuilding_32", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_33 = TCityBuildingUnit("build_1122", "resBuilding_33", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_34 = TCityBuildingUnit("build_1123", "resBuilding_34", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_35 = TCityBuildingUnit("build_1124", "resBuilding_35", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_36 = TCityBuildingUnit("build_1151", "resBuilding_36", EBuildingPos::CBPlace_Outer);
+        TCityBuildingUnit resBuilding_37 = TCityBuildingUnit("build_1152", "resBuilding_37", EBuildingPos::CBPlace_Outer);
         void fromJson(GJson *json)
         {
             if (json == nullptr)

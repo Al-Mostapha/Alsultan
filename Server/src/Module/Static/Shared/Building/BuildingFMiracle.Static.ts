@@ -1,5 +1,5 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
 export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
   1: {
@@ -24,7 +24,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 26666,
     power: 2000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 3 }],
+    costWEs: [{ idItem: 301101, amount: 3 }],
     unlockDescribe: ""
   },
   3: {
@@ -38,7 +38,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 29333,
     power: 4000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 6 }],
+    costWEs: [{ idItem: 301101, amount: 6 }],
     unlockDescribe: ""
   },
   4: {
@@ -52,7 +52,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 32000,
     power: 6000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 9 }],
+    costWEs: [{ idItem: 301101, amount: 9 }],
     unlockDescribe: ""
   },
   5: {
@@ -66,7 +66,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 34666,
     power: 8000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 12 }],
+    costWEs: [{ idItem: 301101, amount: 12 }],
     unlockDescribe: ""
   },
   6: {
@@ -80,7 +80,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 37333,
     power: 10000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 15 }],
+    costWEs: [{ idItem: 301101, amount: 15 }],
     unlockDescribe: ""
   },
   7: {
@@ -94,7 +94,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 40000,
     power: 12000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 18 }],
+    costWEs: [{ idItem: 301101, amount: 18 }],
     unlockDescribe: ""
   },
   8: {
@@ -108,7 +108,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 42666,
     power: 14000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 21 }],
+    costWEs: [{ idItem: 301101, amount: 21 }],
     unlockDescribe: ""
   },
   9: {
@@ -122,7 +122,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 45333,
     power: 16000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 24 }],
+    costWEs: [{ idItem: 301101, amount: 24 }],
     unlockDescribe: ""
   },
   10: {
@@ -136,7 +136,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 48000,
     power: 18000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 27 }],
+    costWEs: [{ idItem: 301101, amount: 27 }],
     unlockDescribe: ""
   },
   11: {
@@ -150,7 +150,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 50666,
     power: 20000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 30 }],
+    costWEs: [{ idItem: 301101, amount: 30 }],
     unlockDescribe: ""
   },
   12: {
@@ -164,7 +164,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 53333,
     power: 21000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 30 }],
+    costWEs: [{ idItem: 301101, amount: 30 }],
     unlockDescribe: ""
   },
   13: {
@@ -178,7 +178,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 56000,
     power: 22000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 36 }],
+    costWEs: [{ idItem: 301101, amount: 36 }],
     unlockDescribe: ""
   },
   14: {
@@ -192,7 +192,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 58666,
     power: 23000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 42 }],
+    costWEs: [{ idItem: 301101, amount: 42 }],
     unlockDescribe: ""
   },
   15: {
@@ -206,7 +206,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 61333,
     power: 24000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 48 }],
+    costWEs: [{ idItem: 301101, amount: 48 }],
     unlockDescribe: ""
   },
   16: {
@@ -220,7 +220,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 64000,
     power: 25000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 54 }],
+    costWEs: [{ idItem: 301101, amount: 54 }],
     unlockDescribe: ""
   },
   17: {
@@ -234,7 +234,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 66666,
     power: 26000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 60 }],
+    costWEs: [{ idItem: 301101, amount: 60 }],
     unlockDescribe: ""
   },
   18: {
@@ -248,7 +248,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 69333,
     power: 27000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 66 }],
+    costWEs: [{ idItem: 301101, amount: 66 }],
     unlockDescribe: ""
   },
   19: {
@@ -262,7 +262,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 72000,
     power: 28000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 72 }],
+    costWEs: [{ idItem: 301101, amount: 72 }],
     unlockDescribe: ""
   },
   20: {
@@ -276,7 +276,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 74666,
     power: 29000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 78 }],
+    costWEs: [{ idItem: 301101, amount: 78 }],
     unlockDescribe: ""
   },
   21: {
@@ -290,7 +290,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 77333,
     power: 30000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 84 }],
+    costWEs: [{ idItem: 301101, amount: 84 }],
     unlockDescribe: ""
   },
   22: {
@@ -304,7 +304,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 80000,
     power: 31000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 93 }],
+    costWEs: [{ idItem: 301101, amount: 93 }],
     unlockDescribe: ""
   },
   23: {
@@ -318,7 +318,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 82666,
     power: 32000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 102 }],
+    costWEs: [{ idItem: 301101, amount: 102 }],
     unlockDescribe: ""
   },
   24: {
@@ -332,7 +332,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 85333,
     power: 33000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 111 }],
+    costWEs: [{ idItem: 301101, amount: 111 }],
     unlockDescribe: ""
   },
   25: {
@@ -346,7 +346,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 88000,
     power: 34000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 120 }],
+    costWEs: [{ idItem: 301101, amount: 120 }],
     unlockDescribe: ""
   },
   26: {
@@ -360,7 +360,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 90666,
     power: 35000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 129 }],
+    costWEs: [{ idItem: 301101, amount: 129 }],
     unlockDescribe: ""
   },
   27: {
@@ -374,7 +374,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 93333,
     power: 36000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 138 }],
+    costWEs: [{ idItem: 301101, amount: 138 }],
     unlockDescribe: ""
   },
   28: {
@@ -388,7 +388,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 96000,
     power: 37000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 147 }],
+    costWEs: [{ idItem: 301101, amount: 147 }],
     unlockDescribe: ""
   },
   29: {
@@ -402,7 +402,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 98666,
     power: 38000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 156 }],
+    costWEs: [{ idItem: 301101, amount: 156 }],
     unlockDescribe: ""
   },
   30: {
@@ -416,7 +416,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 101333,
     power: 39000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 165 }],
+    costWEs: [{ idItem: 301101, amount: 165 }],
     unlockDescribe: ""
   },
   31: {
@@ -430,7 +430,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 104000,
     power: 40000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 174 }],
+    costWEs: [{ idItem: 301101, amount: 174 }],
     unlockDescribe: ""
   },
   32: {
@@ -441,7 +441,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 106666,
     power: 41000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 180 }],
+    costWEs: [{ idItem: 301101, amount: 180 }],
     unlockDescribe: ""
   },
   33: {
@@ -452,7 +452,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 109333,
     power: 42000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 195 }],
+    costWEs: [{ idItem: 301101, amount: 195 }],
     unlockDescribe: ""
   },
   34: {
@@ -463,7 +463,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 112000,
     power: 43000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 210 }],
+    costWEs: [{ idItem: 301101, amount: 210 }],
     unlockDescribe: ""
   },
   35: {
@@ -474,7 +474,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 114666,
     power: 44000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 225 }],
+    costWEs: [{ idItem: 301101, amount: 225 }],
     unlockDescribe: ""
   },
   36: {
@@ -485,7 +485,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 117333,
     power: 45000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 240 }],
+    costWEs: [{ idItem: 301101, amount: 240 }],
     unlockDescribe: ""
   },
   37: {
@@ -496,7 +496,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 120000,
     power: 46000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 255 }],
+    costWEs: [{ idItem: 301101, amount: 255 }],
     unlockDescribe: ""
   },
   38: {
@@ -507,7 +507,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 122666,
     power: 47000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 270 }],
+    costWEs: [{ idItem: 301101, amount: 270 }],
     unlockDescribe: ""
   },
   39: {
@@ -518,7 +518,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 125333,
     power: 48000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 285 }],
+    costWEs: [{ idItem: 301101, amount: 285 }],
     unlockDescribe: ""
   },
   40: {
@@ -529,7 +529,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 128000,
     power: 49000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 300 }],
+    costWEs: [{ idItem: 301101, amount: 300 }],
     unlockDescribe: ""
   },
   41: {
@@ -540,7 +540,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 130666,
     power: 50000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 315 }],
+    costWEs: [{ idItem: 301101, amount: 315 }],
     unlockDescribe: ""
   },
   42: {
@@ -555,7 +555,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 133333,
     power: 51000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 360 }],
+    costWEs: [{ idItem: 301101, amount: 360 }],
     unlockDescribe: ""
   },
   43: {
@@ -570,7 +570,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 136000,
     power: 52000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 390 }],
+    costWEs: [{ idItem: 301101, amount: 390 }],
     unlockDescribe: ""
   },
   44: {
@@ -585,7 +585,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 138666,
     power: 53000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 420 }],
+    costWEs: [{ idItem: 301101, amount: 420 }],
     unlockDescribe: ""
   },
   45: {
@@ -600,7 +600,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 141333,
     power: 54000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 450 }],
+    costWEs: [{ idItem: 301101, amount: 450 }],
     unlockDescribe: ""
   },
   46: {
@@ -615,7 +615,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 144000,
     power: 55000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 480 }],
+    costWEs: [{ idItem: 301101, amount: 480 }],
     unlockDescribe: ""
   },
   47: {
@@ -630,7 +630,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 146666,
     power: 56000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 510 }],
+    costWEs: [{ idItem: 301101, amount: 510 }],
     unlockDescribe: ""
   },
   48: {
@@ -645,7 +645,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 149333,
     power: 57000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 540 }],
+    costWEs: [{ idItem: 301101, amount: 540 }],
     unlockDescribe: ""
   },
   49: {
@@ -660,7 +660,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 152000,
     power: 58000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 570 }],
+    costWEs: [{ idItem: 301101, amount: 570 }],
     unlockDescribe: ""
   },
   50: {
@@ -675,7 +675,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 154666,
     power: 59000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 600 }],
+    costWEs: [{ idItem: 301101, amount: 600 }],
     unlockDescribe: ""
   },
   51: {
@@ -690,7 +690,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 157333,
     power: 60000,
     costTools: [],
-    costWEs: [{ idTool: 301101, amount: 630 }],
+    costWEs: [{ idItem: 301101, amount: 630 }],
     unlockDescribe: ""
   },
   52: {
@@ -706,7 +706,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 160000,
     power: 61500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 125 }],
+    costWEs: [{ idItem: 301901, amount: 125 }],
     unlockDescribe: ""
   },
   53: {
@@ -722,7 +722,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 162666,
     power: 63000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 150 }],
+    costWEs: [{ idItem: 301901, amount: 150 }],
     unlockDescribe: ""
   },
   54: {
@@ -738,7 +738,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 165333,
     power: 64500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 175 }],
+    costWEs: [{ idItem: 301901, amount: 175 }],
     unlockDescribe: ""
   },
   55: {
@@ -754,7 +754,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 168000,
     power: 66000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 200 }],
+    costWEs: [{ idItem: 301901, amount: 200 }],
     unlockDescribe: ""
   },
   56: {
@@ -770,7 +770,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 170666,
     power: 67500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 225 }],
+    costWEs: [{ idItem: 301901, amount: 225 }],
     unlockDescribe: ""
   },
   57: {
@@ -786,7 +786,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 173333,
     power: 69000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 250 }],
+    costWEs: [{ idItem: 301901, amount: 250 }],
     unlockDescribe: ""
   },
   58: {
@@ -802,7 +802,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 176000,
     power: 70500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 275 }],
+    costWEs: [{ idItem: 301901, amount: 275 }],
     unlockDescribe: ""
   },
   59: {
@@ -818,7 +818,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 178666,
     power: 72000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 300 }],
+    costWEs: [{ idItem: 301901, amount: 300 }],
     unlockDescribe: ""
   },
   60: {
@@ -834,7 +834,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 181333,
     power: 73500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 325 }],
+    costWEs: [{ idItem: 301901, amount: 325 }],
     unlockDescribe: ""
   },
   61: {
@@ -850,7 +850,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 184000,
     power: 75000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 350 }],
+    costWEs: [{ idItem: 301901, amount: 350 }],
     unlockDescribe: ""
   },
   62: {
@@ -866,7 +866,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 186666,
     power: 76500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 390 }],
+    costWEs: [{ idItem: 301901, amount: 390 }],
     unlockDescribe: ""
   },
   63: {
@@ -882,7 +882,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 189333,
     power: 78000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 430 }],
+    costWEs: [{ idItem: 301901, amount: 430 }],
     unlockDescribe: ""
   },
   64: {
@@ -898,7 +898,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 192000,
     power: 79500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 470 }],
+    costWEs: [{ idItem: 301901, amount: 470 }],
     unlockDescribe: ""
   },
   65: {
@@ -914,7 +914,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 194666,
     power: 81000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 510 }],
+    costWEs: [{ idItem: 301901, amount: 510 }],
     unlockDescribe: ""
   },
   66: {
@@ -930,7 +930,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 197333,
     power: 82500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 550 }],
+    costWEs: [{ idItem: 301901, amount: 550 }],
     unlockDescribe: ""
   },
   67: {
@@ -946,7 +946,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 200000,
     power: 84000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 590 }],
+    costWEs: [{ idItem: 301901, amount: 590 }],
     unlockDescribe: ""
   },
   68: {
@@ -962,7 +962,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 202666,
     power: 85500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 630 }],
+    costWEs: [{ idItem: 301901, amount: 630 }],
     unlockDescribe: ""
   },
   69: {
@@ -978,7 +978,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 205333,
     power: 87000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 670 }],
+    costWEs: [{ idItem: 301901, amount: 670 }],
     unlockDescribe: ""
   },
   70: {
@@ -994,7 +994,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 208000,
     power: 88500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 710 }],
+    costWEs: [{ idItem: 301901, amount: 710 }],
     unlockDescribe: ""
   },
   71: {
@@ -1010,7 +1010,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 210666,
     power: 90000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 750 }],
+    costWEs: [{ idItem: 301901, amount: 750 }],
     unlockDescribe: ""
   },
   72: {
@@ -1026,7 +1026,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 213333,
     power: 91500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 800 }],
+    costWEs: [{ idItem: 301901, amount: 800 }],
     unlockDescribe: ""
   },
   73: {
@@ -1042,7 +1042,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 216000,
     power: 93000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 850 }],
+    costWEs: [{ idItem: 301901, amount: 850 }],
     unlockDescribe: ""
   },
   74: {
@@ -1058,7 +1058,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 218666,
     power: 94500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 900 }],
+    costWEs: [{ idItem: 301901, amount: 900 }],
     unlockDescribe: ""
   },
   75: {
@@ -1074,7 +1074,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 221333,
     power: 96000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 950 }],
+    costWEs: [{ idItem: 301901, amount: 950 }],
     unlockDescribe: ""
   },
   76: {
@@ -1090,7 +1090,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 224000,
     power: 97500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1000 }],
+    costWEs: [{ idItem: 301901, amount: 1000 }],
     unlockDescribe: ""
   },
   77: {
@@ -1106,7 +1106,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 226666,
     power: 99000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1050 }],
+    costWEs: [{ idItem: 301901, amount: 1050 }],
     unlockDescribe: ""
   },
   78: {
@@ -1122,7 +1122,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 229333,
     power: 100500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1100 }],
+    costWEs: [{ idItem: 301901, amount: 1100 }],
     unlockDescribe: ""
   },
   79: {
@@ -1138,7 +1138,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 232000,
     power: 102000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1150 }],
+    costWEs: [{ idItem: 301901, amount: 1150 }],
     unlockDescribe: ""
   },
   80: {
@@ -1154,7 +1154,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 234666,
     power: 103500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1200 }],
+    costWEs: [{ idItem: 301901, amount: 1200 }],
     unlockDescribe: ""
   },
   81: {
@@ -1170,7 +1170,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 237333,
     power: 105000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1250 }],
+    costWEs: [{ idItem: 301901, amount: 1250 }],
     unlockDescribe: ""
   },
   82: {
@@ -1186,7 +1186,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 240000,
     power: 106500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1310 }],
+    costWEs: [{ idItem: 301901, amount: 1310 }],
     unlockDescribe: ""
   },
   83: {
@@ -1202,7 +1202,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 242666,
     power: 108000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1370 }],
+    costWEs: [{ idItem: 301901, amount: 1370 }],
     unlockDescribe: ""
   },
   84: {
@@ -1218,7 +1218,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 245333,
     power: 109500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1430 }],
+    costWEs: [{ idItem: 301901, amount: 1430 }],
     unlockDescribe: ""
   },
   85: {
@@ -1234,7 +1234,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 248000,
     power: 111000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1490 }],
+    costWEs: [{ idItem: 301901, amount: 1490 }],
     unlockDescribe: ""
   },
   86: {
@@ -1250,7 +1250,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 250666,
     power: 112500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1550 }],
+    costWEs: [{ idItem: 301901, amount: 1550 }],
     unlockDescribe: ""
   },
   87: {
@@ -1266,7 +1266,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 253333,
     power: 114000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1700 }],
+    costWEs: [{ idItem: 301901, amount: 1700 }],
     unlockDescribe: ""
   },
   88: {
@@ -1282,7 +1282,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 256000,
     power: 115500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 1900 }],
+    costWEs: [{ idItem: 301901, amount: 1900 }],
     unlockDescribe: ""
   },
   89: {
@@ -1298,7 +1298,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 258666,
     power: 117000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 2100 }],
+    costWEs: [{ idItem: 301901, amount: 2100 }],
     unlockDescribe: ""
   },
   90: {
@@ -1314,7 +1314,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 261333,
     power: 118500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 2300 }],
+    costWEs: [{ idItem: 301901, amount: 2300 }],
     unlockDescribe: ""
   },
   91: {
@@ -1330,7 +1330,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 264000,
     power: 120000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 2500 }],
+    costWEs: [{ idItem: 301901, amount: 2500 }],
     unlockDescribe: "gemEnchant_text_54"
 
   },
@@ -1347,7 +1347,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 266666,
     power: 121500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 2750 }],
+    costWEs: [{ idItem: 301901, amount: 2750 }],
     unlockDescribe: ""
   },
   93: {
@@ -1363,7 +1363,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 269333,
     power: 123000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 3000 }],
+    costWEs: [{ idItem: 301901, amount: 3000 }],
     unlockDescribe: ""
   },
   94: {
@@ -1379,7 +1379,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 272000,
     power: 124500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 3250 }],
+    costWEs: [{ idItem: 301901, amount: 3250 }],
     unlockDescribe: ""
   },
   95: {
@@ -1395,7 +1395,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 274666,
     power: 126000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 3500 }],
+    costWEs: [{ idItem: 301901, amount: 3500 }],
     unlockDescribe: ""
   },
   96: {
@@ -1411,7 +1411,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 277333,
     power: 127500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 3750 }],
+    costWEs: [{ idItem: 301901, amount: 3750 }],
     unlockDescribe: ""
   },
   97: {
@@ -1427,7 +1427,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 280000,
     power: 129000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 4000 }],
+    costWEs: [{ idItem: 301901, amount: 4000 }],
     unlockDescribe: ""
   },
   98: {
@@ -1443,7 +1443,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 282666,
     power: 130500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 4250 }],
+    costWEs: [{ idItem: 301901, amount: 4250 }],
     unlockDescribe: ""
   },
   99: {
@@ -1459,7 +1459,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 285333,
     power: 132000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 4500 }],
+    costWEs: [{ idItem: 301901, amount: 4500 }],
     unlockDescribe: ""
   },
   100: {
@@ -1475,7 +1475,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 288000,
     power: 133500,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 4750 }],
+    costWEs: [{ idItem: 301901, amount: 4750 }],
     unlockDescribe: ""
   },
   101: {
@@ -1491,7 +1491,7 @@ export const BuildingFMiracleStatic: { [Key: number]: IReqBuilding } = {
     kingdomPoint: 290666,
     power: 135000,
     costTools: [],
-    costWEs: [{ idTool: 301901, amount: 5000 }],
+    costWEs: [{ idItem: 301901, amount: 5000 }],
     unlockDescribe: ""
   }
 };

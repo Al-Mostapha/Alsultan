@@ -151,7 +151,7 @@ void CityBuildingBase::setBuildingAnimation()
 {
 }
 
-void CityBuildingBase::setBuildingUnitData(DSCityBuildingUnit &_CBUD)
+void CityBuildingBase::setBuildingUnitData(TCityBuildingUnit &_CBUD)
 {
     BuildingUnitData = _CBUD;
 }

@@ -1,6 +1,7 @@
-import { EArmyType } from "../Army/Static.Army";
-import { IReqBuilding } from "./Building.Static";
-import { EBuildingType } from "src/Module/Building/Building.Const";
+
+import { EArmyType } from "src/Module/Army/Army.Enum";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
 export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
     1: {
@@ -342,7 +343,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 103939,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 5 }]
+        costWEs: [{ idItem: 301101, amount: 5 }]
     },
     32: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -353,7 +354,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 105612,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 10 }]
+        costWEs: [{ idItem: 301101, amount: 10 }]
     },
     33: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -364,7 +365,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 107286,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 15 }]
+        costWEs: [{ idItem: 301101, amount: 15 }]
     },
     34: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -375,7 +376,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 108959,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 20 }]
+        costWEs: [{ idItem: 301101, amount: 20 }]
     },
     35: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -386,7 +387,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 110633,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 25 }]
+        costWEs: [{ idItem: 301101, amount: 25 }]
     },
     36: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -397,7 +398,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 112306,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     37: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -408,7 +409,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 113980,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 35 }]
+        costWEs: [{ idItem: 301101, amount: 35 }]
     },
     38: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -419,7 +420,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 115653,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 40 }]
+        costWEs: [{ idItem: 301101, amount: 40 }]
     },
     39: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -430,7 +431,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 117327,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 45 }]
+        costWEs: [{ idItem: 301101, amount: 45 }]
     },
     40: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -441,7 +442,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 119000,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 50 }]
+        costWEs: [{ idItem: 301101, amount: 50 }]
     },
     41: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -452,7 +453,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 122260,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 50 }]
+        costWEs: [{ idItem: 301101, amount: 50 }]
     },
     42: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -463,7 +464,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 125520,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 60 }]
+        costWEs: [{ idItem: 301101, amount: 60 }]
     },
     43: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -474,7 +475,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 128780,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 70 }]
+        costWEs: [{ idItem: 301101, amount: 70 }]
     },
     44: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -485,7 +486,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 132040,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 80 }]
+        costWEs: [{ idItem: 301101, amount: 80 }]
     },
     45: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -496,7 +497,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 135300,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 90 }]
+        costWEs: [{ idItem: 301101, amount: 90 }]
     },
     46: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -507,7 +508,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 138560,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 100 }]
+        costWEs: [{ idItem: 301101, amount: 100 }]
     },
     47: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -518,7 +519,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 141820,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 110 }]
+        costWEs: [{ idItem: 301101, amount: 110 }]
     },
     48: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -529,7 +530,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 145080,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 120 }]
+        costWEs: [{ idItem: 301101, amount: 120 }]
     },
     49: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -540,7 +541,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 148340,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 130 }]
+        costWEs: [{ idItem: 301101, amount: 130 }]
     },
     50: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -551,7 +552,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 151600,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 140 }]
+        costWEs: [{ idItem: 301101, amount: 140 }]
     },
     51: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -562,7 +563,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 156230,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 155 }]
+        costWEs: [{ idItem: 301101, amount: 155 }]
     },
     52: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -573,7 +574,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 160860,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 170 }]
+        costWEs: [{ idItem: 301101, amount: 170 }]
     },
     53: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -584,7 +585,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 165490,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 185 }]
+        costWEs: [{ idItem: 301101, amount: 185 }]
     },
     54: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -595,7 +596,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 170120,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 200 }]
+        costWEs: [{ idItem: 301101, amount: 200 }]
     },
     55: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -606,7 +607,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 174750,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 215 }]
+        costWEs: [{ idItem: 301101, amount: 215 }]
     },
     56: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -617,7 +618,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 179380,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 230 }]
+        costWEs: [{ idItem: 301101, amount: 230 }]
     },
     57: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -628,7 +629,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 184010,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 245 }]
+        costWEs: [{ idItem: 301101, amount: 245 }]
     },
     58: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -639,7 +640,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 188640,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 260 }]
+        costWEs: [{ idItem: 301101, amount: 260 }]
     },
     59: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -650,7 +651,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 193270,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 275 }]
+        costWEs: [{ idItem: 301101, amount: 275 }]
     },
     60: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -661,7 +662,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 197900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 290 }]
+        costWEs: [{ idItem: 301101, amount: 290 }]
     },
     61: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -672,7 +673,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 203900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 300 }]
+        costWEs: [{ idItem: 301101, amount: 300 }]
     },
     62: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -683,7 +684,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 209900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 325 }]
+        costWEs: [{ idItem: 301101, amount: 325 }]
     },
     63: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -694,7 +695,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 215900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 350 }]
+        costWEs: [{ idItem: 301101, amount: 350 }]
     },
     64: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -705,7 +706,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 221900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 375 }]
+        costWEs: [{ idItem: 301101, amount: 375 }]
     },
     65: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -716,7 +717,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 227900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 400 }]
+        costWEs: [{ idItem: 301101, amount: 400 }]
     },
     66: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -727,7 +728,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 233900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 425 }]
+        costWEs: [{ idItem: 301101, amount: 425 }]
     },
     67: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -738,7 +739,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 239900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 450 }]
+        costWEs: [{ idItem: 301101, amount: 450 }]
     },
     68: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -749,7 +750,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 245900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 475 }]
+        costWEs: [{ idItem: 301101, amount: 475 }]
     },
     69: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -760,7 +761,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 251900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 500 }]
+        costWEs: [{ idItem: 301101, amount: 500 }]
     },
     70: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -771,7 +772,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 257900,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 525 }]
+        costWEs: [{ idItem: 301101, amount: 525 }]
     },
     71: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -782,7 +783,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 265290,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 600 }]
+        costWEs: [{ idItem: 301101, amount: 600 }]
     },
     72: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -793,7 +794,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 272680,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 650 }]
+        costWEs: [{ idItem: 301101, amount: 650 }]
     },
     73: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -804,7 +805,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 280070,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 700 }]
+        costWEs: [{ idItem: 301101, amount: 700 }]
     },
     74: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -815,7 +816,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 287460,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 750 }]
+        costWEs: [{ idItem: 301101, amount: 750 }]
     },
     75: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -826,7 +827,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 294850,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 800 }]
+        costWEs: [{ idItem: 301101, amount: 800 }]
     },
     76: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -837,7 +838,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 302240,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 850 }]
+        costWEs: [{ idItem: 301101, amount: 850 }]
     },
     77: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -848,7 +849,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 309630,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 900 }]
+        costWEs: [{ idItem: 301101, amount: 900 }]
     },
     78: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -859,7 +860,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 317020,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 950 }]
+        costWEs: [{ idItem: 301101, amount: 950 }]
     },
     79: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -870,7 +871,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 324410,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1000 }]
+        costWEs: [{ idItem: 301101, amount: 1000 }]
     },
     80: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -881,7 +882,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 331800,
         unlockedSoldier: 10004411,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1050 }]
+        costWEs: [{ idItem: 301101, amount: 1050 }]
     },
     81: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -892,7 +893,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 339440,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 125 }]
+        costWEs: [{ idItem: 301901, amount: 125 }]
     },
     82: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -903,7 +904,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 347080,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 150 }]
+        costWEs: [{ idItem: 301901, amount: 150 }]
     },
     83: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -914,7 +915,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 354720,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 175 }]
+        costWEs: [{ idItem: 301901, amount: 175 }]
     },
     84: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -925,7 +926,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 362360,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 200 }]
+        costWEs: [{ idItem: 301901, amount: 200 }]
     },
     85: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -936,7 +937,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 370000,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 225 }]
+        costWEs: [{ idItem: 301901, amount: 225 }]
     },
     86: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -947,7 +948,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 377640,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 250 }]
+        costWEs: [{ idItem: 301901, amount: 250 }]
     },
     87: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -958,7 +959,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 385280,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 275 }]
+        costWEs: [{ idItem: 301901, amount: 275 }]
     },
     88: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -969,7 +970,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 392920,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 300 }]
+        costWEs: [{ idItem: 301901, amount: 300 }]
     },
     89: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -980,7 +981,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 400560,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 325 }]
+        costWEs: [{ idItem: 301901, amount: 325 }]
     },
     90: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -991,7 +992,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 408200,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 350 }]
+        costWEs: [{ idItem: 301901, amount: 350 }]
     },
     91: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1002,7 +1003,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 416450,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 390 }]
+        costWEs: [{ idItem: 301901, amount: 390 }]
     },
     92: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1013,7 +1014,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 424700,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 430 }]
+        costWEs: [{ idItem: 301901, amount: 430 }]
     },
     93: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1024,7 +1025,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 432950,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 470 }]
+        costWEs: [{ idItem: 301901, amount: 470 }]
     },
     94: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1035,7 +1036,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 441200,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 510 }]
+        costWEs: [{ idItem: 301901, amount: 510 }]
     },
     95: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1046,7 +1047,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 449450,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 550 }]
+        costWEs: [{ idItem: 301901, amount: 550 }]
     },
     96: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1057,7 +1058,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 457700,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 590 }]
+        costWEs: [{ idItem: 301901, amount: 590 }]
     },
     97: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1068,7 +1069,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 465950,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 630 }]
+        costWEs: [{ idItem: 301901, amount: 630 }]
     },
     98: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1079,7 +1080,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 474200,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 670 }]
+        costWEs: [{ idItem: 301901, amount: 670 }]
     },
     99: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1090,7 +1091,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 482450,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 710 }]
+        costWEs: [{ idItem: 301901, amount: 710 }]
     },
     100: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1101,7 +1102,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 490700,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 750 }]
+        costWEs: [{ idItem: 301901, amount: 750 }]
     },
     101: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1112,7 +1113,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 499840,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 800 }]
+        costWEs: [{ idItem: 301901, amount: 800 }]
     },
     102: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1123,7 +1124,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 508980,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 850 }]
+        costWEs: [{ idItem: 301901, amount: 850 }]
     },
     103: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1134,7 +1135,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 518120,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 900 }]
+        costWEs: [{ idItem: 301901, amount: 900 }]
     },
     104: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1145,7 +1146,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 527260,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 950 }]
+        costWEs: [{ idItem: 301901, amount: 950 }]
     },
     105: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1156,7 +1157,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 536400,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1000 }]
+        costWEs: [{ idItem: 301901, amount: 1000 }]
     },
     106: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1167,7 +1168,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 545540,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1050 }]
+        costWEs: [{ idItem: 301901, amount: 1050 }]
     },
     107: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1178,7 +1179,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 554680,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1100 }]
+        costWEs: [{ idItem: 301901, amount: 1100 }]
     },
     108: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1189,7 +1190,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 563820,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1150 }]
+        costWEs: [{ idItem: 301901, amount: 1150 }]
     },
     109: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1200,7 +1201,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 572960,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1200 }]
+        costWEs: [{ idItem: 301901, amount: 1200 }]
     },
     110: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1211,7 +1212,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 582100,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1250 }]
+        costWEs: [{ idItem: 301901, amount: 1250 }]
     },
     111: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1222,7 +1223,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 592140,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1310 }]
+        costWEs: [{ idItem: 301901, amount: 1310 }]
     },
     112: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1233,7 +1234,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 602180,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1370 }]
+        costWEs: [{ idItem: 301901, amount: 1370 }]
     },
     113: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1244,7 +1245,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 612220,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1430 }]
+        costWEs: [{ idItem: 301901, amount: 1430 }]
     },
     114: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1255,7 +1256,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 622260,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1490 }]
+        costWEs: [{ idItem: 301901, amount: 1490 }]
     },
     115: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1266,7 +1267,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 632300,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1550 }]
+        costWEs: [{ idItem: 301901, amount: 1550 }]
     },
     116: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1277,7 +1278,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 642340,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1700 }]
+        costWEs: [{ idItem: 301901, amount: 1700 }]
     },
     117: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1288,7 +1289,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 652380,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1900 }]
+        costWEs: [{ idItem: 301901, amount: 1900 }]
     },
     118: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1299,7 +1300,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 662420,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2100 }]
+        costWEs: [{ idItem: 301901, amount: 2100 }]
     },
     119: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1310,7 +1311,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 672460,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2300 }]
+        costWEs: [{ idItem: 301901, amount: 2300 }]
     },
     120: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1321,7 +1322,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 682500,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2500 }]
+        costWEs: [{ idItem: 301901, amount: 2500 }]
     },
     121: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1332,7 +1333,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 693430,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2750 }]
+        costWEs: [{ idItem: 301901, amount: 2750 }]
     },
     122: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1343,7 +1344,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 704360,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3000 }]
+        costWEs: [{ idItem: 301901, amount: 3000 }]
     },
     123: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1354,7 +1355,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 715290,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3250 }]
+        costWEs: [{ idItem: 301901, amount: 3250 }]
     },
     124: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1365,7 +1366,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 726220,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3500 }]
+        costWEs: [{ idItem: 301901, amount: 3500 }]
     },
     125: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1376,7 +1377,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 737150,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3750 }]
+        costWEs: [{ idItem: 301901, amount: 3750 }]
     },
     126: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1387,7 +1388,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 748080,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4000 }]
+        costWEs: [{ idItem: 301901, amount: 4000 }]
     },
     127: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1398,7 +1399,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 759010,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4250 }]
+        costWEs: [{ idItem: 301901, amount: 4250 }]
     },
     128: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1409,7 +1410,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 769940,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4500 }]
+        costWEs: [{ idItem: 301901, amount: 4500 }]
     },
     129: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1420,7 +1421,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 780870,
         unlockedSoldier: EArmyType.None,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4750 }]
+        costWEs: [{ idItem: 301901, amount: 4750 }]
     },
     130: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1431,7 +1432,7 @@ export const BuildingABarrackStatic : {[Key: number] : IReqBuilding} = {
         power: 791800,
         unlockedSoldier: 10009412,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 5000 }]
+        costWEs: [{ idItem: 301901, amount: 5000 }]
     }
 
 

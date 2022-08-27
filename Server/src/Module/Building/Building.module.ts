@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { BuildingController } from "./Building.controller";
-import { BuildingService } from "./Building.service";
+import { BuildingController } from "./Building.Controller";
+import { BuildingService } from "./Building.Service";
 
 
 @Module({

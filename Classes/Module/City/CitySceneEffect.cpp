@@ -22,8 +22,8 @@ void CitySceneEffect::showPyramidHonourBuildEffect()
   EffectNode->setName("et_node_pyramid_lion");
   EffectNode->setPosition(4480, 2140);
 
-  auto Part1 = BaseCreate::createParticle("Particle/et_diaoxiang_03.plist", Vec2(0, 0), Vec2(0.8, 0.8), 21.21);
-  auto Part2 = BaseCreate::createParticle("Particle/et_diaoxiang_02.plist", Vec2(-16, -33), Vec2(0.514, 1), 27.25);
+  auto Part1 = BaseCreate::createParticle("Particle/et_diaoxiang_03.plist", Vec2(0.0f, 0.0f), Vec2(0.8f, 0.8f), 21.21f);
+  auto Part2 = BaseCreate::createParticle("Particle/et_diaoxiang_02.plist", Vec2(-16, -33), Vec2(0.514, 1.0f), 27.25f);
   auto Part3 = BaseCreate::createParticle("Particle/et_diaoxiang_01.plist", Vec2(-15, -37), Vec2(1, 1), 0);
 
   EffectNode->addChild(Part1, 1);
@@ -44,8 +44,8 @@ void CitySceneEffect::showPyramidBattleEffect()
   EffectNode->setName("et_node_pyramid_battle");
   EffectNode->setPosition(4917.5, 2160.5);
 
-  auto Part1 = BaseCreate::createParticle("Particle/et_zhaishengjiecb_02.plist", Vec2(0, 0), Vec2(1.5, 2.08), 234.38);
-  auto Part2 = BaseCreate::createParticle("Particle/et_jinzita_01.plist", Vec2(-2, -10.5), Vec2(1, 1), 236.64);
+  auto Part1 = BaseCreate::createParticle("Particle/et_zhaishengjiecb_02.plist", Vec2(0, 0), Vec2(1.5, 2.08f), 234.38f);
+  auto Part2 = BaseCreate::createParticle("Particle/et_jinzita_01.plist", Vec2(-2, -10.5), Vec2(1, 1), 236.64f);
 
   EffectNode->addChild(Part1, 1);
   EffectNode->addChild(Part2, 1);
@@ -59,24 +59,24 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
   auto parent = Director::getInstance()->getRunningScene();
   auto dh_firework1 = Sprite::createWithSpriteFrameName("dh_gift_fire_03.png");
   dh_firework1->setOpacity(100);
-  dh_firework1->setPosition(xCoord - 78.78 - 30, yCoord - 38);
+  dh_firework1->setPosition(xCoord - 78.78f - 30.0f, yCoord - 38);
   parent->addChild(dh_firework1, 9);
 
   auto dh_firework2 = Sprite::createWithSpriteFrameName("dh_gift_fire_01.png");
   dh_firework2->setOpacity(100);
-  dh_firework2->setPosition(xCoord + 0.07, yCoord + 0);
+  dh_firework2->setPosition(xCoord + 0.07f, yCoord + 0);
   parent->addChild(dh_firework2, 9);
 
   auto dh_firework3 = Sprite::createWithSpriteFrameName("dh_gift_fire_02.png");
   dh_firework3->setOpacity(100);
-  dh_firework3->setPosition(xCoord + 66.29 + 30, yCoord - 62);
+  dh_firework3->setPosition(xCoord + 66.29f + 30, yCoord - 62);
   parent->addChild(dh_firework3, 9);
 
   auto firework1 = [dh_firework1, frames]()
   {
-    auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_07.plist", Vec2(0.2, -1.87), Vec2(1, 1), 0);
-    auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_08.plist", Vec2(0.2, -1.87), Vec2(2, 2), 0);
-    auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_09.plist", Vec2(0.2, -1.87), Vec2(3, 3), 0);
+    auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_07.plist", Vec2(0.2f, -1.87f), Vec2(1, 1), 0);
+    auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_08.plist", Vec2(0.2f, -1.87f), Vec2(2, 2), 0);
+    auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_09.plist", Vec2(0.2f, -1.87f), Vec2(3, 3), 0);
     Sequence *actionSeq4 = Sequence::create(
         DelayTime::create(25 / frames),
         CallFunc::create([Part1, Part2, Part3](){
@@ -100,7 +100,7 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
 
   dh_firework1->runAction(
       RepeatForever::create(Sequence::create(
-          DelayTime::create(0.1),
+          DelayTime::create(0.1f),
           action1,
           DelayTime::create(0.5),
           CallFunc::create([dh_firework1]() { dh_firework1->removeFromParentAndCleanup(true); }),
@@ -108,9 +108,9 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
 
   auto firework2 = [frames, dh_firework2]()
   {
-    auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_01.plist", Vec2(0.2, -1.87), Vec2(1, 1), 0);
-    auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_02.plist", Vec2(0.2, -1.87), Vec2(2, 2), 0);
-    auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_03.plist", Vec2(0.2, -1.87), Vec2(5, 5), 0);
+    auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_01.plist", Vec2(0.2f, -1.87f), Vec2(1, 1), 0);
+    auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_02.plist", Vec2(0.2f, -1.87f), Vec2(2, 2), 0);
+    auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_03.plist", Vec2(0.2f, -1.87f), Vec2(5, 5), 0);
     Sequence *actionSeq4 = Sequence::create(
         DelayTime::create(25 / frames),
         CallFunc::create([Part1, Part2, Part3](){
@@ -143,9 +143,9 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
 
   auto firework3 = [dh_firework3, frames]()
   {
-    auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_04.plist", Vec2(0.2, -1.87), Vec2(1, 1), 0);
-    auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_05.plist", Vec2(0.2, -1.87), Vec2(2, 2), 0);
-    auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_06.plist", Vec2(0.2, -1.87), Vec2(3, 3), 0);
+    auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_04.plist", Vec2(0.2f, -1.87f), Vec2(1, 1), 0);
+    auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_05.plist", Vec2(0.2f, -1.87f), Vec2(2, 2), 0);
+    auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_06.plist", Vec2(0.2f, -1.87f), Vec2(3, 3), 0);
     Sequence *actionSeq4 = Sequence::create(
         DelayTime::create(25 / frames),
         CallFunc::create([Part1, Part2, Part3]()
@@ -155,9 +155,9 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
             Part3->resetSystem(); 
           }),
         NULL);
-    Part1->runAction(DelayTime::create(25.0 / frames));
-    Part2->runAction(DelayTime::create(25.0 / frames));
-    Part3->runAction(DelayTime::create(20.0 / frames));
+    Part1->runAction(DelayTime::create(25.0f / frames));
+    Part2->runAction(DelayTime::create(25.0f / frames));
+    Part3->runAction(DelayTime::create(20.0f / frames));
     dh_firework3->addChild(Part1, 2);
     dh_firework3->addChild(Part2, 2);
     dh_firework3->addChild(Part3, 2);
@@ -171,7 +171,7 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
 
   dh_firework3->runAction(
       Sequence::create(
-          DelayTime::create(0.2),
+          DelayTime::create(0.2f),
           action3,
           DelayTime::create(0.5),
           CallFunc::create([dh_firework3]()
@@ -288,7 +288,7 @@ void CitySceneEffect::showFinishEffect(Node *nodeFrom, Vec2 posTo, bool isColleg
   powerNode->setPosition(myPos);
   parent->addChild(powerNode, 9);
   auto powerSprite = Sprite::createWithSpriteFrameName(spriteName);
-  auto rotation = (((atan((powerPos.y - myPos.y) / abs(powerPos.x - myPos.x))) * 180) / M_PI) - 180;
+  float rotation = (((atan((powerPos.y - myPos.y) / abs(powerPos.x - myPos.x))) * 180) / M_PI) - 180;
   if (myPos.x < Director::getInstance()->getVisibleOrigin().x)
     rotation = -180 - rotation;
   powerSprite->setRotation(rotation);
@@ -316,7 +316,7 @@ void CitySceneEffect::showXiyiAnimation()
     auto callFunc1 = CallFunc::create([s, isFlippedX]()
       {
         auto Frames = BaseCreate::getAnimationFrames("xiyi_0%d.png", 1, 8);
-        auto animation = Animation::createWithSpriteFrames(Frames, .05);
+        auto animation = Animation::createWithSpriteFrames(Frames, .05f);
         s->setFlippedX(isFlippedX);
         auto forEver = RepeatForever::create(Animate::create(animation));
         forEver->setTag(10);
@@ -324,7 +324,7 @@ void CitySceneEffect::showXiyiAnimation()
       });
     MoveBy *moveBy1 = MoveBy::create(dt, PosTo - PosFrom);
     auto callFunc2 = CallFunc::create([s, PosFrom](){
-      auto fadeTo = FadeTo::create(0.3, 0);
+      auto fadeTo = FadeTo::create(0.3f, 0);
       s->runAction(fadeTo); 
     });
 
@@ -336,7 +336,7 @@ void CitySceneEffect::showXiyiAnimation()
         s->stopActionByTag(10); 
       });
 
-    auto delay = DelayTime::create(rand() % 5 + 3);
+    auto delay = DelayTime::create(rand() % 5 + 3.0f);
     s->runAction(
         RepeatForever::create(
             Sequence::create(
@@ -375,7 +375,7 @@ void CitySceneEffect::addActivityCentetNpc(){
   sprite->setPosition(1842, 1786);
   CallFunc* callFunc1 = CallFunc::create([sprite](){
     auto frames = BaseCreate::getAnimationFrames("funvxiaohai_0%d.png", 1, 8);
-    Animation* animation = Animation::createWithSpriteFrames(frames, 0.175);
+    Animation* animation = Animation::createWithSpriteFrames(frames, 0.175f);
     sprite->setFlippedX(false);
     RepeatForever* repeatForever = RepeatForever::create(Animate::create(animation));
     repeatForever->setTag(20);
@@ -388,9 +388,9 @@ void CitySceneEffect::addActivityCentetNpc(){
   });
   Sequence *actSeq = Sequence::create(
     callFunc1,
-    DelayTime::create(2.8),
+    DelayTime::create(2.8f),
     callFunc2,
-    DelayTime::create(rand() % 4 + 2),
+    DelayTime::create(rand() % 4 + 2.0f),
     nullptr
   );
   sprite->runAction(RepeatForever::create(actSeq));
@@ -768,11 +768,11 @@ void CitySceneEffect::addBuildAnimBoostBottom(const GString& BuildingPlace){
 }
 
 void CitySceneEffect::addHarvestEffect(){
-  GVector<DSCityBuildingUnit> BuildingList = BuildingLib::getBuildingResList();
+  GVector<TCityBuildingUnit> BuildingList = BuildingLib::getBuildingResList();
   CityScene *mainCity = CityScene::getCityScene();
   if(!mainCity)
     return;
-  for(DSCityBuildingUnit& oneBuilding :  BuildingList){
+  for(TCityBuildingUnit& oneBuilding :  BuildingList){
     Node *Building = mainCity->containerView->getChildByName(oneBuilding.NodeName);
     GString  etBoostHarvestName = "et_boost_harvest_" + oneBuilding.NodeName;
     if(mainCity->containerView->getChildByName(etBoostHarvestName))

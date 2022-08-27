@@ -73,7 +73,7 @@ enum class ECityBtnAction
 	OpMilitaryFortress = 1066
 };
 
-struct DSCityBtnAction : GStruct
+struct TCityBtnAction : GStruct
 {
 
 	uint32 btnId;
@@ -98,8 +98,8 @@ struct DSCityBtnAction : GStruct
 
 		if (JsonObject.HasMember("offset") && JsonObject["offset"].IsObject())
 		{
-			offset.x = JsonObject["offset"].HasMember("x") ? JsonObject["offset"]["x"].GetInt() : 0;
-			offset.x = JsonObject["offset"].HasMember("y") ? JsonObject["offset"]["y"].GetInt() : 0;
+			offset.x = (float) JsonObject["offset"].HasMember("x") ? JsonObject["offset"]["x"].GetInt() : 0;
+			offset.x = (float) JsonObject["offset"].HasMember("y") ? JsonObject["offset"]["y"].GetInt() : 0;
 		}
 	}
 
@@ -107,7 +107,7 @@ struct DSCityBtnAction : GStruct
 	{
 
 		return cocos2d::StringUtils::format(
-			"DSCityBtnAction :\
+			"TCityBtnAction :\
 			 {btnId: %d, btnEnum: %d, ActionName: %s, BtnDesc: %s, BtnImage: %s, ActionSortIndex: %d, scale: %d, offset: %s}",
 			btnId, 
 			int(btnEnum),

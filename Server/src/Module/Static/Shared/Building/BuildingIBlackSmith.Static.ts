@@ -1,6 +1,8 @@
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
-export const BuildingBlackSmithStatic: {[Key: number] : IReqBuilding} = {
+
+export const BuildingIBlackSmithStatic: {[Key: number] : IReqBuilding} = {
     1: {
         preCond: [],
         costRes: { Grain: 0, Lumber: 0, Iron: 0, Silver: 0, Crystal: 0 },
@@ -12,7 +14,7 @@ export const BuildingBlackSmithStatic: {[Key: number] : IReqBuilding} = {
         steelReduce: 10
     },
     2: {
-        preCond: [{ buildingType: 101, buildingLvl: 10 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 10 }],
         costRes: { Grain: 1000, Lumber: 1400, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 120,
         exp: 10,

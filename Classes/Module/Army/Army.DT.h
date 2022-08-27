@@ -1,7 +1,7 @@
 #pragma once
 #include "Include/IncludeBase.h"
 
-struct DSCityArmy
+struct TCityArmy
 {
     int32 idPlayer;
     int32 idCity;

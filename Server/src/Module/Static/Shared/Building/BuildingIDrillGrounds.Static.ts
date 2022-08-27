@@ -1,5 +1,6 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
+
 
 export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
     1: {
@@ -341,7 +342,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 61977,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 5 }]
+        costWEs: [{ idItem: 301101, amount: 5 }]
     },
     32: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -352,7 +353,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 63024,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 10 }]
+        costWEs: [{ idItem: 301101, amount: 10 }]
     },
     33: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -363,7 +364,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 64071,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 15 }]
+        costWEs: [{ idItem: 301101, amount: 15 }]
     },
     34: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -374,7 +375,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 65118,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 20 }]
+        costWEs: [{ idItem: 301101, amount: 20 }]
     },
     35: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -385,7 +386,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 66165,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 25 }]
+        costWEs: [{ idItem: 301101, amount: 25 }]
     },
     36: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -396,7 +397,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 67212,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     37: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -407,7 +408,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 68259,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 35 }]
+        costWEs: [{ idItem: 301101, amount: 35 }]
     },
     38: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -418,7 +419,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 69306,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 40 }]
+        costWEs: [{ idItem: 301101, amount: 40 }]
     },
     39: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -429,7 +430,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 70353,
         capacity: 101600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 45 }]
+        costWEs: [{ idItem: 301101, amount: 45 }]
     },
     40: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -440,7 +441,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 71400,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 50 }]
+        costWEs: [{ idItem: 301101, amount: 50 }]
     },
     41: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -451,7 +452,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 73240,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 50 }]
+        costWEs: [{ idItem: 301101, amount: 50 }]
     },
     42: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -462,7 +463,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 75080,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 60 }]
+        costWEs: [{ idItem: 301101, amount: 60 }]
     },
     43: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -473,7 +474,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 76920,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 70 }]
+        costWEs: [{ idItem: 301101, amount: 70 }]
     },
     44: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -484,7 +485,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 78760,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 80 }]
+        costWEs: [{ idItem: 301101, amount: 80 }]
     },
     45: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -495,7 +496,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 80600,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 90 }]
+        costWEs: [{ idItem: 301101, amount: 90 }]
     },
     46: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -506,7 +507,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 82440,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 100 }]
+        costWEs: [{ idItem: 301101, amount: 100 }]
     },
     47: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -517,7 +518,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 84280,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 110 }]
+        costWEs: [{ idItem: 301101, amount: 110 }]
     },
     48: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -528,7 +529,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 86120,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 120 }]
+        costWEs: [{ idItem: 301101, amount: 120 }]
     },
     49: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -539,7 +540,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 87960,
         capacity: 106500,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 130 }]
+        costWEs: [{ idItem: 301101, amount: 130 }]
     },
     50: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -550,7 +551,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 89800,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 140 }]
+        costWEs: [{ idItem: 301101, amount: 140 }]
     },
     51: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -561,7 +562,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 92420,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 155 }]
+        costWEs: [{ idItem: 301101, amount: 155 }]
     },
     52: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -572,7 +573,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 95040,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 170 }]
+        costWEs: [{ idItem: 301101, amount: 170 }]
     },
     53: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -583,7 +584,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 97660,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 185 }]
+        costWEs: [{ idItem: 301101, amount: 185 }]
     },
     54: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -594,7 +595,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 100280,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 200 }]
+        costWEs: [{ idItem: 301101, amount: 200 }]
     },
     55: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -605,7 +606,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 102900,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 215 }]
+        costWEs: [{ idItem: 301101, amount: 215 }]
     },
     56: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -616,7 +617,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 105520,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 230 }]
+        costWEs: [{ idItem: 301101, amount: 230 }]
     },
     57: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -627,7 +628,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 108140,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 245 }]
+        costWEs: [{ idItem: 301101, amount: 245 }]
     },
     58: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -638,7 +639,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 110760,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 260 }]
+        costWEs: [{ idItem: 301101, amount: 260 }]
     },
     59: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -649,7 +650,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 113380,
         capacity: 112000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 275 }]
+        costWEs: [{ idItem: 301101, amount: 275 }]
     },
     60: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -660,7 +661,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 116000,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 290 }]
+        costWEs: [{ idItem: 301101, amount: 290 }]
     },
     61: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -671,7 +672,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 119390,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 300 }]
+        costWEs: [{ idItem: 301101, amount: 300 }]
     },
     62: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -682,7 +683,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 122780,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 325 }]
+        costWEs: [{ idItem: 301101, amount: 325 }]
     },
     63: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -693,7 +694,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 126170,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 350 }]
+        costWEs: [{ idItem: 301101, amount: 350 }]
     },
     64: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -704,7 +705,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 129560,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 375 }]
+        costWEs: [{ idItem: 301101, amount: 375 }]
     },
     65: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -715,7 +716,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 132950,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 400 }]
+        costWEs: [{ idItem: 301101, amount: 400 }]
     },
     66: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -726,7 +727,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 136340,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 425 }]
+        costWEs: [{ idItem: 301101, amount: 425 }]
     },
     67: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -737,7 +738,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 139730,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 450 }]
+        costWEs: [{ idItem: 301101, amount: 450 }]
     },
     68: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -748,7 +749,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 143120,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 475 }]
+        costWEs: [{ idItem: 301101, amount: 475 }]
     },
     69: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -759,7 +760,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 146510,
         capacity: 120000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 500 }]
+        costWEs: [{ idItem: 301101, amount: 500 }]
     },
     70: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -770,7 +771,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 149900,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 525 }]
+        costWEs: [{ idItem: 301101, amount: 525 }]
     },
     71: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -781,7 +782,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 153870,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 600 }]
+        costWEs: [{ idItem: 301101, amount: 600 }]
     },
     72: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -792,7 +793,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 157840,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 650 }]
+        costWEs: [{ idItem: 301101, amount: 650 }]
     },
     73: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -803,7 +804,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 161810,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 700 }]
+        costWEs: [{ idItem: 301101, amount: 700 }]
     },
     74: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -814,7 +815,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 165780,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 750 }]
+        costWEs: [{ idItem: 301101, amount: 750 }]
     },
     75: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -825,7 +826,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 169750,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 800 }]
+        costWEs: [{ idItem: 301101, amount: 800 }]
     },
     76: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -836,7 +837,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 173720,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 850 }]
+        costWEs: [{ idItem: 301101, amount: 850 }]
     },
     77: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -847,7 +848,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 177690,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 900 }]
+        costWEs: [{ idItem: 301101, amount: 900 }]
     },
     78: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -858,7 +859,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 181660,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 950 }]
+        costWEs: [{ idItem: 301101, amount: 950 }]
     },
     79: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -869,7 +870,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 185630,
         capacity: 128000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1000 }]
+        costWEs: [{ idItem: 301101, amount: 1000 }]
     },
     80: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -880,7 +881,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 189600,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1050 }]
+        costWEs: [{ idItem: 301101, amount: 1050 }]
     },
     81: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -891,7 +892,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 194410,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 125 }]
+        costWEs: [{ idItem: 301901, amount: 125 }]
     },
     82: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -902,7 +903,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 199220,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 150 }]
+        costWEs: [{ idItem: 301901, amount: 150 }]
     },
     83: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -913,7 +914,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 204030,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 175 }]
+        costWEs: [{ idItem: 301901, amount: 175 }]
     },
     84: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -924,7 +925,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 208840,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 200 }]
+        costWEs: [{ idItem: 301901, amount: 200 }]
     },
     85: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -935,7 +936,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 213650,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 225 }]
+        costWEs: [{ idItem: 301901, amount: 225 }]
     },
     86: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -946,7 +947,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 218460,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 250 }]
+        costWEs: [{ idItem: 301901, amount: 250 }]
     },
     87: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -957,7 +958,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 223270,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 275 }]
+        costWEs: [{ idItem: 301901, amount: 275 }]
     },
     88: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -968,7 +969,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 228080,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 300 }]
+        costWEs: [{ idItem: 301901, amount: 300 }]
     },
     89: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -979,7 +980,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 232890,
         capacity: 136000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 325 }]
+        costWEs: [{ idItem: 301901, amount: 325 }]
     },
     90: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -990,7 +991,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 237700,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 350 }]
+        costWEs: [{ idItem: 301901, amount: 350 }]
     },
     91: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1001,7 +1002,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 242500,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 390 }]
+        costWEs: [{ idItem: 301901, amount: 390 }]
     },
     92: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1012,7 +1013,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 247300,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 430 }]
+        costWEs: [{ idItem: 301901, amount: 430 }]
     },
     93: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1023,7 +1024,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 252100,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 470 }]
+        costWEs: [{ idItem: 301901, amount: 470 }]
     },
     94: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1034,7 +1035,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 256900,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 510 }]
+        costWEs: [{ idItem: 301901, amount: 510 }]
     },
     95: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1045,7 +1046,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 261700,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 550 }]
+        costWEs: [{ idItem: 301901, amount: 550 }]
     },
     96: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1056,7 +1057,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 266500,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 590 }]
+        costWEs: [{ idItem: 301901, amount: 590 }]
     },
     97: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1067,7 +1068,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 271300,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 630 }]
+        costWEs: [{ idItem: 301901, amount: 630 }]
     },
     98: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1078,7 +1079,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 276100,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 670 }]
+        costWEs: [{ idItem: 301901, amount: 670 }]
     },
     99: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1089,7 +1090,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 280900,
         capacity: 146000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 710 }]
+        costWEs: [{ idItem: 301901, amount: 710 }]
     },
     100: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1100,7 +1101,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 285700,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 750 }]
+        costWEs: [{ idItem: 301901, amount: 750 }]
     },
     101: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1111,7 +1112,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 291030,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 800 }]
+        costWEs: [{ idItem: 301901, amount: 800 }]
     },
     102: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1122,7 +1123,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 296360,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 850 }]
+        costWEs: [{ idItem: 301901, amount: 850 }]
     },
     103: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1133,7 +1134,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 301690,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 900 }]
+        costWEs: [{ idItem: 301901, amount: 900 }]
     },
     104: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1144,7 +1145,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 307020,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 950 }]
+        costWEs: [{ idItem: 301901, amount: 950 }]
     },
     105: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1155,7 +1156,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 312350,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1000 }]
+        costWEs: [{ idItem: 301901, amount: 1000 }]
     },
     106: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1166,7 +1167,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 317680,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1050 }]
+        costWEs: [{ idItem: 301901, amount: 1050 }]
     },
     107: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1177,7 +1178,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 323010,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1100 }]
+        costWEs: [{ idItem: 301901, amount: 1100 }]
     },
     108: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1188,7 +1189,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 328340,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1150 }]
+        costWEs: [{ idItem: 301901, amount: 1150 }]
     },
     109: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1199,7 +1200,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 333670,
         capacity: 158000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1200 }]
+        costWEs: [{ idItem: 301901, amount: 1200 }]
     },
     110: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1210,7 +1211,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 339000,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1250 }]
+        costWEs: [{ idItem: 301901, amount: 1250 }]
     },
     111: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1221,7 +1222,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 344840,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1310 }]
+        costWEs: [{ idItem: 301901, amount: 1310 }]
     },
     112: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1232,7 +1233,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 350680,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1370 }]
+        costWEs: [{ idItem: 301901, amount: 1370 }]
     },
     113: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1243,7 +1244,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 356520,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1430 }]
+        costWEs: [{ idItem: 301901, amount: 1430 }]
     },
     114: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1254,7 +1255,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 362360,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1490 }]
+        costWEs: [{ idItem: 301901, amount: 1490 }]
     },
     115: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1265,7 +1266,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 368200,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1550 }]
+        costWEs: [{ idItem: 301901, amount: 1550 }]
     },
     116: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1276,7 +1277,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 374040,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1700 }]
+        costWEs: [{ idItem: 301901, amount: 1700 }]
     },
     117: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1287,7 +1288,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 379880,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1900 }]
+        costWEs: [{ idItem: 301901, amount: 1900 }]
     },
     118: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1298,7 +1299,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 385720,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2100 }]
+        costWEs: [{ idItem: 301901, amount: 2100 }]
     },
     119: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1309,7 +1310,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 391560,
         capacity: 172000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2300 }]
+        costWEs: [{ idItem: 301901, amount: 2300 }]
     },
     120: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1320,7 +1321,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 397400,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2500 }]
+        costWEs: [{ idItem: 301901, amount: 2500 }]
     },
     121: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1331,7 +1332,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 403760,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2750 }]
+        costWEs: [{ idItem: 301901, amount: 2750 }]
     },
     122: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1342,7 +1343,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 410120,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3000 }]
+        costWEs: [{ idItem: 301901, amount: 3000 }]
     },
     123: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1353,7 +1354,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 416480,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3250 }]
+        costWEs: [{ idItem: 301901, amount: 3250 }]
     },
     124: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1364,7 +1365,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 422840,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3500 }]
+        costWEs: [{ idItem: 301901, amount: 3500 }]
     },
     125: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1375,7 +1376,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 429200,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3750 }]
+        costWEs: [{ idItem: 301901, amount: 3750 }]
     },
     126: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1386,7 +1387,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 435560,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4000 }]
+        costWEs: [{ idItem: 301901, amount: 4000 }]
     },
     127: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1397,7 +1398,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 441920,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4250 }]
+        costWEs: [{ idItem: 301901, amount: 4250 }]
     },
     128: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1408,7 +1409,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 448280,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4500 }]
+        costWEs: [{ idItem: 301901, amount: 4500 }]
     },
     129: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1419,7 +1420,7 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 454640,
         capacity: 188000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4750 }]
+        costWEs: [{ idItem: 301901, amount: 4750 }]
     },
     130: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1430,6 +1431,6 @@ export const BuildingDrillGroundStatic: {[Key: number] : IReqBuilding} = {
         power: 461000,
         capacity: 208000,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 5000 }]
+        costWEs: [{ idItem: 301901, amount: 5000 }]
     }
 };

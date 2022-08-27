@@ -39,38 +39,36 @@ void BuildingIBlackSmith::onEnter() {
 void BuildingIBlackSmith::setBuildingParticle() {
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_tiejiangpuyan_01.plist");
-	Part1->setPosition(-20, 130);
+	Part1->setPosition(-20.0f, 130.0f);
 	Part1->setScaleX(1);
 	Part1->setScaleY(1);
-	Part1->setRotation(-10.76);
+	Part1->setRotation(-10.76f);
 	Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part1, 10);
 
 	auto Part2 = ParticleSystemQuad::create("Particle/et_tiejiangpuyan_01.plist");
-	Part2->setPosition(110, 105);
-	Part2->setScaleX(0.9);
-	Part2->setScaleY(0.9);
-	Part2->setRotation(-4.85);
+	Part2->setPosition(110.0f, 105.0f);
+	Part2->setScaleX(0.9f);
+	Part2->setScaleY(0.9f);
+	Part2->setRotation(-4.85f);
 	Part2->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part2, 10);
 
 	auto Part3 = ParticleSystemQuad::create("Particle/et_tiejiangpuyan_02.plist");
-	Part3->setPosition(-42, -12);
-	Part3->setScaleX(0.9576);
-	Part3->setScaleY(1.0924);
-	Part3->setRotation(7.56);
+	Part3->setPosition(-42.0f, -12.0f);
+	Part3->setScaleX(0.9576f);
+	Part3->setScaleY(1.0924f);
+	Part3->setRotation(7.56f);
 	Part3->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part3, 10);
 
 	auto Part4 = ParticleSystemQuad::create("Particle/et_tiejiangpuyan_02.plist");
-	Part4->setPosition(34, 10);
-	Part4->setScaleX(0.2818);
-	Part4->setScaleY(0.6099);
-	Part4->setRotation(0.17);
+	Part4->setPosition(34.0f, 10.0f);
+	Part4->setScaleX(0.2818f);
+	Part4->setScaleY(0.6099f);
+	Part4->setRotation(0.17f);
 	Part4->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part4, 10);
-
-
 }
 
 

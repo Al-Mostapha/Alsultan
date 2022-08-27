@@ -1,4 +1,5 @@
 #include "Module/Building/Building.Type.h"
+#include "Module/Building/Building.Enum.h"
 #include "Module/Building/CityBuildingBase.h"
 #include "Scene/CityScene.h"
 #include "Module/Building/Building.Lib.h"
@@ -8,7 +9,7 @@
 
 
 
-void DSCityBuildingUnit::fromJson(GJson *json)
+void TCityBuildingUnit::fromJson(GJson *json)
 {
     if (json == nullptr)
         return;
@@ -16,7 +17,7 @@ void DSCityBuildingUnit::fromJson(GJson *json)
     eBuildingType = static_cast<EBuildingType>(json->GetInt("buildingType", 0));
 }
 
-DSCityBuildingUnit& DSCityBuildingUnit::buildUnit()
+TCityBuildingUnit& TCityBuildingUnit::buildUnit()
 {
 
     Scene *runningScene = Director::getInstance()->getRunningScene();
@@ -53,7 +54,7 @@ DSCityBuildingUnit& DSCityBuildingUnit::buildUnit()
     return *this;
 }
 
-DSCityBuildingUnit& DSCityBuildingUnit::addToBuildingList()
+TCityBuildingUnit& TCityBuildingUnit::addToBuildingList()
 {
 	BuildingModule::getCurentCityBuilding().BuildingList[BuildingPlace] = *this;
 	return *this;

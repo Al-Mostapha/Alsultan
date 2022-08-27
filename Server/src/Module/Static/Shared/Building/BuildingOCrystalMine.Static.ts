@@ -1,5 +1,5 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
 export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
     1: {
@@ -403,7 +403,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 7 }]
+        costWEs: [{ idItem: 301101, amount: 7 }]
     },
     32: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -416,7 +416,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 14 }]
+        costWEs: [{ idItem: 301101, amount: 14 }]
     },
     33: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -429,7 +429,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 21 }]
+        costWEs: [{ idItem: 301101, amount: 21 }]
     },
     34: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -442,7 +442,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 28 }]
+        costWEs: [{ idItem: 301101, amount: 28 }]
     },
     35: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -455,7 +455,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 35 }]
+        costWEs: [{ idItem: 301101, amount: 35 }]
     },
     36: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -468,7 +468,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 42 }]
+        costWEs: [{ idItem: 301101, amount: 42 }]
     },
     37: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -481,7 +481,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 49 }]
+        costWEs: [{ idItem: 301101, amount: 49 }]
     },
     38: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -494,7 +494,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 56 }]
+        costWEs: [{ idItem: 301101, amount: 56 }]
     },
     39: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -507,7 +507,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 380,
         addOutputCostGold: 600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 63 }]
+        costWEs: [{ idItem: 301101, amount: 63 }]
     },
     40: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -520,7 +520,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 70 }]
+        costWEs: [{ idItem: 301101, amount: 70 }]
     },
     41: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -533,7 +533,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 70 }]
+        costWEs: [{ idItem: 301101, amount: 70 }]
     },
     42: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -546,7 +546,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 84 }]
+        costWEs: [{ idItem: 301101, amount: 84 }]
     },
     43: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -559,7 +559,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 98 }]
+        costWEs: [{ idItem: 301101, amount: 98 }]
     },
     44: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -572,7 +572,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 112 }]
+        costWEs: [{ idItem: 301101, amount: 112 }]
     },
     45: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -585,7 +585,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 126 }]
+        costWEs: [{ idItem: 301101, amount: 126 }]
     },
     46: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -598,7 +598,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 140 }]
+        costWEs: [{ idItem: 301101, amount: 140 }]
     },
     47: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -611,7 +611,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 154 }]
+        costWEs: [{ idItem: 301101, amount: 154 }]
     },
     48: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -624,7 +624,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 168 }]
+        costWEs: [{ idItem: 301101, amount: 168 }]
     },
     49: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -637,7 +637,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 440,
         addOutputCostGold: 700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 182 }]
+        costWEs: [{ idItem: 301101, amount: 182 }]
     },
     50: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -650,7 +650,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 196 }]
+        costWEs: [{ idItem: 301101, amount: 196 }]
     },
     51: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -663,7 +663,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 217 }]
+        costWEs: [{ idItem: 301101, amount: 217 }]
     },
     52: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -676,7 +676,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 238 }]
+        costWEs: [{ idItem: 301101, amount: 238 }]
     },
     53: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -689,7 +689,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 259 }]
+        costWEs: [{ idItem: 301101, amount: 259 }]
     },
     54: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -702,7 +702,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 280 }]
+        costWEs: [{ idItem: 301101, amount: 280 }]
     },
     55: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -715,7 +715,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 301 }]
+        costWEs: [{ idItem: 301101, amount: 301 }]
     },
     56: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -728,7 +728,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 322 }]
+        costWEs: [{ idItem: 301101, amount: 322 }]
     },
     57: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -741,7 +741,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 343 }]
+        costWEs: [{ idItem: 301101, amount: 343 }]
     },
     58: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -754,7 +754,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 364 }]
+        costWEs: [{ idItem: 301101, amount: 364 }]
     },
     59: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -767,7 +767,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 480,
         addOutputCostGold: 800,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 385 }]
+        costWEs: [{ idItem: 301101, amount: 385 }]
     },
     60: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -780,7 +780,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 406 }]
+        costWEs: [{ idItem: 301101, amount: 406 }]
     },
     61: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -793,7 +793,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 420 }]
+        costWEs: [{ idItem: 301101, amount: 420 }]
     },
     62: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -806,7 +806,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 455 }]
+        costWEs: [{ idItem: 301101, amount: 455 }]
     },
     63: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -819,7 +819,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 490 }]
+        costWEs: [{ idItem: 301101, amount: 490 }]
     },
     64: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -832,7 +832,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 525 }]
+        costWEs: [{ idItem: 301101, amount: 525 }]
     },
     65: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -845,7 +845,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 560 }]
+        costWEs: [{ idItem: 301101, amount: 560 }]
     },
     66: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -858,7 +858,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 595 }]
+        costWEs: [{ idItem: 301101, amount: 595 }]
     },
     67: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -871,7 +871,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 630 }]
+        costWEs: [{ idItem: 301101, amount: 630 }]
     },
     68: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -884,7 +884,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 665 }]
+        costWEs: [{ idItem: 301101, amount: 665 }]
     },
     69: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -897,7 +897,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 560,
         addOutputCostGold: 900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 700 }]
+        costWEs: [{ idItem: 301101, amount: 700 }]
     },
     70: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -910,7 +910,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 735 }]
+        costWEs: [{ idItem: 301101, amount: 735 }]
     },
     71: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -923,7 +923,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 840 }]
+        costWEs: [{ idItem: 301101, amount: 840 }]
     },
     72: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -936,7 +936,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 910 }]
+        costWEs: [{ idItem: 301101, amount: 910 }]
     },
     73: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -949,7 +949,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 980 }]
+        costWEs: [{ idItem: 301101, amount: 980 }]
     },
     74: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -962,7 +962,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1050 }]
+        costWEs: [{ idItem: 301101, amount: 1050 }]
     },
     75: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -975,7 +975,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1120 }]
+        costWEs: [{ idItem: 301101, amount: 1120 }]
     },
     76: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -988,7 +988,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1190 }]
+        costWEs: [{ idItem: 301101, amount: 1190 }]
     },
     77: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1001,7 +1001,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1260 }]
+        costWEs: [{ idItem: 301101, amount: 1260 }]
     },
     78: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1014,7 +1014,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1330 }]
+        costWEs: [{ idItem: 301101, amount: 1330 }]
     },
     79: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1027,7 +1027,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 620,
         addOutputCostGold: 1000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1400 }]
+        costWEs: [{ idItem: 301101, amount: 1400 }]
     },
     80: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1040,7 +1040,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1470 }]
+        costWEs: [{ idItem: 301101, amount: 1470 }]
     },
     81: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1053,7 +1053,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 125 }]
+        costWEs: [{ idItem: 301901, amount: 125 }]
     },
     82: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1066,7 +1066,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 150 }]
+        costWEs: [{ idItem: 301901, amount: 150 }]
     },
     83: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1079,7 +1079,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 175 }]
+        costWEs: [{ idItem: 301901, amount: 175 }]
     },
     84: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1092,7 +1092,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 200 }]
+        costWEs: [{ idItem: 301901, amount: 200 }]
     },
     85: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1105,7 +1105,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 225 }]
+        costWEs: [{ idItem: 301901, amount: 225 }]
     },
     86: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1118,7 +1118,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 250 }]
+        costWEs: [{ idItem: 301901, amount: 250 }]
     },
     87: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1131,7 +1131,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 275 }]
+        costWEs: [{ idItem: 301901, amount: 275 }]
     },
     88: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1144,7 +1144,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 300 }]
+        costWEs: [{ idItem: 301901, amount: 300 }]
     },
     89: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1157,7 +1157,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 680,
         addOutputCostGold: 1100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 325 }]
+        costWEs: [{ idItem: 301901, amount: 325 }]
     },
     90: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1170,7 +1170,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 350 }]
+        costWEs: [{ idItem: 301901, amount: 350 }]
     },
     91: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1183,7 +1183,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 390 }]
+        costWEs: [{ idItem: 301901, amount: 390 }]
     },
     92: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1196,7 +1196,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 430 }]
+        costWEs: [{ idItem: 301901, amount: 430 }]
     },
     93: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1209,7 +1209,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 470 }]
+        costWEs: [{ idItem: 301901, amount: 470 }]
     },
     94: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1222,7 +1222,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 510 }]
+        costWEs: [{ idItem: 301901, amount: 510 }]
     },
     95: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1235,7 +1235,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 550 }]
+        costWEs: [{ idItem: 301901, amount: 550 }]
     },
     96: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1248,7 +1248,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 590 }]
+        costWEs: [{ idItem: 301901, amount: 590 }]
     },
     97: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1261,7 +1261,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 630 }]
+        costWEs: [{ idItem: 301901, amount: 630 }]
     },
     98: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1274,7 +1274,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 670 }]
+        costWEs: [{ idItem: 301901, amount: 670 }]
     },
     99: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1287,7 +1287,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 770,
         addOutputCostGold: 1200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 710 }]
+        costWEs: [{ idItem: 301901, amount: 710 }]
     },
     100: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1300,7 +1300,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 750 }]
+        costWEs: [{ idItem: 301901, amount: 750 }]
     },
     101: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1313,7 +1313,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 800 }]
+        costWEs: [{ idItem: 301901, amount: 800 }]
     },
     102: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1326,7 +1326,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 850 }]
+        costWEs: [{ idItem: 301901, amount: 850 }]
     },
     103: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1339,7 +1339,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 900 }]
+        costWEs: [{ idItem: 301901, amount: 900 }]
     },
     104: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1352,7 +1352,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 950 }]
+        costWEs: [{ idItem: 301901, amount: 950 }]
     },
     105: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1365,7 +1365,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1000 }]
+        costWEs: [{ idItem: 301901, amount: 1000 }]
     },
     106: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1378,7 +1378,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1050 }]
+        costWEs: [{ idItem: 301901, amount: 1050 }]
     },
     107: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1391,7 +1391,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1100 }]
+        costWEs: [{ idItem: 301901, amount: 1100 }]
     },
     108: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1404,7 +1404,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1150 }]
+        costWEs: [{ idItem: 301901, amount: 1150 }]
     },
     109: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1417,7 +1417,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 840,
         addOutputCostGold: 1300,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1200 }]
+        costWEs: [{ idItem: 301901, amount: 1200 }]
     },
     110: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1430,7 +1430,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1250 }]
+        costWEs: [{ idItem: 301901, amount: 1250 }]
     },
     111: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1443,7 +1443,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1310 }]
+        costWEs: [{ idItem: 301901, amount: 1310 }]
     },
     112: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1456,7 +1456,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1370 }]
+        costWEs: [{ idItem: 301901, amount: 1370 }]
     },
     113: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1469,7 +1469,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1430 }]
+        costWEs: [{ idItem: 301901, amount: 1430 }]
     },
     114: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1482,7 +1482,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1490 }]
+        costWEs: [{ idItem: 301901, amount: 1490 }]
     },
     115: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1495,7 +1495,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1550 }]
+        costWEs: [{ idItem: 301901, amount: 1550 }]
     },
     116: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1508,7 +1508,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1700 }]
+        costWEs: [{ idItem: 301901, amount: 1700 }]
     },
     117: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1521,7 +1521,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1900 }]
+        costWEs: [{ idItem: 301901, amount: 1900 }]
     },
     118: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1534,7 +1534,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2100 }]
+        costWEs: [{ idItem: 301901, amount: 2100 }]
     },
     119: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1547,7 +1547,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 950,
         addOutputCostGold: 1400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2300 }]
+        costWEs: [{ idItem: 301901, amount: 2300 }]
     },
     120: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1560,7 +1560,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2500 }]
+        costWEs: [{ idItem: 301901, amount: 2500 }]
     },
     121: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1573,7 +1573,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2750 }]
+        costWEs: [{ idItem: 301901, amount: 2750 }]
     },
     122: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1586,7 +1586,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3000 }]
+        costWEs: [{ idItem: 301901, amount: 3000 }]
     },
     123: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1599,7 +1599,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3250 }]
+        costWEs: [{ idItem: 301901, amount: 3250 }]
     },
     124: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1612,7 +1612,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3500 }]
+        costWEs: [{ idItem: 301901, amount: 3500 }]
     },
     125: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1625,7 +1625,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3750 }]
+        costWEs: [{ idItem: 301901, amount: 3750 }]
     },
     126: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1638,7 +1638,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4000 }]
+        costWEs: [{ idItem: 301901, amount: 4000 }]
     },
     127: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1651,7 +1651,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4250 }]
+        costWEs: [{ idItem: 301901, amount: 4250 }]
     },
     128: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1664,7 +1664,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4500 }]
+        costWEs: [{ idItem: 301901, amount: 4500 }]
     },
     129: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1677,7 +1677,7 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1040,
         addOutputCostGold: 1500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4750 }]
+        costWEs: [{ idItem: 301901, amount: 4750 }]
     },
     130: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1690,6 +1690,6 @@ export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
         output: 1130,
         addOutputCostGold: 1600,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 5000 }]
+        costWEs: [{ idItem: 301901, amount: 5000 }]
     }
 };

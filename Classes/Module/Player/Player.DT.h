@@ -5,7 +5,7 @@ struct DSPlayer
 {
     int32 idCurrentCity;
     int32 idPlayer;
-    DSCity City;
+    TCity City;
 };
 
 class DTPlayer

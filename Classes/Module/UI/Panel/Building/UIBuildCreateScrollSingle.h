@@ -18,7 +18,7 @@ public:
   UIBuildCreateScrollSingle();
   ~UIBuildCreateScrollSingle();
   void initPanel() override;
-  void initData(EBuildingType p_BuildingType = EBuildingType::CBType_None);
+  void initData(EBuildingType p_BuildingType = EBuildingType::None);
   CREATE_FUNC(UIBuildCreateScrollSingle);
 
 };

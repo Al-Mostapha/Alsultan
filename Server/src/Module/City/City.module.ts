@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CityArmyModule } from "../Army/CityArmy.module";
-import { BuildingModule } from "../Building/Building.module";
+import { BuildingModule } from "../Building/Building.Module";
 import { CityController } from "./City.controller";
 import { CityService } from "./City.service";
 import { CityBuildingModule } from "./CityBuilding/CityBuilding.module";

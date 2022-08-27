@@ -1,6 +1,6 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
-import { EArmyType } from "../Army/Static.Army";
-import { IReqBuilding } from "./Building.Static";
+import { EArmyType } from "src/Module/Army/Army.Enum";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
 export const BuildingAFortressStatic: {[Key: number] : IReqBuilding} = {
     1: {

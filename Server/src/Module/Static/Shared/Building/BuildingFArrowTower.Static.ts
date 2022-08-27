@@ -1,5 +1,5 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
 export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
     1: {
@@ -13,7 +13,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1}],
+        costTools: [{ idItem: 300501, amount: 1}],
         costWEs: []
     },
     2: {
@@ -27,7 +27,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 2}],
+        costTools: [{ idItem: 300501, amount: 2}],
         costWEs: []
     },
     3: {
@@ -41,7 +41,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 4}],
+        costTools: [{ idItem: 300501, amount: 4}],
         costWEs: []
     },
     4: {
@@ -55,7 +55,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 8}],
+        costTools: [{ idItem: 300501, amount: 8}],
         costWEs: []
     },
     5: {
@@ -69,7 +69,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 12}],
+        costTools: [{ idItem: 300501, amount: 12}],
         costWEs: []
     },
     6: {
@@ -83,7 +83,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 20}],
+        costTools: [{ idItem: 300501, amount: 20}],
         costWEs: []
     },
     7: {
@@ -97,7 +97,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 30}],
+        costTools: [{ idItem: 300501, amount: 30}],
         costWEs: []
     },
     8: {
@@ -111,7 +111,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 50}],
+        costTools: [{ idItem: 300501, amount: 50}],
         costWEs: []
     },
     9: {
@@ -125,7 +125,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 250,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 80}],
+        costTools: [{ idItem: 300501, amount: 80}],
         costWEs: []
     },
     10: {
@@ -139,7 +139,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 125}],
+        costTools: [{ idItem: 300501, amount: 125}],
         costWEs: []
     },
     11: {
@@ -153,7 +153,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 175}],
+        costTools: [{ idItem: 300501, amount: 175}],
         costWEs: []
     },
     12: {
@@ -167,7 +167,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 230}],
+        costTools: [{ idItem: 300501, amount: 230}],
         costWEs: []
     },
     13: {
@@ -181,7 +181,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 290}],
+        costTools: [{ idItem: 300501, amount: 290}],
         costWEs: []
     },
     14: {
@@ -195,7 +195,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 355}],
+        costTools: [{ idItem: 300501, amount: 355}],
         costWEs: []
     },
     15: {
@@ -209,7 +209,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 425}],
+        costTools: [{ idItem: 300501, amount: 425}],
         costWEs: []
     },
     16: {
@@ -223,7 +223,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 500}],
+        costTools: [{ idItem: 300501, amount: 500}],
         costWEs: []
     },
     17: {
@@ -237,7 +237,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 580}],
+        costTools: [{ idItem: 300501, amount: 580}],
         costWEs: []
     },
     18: {
@@ -251,7 +251,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 665}],
+        costTools: [{ idItem: 300501, amount: 665}],
         costWEs: []
     },
     19: {
@@ -265,7 +265,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 430,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 755}],
+        costTools: [{ idItem: 300501, amount: 755}],
         costWEs: []
     },
     20: {
@@ -279,7 +279,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 850}],
+        costTools: [{ idItem: 300501, amount: 850}],
         costWEs: []
     },
     21: {
@@ -293,7 +293,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 950}],
+        costTools: [{ idItem: 300501, amount: 950}],
         costWEs: []
     },
     22: {
@@ -307,7 +307,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1055}],
+        costTools: [{ idItem: 300501, amount: 1055}],
         costWEs: []
     },
     23: {
@@ -321,7 +321,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1165}],
+        costTools: [{ idItem: 300501, amount: 1165}],
         costWEs: []
     },
     24: {
@@ -335,7 +335,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1280}],
+        costTools: [{ idItem: 300501, amount: 1280}],
         costWEs: []
     },
     25: {
@@ -349,7 +349,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1400}],
+        costTools: [{ idItem: 300501, amount: 1400}],
         costWEs: []
     },
     26: {
@@ -363,7 +363,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1525}],
+        costTools: [{ idItem: 300501, amount: 1525}],
         costWEs: []
     },
     27: {
@@ -377,7 +377,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1655}],
+        costTools: [{ idItem: 300501, amount: 1655}],
         costWEs: []
     },
     28: {
@@ -391,7 +391,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1790}],
+        costTools: [{ idItem: 300501, amount: 1790}],
         costWEs: []
     },
     29: {
@@ -405,7 +405,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 670,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 1930}],
+        costTools: [{ idItem: 300501, amount: 1930}],
         costWEs: []
     },
     30: {
@@ -419,7 +419,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 2075}],
+        costTools: [{ idItem: 300501, amount: 2075}],
         costWEs: []
     },
     31: {
@@ -433,8 +433,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 220}],
-        costWEs: [{ idTool: 301101, amount: 5 }]
+        costTools: [{ idItem: 300501, amount: 220}],
+        costWEs: [{ idItem: 301101, amount: 5 }]
     },
     32: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -447,8 +447,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 222}],
-        costWEs: [{ idTool: 301101, amount: 10 }]
+        costTools: [{ idItem: 300501, amount: 222}],
+        costWEs: [{ idItem: 301101, amount: 10 }]
     },
     33: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -461,8 +461,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 224}],
-        costWEs: [{ idTool: 301101, amount: 15 }]
+        costTools: [{ idItem: 300501, amount: 224}],
+        costWEs: [{ idItem: 301101, amount: 15 }]
     },
     34: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -475,8 +475,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 226}],
-        costWEs: [{ idTool: 301101, amount: 20 }]
+        costTools: [{ idItem: 300501, amount: 226}],
+        costWEs: [{ idItem: 301101, amount: 20 }]
     },
     35: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -489,8 +489,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 228}],
-        costWEs: [{ idTool: 301101, amount: 25 }]
+        costTools: [{ idItem: 300501, amount: 228}],
+        costWEs: [{ idItem: 301101, amount: 25 }]
     },
     36: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -503,8 +503,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 230}],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costTools: [{ idItem: 300501, amount: 230}],
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     37: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -517,8 +517,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 232}],
-        costWEs: [{ idTool: 301101, amount: 35 }]
+        costTools: [{ idItem: 300501, amount: 232}],
+        costWEs: [{ idItem: 301101, amount: 35 }]
     },
     38: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -531,8 +531,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 234}],
-        costWEs: [{ idTool: 301101, amount: 40 }]
+        costTools: [{ idItem: 300501, amount: 234}],
+        costWEs: [{ idItem: 301101, amount: 40 }]
     },
     39: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -545,8 +545,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 236}],
-        costWEs: [{ idTool: 301101, amount: 45 }]
+        costTools: [{ idItem: 300501, amount: 236}],
+        costWEs: [{ idItem: 301101, amount: 45 }]
     },
     40: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 40 }],
@@ -559,8 +559,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 238}],
-        costWEs: [{ idTool: 301101, amount: 50 }]
+        costTools: [{ idItem: 300501, amount: 238}],
+        costWEs: [{ idItem: 301101, amount: 50 }]
     },
     41: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -573,8 +573,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 240}],
-        costWEs: [{ idTool: 301101, amount: 50 }]
+        costTools: [{ idItem: 300501, amount: 240}],
+        costWEs: [{ idItem: 301101, amount: 50 }]
     },
     42: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -587,8 +587,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 242}],
-        costWEs: [{ idTool: 301101, amount: 60 }]
+        costTools: [{ idItem: 300501, amount: 242}],
+        costWEs: [{ idItem: 301101, amount: 60 }]
     },
     43: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -601,8 +601,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 244}],
-        costWEs: [{ idTool: 301101, amount: 70 }]
+        costTools: [{ idItem: 300501, amount: 244}],
+        costWEs: [{ idItem: 301101, amount: 70 }]
     },
     44: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -615,8 +615,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 246}],
-        costWEs: [{ idTool: 301101, amount: 80 }]
+        costTools: [{ idItem: 300501, amount: 246}],
+        costWEs: [{ idItem: 301101, amount: 80 }]
     },
     45: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -629,8 +629,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 248}],
-        costWEs: [{ idTool: 301101, amount: 90 }]
+        costTools: [{ idItem: 300501, amount: 248}],
+        costWEs: [{ idItem: 301101, amount: 90 }]
     },
     46: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -643,8 +643,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 250}],
-        costWEs: [{ idTool: 301101, amount: 100 }]
+        costTools: [{ idItem: 300501, amount: 250}],
+        costWEs: [{ idItem: 301101, amount: 100 }]
     },
     47: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -657,8 +657,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 252}],
-        costWEs: [{ idTool: 301101, amount: 110 }]
+        costTools: [{ idItem: 300501, amount: 252}],
+        costWEs: [{ idItem: 301101, amount: 110 }]
     },
     48: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -671,8 +671,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 254}],
-        costWEs: [{ idTool: 301101, amount: 120 }]
+        costTools: [{ idItem: 300501, amount: 254}],
+        costWEs: [{ idItem: 301101, amount: 120 }]
     },
     49: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -685,8 +685,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 256}],
-        costWEs: [{ idTool: 301101, amount: 130 }]
+        costTools: [{ idItem: 300501, amount: 256}],
+        costWEs: [{ idItem: 301101, amount: 130 }]
     },
     50: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 50 }],
@@ -699,8 +699,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 258}],
-        costWEs: [{ idTool: 301101, amount: 140 }]
+        costTools: [{ idItem: 300501, amount: 258}],
+        costWEs: [{ idItem: 301101, amount: 140 }]
     },
     51: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -713,8 +713,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 260}],
-        costWEs: [{ idTool: 301101, amount: 155 }]
+        costTools: [{ idItem: 300501, amount: 260}],
+        costWEs: [{ idItem: 301101, amount: 155 }]
     },
     52: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -727,8 +727,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 262}],
-        costWEs: [{ idTool: 301101, amount: 170 }]
+        costTools: [{ idItem: 300501, amount: 262}],
+        costWEs: [{ idItem: 301101, amount: 170 }]
     },
     53: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -741,8 +741,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 264}],
-        costWEs: [{ idTool: 301101, amount: 185 }]
+        costTools: [{ idItem: 300501, amount: 264}],
+        costWEs: [{ idItem: 301101, amount: 185 }]
     },
     54: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -755,8 +755,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 266}],
-        costWEs: [{ idTool: 301101, amount: 200 }]
+        costTools: [{ idItem: 300501, amount: 266}],
+        costWEs: [{ idItem: 301101, amount: 200 }]
     },
     55: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -769,8 +769,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 268}],
-        costWEs: [{ idTool: 301101, amount: 215 }]
+        costTools: [{ idItem: 300501, amount: 268}],
+        costWEs: [{ idItem: 301101, amount: 215 }]
     },
     56: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -783,8 +783,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 270}],
-        costWEs: [{ idTool: 301101, amount: 230 }]
+        costTools: [{ idItem: 300501, amount: 270}],
+        costWEs: [{ idItem: 301101, amount: 230 }]
     },
     57: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -797,8 +797,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 272}],
-        costWEs: [{ idTool: 301101, amount: 245 }]
+        costTools: [{ idItem: 300501, amount: 272}],
+        costWEs: [{ idItem: 301101, amount: 245 }]
     },
     58: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -811,8 +811,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 274}],
-        costWEs: [{ idTool: 301101, amount: 260 }]
+        costTools: [{ idItem: 300501, amount: 274}],
+        costWEs: [{ idItem: 301101, amount: 260 }]
     },
     59: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -825,8 +825,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 276}],
-        costWEs: [{ idTool: 301101, amount: 275 }]
+        costTools: [{ idItem: 300501, amount: 276}],
+        costWEs: [{ idItem: 301101, amount: 275 }]
     },
     60: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
@@ -839,8 +839,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 278}],
-        costWEs: [{ idTool: 301101, amount: 290 }]
+        costTools: [{ idItem: 300501, amount: 278}],
+        costWEs: [{ idItem: 301101, amount: 290 }]
     },
     61: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -853,8 +853,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 280}],
-        costWEs: [{ idTool: 301101, amount: 300 }]
+        costTools: [{ idItem: 300501, amount: 280}],
+        costWEs: [{ idItem: 301101, amount: 300 }]
     },
     62: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -867,8 +867,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 282}],
-        costWEs: [{ idTool: 301101, amount: 325 }]
+        costTools: [{ idItem: 300501, amount: 282}],
+        costWEs: [{ idItem: 301101, amount: 325 }]
     },
     63: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -881,8 +881,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 284}],
-        costWEs: [{ idTool: 301101, amount: 350 }]
+        costTools: [{ idItem: 300501, amount: 284}],
+        costWEs: [{ idItem: 301101, amount: 350 }]
     },
     64: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -895,8 +895,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 286}],
-        costWEs: [{ idTool: 301101, amount: 375 }]
+        costTools: [{ idItem: 300501, amount: 286}],
+        costWEs: [{ idItem: 301101, amount: 375 }]
     },
     65: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -909,8 +909,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 288}],
-        costWEs: [{ idTool: 301101, amount: 400 }]
+        costTools: [{ idItem: 300501, amount: 288}],
+        costWEs: [{ idItem: 301101, amount: 400 }]
     },
     66: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -923,8 +923,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 290}],
-        costWEs: [{ idTool: 301101, amount: 425 }]
+        costTools: [{ idItem: 300501, amount: 290}],
+        costWEs: [{ idItem: 301101, amount: 425 }]
     },
     67: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -937,8 +937,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 292}],
-        costWEs: [{ idTool: 301101, amount: 450 }]
+        costTools: [{ idItem: 300501, amount: 292}],
+        costWEs: [{ idItem: 301101, amount: 450 }]
     },
     68: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -951,8 +951,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 294}],
-        costWEs: [{ idTool: 301101, amount: 475 }]
+        costTools: [{ idItem: 300501, amount: 294}],
+        costWEs: [{ idItem: 301101, amount: 475 }]
     },
     69: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -965,8 +965,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 296}],
-        costWEs: [{ idTool: 301101, amount: 500 }]
+        costTools: [{ idItem: 300501, amount: 296}],
+        costWEs: [{ idItem: 301101, amount: 500 }]
     },
     70: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 70 }],
@@ -979,8 +979,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 298}],
-        costWEs: [{ idTool: 301101, amount: 525 }]
+        costTools: [{ idItem: 300501, amount: 298}],
+        costWEs: [{ idItem: 301101, amount: 525 }]
     },
     71: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -993,8 +993,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 300}],
-        costWEs: [{ idTool: 301101, amount: 600 }]
+        costTools: [{ idItem: 300501, amount: 300}],
+        costWEs: [{ idItem: 301101, amount: 600 }]
     },
     72: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1007,8 +1007,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 302}],
-        costWEs: [{ idTool: 301101, amount: 650 }]
+        costTools: [{ idItem: 300501, amount: 302}],
+        costWEs: [{ idItem: 301101, amount: 650 }]
     },
     73: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1021,8 +1021,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 304}],
-        costWEs: [{ idTool: 301101, amount: 700 }]
+        costTools: [{ idItem: 300501, amount: 304}],
+        costWEs: [{ idItem: 301101, amount: 700 }]
     },
     74: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1035,8 +1035,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 306}],
-        costWEs: [{ idTool: 301101, amount: 750 }]
+        costTools: [{ idItem: 300501, amount: 306}],
+        costWEs: [{ idItem: 301101, amount: 750 }]
     },
     75: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1049,8 +1049,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 308}],
-        costWEs: [{ idTool: 301101, amount: 800 }]
+        costTools: [{ idItem: 300501, amount: 308}],
+        costWEs: [{ idItem: 301101, amount: 800 }]
     },
     76: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1063,8 +1063,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 310}],
-        costWEs: [{ idTool: 301101, amount: 850 }]
+        costTools: [{ idItem: 300501, amount: 310}],
+        costWEs: [{ idItem: 301101, amount: 850 }]
     },
     77: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1077,8 +1077,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 312}],
-        costWEs: [{ idTool: 301101, amount: 900 }]
+        costTools: [{ idItem: 300501, amount: 312}],
+        costWEs: [{ idItem: 301101, amount: 900 }]
     },
     78: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1091,8 +1091,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 314}],
-        costWEs: [{ idTool: 301101, amount: 950 }]
+        costTools: [{ idItem: 300501, amount: 314}],
+        costWEs: [{ idItem: 301101, amount: 950 }]
     },
     79: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1105,8 +1105,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 316}],
-        costWEs: [{ idTool: 301101, amount: 1000 }]
+        costTools: [{ idItem: 300501, amount: 316}],
+        costWEs: [{ idItem: 301101, amount: 1000 }]
     },
     80: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 80 }],
@@ -1119,8 +1119,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 318}],
-        costWEs: [{ idTool: 301101, amount: 1050 }]
+        costTools: [{ idItem: 300501, amount: 318}],
+        costWEs: [{ idItem: 301101, amount: 1050 }]
     },
     81: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1133,8 +1133,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 320}],
-        costWEs: [{ idTool: 301901, amount: 75 }]
+        costTools: [{ idItem: 300501, amount: 320}],
+        costWEs: [{ idItem: 301901, amount: 75 }]
     },
     82: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1147,8 +1147,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 322}],
-        costWEs: [{ idTool: 301901, amount: 90 }]
+        costTools: [{ idItem: 300501, amount: 322}],
+        costWEs: [{ idItem: 301901, amount: 90 }]
     },
     83: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1161,8 +1161,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 324}],
-        costWEs: [{ idTool: 301901, amount: 105 }]
+        costTools: [{ idItem: 300501, amount: 324}],
+        costWEs: [{ idItem: 301901, amount: 105 }]
     },
     84: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1175,8 +1175,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 326}],
-        costWEs: [{ idTool: 301901, amount: 120 }]
+        costTools: [{ idItem: 300501, amount: 326}],
+        costWEs: [{ idItem: 301901, amount: 120 }]
     },
     85: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1189,8 +1189,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 328}],
-        costWEs: [{ idTool: 301901, amount: 135 }]
+        costTools: [{ idItem: 300501, amount: 328}],
+        costWEs: [{ idItem: 301901, amount: 135 }]
     },
     86: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1203,8 +1203,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 330}],
-        costWEs: [{ idTool: 301901, amount: 150 }]
+        costTools: [{ idItem: 300501, amount: 330}],
+        costWEs: [{ idItem: 301901, amount: 150 }]
     },
     87: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1217,8 +1217,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 332}],
-        costWEs: [{ idTool: 301901, amount: 165 }]
+        costTools: [{ idItem: 300501, amount: 332}],
+        costWEs: [{ idItem: 301901, amount: 165 }]
     },
     88: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1231,8 +1231,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 334}],
-        costWEs: [{ idTool: 301901, amount: 180 }]
+        costTools: [{ idItem: 300501, amount: 334}],
+        costWEs: [{ idItem: 301901, amount: 180 }]
     },
     89: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1245,8 +1245,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 336}],
-        costWEs: [{ idTool: 301901, amount: 195 }]
+        costTools: [{ idItem: 300501, amount: 336}],
+        costWEs: [{ idItem: 301901, amount: 195 }]
     },
     90: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 90 }],
@@ -1259,8 +1259,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 338}],
-        costWEs: [{ idTool: 301901, amount: 210 }]
+        costTools: [{ idItem: 300501, amount: 338}],
+        costWEs: [{ idItem: 301901, amount: 210 }]
     },
     91: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1273,8 +1273,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 340}],
-        costWEs: [{ idTool: 301901, amount: 234 }]
+        costTools: [{ idItem: 300501, amount: 340}],
+        costWEs: [{ idItem: 301901, amount: 234 }]
     },
     92: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1287,8 +1287,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 342}],
-        costWEs: [{ idTool: 301901, amount: 258 }]
+        costTools: [{ idItem: 300501, amount: 342}],
+        costWEs: [{ idItem: 301901, amount: 258 }]
     },
     93: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1301,8 +1301,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 344}],
-        costWEs: [{ idTool: 301901, amount: 282 }]
+        costTools: [{ idItem: 300501, amount: 344}],
+        costWEs: [{ idItem: 301901, amount: 282 }]
     },
     94: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1315,8 +1315,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 346}],
-        costWEs: [{ idTool: 301901, amount: 306 }]
+        costTools: [{ idItem: 300501, amount: 346}],
+        costWEs: [{ idItem: 301901, amount: 306 }]
     },
     95: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1329,8 +1329,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 348}],
-        costWEs: [{ idTool: 301901, amount: 330 }]
+        costTools: [{ idItem: 300501, amount: 348}],
+        costWEs: [{ idItem: 301901, amount: 330 }]
     },
     96: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1343,8 +1343,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 350}],
-        costWEs: [{ idTool: 301901, amount: 354 }]
+        costTools: [{ idItem: 300501, amount: 350}],
+        costWEs: [{ idItem: 301901, amount: 354 }]
     },
     97: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1357,8 +1357,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 352}],
-        costWEs: [{ idTool: 301901, amount: 378 }]
+        costTools: [{ idItem: 300501, amount: 352}],
+        costWEs: [{ idItem: 301901, amount: 378 }]
     },
     98: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1371,8 +1371,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 354}],
-        costWEs: [{ idTool: 301901, amount: 402 }]
+        costTools: [{ idItem: 300501, amount: 354}],
+        costWEs: [{ idItem: 301901, amount: 402 }]
     },
     99: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1385,8 +1385,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 356}],
-        costWEs: [{ idTool: 301901, amount: 426 }]
+        costTools: [{ idItem: 300501, amount: 356}],
+        costWEs: [{ idItem: 301901, amount: 426 }]
     },
     100: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 100 }],
@@ -1399,8 +1399,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 358}],
-        costWEs: [{ idTool: 301901, amount: 450 }]
+        costTools: [{ idItem: 300501, amount: 358}],
+        costWEs: [{ idItem: 301901, amount: 450 }]
     },
     101: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1413,8 +1413,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 360}],
-        costWEs: [{ idTool: 301901, amount: 480 }]
+        costTools: [{ idItem: 300501, amount: 360}],
+        costWEs: [{ idItem: 301901, amount: 480 }]
     },
     102: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1427,8 +1427,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 362}],
-        costWEs: [{ idTool: 301901, amount: 510 }]
+        costTools: [{ idItem: 300501, amount: 362}],
+        costWEs: [{ idItem: 301901, amount: 510 }]
     },
     103: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1441,8 +1441,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 364}],
-        costWEs: [{ idTool: 301901, amount: 540 }]
+        costTools: [{ idItem: 300501, amount: 364}],
+        costWEs: [{ idItem: 301901, amount: 540 }]
     },
     104: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1455,8 +1455,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 366}],
-        costWEs: [{ idTool: 301901, amount: 570 }]
+        costTools: [{ idItem: 300501, amount: 366}],
+        costWEs: [{ idItem: 301901, amount: 570 }]
     },
     105: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1469,8 +1469,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 368}],
-        costWEs: [{ idTool: 301901, amount: 600 }]
+        costTools: [{ idItem: 300501, amount: 368}],
+        costWEs: [{ idItem: 301901, amount: 600 }]
     },
     106: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1483,8 +1483,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 370}],
-        costWEs: [{ idTool: 301901, amount: 630 }]
+        costTools: [{ idItem: 300501, amount: 370}],
+        costWEs: [{ idItem: 301901, amount: 630 }]
     },
     107: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1497,8 +1497,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 372}],
-        costWEs: [{ idTool: 301901, amount: 660 }]
+        costTools: [{ idItem: 300501, amount: 372}],
+        costWEs: [{ idItem: 301901, amount: 660 }]
     },
     108: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1511,8 +1511,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 374}],
-        costWEs: [{ idTool: 301901, amount: 690 }]
+        costTools: [{ idItem: 300501, amount: 374}],
+        costWEs: [{ idItem: 301901, amount: 690 }]
     },
     109: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1525,8 +1525,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 376}],
-        costWEs: [{ idTool: 301901, amount: 720 }]
+        costTools: [{ idItem: 300501, amount: 376}],
+        costWEs: [{ idItem: 301901, amount: 720 }]
     },
     110: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 110 }],
@@ -1539,8 +1539,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 378}],
-        costWEs: [{ idTool: 301901, amount: 750 }]
+        costTools: [{ idItem: 300501, amount: 378}],
+        costWEs: [{ idItem: 301901, amount: 750 }]
     },
     111: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1553,8 +1553,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 380}],
-        costWEs: [{ idTool: 301901, amount: 786 }]
+        costTools: [{ idItem: 300501, amount: 380}],
+        costWEs: [{ idItem: 301901, amount: 786 }]
     },
     112: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1567,8 +1567,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 382}],
-        costWEs: [{ idTool: 301901, amount: 822 }]
+        costTools: [{ idItem: 300501, amount: 382}],
+        costWEs: [{ idItem: 301901, amount: 822 }]
     },
     113: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1581,8 +1581,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 384}],
-        costWEs: [{ idTool: 301901, amount: 858 }]
+        costTools: [{ idItem: 300501, amount: 384}],
+        costWEs: [{ idItem: 301901, amount: 858 }]
     },
     114: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1595,8 +1595,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 386}],
-        costWEs: [{ idTool: 301901, amount: 894 }]
+        costTools: [{ idItem: 300501, amount: 386}],
+        costWEs: [{ idItem: 301901, amount: 894 }]
     },
     115: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1609,8 +1609,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 388}],
-        costWEs: [{ idTool: 301901, amount: 930 }]
+        costTools: [{ idItem: 300501, amount: 388}],
+        costWEs: [{ idItem: 301901, amount: 930 }]
     },
     116: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1623,8 +1623,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 390}],
-        costWEs: [{ idTool: 301901, amount: 966 }]
+        costTools: [{ idItem: 300501, amount: 390}],
+        costWEs: [{ idItem: 301901, amount: 966 }]
     },
     117: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1637,8 +1637,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 392}],
-        costWEs: [{ idTool: 301901, amount: 1002 }]
+        costTools: [{ idItem: 300501, amount: 392}],
+        costWEs: [{ idItem: 301901, amount: 1002 }]
     },
     118: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1651,8 +1651,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 394}],
-        costWEs: [{ idTool: 301901, amount: 1038 }]
+        costTools: [{ idItem: 300501, amount: 394}],
+        costWEs: [{ idItem: 301901, amount: 1038 }]
     },
     119: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1665,8 +1665,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 396}],
-        costWEs: [{ idTool: 301901, amount: 1074 }]
+        costTools: [{ idItem: 300501, amount: 396}],
+        costWEs: [{ idItem: 301901, amount: 1074 }]
     },
     120: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 120 }],
@@ -1679,8 +1679,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 398}],
-        costWEs: [{ idTool: 301901, amount: 1110 }]
+        costTools: [{ idItem: 300501, amount: 398}],
+        costWEs: [{ idItem: 301901, amount: 1110 }]
     },
     121: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1693,8 +1693,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 400}],
-        costWEs: [{ idTool: 301901, amount: 1149 }]
+        costTools: [{ idItem: 300501, amount: 400}],
+        costWEs: [{ idItem: 301901, amount: 1149 }]
     },
     122: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1707,8 +1707,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 402}],
-        costWEs: [{ idTool: 301901, amount: 1188 }]
+        costTools: [{ idItem: 300501, amount: 402}],
+        costWEs: [{ idItem: 301901, amount: 1188 }]
     },
     123: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1721,8 +1721,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 404}],
-        costWEs: [{ idTool: 301901, amount: 1227 }]
+        costTools: [{ idItem: 300501, amount: 404}],
+        costWEs: [{ idItem: 301901, amount: 1227 }]
     },
     124: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1735,8 +1735,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 406}],
-        costWEs: [{ idTool: 301901, amount: 1266 }]
+        costTools: [{ idItem: 300501, amount: 406}],
+        costWEs: [{ idItem: 301901, amount: 1266 }]
     },
     125: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1749,8 +1749,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 408}],
-        costWEs: [{ idTool: 301901, amount: 1305 }]
+        costTools: [{ idItem: 300501, amount: 408}],
+        costWEs: [{ idItem: 301901, amount: 1305 }]
     },
     126: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1763,8 +1763,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 410}],
-        costWEs: [{ idTool: 301901, amount: 1344 }]
+        costTools: [{ idItem: 300501, amount: 410}],
+        costWEs: [{ idItem: 301901, amount: 1344 }]
     },
     127: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1777,8 +1777,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 412}],
-        costWEs: [{ idTool: 301901, amount: 1383 }]
+        costTools: [{ idItem: 300501, amount: 412}],
+        costWEs: [{ idItem: 301901, amount: 1383 }]
     },
     128: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1791,8 +1791,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 414}],
-        costWEs: [{ idTool: 301901, amount: 1422 }]
+        costTools: [{ idItem: 300501, amount: 414}],
+        costWEs: [{ idItem: 301901, amount: 1422 }]
     },
     129: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1805,8 +1805,8 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 416}],
-        costWEs: [{ idTool: 301901, amount: 1461 }]
+        costTools: [{ idItem: 300501, amount: 416}],
+        costWEs: [{ idItem: 301901, amount: 1461 }]
     },
     130: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 130 }],
@@ -1819,7 +1819,7 @@ export const BuildingFArrowTowerStatic : {[Key: number] : IReqBuilding} = {
         atkSpeedAdd: 1000,
         baseAtkSpeed: 1,
         gunshot: 15,
-        costTools: [{ idTool: 300501, amount: 418}],
-        costWEs: [{ idTool: 301901, amount: 1500 }]
+        costTools: [{ idItem: 300501, amount: 418}],
+        costWEs: [{ idItem: 301901, amount: 1500 }]
     }
 };

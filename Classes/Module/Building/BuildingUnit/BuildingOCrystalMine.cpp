@@ -47,25 +47,25 @@ void BuildingOCrystalMine::setBuildingAnimation(){};
 void BuildingOCrystalMine::setBuildingParticle()
 {
 	auto Part1 = ParticleSystemQuad::create("Particle/et_shuijingk_01.plist");
-	Part1->setPosition(0, 20);
-	Part1->setScaleX(2.6);
-	Part1->setScaleY(2.6);
-	Part1->setRotation(0);
+	Part1->setPosition(0.0f, 20.0f);
+	Part1->setScaleX(2.6f);
+	Part1->setScaleY(2.6f);
+	Part1->setRotation(0.0f);
 	Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part1, 1);
 
 	auto Part2 = ParticleSystemQuad::create("Particle/et_shuijingk_02.plist");
-	Part2->setPosition(-10, 24);
-	Part2->setScaleX(1.64);
-	Part2->setScaleY(3.7);
-	Part2->setRotation(178.26);
+	Part2->setPosition(-10.0f, 24.0f);
+	Part2->setScaleX(1.64f);
+	Part2->setScaleY(3.7f);
+	Part2->setRotation(178.26f);
 	Part2->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part2, 1);
 
 	auto Part3 = ParticleSystemQuad::create("Particle/et_shuijingk_03.plist");
-	Part3->setPosition(-4, 68);
-	Part3->setScaleX(1.66);
-	Part3->setScaleY(1.66);
+	Part3->setPosition(-4.0f, 68.0f);
+	Part3->setScaleX(1.66f);
+	Part3->setScaleY(1.66f);
 	Part3->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part3, 1);
 }

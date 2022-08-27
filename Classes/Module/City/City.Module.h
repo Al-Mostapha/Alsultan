@@ -30,7 +30,7 @@ public:
     }
     static void showCityBuilding();
     static void showCityEffect();
-    static DSCity& getCurrentCity(){
+    static TCity& getCurrentCity(){
         return DTPlayer::SultanPlayer.City;
     }
 };

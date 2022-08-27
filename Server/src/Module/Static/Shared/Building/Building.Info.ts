@@ -1,39 +1,37 @@
-import internal from "stream";
-import { EBuildingType } from "../Building.Const";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
+import { IBuildingInfoUnit } from "src/Module/Building/Building.Type";
+import { BuildingABarrackStatic } from "./BuildingABarrack.Static";
+import { BuildingAChariotPlantStatic } from "./BuildingAChariotPlant.Static";
+import { BuildingAFortressStatic } from "./BuildingAFortress.Static";
+import { BuildingARangeStatic } from "./BuildingARange.Static";
+import { BuildingAStableStatic } from "./BuildingAStable.Static";
+import { BuildingFArrowTowerStatic } from "./BuildingFArrowTower.Static";
+import { BuildingFCastleStatic } from "./BuildingFCastle.Static";
+import { BuildingFElitPalaceStatic } from "./BuildingFElitePalace.Static";
+import { BuildingFMiracleStatic } from "./BuildingFMiracle.Static";
+import { BuildingFPrison } from "./BuildingFPrison.Static";
+import { BuildingFTrainHallStatic } from "./BuildingFTrainHall.Static";
+import { BuildingFWallStatic } from "./BuildingFWall.Static";
+import { BuildingIBlackSmithStatic } from "./BuildingIBlackSmith.Static";
+import { BuildingDrillGroundStatic } from "./BuildingIDrillGrounds.Static";
+import { BuildingIEmbassyStatic } from "./BuildingIEmbassy.Static";
+import { BuildingIHallOfWarStatic } from "./BuildingIHallOfWar.Static";
+import { BuildingIInstituteStatic } from "./BuildingIInstitute.Static";
+import { BuildingIMarketStatic } from "./BuildingIMarket.Static";
+import { BuildingIWareHouseStatic } from "./BuildingIWareHouse.Static";
+import { BuildingOCrystalMineStatic } from "./BuildingOCrystalMine.Static";
+import { BuildingOFarmStatic } from "./BuildingOFarm.Static";
+import { BuildingOHospitalStatic } from "./BuildingOHospital.Static";
+import { BuildingOIronMineStatic } from "./BuildingOIronMine.Static";
+import { BuildingOSawMillStatic } from "./BuildingOSawMill.Static";
+import { BuildingOSilverStatic } from "./BuildingOSilver.Static";
 
-export interface IBuildingInfoUnit {
-  index: number;
-  idBuilding: number;
-  buildingType: EBuildingType;
-  bType: number;
-  maxCount: number;
-  isDemolish: boolean;
-  isExchange: boolean;
-  isBuild: boolean;
-  isUpgrade: boolean;
-  maxLvl: number;
-  initLvl: number
-  openWl: number;
-  openStar: number;
-  maxStarLvl: number;
-  BuildingName: string,
-  BuildingIcon: string,
-  BuildingBrief: string,
-  UpgradeBrief: string,
-  Describe: string,
-  WarDescribe: string,
-  StarDescribe: string
-}
+export const BuildingInfo: {[p: number]: IBuildingInfoUnit} = {
 
-export interface IBuildingInfo {
-  [p: number]: IBuildingInfoUnit;
-}
-export const BuildingInfo: IBuildingInfo = {
-
-  [EBuildingType.CBType_None]: {
+  [EBuildingType.None]: {
     index: 0,
     idBuilding: 0,
-    buildingType: EBuildingType.CBType_None,
+    buildingType: EBuildingType.None,
     bType: 0,
     maxCount: 0,
     isDemolish: false,
@@ -51,12 +49,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "",
     WarDescribe: "",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_Castle]: {
+  [EBuildingType.Castle]: {
     index: 1,
     idBuilding: 101,
-    buildingType: EBuildingType.CBType_Castle,
+    buildingType: EBuildingType.Castle,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -74,12 +73,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_101",
     Describe: "buildDes_describe_101",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_101"
+    StarDescribe: "StarDescribe_101",
+    BuildingReq: BuildingFCastleStatic
   },
-  [EBuildingType.CBType_Wall]: {
+  [EBuildingType.Wall]: {
     index: 2,
-    idBuilding: EBuildingType.CBType_Wall,
-    buildingType: EBuildingType.CBType_Wall,
+    idBuilding: EBuildingType.Wall,
+    buildingType: EBuildingType.Wall,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -97,12 +97,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_102",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_102"
+    StarDescribe: "StarDescribe_102",
+    BuildingReq: BuildingFWallStatic
   },
-  [EBuildingType.CBType_ArrowTower]: {
+  [EBuildingType.ArrowTower]: {
     index: 3,
-    idBuilding: EBuildingType.CBType_ArrowTower,
-    buildingType: EBuildingType.CBType_ArrowTower,
+    idBuilding: EBuildingType.ArrowTower,
+    buildingType: EBuildingType.ArrowTower,
     bType: 0,
     maxCount: 2,
     isDemolish: false,
@@ -120,12 +121,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_103",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_103"
+    StarDescribe: "StarDescribe_103",
+    BuildingReq: BuildingFArrowTowerStatic
   },
-  [EBuildingType.CBType_WatchTower]: {
+  [EBuildingType.WatchTower]: {
     index: 4,
-    idBuilding: EBuildingType.CBType_WatchTower,
-    buildingType: EBuildingType.CBType_WatchTower,
+    idBuilding: EBuildingType.WatchTower,
+    buildingType: EBuildingType.WatchTower,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -143,12 +145,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_104",
     Describe: "buildDes_describe_104",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_Warehouse]: {
+  [EBuildingType.Warehouse]: {
     index: 5,
-    idBuilding: EBuildingType.CBType_Warehouse,
-    buildingType: EBuildingType.CBType_Warehouse,
+    idBuilding: EBuildingType.Warehouse,
+    buildingType: EBuildingType.Warehouse,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -166,12 +169,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_105",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_105"
+    StarDescribe: "StarDescribe_105",
+    BuildingReq: BuildingIWareHouseStatic
   },
-  [EBuildingType.CBType_EventCenter]: {
+  [EBuildingType.EventCenter]: {
     index: 6,
-    idBuilding: EBuildingType.CBType_EventCenter,
-    buildingType: EBuildingType.CBType_EventCenter,
+    idBuilding: EBuildingType.EventCenter,
+    buildingType: EBuildingType.EventCenter,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -189,12 +193,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_Merchant]: {
+  [EBuildingType.Merchant]: {
     index: 7,
-    idBuilding: EBuildingType.CBType_Merchant,
-    buildingType: EBuildingType.CBType_Merchant,
+    idBuilding: EBuildingType.Merchant,
+    buildingType: EBuildingType.Merchant,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -212,12 +217,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_Port]: {
+  [EBuildingType.Port]: {
     index: 8,
-    idBuilding: EBuildingType.CBType_Port,
-    buildingType: EBuildingType.CBType_Port,
+    idBuilding: EBuildingType.Port,
+    buildingType: EBuildingType.Port,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -235,12 +241,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_108",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_TroopDetails]: {
+  [EBuildingType.TroopDetails]: {
     index: 9,
-    idBuilding: EBuildingType.CBType_TroopDetails,
-    buildingType: EBuildingType.CBType_TroopDetails,
+    idBuilding: EBuildingType.TroopDetails,
+    buildingType: EBuildingType.TroopDetails,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -258,12 +265,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_Bulletin]: {
+  [EBuildingType.Bulletin]: {
     index: 10,
-    idBuilding: EBuildingType.CBType_Bulletin,
-    buildingType: EBuildingType.CBType_Bulletin,
+    idBuilding: EBuildingType.Bulletin,
+    buildingType: EBuildingType.Bulletin,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -281,12 +289,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_Embassy]: {
+  [EBuildingType.Embassy]: {
     index: 11,
-    idBuilding: EBuildingType.CBType_Embassy,
-    buildingType: EBuildingType.CBType_Embassy,
+    idBuilding: EBuildingType.Embassy,
+    buildingType: EBuildingType.Embassy,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -304,12 +313,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_111",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_111"
+    StarDescribe: "StarDescribe_111",
+    BuildingReq: BuildingIEmbassyStatic
   },
-  [EBuildingType.CBType_Market]: {
+  [EBuildingType.Market]: {
     index: 12,
-    idBuilding: EBuildingType.CBType_Market,
-    buildingType: EBuildingType.CBType_Market,
+    idBuilding: EBuildingType.Market,
+    buildingType: EBuildingType.Market,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -327,12 +337,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_112",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: BuildingIMarketStatic
   },
-  [EBuildingType.CBType_Institute]: {
+  [EBuildingType.Institute]: {
     index: 13,
-    idBuilding: EBuildingType.CBType_Institute,
-    buildingType: EBuildingType.CBType_Institute,
+    idBuilding: EBuildingType.Institute,
+    buildingType: EBuildingType.Institute,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -350,12 +361,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_113",
     Describe: "buildDes_describe_113",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_113"
+    StarDescribe: "StarDescribe_113",
+    BuildingReq: BuildingIInstituteStatic
   },
-  [EBuildingType.CBType_TreasurePool]: {
+  [EBuildingType.TreasurePool]: {
     index: 14,
-    idBuilding: EBuildingType.CBType_TreasurePool,
-    buildingType: EBuildingType.CBType_TreasurePool,
+    idBuilding: EBuildingType.TreasurePool,
+    buildingType: EBuildingType.TreasurePool,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -373,12 +385,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_114",
     Describe: "buildDes_describe_114",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_114"
+    StarDescribe: "StarDescribe_114",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_Blacksmith]: {
+  [EBuildingType.Blacksmith]: {
     index: 15,
-    idBuilding: EBuildingType.CBType_Blacksmith,
-    buildingType: EBuildingType.CBType_Blacksmith,
+    idBuilding: EBuildingType.Blacksmith,
+    buildingType: EBuildingType.Blacksmith,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -396,12 +409,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_115",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: BuildingIBlackSmithStatic
   },
-  [EBuildingType.CBType_Stable]: {
+  [EBuildingType.Stable]: {
     index: 16,
-    idBuilding: EBuildingType.CBType_Stable,
-    buildingType: EBuildingType.CBType_Stable,
+    idBuilding: EBuildingType.Stable,
+    buildingType: EBuildingType.Stable,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -419,12 +433,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_116",
     Describe: "buildDes_describe_116",
     WarDescribe: "buildDes_WarDescribe_01",
-    StarDescribe: "Glory_text_05"
+    StarDescribe: "Glory_text_05",
+    BuildingReq: BuildingAStableStatic
   },
-  [EBuildingType.CBType_TargetRange]: {
+  [EBuildingType.TargetRange]: {
     index: 17,
-    idBuilding: EBuildingType.CBType_TargetRange,
-    buildingType: EBuildingType.CBType_TargetRange,
+    idBuilding: EBuildingType.TargetRange,
+    buildingType: EBuildingType.TargetRange,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -442,12 +457,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_117",
     Describe: "buildDes_describe_117",
     WarDescribe: "buildDes_WarDescribe_02",
-    StarDescribe: "Glory_text_06"
+    StarDescribe: "Glory_text_06",
+    BuildingReq: BuildingARangeStatic
   },
-  [EBuildingType.CBType_Barrack]: {
+  [EBuildingType.Barrack]: {
     index: 18,
-    idBuilding: EBuildingType.CBType_Barrack,
-    buildingType: EBuildingType.CBType_Barrack,
+    idBuilding: EBuildingType.Barrack,
+    buildingType: EBuildingType.Barrack,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -465,12 +481,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_118",
     Describe: "buildDes_describe_118",
     WarDescribe: "buildDes_WarDescribe_03",
-    StarDescribe: "Glory_text_04"
+    StarDescribe: "Glory_text_04",
+    BuildingReq: BuildingABarrackStatic
   },
-  [EBuildingType.CBType_Workshop]: {
+  [EBuildingType.ChariotPlant]: {
     index: 19,
-    idBuilding: EBuildingType.CBType_Workshop,
-    buildingType: EBuildingType.CBType_Workshop,
+    idBuilding: EBuildingType.ChariotPlant,
+    buildingType: EBuildingType.ChariotPlant,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -488,12 +505,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_119",
     Describe: "buildDes_describe_119",
     WarDescribe: "buildDes_WarDescribe_04",
-    StarDescribe: "Glory_text_07"
+    StarDescribe: "Glory_text_07",
+    BuildingReq: BuildingAChariotPlantStatic
   },
-  [EBuildingType.CBType_Fortress]: {
+  [EBuildingType.Fortress]: {
     index: 20,
-    idBuilding: EBuildingType.CBType_Fortress,
-    buildingType: EBuildingType.CBType_Fortress,
+    idBuilding: EBuildingType.Fortress,
+    buildingType: EBuildingType.Fortress,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -511,12 +529,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_120",
     Describe: "buildDes_describe_120",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: BuildingAFortressStatic
   },
-  [EBuildingType.CBType_DrillGrounds]: {
+  [EBuildingType.DrillGrounds]: {
     index: 21,
-    idBuilding: EBuildingType.CBType_DrillGrounds,
-    buildingType: EBuildingType.CBType_DrillGrounds,
+    idBuilding: EBuildingType.DrillGrounds,
+    buildingType: EBuildingType.DrillGrounds,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -534,12 +553,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_121",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_121"
+    StarDescribe: "StarDescribe_121",
+    BuildingReq: BuildingDrillGroundStatic
   },
-  [EBuildingType.CBType_HallOfWar]: {
+  [EBuildingType.HallOfWar]: {
     index: 22,
-    idBuilding: EBuildingType.CBType_HallOfWar,
-    buildingType: EBuildingType.CBType_HallOfWar,
+    idBuilding: EBuildingType.HallOfWar,
+    buildingType: EBuildingType.HallOfWar,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -557,12 +577,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_122",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_122"
+    StarDescribe: "StarDescribe_122",
+    BuildingReq: BuildingIHallOfWarStatic
   },
-  [EBuildingType.CBType_Farm]: {
+  [EBuildingType.Farm]: {
     index: 23,
-    idBuilding: EBuildingType.CBType_Farm,
-    buildingType: EBuildingType.CBType_Farm,
+    idBuilding: EBuildingType.Farm,
+    buildingType: EBuildingType.Farm,
     bType: 1,
     maxCount: 10,
     isDemolish: true,
@@ -580,12 +601,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_201",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_201"
+    StarDescribe: "StarDescribe_201",
+    BuildingReq: BuildingOFarmStatic
   },
-  [EBuildingType.CBType_LumberMill]: {
+  [EBuildingType.LumberMill]: {
     index: 24,
-    idBuilding: EBuildingType.CBType_LumberMill,
-    buildingType: EBuildingType.CBType_LumberMill,
+    idBuilding: EBuildingType.LumberMill,
+    buildingType: EBuildingType.LumberMill,
     bType: 1,
     maxCount: 10,
     isDemolish: true,
@@ -603,12 +625,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_202",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_202"
+    StarDescribe: "StarDescribe_202",
+    BuildingReq: BuildingOSawMillStatic
   },
-  [EBuildingType.CBType_IronMine]: {
+  [EBuildingType.IronMine]: {
     index: 25,
-    idBuilding: EBuildingType.CBType_IronMine,
-    buildingType: EBuildingType.CBType_IronMine,
+    idBuilding: EBuildingType.IronMine,
+    buildingType: EBuildingType.IronMine,
     bType: 1,
     maxCount: 8,
     isDemolish: true,
@@ -626,12 +649,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_203",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_203"
+    StarDescribe: "StarDescribe_203",
+    BuildingReq: BuildingOIronMineStatic
   },
-  [EBuildingType.CBType_SilverMine]: {
+  [EBuildingType.SilverMine]: {
     index: 26,
-    idBuilding: EBuildingType.CBType_SilverMine,
-    buildingType: EBuildingType.CBType_SilverMine,
+    idBuilding: EBuildingType.SilverMine,
+    buildingType: EBuildingType.SilverMine,
     maxCount: 8,
     bType: 1,
     isDemolish: true,
@@ -649,12 +673,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_204",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_204"
+    StarDescribe: "StarDescribe_204",
+    BuildingReq: BuildingOSilverStatic
   },
-  [EBuildingType.CBType_MarchingTent]: {
+  [EBuildingType.MarchingTent]: {
     index: 27,
-    idBuilding: EBuildingType.CBType_MarchingTent,
-    buildingType: EBuildingType.CBType_MarchingTent,
+    idBuilding: EBuildingType.MarchingTent,
+    buildingType: EBuildingType.MarchingTent,
     bType: 1,
     maxCount: 8,
     isDemolish: true,
@@ -672,12 +697,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_205",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_205"
+    StarDescribe: "StarDescribe_205",
+    BuildingReq: {}
   },
-  [EBuildingType.CBType_FirstAidTent]: {
+  [EBuildingType.FirstAidTent]: {
     index: 28,
-    idBuilding: EBuildingType.CBType_FirstAidTent,
-    buildingType: EBuildingType.CBType_FirstAidTent,
+    idBuilding: EBuildingType.FirstAidTent,
+    buildingType: EBuildingType.FirstAidTent,
     bType: 1,
     maxCount: 8,
     isDemolish: true,
@@ -695,12 +721,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_206",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_206"
+    StarDescribe: "StarDescribe_206",
+    BuildingReq: BuildingOHospitalStatic
   },
-  [EBuildingType.CBType_Miracle]: {
+  [EBuildingType.Miracle]: {
     index: 29,
-    idBuilding: EBuildingType.CBType_Miracle,
-    buildingType: EBuildingType.CBType_Miracle,
+    idBuilding: EBuildingType.Miracle,
+    buildingType: EBuildingType.Miracle,
     bType: 3,
     maxCount: 1,
     isDemolish: false,
@@ -718,12 +745,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_describe_301",
     Describe: "buildDes_describe_301",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_301"
+    StarDescribe: "StarDescribe_301",
+    BuildingReq: BuildingFMiracleStatic
   },
-  [EBuildingType.CBType_ElitePalace]: {
+  [EBuildingType.ElitePalace]: {
     index: 30,
-    idBuilding: EBuildingType.CBType_ElitePalace,
-    buildingType: EBuildingType.CBType_ElitePalace,
+    idBuilding: EBuildingType.ElitePalace,
+    buildingType: EBuildingType.ElitePalace,
     bType: 3,
     maxCount: 1,
     isDemolish: false,
@@ -741,12 +769,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "buildDes_UpgradeBrief_302",
     Describe: "buildDes_describe_302",
     WarDescribe: "",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: BuildingFElitPalaceStatic
   },
-  [EBuildingType.CBType_CrystalMine]: {
+  [EBuildingType.CrystalMine]: {
     index: 31,
-    idBuilding: EBuildingType.CBType_CrystalMine,
-    buildingType: EBuildingType.CBType_CrystalMine,
+    idBuilding: EBuildingType.CrystalMine,
+    buildingType: EBuildingType.CrystalMine,
     bType: 3,
     maxCount: 1,
     isDemolish: false,
@@ -764,12 +793,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_207",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_207"
+    StarDescribe: "StarDescribe_207",
+    BuildingReq: BuildingOCrystalMineStatic
   },
-  [EBuildingType.CBType_HeroTrainGround]: {
+  [EBuildingType.TrainHall]: {
     index: 32,
-    idBuilding: EBuildingType.CBType_HeroTrainGround,
-    buildingType: EBuildingType.CBType_HeroTrainGround,
+    idBuilding: EBuildingType.TrainHall,
+    buildingType: EBuildingType.TrainHall,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -787,13 +817,14 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_123",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: BuildingFTrainHallStatic
   },
 
-  [EBuildingType.CBType_MaterialWorkShop]: {
+  [EBuildingType.MaterialWorkShop]: {
     index: 33,
-    idBuilding: EBuildingType.CBType_MaterialWorkShop,
-    buildingType: EBuildingType.CBType_MaterialWorkShop,
+    idBuilding: EBuildingType.MaterialWorkShop,
+    buildingType: EBuildingType.MaterialWorkShop,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -811,14 +842,15 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "",
     WarDescribe: "",
-    StarDescribe: ""
+    StarDescribe: "",
+    BuildingReq: {}
   },
 
 
-  [EBuildingType.CBType_HeroPrison]: {
+  [EBuildingType.Prison]: {
     index: 34,
-    idBuilding: EBuildingType.CBType_HeroPrison,
-    buildingType: EBuildingType.CBType_HeroPrison,
+    idBuilding: EBuildingType.Prison,
+    buildingType: EBuildingType.Prison,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -836,12 +868,13 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_125",
     WarDescribe: "buildDes_UpgradeBrief_301",
-    StarDescribe: "StarDescribe_125"
+    StarDescribe: "StarDescribe_125",
+    BuildingReq: BuildingFPrison
   },
-  [EBuildingType.CBType_StarBraveStatue]: {
+  [EBuildingType.StarBraveStatue]: {
     index: 35,
-    idBuilding: EBuildingType.CBType_StarBraveStatue,
-    buildingType: EBuildingType.CBType_StarBraveStatue,
+    idBuilding: EBuildingType.StarBraveStatue,
+    buildingType: EBuildingType.StarBraveStatue,
     bType: 0,
     maxCount: 1,
     isDemolish: false,
@@ -859,6 +892,8 @@ export const BuildingInfo: IBuildingInfo = {
     UpgradeBrief: "",
     Describe: "buildDes_describe_304",
     WarDescribe: "",
-    StarDescribe: "buildDes_describe_304"
+    StarDescribe: "buildDes_describe_304",
+    BuildingReq: {}
   }
 };
+

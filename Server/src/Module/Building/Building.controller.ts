@@ -1,6 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
-import { BuildingService } from "./Building.service";
-import { BuildingInfo, IBuildingInfoUnit } from "./Config/BuildingInfo.config";
+import { BuildingService } from "./Building.Service";
+import { BuildingInfo} from "src/Module/Static/Shared/Building/Building.Info";
 
 @Controller("api/Building")
 export class BuildingController {

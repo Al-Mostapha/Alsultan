@@ -29,7 +29,7 @@ struct DSBuilding : public GStruct
 
 	bool bIsInnerBuilding;
 	bool bCanBuild;
-	GArray<DSCityBtnAction> ActionBtnList;
+	GArray<TCityBtnAction> ActionBtnList;
 	struct
 	{
 		int32 x, y;
@@ -52,7 +52,7 @@ public:
 	Sprite *BuildingLvBg;
 	Layout *BuildingBtn;
 	
-	DSCityBuildingUnit BuildingUnitData;
+	TCityBuildingUnit BuildingUnitData;
 
 	Vec2 LvlBgOffset;
 	GString BuildingSpriteImage;
@@ -70,6 +70,6 @@ public:
 	virtual void setBuildingParticle();
 	virtual void setBuildingAnimation();
 	virtual void setBuildingBtn();
-	void setBuildingUnitData(DSCityBuildingUnit &_CBUD);
+	void setBuildingUnitData(TCityBuildingUnit &_CBUD);
 	static Vector<SpriteFrame *> getAnimation(GString Frame, int32 start, int32 end);
 };

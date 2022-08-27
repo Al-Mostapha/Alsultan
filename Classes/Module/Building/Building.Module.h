@@ -17,5 +17,5 @@ public:
     static void buildCity();
     //static cocos2d::Vector<DSCityBuildingUnit *> getBuildingList(EBuildingType buildingType);
     //static cocos2d::Vector<DSCityBuildingUnit *> getBuildingResList();
-    static DSCityBuilding& getCurentCityBuilding();
+    static TCityBuilding& getCurentCityBuilding();
 };

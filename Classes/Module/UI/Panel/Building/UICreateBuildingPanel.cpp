@@ -55,7 +55,7 @@ void UICreateBuildingPanel::updateView(){
   })*/
 }
 
-void UICreateBuildingPanel::wheelScrollBack(const DSBuildingInfoUnit& p_BuildingInfoUnit, size_t p_Index){
+void UICreateBuildingPanel::wheelScrollBack(const TBuildingInfoUnit& p_BuildingInfoUnit, size_t p_Index){
   m_CurrentIndex = p_Index;
   m_CurrentBuilding = p_BuildingInfoUnit;
   updateView();

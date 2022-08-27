@@ -42,16 +42,15 @@ void BuildingService::fetchBuildingInfo()
                 GJson *BuildingInfo = json->GetJsonObject("BuildingInfo");
                 for (auto it = BuildingInfo->MemberBegin(); it != BuildingInfo->MemberEnd(); ++it)
                 {
-                    EBuildingType l_BuildingType = EBuildingType::CBType_None;
+                    EBuildingType l_BuildingType = EBuildingType::None;
                     if (it->name.IsInt())
                         l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
                     else if (it->name.IsString())
                         l_BuildingType = static_cast<EBuildingType>(std::stoi(it->name.GetString()));
                     GJson doc;
-
                     GJson *jsonObject = new GJson();
                     jsonObject->CopyFrom(it->value, jsonObject->GetAllocator());
-                    BuildingStatic::BuildingInfo[l_BuildingType] = DSBuildingInfoUnit::fromJson(jsonObject);
+                    BuildingStatic::BuildingInfo[l_BuildingType] = TBuildingInfoUnit::fromJson(jsonObject);
                 }
             }
             else

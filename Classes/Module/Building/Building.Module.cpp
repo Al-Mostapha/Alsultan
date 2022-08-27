@@ -88,6 +88,6 @@ void BuildingModule::buildCity()
 }
 
 
-DSCityBuilding& BuildingModule::getCurentCityBuilding(){
+TCityBuilding& BuildingModule::getCurentCityBuilding(){
     return CityModule::getCurrentCity().CityBuilding;
 }

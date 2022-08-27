@@ -1,4 +1,5 @@
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
 export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
     1: {
@@ -440,7 +441,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 237282,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 10 }]
+        costWEs: [{ idItem: 301101, amount: 10 }]
     },
     32: {
         kingdomLv: 0,
@@ -455,7 +456,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 241284,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 20 }]
+        costWEs: [{ idItem: 301101, amount: 20 }]
     },
     33: {
         kingdomLv: 0,
@@ -470,7 +471,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 245286,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     34: {
         kingdomLv: 0,
@@ -485,7 +486,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 249288,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 40 }]
+        costWEs: [{ idItem: 301101, amount: 40 }]
     },
     35: {
         kingdomLv: 0,
@@ -500,7 +501,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 253290,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 50 }]
+        costWEs: [{ idItem: 301101, amount: 50 }]
     },
     36: {
         kingdomLv: 0,
@@ -515,7 +516,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 257292,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 60 }]
+        costWEs: [{ idItem: 301101, amount: 60 }]
     },
     37: {
         kingdomLv: 0,
@@ -530,7 +531,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 261294,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 70 }]
+        costWEs: [{ idItem: 301101, amount: 70 }]
     },
     38: {
         kingdomLv: 0,
@@ -545,7 +546,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 265296,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 80 }]
+        costWEs: [{ idItem: 301101, amount: 80 }]
     },
     39: {
         kingdomLv: 0,
@@ -560,7 +561,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 269298,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 90 }]
+        costWEs: [{ idItem: 301101, amount: 90 }]
     },
     40: {
         kingdomLv: 0,
@@ -575,7 +576,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 273300,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 100 }]
+        costWEs: [{ idItem: 301101, amount: 100 }]
     },
     41: {
         kingdomLv: 0,
@@ -590,7 +591,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 280370,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 100 }]
+        costWEs: [{ idItem: 301101, amount: 100 }]
     },
     42: {
         kingdomLv: 0,
@@ -605,7 +606,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 287440,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 120 }]
+        costWEs: [{ idItem: 301101, amount: 120 }]
     },
     43: {
         kingdomLv: 0,
@@ -620,7 +621,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 294510,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 140 }]
+        costWEs: [{ idItem: 301101, amount: 140 }]
     },
     44: {
         kingdomLv: 0,
@@ -635,7 +636,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 301580,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 160 }]
+        costWEs: [{ idItem: 301101, amount: 160 }]
     },
     45: {
         kingdomLv: 0,
@@ -650,7 +651,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 308650,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 180 }]
+        costWEs: [{ idItem: 301101, amount: 180 }]
     },
     46: {
         kingdomLv: 0,
@@ -665,7 +666,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 315720,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 200 }]
+        costWEs: [{ idItem: 301101, amount: 200 }]
     },
     47: {
         kingdomLv: 0,
@@ -680,7 +681,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 322790,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 220 }]
+        costWEs: [{ idItem: 301101, amount: 220 }]
     },
     48: {
         kingdomLv: 0,
@@ -695,7 +696,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 329860,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 240 }]
+        costWEs: [{ idItem: 301101, amount: 240 }]
     },
     49: {
         kingdomLv: 0,
@@ -710,7 +711,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 336930,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 260 }]
+        costWEs: [{ idItem: 301101, amount: 260 }]
     },
     50: {
         kingdomLv: 0,
@@ -725,7 +726,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 344000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 280 }]
+        costWEs: [{ idItem: 301101, amount: 280 }]
     },
     51: {
         kingdomLv: 0,
@@ -740,7 +741,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 354080,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 310 }]
+        costWEs: [{ idItem: 301101, amount: 310 }]
     },
     52: {
         kingdomLv: 0,
@@ -755,7 +756,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 364160,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 340 }]
+        costWEs: [{ idItem: 301101, amount: 340 }]
     },
     53: {
         kingdomLv: 0,
@@ -770,7 +771,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 374240,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 370 }]
+        costWEs: [{ idItem: 301101, amount: 370 }]
     },
     54: {
         kingdomLv: 0,
@@ -785,7 +786,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 384320,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 400 }]
+        costWEs: [{ idItem: 301101, amount: 400 }]
     },
     55: {
         kingdomLv: 0,
@@ -800,7 +801,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 394400,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 430 }]
+        costWEs: [{ idItem: 301101, amount: 430 }]
     },
     56: {
         kingdomLv: 0,
@@ -815,7 +816,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 404480,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 460 }]
+        costWEs: [{ idItem: 301101, amount: 460 }]
     },
     57: {
         kingdomLv: 0,
@@ -830,7 +831,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 414560,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 490 }]
+        costWEs: [{ idItem: 301101, amount: 490 }]
     },
     58: {
         kingdomLv: 0,
@@ -845,7 +846,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 424640,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 520 }]
+        costWEs: [{ idItem: 301101, amount: 520 }]
     },
     59: {
         kingdomLv: 0,
@@ -860,7 +861,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 434720,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 550 }]
+        costWEs: [{ idItem: 301101, amount: 550 }]
     },
     60: {
         kingdomLv: 0,
@@ -875,7 +876,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 444800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 580 }]
+        costWEs: [{ idItem: 301101, amount: 580 }]
     },
     61: {
         kingdomLv: 0,
@@ -890,7 +891,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 457800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 600 }]
+        costWEs: [{ idItem: 301101, amount: 600 }]
     },
     62: {
         kingdomLv: 0,
@@ -905,7 +906,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 470800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 650 }]
+        costWEs: [{ idItem: 301101, amount: 650 }]
     },
     63: {
         kingdomLv: 0,
@@ -920,7 +921,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 483800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 700 }]
+        costWEs: [{ idItem: 301101, amount: 700 }]
     },
     64: {
         kingdomLv: 0,
@@ -935,7 +936,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 496800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 750 }]
+        costWEs: [{ idItem: 301101, amount: 750 }]
     },
     65: {
         kingdomLv: 0,
@@ -950,7 +951,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 509800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 800 }]
+        costWEs: [{ idItem: 301101, amount: 800 }]
     },
     66: {
         kingdomLv: 0,
@@ -965,7 +966,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 522800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 850 }]
+        costWEs: [{ idItem: 301101, amount: 850 }]
     },
     67: {
         kingdomLv: 0,
@@ -980,7 +981,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 535800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 900 }]
+        costWEs: [{ idItem: 301101, amount: 900 }]
     },
     68: {
         kingdomLv: 0,
@@ -995,7 +996,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 548800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 950 }]
+        costWEs: [{ idItem: 301101, amount: 950 }]
     },
     69: {
         kingdomLv: 0,
@@ -1010,7 +1011,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 561800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1000 }]
+        costWEs: [{ idItem: 301101, amount: 1000 }]
     },
     70: {
         kingdomLv: 0,
@@ -1025,7 +1026,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 574800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1050 }]
+        costWEs: [{ idItem: 301101, amount: 1050 }]
     },
     71: {
         kingdomLv: 0,
@@ -1040,7 +1041,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 590780,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1200 }]
+        costWEs: [{ idItem: 301101, amount: 1200 }]
     },
     72: {
         kingdomLv: 0,
@@ -1055,7 +1056,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 606760,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1300 }]
+        costWEs: [{ idItem: 301101, amount: 1300 }]
     },
     73: {
         kingdomLv: 0,
@@ -1070,7 +1071,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 622740,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1400 }]
+        costWEs: [{ idItem: 301101, amount: 1400 }]
     },
     74: {
         kingdomLv: 0,
@@ -1085,7 +1086,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 638720,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1500 }]
+        costWEs: [{ idItem: 301101, amount: 1500 }]
     },
     75: {
         kingdomLv: 0,
@@ -1100,7 +1101,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 654700,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1600 }]
+        costWEs: [{ idItem: 301101, amount: 1600 }]
     },
     76: {
         kingdomLv: 0,
@@ -1115,7 +1116,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 670680,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1700 }]
+        costWEs: [{ idItem: 301101, amount: 1700 }]
     },
     77: {
         kingdomLv: 0,
@@ -1130,7 +1131,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 686660,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1800 }]
+        costWEs: [{ idItem: 301101, amount: 1800 }]
     },
     78: {
         kingdomLv: 0,
@@ -1145,7 +1146,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 702640,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 1900 }]
+        costWEs: [{ idItem: 301101, amount: 1900 }]
     },
     79: {
         kingdomLv: 0,
@@ -1160,7 +1161,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 718620,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 2000 }]
+        costWEs: [{ idItem: 301101, amount: 2000 }]
     },
     80: {
         kingdomLv: 0,
@@ -1175,7 +1176,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 734600,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 2100 }]
+        costWEs: [{ idItem: 301101, amount: 2100 }]
     },
     81: {
         kingdomLv: 10,
@@ -1190,7 +1191,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 752640,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 250 }]
+        costWEs: [{ idItem: 301901, amount: 250 }]
     },
     82: {
         kingdomLv: 10,
@@ -1205,7 +1206,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 770680,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 300 }]
+        costWEs: [{ idItem: 301901, amount: 300 }]
     },
     83: {
         kingdomLv: 10,
@@ -1220,7 +1221,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 788720,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 350 }]
+        costWEs: [{ idItem: 301901, amount: 350 }]
     },
     84: {
         kingdomLv: 10,
@@ -1235,7 +1236,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 806760,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 400 }]
+        costWEs: [{ idItem: 301901, amount: 400 }]
     },
     85: {
         kingdomLv: 10,
@@ -1250,7 +1251,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 824800,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 450 }]
+        costWEs: [{ idItem: 301901, amount: 450 }]
     },
     86: {
         kingdomLv: 10,
@@ -1265,7 +1266,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 842840,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 500 }]
+        costWEs: [{ idItem: 301901, amount: 500 }]
     },
     87: {
         kingdomLv: 10,
@@ -1280,7 +1281,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 860880,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 550 }]
+        costWEs: [{ idItem: 301901, amount: 550 }]
     },
     88: {
         kingdomLv: 10,
@@ -1295,7 +1296,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 878920,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 600 }]
+        costWEs: [{ idItem: 301901, amount: 600 }]
     },
     89: {
         kingdomLv: 10,
@@ -1310,7 +1311,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 896960,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 650 }]
+        costWEs: [{ idItem: 301901, amount: 650 }]
     },
     90: {
         kingdomLv: 10,
@@ -1325,7 +1326,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 915000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 700 }]
+        costWEs: [{ idItem: 301901, amount: 700 }]
     },
     91: {
         kingdomLv: 20,
@@ -1340,7 +1341,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 933500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 780 }]
+        costWEs: [{ idItem: 301901, amount: 780 }]
     },
     92: {
         kingdomLv: 20,
@@ -1355,7 +1356,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 952000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 860 }]
+        costWEs: [{ idItem: 301901, amount: 860 }]
     },
     93: {
         kingdomLv: 20,
@@ -1370,7 +1371,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 970500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 940 }]
+        costWEs: [{ idItem: 301901, amount: 940 }]
     },
     94: {
         kingdomLv: 20,
@@ -1385,7 +1386,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 989000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1020 }]
+        costWEs: [{ idItem: 301901, amount: 1020 }]
     },
     95: {
         kingdomLv: 20,
@@ -1400,7 +1401,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1007500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1100 }]
+        costWEs: [{ idItem: 301901, amount: 1100 }]
     },
     96: {
         kingdomLv: 20,
@@ -1415,7 +1416,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1026000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1180 }]
+        costWEs: [{ idItem: 301901, amount: 1180 }]
     },
     97: {
         kingdomLv: 20,
@@ -1430,7 +1431,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1044500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1260 }]
+        costWEs: [{ idItem: 301901, amount: 1260 }]
     },
     98: {
         kingdomLv: 20,
@@ -1445,7 +1446,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1063000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1340 }]
+        costWEs: [{ idItem: 301901, amount: 1340 }]
     },
     99: {
         kingdomLv: 20,
@@ -1460,7 +1461,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1081500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1420 }]
+        costWEs: [{ idItem: 301901, amount: 1420 }]
     },
     100: {
         kingdomLv: 20,
@@ -1475,7 +1476,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1100000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1500 }]
+        costWEs: [{ idItem: 301901, amount: 1500 }]
     },
     101: {
         kingdomLv: 30,
@@ -1490,7 +1491,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1120500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1600 }]
+        costWEs: [{ idItem: 301901, amount: 1600 }]
     },
     102: {
         kingdomLv: 30,
@@ -1505,7 +1506,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1141000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1700 }]
+        costWEs: [{ idItem: 301901, amount: 1700 }]
     },
     103: {
         kingdomLv: 30,
@@ -1520,7 +1521,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1161500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1800 }]
+        costWEs: [{ idItem: 301901, amount: 1800 }]
     },
     104: {
         kingdomLv: 30,
@@ -1535,7 +1536,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1182000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1900 }]
+        costWEs: [{ idItem: 301901, amount: 1900 }]
     },
     105: {
         kingdomLv: 30,
@@ -1550,7 +1551,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1202500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2000 }]
+        costWEs: [{ idItem: 301901, amount: 2000 }]
     },
     106: {
         kingdomLv: 30,
@@ -1565,7 +1566,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1223000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2100 }]
+        costWEs: [{ idItem: 301901, amount: 2100 }]
     },
     107: {
         kingdomLv: 30,
@@ -1580,7 +1581,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1243500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2200 }]
+        costWEs: [{ idItem: 301901, amount: 2200 }]
     },
     108: {
         kingdomLv: 30,
@@ -1595,7 +1596,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1264000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2300 }]
+        costWEs: [{ idItem: 301901, amount: 2300 }]
     },
     109: {
         kingdomLv: 30,
@@ -1610,7 +1611,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1284500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2400 }]
+        costWEs: [{ idItem: 301901, amount: 2400 }]
     },
     110: {
         kingdomLv: 30,
@@ -1625,7 +1626,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1305000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2500 }]
+        costWEs: [{ idItem: 301901, amount: 2500 }]
     },
     111: {
         kingdomLv: 40,
@@ -1640,7 +1641,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1327500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2620 }]
+        costWEs: [{ idItem: 301901, amount: 2620 }]
     },
     112: {
         kingdomLv: 40,
@@ -1655,7 +1656,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1350000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2740 }]
+        costWEs: [{ idItem: 301901, amount: 2740 }]
     },
     113: {
         kingdomLv: 40,
@@ -1670,7 +1671,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1372500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2860 }]
+        costWEs: [{ idItem: 301901, amount: 2860 }]
     },
     114: {
         kingdomLv: 40,
@@ -1685,7 +1686,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1395000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2980 }]
+        costWEs: [{ idItem: 301901, amount: 2980 }]
     },
     115: {
         kingdomLv: 40,
@@ -1700,7 +1701,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1417500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3100 }]
+        costWEs: [{ idItem: 301901, amount: 3100 }]
     },
     116: {
         kingdomLv: 40,
@@ -1715,7 +1716,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1440000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3220 }]
+        costWEs: [{ idItem: 301901, amount: 3220 }]
     },
     117: {
         kingdomLv: 40,
@@ -1730,7 +1731,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1462500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3340 }]
+        costWEs: [{ idItem: 301901, amount: 3340 }]
     },
     118: {
         kingdomLv: 40,
@@ -1745,7 +1746,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1485000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3460 }]
+        costWEs: [{ idItem: 301901, amount: 3460 }]
     },
     119: {
         kingdomLv: 40,
@@ -1760,7 +1761,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1507500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3580 }]
+        costWEs: [{ idItem: 301901, amount: 3580 }]
     },
     120: {
         kingdomLv: 40,
@@ -1775,7 +1776,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1530000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3700 }]
+        costWEs: [{ idItem: 301901, amount: 3700 }]
     },
     121: {
         kingdomLv: 50,
@@ -1790,7 +1791,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1554500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3830 }]
+        costWEs: [{ idItem: 301901, amount: 3830 }]
     },
     122: {
         kingdomLv: 50,
@@ -1805,7 +1806,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1579000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4250 }]
+        costWEs: [{ idItem: 301901, amount: 4250 }]
     },
     123: {
         kingdomLv: 50,
@@ -1820,7 +1821,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1603500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4680 }]
+        costWEs: [{ idItem: 301901, amount: 4680 }]
     },
     124: {
         kingdomLv: 50,
@@ -1835,7 +1836,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1628000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 5120 }]
+        costWEs: [{ idItem: 301901, amount: 5120 }]
     },
     125: {
         kingdomLv: 50,
@@ -1850,7 +1851,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1652500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 5570 }]
+        costWEs: [{ idItem: 301901, amount: 5570 }]
     },
     126: {
         kingdomLv: 50,
@@ -1865,7 +1866,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1677000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 6030 }]
+        costWEs: [{ idItem: 301901, amount: 6030 }]
     },
     127: {
         kingdomLv: 50,
@@ -1880,7 +1881,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1701500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 6500 }]
+        costWEs: [{ idItem: 301901, amount: 6500 }]
     },
     128: {
         kingdomLv: 50,
@@ -1895,7 +1896,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1726000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 6980 }]
+        costWEs: [{ idItem: 301901, amount: 6980 }]
     },
     129: {
         kingdomLv: 50,
@@ -1910,7 +1911,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1750500,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 7480 }]
+        costWEs: [{ idItem: 301901, amount: 7480 }]
     },
     130: {
         kingdomLv: 50,
@@ -1925,7 +1926,7 @@ export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
         power: 1775000,
         unlockedBuild: 0,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1500 }]
+        costWEs: [{ idItem: 301901, amount: 1500 }]
     }
 };
 

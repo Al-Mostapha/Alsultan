@@ -1,5 +1,5 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
 export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
     1: {
@@ -372,7 +372,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 3 }]
+        costWEs: [{ idItem: 301101, amount: 3 }]
     },
     32: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -384,7 +384,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 6 }]
+        costWEs: [{ idItem: 301101, amount: 6 }]
     },
     33: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -396,7 +396,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 9 }]
+        costWEs: [{ idItem: 301101, amount: 9 }]
     },
     34: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -408,7 +408,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 12 }]
+        costWEs: [{ idItem: 301101, amount: 12 }]
     },
     35: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -420,7 +420,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 15 }]
+        costWEs: [{ idItem: 301101, amount: 15 }]
     },
     36: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -432,7 +432,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 18 }]
+        costWEs: [{ idItem: 301101, amount: 18 }]
     },
     37: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -444,7 +444,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 21 }]
+        costWEs: [{ idItem: 301101, amount: 21 }]
     },
     38: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -456,7 +456,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 24 }]
+        costWEs: [{ idItem: 301101, amount: 24 }]
     },
     39: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -468,7 +468,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 160,
         trainSpeed: 160,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 27 }]
+        costWEs: [{ idItem: 301101, amount: 27 }]
     },
     40: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -480,7 +480,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     41: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -492,7 +492,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     42: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -504,7 +504,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 36 }]
+        costWEs: [{ idItem: 301101, amount: 36 }]
     },
     43: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -516,7 +516,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 42 }]
+        costWEs: [{ idItem: 301101, amount: 42 }]
     },
     44: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -528,7 +528,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 48 }]
+        costWEs: [{ idItem: 301101, amount: 48 }]
     },
     45: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -540,7 +540,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 54 }]
+        costWEs: [{ idItem: 301101, amount: 54 }]
     },
     46: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -552,7 +552,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 60 }]
+        costWEs: [{ idItem: 301101, amount: 60 }]
     },
     47: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -564,7 +564,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 66 }]
+        costWEs: [{ idItem: 301101, amount: 66 }]
     },
     48: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -576,7 +576,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 72 }]
+        costWEs: [{ idItem: 301101, amount: 72 }]
     },
     49: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -588,7 +588,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 175,
         trainSpeed: 175,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 78 }]
+        costWEs: [{ idItem: 301101, amount: 78 }]
     },
     50: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -600,7 +600,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 84 }]
+        costWEs: [{ idItem: 301101, amount: 84 }]
     },
     51: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -612,7 +612,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 93 }]
+        costWEs: [{ idItem: 301101, amount: 93 }]
     },
     52: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -624,7 +624,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 102 }]
+        costWEs: [{ idItem: 301101, amount: 102 }]
     },
     53: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -636,7 +636,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 111 }]
+        costWEs: [{ idItem: 301101, amount: 111 }]
     },
     54: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -648,7 +648,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 120 }]
+        costWEs: [{ idItem: 301101, amount: 120 }]
     },
     55: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -660,7 +660,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 129 }]
+        costWEs: [{ idItem: 301101, amount: 129 }]
     },
     56: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -672,7 +672,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 138 }]
+        costWEs: [{ idItem: 301101, amount: 138 }]
     },
     57: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -684,7 +684,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 147 }]
+        costWEs: [{ idItem: 301101, amount: 147 }]
     },
     58: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -696,7 +696,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 156 }]
+        costWEs: [{ idItem: 301101, amount: 156 }]
     },
     59: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -708,7 +708,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 190,
         trainSpeed: 190,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 165 }]
+        costWEs: [{ idItem: 301101, amount: 165 }]
     },
     60: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -720,7 +720,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 174 }]
+        costWEs: [{ idItem: 301101, amount: 174 }]
     },
     61: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -732,7 +732,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 180 }]
+        costWEs: [{ idItem: 301101, amount: 180 }]
     },
     62: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -744,7 +744,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 195 }]
+        costWEs: [{ idItem: 301101, amount: 195 }]
     },
     63: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -756,7 +756,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 210 }]
+        costWEs: [{ idItem: 301101, amount: 210 }]
     },
     64: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -768,7 +768,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 225 }]
+        costWEs: [{ idItem: 301101, amount: 225 }]
     },
     65: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -780,7 +780,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 240 }]
+        costWEs: [{ idItem: 301101, amount: 240 }]
     },
     66: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -792,7 +792,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 255 }]
+        costWEs: [{ idItem: 301101, amount: 255 }]
     },
     67: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -804,7 +804,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 270 }]
+        costWEs: [{ idItem: 301101, amount: 270 }]
     },
     68: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -816,7 +816,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 285 }]
+        costWEs: [{ idItem: 301101, amount: 285 }]
     },
     69: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -828,7 +828,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 205,
         trainSpeed: 205,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 300 }]
+        costWEs: [{ idItem: 301101, amount: 300 }]
     },
     70: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -840,7 +840,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 315 }]
+        costWEs: [{ idItem: 301101, amount: 315 }]
     },
     71: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -852,7 +852,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 360 }]
+        costWEs: [{ idItem: 301101, amount: 360 }]
     },
     72: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -864,7 +864,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 390 }]
+        costWEs: [{ idItem: 301101, amount: 390 }]
     },
     73: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -876,7 +876,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 420 }]
+        costWEs: [{ idItem: 301101, amount: 420 }]
     },
     74: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -888,7 +888,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 450 }]
+        costWEs: [{ idItem: 301101, amount: 450 }]
     },
     75: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -900,7 +900,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 480 }]
+        costWEs: [{ idItem: 301101, amount: 480 }]
     },
     76: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -912,7 +912,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 510 }]
+        costWEs: [{ idItem: 301101, amount: 510 }]
     },
     77: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -924,7 +924,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 540 }]
+        costWEs: [{ idItem: 301101, amount: 540 }]
     },
     78: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -936,7 +936,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 570 }]
+        costWEs: [{ idItem: 301101, amount: 570 }]
     },
     79: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -948,7 +948,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 225,
         trainSpeed: 225,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 600 }]
+        costWEs: [{ idItem: 301101, amount: 600 }]
     },
     80: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -960,7 +960,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 630 }]
+        costWEs: [{ idItem: 301101, amount: 630 }]
     },
     81: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -972,7 +972,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 75 }]
+        costWEs: [{ idItem: 301901, amount: 75 }]
     },
     82: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -984,7 +984,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 90 }]
+        costWEs: [{ idItem: 301901, amount: 90 }]
     },
     83: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -996,7 +996,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 105 }]
+        costWEs: [{ idItem: 301901, amount: 105 }]
     },
     84: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1008,7 +1008,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 120 }]
+        costWEs: [{ idItem: 301901, amount: 120 }]
     },
     85: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1020,7 +1020,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 135 }]
+        costWEs: [{ idItem: 301901, amount: 135 }]
     },
     86: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1032,7 +1032,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 150 }]
+        costWEs: [{ idItem: 301901, amount: 150 }]
     },
     87: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1044,7 +1044,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 165 }]
+        costWEs: [{ idItem: 301901, amount: 165 }]
     },
     88: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1056,7 +1056,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 180 }]
+        costWEs: [{ idItem: 301901, amount: 180 }]
     },
     89: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1068,7 +1068,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 245,
         trainSpeed: 245,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 195 }]
+        costWEs: [{ idItem: 301901, amount: 195 }]
     },
     90: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1080,7 +1080,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 210 }]
+        costWEs: [{ idItem: 301901, amount: 210 }]
     },
     91: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1092,7 +1092,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 234 }]
+        costWEs: [{ idItem: 301901, amount: 234 }]
     },
     92: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1104,7 +1104,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 258 }]
+        costWEs: [{ idItem: 301901, amount: 258 }]
     },
     93: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1116,7 +1116,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 282 }]
+        costWEs: [{ idItem: 301901, amount: 282 }]
     },
     94: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1128,7 +1128,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 306 }]
+        costWEs: [{ idItem: 301901, amount: 306 }]
     },
     95: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1140,7 +1140,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 330 }]
+        costWEs: [{ idItem: 301901, amount: 330 }]
     },
     96: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1152,7 +1152,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 354 }]
+        costWEs: [{ idItem: 301901, amount: 354 }]
     },
     97: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1164,7 +1164,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 378 }]
+        costWEs: [{ idItem: 301901, amount: 378 }]
     },
     98: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1176,7 +1176,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 402 }]
+        costWEs: [{ idItem: 301901, amount: 402 }]
     },
     99: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1188,7 +1188,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 270,
         trainSpeed: 270,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 426 }]
+        costWEs: [{ idItem: 301901, amount: 426 }]
     },
     100: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1200,7 +1200,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 450 }]
+        costWEs: [{ idItem: 301901, amount: 450 }]
     },
     101: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1212,7 +1212,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 480 }]
+        costWEs: [{ idItem: 301901, amount: 480 }]
     },
     102: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1224,7 +1224,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 510 }]
+        costWEs: [{ idItem: 301901, amount: 510 }]
     },
     103: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1236,7 +1236,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 540 }]
+        costWEs: [{ idItem: 301901, amount: 540 }]
     },
     104: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1248,7 +1248,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 570 }]
+        costWEs: [{ idItem: 301901, amount: 570 }]
     },
     105: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1260,7 +1260,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 600 }]
+        costWEs: [{ idItem: 301901, amount: 600 }]
     },
     106: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1272,7 +1272,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 630 }]
+        costWEs: [{ idItem: 301901, amount: 630 }]
     },
     107: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1284,7 +1284,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 660 }]
+        costWEs: [{ idItem: 301901, amount: 660 }]
     },
     108: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1296,7 +1296,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 690 }]
+        costWEs: [{ idItem: 301901, amount: 690 }]
     },
     109: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1308,7 +1308,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 295,
         trainSpeed: 295,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 720 }]
+        costWEs: [{ idItem: 301901, amount: 720 }]
     },
     110: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1320,7 +1320,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 750 }]
+        costWEs: [{ idItem: 301901, amount: 750 }]
     },
     111: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1332,7 +1332,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 786 }]
+        costWEs: [{ idItem: 301901, amount: 786 }]
     },
     112: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1344,7 +1344,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 822 }]
+        costWEs: [{ idItem: 301901, amount: 822 }]
     },
     113: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1356,7 +1356,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 858 }]
+        costWEs: [{ idItem: 301901, amount: 858 }]
     },
     114: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1368,7 +1368,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 894 }]
+        costWEs: [{ idItem: 301901, amount: 894 }]
     },
     115: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1380,7 +1380,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 930 }]
+        costWEs: [{ idItem: 301901, amount: 930 }]
     },
     116: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1392,7 +1392,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1020 }]
+        costWEs: [{ idItem: 301901, amount: 1020 }]
     },
     117: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1404,7 +1404,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1140 }]
+        costWEs: [{ idItem: 301901, amount: 1140 }]
     },
     118: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1416,7 +1416,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1260 }]
+        costWEs: [{ idItem: 301901, amount: 1260 }]
     },
     119: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1428,7 +1428,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 325,
         trainSpeed: 325,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1380 }]
+        costWEs: [{ idItem: 301901, amount: 1380 }]
     },
     120: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1440,7 +1440,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1500 }]
+        costWEs: [{ idItem: 301901, amount: 1500 }]
     },
     121: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1452,7 +1452,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1650 }]
+        costWEs: [{ idItem: 301901, amount: 1650 }]
     },
     122: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1464,7 +1464,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1800 }]
+        costWEs: [{ idItem: 301901, amount: 1800 }]
     },
     123: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1476,7 +1476,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1950 }]
+        costWEs: [{ idItem: 301901, amount: 1950 }]
     },
     124: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1488,7 +1488,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2100 }]
+        costWEs: [{ idItem: 301901, amount: 2100 }]
     },
     125: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1500,7 +1500,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2250 }]
+        costWEs: [{ idItem: 301901, amount: 2250 }]
     },
     126: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1512,7 +1512,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2400 }]
+        costWEs: [{ idItem: 301901, amount: 2400 }]
     },
     127: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1524,7 +1524,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2550 }]
+        costWEs: [{ idItem: 301901, amount: 2550 }]
     },
     128: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1536,7 +1536,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2700 }]
+        costWEs: [{ idItem: 301901, amount: 2700 }]
     },
     129: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1548,7 +1548,7 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 360,
         trainSpeed: 360,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2850 }]
+        costWEs: [{ idItem: 301901, amount: 2850 }]
     },
     130: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1560,6 +1560,6 @@ export const BuildingOMilitaryTentStatic: {[Key: number] : IReqBuilding} = {
         capacity: 400,
         trainSpeed: 400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3000 }]
+        costWEs: [{ idItem: 301901, amount: 3000 }]
     }
 };

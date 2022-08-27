@@ -1,7 +1,7 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
 
-export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
+export const BuildingIHallOfWarStatic: {[Key: number] : IReqBuilding} = {
     1: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 300, Iron: 0, Silver: 0, Crystal: 0 },
@@ -10,7 +10,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 13,
         power: 5,
         capacity: 10000,
-        costTools: [{ idTool: 300601, amount: 1}],
+        costTools: [{ idItem: 300601, amount: 1}],
         costWEs: []
     },
     2: {
@@ -21,7 +21,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 16,
         power: 15,
         capacity: 20000,
-        costTools: [{ idTool: 300601, amount: 2}],
+        costTools: [{ idItem: 300601, amount: 2}],
         costWEs: []
     },
     3: {
@@ -32,7 +32,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 36,
         power: 35,
         capacity: 30000,
-        costTools: [{ idTool: 300601, amount: 4}],
+        costTools: [{ idItem: 300601, amount: 4}],
         costWEs: []
     },
     4: {
@@ -43,7 +43,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 131,
         power: 70,
         capacity: 40000,
-        costTools: [{ idTool: 300601, amount: 8}],
+        costTools: [{ idItem: 300601, amount: 8}],
         costWEs: []
     },
     5: {
@@ -54,7 +54,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 326,
         power: 135,
         capacity: 50000,
-        costTools: [{ idTool: 300601, amount: 12}],
+        costTools: [{ idItem: 300601, amount: 12}],
         costWEs: []
     },
     6: {
@@ -65,7 +65,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 671,
         power: 250,
         capacity: 60000,
-        costTools: [{ idTool: 300601, amount: 20}],
+        costTools: [{ idItem: 300601, amount: 20}],
         costWEs: []
     },
     7: {
@@ -76,7 +76,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 1380,
         power: 420,
         capacity: 80000,
-        costTools: [{ idTool: 300601, amount: 30}],
+        costTools: [{ idItem: 300601, amount: 30}],
         costWEs: []
     },
     8: {
@@ -87,7 +87,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 1950,
         power: 650,
         capacity: 100000,
-        costTools: [{ idTool: 300601, amount: 50}],
+        costTools: [{ idItem: 300601, amount: 50}],
         costWEs: []
     },
     9: {
@@ -98,7 +98,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 2698,
         power: 920,
         capacity: 120000,
-        costTools: [{ idTool: 300601, amount: 80}],
+        costTools: [{ idItem: 300601, amount: 80}],
         costWEs: []
     },
     10: {
@@ -109,7 +109,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 3763,
         power: 1240,
         capacity: 140000,
-        costTools: [{ idTool: 300601, amount: 125}],
+        costTools: [{ idItem: 300601, amount: 125}],
         costWEs: []
     },
     11: {
@@ -120,7 +120,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 5228,
         power: 1620,
         capacity: 160000,
-        costTools: [{ idTool: 300601, amount: 175}],
+        costTools: [{ idItem: 300601, amount: 175}],
         costWEs: []
     },
     12: {
@@ -131,7 +131,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 7283,
         power: 2080,
         capacity: 190000,
-        costTools: [{ idTool: 300601, amount: 230}],
+        costTools: [{ idItem: 300601, amount: 230}],
         costWEs: []
     },
     13: {
@@ -142,7 +142,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 10033,
         power: 2640,
         capacity: 220000,
-        costTools: [{ idTool: 300601, amount: 290}],
+        costTools: [{ idItem: 300601, amount: 290}],
         costWEs: []
     },
     14: {
@@ -153,7 +153,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 13961,
         power: 3330,
         capacity: 250000,
-        costTools: [{ idTool: 300601, amount: 355}],
+        costTools: [{ idItem: 300601, amount: 355}],
         costWEs: []
     },
     15: {
@@ -164,7 +164,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 19320,
         power: 4170,
         capacity: 280000,
-        costTools: [{ idTool: 300601, amount: 425}],
+        costTools: [{ idItem: 300601, amount: 425}],
         costWEs: []
     },
     16: {
@@ -175,7 +175,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 26618,
         power: 5195,
         capacity: 310000,
-        costTools: [{ idTool: 300601, amount: 500}],
+        costTools: [{ idItem: 300601, amount: 500}],
         costWEs: []
     },
     17: {
@@ -186,7 +186,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 36846,
         power: 6450,
         capacity: 350000,
-        costTools: [{ idTool: 300601, amount: 580}],
+        costTools: [{ idItem: 300601, amount: 580}],
         costWEs: []
     },
     18: {
@@ -197,7 +197,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 43006,
         power: 7985,
         capacity: 390000,
-        costTools: [{ idTool: 300601, amount: 665}],
+        costTools: [{ idItem: 300601, amount: 665}],
         costWEs: []
     },
     19: {
@@ -208,7 +208,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 49391,
         power: 9860,
         capacity: 430000,
-        costTools: [{ idTool: 300601, amount: 755}],
+        costTools: [{ idItem: 300601, amount: 755}],
         costWEs: []
     },
     20: {
@@ -219,7 +219,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 57400,
         power: 12150,
         capacity: 470000,
-        costTools: [{ idTool: 300601, amount: 850}],
+        costTools: [{ idItem: 300601, amount: 850}],
         costWEs: []
     },
     21: {
@@ -230,7 +230,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 65800,
         power: 14750,
         capacity: 510000,
-        costTools: [{ idTool: 300601, amount: 950}],
+        costTools: [{ idItem: 300601, amount: 950}],
         costWEs: []
     },
     22: {
@@ -241,7 +241,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 75600,
         power: 17695,
         capacity: 550000,
-        costTools: [{ idTool: 300601, amount: 1055}],
+        costTools: [{ idItem: 300601, amount: 1055}],
         costWEs: []
     },
     23: {
@@ -252,7 +252,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 86800,
         power: 21035,
         capacity: 590000,
-        costTools: [{ idTool: 300601, amount: 1165}],
+        costTools: [{ idItem: 300601, amount: 1165}],
         costWEs: []
     },
     24: {
@@ -263,7 +263,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 99866,
         power: 24820,
         capacity: 630000,
-        costTools: [{ idTool: 300601, amount: 1280}],
+        costTools: [{ idItem: 300601, amount: 1280}],
         costWEs: []
     },
     25: {
@@ -274,7 +274,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 114800,
         power: 29115,
         capacity: 680000,
-        costTools: [{ idTool: 300601, amount: 1400}],
+        costTools: [{ idItem: 300601, amount: 1400}],
         costWEs: []
     },
     26: {
@@ -285,7 +285,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 131600,
         power: 33990,
         capacity: 730000,
-        costTools: [{ idTool: 300601, amount: 1525}],
+        costTools: [{ idItem: 300601, amount: 1525}],
         costWEs: []
     },
     27: {
@@ -296,7 +296,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 150266,
         power: 39510,
         capacity: 780000,
-        costTools: [{ idTool: 300601, amount: 1655}],
+        costTools: [{ idItem: 300601, amount: 1655}],
         costWEs: []
     },
     28: {
@@ -307,7 +307,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 170800,
         power: 45775,
         capacity: 830000,
-        costTools: [{ idTool: 300601, amount: 1790}],
+        costTools: [{ idItem: 300601, amount: 1790}],
         costWEs: []
     },
     29: {
@@ -318,7 +318,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 193200,
         power: 52880,
         capacity: 880000,
-        costTools: [{ idTool: 300601, amount: 1930}],
+        costTools: [{ idItem: 300601, amount: 1930}],
         costWEs: []
     },
     30: {
@@ -329,7 +329,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 221200,
         power: 60930,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 2075}],
+        costTools: [{ idItem: 300601, amount: 2075}],
         costWEs: []
     },
     31: {
@@ -340,8 +340,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 13333,
         power: 61977,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 220}],
-        costWEs: [{ idTool: 301101, amount: 3 }]
+        costTools: [{ idItem: 300601, amount: 220}],
+        costWEs: [{ idItem: 301101, amount: 3 }]
     },
     32: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -351,8 +351,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 16000,
         power: 63024,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 222}],
-        costWEs: [{ idTool: 301101, amount: 6 }]
+        costTools: [{ idItem: 300601, amount: 222}],
+        costWEs: [{ idItem: 301101, amount: 6 }]
     },
     33: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -362,8 +362,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 18666,
         power: 64071,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 224}],
-        costWEs: [{ idTool: 301101, amount: 9 }]
+        costTools: [{ idItem: 300601, amount: 224}],
+        costWEs: [{ idItem: 301101, amount: 9 }]
     },
     34: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -373,8 +373,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 21333,
         power: 65118,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 226}],
-        costWEs: [{ idTool: 301101, amount: 12 }]
+        costTools: [{ idItem: 300601, amount: 226}],
+        costWEs: [{ idItem: 301101, amount: 12 }]
     },
     35: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -384,8 +384,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 24000,
         power: 66165,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 228}],
-        costWEs: [{ idTool: 301101, amount: 15 }]
+        costTools: [{ idItem: 300601, amount: 228}],
+        costWEs: [{ idItem: 301101, amount: 15 }]
     },
     36: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -395,8 +395,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 26666,
         power: 67212,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 230}],
-        costWEs: [{ idTool: 301101, amount: 18 }]
+        costTools: [{ idItem: 300601, amount: 230}],
+        costWEs: [{ idItem: 301101, amount: 18 }]
     },
     37: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -406,8 +406,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 29333,
         power: 68259,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 232}],
-        costWEs: [{ idTool: 301101, amount: 21 }]
+        costTools: [{ idItem: 300601, amount: 232}],
+        costWEs: [{ idItem: 301101, amount: 21 }]
     },
     38: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -417,8 +417,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 32000,
         power: 69306,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 234}],
-        costWEs: [{ idTool: 301101, amount: 24 }]
+        costTools: [{ idItem: 300601, amount: 234}],
+        costWEs: [{ idItem: 301101, amount: 24 }]
     },
     39: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -428,8 +428,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 34666,
         power: 70353,
         capacity: 930000,
-        costTools: [{ idTool: 300601, amount: 236}],
-        costWEs: [{ idTool: 301101, amount: 27 }]
+        costTools: [{ idItem: 300601, amount: 236}],
+        costWEs: [{ idItem: 301101, amount: 27 }]
     },
     40: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -439,8 +439,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 37333,
         power: 71400,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 238}],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costTools: [{ idItem: 300601, amount: 238}],
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     41: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -450,8 +450,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 40000,
         power: 73240,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 240}],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costTools: [{ idItem: 300601, amount: 240}],
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     42: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -461,8 +461,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 42666,
         power: 75080,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 242}],
-        costWEs: [{ idTool: 301101, amount: 36 }]
+        costTools: [{ idItem: 300601, amount: 242}],
+        costWEs: [{ idItem: 301101, amount: 36 }]
     },
     43: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -472,8 +472,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 45333,
         power: 76920,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 244}],
-        costWEs: [{ idTool: 301101, amount: 42 }]
+        costTools: [{ idItem: 300601, amount: 244}],
+        costWEs: [{ idItem: 301101, amount: 42 }]
     },
     44: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -483,8 +483,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 48000,
         power: 78760,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 246}],
-        costWEs: [{ idTool: 301101, amount: 48 }]
+        costTools: [{ idItem: 300601, amount: 246}],
+        costWEs: [{ idItem: 301101, amount: 48 }]
     },
     45: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -494,8 +494,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 50666,
         power: 80600,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 248}],
-        costWEs: [{ idTool: 301101, amount: 54 }]
+        costTools: [{ idItem: 300601, amount: 248}],
+        costWEs: [{ idItem: 301101, amount: 54 }]
     },
     46: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -505,8 +505,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 53333,
         power: 82440,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 250}],
-        costWEs: [{ idTool: 301101, amount: 60 }]
+        costTools: [{ idItem: 300601, amount: 250}],
+        costWEs: [{ idItem: 301101, amount: 60 }]
     },
     47: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -516,8 +516,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 56000,
         power: 84280,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 252}],
-        costWEs: [{ idTool: 301101, amount: 66 }]
+        costTools: [{ idItem: 300601, amount: 252}],
+        costWEs: [{ idItem: 301101, amount: 66 }]
     },
     48: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -527,8 +527,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 58666,
         power: 86120,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 254}],
-        costWEs: [{ idTool: 301101, amount: 72 }]
+        costTools: [{ idItem: 300601, amount: 254}],
+        costWEs: [{ idItem: 301101, amount: 72 }]
     },
     49: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -538,8 +538,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 61333,
         power: 87960,
         capacity: 980000,
-        costTools: [{ idTool: 300601, amount: 256}],
-        costWEs: [{ idTool: 301101, amount: 78 }]
+        costTools: [{ idItem: 300601, amount: 256}],
+        costWEs: [{ idItem: 301101, amount: 78 }]
     },
     50: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -549,8 +549,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 64000,
         power: 89800,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 258}],
-        costWEs: [{ idTool: 301101, amount: 84 }]
+        costTools: [{ idItem: 300601, amount: 258}],
+        costWEs: [{ idItem: 301101, amount: 84 }]
     },
     51: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -560,8 +560,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 66666,
         power: 92420,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 260}],
-        costWEs: [{ idTool: 301101, amount: 93 }]
+        costTools: [{ idItem: 300601, amount: 260}],
+        costWEs: [{ idItem: 301101, amount: 93 }]
     },
     52: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -571,8 +571,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 69333,
         power: 95040,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 262}],
-        costWEs: [{ idTool: 301101, amount: 102 }]
+        costTools: [{ idItem: 300601, amount: 262}],
+        costWEs: [{ idItem: 301101, amount: 102 }]
     },
     53: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -582,8 +582,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 72000,
         power: 97660,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 264}],
-        costWEs: [{ idTool: 301101, amount: 111 }]
+        costTools: [{ idItem: 300601, amount: 264}],
+        costWEs: [{ idItem: 301101, amount: 111 }]
     },
     54: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -593,8 +593,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 74666,
         power: 100280,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 266}],
-        costWEs: [{ idTool: 301101, amount: 120 }]
+        costTools: [{ idItem: 300601, amount: 266}],
+        costWEs: [{ idItem: 301101, amount: 120 }]
     },
     55: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -604,8 +604,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 77333,
         power: 102900,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 268}],
-        costWEs: [{ idTool: 301101, amount: 129 }]
+        costTools: [{ idItem: 300601, amount: 268}],
+        costWEs: [{ idItem: 301101, amount: 129 }]
     },
     56: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -615,8 +615,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 80000,
         power: 105520,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 270}],
-        costWEs: [{ idTool: 301101, amount: 138 }]
+        costTools: [{ idItem: 300601, amount: 270}],
+        costWEs: [{ idItem: 301101, amount: 138 }]
     },
     57: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -626,8 +626,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 82666,
         power: 108140,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 272}],
-        costWEs: [{ idTool: 301101, amount: 147 }]
+        costTools: [{ idItem: 300601, amount: 272}],
+        costWEs: [{ idItem: 301101, amount: 147 }]
     },
     58: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -637,8 +637,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 85333,
         power: 110760,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 274}],
-        costWEs: [{ idTool: 301101, amount: 156 }]
+        costTools: [{ idItem: 300601, amount: 274}],
+        costWEs: [{ idItem: 301101, amount: 156 }]
     },
     59: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -648,8 +648,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 88000,
         power: 113380,
         capacity: 1035000,
-        costTools: [{ idTool: 300601, amount: 276}],
-        costWEs: [{ idTool: 301101, amount: 165 }]
+        costTools: [{ idItem: 300601, amount: 276}],
+        costWEs: [{ idItem: 301101, amount: 165 }]
     },
     60: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -659,8 +659,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 90666,
         power: 116000,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 278}],
-        costWEs: [{ idTool: 301101, amount: 174 }]
+        costTools: [{ idItem: 300601, amount: 278}],
+        costWEs: [{ idItem: 301101, amount: 174 }]
     },
     61: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -670,8 +670,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 93333,
         power: 119390,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 280}],
-        costWEs: [{ idTool: 301101, amount: 180 }]
+        costTools: [{ idItem: 300601, amount: 280}],
+        costWEs: [{ idItem: 301101, amount: 180 }]
     },
     62: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -681,8 +681,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 96000,
         power: 122780,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 282}],
-        costWEs: [{ idTool: 301101, amount: 195 }]
+        costTools: [{ idItem: 300601, amount: 282}],
+        costWEs: [{ idItem: 301101, amount: 195 }]
     },
     63: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -692,8 +692,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 98666,
         power: 126170,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 284}],
-        costWEs: [{ idTool: 301101, amount: 210 }]
+        costTools: [{ idItem: 300601, amount: 284}],
+        costWEs: [{ idItem: 301101, amount: 210 }]
     },
     64: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -703,8 +703,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 101333,
         power: 129560,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 286}],
-        costWEs: [{ idTool: 301101, amount: 225 }]
+        costTools: [{ idItem: 300601, amount: 286}],
+        costWEs: [{ idItem: 301101, amount: 225 }]
     },
     65: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -714,8 +714,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 104000,
         power: 132950,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 288}],
-        costWEs: [{ idTool: 301101, amount: 240 }]
+        costTools: [{ idItem: 300601, amount: 288}],
+        costWEs: [{ idItem: 301101, amount: 240 }]
     },
     66: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -725,8 +725,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 106666,
         power: 136340,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 290}],
-        costWEs: [{ idTool: 301101, amount: 255 }]
+        costTools: [{ idItem: 300601, amount: 290}],
+        costWEs: [{ idItem: 301101, amount: 255 }]
     },
     67: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -736,8 +736,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 109333,
         power: 139730,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 292}],
-        costWEs: [{ idTool: 301101, amount: 270 }]
+        costTools: [{ idItem: 300601, amount: 292}],
+        costWEs: [{ idItem: 301101, amount: 270 }]
     },
     68: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -747,8 +747,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 112000,
         power: 143120,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 294}],
-        costWEs: [{ idTool: 301101, amount: 285 }]
+        costTools: [{ idItem: 300601, amount: 294}],
+        costWEs: [{ idItem: 301101, amount: 285 }]
     },
     69: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -758,8 +758,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 114666,
         power: 146510,
         capacity: 1095000,
-        costTools: [{ idTool: 300601, amount: 296}],
-        costWEs: [{ idTool: 301101, amount: 300 }]
+        costTools: [{ idItem: 300601, amount: 296}],
+        costWEs: [{ idItem: 301101, amount: 300 }]
     },
     70: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -769,8 +769,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 117333,
         power: 149900,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 298}],
-        costWEs: [{ idTool: 301101, amount: 315 }]
+        costTools: [{ idItem: 300601, amount: 298}],
+        costWEs: [{ idItem: 301101, amount: 315 }]
     },
     71: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -780,8 +780,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 120000,
         power: 154060,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 300}],
-        costWEs: [{ idTool: 301101, amount: 360 }]
+        costTools: [{ idItem: 300601, amount: 300}],
+        costWEs: [{ idItem: 301101, amount: 360 }]
     },
     72: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -791,8 +791,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 122666,
         power: 158220,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 302}],
-        costWEs: [{ idTool: 301101, amount: 390 }]
+        costTools: [{ idItem: 300601, amount: 302}],
+        costWEs: [{ idItem: 301101, amount: 390 }]
     },
     73: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -802,8 +802,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 125333,
         power: 162380,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 304}],
-        costWEs: [{ idTool: 301101, amount: 420 }]
+        costTools: [{ idItem: 300601, amount: 304}],
+        costWEs: [{ idItem: 301101, amount: 420 }]
     },
     74: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -813,8 +813,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 128000,
         power: 166540,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 306}],
-        costWEs: [{ idTool: 301101, amount: 450 }]
+        costTools: [{ idItem: 300601, amount: 306}],
+        costWEs: [{ idItem: 301101, amount: 450 }]
     },
     75: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -824,8 +824,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 130666,
         power: 170700,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 308}],
-        costWEs: [{ idTool: 301101, amount: 480 }]
+        costTools: [{ idItem: 300601, amount: 308}],
+        costWEs: [{ idItem: 301101, amount: 480 }]
     },
     76: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -835,8 +835,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 133333,
         power: 174860,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 310}],
-        costWEs: [{ idTool: 301101, amount: 510 }]
+        costTools: [{ idItem: 300601, amount: 310}],
+        costWEs: [{ idItem: 301101, amount: 510 }]
     },
     77: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -846,8 +846,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 136000,
         power: 179020,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 312}],
-        costWEs: [{ idTool: 301101, amount: 540 }]
+        costTools: [{ idItem: 300601, amount: 312}],
+        costWEs: [{ idItem: 301101, amount: 540 }]
     },
     78: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -857,8 +857,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 138666,
         power: 183180,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 314}],
-        costWEs: [{ idTool: 301101, amount: 570 }]
+        costTools: [{ idItem: 300601, amount: 314}],
+        costWEs: [{ idItem: 301101, amount: 570 }]
     },
     79: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -868,8 +868,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 141333,
         power: 187340,
         capacity: 1160000,
-        costTools: [{ idTool: 300601, amount: 316}],
-        costWEs: [{ idTool: 301101, amount: 600 }]
+        costTools: [{ idItem: 300601, amount: 316}],
+        costWEs: [{ idItem: 301101, amount: 600 }]
     },
     80: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -879,8 +879,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 144000,
         power: 191500,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 318}],
-        costWEs: [{ idTool: 301101, amount: 630 }]
+        costTools: [{ idItem: 300601, amount: 318}],
+        costWEs: [{ idItem: 301101, amount: 630 }]
     },
     81: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -890,8 +890,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 146666,
         power: 196220,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 320}],
-        costWEs: [{ idTool: 301901, amount: 75 }]
+        costTools: [{ idItem: 300601, amount: 320}],
+        costWEs: [{ idItem: 301901, amount: 75 }]
     },
     82: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -901,8 +901,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 149333,
         power: 200940,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 322}],
-        costWEs: [{ idTool: 301901, amount: 90 }]
+        costTools: [{ idItem: 300601, amount: 322}],
+        costWEs: [{ idItem: 301901, amount: 90 }]
     },
     83: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -912,8 +912,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 152000,
         power: 205660,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 324}],
-        costWEs: [{ idTool: 301901, amount: 105 }]
+        costTools: [{ idItem: 300601, amount: 324}],
+        costWEs: [{ idItem: 301901, amount: 105 }]
     },
     84: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -923,8 +923,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 154666,
         power: 210380,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 326}],
-        costWEs: [{ idTool: 301901, amount: 120 }]
+        costTools: [{ idItem: 300601, amount: 326}],
+        costWEs: [{ idItem: 301901, amount: 120 }]
     },
     85: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -934,8 +934,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 157333,
         power: 215100,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 328}],
-        costWEs: [{ idTool: 301901, amount: 135 }]
+        costTools: [{ idItem: 300601, amount: 328}],
+        costWEs: [{ idItem: 301901, amount: 135 }]
     },
     86: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -945,8 +945,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 160000,
         power: 219820,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 330}],
-        costWEs: [{ idTool: 301901, amount: 150 }]
+        costTools: [{ idItem: 300601, amount: 330}],
+        costWEs: [{ idItem: 301901, amount: 150 }]
     },
     87: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -956,8 +956,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 162666,
         power: 224540,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 332}],
-        costWEs: [{ idTool: 301901, amount: 165 }]
+        costTools: [{ idItem: 300601, amount: 332}],
+        costWEs: [{ idItem: 301901, amount: 165 }]
     },
     88: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -967,8 +967,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 165333,
         power: 229260,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 334}],
-        costWEs: [{ idTool: 301901, amount: 180 }]
+        costTools: [{ idItem: 300601, amount: 334}],
+        costWEs: [{ idItem: 301901, amount: 180 }]
     },
     89: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -978,8 +978,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 168000,
         power: 233980,
         capacity: 1230000,
-        costTools: [{ idTool: 300601, amount: 336}],
-        costWEs: [{ idTool: 301901, amount: 195 }]
+        costTools: [{ idItem: 300601, amount: 336}],
+        costWEs: [{ idItem: 301901, amount: 195 }]
     },
     90: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -989,8 +989,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 170666,
         power: 238700,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 338}],
-        costWEs: [{ idTool: 301901, amount: 210 }]
+        costTools: [{ idItem: 300601, amount: 338}],
+        costWEs: [{ idItem: 301901, amount: 210 }]
     },
     91: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1000,8 +1000,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 173333,
         power: 243520,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 340}],
-        costWEs: [{ idTool: 301901, amount: 234 }]
+        costTools: [{ idItem: 300601, amount: 340}],
+        costWEs: [{ idItem: 301901, amount: 234 }]
     },
     92: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1011,8 +1011,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 176000,
         power: 248340,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 342}],
-        costWEs: [{ idTool: 301901, amount: 258 }]
+        costTools: [{ idItem: 300601, amount: 342}],
+        costWEs: [{ idItem: 301901, amount: 258 }]
     },
     93: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1022,8 +1022,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 178666,
         power: 253160,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 344}],
-        costWEs: [{ idTool: 301901, amount: 282 }]
+        costTools: [{ idItem: 300601, amount: 344}],
+        costWEs: [{ idItem: 301901, amount: 282 }]
     },
     94: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1033,8 +1033,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 181333,
         power: 257980,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 346}],
-        costWEs: [{ idTool: 301901, amount: 306 }]
+        costTools: [{ idItem: 300601, amount: 346}],
+        costWEs: [{ idItem: 301901, amount: 306 }]
     },
     95: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1044,8 +1044,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 184000,
         power: 262800,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 348}],
-        costWEs: [{ idTool: 301901, amount: 330 }]
+        costTools: [{ idItem: 300601, amount: 348}],
+        costWEs: [{ idItem: 301901, amount: 330 }]
     },
     96: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1055,8 +1055,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 186666,
         power: 267620,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 350}],
-        costWEs: [{ idTool: 301901, amount: 354 }]
+        costTools: [{ idItem: 300601, amount: 350}],
+        costWEs: [{ idItem: 301901, amount: 354 }]
     },
     97: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1066,8 +1066,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 189333,
         power: 272440,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 352}],
-        costWEs: [{ idTool: 301901, amount: 378 }]
+        costTools: [{ idItem: 300601, amount: 352}],
+        costWEs: [{ idItem: 301901, amount: 378 }]
     },
     98: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1077,8 +1077,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 192000,
         power: 277260,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 354}],
-        costWEs: [{ idTool: 301901, amount: 402 }]
+        costTools: [{ idItem: 300601, amount: 354}],
+        costWEs: [{ idItem: 301901, amount: 402 }]
     },
     99: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1088,8 +1088,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 194666,
         power: 282080,
         capacity: 1300000,
-        costTools: [{ idTool: 300601, amount: 356}],
-        costWEs: [{ idTool: 301901, amount: 426 }]
+        costTools: [{ idItem: 300601, amount: 356}],
+        costWEs: [{ idItem: 301901, amount: 426 }]
     },
     100: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1099,8 +1099,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 197333,
         power: 286900,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 358}],
-        costWEs: [{ idTool: 301901, amount: 450 }]
+        costTools: [{ idItem: 300601, amount: 358}],
+        costWEs: [{ idItem: 301901, amount: 450 }]
     },
     101: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1110,8 +1110,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 200000,
         power: 292250,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 360}],
-        costWEs: [{ idTool: 301901, amount: 480 }]
+        costTools: [{ idItem: 300601, amount: 360}],
+        costWEs: [{ idItem: 301901, amount: 480 }]
     },
     102: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1121,8 +1121,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 202666,
         power: 297600,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 362}],
-        costWEs: [{ idTool: 301901, amount: 510 }]
+        costTools: [{ idItem: 300601, amount: 362}],
+        costWEs: [{ idItem: 301901, amount: 510 }]
     },
     103: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1132,8 +1132,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 205333,
         power: 302950,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 364}],
-        costWEs: [{ idTool: 301901, amount: 540 }]
+        costTools: [{ idItem: 300601, amount: 364}],
+        costWEs: [{ idItem: 301901, amount: 540 }]
     },
     104: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1143,8 +1143,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 208000,
         power: 308300,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 366}],
-        costWEs: [{ idTool: 301901, amount: 570 }]
+        costTools: [{ idItem: 300601, amount: 366}],
+        costWEs: [{ idItem: 301901, amount: 570 }]
     },
     105: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1154,8 +1154,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 210666,
         power: 313650,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 368}],
-        costWEs: [{ idTool: 301901, amount: 600 }]
+        costTools: [{ idItem: 300601, amount: 368}],
+        costWEs: [{ idItem: 301901, amount: 600 }]
     },
     106: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1165,8 +1165,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 213333,
         power: 319000,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 370}],
-        costWEs: [{ idTool: 301901, amount: 630 }]
+        costTools: [{ idItem: 300601, amount: 370}],
+        costWEs: [{ idItem: 301901, amount: 630 }]
     },
     107: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1176,8 +1176,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 216000,
         power: 324350,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 372}],
-        costWEs: [{ idTool: 301901, amount: 660 }]
+        costTools: [{ idItem: 300601, amount: 372}],
+        costWEs: [{ idItem: 301901, amount: 660 }]
     },
     108: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1187,8 +1187,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 218666,
         power: 329700,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 374}],
-        costWEs: [{ idTool: 301901, amount: 690 }]
+        costTools: [{ idItem: 300601, amount: 374}],
+        costWEs: [{ idItem: 301901, amount: 690 }]
     },
     109: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1198,8 +1198,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 221333,
         power: 335050,
         capacity: 1380000,
-        costTools: [{ idTool: 300601, amount: 376}],
-        costWEs: [{ idTool: 301901, amount: 720 }]
+        costTools: [{ idItem: 300601, amount: 376}],
+        costWEs: [{ idItem: 301901, amount: 720 }]
     },
     110: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1209,8 +1209,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 224000,
         power: 340400,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 378}],
-        costWEs: [{ idTool: 301901, amount: 750 }]
+        costTools: [{ idItem: 300601, amount: 378}],
+        costWEs: [{ idItem: 301901, amount: 750 }]
     },
     111: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1220,8 +1220,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 226666,
         power: 346270,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 380}],
-        costWEs: [{ idTool: 301901, amount: 786 }]
+        costTools: [{ idItem: 300601, amount: 380}],
+        costWEs: [{ idItem: 301901, amount: 786 }]
     },
     112: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1231,8 +1231,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 229333,
         power: 352140,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 382}],
-        costWEs: [{ idTool: 301901, amount: 822 }]
+        costTools: [{ idItem: 300601, amount: 382}],
+        costWEs: [{ idItem: 301901, amount: 822 }]
     },
     113: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1242,8 +1242,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 232000,
         power: 358010,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 384}],
-        costWEs: [{ idTool: 301901, amount: 858 }]
+        costTools: [{ idItem: 300601, amount: 384}],
+        costWEs: [{ idItem: 301901, amount: 858 }]
     },
     114: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1253,8 +1253,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 234666,
         power: 363880,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 386}],
-        costWEs: [{ idTool: 301901, amount: 894 }]
+        costTools: [{ idItem: 300601, amount: 386}],
+        costWEs: [{ idItem: 301901, amount: 894 }]
     },
     115: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1264,8 +1264,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 237333,
         power: 369750,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 388}],
-        costWEs: [{ idTool: 301901, amount: 930 }]
+        costTools: [{ idItem: 300601, amount: 388}],
+        costWEs: [{ idItem: 301901, amount: 930 }]
     },
     116: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1275,8 +1275,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 240000,
         power: 375620,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 390}],
-        costWEs: [{ idTool: 301901, amount: 966 }]
+        costTools: [{ idItem: 300601, amount: 390}],
+        costWEs: [{ idItem: 301901, amount: 966 }]
     },
     117: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1286,8 +1286,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 242666,
         power: 381490,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 392}],
-        costWEs: [{ idTool: 301901, amount: 1002 }]
+        costTools: [{ idItem: 300601, amount: 392}],
+        costWEs: [{ idItem: 301901, amount: 1002 }]
     },
     118: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1297,8 +1297,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 245333,
         power: 387360,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 394}],
-        costWEs: [{ idTool: 301901, amount: 1038 }]
+        costTools: [{ idItem: 300601, amount: 394}],
+        costWEs: [{ idItem: 301901, amount: 1038 }]
     },
     119: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1308,8 +1308,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 248000,
         power: 393230,
         capacity: 1480000,
-        costTools: [{ idTool: 300601, amount: 396}],
-        costWEs: [{ idTool: 301901, amount: 1074 }]
+        costTools: [{ idItem: 300601, amount: 396}],
+        costWEs: [{ idItem: 301901, amount: 1074 }]
     },
     120: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1319,8 +1319,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 250666,
         power: 399100,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 398}],
-        costWEs: [{ idTool: 301901, amount: 1110 }]
+        costTools: [{ idItem: 300601, amount: 398}],
+        costWEs: [{ idItem: 301901, amount: 1110 }]
     },
     121: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1330,8 +1330,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 253333,
         power: 405490,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 400}],
-        costWEs: [{ idTool: 301901, amount: 1149 }]
+        costTools: [{ idItem: 300601, amount: 400}],
+        costWEs: [{ idItem: 301901, amount: 1149 }]
     },
     122: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1341,8 +1341,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 256000,
         power: 411880,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 402}],
-        costWEs: [{ idTool: 301901, amount: 1800 }]
+        costTools: [{ idItem: 300601, amount: 402}],
+        costWEs: [{ idItem: 301901, amount: 1800 }]
     },
     123: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1352,8 +1352,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 258666,
         power: 418270,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 404}],
-        costWEs: [{ idTool: 301901, amount: 1950 }]
+        costTools: [{ idItem: 300601, amount: 404}],
+        costWEs: [{ idItem: 301901, amount: 1950 }]
     },
     124: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1363,8 +1363,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 261333,
         power: 424660,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 406}],
-        costWEs: [{ idTool: 301901, amount: 2100 }]
+        costTools: [{ idItem: 300601, amount: 406}],
+        costWEs: [{ idItem: 301901, amount: 2100 }]
     },
     125: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1374,8 +1374,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 264000,
         power: 431050,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 408}],
-        costWEs: [{ idTool: 301901, amount: 2250 }]
+        costTools: [{ idItem: 300601, amount: 408}],
+        costWEs: [{ idItem: 301901, amount: 2250 }]
     },
     126: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1385,8 +1385,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 266666,
         power: 437440,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 410}],
-        costWEs: [{ idTool: 301901, amount: 2400 }]
+        costTools: [{ idItem: 300601, amount: 410}],
+        costWEs: [{ idItem: 301901, amount: 2400 }]
     },
     127: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1396,8 +1396,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 269333,
         power: 443830,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 412}],
-        costWEs: [{ idTool: 301901, amount: 2550 }]
+        costTools: [{ idItem: 300601, amount: 412}],
+        costWEs: [{ idItem: 301901, amount: 2550 }]
     },
     128: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1407,8 +1407,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 272000,
         power: 450220,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 414}],
-        costWEs: [{ idTool: 301901, amount: 2700 }]
+        costTools: [{ idItem: 300601, amount: 414}],
+        costWEs: [{ idItem: 301901, amount: 2700 }]
     },
     129: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1418,8 +1418,8 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 274666,
         power: 456610,
         capacity: 1600000,
-        costTools: [{ idTool: 300601, amount: 416}],
-        costWEs: [{ idTool: 301901, amount: 2850 }]
+        costTools: [{ idItem: 300601, amount: 416}],
+        costWEs: [{ idItem: 301901, amount: 2850 }]
     },
     130: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1429,7 +1429,7 @@ export const BuildingHallOfWarStatic: {[Key: number] : IReqBuilding} = {
         kingdomPoint: 277333,
         power: 463000,
         capacity: 1740000,
-        costTools: [{ idTool: 300601, amount: 418}],
-        costWEs: [{ idTool: 301901, amount: 3000 }]
+        costTools: [{ idItem: 300601, amount: 418}],
+        costWEs: [{ idItem: 301901, amount: 3000 }]
     }
 };

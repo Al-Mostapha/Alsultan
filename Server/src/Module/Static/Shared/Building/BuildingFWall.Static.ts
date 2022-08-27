@@ -1,5 +1,6 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
-import { IReqBuilding } from "./Building.Static";
+import { IReqBuilding } from "src/Module/Building/Building.Type";
+import { EBuildingType } from "src/Module/Building/Building.Enum";
+
 
 export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
     1: {
@@ -372,7 +373,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 3 }]
+        costWEs: [{ idItem: 301101, amount: 3 }]
     },
     32: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -384,7 +385,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 6 }]
+        costWEs: [{ idItem: 301101, amount: 6 }]
     },
     33: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -396,7 +397,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 9 }]
+        costWEs: [{ idItem: 301101, amount: 9 }]
     },
     34: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -408,7 +409,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 12 }]
+        costWEs: [{ idItem: 301101, amount: 12 }]
     },
     35: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -420,7 +421,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 15 }]
+        costWEs: [{ idItem: 301101, amount: 15 }]
     },
     36: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -432,7 +433,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 18 }]
+        costWEs: [{ idItem: 301101, amount: 18 }]
     },
     37: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -444,7 +445,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 21 }]
+        costWEs: [{ idItem: 301101, amount: 21 }]
     },
     38: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -456,7 +457,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 24 }]
+        costWEs: [{ idItem: 301101, amount: 24 }]
     },
     39: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -468,7 +469,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 30000,
         defValue: 13700,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 27 }]
+        costWEs: [{ idItem: 301101, amount: 27 }]
     },
     40: {
         preCond: [{ buildingType: 101, buildingLvl: 40 }],
@@ -480,7 +481,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     41: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -492,7 +493,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 30 }]
+        costWEs: [{ idItem: 301101, amount: 30 }]
     },
     42: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -504,7 +505,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 36 }]
+        costWEs: [{ idItem: 301101, amount: 36 }]
     },
     43: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -516,7 +517,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 42 }]
+        costWEs: [{ idItem: 301101, amount: 42 }]
     },
     44: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -528,7 +529,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 48 }]
+        costWEs: [{ idItem: 301101, amount: 48 }]
     },
     45: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -540,7 +541,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 54 }]
+        costWEs: [{ idItem: 301101, amount: 54 }]
     },
     46: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -552,7 +553,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 60 }]
+        costWEs: [{ idItem: 301101, amount: 60 }]
     },
     47: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -564,7 +565,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 66 }]
+        costWEs: [{ idItem: 301101, amount: 66 }]
     },
     48: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -576,7 +577,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 72 }]
+        costWEs: [{ idItem: 301101, amount: 72 }]
     },
     49: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -588,7 +589,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 31000,
         defValue: 14000,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 78 }]
+        costWEs: [{ idItem: 301101, amount: 78 }]
     },
     50: {
         preCond: [{ buildingType: 101, buildingLvl: 50 }],
@@ -600,7 +601,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 84 }]
+        costWEs: [{ idItem: 301101, amount: 84 }]
     },
     51: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -612,7 +613,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 93 }]
+        costWEs: [{ idItem: 301101, amount: 93 }]
     },
     52: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -624,7 +625,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 102 }]
+        costWEs: [{ idItem: 301101, amount: 102 }]
     },
     53: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -636,7 +637,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 111 }]
+        costWEs: [{ idItem: 301101, amount: 111 }]
     },
     54: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -648,7 +649,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 120 }]
+        costWEs: [{ idItem: 301101, amount: 120 }]
     },
     55: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -660,7 +661,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 129 }]
+        costWEs: [{ idItem: 301101, amount: 129 }]
     },
     56: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -672,7 +673,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 138 }]
+        costWEs: [{ idItem: 301101, amount: 138 }]
     },
     57: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -684,7 +685,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 147 }]
+        costWEs: [{ idItem: 301101, amount: 147 }]
     },
     58: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -696,7 +697,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 156 }]
+        costWEs: [{ idItem: 301101, amount: 156 }]
     },
     59: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -708,7 +709,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 32000,
         defValue: 14300,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 165 }]
+        costWEs: [{ idItem: 301101, amount: 165 }]
     },
     60: {
         preCond: [{ buildingType: 101, buildingLvl: 60 }],
@@ -720,7 +721,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 174 }]
+        costWEs: [{ idItem: 301101, amount: 174 }]
     },
     61: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -732,7 +733,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 180 }]
+        costWEs: [{ idItem: 301101, amount: 180 }]
     },
     62: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -744,7 +745,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 195 }]
+        costWEs: [{ idItem: 301101, amount: 195 }]
     },
     63: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -756,7 +757,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 210 }]
+        costWEs: [{ idItem: 301101, amount: 210 }]
     },
     64: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -768,7 +769,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 225 }]
+        costWEs: [{ idItem: 301101, amount: 225 }]
     },
     65: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -780,7 +781,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 240 }]
+        costWEs: [{ idItem: 301101, amount: 240 }]
     },
     66: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -792,7 +793,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 255 }]
+        costWEs: [{ idItem: 301101, amount: 255 }]
     },
     67: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -804,7 +805,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 270 }]
+        costWEs: [{ idItem: 301101, amount: 270 }]
     },
     68: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -816,7 +817,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 285 }]
+        costWEs: [{ idItem: 301101, amount: 285 }]
     },
     69: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -828,7 +829,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 33000,
         defValue: 14600,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 300 }]
+        costWEs: [{ idItem: 301101, amount: 300 }]
     },
     70: {
         preCond: [{ buildingType: 101, buildingLvl: 70 }],
@@ -840,7 +841,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 315 }]
+        costWEs: [{ idItem: 301101, amount: 315 }]
     },
     71: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -852,7 +853,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 360 }]
+        costWEs: [{ idItem: 301101, amount: 360 }]
     },
     72: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -864,7 +865,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 390 }]
+        costWEs: [{ idItem: 301101, amount: 390 }]
     },
     73: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -876,7 +877,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 420 }]
+        costWEs: [{ idItem: 301101, amount: 420 }]
     },
     74: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -888,7 +889,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 450 }]
+        costWEs: [{ idItem: 301101, amount: 450 }]
     },
     75: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -900,7 +901,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 480 }]
+        costWEs: [{ idItem: 301101, amount: 480 }]
     },
     76: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -912,7 +913,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 510 }]
+        costWEs: [{ idItem: 301101, amount: 510 }]
     },
     77: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -924,7 +925,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 540 }]
+        costWEs: [{ idItem: 301101, amount: 540 }]
     },
     78: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -936,7 +937,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 570 }]
+        costWEs: [{ idItem: 301101, amount: 570 }]
     },
     79: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -948,7 +949,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 34000,
         defValue: 14900,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 600 }]
+        costWEs: [{ idItem: 301101, amount: 600 }]
     },
     80: {
         preCond: [{ buildingType: 101, buildingLvl: 80 }],
@@ -960,7 +961,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301101, amount: 630 }]
+        costWEs: [{ idItem: 301101, amount: 630 }]
     },
     81: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -972,7 +973,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 125 }]
+        costWEs: [{ idItem: 301901, amount: 125 }]
     },
     82: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -984,7 +985,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 150 }]
+        costWEs: [{ idItem: 301901, amount: 150 }]
     },
     83: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -996,7 +997,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 175 }]
+        costWEs: [{ idItem: 301901, amount: 175 }]
     },
     84: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1008,7 +1009,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 200 }]
+        costWEs: [{ idItem: 301901, amount: 200 }]
     },
     85: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1020,7 +1021,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 225 }]
+        costWEs: [{ idItem: 301901, amount: 225 }]
     },
     86: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1032,7 +1033,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 250 }]
+        costWEs: [{ idItem: 301901, amount: 250 }]
     },
     87: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1044,7 +1045,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 275 }]
+        costWEs: [{ idItem: 301901, amount: 275 }]
     },
     88: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1056,7 +1057,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 300 }]
+        costWEs: [{ idItem: 301901, amount: 300 }]
     },
     89: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1068,7 +1069,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 35000,
         defValue: 15200,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 325 }]
+        costWEs: [{ idItem: 301901, amount: 325 }]
     },
     90: {
         preCond: [{ buildingType: 101, buildingLvl: 90 }],
@@ -1080,7 +1081,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 350 }]
+        costWEs: [{ idItem: 301901, amount: 350 }]
     },
     91: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1092,7 +1093,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 390 }]
+        costWEs: [{ idItem: 301901, amount: 390 }]
     },
     92: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1104,7 +1105,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 430 }]
+        costWEs: [{ idItem: 301901, amount: 430 }]
     },
     93: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1116,7 +1117,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 470 }]
+        costWEs: [{ idItem: 301901, amount: 470 }]
     },
     94: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1128,7 +1129,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 510 }]
+        costWEs: [{ idItem: 301901, amount: 510 }]
     },
     95: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1140,7 +1141,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 550 }]
+        costWEs: [{ idItem: 301901, amount: 550 }]
     },
     96: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1152,7 +1153,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 590 }]
+        costWEs: [{ idItem: 301901, amount: 590 }]
     },
     97: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1164,7 +1165,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 630 }]
+        costWEs: [{ idItem: 301901, amount: 630 }]
     },
     98: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1176,7 +1177,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 670 }]
+        costWEs: [{ idItem: 301901, amount: 670 }]
     },
     99: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1188,7 +1189,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 36000,
         defValue: 15500,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 710 }]
+        costWEs: [{ idItem: 301901, amount: 710 }]
     },
     100: {
         preCond: [{ buildingType: 101, buildingLvl: 100 }],
@@ -1200,7 +1201,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 750 }]
+        costWEs: [{ idItem: 301901, amount: 750 }]
     },
     101: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1212,7 +1213,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 800 }]
+        costWEs: [{ idItem: 301901, amount: 800 }]
     },
     102: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1224,7 +1225,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 850 }]
+        costWEs: [{ idItem: 301901, amount: 850 }]
     },
     103: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1236,7 +1237,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 900 }]
+        costWEs: [{ idItem: 301901, amount: 900 }]
     },
     104: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1248,7 +1249,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 950 }]
+        costWEs: [{ idItem: 301901, amount: 950 }]
     },
     105: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1260,7 +1261,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1000 }]
+        costWEs: [{ idItem: 301901, amount: 1000 }]
     },
     106: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1272,7 +1273,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1050 }]
+        costWEs: [{ idItem: 301901, amount: 1050 }]
     },
     107: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1284,7 +1285,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1100 }]
+        costWEs: [{ idItem: 301901, amount: 1100 }]
     },
     108: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1296,7 +1297,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1150 }]
+        costWEs: [{ idItem: 301901, amount: 1150 }]
     },
     109: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1308,7 +1309,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 37000,
         defValue: 15800,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1200 }]
+        costWEs: [{ idItem: 301901, amount: 1200 }]
     },
     110: {
         preCond: [{ buildingType: 101, buildingLvl: 110 }],
@@ -1320,7 +1321,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1250 }]
+        costWEs: [{ idItem: 301901, amount: 1250 }]
     },
     111: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1332,7 +1333,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1310 }]
+        costWEs: [{ idItem: 301901, amount: 1310 }]
     },
     112: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1344,7 +1345,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1370 }]
+        costWEs: [{ idItem: 301901, amount: 1370 }]
     },
     113: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1356,7 +1357,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1430 }]
+        costWEs: [{ idItem: 301901, amount: 1430 }]
     },
     114: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1368,7 +1369,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1490 }]
+        costWEs: [{ idItem: 301901, amount: 1490 }]
     },
     115: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1380,7 +1381,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1550 }]
+        costWEs: [{ idItem: 301901, amount: 1550 }]
     },
     116: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1392,7 +1393,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1700 }]
+        costWEs: [{ idItem: 301901, amount: 1700 }]
     },
     117: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1404,7 +1405,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 1900 }]
+        costWEs: [{ idItem: 301901, amount: 1900 }]
     },
     118: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1416,7 +1417,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2100 }]
+        costWEs: [{ idItem: 301901, amount: 2100 }]
     },
     119: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1428,7 +1429,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 38000,
         defValue: 16100,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2300 }]
+        costWEs: [{ idItem: 301901, amount: 2300 }]
     },
     120: {
         preCond: [{ buildingType: 101, buildingLvl: 120 }],
@@ -1440,7 +1441,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2500 }]
+        costWEs: [{ idItem: 301901, amount: 2500 }]
     },
     121: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1452,7 +1453,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 2750 }]
+        costWEs: [{ idItem: 301901, amount: 2750 }]
     },
     122: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1464,7 +1465,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3000 }]
+        costWEs: [{ idItem: 301901, amount: 3000 }]
     },
     123: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1476,7 +1477,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3250 }]
+        costWEs: [{ idItem: 301901, amount: 3250 }]
     },
     124: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1488,7 +1489,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3500 }]
+        costWEs: [{ idItem: 301901, amount: 3500 }]
     },
     125: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1500,7 +1501,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 3750 }]
+        costWEs: [{ idItem: 301901, amount: 3750 }]
     },
     126: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1512,7 +1513,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4000 }]
+        costWEs: [{ idItem: 301901, amount: 4000 }]
     },
     127: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1524,7 +1525,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4250 }]
+        costWEs: [{ idItem: 301901, amount: 4250 }]
     },
     128: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1536,7 +1537,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4500 }]
+        costWEs: [{ idItem: 301901, amount: 4500 }]
     },
     129: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1548,7 +1549,7 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 39000,
         defValue: 16400,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 4750 }]
+        costWEs: [{ idItem: 301901, amount: 4750 }]
     },
     130: {
         preCond: [{ buildingType: 101, buildingLvl: 130 }],
@@ -1560,6 +1561,6 @@ export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
         capacity: 40000,
         defValue: 16700,
         costTools: [],
-        costWEs: [{ idTool: 301901, amount: 5000 }]
+        costWEs: [{ idItem: 301901, amount: 5000 }]
     }
 };

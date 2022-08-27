@@ -5,13 +5,13 @@
 #include "Module/Army/Army.DT.h"
 #include "Module/CityResource/CityResource.DT.h"
 
-struct DSCity
+struct TCity
 {
     int32 idPlayer;
     int32 idCity;
-    DSCityBuilding CityBuilding;
-    DSCityArmy CityArmy;
-    DSCityResource CityResource;
+    TCityBuilding CityBuilding;
+    TCityArmy CityArmy;
+    TCityResource CityResource;
     void fromJson(GJson *json)
     {
         if (json == nullptr)
