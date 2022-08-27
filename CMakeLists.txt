@@ -55,15 +55,16 @@ if(APPLE OR WINDOWS)
 endif()
 
 file(GLOB_RECURSE SourceFileList
-     "Classes/*.cpp"
+     "Classes/**/*.cpp"
 )
 file(GLOB_RECURSE HeaderFileList
-     "Classes/*.h"
+     "Classes/**/*.h"
 )
 
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
      ${SourceFileList}
+     #Classes/Module/UI/UI.Create.cpp
 	 Classes/AppDelegate.cpp
      Classes/HelloWorldScene.cpp
      )

@@ -1,5 +1,6 @@
 #include "NetBase.Module.h"
 #include "Module/Config/Config.module.h"
+#include <iostream>
 
 NetBaseModule::NetBaseModule()
 {
@@ -28,7 +29,6 @@ bool NetBaseModule::getJson(const GString &url, JsonStrCallBack callback)
     Net::HttpRequest *request = _createHttp(url);
     if (!request)
         return false;
-
     request->setRequestType(Net::HttpRequest::Type::GET);
     request->setResponseCallback(
         [callback](Net::HttpClient *sender, Net::HttpResponse *response)
@@ -41,17 +41,20 @@ bool NetBaseModule::getJson(const GString &url, JsonStrCallBack callback)
                 if (JsonObject.HasParseError())
                 {
                     cocos2d::log("Error: %s\n", JsonObject.GetParseError());
-                    callback(nullptr);
+                    if (callback)
+                        callback(nullptr);
                     return;
                 }
-                cocos2d::log("Responce %s", responseStr.c_str());
-            callback(&JsonObject);
+                std::cout << responseStr;
+                //cocos2d::log("Responce %s", responseStr.c_str());
+                callback(&JsonObject);
             }
             else
             {
                 cocos2d::log("Error: %s\n", response->getErrorBuffer());
                 callback(nullptr);
-        } });
+            }
+        });
     Net::HttpClient::getInstance()->send(request);
     request->release();
     return true;

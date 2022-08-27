@@ -9,7 +9,6 @@ void ArmyService::getCityArmy(int32 idCity)
         "/api/CityArmy/getCityArmy",
         [](GJson *json)
         {
-            cocos2d::log("Errroraaaaaaaaaaaaaaaaaaaaaaaaaaaset");
             if (json == nullptr)
                 return;
             if (GString(json->GetString("state")) == "ok")

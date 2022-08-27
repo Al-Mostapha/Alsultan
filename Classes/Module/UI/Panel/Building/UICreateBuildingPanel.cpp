@@ -120,17 +120,13 @@ void UICreateBuildingPanel::createWheelScrollView(){
     m_SelectWheel->removeFromParent();
     m_SelectWheel = nullptr;
   }
-  UIWheelScrollViewArgs l_WheelScrollViewArgs = UIWheelScrollViewArgs();
+  UIWheelScrollViewArgs l_WheelScrollViewArgs;
   l_WheelScrollViewArgs.m_WidgetArray = *(GVector<ui::Widget *> *) &l_ScrollViews; 
   l_WheelScrollViewArgs.m_Size = Size(500, std::max(600.0f, Director::getInstance()->getVisibleSize().height - 270));
   l_WheelScrollViewArgs.m_CellHeight = 130;
   l_WheelScrollViewArgs.m_CircleRadius = 450;
-  m_SelectWheel
-    =
-        UICreate::wheelScrollView(
-          l_WheelScrollViewArgs
-          );
-  if(m_SelectWheel){
+  m_SelectWheel =  UICreate::wheelScrollView(l_WheelScrollViewArgs);
+  /*if(m_SelectWheel){
 
     m_SelectWheel->setSelectedItemListener([this](size_t p_Index){
       wheelScrollBack(m_BuildableList[p_Index], p_Index);
@@ -141,7 +137,7 @@ void UICreateBuildingPanel::createWheelScrollView(){
     m_SelectWheel->selectedCellIndex(std::min(m_CurrentIndex, (int)l_ScrollViews.size()));
     m_SelectWheel->setInertiaValue(0.1);
     GBase::SoraDFTarget(m_SelectWheel);
-  }
+  }*/
   /*  This is Guide */
   // local curChapterID = newPlayerTaskCtrl:getCurChapterID()
   // for i, v in ipairs(self.tableBuildList) do

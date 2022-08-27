@@ -1,6 +1,6 @@
 
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
-import { BuildingColumnOption, IBuildingUnit } from "src/Module/Building/Building.Const";
+import { BuildingColumnOption, IBuildingUnit } from "src/Module/Building/Building.Type";
 
 
 
