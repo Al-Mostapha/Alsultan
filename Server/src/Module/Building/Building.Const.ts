@@ -77,7 +77,9 @@ export const BuildingColumnOption: ColumnOptions = {
 }
 
 
+export enum EWatchTowerEffect{
 
+}
 
 /**
  * BUILD_ATTR = {

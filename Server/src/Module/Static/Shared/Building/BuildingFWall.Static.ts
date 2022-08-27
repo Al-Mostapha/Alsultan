@@ -1,4 +1,7 @@
-module.exports = {
+import { EBuildingType } from "src/Module/Building/Building.Const";
+import { IReqBuilding } from "./Building.Static";
+
+export const BuildingFWallStatic: {[Key: number] : IReqBuilding} = {
     1: {
         preCond: [],
         costRes: { Grain: 0, Lumber: 0, Iron: 0, Silver: 0, Crystal: 0 },
@@ -12,7 +15,7 @@ module.exports = {
         costWEs: []
     },
     2: {
-        preCond: [{ buildingType: 101, buildingLvl: 2 }],
+        preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 2 }],
         costRes: { Grain: 0, Lumber: 2500, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 150,
         exp: 11,

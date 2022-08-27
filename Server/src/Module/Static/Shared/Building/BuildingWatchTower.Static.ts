@@ -1,4 +1,7 @@
-module.exports = {
+import { EBuildingType } from "src/Module/Building/Building.Const";
+import { IReqBuilding } from "./Building.Static";
+
+export const BuildingWatchTowerStatic: { [Key: number]: IReqBuilding } = {
     1: {
         preCond: [],
         costRes: { Grain: 0, Lumber: 0, Iron: 0, Silver: 0, Crystal: 0 },
@@ -6,16 +9,16 @@ module.exports = {
         exp: 0,
         kingdomPoint: 0,
         power: 5,
-        effect: 2001
+        watchTowerEffect: 2001
     },
     2: {
-        preCond: [{ buildingType: 201, buildingLvl: 2 }],
+        preCond: [{ buildingType: EBuildingType.Farm, buildingLvl: 2 }],
         costRes: { Grain: 0, Lumber: 500, Iron: 0, Silver: 0, Crystal: 0 },
         costTime: 60,
         exp: 7,
         kingdomPoint: 13,
         power: 10,
-        effect: 2100
+        watchTowerEffect: 2100
     },
     3: {
         preCond: [{ buildingType: 201, buildingLvl: 3 }],
@@ -24,7 +27,7 @@ module.exports = {
         exp: 10,
         kingdomPoint: 28,
         power: 25,
-        effect: 2002
+        watchTowerEffect: 2002
     },
     4: {
         preCond: [{ buildingType: 201, buildingLvl: 4 }],
@@ -33,7 +36,7 @@ module.exports = {
         exp: 25,
         kingdomPoint: 113,
         power: 50,
-        effect: 2201
+        watchTowerEffect: 2201
     },
     5: {
         preCond: [{ buildingType: 201, buildingLvl: 5 }],
@@ -42,7 +45,7 @@ module.exports = {
         exp: 46,
         kingdomPoint: 280,
         power: 95,
-        effect: 2003
+        watchTowerEffect: 2003
     },
     6: {
         preCond: [{ buildingType: 201, buildingLvl: 6 }],
@@ -51,7 +54,7 @@ module.exports = {
         exp: 87,
         kingdomPoint: 575,
         power: 175,
-        effect: 2301
+        watchTowerEffect: 2301
     },
     7: {
         preCond: [{ buildingType: 201, buildingLvl: 7 }],
@@ -60,7 +63,7 @@ module.exports = {
         exp: 128,
         kingdomPoint: 1183,
         power: 290,
-        effect: 2004
+        watchTowerEffect: 2004
     },
     8: {
         preCond: [{ buildingType: 201, buildingLvl: 8 }],
@@ -69,7 +72,7 @@ module.exports = {
         exp: 174,
         kingdomPoint: 1671,
         power: 455,
-        effect: 2401
+        watchTowerEffect: 2401
     },
     9: {
         preCond: [{ buildingType: 201, buildingLvl: 9 }],
@@ -78,7 +81,7 @@ module.exports = {
         exp: 233,
         kingdomPoint: 2313,
         power: 645,
-        effect: 2005
+        watchTowerEffect: 2005
     },
     10: {
         preCond: [{ buildingType: 201, buildingLvl: 10 }],
@@ -87,7 +90,7 @@ module.exports = {
         exp: 316,
         kingdomPoint: 3226,
         power: 865,
-        effect: 2202
+        watchTowerEffect: 2202
     },
     11: {
         preCond: [{ buildingType: 201, buildingLvl: 11 }],
@@ -96,7 +99,7 @@ module.exports = {
         exp: 426,
         kingdomPoint: 4481,
         power: 1130,
-        effect: 2006
+        watchTowerEffect: 2006
     },
     12: {
         preCond: [{ buildingType: 201, buildingLvl: 12 }],
@@ -105,7 +108,7 @@ module.exports = {
         exp: 578,
         kingdomPoint: 6243,
         power: 1455,
-        effect: 2302
+        watchTowerEffect: 2302
     },
     13: {
         preCond: [{ buildingType: 201, buildingLvl: 13 }],
@@ -114,7 +117,7 @@ module.exports = {
         exp: 776,
         kingdomPoint: 8600,
         power: 1845,
-        effect: 2007
+        watchTowerEffect: 2007
     },
     14: {
         preCond: [{ buildingType: 201, buildingLvl: 14 }],
@@ -123,7 +126,7 @@ module.exports = {
         exp: 1054,
         kingdomPoint: 11966,
         power: 2330,
-        effect: 2500
+        watchTowerEffect: 2500
     },
     15: {
         preCond: [{ buildingType: 201, buildingLvl: 15 }],
@@ -132,7 +135,7 @@ module.exports = {
         exp: 1424,
         kingdomPoint: 16560,
         power: 2915,
-        effect: 2011
+        watchTowerEffect: 2011
     },
     16: {
         preCond: [{ buildingType: 201, buildingLvl: 16 }],
@@ -141,7 +144,7 @@ module.exports = {
         exp: 1918,
         kingdomPoint: 22815,
         power: 3635,
-        effect: 2402
+        watchTowerEffect: 2402
     },
     17: {
         preCond: [{ buildingType: 201, buildingLvl: 17 }],
@@ -150,7 +153,7 @@ module.exports = {
         exp: 2597,
         kingdomPoint: 31583,
         power: 4510,
-        effect: 2102
+        watchTowerEffect: 2102
     },
     18: {
         preCond: [{ buildingType: 201, buildingLvl: 18 }],
@@ -159,7 +162,7 @@ module.exports = {
         exp: 2967,
         kingdomPoint: 36863,
         power: 5585,
-        effect: 2203
+        watchTowerEffect: 2203
     },
     19: {
         preCond: [{ buildingType: 201, buildingLvl: 19 }],
@@ -168,7 +171,7 @@ module.exports = {
         exp: 3337,
         kingdomPoint: 42335,
         power: 6895,
-        effect: 2012
+        watchTowerEffect: 2012
     },
     20: {
         preCond: [{ buildingType: 201, buildingLvl: 20 }],
@@ -177,7 +180,7 @@ module.exports = {
         exp: 3800,
         kingdomPoint: 49200,
         power: 8495,
-        effect: 2303
+        watchTowerEffect: 2303
     },
     21: {
         preCond: [{ buildingType: 201, buildingLvl: 21 }],
@@ -186,7 +189,7 @@ module.exports = {
         exp: 4355,
         kingdomPoint: 56400,
         power: 10315,
-        effect: 2103
+        watchTowerEffect: 2103
     },
     22: {
         preCond: [{ buildingType: 201, buildingLvl: 22 }],
@@ -195,7 +198,7 @@ module.exports = {
         exp: 5003,
         kingdomPoint: 64800,
         power: 12375,
-        effect: 2403
+        watchTowerEffect: 2403
     },
     23: {
         preCond: [{ buildingType: 201, buildingLvl: 23 }],
@@ -204,7 +207,7 @@ module.exports = {
         exp: 5744,
         kingdomPoint: 74400,
         power: 14710,
-        effect: 0
+        watchTowerEffect: 0
     },
     24: {
         preCond: [{ buildingType: 201, buildingLvl: 24 }],
@@ -213,7 +216,7 @@ module.exports = {
         exp: 6608,
         kingdomPoint: 85600,
         power: 17360,
-        effect: 2600
+        watchTowerEffect: 2600
     },
     25: {
         preCond: [{ buildingType: 201, buildingLvl: 25 }],
@@ -222,7 +225,7 @@ module.exports = {
         exp: 7595,
         kingdomPoint: 98400,
         power: 20365,
-        effect: 0
+        watchTowerEffect: 0
     },
     26: {
         preCond: [{ buildingType: 201, buildingLvl: 26 }],
@@ -231,7 +234,7 @@ module.exports = {
         exp: 8706,
         kingdomPoint: 112800,
         power: 23770,
-        effect: 2008
+        watchTowerEffect: 2008
     },
     27: {
         preCond: [{ buildingType: 201, buildingLvl: 27 }],
@@ -240,7 +243,7 @@ module.exports = {
         exp: 9941,
         kingdomPoint: 128800,
         power: 27630,
-        effect: 2101
+        watchTowerEffect: 2101
     },
     28: {
         preCond: [{ buildingType: 201, buildingLvl: 28 }],
@@ -249,7 +252,7 @@ module.exports = {
         exp: 11298,
         kingdomPoint: 146400,
         power: 32015,
-        effect: 2700
+        watchTowerEffect: 2700
     },
     29: {
         preCond: [{ buildingType: 201, buildingLvl: 29 }],
@@ -258,7 +261,7 @@ module.exports = {
         exp: 12779,
         kingdomPoint: 165600,
         power: 36980,
-        effect: 2009
+        watchTowerEffect: 2009
     },
     30: {
         preCond: [{ buildingType: 201, buildingLvl: 30 }],
@@ -267,6 +270,6 @@ module.exports = {
         exp: 14631,
         kingdomPoint: 189600,
         power: 41615,
-        effect: 2800
+        watchTowerEffect: 2800
     }
 };

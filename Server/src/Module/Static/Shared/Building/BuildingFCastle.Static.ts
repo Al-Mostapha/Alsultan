@@ -1,6 +1,6 @@
-import { IReqBuilding } from "./Req.Building";
+import { IReqBuilding } from "./Building.Static";
 
-export const ReqBuildingCastle : {[Key: number] : IReqBuilding} = {
+export const BuildingFCastleStatic : {[Key: number] : IReqBuilding} = {
     1: {
         kingdomLv: 0,
         preCond: [],

@@ -1,4 +1,7 @@
-module.exports = {
+import { EBuildingType } from "src/Module/Building/Building.Const";
+import { IReqBuilding } from "./Building.Static";
+
+export const BuildingIWishWellStatic: { [Key: number]: IReqBuilding } = {
     1: {
         preCond: [{ buildingType: 101, buildingLvl: 7 }],
         costRes: { Grain: 0, Lumber: 300, Iron: 0, Silver: 0, Crystal: 0 },
@@ -7,7 +10,7 @@ module.exports = {
         kingdomPoint: 13,
         power: 2,
         freeTime: 3,
-        capacity: { Grain: 10000, Lumber: 10000, Iron: 1600, Silver: 400, Metal: 240, Crystal: 100 },
+        resCapacity: { Grain: 10000, Lumber: 10000, Iron: 1600, Silver: 400, Metal: 240, Crystal: 100 },
         costTools: [],
         costWEs: []
     },
@@ -19,7 +22,7 @@ module.exports = {
         kingdomPoint: 20,
         power: 5,
         freeTime: 3,
-        capacity: { Grain: 12000, Lumber: 12000, Iron: 1920, Silver: 480, Metal: 288, Crystal: 120 },
+        resCapacity: { Grain: 12000, Lumber: 12000, Iron: 1920, Silver: 480, Metal: 288, Crystal: 120 },
         costTools: [],
         costWEs: []
     },
@@ -31,7 +34,7 @@ module.exports = {
         kingdomPoint: 36,
         power: 10,
         freeTime: 4,
-        capacity: { Grain: 14000, Lumber: 14000, Iron: 2240, Silver: 560, Metal: 336, Crystal: 140 },
+        resCapacity: { Grain: 14000, Lumber: 14000, Iron: 2240, Silver: 560, Metal: 336, Crystal: 140 },
         costTools: [],
         costWEs: []
     },
@@ -43,7 +46,7 @@ module.exports = {
         kingdomPoint: 93,
         power: 20,
         freeTime: 4,
-        capacity: { Grain: 16000, Lumber: 16000, Iron: 2560, Silver: 640, Metal: 384, Crystal: 160 },
+        resCapacity: { Grain: 16000, Lumber: 16000, Iron: 2560, Silver: 640, Metal: 384, Crystal: 160 },
         costTools: [],
         costWEs: []
     },
@@ -55,7 +58,7 @@ module.exports = {
         kingdomPoint: 233,
         power: 40,
         freeTime: 4,
-        capacity: { Grain: 18000, Lumber: 18000, Iron: 2880, Silver: 720, Metal: 432, Crystal: 180 },
+        resCapacity: { Grain: 18000, Lumber: 18000, Iron: 2880, Silver: 720, Metal: 432, Crystal: 180 },
         costTools: [],
         costWEs: []
     },
@@ -67,7 +70,7 @@ module.exports = {
         kingdomPoint: 480,
         power: 80,
         freeTime: 5,
-        capacity: { Grain: 20000, Lumber: 20000, Iron: 3200, Silver: 800, Metal: 480, Crystal: 200 },
+        resCapacity: { Grain: 20000, Lumber: 20000, Iron: 3200, Silver: 800, Metal: 480, Crystal: 200 },
         costTools: [],
         costWEs: []
     },
@@ -79,7 +82,7 @@ module.exports = {
         kingdomPoint: 986,
         power: 135,
         freeTime: 5,
-        capacity: { Grain: 22000, Lumber: 22000, Iron: 3520, Silver: 880, Metal: 528, Crystal: 220 },
+        resCapacity: { Grain: 22000, Lumber: 22000, Iron: 3520, Silver: 880, Metal: 528, Crystal: 220 },
         costTools: [],
         costWEs: []
     },
@@ -91,7 +94,7 @@ module.exports = {
         kingdomPoint: 1393,
         power: 205,
         freeTime: 5,
-        capacity: { Grain: 24000, Lumber: 24000, Iron: 3840, Silver: 960, Metal: 576, Crystal: 240 },
+        resCapacity: { Grain: 24000, Lumber: 24000, Iron: 3840, Silver: 960, Metal: 576, Crystal: 240 },
         costTools: [],
         costWEs: []
     },
@@ -103,7 +106,7 @@ module.exports = {
         kingdomPoint: 1928,
         power: 295,
         freeTime: 6,
-        capacity: { Grain: 26000, Lumber: 26000, Iron: 4160, Silver: 1040, Metal: 624, Crystal: 260 },
+        resCapacity: { Grain: 26000, Lumber: 26000, Iron: 4160, Silver: 1040, Metal: 624, Crystal: 260 },
         costTools: [],
         costWEs: []
     },
@@ -115,7 +118,7 @@ module.exports = {
         kingdomPoint: 2688,
         power: 395,
         freeTime: 6,
-        capacity: { Grain: 28000, Lumber: 28000, Iron: 4480, Silver: 1120, Metal: 672, Crystal: 280 },
+        resCapacity: { Grain: 28000, Lumber: 28000, Iron: 4480, Silver: 1120, Metal: 672, Crystal: 280 },
         costTools: [],
         costWEs: []
     },
@@ -127,7 +130,7 @@ module.exports = {
         kingdomPoint: 3735,
         power: 520,
         freeTime: 6,
-        capacity: { Grain: 30000, Lumber: 30000, Iron: 4800, Silver: 1200, Metal: 720, Crystal: 300 },
+        resCapacity: { Grain: 30000, Lumber: 30000, Iron: 4800, Silver: 1200, Metal: 720, Crystal: 300 },
         costTools: [],
         costWEs: []
     },
@@ -139,7 +142,7 @@ module.exports = {
         kingdomPoint: 5203,
         power: 665,
         freeTime: 7,
-        capacity: { Grain: 32000, Lumber: 32000, Iron: 5120, Silver: 1280, Metal: 768, Crystal: 320 },
+        resCapacity: { Grain: 32000, Lumber: 32000, Iron: 5120, Silver: 1280, Metal: 768, Crystal: 320 },
         costTools: [],
         costWEs: []
     },
@@ -151,7 +154,7 @@ module.exports = {
         kingdomPoint: 7166,
         power: 845,
         freeTime: 7,
-        capacity: { Grain: 34000, Lumber: 34000, Iron: 5440, Silver: 1360, Metal: 816, Crystal: 340 },
+        resCapacity: { Grain: 34000, Lumber: 34000, Iron: 5440, Silver: 1360, Metal: 816, Crystal: 340 },
         costTools: [],
         costWEs: []
     },
@@ -163,7 +166,7 @@ module.exports = {
         kingdomPoint: 9973,
         power: 1070,
         freeTime: 7,
-        capacity: { Grain: 36000, Lumber: 36000, Iron: 5760, Silver: 1440, Metal: 864, Crystal: 360 },
+        resCapacity: { Grain: 36000, Lumber: 36000, Iron: 5760, Silver: 1440, Metal: 864, Crystal: 360 },
         costTools: [],
         costWEs: []
     },
@@ -175,7 +178,7 @@ module.exports = {
         kingdomPoint: 13800,
         power: 1340,
         freeTime: 8,
-        capacity: { Grain: 38000, Lumber: 38000, Iron: 6080, Silver: 1520, Metal: 912, Crystal: 380 },
+        resCapacity: { Grain: 38000, Lumber: 38000, Iron: 6080, Silver: 1520, Metal: 912, Crystal: 380 },
         costTools: [],
         costWEs: []
     },
@@ -187,7 +190,7 @@ module.exports = {
         kingdomPoint: 19013,
         power: 1670,
         freeTime: 8,
-        capacity: { Grain: 40000, Lumber: 40000, Iron: 6400, Silver: 1600, Metal: 960, Crystal: 400 },
+        resCapacity: { Grain: 40000, Lumber: 40000, Iron: 6400, Silver: 1600, Metal: 960, Crystal: 400 },
         costTools: [],
         costWEs: []
     },
@@ -199,7 +202,7 @@ module.exports = {
         kingdomPoint: 26320,
         power: 2070,
         freeTime: 8,
-        capacity: { Grain: 42000, Lumber: 42000, Iron: 6720, Silver: 1680, Metal: 1008, Crystal: 420 },
+        resCapacity: { Grain: 42000, Lumber: 42000, Iron: 6720, Silver: 1680, Metal: 1008, Crystal: 420 },
         costTools: [],
         costWEs: []
     },
@@ -211,7 +214,7 @@ module.exports = {
         kingdomPoint: 30720,
         power: 2565,
         freeTime: 9,
-        capacity: { Grain: 44000, Lumber: 44000, Iron: 7040, Silver: 1760, Metal: 1056, Crystal: 440 },
+        resCapacity: { Grain: 44000, Lumber: 44000, Iron: 7040, Silver: 1760, Metal: 1056, Crystal: 440 },
         costTools: [],
         costWEs: []
     },
@@ -223,7 +226,7 @@ module.exports = {
         kingdomPoint: 35280,
         power: 3165,
         freeTime: 9,
-        capacity: { Grain: 46000, Lumber: 46000, Iron: 7360, Silver: 1840, Metal: 1104, Crystal: 460 },
+        resCapacity: { Grain: 46000, Lumber: 46000, Iron: 7360, Silver: 1840, Metal: 1104, Crystal: 460 },
         costTools: [],
         costWEs: []
     },
@@ -235,7 +238,7 @@ module.exports = {
         kingdomPoint: 41000,
         power: 3905,
         freeTime: 9,
-        capacity: { Grain: 48000, Lumber: 48000, Iron: 7680, Silver: 1920, Metal: 1152, Crystal: 480 },
+        resCapacity: { Grain: 48000, Lumber: 48000, Iron: 7680, Silver: 1920, Metal: 1152, Crystal: 480 },
         costTools: [],
         costWEs: []
     },
@@ -247,7 +250,7 @@ module.exports = {
         kingdomPoint: 47000,
         power: 4740,
         freeTime: 10,
-        capacity: { Grain: 50000, Lumber: 50000, Iron: 8000, Silver: 2000, Metal: 1200, Crystal: 500 },
+        resCapacity: { Grain: 50000, Lumber: 50000, Iron: 8000, Silver: 2000, Metal: 1200, Crystal: 500 },
         costTools: [],
         costWEs: []
     },
@@ -259,7 +262,7 @@ module.exports = {
         kingdomPoint: 54000,
         power: 5685,
         freeTime: 10,
-        capacity: { Grain: 52000, Lumber: 52000, Iron: 8320, Silver: 2080, Metal: 1248, Crystal: 520 },
+        resCapacity: { Grain: 52000, Lumber: 52000, Iron: 8320, Silver: 2080, Metal: 1248, Crystal: 520 },
         costTools: [],
         costWEs: []
     },
@@ -271,7 +274,7 @@ module.exports = {
         kingdomPoint: 62000,
         power: 6760,
         freeTime: 10,
-        capacity: { Grain: 54000, Lumber: 54000, Iron: 8640, Silver: 2160, Metal: 1296, Crystal: 540 },
+        resCapacity: { Grain: 54000, Lumber: 54000, Iron: 8640, Silver: 2160, Metal: 1296, Crystal: 540 },
         costTools: [],
         costWEs: []
     },
@@ -283,7 +286,7 @@ module.exports = {
         kingdomPoint: 71333,
         power: 7975,
         freeTime: 11,
-        capacity: { Grain: 56000, Lumber: 56000, Iron: 8960, Silver: 2240, Metal: 1344, Crystal: 560 },
+        resCapacity: { Grain: 56000, Lumber: 56000, Iron: 8960, Silver: 2240, Metal: 1344, Crystal: 560 },
         costTools: [],
         costWEs: []
     },
@@ -295,7 +298,7 @@ module.exports = {
         kingdomPoint: 82000,
         power: 9355,
         freeTime: 11,
-        capacity: { Grain: 58000, Lumber: 58000, Iron: 9280, Silver: 2320, Metal: 1392, Crystal: 580 },
+        resCapacity: { Grain: 58000, Lumber: 58000, Iron: 9280, Silver: 2320, Metal: 1392, Crystal: 580 },
         costTools: [],
         costWEs: []
     },
@@ -307,7 +310,7 @@ module.exports = {
         kingdomPoint: 94000,
         power: 10920,
         freeTime: 11,
-        capacity: { Grain: 60000, Lumber: 60000, Iron: 9600, Silver: 2400, Metal: 1440, Crystal: 600 },
+        resCapacity: { Grain: 60000, Lumber: 60000, Iron: 9600, Silver: 2400, Metal: 1440, Crystal: 600 },
         costTools: [],
         costWEs: []
     },
@@ -319,7 +322,7 @@ module.exports = {
         kingdomPoint: 107333,
         power: 12695,
         freeTime: 12,
-        capacity: { Grain: 62000, Lumber: 62000, Iron: 9920, Silver: 2480, Metal: 1488, Crystal: 620 },
+        resCapacity: { Grain: 62000, Lumber: 62000, Iron: 9920, Silver: 2480, Metal: 1488, Crystal: 620 },
         costTools: [],
         costWEs: []
     },
@@ -331,7 +334,7 @@ module.exports = {
         kingdomPoint: 122000,
         power: 14710,
         freeTime: 12,
-        capacity: { Grain: 64000, Lumber: 64000, Iron: 10240, Silver: 2560, Metal: 1536, Crystal: 640 },
+        resCapacity: { Grain: 64000, Lumber: 64000, Iron: 10240, Silver: 2560, Metal: 1536, Crystal: 640 },
         costTools: [],
         costWEs: []
     },
@@ -343,7 +346,7 @@ module.exports = {
         kingdomPoint: 138000,
         power: 16990,
         freeTime: 12,
-        capacity: { Grain: 66000, Lumber: 66000, Iron: 10560, Silver: 2640, Metal: 1584, Crystal: 660 },
+        resCapacity: { Grain: 66000, Lumber: 66000, Iron: 10560, Silver: 2640, Metal: 1584, Crystal: 660 },
         costTools: [],
         costWEs: []
     },
@@ -355,7 +358,7 @@ module.exports = {
         kingdomPoint: 158000,
         power: 19580,
         freeTime: 13,
-        capacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
+        resCapacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
         costTools: [],
         costWEs: []
     },
@@ -367,7 +370,7 @@ module.exports = {
         kingdomPoint: 13333,
         power: 19902,
         freeTime: 13,
-        capacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
+        resCapacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 3 }]
     },
@@ -379,7 +382,7 @@ module.exports = {
         kingdomPoint: 14666,
         power: 20224,
         freeTime: 13,
-        capacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
+        resCapacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 6 }]
     },
@@ -391,7 +394,7 @@ module.exports = {
         kingdomPoint: 16000,
         power: 20546,
         freeTime: 13,
-        capacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
+        resCapacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 9 }]
     },
@@ -403,7 +406,7 @@ module.exports = {
         kingdomPoint: 17333,
         power: 20868,
         freeTime: 13,
-        capacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
+        resCapacity: { Grain: 68000, Lumber: 68000, Iron: 10880, Silver: 2720, Metal: 1632, Crystal: 680 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 12 }]
     },
@@ -415,7 +418,7 @@ module.exports = {
         kingdomPoint: 18666,
         power: 21190,
         freeTime: 13,
-        capacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
+        resCapacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 15 }]
     },
@@ -427,7 +430,7 @@ module.exports = {
         kingdomPoint: 20000,
         power: 21512,
         freeTime: 13,
-        capacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
+        resCapacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 18 }]
     },
@@ -439,7 +442,7 @@ module.exports = {
         kingdomPoint: 21333,
         power: 21834,
         freeTime: 13,
-        capacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
+        resCapacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 21 }]
     },
@@ -451,7 +454,7 @@ module.exports = {
         kingdomPoint: 22666,
         power: 22156,
         freeTime: 13,
-        capacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
+        resCapacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 24 }]
     },
@@ -463,7 +466,7 @@ module.exports = {
         kingdomPoint: 24000,
         power: 22478,
         freeTime: 13,
-        capacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
+        resCapacity: { Grain: 70000, Lumber: 70000, Iron: 11200, Silver: 2800, Metal: 1680, Crystal: 700 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 27 }]
     },
@@ -475,7 +478,7 @@ module.exports = {
         kingdomPoint: 25333,
         power: 22800,
         freeTime: 13,
-        capacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
+        resCapacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 30 }]
     },
@@ -487,7 +490,7 @@ module.exports = {
         kingdomPoint: 26666,
         power: 23400,
         freeTime: 13,
-        capacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
+        resCapacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 30 }]
     },
@@ -499,7 +502,7 @@ module.exports = {
         kingdomPoint: 28000,
         power: 24000,
         freeTime: 13,
-        capacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
+        resCapacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 36 }]
     },
@@ -511,7 +514,7 @@ module.exports = {
         kingdomPoint: 29333,
         power: 24600,
         freeTime: 13,
-        capacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
+        resCapacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 42 }]
     },
@@ -523,7 +526,7 @@ module.exports = {
         kingdomPoint: 30666,
         power: 25200,
         freeTime: 13,
-        capacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
+        resCapacity: { Grain: 72000, Lumber: 72000, Iron: 11520, Silver: 2880, Metal: 1728, Crystal: 720 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 48 }]
     },
@@ -535,7 +538,7 @@ module.exports = {
         kingdomPoint: 32000,
         power: 25800,
         freeTime: 13,
-        capacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
+        resCapacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 54 }]
     },
@@ -547,7 +550,7 @@ module.exports = {
         kingdomPoint: 33333,
         power: 26400,
         freeTime: 13,
-        capacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
+        resCapacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 60 }]
     },
@@ -559,7 +562,7 @@ module.exports = {
         kingdomPoint: 34666,
         power: 27000,
         freeTime: 13,
-        capacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
+        resCapacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 66 }]
     },
@@ -571,7 +574,7 @@ module.exports = {
         kingdomPoint: 36000,
         power: 27600,
         freeTime: 13,
-        capacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
+        resCapacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 72 }]
     },
@@ -583,7 +586,7 @@ module.exports = {
         kingdomPoint: 37333,
         power: 28200,
         freeTime: 13,
-        capacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
+        resCapacity: { Grain: 74000, Lumber: 74000, Iron: 11840, Silver: 2960, Metal: 1776, Crystal: 740 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 78 }]
     },
@@ -595,7 +598,7 @@ module.exports = {
         kingdomPoint: 38666,
         power: 28800,
         freeTime: 14,
-        capacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
+        resCapacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 84 }]
     },
@@ -607,7 +610,7 @@ module.exports = {
         kingdomPoint: 40000,
         power: 29640,
         freeTime: 14,
-        capacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
+        resCapacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 93 }]
     },
@@ -619,7 +622,7 @@ module.exports = {
         kingdomPoint: 41333,
         power: 30480,
         freeTime: 14,
-        capacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
+        resCapacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 102 }]
     },
@@ -631,7 +634,7 @@ module.exports = {
         kingdomPoint: 42666,
         power: 31320,
         freeTime: 14,
-        capacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
+        resCapacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 111 }]
     },
@@ -643,7 +646,7 @@ module.exports = {
         kingdomPoint: 44000,
         power: 32160,
         freeTime: 14,
-        capacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
+        resCapacity: { Grain: 76000, Lumber: 76000, Iron: 12160, Silver: 3040, Metal: 1824, Crystal: 760 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 120 }]
     },
@@ -655,7 +658,7 @@ module.exports = {
         kingdomPoint: 45333,
         power: 33000,
         freeTime: 14,
-        capacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
+        resCapacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 129 }]
     },
@@ -667,7 +670,7 @@ module.exports = {
         kingdomPoint: 46666,
         power: 33840,
         freeTime: 14,
-        capacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
+        resCapacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 138 }]
     },
@@ -679,7 +682,7 @@ module.exports = {
         kingdomPoint: 48000,
         power: 34680,
         freeTime: 14,
-        capacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
+        resCapacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 147 }]
     },
@@ -691,7 +694,7 @@ module.exports = {
         kingdomPoint: 49333,
         power: 35520,
         freeTime: 14,
-        capacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
+        resCapacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 156 }]
     },
@@ -703,7 +706,7 @@ module.exports = {
         kingdomPoint: 50666,
         power: 36360,
         freeTime: 14,
-        capacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
+        resCapacity: { Grain: 78000, Lumber: 78000, Iron: 12480, Silver: 3120, Metal: 1872, Crystal: 780 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 165 }]
     },
@@ -715,7 +718,7 @@ module.exports = {
         kingdomPoint: 52000,
         power: 37200,
         freeTime: 15,
-        capacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
+        resCapacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 174 }]
     },
@@ -727,7 +730,7 @@ module.exports = {
         kingdomPoint: 53333,
         power: 38300,
         freeTime: 15,
-        capacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
+        resCapacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 180 }]
     },
@@ -739,7 +742,7 @@ module.exports = {
         kingdomPoint: 54666,
         power: 39400,
         freeTime: 15,
-        capacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
+        resCapacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 195 }]
     },
@@ -751,7 +754,7 @@ module.exports = {
         kingdomPoint: 56000,
         power: 40500,
         freeTime: 15,
-        capacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
+        resCapacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 210 }]
     },
@@ -763,7 +766,7 @@ module.exports = {
         kingdomPoint: 57333,
         power: 41600,
         freeTime: 15,
-        capacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
+        resCapacity: { Grain: 80000, Lumber: 80000, Iron: 12800, Silver: 3200, Metal: 1920, Crystal: 800 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 225 }]
     },
@@ -775,7 +778,7 @@ module.exports = {
         kingdomPoint: 58666,
         power: 42700,
         freeTime: 15,
-        capacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
+        resCapacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 240 }]
     },
@@ -787,7 +790,7 @@ module.exports = {
         kingdomPoint: 60000,
         power: 43800,
         freeTime: 15,
-        capacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
+        resCapacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 255 }]
     },
@@ -799,7 +802,7 @@ module.exports = {
         kingdomPoint: 61333,
         power: 44900,
         freeTime: 15,
-        capacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
+        resCapacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 270 }]
     },
@@ -811,7 +814,7 @@ module.exports = {
         kingdomPoint: 62666,
         power: 46000,
         freeTime: 15,
-        capacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
+        resCapacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 285 }]
     },
@@ -823,7 +826,7 @@ module.exports = {
         kingdomPoint: 64000,
         power: 47100,
         freeTime: 15,
-        capacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
+        resCapacity: { Grain: 82000, Lumber: 82000, Iron: 13120, Silver: 3280, Metal: 1968, Crystal: 820 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 300 }]
     },
@@ -835,7 +838,7 @@ module.exports = {
         kingdomPoint: 65333,
         power: 48200,
         freeTime: 16,
-        capacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
+        resCapacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 315 }]
     },
@@ -847,7 +850,7 @@ module.exports = {
         kingdomPoint: 66666,
         power: 49540,
         freeTime: 16,
-        capacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
+        resCapacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 360 }]
     },
@@ -859,7 +862,7 @@ module.exports = {
         kingdomPoint: 68000,
         power: 50880,
         freeTime: 16,
-        capacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
+        resCapacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 390 }]
     },
@@ -871,7 +874,7 @@ module.exports = {
         kingdomPoint: 69333,
         power: 52220,
         freeTime: 16,
-        capacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
+        resCapacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 420 }]
     },
@@ -883,7 +886,7 @@ module.exports = {
         kingdomPoint: 70666,
         power: 53560,
         freeTime: 16,
-        capacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
+        resCapacity: { Grain: 84000, Lumber: 84000, Iron: 13440, Silver: 3360, Metal: 2016, Crystal: 840 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 450 }]
     },
@@ -895,7 +898,7 @@ module.exports = {
         kingdomPoint: 72000,
         power: 54900,
         freeTime: 16,
-        capacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
+        resCapacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 480 }]
     },
@@ -907,7 +910,7 @@ module.exports = {
         kingdomPoint: 73333,
         power: 56240,
         freeTime: 16,
-        capacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
+        resCapacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 510 }]
     },
@@ -919,7 +922,7 @@ module.exports = {
         kingdomPoint: 74666,
         power: 57580,
         freeTime: 16,
-        capacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
+        resCapacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 540 }]
     },
@@ -931,7 +934,7 @@ module.exports = {
         kingdomPoint: 76000,
         power: 58920,
         freeTime: 16,
-        capacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
+        resCapacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 570 }]
     },
@@ -943,7 +946,7 @@ module.exports = {
         kingdomPoint: 77333,
         power: 60260,
         freeTime: 16,
-        capacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
+        resCapacity: { Grain: 86000, Lumber: 86000, Iron: 13760, Silver: 3440, Metal: 2064, Crystal: 860 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 600 }]
     },
@@ -955,7 +958,7 @@ module.exports = {
         kingdomPoint: 78666,
         power: 61600,
         freeTime: 17,
-        capacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
+        resCapacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
         costTools: [],
         costWEs: [{ idTool: 301101, amount: 630 }]
     },
@@ -967,7 +970,7 @@ module.exports = {
         kingdomPoint: 80000,
         power: 63090,
         freeTime: 17,
-        capacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
+        resCapacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 75 }]
     },
@@ -979,7 +982,7 @@ module.exports = {
         kingdomPoint: 81333,
         power: 64580,
         freeTime: 17,
-        capacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
+        resCapacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 90 }]
     },
@@ -991,7 +994,7 @@ module.exports = {
         kingdomPoint: 82666,
         power: 66070,
         freeTime: 17,
-        capacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
+        resCapacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 105 }]
     },
@@ -1003,7 +1006,7 @@ module.exports = {
         kingdomPoint: 84000,
         power: 67560,
         freeTime: 17,
-        capacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
+        resCapacity: { Grain: 88000, Lumber: 88000, Iron: 14080, Silver: 3520, Metal: 2112, Crystal: 880 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 120 }]
     },
@@ -1015,7 +1018,7 @@ module.exports = {
         kingdomPoint: 85333,
         power: 69050,
         freeTime: 17,
-        capacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
+        resCapacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 135 }]
     },
@@ -1027,7 +1030,7 @@ module.exports = {
         kingdomPoint: 86666,
         power: 70540,
         freeTime: 17,
-        capacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
+        resCapacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 150 }]
     },
@@ -1039,7 +1042,7 @@ module.exports = {
         kingdomPoint: 88000,
         power: 72030,
         freeTime: 17,
-        capacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
+        resCapacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 165 }]
     },
@@ -1051,7 +1054,7 @@ module.exports = {
         kingdomPoint: 89333,
         power: 73520,
         freeTime: 17,
-        capacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
+        resCapacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 180 }]
     },
@@ -1063,7 +1066,7 @@ module.exports = {
         kingdomPoint: 90666,
         power: 75010,
         freeTime: 17,
-        capacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
+        resCapacity: { Grain: 90000, Lumber: 90000, Iron: 14400, Silver: 3600, Metal: 2160, Crystal: 900 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 195 }]
     },
@@ -1075,7 +1078,7 @@ module.exports = {
         kingdomPoint: 92000,
         power: 76500,
         freeTime: 18,
-        capacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
+        resCapacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 210 }]
     },
@@ -1087,7 +1090,7 @@ module.exports = {
         kingdomPoint: 93333,
         power: 78050,
         freeTime: 18,
-        capacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
+        resCapacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 234 }]
     },
@@ -1099,7 +1102,7 @@ module.exports = {
         kingdomPoint: 94666,
         power: 79600,
         freeTime: 18,
-        capacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
+        resCapacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 258 }]
     },
@@ -1111,7 +1114,7 @@ module.exports = {
         kingdomPoint: 96000,
         power: 81150,
         freeTime: 18,
-        capacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
+        resCapacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 282 }]
     },
@@ -1123,7 +1126,7 @@ module.exports = {
         kingdomPoint: 97333,
         power: 82700,
         freeTime: 18,
-        capacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
+        resCapacity: { Grain: 92000, Lumber: 92000, Iron: 14720, Silver: 3680, Metal: 2208, Crystal: 920 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 306 }]
     },
@@ -1135,7 +1138,7 @@ module.exports = {
         kingdomPoint: 98666,
         power: 84250,
         freeTime: 18,
-        capacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
+        resCapacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 330 }]
     },
@@ -1147,7 +1150,7 @@ module.exports = {
         kingdomPoint: 100000,
         power: 85800,
         freeTime: 18,
-        capacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
+        resCapacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 354 }]
     },
@@ -1159,7 +1162,7 @@ module.exports = {
         kingdomPoint: 101333,
         power: 87350,
         freeTime: 18,
-        capacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
+        resCapacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 378 }]
     },
@@ -1171,7 +1174,7 @@ module.exports = {
         kingdomPoint: 102666,
         power: 88900,
         freeTime: 18,
-        capacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
+        resCapacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 402 }]
     },
@@ -1183,7 +1186,7 @@ module.exports = {
         kingdomPoint: 104000,
         power: 90450,
         freeTime: 18,
-        capacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
+        resCapacity: { Grain: 94000, Lumber: 94000, Iron: 15040, Silver: 3760, Metal: 2256, Crystal: 940 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 426 }]
     },
@@ -1195,7 +1198,7 @@ module.exports = {
         kingdomPoint: 105333,
         power: 92000,
         freeTime: 19,
-        capacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
+        resCapacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 450 }]
     },
@@ -1207,7 +1210,7 @@ module.exports = {
         kingdomPoint: 106666,
         power: 93720,
         freeTime: 19,
-        capacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
+        resCapacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 480 }]
     },
@@ -1219,7 +1222,7 @@ module.exports = {
         kingdomPoint: 108000,
         power: 95440,
         freeTime: 19,
-        capacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
+        resCapacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 510 }]
     },
@@ -1231,7 +1234,7 @@ module.exports = {
         kingdomPoint: 109333,
         power: 97160,
         freeTime: 19,
-        capacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
+        resCapacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 540 }]
     },
@@ -1243,7 +1246,7 @@ module.exports = {
         kingdomPoint: 110666,
         power: 98880,
         freeTime: 19,
-        capacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
+        resCapacity: { Grain: 96000, Lumber: 96000, Iron: 15360, Silver: 3840, Metal: 2304, Crystal: 960 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 570 }]
     },
@@ -1255,7 +1258,7 @@ module.exports = {
         kingdomPoint: 112000,
         power: 100600,
         freeTime: 19,
-        capacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
+        resCapacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 600 }]
     },
@@ -1267,7 +1270,7 @@ module.exports = {
         kingdomPoint: 113333,
         power: 102320,
         freeTime: 19,
-        capacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
+        resCapacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 630 }]
     },
@@ -1279,7 +1282,7 @@ module.exports = {
         kingdomPoint: 114666,
         power: 104040,
         freeTime: 19,
-        capacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
+        resCapacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 660 }]
     },
@@ -1291,7 +1294,7 @@ module.exports = {
         kingdomPoint: 116000,
         power: 105760,
         freeTime: 19,
-        capacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
+        resCapacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 690 }]
     },
@@ -1303,7 +1306,7 @@ module.exports = {
         kingdomPoint: 117333,
         power: 107480,
         freeTime: 19,
-        capacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
+        resCapacity: { Grain: 98000, Lumber: 98000, Iron: 15680, Silver: 3920, Metal: 2352, Crystal: 980 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 720 }]
     },
@@ -1315,7 +1318,7 @@ module.exports = {
         kingdomPoint: 118666,
         power: 109200,
         freeTime: 20,
-        capacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
+        resCapacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 750 }]
     },
@@ -1327,7 +1330,7 @@ module.exports = {
         kingdomPoint: 120000,
         power: 111080,
         freeTime: 20,
-        capacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
+        resCapacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 786 }]
     },
@@ -1339,7 +1342,7 @@ module.exports = {
         kingdomPoint: 121333,
         power: 112960,
         freeTime: 20,
-        capacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
+        resCapacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 822 }]
     },
@@ -1351,7 +1354,7 @@ module.exports = {
         kingdomPoint: 122666,
         power: 114840,
         freeTime: 20,
-        capacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
+        resCapacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 858 }]
     },
@@ -1363,7 +1366,7 @@ module.exports = {
         kingdomPoint: 124000,
         power: 116720,
         freeTime: 20,
-        capacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
+        resCapacity: { Grain: 100000, Lumber: 100000, Iron: 16000, Silver: 4000, Metal: 2400, Crystal: 1000 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 894 }]
     },
@@ -1375,7 +1378,7 @@ module.exports = {
         kingdomPoint: 125333,
         power: 118600,
         freeTime: 20,
-        capacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
+        resCapacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 930 }]
     },
@@ -1387,7 +1390,7 @@ module.exports = {
         kingdomPoint: 126666,
         power: 120480,
         freeTime: 20,
-        capacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
+        resCapacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1020 }]
     },
@@ -1399,7 +1402,7 @@ module.exports = {
         kingdomPoint: 128000,
         power: 122360,
         freeTime: 20,
-        capacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
+        resCapacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1140 }]
     },
@@ -1411,7 +1414,7 @@ module.exports = {
         kingdomPoint: 129333,
         power: 124240,
         freeTime: 20,
-        capacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
+        resCapacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1260 }]
     },
@@ -1423,7 +1426,7 @@ module.exports = {
         kingdomPoint: 130666,
         power: 126120,
         freeTime: 20,
-        capacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
+        resCapacity: { Grain: 102000, Lumber: 102000, Iron: 16320, Silver: 4080, Metal: 2448, Crystal: 1020 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1380 }]
     },
@@ -1435,7 +1438,7 @@ module.exports = {
         kingdomPoint: 132000,
         power: 128000,
         freeTime: 21,
-        capacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
+        resCapacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1500 }]
     },
@@ -1447,7 +1450,7 @@ module.exports = {
         kingdomPoint: 133333,
         power: 130050,
         freeTime: 21,
-        capacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
+        resCapacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1650 }]
     },
@@ -1459,7 +1462,7 @@ module.exports = {
         kingdomPoint: 134666,
         power: 132100,
         freeTime: 21,
-        capacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
+        resCapacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1800 }]
     },
@@ -1471,7 +1474,7 @@ module.exports = {
         kingdomPoint: 136000,
         power: 134150,
         freeTime: 21,
-        capacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
+        resCapacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 1950 }]
     },
@@ -1483,7 +1486,7 @@ module.exports = {
         kingdomPoint: 137333,
         power: 136200,
         freeTime: 21,
-        capacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
+        resCapacity: { Grain: 104000, Lumber: 104000, Iron: 16640, Silver: 4160, Metal: 2496, Crystal: 1040 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2100 }]
     },
@@ -1495,7 +1498,7 @@ module.exports = {
         kingdomPoint: 138666,
         power: 138250,
         freeTime: 21,
-        capacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
+        resCapacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2250 }]
     },
@@ -1507,7 +1510,7 @@ module.exports = {
         kingdomPoint: 140000,
         power: 140300,
         freeTime: 21,
-        capacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
+        resCapacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2400 }]
     },
@@ -1519,7 +1522,7 @@ module.exports = {
         kingdomPoint: 141333,
         power: 142350,
         freeTime: 21,
-        capacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
+        resCapacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2550 }]
     },
@@ -1531,7 +1534,7 @@ module.exports = {
         kingdomPoint: 142666,
         power: 144400,
         freeTime: 21,
-        capacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
+        resCapacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2700 }]
     },
@@ -1543,7 +1546,7 @@ module.exports = {
         kingdomPoint: 144000,
         power: 146450,
         freeTime: 21,
-        capacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
+        resCapacity: { Grain: 106000, Lumber: 106000, Iron: 16960, Silver: 4240, Metal: 2544, Crystal: 1060 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 2850 }]
     },
@@ -1555,7 +1558,7 @@ module.exports = {
         kingdomPoint: 145333,
         power: 148500,
         freeTime: 22,
-        capacity: { Grain: 108000, Lumber: 108000, Iron: 17280, Silver: 4320, Metal: 2592, Crystal: 1080 },
+        resCapacity: { Grain: 108000, Lumber: 108000, Iron: 17280, Silver: 4320, Metal: 2592, Crystal: 1080 },
         costTools: [],
         costWEs: [{ idTool: 301901, amount: 3000 }]
     }

@@ -1,6 +1,8 @@
-import { EBuildingType } from "src/Module/Building/Building.Const";
+import { EBuildingType, EWatchTowerEffect } from "src/Module/Building/Building.Const";
 import { EArmyType } from "../Army/Static.Army";
 import { EScienceType } from "../Science/Static.Science";
+
+
 
 type IReqBuilding = {
   preCond: {
@@ -49,7 +51,19 @@ type IReqBuilding = {
   buildTime?: number,
   baseExp?: number,
   taxRate?: number,
-  trainSpeed?: number
+  trainSpeed?: number,
+  unlockDescribe?: string,
+  defValue?: number,
+  resCapacity?:  { 
+    Grain: number,
+    Lumber: number,
+    Iron: number,
+    Silver: number,
+    Metal: number,
+    Crystal: number
+  },
+  watchTowerEffect?: EWatchTowerEffect,
+  freeTime?: number
 };
 
 export { IReqBuilding };

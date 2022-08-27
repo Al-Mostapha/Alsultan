@@ -1,8 +1,8 @@
 import { EBuildingType } from "src/Module/Building/Building.Const";
 import { EScienceType } from "../Science/Static.Science";
-import { IReqBuilding } from "./Req.Building";
+import { IReqBuilding } from "./Building.Static";
 
-export const ReqBuildingCollage : {[Key: number] : IReqBuilding} = {
+export const BuildingIInstituteStatic : {[Key: number] : IReqBuilding} = {
     1: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 2 }],
         costRes: { Grain: 0, Lumber: 1000, Iron: 0, Silver: 0, Crystal: 0 },

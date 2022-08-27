@@ -1,7 +1,7 @@
 import { EBuildingType } from "src/Module/Building/Building.Const";
-import { IReqBuilding } from "./Req.Building";
+import { IReqBuilding } from "./Building.Static";
 
-export const ReqBuildingCrystalMine: {[Key: number] : IReqBuilding} = {
+export const BuildingOCrystalMineStatic: {[Key: number] : IReqBuilding} = {
     1: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 60 }],
         costRes: { Grain: 900, Lumber: 900, Iron: 0, Silver: 0, Crystal: 0 },

@@ -1,8 +1,8 @@
 import { EBuildingType } from "src/Module/Building/Building.Const";
 import { EArmyType } from "../Army/Static.Army";
-import { IReqBuilding } from "./Req.Building";
+import { IReqBuilding } from "./Building.Static";
 
-export const ReqBuildingFortress: {[Key: number] : IReqBuilding} = {
+export const BuildingAFortressStatic: {[Key: number] : IReqBuilding} = {
     1: {
         preCond: [{ buildingType: EBuildingType.Castle, buildingLvl: 4 }],
         costRes: { Grain: 0, Lumber: 300, Iron: 0, Silver: 0, Crystal: 0 },
