@@ -15,6 +15,7 @@ public:
     static TCityBuilding &getCurentCityBuilding();
     static GVector<TCityBuildingUnit> getBuildingList(EBuildingType p_BuildingType);
     static GVector<TCityBuildingUnit> getBuildingResList();
-    static GVector<TBuildingInfoUnit> getCanBuildList(EBuildingType p_BuildingType);
+    static GVector<TBuildingUnitSpecs> getCanBuildList(EBuildingType p_BuildingType);
     static bool isCanBuild(EBuildingType p_BuildingType);
+    
 };

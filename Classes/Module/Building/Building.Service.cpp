@@ -1,8 +1,9 @@
 #include "Building.Service.h"
 #include "Module/Net/NetBase.Module.h"
-#include "Module/Player/Player.DT.h"
+#include "Module/Player/Player.Static.h"
 #include "Scene/CityScene.h"
 #include "Module/Building/Building.Module.h"
+#include "Include/IncludeBuildingFunc.h"
 
 void BuildingService::fetchCityBuilding(int32 idCity)
 {
@@ -16,7 +17,7 @@ void BuildingService::fetchCityBuilding(int32 idCity)
                 return;
             }
             if (GString(json->GetString("state")) == "ok")
-                DTPlayer::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
+                PlayerStatic::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
             else
                 cocos2d::log("Error Fetching CityBuilding From Server ....");
             auto newScene = CityScene::createScene();
@@ -50,7 +51,7 @@ void BuildingService::fetchBuildingInfo()
                     GJson doc;
                     GJson *jsonObject = new GJson();
                     jsonObject->CopyFrom(it->value, jsonObject->GetAllocator());
-                    BuildingStatic::BuildingInfo[l_BuildingType] = TBuildingInfoUnit::fromJson(jsonObject);
+                    BuildingStatic::BuildingInfo[l_BuildingType] = TBuildingUnitSpecs::fromJson(jsonObject);
                 }
             }
             else

@@ -1,9 +1,9 @@
 
 #include "Module/Army/Army.Module.h"
 #include "Module/Army/Army.Service.h"
-#include "Module/Player/Player.DT.h"
+#include "Module/Player/Player.Static.h"
 
 void ArmyModule::init()
 {
-    ArmyService::getCityArmy(DTPlayer::SultanPlayer.idCurrentCity);
+    ArmyService::getCityArmy(PlayerStatic::SultanPlayer.idCurrentCity);
 }

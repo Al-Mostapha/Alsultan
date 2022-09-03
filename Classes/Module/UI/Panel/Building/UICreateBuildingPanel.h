@@ -21,9 +21,9 @@ private:
   ui::Layout *m_NodeTop;
   ui::Layout *m_NodeBottom;
   class UIWheelScrollView *m_SelectWheel;
-  GVector<TBuildingInfoUnit> m_BuildableList;
+  GVector<TBuildingUnitSpecs> m_BuildableList;
   int m_CurrentIndex = 1;
-  TBuildingInfoUnit m_CurrentBuilding;
+  TBuildingUnitSpecs m_CurrentBuilding;
 
   
 public:
@@ -32,7 +32,7 @@ public:
   void initPanel() override;
   void setBuildingTypeAndData(EBuildingType p_BuildingType = EBuildingType::None, int32 p_BuildingIndex = 0);
   void createWheelScrollView();
-  void wheelScrollBack(const TBuildingInfoUnit& p_BuildingInfoUnit, size_t p_Index);
+  void wheelScrollBack(const TBuildingUnitSpecs& p_BuildingInfoUnit, size_t p_Index);
   void updateView();
   CREATE_FUNC(UICreateBuildingPanel);
 

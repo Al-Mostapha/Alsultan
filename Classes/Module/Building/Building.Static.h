@@ -7,11 +7,9 @@
 class BuildingStatic{
 public: 
   static GVector<EBuildingType> BuildableList;
-  static GMap<EBuildingType, TBuildingInfoUnit> BuildingInfo;
-  static TBuildingInfoUnit getBuildingInfo(EBuildingType p_BuildingType){
-    if(BuildingInfo.count(p_BuildingType) == 0)
-      return TBuildingInfoUnit();
-    return BuildingInfo[p_BuildingType];
+  static GMap<EBuildingType, TBuildingUnitSpecs> BuildingInfo;
+  static TBuildingUnitSpecs getBuildingUnitSpecs(EBuildingType p_BuildingType);
+  static TBuildingLvlSpecs getBuildingLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl){
+    return TBuildingLvlSpecs();
   }
-  
 };

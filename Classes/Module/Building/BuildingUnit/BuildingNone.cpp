@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingNone.h"
-#include "Module/Player/Player.DT.h"
+#include "Module/Player/Player.Static.h"
 
 BuildingNone::BuildingNone()
 {

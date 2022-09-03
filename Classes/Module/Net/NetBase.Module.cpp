@@ -46,7 +46,7 @@ bool NetBaseModule::getJson(const GString &url, JsonStrCallBack callback)
                     return;
                 }
                 std::cout << responseStr;
-                //cocos2d::log("Responce %s", responseStr.c_str());
+                cocos2d::log("Responce %s", response->getResponseData());
                 callback(&JsonObject);
             }
             else

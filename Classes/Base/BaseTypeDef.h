@@ -4,6 +4,7 @@
 #include <map>
 #include "cocos2d.h"
 #include "external/json/document.h"
+#include <time.h>
 
 typedef std::string GString;
 typedef signed char int8;
@@ -19,6 +20,7 @@ typedef signed long int int64;
 typedef unsigned long int uint64;
 
 typedef rapidjson::Document GJsonObject;
+typedef time_t GTime;
 
 
 

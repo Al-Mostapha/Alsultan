@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Reflect.h"
 #include "Base/Json.h"
 #include "Module/Building/Building.Const.h"
 #include "Module/Building/Building.Enum.h"
@@ -8,28 +9,30 @@
 #include "Module/Science/Science.Enum.h"
 #include "Module/Building/BuildingLib/BuildingWatchTower.Lib.h"
 
+ struct TBuildingPreCond{
+    EBuildingType buildingType = EBuildingType::None;
+    uint32 buildingLvl = 0;
+    bool isAchieved = false;
+    static TBuildingPreCond fromJson(GJson *json){
+        TBuildingPreCond temp;
+        
+    }
+};
+struct TCostItem{
+    uint32 idItem = 0;
+    uint32 buildingLvl = 0;
+    bool isAchieved = false;
+};
 
 struct TBuildingLvlSpecs{
-    struct TReqBuildingPreCond{
-        EBuildingType buildingType = EBuildingType::None;
-        uint32 buildingLvl = 0;
-        static TReqBuildingPreCond fromJson(GJson *json){
-            TReqBuildingPreCond temp;
-            
-        }
-    };
-    struct TCostItem{
-        uint32 idItem = 0;
-        uint32 buildingLvl = 0;
-    };
-    GVector<TReqBuildingPreCond> preCond;
+    GVector<TBuildingPreCond> buildingPreCond;
     TResource costRes;
+    GVector<TCostItem> costItems;
+    GVector<TCostItem> costWEs;
     uint32 costTime = 0;
     uint32 exp = 0;
     uint32 kingdomPoint = 0;
     uint32 power = 0;
-    GVector<TCostItem> costTool;
-    GVector<TCostItem> costWEs;
     uint32 atkAdd = 0;
     uint32 atkSpeedAdd = 0;
     uint32 baseAtkSpeed = 0;
@@ -65,9 +68,9 @@ struct TBuildingLvlSpecs{
     TResource resCapacity;
     EWatchTowerEffect watchTowerEffect = EWatchTowerEffect::None;
     uint32 freeTime = 0;
-    static TBuildingLvlSpecs fromJson(GJson *json){
+    static TBuildingLvlSpecs fromJson(GJson *json){}
 
-    }
+    REFLECT()  
 };
 
 struct TCityBuildingUnit 
@@ -88,7 +91,7 @@ struct TCityBuildingUnit
 };
 
 
-struct TBuildingInfoUnit{
+struct TBuildingUnitSpecs{
    
     int32 index = 0;
     int32 idBuilding = 0;
@@ -114,8 +117,8 @@ struct TBuildingInfoUnit{
     GString StarDescribe  = "";
     GMap<uint32, TBuildingLvlSpecs> BuildingLvlSpecs;
 
-    static TBuildingInfoUnit fromJson(GJson *json){
-        TBuildingInfoUnit  temp;
+    static TBuildingUnitSpecs fromJson(GJson *json){
+        TBuildingUnitSpecs  temp;
         temp.index        = json->GetInt("index");
         temp.idBuilding   = json->GetInt("idBuilding");
         temp.isDemolish   = json->GetBool("isdemolish");

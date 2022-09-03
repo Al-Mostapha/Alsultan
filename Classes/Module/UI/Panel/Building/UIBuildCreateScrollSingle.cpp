@@ -1,8 +1,7 @@
 #include "UIBuildCreateScrollSingle.h"
 #include "cocostudio/CocoStudio.h"
 #include "Include/IncludeConfig.h"
-#include "Include/IncludeBuildingBase.h"
-#include "Module/Building/Building.Lib.h"
+#include "Include/IncludeBuildingFunc.h"
 
 
 UIBuildCreateScrollSingle::UIBuildCreateScrollSingle(){
@@ -35,7 +34,7 @@ void UIBuildCreateScrollSingle::initData(EBuildingType p_BuildingType){
     m_ImgIcon->removeFromParent();
     m_ImgIcon = nullptr;
   }
-  TBuildingInfoUnit l_BuildingInfoUnit = BuildingStatic::getBuildingInfo(p_BuildingType);
+  TBuildingUnitSpecs l_BuildingInfoUnit = BuildingStatic::getBuildingUnitSpecs(p_BuildingType);
   m_LabelName->setString(Translate::i18n(l_BuildingInfoUnit.BuildingName.c_str()));
   if(!BuildingLib::isCanBuild(p_BuildingType))
     m_ImgLock->setVisible(false);

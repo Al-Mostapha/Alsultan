@@ -3,11 +3,22 @@
 #include "Module/Building/CityBuildingBase.h"
 #include "Scene/CityScene.h"
 #include "Module/Building/Building.Lib.h"
-#include "Module/Player/Player.DT.h"
+#include "Module/Player/Player.Static.h"
 #include "Module/City/City.Module.h"
 #include "Module/Building/CityBuildingBase.h"
 
 
+
+/**-------------------------------------------
+ * Reflection For TBuildingLvlSpecs
+ * -------------------------------------------*/
+// REFLECT_BEGIN(TBuildingLvlSpecs)
+// REFLECT_MEMBER(costTime)
+// REFLECT_MEMBER(exp)
+// REFLECT_MEMBER(kingdomPoint)
+// REFLECT_MEMBER(power)
+// REFLECT_MEMBER(atkAdd)
+// REFLECT_END()
 
 void TCityBuildingUnit::fromJson(GJson *json)
 {

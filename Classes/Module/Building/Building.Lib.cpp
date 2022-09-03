@@ -1,9 +1,10 @@
-#include "Module/Building/Building.Lib.h"
-#include "Module/Building/Building.Const.h"
+#include "Building.Lib.h"
+#include "Building.Static.h"
+#include "Include/IncludeBuildingBase.h"
 #include "Include/IncludeCityBuilding.h"
-#include "Module/Player/Player.DT.h"
+#include "Module/Player/Player.Static.h"
 #include "Module/Building/CityBuildingBase.h"
-#include "Module/Building/Building.Enum.h"
+
 
 void BuildingLib::buildCity()
 {
@@ -110,7 +111,7 @@ CityBuildingBase *BuildingLib::getBuildingClassByType(EBuildingType buildingType
 
 TCityBuilding &BuildingLib::getCurentCityBuilding()
 {
-    return DTPlayer::SultanPlayer.City.CityBuilding;
+    return PlayerStatic::SultanPlayer.City.CityBuilding;
 }
 
 GVector<TCityBuildingUnit> BuildingLib::getBuildingList(EBuildingType buildingType)
@@ -130,6 +131,8 @@ GVector<TCityBuildingUnit> BuildingLib::getBuildingList(EBuildingType buildingTy
     return BuildingList;
 }
 
+
+
 GVector<TCityBuildingUnit> BuildingLib::getBuildingResList()
 {
     GVector<TCityBuildingUnit> BuildingList;
@@ -148,10 +151,9 @@ GVector<TCityBuildingUnit> BuildingLib::getBuildingResList()
     return BuildingList;
 }
 
-GVector<TBuildingInfoUnit> BuildingLib::getCanBuildList(EBuildingType p_BuildingType)
+GVector<TBuildingUnitSpecs> BuildingLib::getCanBuildList(EBuildingType p_BuildingType)
 {
-    GVector<TBuildingInfoUnit> l_BuildableList;
-
+    GVector<TBuildingUnitSpecs> l_BuildableList;
     for(auto l_building : BuildingStatic::BuildableList)
     {
         if(BuildingStatic::BuildingInfo.count(l_building))
@@ -164,3 +166,4 @@ bool BuildingLib::isCanBuild(EBuildingType p_BuildingType)
 {
     return true;
 }
+

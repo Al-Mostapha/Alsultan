@@ -33,4 +33,9 @@ GVector<EBuildingType> BuildingStatic::BuildableList = {
     EBuildingType::ElitePalace
 };
 
-GMap<EBuildingType, TBuildingInfoUnit> BuildingStatic::BuildingInfo;
+GMap<EBuildingType, TBuildingUnitSpecs> BuildingStatic::BuildingInfo;
+TBuildingUnitSpecs BuildingStatic::getBuildingUnitSpecs(EBuildingType p_BuildingType){
+    if(BuildingInfo.count(p_BuildingType) == 0)
+        return TBuildingUnitSpecs();
+    return BuildingInfo[p_BuildingType];
+}

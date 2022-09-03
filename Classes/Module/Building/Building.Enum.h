@@ -1,5 +1,6 @@
 #pragma once
-enum class EBuildingType
+#include "Include/IncludeBase.h"
+enum class EBuildingType : uint32
 {
     None = 0,
     Castle = 101,

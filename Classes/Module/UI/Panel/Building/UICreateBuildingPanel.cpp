@@ -1,7 +1,7 @@
 #include "UICreateBuildingPanel.h"
 #include "cocostudio/CocoStudio.h"
 #include "Include/IncludeConfig.h"
-#include "Include/IncludeBuildingBase.h"
+#include "Include/IncludeBuildingFunc.h"
 #include "Module/UI/Panel/Building/UIBuildCreateScrollSingle.h"
 #include "Module/UI/Part/UIWheelScrollView.h"
 #include "Module/UI/UI.Create.h"
@@ -55,7 +55,7 @@ void UICreateBuildingPanel::updateView(){
   })*/
 }
 
-void UICreateBuildingPanel::wheelScrollBack(const TBuildingInfoUnit& p_BuildingInfoUnit, size_t p_Index){
+void UICreateBuildingPanel::wheelScrollBack(const TBuildingUnitSpecs& p_BuildingInfoUnit, size_t p_Index){
   m_CurrentIndex = p_Index;
   m_CurrentBuilding = p_BuildingInfoUnit;
   updateView();
@@ -126,8 +126,7 @@ void UICreateBuildingPanel::createWheelScrollView(){
   l_WheelScrollViewArgs.m_CellHeight = 130;
   l_WheelScrollViewArgs.m_CircleRadius = 450;
   m_SelectWheel =  UICreate::wheelScrollView(l_WheelScrollViewArgs);
-  /*if(m_SelectWheel){
-
+  if(m_SelectWheel){
     m_SelectWheel->setSelectedItemListener([this](size_t p_Index){
       wheelScrollBack(m_BuildableList[p_Index], p_Index);
     });
@@ -137,7 +136,7 @@ void UICreateBuildingPanel::createWheelScrollView(){
     m_SelectWheel->selectedCellIndex(std::min(m_CurrentIndex, (int)l_ScrollViews.size()));
     m_SelectWheel->setInertiaValue(0.1);
     GBase::SoraDFTarget(m_SelectWheel);
-  }*/
+  }
   /*  This is Guide */
   // local curChapterID = newPlayerTaskCtrl:getCurChapterID()
   // for i, v in ipairs(self.tableBuildList) do
