@@ -7,3 +7,9 @@ TEffect EffectCtrl::getEffect(EEffectType p_EffectType){
     PlayerStatic::getEffects()[p_EffectType];
   return TEffect();
 }
+
+bool EffectCtrl::isEffectActive(EEffectType p_EffectType){
+  if(getEffect(p_EffectType).timeEnd <= GDateTime::Now())
+    return false;
+  return true;
+}

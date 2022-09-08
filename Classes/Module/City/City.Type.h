@@ -3,7 +3,7 @@
 #include "Base/Json.h"
 #include "Include/IncludeBuildingBase.h"
 #include "Module/Army/Army.DT.h"
-#include "Module/CityResource/CityResource.DT.h"
+#include "Module/CityResource/Resource.Type.h"
 
 struct TCity
 {

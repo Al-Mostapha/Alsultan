@@ -1,8 +1,10 @@
 #include "Building.Ctrl.h"
 #include "Building.Static.h"
 
-#include "Module/CityResource/CityResource.Type.h"
+#include "Module/CityResource/Resource.Type.h"
 #include "Module/Effect/Effect.Type.h"
+#include "Module/CityResource/Resource.Static.h"
+#include "Module/CityResource/Resource.Ctrl.h"
 
 
 uint32  BuildingCtrl::getBuildingMaxLvl(EBuildingType p_BuildingType){
@@ -26,6 +28,13 @@ GVector<TBuildingPreCond> BuildingCtrl::checkBuildingPreCond(EBuildingType p_Bui
   }
   return l_OutPreCond;
 }
+
+TResourceIsEnough BuildingCtrl::checkBuildingCostRes(EBuildingType p_BuildingType, uint32 p_CurrentLvl){
+  auto l_CostRes = BuildingStatic::getBuildingLvlSpec(p_BuildingType, p_CurrentLvl).costRes;
+  return ResourceCtrl::isResourceEnough(l_CostRes);
+}
+
+
 
 // TResource BuildingCtrl::checkBuildingCostRes(EBuildingType p_BuildingType, uint32 p_CurrentLvl){
 //   auto l_CostRes = BuildingStatic::getBuildingLvlSpec(p_BuildingType, p_CurrentLvl).costRes;

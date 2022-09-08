@@ -4,7 +4,7 @@
 #include "Base/Json.h"
 #include "Module/Building/Building.Const.h"
 #include "Module/Building/Building.Enum.h"
-#include "Module/CityResource/CityResource.Type.h"
+#include "Module/CityResource/Resource.Type.h"
 #include "Module/Army/Army.Enum.h"
 #include "Module/Science/Science.Enum.h"
 #include "Module/Building/BuildingLib/BuildingWatchTower.Lib.h"

@@ -16,6 +16,8 @@ typedef unsigned short int uint16;
 typedef signed int int32;
 typedef unsigned int uint32;
 
+typedef uint32 Guid;
+
 typedef signed long int int64;
 typedef unsigned long int uint64;
 

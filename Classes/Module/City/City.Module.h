@@ -8,7 +8,7 @@
 #include "Module/Player/Player.Module.h"
 #include "Module/Building/Building.Module.h"
 #include "Module/City/City.Const.h"
-#include "Module/City/City.DT.h"
+#include "Module/City/City.Type.h"
 #include "Module/Player/Player.Static.h"
 
 class CityModule
