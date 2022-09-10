@@ -1,0 +1,454 @@
+﻿  Building Custom Rule D:/Mustapha/Alsultan/CMakeLists.txt
+  Base.Lib.cpp
+  Base.creat.cpp
+  BaseStruct.cpp
+  HashMap.cpp
+  DateTime.cpp
+  Json.cpp
+  ReflectVector.cpp
+  BootstrapPlist.cpp
+  Army.Module.cpp
+  Army.Service.cpp
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Base\Base.creat.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Base\Base.creat.cpp)
+  CityArmy.cpp
+  Building.Ctrl.cpp
+  Building.Lib.cpp
+  Building.Logic.cpp
+  Building.Module.cpp
+  Building.Service.cpp
+  Building.Static.cpp
+  Building.Type.cpp
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\Building.Logic.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\Building.Logic.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\Building.Lib.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\Building.Lib.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\Building.Lib.cpp(15): warning C4101: 'buildingType': unreferenced local variable
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\Building.Type.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\Building.Type.cpp)
+  Building.cpp
+  BuildingABarrack.cpp
+  BuildingAChariotPlant.cpp
+  BuildingAFortress.cpp
+d:\mustapha\alsultan\classes\module\building\building.lib.cpp(21): warning C4172: returning address of local variable or temporary: t
+  BuildingARange.cpp
+  BuildingAStable.cpp
+  BuildingFArrowTower.cpp
+  BuildingFBraveStatue.cpp
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingABarrack.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingABarrack.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingAChariotPlant.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingAChariotPlant.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingAChariotPlant.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingAFortress.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingAFortress.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingARange.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingARange.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingARange.cpp(67): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingAStable.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingAStable.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingAStable.cpp(68): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFArrowTower.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFArrowTower.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFBraveStatue.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFBraveStatue.cpp)
+  BuildingFCastle.cpp
+  BuildingFElitePalace.cpp
+  BuildingFEpicBattle.cpp
+  BuildingFHarbor.cpp
+  BuildingFLeisureCenter.cpp
+  BuildingFMaterialWorkShop.cpp
+d:\mustapha\alsultan\classes\module\building\buildingunit\buildingfarrowtower.cpp(65): warning C4715: 'BuildingFArrowTower::getViewModel': not all control paths return a value
+  BuildingFMiracle.cpp
+  BuildingFMonument.cpp
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFCastle.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFCastle.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFElitePalace.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFElitePalace.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFElitePalace.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFElitePalace.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFEpicBattle.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFEpicBattle.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFHarbor.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFHarbor.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFLeisureCenter.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFLeisureCenter.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(62): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(63): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(70): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(76): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(77): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(83): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(84): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(90): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMaterialWorkShop.cpp(91): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMiracle.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMiracle.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMonument.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMonument.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMonument.cpp(37): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMonument.cpp(38): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMonument.cpp(39): warning C4244: 'argument': conversion from 'double' to 'uint8_t', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFMonument.cpp(41): warning C4305: 'argument': truncation from 'double' to 'float'
+  BuildingFPetCenter.cpp
+  BuildingFPrison.cpp
+  BuildingFRevivalHall.cpp
+  BuildingFServiceCenter.cpp
+  BuildingFTrainHall.cpp
+  BuildingFWall.cpp
+  BuildingIBlackSmith.cpp
+  BuildingIDrillGrounds.cpp
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPetCenter.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPetCenter.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(34): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(37): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(66): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(67): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(68): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(73): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(74): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(75): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFPrison.cpp(76): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFRevivalHall.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFRevivalHall.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFRevivalHall.cpp(38): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFRevivalHall.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFServiceCenter.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFServiceCenter.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFTrainHall.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFTrainHall.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFTrainHall.cpp(35): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFTrainHall.cpp(36): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFTrainHall.cpp(42): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFTrainHall.cpp(43): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFWall.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingFWall.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIBlackSmith.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIBlackSmith.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIDrillGrounds.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIDrillGrounds.cpp)
+  BuildingIEmbassy.cpp
+  BuildingIHallOfWar.cpp
+  BuildingIInstitute.cpp
+  BuildingIMarket.cpp
+  BuildingIWareHouse.cpp
+  BuildingIWishWell.cpp
+  BuildingNone.cpp
+  BuildingOCrystalMine.cpp
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIEmbassy.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIEmbassy.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIHallOfWar.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIHallOfWar.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIInstitute.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIInstitute.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIMarket.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIMarket.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWareHouse.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWareHouse.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(41): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(46): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(47): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(48): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(53): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(54): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(55): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(60): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(61): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(62): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(68): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(75): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(76): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(88): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(89): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(95): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(96): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(97): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(103): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(104): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(105): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(111): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(112): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(113): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(119): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(120): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(121): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(127): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(128): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(134): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingIWishWell.cpp(135): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingNone.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingNone.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOCrystalMine.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOCrystalMine.cpp)
+  BuildingOFarm.cpp
+  BuildingOHosptial.cpp
+  BuildingOIronMine.cpp
+  BuildingOMilitaryTent.cpp
+  BuildingOSawmill.cpp
+  BuildingOSilver.cpp
+  BuildingUtil.cpp
+  CityBuildingBase.cpp
+  BuildingInfo.Config.cpp
+  City.Module.cpp
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOFarm.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOFarm.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp(52): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp(53): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp(59): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp(60): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp(66): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp(67): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp(79): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOHosptial.cpp(80): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOIronMine.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOIronMine.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOMilitaryTent.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOMilitaryTent.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOSawmill.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOSawmill.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOSilver.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\BuildingUnit\BuildingOSilver.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp)
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(68): warning C4244: 'argument': conversion from 'int32' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(71): warning C4244: 'argument': conversion from 'int32' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(71): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(72): warning C4244: 'argument': conversion from 'double' to 'uint8_t', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(72): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(73): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(78): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(81): warning C4244: 'argument': conversion from 'int32' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(85): warning C4244: 'argument': conversion from 'int32' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(85): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(86): warning C4244: 'argument': conversion from 'double' to 'uint8_t', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(86): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(87): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(91): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(94): warning C4244: 'argument': conversion from 'int32' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(98): warning C4244: 'argument': conversion from 'int32' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(98): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(99): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(100): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(104): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\Building\CityBuildingBase.cpp(117): warning C4244: 'argument': conversion from 'int32' to 'float', possible loss of data
+  City.Service.cpp
+  City.Static.cpp
+  CityBuildingBtnAction.cpp
+  CityBuildingTopTip.cpp
+  CitySceneEffect.cpp
+  CityResource.DT.cpp
+  CityResource.Service.cpp
+  CityResource.cpp
+  Resource.Ctrl.cpp
+  Resource.Module.cpp
+  Resource.Static.cpp
+  Config.mdoule.cpp
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(49): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(50): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(51): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(52): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(53): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(54): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(55): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(56): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(57): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(85): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(110): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(155): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(163): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(171): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(179): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(187): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(196): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(200): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(221): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(229): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(237): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(253): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(261): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(285): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(317): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(325): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(333): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(349): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(357): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CityBuildingUtils\CityBuildingTopTip.cpp(365): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp)
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(26): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(291): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(520): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(662): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(720): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(760): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(761): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(762): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(763): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(783): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(784): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(815): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(889): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(900): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\City\CitySceneEffect.cpp(918): warning C4305: 'argument': truncation from 'double' to 'float'
+  CSbUiFilePath.cpp
+  MusicPath.Config.cpp
+  Effect.Ctrl.cpp
+  NetBase.Module.cpp
+  Player.Module.cpp
+  Player.Static.cpp
+  Player.Type.cpp
+  Science.Service.cpp
+  Translate.cpp
+  UIBuildCreateScrollSingle.cpp
+  UICreateBuildingPanel.cpp
+  UIPanelBase.cpp
+  UIWheelScrollView.cpp
+D:\Mustapha\Alsultan\Classes\Module/UI/Types/UIWheelScrollViewArgs.h(5): warning C4099: 'UIWheelScrollViewArgs': type name first seen using 'class' now seen using 'struct' (compiling source file D:\Mustapha\Alsultan\Classes\Module\UI\Panel\Building\UICreateBuildingPanel.cpp)
+  D:\Mustapha\Alsultan\Classes\Module/UI/Types/UIWheelScrollViewArgs.h(4): note: see declaration of 'UIWheelScrollViewArgs' (compiling source file D:\Mustapha\Alsultan\Classes\Module\UI\Panel\Building\UICreateBuildingPanel.cpp)
+D:\Mustapha\Alsultan\Classes\Module\UI\Panel\Building\UICreateBuildingPanel.cpp(95): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Panel\Building\UICreateBuildingPanel.cpp(96): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Panel\Building\UICreateBuildingPanel.cpp(137): warning C4305: 'argument': truncation from 'double' to 'bool'
+  UI.Create.cpp
+D:\Mustapha\Alsultan\Classes\Module/UI/Types/UIWheelScrollViewArgs.h(5): warning C4099: 'UIWheelScrollViewArgs': type name first seen using 'class' now seen using 'struct' (compiling source file D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp)
+  D:\Mustapha\Alsultan\Classes\Module/UI/Types/UIWheelScrollViewArgs.h(4): note: see declaration of 'UIWheelScrollViewArgs' (compiling source file D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp)
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(67): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(94): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(96): warning C4018: '<': signed/unsigned mismatch
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(102): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(108): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(108): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(180): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(214): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(224): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(229): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(233): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(237): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(257): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(260): warning C4244: 'argument': conversion from 'double' to 'uint8_t', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(265): warning C4244: 'argument': conversion from 'double' to 'uint8_t', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(267): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(290): warning C4018: '<': signed/unsigned mismatch
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(305): warning C4018: '<': signed/unsigned mismatch
+D:\Mustapha\Alsultan\Classes\Module\UI\Part\UIWheelScrollView.cpp(325): warning C4305: 'argument': truncation from 'double' to 'float'
+  UIELment.cpp
+  CityScene.cpp
+  InitScene.cpp
+  WorldScene.cpp
+  AppDelegate.cpp
+  HelloWorldScene.cpp
+D:\Mustapha\Alsultan\Classes\Module/UI/Types/UIWheelScrollViewArgs.h(5): warning C4099: 'UIWheelScrollViewArgs': type name first seen using 'class' now seen using 'struct' (compiling source file D:\Mustapha\Alsultan\Classes\Module\UI\UI.Create.cpp)
+  D:\Mustapha\Alsultan\Classes\Module/UI/Types/UIWheelScrollViewArgs.h(4): note: see declaration of 'UIWheelScrollViewArgs' (compiling source file D:\Mustapha\Alsultan\Classes\Module\UI\UI.Create.cpp)
+  main.cpp
+  precheader.cpp
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Scene\CityScene.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Scene\CityScene.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(101): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Scene\WorldScene.cpp)
+D:\Mustapha\Alsultan\Classes\Module/City/CityBuildingUtils/CityBuildingBtnAction.h(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data (compiling source file D:\Mustapha\Alsultan\Classes\Scene\WorldScene.cpp)
+libbullet.lib(btAlignedAllocator.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+     Creating library D:/Mustapha/Alsultan/build/Debug/Alsultan.lib and object D:/Mustapha/Alsultan/build/Debug/Alsultan.exp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+libchipmunk.lib(chipmunk.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(chipmunk.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpArbiter.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpArbiter.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpArray.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpArray.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpBBTree.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpBBTree.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpBody.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpBody.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpCollision.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpCollision.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpConstraint.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpConstraint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpDampedRotarySpring.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpDampedRotarySpring.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpDampedSpring.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpDampedSpring.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpGearJoint.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpGearJoint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpGrooveJoint.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpGrooveJoint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpHashSet.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpHashSet.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpPinJoint.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpPinJoint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpPivotJoint.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpPivotJoint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpPolyShape.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpPolyShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpRatchetJoint.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpRatchetJoint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpRobust.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpRobust.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpRotaryLimitJoint.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpRotaryLimitJoint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpShape.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSimpleMotor.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSimpleMotor.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSlideJoint.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSlideJoint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSpace.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSpace.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSpaceComponent.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSpaceComponent.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSpaceDebug.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSpaceDebug.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSpaceHash.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSpaceHash.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSpaceQuery.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSpaceQuery.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSpaceStep.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSpaceStep.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libchipmunk.lib(cpSpatialIndex.obj) : warning LNK4099: PDB 'chipmunk_static.pdb' was not found with 'libchipmunk.lib(cpSpatialIndex.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\chipmunk_static.pdb'; linking object as if no debug info
+libbullet.lib(btCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btDbvt.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btDbvt.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btDbvtBroadphase.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btDbvtBroadphase.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btDispatcher.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btDispatcher.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btOverlappingPairCache.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btOverlappingPairCache.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btQuantizedBvh.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btQuantizedBvh.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btActivatingCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btActivatingCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btBoxBoxCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btBoxBoxCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btBoxBoxDetector.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btBoxBoxDetector.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btCollisionDispatcher.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btCollisionDispatcher.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btCollisionObject.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btCollisionObject.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btCollisionWorld.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btCollisionWorld.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btCompoundCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btCompoundCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btCompoundCompoundCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btCompoundCompoundCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConvexConcaveCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConvexConcaveCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConvexConvexAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConvexConvexAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConvexPlaneCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConvexPlaneCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btDefaultCollisionConfiguration.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btDefaultCollisionConfiguration.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btEmptyCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btEmptyCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btGhostObject.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btGhostObject.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btHashedSimplePairCache.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btHashedSimplePairCache.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btManifoldResult.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btManifoldResult.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btSimulationIslandManager.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btSimulationIslandManager.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btSphereSphereCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btSphereSphereCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btSphereTriangleCollisionAlgorithm.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btSphereTriangleCollisionAlgorithm.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btUnionFind.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btUnionFind.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(SphereTriangleDetector.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(SphereTriangleDetector.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btBvhTriangleMeshShape.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btBvhTriangleMeshShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btCollisionShape.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btCollisionShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConcaveShape.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConcaveShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConvexInternalShape.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConvexInternalShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConvexPolyhedron.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConvexPolyhedron.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConvexShape.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConvexShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btOptimizedBvh.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btOptimizedBvh.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btPolyhedralConvexShape.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btPolyhedralConvexShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btSphereShape.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btSphereShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btTriangleCallback.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btTriangleCallback.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btTriangleMeshShape.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btTriangleMeshShape.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btContinuousConvexCollision.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btContinuousConvexCollision.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConvexCast.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConvexCast.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btGjkConvexCast.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btGjkConvexCast.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btGjkEpa2.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btGjkEpa2.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btGjkEpaPenetrationDepthSolver.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btGjkEpaPenetrationDepthSolver.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btGjkPairDetector.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btGjkPairDetector.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btMinkowskiPenetrationDepthSolver.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btMinkowskiPenetrationDepthSolver.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btPersistentManifold.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btPersistentManifold.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btPolyhedralContactClipping.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btPolyhedralContactClipping.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btRaycastCallback.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btRaycastCallback.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btSubSimplexConvexCast.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btSubSimplexConvexCast.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btVoronoiSimplexSolver.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btVoronoiSimplexSolver.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConeTwistConstraint.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConeTwistConstraint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btGeneric6DofConstraint.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btGeneric6DofConstraint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btSequentialImpulseConstraintSolver.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btSequentialImpulseConstraintSolver.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btTypedConstraint.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btTypedConstraint.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btDiscreteDynamicsWorld.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btDiscreteDynamicsWorld.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btRigidBody.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btRigidBody.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btAlignedAllocator.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btAlignedAllocator.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btConvexHullComputer.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btConvexHullComputer.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btGeometryUtil.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btGeometryUtil.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btQuickprof.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btQuickprof.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+libbullet.lib(btVector3.obj) : warning LNK4099: PDB 'libbullet.pdb' was not found with 'libbullet.lib(btVector3.obj)' or at 'D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\libbullet.pdb'; linking object as if no debug info
+  Alsultan.vcxproj -> D:\Mustapha\Alsultan\build\bin\Alsultan\Debug\Alsultan.exe
+  Alsultan.vcxproj -> D:/Mustapha/Alsultan/build/bin/Alsultan/Debug/Alsultan.pdb (Full PDB)

@@ -5,5 +5,4 @@ public:
   bool Contains(K p_Key){
     return count(p_Key) != 0;
   }
-
 };
