@@ -3,49 +3,7 @@ import { EScienceCategory, EScienceType } from "src/Module/Science/Science.Enum"
 import { TScience } from "src/Module/Science/Science.Type";
 import { TResource } from "src/Module/Resource/Resource.Type";
 
-export const ScienceStatic : {[Key: number] : TScience} = {
-  [EScienceType.WoodProduction] : {
-    index : 1,
-    idScience : 21001,
-    Category : EScienceCategory.CityDevelop,
-    lvl : 1,
-    CostResource: {
-      Coin : 0, 
-      Grain : 0, // 1002
-      Lumber : 0, // 1003
-      Iron : 0, // 1004
-      Silver : 0, // 1005
-      Metal : 0, // 1006
-      Crystal : 0 // 1027
-    },
-    buffType : 0,
-    powerNum : 0,
-    buffNumType : 0,
-    maxLvl: 0,
-    CostTime: 0,
-    CostBuilding: {
-      BuildingType: 0,
-      buildingLvl: 0
-    },
-    CostStarBuid: {
-      BuildingType: EBuildingType.Barrack,
-      buildingLvl: 0
-    },
-    CostScience : [ {
-      ScienceType: EScienceType.FoodProduction,
-      scienceLvl: 0
-    }],
-    CostScienceWEs:{
-      ScienceType: EScienceType.FoodProduction,
-      scienceLvl: 0
-    },
-    CostKingdomPoint: 0,
-    fighting :0 ,
-    
-    battle: [0],
-    activity: 0
-  }
-}
+
 
 // local data = {
 //   [1] = {
