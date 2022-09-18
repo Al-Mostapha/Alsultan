@@ -2,16 +2,16 @@
 #include "Base/BaseTypeDef.h"
 #include "Base/Json.h"
 #include "Include/IncludeBuildingBase.h"
-#include "Module/Army/Army.DT.h"
+#include "Module/Army/Army.Type.h"
 #include "Module/CityResource/Resource.Type.h"
 
-struct TCity
+struct RCity
 {
     int32 idPlayer;
     int32 idCity;
-    TCityBuilding CityBuilding;
-    TCityArmy CityArmy;
-    TCityResource CityResource;
+    RCityBuilding CityBuilding;
+    RCityArmy CityArmy;
+    RCityResource CityResource;
     void fromJson(GJson *json)
     {
         if (json == nullptr)

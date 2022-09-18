@@ -768,11 +768,11 @@ void CitySceneEffect::addBuildAnimBoostBottom(const GString& BuildingPlace){
 }
 
 void CitySceneEffect::addHarvestEffect(){
-  GVector<TCityBuildingUnit> BuildingList = BuildingLib::getBuildingResList();
+  GVector<RCityBuildingUnit> BuildingList = BuildingLib::getBuildingResList();
   CityScene *mainCity = CityScene::getCityScene();
   if(!mainCity)
     return;
-  for(TCityBuildingUnit& oneBuilding :  BuildingList){
+  for(RCityBuildingUnit& oneBuilding :  BuildingList){
     Node *Building = mainCity->containerView->getChildByName(oneBuilding.NodeName);
     GString  etBoostHarvestName = "et_boost_harvest_" + oneBuilding.NodeName;
     if(mainCity->containerView->getChildByName(etBoostHarvestName))

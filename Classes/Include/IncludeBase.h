@@ -6,4 +6,5 @@
 #include "Base/Base.create.h"
 #include "Base/Base.Lib.h"
 #include "Base/DateTime.h"
+#include "Base/Logger/Logger.h"
 

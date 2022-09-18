@@ -1,10 +1,10 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Base/Containers/HashMap.h"
-struct TPlayer
+struct RPlayer
 {
     int32 idCurrentCity;
     int32 idPlayer;
-    struct TCity City;
+    struct RCity City;
     GHashMap<enum class EEffectType, struct TEffect> Effect;
 };

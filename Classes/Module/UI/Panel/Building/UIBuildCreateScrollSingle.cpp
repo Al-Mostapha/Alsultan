@@ -34,7 +34,7 @@ void UIBuildCreateScrollSingle::initData(EBuildingType p_BuildingType){
     m_ImgIcon->removeFromParent();
     m_ImgIcon = nullptr;
   }
-  TBuildingUnitSpecs l_BuildingInfoUnit = BuildingStatic::getBuildingUnitSpecs(p_BuildingType);
+  RBuildingUnitSpecs l_BuildingInfoUnit = BuildingStatic::getBuildingUnitSpecs(p_BuildingType);
   m_LabelName->setString(Translate::i18n(l_BuildingInfoUnit.BuildingName.c_str()));
   if(!BuildingLib::isCanBuild(p_BuildingType))
     m_ImgLock->setVisible(false);

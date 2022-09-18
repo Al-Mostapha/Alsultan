@@ -20,7 +20,7 @@
 // REFLECT_MEMBER(atkAdd)
 // REFLECT_END()
 
-void TCityBuildingUnit::fromJson(GJson *json)
+void RCityBuildingUnit::fromJson(GJson *json)
 {
     if (json == nullptr)
         return;
@@ -28,7 +28,7 @@ void TCityBuildingUnit::fromJson(GJson *json)
     eBuildingType = static_cast<EBuildingType>(json->GetInt("buildingType", 0));
 }
 
-TCityBuildingUnit& TCityBuildingUnit::buildUnit()
+RCityBuildingUnit& RCityBuildingUnit::buildUnit()
 {
 
     Scene *runningScene = Director::getInstance()->getRunningScene();
@@ -65,7 +65,7 @@ TCityBuildingUnit& TCityBuildingUnit::buildUnit()
     return *this;
 }
 
-TCityBuildingUnit& TCityBuildingUnit::addToBuildingList()
+RCityBuildingUnit& RCityBuildingUnit::addToBuildingList()
 {
 	BuildingModule::getCurentCityBuilding().BuildingList[BuildingPlace] = *this;
 	return *this;

@@ -1,6 +1,6 @@
 #include "Player.Static.h"
-TPlayer PlayerStatic::SultanPlayer;
+RPlayer PlayerStatic::SultanPlayer;
 
-TPlayer& PlayerStatic::getPlayer(){
+RPlayer& PlayerStatic::getPlayer(){
   return SultanPlayer;
 }

@@ -4,11 +4,12 @@
 
 class BuildingLogic{
 private:
-  static bool isBuildingLvlPreCondAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl, TBuildingLvlSpecs &p_BuildingLvlSpecs);
-  static bool isBuildingLvlCostWsAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl, TBuildingLvlSpecs &p_BuildingLvlSpecs);
-  static bool isBuildingLvlCostItemsAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl, TBuildingLvlSpecs &p_BuildingLvlSpecs);
+  static bool isCostBuildingAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl);
+  static bool isCostWsAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl);
+  static bool isCostItemsAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl);
+  static bool isCostResourceAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl);
 
 public:
   static bool isCanUpgrade(EBuildingType p_BuildingType, uint32 p_CurentLvl);
-  static bool isBuildingLvlReqAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl, TBuildingLvlSpecs &p_BuildingLvlSpecs);
+  static bool isBuildingCostAchieved(EBuildingType p_BuildingType, uint32 p_CurrentLvl, RBuildingLvlSpecs &p_BuildingLvlSpecs);
 };

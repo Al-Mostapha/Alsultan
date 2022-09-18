@@ -1,5 +1,5 @@
 #pragma once
-#include "Module/Army/Army.DT.h"
+#include "Module/Army/Army.Type.h"
 class CityArmy
 {
 };

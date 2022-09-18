@@ -5946,5 +5946,5 @@ export const ScienceResourceStaic: TScienceCategory = {
       }
 
     }
-  },
+  }
 }

@@ -4,7 +4,7 @@
 
 class ResourceStatic{
 public:
-  static TCityResource& getCityResource();
+  static RCityResource& getCityResource();
   
 
 };

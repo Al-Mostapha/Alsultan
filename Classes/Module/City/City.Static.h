@@ -12,6 +12,6 @@ public:
   static void setIDCurrentCity(Guid idCity){
     idCurrentCity = idCity;
   }
-  static TCity& getCurrentCity();
-  static TCity& getCity(Guid idCity);
+  static RCity& getCurrentCity();
+  static RCity& getCity(Guid idCity);
 };

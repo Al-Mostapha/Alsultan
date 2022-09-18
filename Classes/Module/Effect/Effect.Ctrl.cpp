@@ -13,3 +13,7 @@ bool EffectCtrl::isEffectActive(EEffectType p_EffectType){
     return false;
   return true;
 }
+
+int32 EffectCtrl::getEffectVal(EEffectType p_EffectType){
+  return 0;
+}

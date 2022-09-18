@@ -1,9 +1,9 @@
 #include "Resource.Ctrl.h"
 #include "Resource.Static.h"
 
-TResourceIsEnough ResourceCtrl::isResourceEnough(TResource& p_Resource){
-  TCityResource l_CityRes = ResourceStatic::getCityResource();
-  TResourceIsEnough l_IsEnough;
+RResourceIsEnough ResourceCtrl::isResourceEnough(RResource& p_Resource){
+  RCityResource l_CityRes = ResourceStatic::getCityResource();
+  RResourceIsEnough l_IsEnough;
   l_IsEnough.Coin    = l_CityRes.Coin    >= p_Resource.Coin;
   l_IsEnough.Grain   = l_CityRes.Grain   >= p_Resource.Grain;
   l_IsEnough.Lumber  = l_CityRes.Lumber  >= p_Resource.Lumber;

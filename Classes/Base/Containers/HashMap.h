@@ -1,3 +1,4 @@
+#pragma once
 #include <unordered_map>
 template <class K, class V>
 class GHashMap : public std::unordered_map<K, V>{

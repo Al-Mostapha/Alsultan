@@ -73,7 +73,7 @@ enum class ECityBtnAction
 	OpMilitaryFortress = 1066
 };
 
-struct TCityBtnAction : GStruct
+struct RCityBtnAction : GStruct
 {
 
 	uint32 btnId;
@@ -107,7 +107,7 @@ struct TCityBtnAction : GStruct
 	{
 
 		return cocos2d::StringUtils::format(
-			"TCityBtnAction :\
+			"RCityBtnAction :\
 			 {btnId: %d, btnEnum: %d, ActionName: %s, BtnDesc: %s, BtnImage: %s, ActionSortIndex: %d, scale: %d, offset: %s}",
 			btnId, 
 			int(btnEnum),

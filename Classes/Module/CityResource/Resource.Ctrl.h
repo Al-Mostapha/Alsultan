@@ -3,5 +3,5 @@
 #include "Resource.Type.h"
 class ResourceCtrl{
 public:
-  static TResourceIsEnough isResourceEnough(TResource& p_Resource);
+  static RResourceIsEnough isResourceEnough(RResource& p_Resource);
 };

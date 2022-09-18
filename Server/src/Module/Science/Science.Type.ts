@@ -53,11 +53,8 @@ export interface TScience {
       },
       CostKingdomPoint: number,
       fighting: number,
-
       battle: number[],
       activity: number,
     }
   }
-
-
 };

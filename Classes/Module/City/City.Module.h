@@ -30,7 +30,7 @@ public:
     }
     static void showCityBuilding();
     static void showCityEffect();
-    static TCity& getCurrentCity(){
+    static RCity& getCurrentCity(){
         return PlayerStatic::SultanPlayer.City;
     }
 };

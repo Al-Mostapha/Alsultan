@@ -2,10 +2,10 @@
 #include "Module/Player/Player.Static.h"
 
 Guid CityStatic::idCurrentCity;
-TCity& CityStatic::getCity(Guid idCity){
+RCity& CityStatic::getCity(Guid idCity){
   return PlayerStatic::getPlayer().City;
 }
 
-TCity& CityStatic::getCurrentCity(){
+RCity& CityStatic::getCurrentCity(){
   return getCity(getIDCurrentCity());
 }

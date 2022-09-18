@@ -7,8 +7,8 @@
 class PlayerStatic
 {
 public:
-    static TPlayer SultanPlayer;
-    static TPlayer& getPlayer();
+    static RPlayer SultanPlayer;
+    static RPlayer& getPlayer();
     static GHashMap<EEffectType, TEffect>& getEffects(){
         return SultanPlayer.Effect;
     }

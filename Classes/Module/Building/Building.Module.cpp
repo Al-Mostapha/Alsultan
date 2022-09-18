@@ -88,6 +88,6 @@ void BuildingModule::buildCity()
 }
 
 
-TCityBuilding& BuildingModule::getCurentCityBuilding(){
+RCityBuilding& BuildingModule::getCurentCityBuilding(){
     return CityModule::getCurrentCity().CityBuilding;
 }
