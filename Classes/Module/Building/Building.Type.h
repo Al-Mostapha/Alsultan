@@ -18,7 +18,7 @@ struct RCostBuilding {
 };
 struct RCostItem {
   uint32 idItem = 0;
-  uint32 buildingLvl = 0;
+  uint32 amount = 0;
   bool isAchieved = false;
 };
 

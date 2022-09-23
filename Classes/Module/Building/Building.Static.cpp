@@ -1,7 +1,5 @@
 #include "Building.Static.h"
 #include "Building.Enum.h"
-#include "Module/Effect/Effect.Ctrl.h"
-#include "Module/Science/Science.Ctrl.h"
 
 BuildingStatic& BuildingStatic::Instance() {
   static BuildingStatic* l_Instance = new BuildingStatic();
@@ -56,41 +54,4 @@ RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuildingType p_BuildingTy
     return l_Instance.m_InvalidBuildingLvlSpecs;
   }
   return l_BuildingUnit.Lvls[p_Lvl];
-}
-
-void BuildingStatic::getReducedCostTime(RBuildingLvlSpecs& p_OriginalSpec) {}
-void BuildingStatic::getReducedCostItem(RBuildingLvlSpecs& p_OriginalSpec) {}
-
-void BuildingStatic::getReducedCostResource(RBuildingLvlSpecs& p_OriginalSpec) {
-
-  auto l_CostReduced = EffectCtrl::getEffectVal(EEffectType::UpgradeCastleCostResReduce);
-  if (p_OriginalSpec.lvl <= 30) 
-    l_CostReduced += EffectCtrl::getEffectVal(EEffectType::UpgradeBuildingCostResReduceLess30);
-  if (p_OriginalSpec.lvl <= 70)
-    l_CostReduced += EffectCtrl::getEffectVal(EEffectType::UpgradeBuildingCostResReduceLessZ4);
-  l_CostReduced = l_CostReduced /1000 + ScienceCtrl::getSciencePower(EScienceEffect::BuildingCostReduce);
-
-  p_OriginalSpec.CostRes.Coin    = std::ceil(p_OriginalSpec.CostRes.Coin    * (1 - l_CostReduced));
-  p_OriginalSpec.CostRes.Crystal = std::ceil(p_OriginalSpec.CostRes.Crystal * (1 - l_CostReduced));
-  p_OriginalSpec.CostRes.Grain   = std::ceil(p_OriginalSpec.CostRes.Grain   * (1 - l_CostReduced));
-  p_OriginalSpec.CostRes.Iron    = std::ceil(p_OriginalSpec.CostRes.Iron    * (1 - l_CostReduced));
-  p_OriginalSpec.CostRes.Lumber  = std::ceil(p_OriginalSpec.CostRes.Lumber  * (1 - l_CostReduced));
-  p_OriginalSpec.CostRes.Metal   = std::ceil(p_OriginalSpec.CostRes.Metal   * (1 - l_CostReduced));
-  p_OriginalSpec.CostRes.Silver  = std::ceil(p_OriginalSpec.CostRes.Silver  * (1 - l_CostReduced));
-
-}
-
-void BuildingStatic::getReducedCostScience(RBuildingLvlSpecs& p_OriginalSpec) {}
-
-RBuildingLvlSpecs BuildingStatic::getReducedLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl) {
-
-  if(!isValidBuildingLvl(p_BuildingType, p_Lvl))
-    return  Instance().m_InvalidBuildingLvlSpecs;
-
-  RBuildingLvlSpecs l_BuildingLvlSpec = getBuildingLvlSpec(p_BuildingType, p_Lvl);
-  getReducedCostItem(l_BuildingLvlSpec);
-  getReducedCostResource(l_BuildingLvlSpec);
-  getReducedCostScience(l_BuildingLvlSpec);
-  getReducedCostTime(l_BuildingLvlSpec);
-  return l_BuildingLvlSpec;
 }

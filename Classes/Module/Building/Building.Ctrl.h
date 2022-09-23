@@ -3,10 +3,17 @@
 #include "Include/IncludeBuildingBase.h"
 
 class BuildingCtrl {
+private:
+  static void getReducedCostTime(RBuildingLvlSpecs &p_OriginalSpec);
+  static void getReducedCostItem(RBuildingLvlSpecs &p_OriginalSpec);
+  static void getReducedCostResource(RBuildingLvlSpecs &p_OriginalSpec);
+  static void getReducedCostScience(RBuildingLvlSpecs &p_OriginalSpec);
+
 public:
   static uint32 getBuildingMaxLvl(EBuildingType p_BuildingType);
   static uint32 getBuildingCount(EBuildingType p_BuildingType);
   static class CityBuildingBase *getBuildingCell(EBuildingType p_BuildingType);
   static GVector<RCostBuilding> checkBuildingPreCond(EBuildingType p_BuildingType, uint32 p_CurrentLvl);
   static RResourceIsEnough checkBuildingCostRes(EBuildingType p_BuildingType, uint32 p_CurrentLvl);
+  static RBuildingLvlSpecs getReducedLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl);
 };
