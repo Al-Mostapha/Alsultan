@@ -6,5 +6,5 @@ struct RPlayer
     int32 idCurrentCity;
     int32 idPlayer;
     struct RCity City;
-    GHashMap<enum class EEffectType, struct TEffect> Effect;
+    GHashMap<enum class EEffect, struct TEffect> Effect;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Containers/HashMap.h"
 #include "Base/Json.h"
 #include "Base/Reflect.h"
 #include "Module/Army/Army.Enum.h"
@@ -8,65 +9,86 @@
 #include "Module/Building/BuildingLib/BuildingWatchTower.Lib.h"
 #include "Module/CityResource/Resource.Type.h"
 #include "Module/Science/Science.Enum.h"
-#include "Base/Containers/HashMap.h"
+#include "Module/Item/Item.Type.h"
+
+
 
 struct RCostBuilding {
   EBuildingType buildingType = EBuildingType::None;
   uint32 buildingLvl = 0;
-  bool isAchieved = false;
   static RCostBuilding fromJson(GJson* json) { RCostBuilding temp; }
 };
-struct RCostItem {
-  uint32 idItem = 0;
-  uint32 amount = 0;
-  bool isAchieved = false;
+
+struct RCostBuildingEnough{
+  EBuildingType  TypeReq;
+  uint32 LvlReq;
+  uint32 LvlCurMax;
+  uint32 LvlLack;
+  bool isEnough;
+};
+
+struct RCostBuildingUpgrade{
+  GVector<RCostBuildingEnough> CostBuilding;
+  GVector<RCostItemEnough> CostItem;
+  GVector<RCostItemEnough> CostItemWEs;
+  RCostResourceEnough CostResource;
+  uint32 CostTime;
+  uint32 resToGold;
+  uint32 itemToGold;
+  uint32 totalGold;
+  uint32 WEToGold;
+  struct {
+    uint32 exp = 0;
+    uint32 power = 0;
+  } Reword;
+  GVector<struct RBuildingTask> BuildingTaskQueue;
 };
 
 struct RBuildingLvlSpecs {
-  GVector          <RCostBuilding     > CostBuilding            ;
-  RResource         CostRes                                     ;
-  GVector          <RCostItem         > CostItems               ;
-  GVector          <RCostItem         > CostWEs                 ;
-  uint32            CostTime           = 0                      ;
-  uint32            lvl                = 0                      ;
-  uint32            exp                = 0                      ;
-  uint32            kingdomPoint       = 0                      ;
-  uint32            power              = 0                      ;
-  uint32            atkAdd             = 0                      ;
-  uint32            atkSpeedAdd        = 0                      ;
-  uint32            baseAtkSpeed       = 0                      ;
-  uint32            gunshot            = 0                      ;
-  EArmyType         unlockedSoldier                             ;
-  uint32            forgeSpeed         = 0                      ;
-  uint32            steelReduce        = 0                      ;
-  uint32            kingdomLv          = 0                      ;
-  EBuildingType     unlockedBuild      = EBuildingType::None    ;
-  EScienceType      unlockedTechnology = EScienceType::None     ;
-  uint32            capacity           = 0                      ;
-  uint32            output             = 0                      ;
-  uint32            addOutputCostGold  = 0                      ;
-  uint32            maxSoldier         = 0                      ;
-  uint32            ElitePointLimit    = 0                      ;
-  uint32            helpCount          = 0                      ;
-  uint32            reduceTime         = 0                      ;
-  uint32            reinforcements     = 0                      ;
-  uint32            prisonNum          = 0                      ;
-  uint32            attack             = 0                      ;
-  uint32            defense            = 0                      ;
-  uint32            life               = 0                      ;
-  uint32            speed              = 0                      ;
-  uint32            speedTime          = 0                      ;
-  uint32            heroNum            = 0                      ;
-  uint32            trainExpBonus      = 0                      ;
-  uint32            buildTime          = 0                      ;
-  uint32            baseExp            = 0                      ;
-  uint32            taxRate            = 0                      ;
-  uint32            trainSpeed         = 0                      ;
-  GString           unlockDescribe     = ""                     ;
-  uint32            defValue           = 0                      ;
-  RResource         resCapacity                                 ;
-  EWatchTowerEffect watchTowerEffect   = EWatchTowerEffect::None;
-  uint32            freeTime           = 0                      ;
+  GVector<RCostBuilding> CostBuilding;
+  RResource CostRes;
+  GVector<RCostItem> CostItems;
+  GVector<RCostItem> CostWEs;
+  uint32 CostTime = 0;
+  uint32 lvl = 0;
+  uint32 exp = 0;
+  uint32 kingdomPoint = 0;
+  uint32 power = 0;
+  uint32 atkAdd = 0;
+  uint32 atkSpeedAdd = 0;
+  uint32 baseAtkSpeed = 0;
+  uint32 gunshot = 0;
+  EArmyType unlockedSoldier;
+  uint32 forgeSpeed = 0;
+  uint32 steelReduce = 0;
+  uint32 kingdomLv = 0;
+  EBuildingType unlockedBuild = EBuildingType::None;
+  EScience unlockedTechnology = EScience::None;
+  uint32 capacity = 0;
+  uint32 output = 0;
+  uint32 addOutputCostGold = 0;
+  uint32 maxSoldier = 0;
+  uint32 ElitePointLimit = 0;
+  uint32 helpCount = 0;
+  uint32 reduceTime = 0;
+  uint32 reinforcements = 0;
+  uint32 prisonNum = 0;
+  uint32 attack = 0;
+  uint32 defense = 0;
+  uint32 life = 0;
+  uint32 speed = 0;
+  uint32 speedTime = 0;
+  uint32 heroNum = 0;
+  uint32 trainExpBonus = 0;
+  uint32 buildTime = 0;
+  uint32 baseExp = 0;
+  uint32 taxRate = 0;
+  uint32 trainSpeed = 0;
+  GString unlockDescribe = "";
+  uint32 defValue = 0;
+  RResource resCapacity;
+  EWatchTowerEffect watchTowerEffect = EWatchTowerEffect::None;
+  uint32 freeTime = 0;
   static RBuildingLvlSpecs fromJson(GJson* json) {}
 };
 
@@ -76,7 +98,8 @@ struct RCityBuildingUnit {
   GString BuildingPlace;
   EBuildingType eBuildingType;
   EBuildingPos eBuildingPos;
-  RCityBuildingUnit(char* nodeName, char* buildingPlace, EBuildingPos eBP) : NodeName(nodeName), BuildingPlace(buildingPlace), eBuildingPos(eBP){};
+  RCityBuildingUnit(char* nodeName, char* buildingPlace, EBuildingPos eBP) 
+  : NodeName(nodeName), BuildingPlace(buildingPlace), eBuildingPos(eBP){};
   RCityBuildingUnit() : NodeName(""), BuildingPlace(""), eBuildingPos(EBuildingPos::CBPlace_Inner){};
   void fromJson(GJson* json);
   RCityBuildingUnit& buildUnit();
@@ -108,31 +131,7 @@ struct RBuildingUnitSpecs {
   GString StarDescribe = "";
   GHashMap<uint32, RBuildingLvlSpecs> Lvls;
 
-  static RBuildingUnitSpecs fromJson(GJson* json) {
-    RBuildingUnitSpecs temp;
-    temp.index = json->GetInt("index");
-    temp.idBuilding = json->GetInt("idBuilding");
-    temp.isDemolish = json->GetBool("isdemolish");
-    temp.isExchange = json->GetBool("isExchange");
-    temp.isBuild = json->GetBool("isBuild");
-    temp.isUpgrade = json->GetBool("isUpgrade");
-    temp.buildingType = static_cast<EBuildingType>(json->GetInt("buildingType"));
-    temp.bType = json->GetInt("bType");
-    temp.maxCount = json->GetInt("maxCount");
-    temp.maxLvl = json->GetInt("maxLvl");
-    temp.initLvl = json->GetInt("initLvl");
-    temp.openWl = json->GetInt("openWl");
-    temp.openStar = json->GetInt("openStar");
-    temp.maxStarLv = json->GetInt("maxStarLv");
-    temp.BuildingName = json->GetInt("BuildingName");
-    temp.BuildingIcon = json->GetInt("BuildingIcon");
-    temp.BuildingBrief = json->GetInt("BuildingBrief");
-    temp.UpgradeBrief = json->GetInt("UpgradeBrief");
-    temp.Describe = json->GetInt("Describe");
-    temp.WarDescribe = json->GetInt("WarDescribe");
-    temp.StarDescribe = json->GetInt("StarDescribe");
-    return temp;
-  }
+  static RBuildingUnitSpecs fromJson(GJson* json) ;
 };
 
 struct RCityBuilding {
@@ -323,3 +322,4 @@ struct RCityBuilding {
     CityBuildingOuter.fromJson(json->GetJsonObject("CityBuildingOuter"));
   }
 };
+

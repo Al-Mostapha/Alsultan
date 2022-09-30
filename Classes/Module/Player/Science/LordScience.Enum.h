@@ -1,4 +1,4 @@
-enum class ELordScienceType  {
+enum class ELordScience {
   INFANTRY_ATTACK = 1,
   INFANTRY_DEFENSE = 2,
   INFANTRY_LIFE = 3,
@@ -28,7 +28,7 @@ enum class ELordScienceType  {
   MITHRIL_YIELD = 27,
   MITHRIL_COLLECTION = 28,
   GOLD_COLLECTION = 29,
-  ACCELERATE_CONSTRUCTION = 30,
+  AccelerateConstruction = 30,
   ACCELERATED = 31,
   STOREHOUSE = 32,
   BUMPER = 33,

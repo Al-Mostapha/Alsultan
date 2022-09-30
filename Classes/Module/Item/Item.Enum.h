@@ -62,7 +62,6 @@ enum class EItemEffect {  //gItemEffectDef
   ICEHUNTING = 65,
   HERO_LEADER_POINT = 69,
   HERO_DRESS = 70,
-  WAR_GEM = 38,
   Optional = 44,
   SOLOMON_KEY = 45,
   DRAWING = 46,
@@ -239,15 +238,11 @@ enum class EItemType {
   LUCKY_COIN = 145,
   IRON_HANDCUFFS = 153,
   HALLOWEEN = 154,
-  HERO_GIFT = 155,
   TREASURE_BOX = 158,
   MADELE_KABASHA = 167,
-  IRON_HANDCUFFS = 145,
-  TREASURE_BOX = 153,
   COMMON_AWAKE = 155,
   SENIOR_AWAKE = 156,
-  ALLIANCE_HUNT_POINT = 159,
-  MADELE_KABASHA = 160
+  ALLIANCE_HUNT_POINT = 159
 };
 
 enum class EItemCategory  { // gItemClassifyType

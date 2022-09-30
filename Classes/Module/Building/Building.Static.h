@@ -13,11 +13,11 @@ class BuildingStatic {
 
   public:
   static GHashMap<EBuildingType, RBuildingUnitSpecs> BuildingInfo;
-  static BuildingStatic& Instance();
+  static BuildingStatic *Get();
   static GVector<EBuildingType> BuildableList;
 
   static bool isValidBuilding(EBuildingType p_BuildingType);
   static bool isValidBuildingLvl(EBuildingType p_BuildingType, uint32 p_Lvl);
-  static RBuildingUnitSpecs& getBuildingUnitSpecs(EBuildingType p_BuildingType);
-  static RBuildingLvlSpecs& getBuildingLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl);
+  static RBuildingUnitSpecs &getBuildingUnitSpecs(EBuildingType p_BuildingType);
+  static RBuildingLvlSpecs &getBuildingLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl);
 };

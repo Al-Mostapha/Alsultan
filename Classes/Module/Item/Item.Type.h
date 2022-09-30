@@ -2,10 +2,16 @@
 #include "Include/IncludeBase.h"
 #include "Item.Enum.h"
 
-struct RItemIsEnough{
+struct RCostItem {
   uint32 idItem = 0;
-  uint32 currentAmount = 0;
-  uint32 requiredAmount = 0;
+  uint32 amount = 0;
+};
+
+struct RCostItemEnough{
+  uint32 idItem     = 0;
+  uint32 AmountCur  = 0;
+  uint32 AmountReq  = 0;
+  uint32 AmountLack = 0;
   bool isEnough = false;
 };
 struct RItemUseCondition{

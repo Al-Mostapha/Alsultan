@@ -1,5 +1,5 @@
 #pragma once
-enum class EScienceType{
+enum class EScience{
   None = 0,
   SharpAxe = 21001,
   Ploughing ,
@@ -136,7 +136,7 @@ enum EScienceEffect{
   FORCE_LOAD = 11,
   KILL_MARCH_SPEED = 12,
   PHYSICAL_REPLY = 13,
-  CONSTRUCTION_SPEED = 14,
+  ConstructionSpeed = 14,
   WOUNDED_QUANTITY = 15,
   WOUNDED_REPLY = 16,
   FRCES_CONSUMPTION = 17,
@@ -145,7 +145,7 @@ enum EScienceEffect{
   DEFENDERS_DEFENSE = 20,
   TRAP_ATTACK = 21,
   TRAP_CAP = 22,
-  CONSTRUCTION_SPEED_TRAP = 23,
+  ConstructionSpeedTrap = 23,
   ROCKETS_CAVALRY_INJURY = 24,
   ROCKFALL_DAMAGE_INFANTRY = 25,
   BOWLS_ARCHER_INJURY = 26,

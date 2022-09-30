@@ -3,7 +3,7 @@
 #include "Effect.Enum.h"
 
 struct TEffect{
-  EEffectType effectType;
+  EEffect effectType;
   GTime timeStart;
   GTime timeEnd;
 };

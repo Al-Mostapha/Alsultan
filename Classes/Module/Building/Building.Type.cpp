@@ -1,13 +1,10 @@
 #include "Module/Building/Building.Type.h"
 #include "Module/Building/Building.Enum.h"
-#include "Module/Building/CityBuildingBase.h"
-#include "Scene/CityScene.h"
 #include "Module/Building/Building.Lib.h"
-#include "Module/Player/Player.Static.h"
-#include "Module/City/City.Module.h"
 #include "Module/Building/CityBuildingBase.h"
-
-
+#include "Module/City/City.Module.h"
+#include "Module/Player/Player.Static.h"
+#include "Scene/CityScene.h"
 
 /**-------------------------------------------
  * Reflection For TBuildingLvlSpecs
@@ -20,56 +17,71 @@
 // REFLECT_MEMBER(atkAdd)
 // REFLECT_END()
 
-void RCityBuildingUnit::fromJson(GJson *json)
-{
-    if (json == nullptr)
-        return;
-    buildingLvl = json->GetInt("buildingLvl", 0);
-    eBuildingType = static_cast<EBuildingType>(json->GetInt("buildingType", 0));
+RBuildingUnitSpecs RBuildingUnitSpecs::fromJson(GJson* json) {
+  RBuildingUnitSpecs temp;
+  temp.index = json->GetInt("index");
+  temp.idBuilding = json->GetInt("idBuilding");
+  temp.isDemolish = json->GetBool("isdemolish");
+  temp.isExchange = json->GetBool("isExchange");
+  temp.isBuild = json->GetBool("isBuild");
+  temp.isUpgrade = json->GetBool("isUpgrade");
+  temp.buildingType = static_cast<EBuildingType>(json->GetInt("buildingType"));
+  temp.bType = json->GetInt("bType");
+  temp.maxCount = json->GetInt("maxCount");
+  temp.maxLvl = json->GetInt("maxLvl");
+  temp.initLvl = json->GetInt("initLvl");
+  temp.openWl = json->GetInt("openWl");
+  temp.openStar = json->GetInt("openStar");
+  temp.maxStarLv = json->GetInt("maxStarLv");
+  temp.BuildingName = json->GetInt("BuildingName");
+  temp.BuildingIcon = json->GetInt("BuildingIcon");
+  temp.BuildingBrief = json->GetInt("BuildingBrief");
+  temp.UpgradeBrief = json->GetInt("UpgradeBrief");
+  temp.Describe = json->GetInt("Describe");
+  temp.WarDescribe = json->GetInt("WarDescribe");
+  temp.StarDescribe = json->GetInt("StarDescribe");
+  return temp;
 }
 
-RCityBuildingUnit& RCityBuildingUnit::buildUnit()
-{
 
-    Scene *runningScene = Director::getInstance()->getRunningScene();
-    if (runningScene == nullptr)
-    {
-        cocos2d::log("Error: No Current Scene ... ");
-        return *this;
-    }
-    CityScene *_scene = dynamic_cast<CityScene *>(runningScene);
-    if (_scene == nullptr)
-    {
-        cocos2d::log("Error: The Current Lvl not CityScene... ");
-        return *this;
-    }
 
-    auto _node = _scene->CityBuildingLayer->getChildByName(NodeName);
-    if (!_node)
-    {
-        cocos2d::log("Error: The Current Node Has No Name Node With %s", NodeName.c_str());
-        return *this;
-    }
+void RCityBuildingUnit::fromJson(GJson* json) {
+  if (json == nullptr) return;
+  buildingLvl = json->GetInt("buildingLvl", 0);
+  eBuildingType = static_cast<EBuildingType>(json->GetInt("buildingType", 0));
+}
 
-    _node->setAnchorPoint(cocos2d::Vec2(0, 0));
-    _node->removeAllChildren();
-    CityBuildingBase *_building = BuildingLib::getBuildingClassByType(eBuildingType);
-
-    if (_building != nullptr)
-    {
-        _building->setBuildingUnitData(*this);
-        _node->addChild(_building);
-    }
-    else
-        cocos2d::log("This Building Donot Has BuildingClass");
+RCityBuildingUnit& RCityBuildingUnit::buildUnit() {
+  Scene* runningScene = Director::getInstance()->getRunningScene();
+  if (runningScene == nullptr) {
+    cocos2d::log("Error: No Current Scene ... ");
     return *this;
+  }
+  CityScene* _scene = dynamic_cast<CityScene*>(runningScene);
+  if (_scene == nullptr) {
+    cocos2d::log("Error: The Current Lvl not CityScene... ");
+    return *this;
+  }
+
+  auto _node = _scene->CityBuildingLayer->getChildByName(NodeName);
+  if (!_node) {
+    cocos2d::log("Error: The Current Node Has No Name Node With %s", NodeName.c_str());
+    return *this;
+  }
+
+  _node->setAnchorPoint(cocos2d::Vec2(0, 0));
+  _node->removeAllChildren();
+  CityBuildingBase* _building = BuildingLib::getBuildingClassByType(eBuildingType);
+
+  if (_building != nullptr) {
+    _building->setBuildingUnitData(*this);
+    _node->addChild(_building);
+  } else
+    cocos2d::log("This Building Donot Has BuildingClass");
+  return *this;
 }
 
-RCityBuildingUnit& RCityBuildingUnit::addToBuildingList()
-{
-	BuildingModule::getCurentCityBuilding().BuildingList[BuildingPlace] = *this;
-	return *this;
+RCityBuildingUnit& RCityBuildingUnit::addToBuildingList() {
+  BuildingModule::getCurentCityBuilding().BuildingList[BuildingPlace] = *this;
+  return *this;
 }
-
-
-

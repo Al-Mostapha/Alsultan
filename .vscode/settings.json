@@ -42,7 +42,17 @@
     "xmemory0": "cpp",
     "xtr1common": "cpp",
     "xtree": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "atomic": "cpp",
+    "bit": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "ctime": "cpp",
+    "iterator": "cpp",
+    "future": "cpp",
+    "algorithm": "cpp"
   },
   "intelephense.environment.includePaths": [
     "${workspaceRoot}"

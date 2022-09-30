@@ -10,9 +10,10 @@ struct RResource
   uint32 Silver = 0;
   uint32 Metal = 0;
   uint32 Crystal = 0;
+  uint32 MeteorCrystal = 0;
 };
 
-struct RResourceIsEnough
+struct RCostResourceEnough
 {
   bool Coin = false;
   bool Grain = false;
@@ -21,10 +22,16 @@ struct RResourceIsEnough
   bool Silver = false;
   bool Metal = false;
   bool Crystal = false;
-  bool isEnough()
-  {
-    return Coin && Grain && Lumber && Iron && Silver && Metal && Crystal;
-  }
+  bool MeteorCrystal = false;
+
+  int32 CoinNeed = 0;
+  int32 GrainNeed = 0;
+  int32 LumberNeed = 0;
+  int32 IronNeed = 0;
+  int32 SilverNeed = 0;
+  int32 MetalNeed = 0;
+  int32 CrystalNeed = 0;
+  int32 MeteorCrystalNeed = 0;
 };
 
 struct RCityResource : public RResource

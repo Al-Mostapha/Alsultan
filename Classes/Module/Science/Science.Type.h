@@ -6,13 +6,20 @@
 #include "Science.Enum.h"
 
 struct RCostScience {
-  EScienceType ScienceType = EScienceType::None;
+  EScience ScienceType = EScience::None;
   uint32 scienceLvl = 0;
+};
+
+struct RCostScienceEnough{
+  EScience RequiredScience = EScience::None;
+  uint32 RequiredScienceLvl = 0;
+  uint32 maxLvl = 0;
+  bool isEnough = false;
 };
 
 struct RScienceLvlSpecs {
   uint32           index;
-  EScienceType     idScience;
+  EScience         idScience;
   EScienceCategory Category;
   uint32           lvl;
   RResource        CostResource;
@@ -32,7 +39,7 @@ struct RScienceLvlSpecs {
 };
 
 struct RScience {
-  EScienceType idScience ;
+  EScience     idScience ;
   GString      Name      ;
   GString      Des       ;
   GString      Icon      ;
@@ -46,5 +53,5 @@ struct RScienceCategory {
   RCostBuilding CostStarBuilding;
   GString CategoryName;
   GString Icon;
-  GHashMap<EScienceType, RScience> Tree;
+  GHashMap<EScience, RScience> Tree;
 };

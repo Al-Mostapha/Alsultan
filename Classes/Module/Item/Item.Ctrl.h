@@ -5,8 +5,10 @@
 
 class ItemCtrl {
 public:
-  static bool isEnough(uint32 p_IdItem, uint32 p_Amount);
-  static GPair<bool, GVector<RItemIsEnough>> isEnough(GVector<struct RCostItem>& p_CostItem){
-    return GPair<bool, GVector<RItemIsEnough>>::Make(true, GVector<RItemIsEnough>());
+  static ItemCtrl *Get();
+  static GPair<bool, uint32> IsEnough(uint32 p_IdItem, uint32 p_Amount);
+  GPair<bool, GVector<RCostItemEnough>> IsEnough(GVector<RCostItem>& p_CostItem){
+    return GPair<bool, GVector<RCostItemEnough>>::Make(true, GVector<RCostItemEnough>());
   };
+  uint32 GetItemPrice(uint32 p_IdItem);
 };
