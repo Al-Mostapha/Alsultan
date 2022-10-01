@@ -20,21 +20,13 @@ uint32  BuildingCtrl::getBuildingMaxLvl(EBuildingType p_BuildingType){
   return 0;
 }
 
-
-CityBuildingBase *BuildingCtrl::getBuildingCell(EBuildingType p_BUildingType){
-  return nullptr;
+uint32 BuildingCtrl::getBuildingCount(EBuildingType p_BuildingType){
+  return 0;
 }
 
 
-GVector<RCostBuilding> BuildingCtrl::checkBuildingPreCond(EBuildingType p_BuildingType, uint32 p_CurrentLvl){
-  auto l_preCond = BuildingStatic::getBuildingLvlSpec(p_BuildingType, p_CurrentLvl).CostBuilding;
-  GVector<RCostBuilding> l_OutPreCond;
-  // for(auto& l_OneCond : l_preCond){
-  //   l_OneCond.isAchieved = false;
-  //   if(getBuildingMaxLvl(l_OneCond.buildingType) >= l_OneCond.buildingLvl)
-  //     l_OneCond.isAchieved = true;
-  // }
-  return l_OutPreCond;
+CityBuildingBase *BuildingCtrl::getBuildingCell(EBuildingType p_BUildingType){
+  return nullptr;
 }
 
 
@@ -93,11 +85,17 @@ RBuildingLvlSpecs BuildingCtrl::getReducedLvlSpec(EBuildingType p_BuildingType, 
 
 
 GPair<bool, GVector<RCostBuildingEnough>> BuildingCtrl::IsEnough(const GVector<RCostBuilding>& p_CostBuilding){
+  auto l_CostBuildingEnough = GPair<bool, GVector<RCostBuildingEnough>>::Make(true, {});
 
-
+  for(auto l_OneBuilding : p_CostBuilding){
+    RCostBuildingEnough l_OneCostEnough;
+    l_OneCostEnough.TypeReq   = l_OneBuilding.TypeReq;
+    l_OneCostEnough.lvlReq    = l_OneBuilding.lvlReq;
+    l_OneCostEnough.lvlCurMax = getBuildingMaxLvl(l_OneBuilding.TypeReq);
+    l_OneCostEnough.isEnough  = l_OneCostEnough.lvlCurMax >= l_OneCostEnough.lvlReq;
+    l_OneCostEnough.lvlLack   = l_OneCostEnough.lvlCurMax - l_OneCostEnough.lvlReq;
+    if( !l_OneCostEnough.isEnough )
+      l_CostBuildingEnough.First = false;
+  }
+  return l_CostBuildingEnough;
 }
-
-// TResource BuildingCtrl::checkBuildingCostRes(EBuildingType p_BuildingType, uint32 p_CurrentLvl){
-//   auto l_CostRes = BuildingStatic::getBuildingLvlSpec(p_BuildingType, p_CurrentLvl).costRes;
-
-// }

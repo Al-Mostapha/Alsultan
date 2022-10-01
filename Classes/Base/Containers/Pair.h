@@ -4,9 +4,9 @@
 
 template <class K, class V>
 struct GPair{
-  K first;
-  V second;
-  GPair(K p_First, V p_Second) : first(p_First), second(p_Second){}
+  K First;
+  V Second;
+  GPair(K p_First, V p_Second) : First(p_First), Second(p_Second){}
   static GPair Make(K p_Key, V p_Value){
     return *(new GPair(p_Key, p_Value));
   }

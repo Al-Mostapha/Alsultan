@@ -21,12 +21,12 @@ uint32 GoldCtrl::resourceToGold(EResource p_Resource, uint32 p_Amount){
     l_coefficient = 25;
   else if(p_Resource == EResource::Crystal || p_Resource == EResource::MeteorCrystal)
     l_coefficient = 100;
-  auto l_X = 250.0f;
-  auto l_Y = 610000.0f;
-  auto l_Compl = 1 - (float)p_Amount / ((float)p_Amount + l_Y);
+  double l_X = 250.0f;
+  double l_Y = 610000.0f;
+  double l_Compl = 1 - (double)p_Amount / ((double)p_Amount + l_Y);
   if(l_Compl <= 0.55)
     l_Compl = 0.55;
-  return std::ceil((float) p_Amount / l_X * l_Compl * l_coefficient + 1);
+  return std::ceil((double) p_Amount / l_X * l_Compl * l_coefficient + 1);
 }
 
 uint32 GoldCtrl::resourceToGold(RCostResourceEnough p_CostResourceNeed){

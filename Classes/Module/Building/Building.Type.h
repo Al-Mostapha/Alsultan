@@ -4,8 +4,9 @@
 #include "Base/Json.h"
 #include "Base/Reflect.h"
 #include "Module/Army/Army.Enum.h"
-#include "Module/Building/Building.Const.h"
-#include "Module/Building/Building.Enum.h"
+#include "Building.Const.h"
+#include "Building.Enum.h"
+#include "Building.Task.h"
 #include "Module/Building/BuildingLib/BuildingWatchTower.Lib.h"
 #include "Module/CityResource/Resource.Type.h"
 #include "Module/Science/Science.Enum.h"
@@ -13,17 +14,18 @@
 
 
 
+
 struct RCostBuilding {
-  EBuildingType buildingType = EBuildingType::None;
-  uint32 buildingLvl = 0;
+  EBuildingType TypeReq = EBuildingType::None;
+  uint32 lvlReq = 0;
   static RCostBuilding fromJson(GJson* json) { RCostBuilding temp; }
 };
 
 struct RCostBuildingEnough{
   EBuildingType  TypeReq;
-  uint32 LvlReq;
-  uint32 LvlCurMax;
-  uint32 LvlLack;
+  uint32 lvlReq;
+  uint32 lvlCurMax;
+  int32 lvlLack;
   bool isEnough;
 };
 
@@ -37,11 +39,12 @@ struct RCostBuildingUpgrade{
   uint32 itemToGold;
   uint32 totalGold;
   uint32 WEToGold;
+  uint32 timeToGold;
   struct {
     uint32 exp = 0;
     uint32 power = 0;
   } Reword;
-  GVector<struct RBuildingTask> BuildingTaskQueue;
+  GVector<RBuildingTask> BuildingTaskQueue;
 };
 
 struct RBuildingLvlSpecs {
@@ -49,11 +52,13 @@ struct RBuildingLvlSpecs {
   RResource CostRes;
   GVector<RCostItem> CostItems;
   GVector<RCostItem> CostWEs;
+  struct {
+    uint32 exp;
+    uint32 power;
+  } Reword;
   uint32 CostTime = 0;
   uint32 lvl = 0;
-  uint32 exp = 0;
   uint32 kingdomPoint = 0;
-  uint32 power = 0;
   uint32 atkAdd = 0;
   uint32 atkSpeedAdd = 0;
   uint32 baseAtkSpeed = 0;
@@ -106,7 +111,7 @@ struct RCityBuildingUnit {
   RCityBuildingUnit& addToBuildingList();
 };
 
-struct RBuildingUnitSpecs {
+struct RBuildingSpecs {
   int32 index = 0;
   int32 idBuilding = 0;
   bool isDemolish = false;
@@ -131,7 +136,7 @@ struct RBuildingUnitSpecs {
   GString StarDescribe = "";
   GHashMap<uint32, RBuildingLvlSpecs> Lvls;
 
-  static RBuildingUnitSpecs fromJson(GJson* json) ;
+  static RBuildingSpecs fromJson(GJson* json) ;
 };
 
 struct RCityBuilding {

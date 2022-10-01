@@ -7,17 +7,17 @@
 
 class BuildingStatic {
   private:
-  GHashMap<EBuildingType, RBuildingUnitSpecs> m_BuildingInfo;
-  RBuildingUnitSpecs m_InvalidBuildingUnitSpecs;
+  GHashMap<EBuildingType, RBuildingSpecs> m_BuildingInfo;
+  RBuildingSpecs m_InvalidBuildingSpecs;
   RBuildingLvlSpecs m_InvalidBuildingLvlSpecs;
 
   public:
-  static GHashMap<EBuildingType, RBuildingUnitSpecs> BuildingInfo;
+  static GHashMap<EBuildingType, RBuildingSpecs> BuildingInfo;
   static BuildingStatic *Get();
   static GVector<EBuildingType> BuildableList;
 
   static bool isValidBuilding(EBuildingType p_BuildingType);
   static bool isValidBuildingLvl(EBuildingType p_BuildingType, uint32 p_Lvl);
-  static RBuildingUnitSpecs &getBuildingUnitSpecs(EBuildingType p_BuildingType);
+  static RBuildingSpecs &getBuildingSpecs(EBuildingType p_BuildingType);
   static RBuildingLvlSpecs &getBuildingLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl);
 };

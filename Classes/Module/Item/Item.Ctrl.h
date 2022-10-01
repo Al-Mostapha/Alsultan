@@ -6,9 +6,7 @@
 class ItemCtrl {
 public:
   static ItemCtrl *Get();
-  static GPair<bool, uint32> IsEnough(uint32 p_IdItem, uint32 p_Amount);
-  GPair<bool, GVector<RCostItemEnough>> IsEnough(GVector<RCostItem>& p_CostItem){
-    return GPair<bool, GVector<RCostItemEnough>>::Make(true, GVector<RCostItemEnough>());
-  };
+  GPair<bool, uint32> IsEnough(uint32 p_IdItem, uint32 p_Amount);
+  GPair<bool, GVector<RCostItemEnough>> IsEnough(GVector<RCostItem>& p_CostItem);
   uint32 GetItemPrice(uint32 p_IdItem);
 };

@@ -1,4 +1,5 @@
 #include "Building.Logic.h"
+#include "Base/Math/Math.Base.h"
 #include "Building.Ctrl.h"
 #include "Building.Lib.h"
 #include "Building.Static.h"
@@ -6,48 +7,52 @@
 #include "Module/CityResource/Resource.Ctrl.h"
 #include "Module/Item/Item.Ctrl.h"
 #include "Module/Player/Gold/Gold.Ctrl.h"
-#include "Base/Math/Math.Base.h"
+#include "Building.Const.h"
 
-bool BuildingLogic::isCanUpgrade(EBuildingType p_BuildingType, uint32 p_CurrentLvl){
-  RBuildingUnitSpecs l_BuildingUnitSpecs = BuildingStatic::getBuildingUnitSpecs(p_BuildingType);
-  if(BuildingCtrl::getBuildingMaxLvl(p_BuildingType) >=  (uint32)l_BuildingUnitSpecs.maxLvl)
-    return false;
-  RBuildingLvlSpecs l_lvlReq = BuildingCtrl::getReducedLvlSpec(p_BuildingType, p_CurrentLvl);
-  RCostBuildingUpgrade l_CostUpgrade;
-  l_CostUpgrade.CostResource    = ResourceCtrl::Get()->IsEnough(l_lvlReq.CostRes).second;
-  l_CostUpgrade.CostItem        = ItemCtrl::Get()->IsEnough(l_lvlReq.CostItems).second;
-  l_CostUpgrade.CostItemWEs     = ItemCtrl::Get()->IsEnough(l_lvlReq.CostWEs).second;
-  l_CostUpgrade.CostBuilding    = BuildingCtrl::Get()->Is
-  l_CostUpgrade.resToGold       = GoldCtrl::Get()->resourceToGold(l_CostUpgrade.CostResource);
-  l_CostUpgrade.itemToGold      = GoldCtrl::Get()->itemToGold(l_CostUpgrade.CostItem);
-  l_CostUpgrade.WEToGold        = GoldCtrl::Get()->itemToGold(l_CostUpgrade.CostItemWEs);
-  
-  RBuildingUnitSpecs l_BuildingSpecs = BuildingStatic::getBuildingUnitSpecs(p_BuildingType);
-  uint32 l_BuildingInitLvl = std::max((uint32)l_BuildingSpecs.initLvl, BuildingCtrl::getBuildingMaxLvl(p_BuildingType));
-
-
-  uint32 l_ReducedCostTime = l_lvlReq.CostTime;
-  
-  // if(!l_ResourceIsEnough.IsEnough())
-  //   l_IsAchieved = false;
-  // if(!l_ItemIsEnough.first)
-  //   l_IsAchieved = false;
-  // if(!l_ItemWEsIsEnough.first)
-  //   l_IsAchieved = false;
-  // uint32 l_ItemGold = 0;
-  // uint32 l_ItemWEsGold = 0;
-  // for(auto l_OneItem : l_lvlReq.CostItems)
-  //   l_ItemGold += ItemCtrl::Get()->GetItemPrice(l_OneItem.idItem) * l_OneItem.amount;
-  // for(auto l_OneItemWes : l_lvlReq.CostWEs)
-  //   l_ItemWEsGold += ItemCtrl::Get()->GetItemPrice(l_OneItemWes.idItem) * l_OneItemWes.amount;
-  
-  return true;
+BuildingLogic* BuildingLogic::Get() {
+  static BuildingLogic* l_Instance = new BuildingLogic();
+  return l_Instance;
 }
 
-GPair<bool, RCostBuildingUpgrade> BuildingLogic::isBuildingCostAchieved(
-  EBuildingType p_BuildingType, uint32 p_CurentLvl, RBuildingLvlSpecs &p_BuildingLvlSpecs
-  ){
+bool BuildingLogic::IsBuildingCostAchieved(const RCostBuildingUpgrade& p_CostUpgrade) {
+  if (!p_CostUpgrade.CostResource.IsEnough()) return false;
+  for (auto l_OneCostItem : p_CostUpgrade.CostItem) {
+    if (!l_OneCostItem.isEnough) return false;
+  }
+  for (auto l_OneCostItem : p_CostUpgrade.CostItemWEs) {
+    if (!l_OneCostItem.isEnough) return false;
+  }
+  for (auto l_OneCostBuilding : p_CostUpgrade.CostBuilding) {
+    if (!l_OneCostBuilding.isEnough) return false;
+  }
+  return true;
+} 
 
-  
-  //return false;
+GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanUpgrade(EBuildingType p_BuildingType, uint32 p_CurrentLvl) {
+  auto l_CostUpgrade = GPair<bool, RCostBuildingUpgrade>::Make(true, RCostBuildingUpgrade());
+  RBuildingLvlSpecs l_lvlReq = BuildingCtrl::Get()->getReducedLvlSpec(p_BuildingType, p_CurrentLvl);
+
+  l_CostUpgrade.Second.CostResource = ResourceCtrl::Get()->IsEnough(l_lvlReq.CostRes).Second;
+  l_CostUpgrade.Second.CostItem     = ItemCtrl::Get()->IsEnough(l_lvlReq.CostItems).Second;
+  l_CostUpgrade.Second.CostItemWEs  = ItemCtrl::Get()->IsEnough(l_lvlReq.CostWEs).Second;
+  l_CostUpgrade.Second.CostBuilding = BuildingCtrl::Get()->IsEnough(l_lvlReq.CostBuilding).Second;
+  l_CostUpgrade.Second.resToGold    = GoldCtrl::Get()->resourceToGold(l_CostUpgrade.Second.CostResource);
+  l_CostUpgrade.Second.itemToGold   = GoldCtrl::Get()->itemToGold(l_CostUpgrade.Second.CostItem);
+  l_CostUpgrade.Second.WEToGold     = GoldCtrl::Get()->itemToGold(l_CostUpgrade.Second.CostItemWEs);
+  l_CostUpgrade.Second.timeToGold   = GoldCtrl::Get()->timeToGold(l_lvlReq.CostTime);
+  l_CostUpgrade.Second.Reword.exp   = l_lvlReq.Reword.exp;
+  l_CostUpgrade.Second.Reword.power = l_lvlReq.Reword.power;
+
+  l_CostUpgrade.First = IsBuildingCostAchieved(l_CostUpgrade.Second);
+
+  return l_CostUpgrade;
+}
+
+GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanBuild(EBuildingType p_BuildingType){
+  auto l_BuildingSpecs = BuildingStatic::getBuildingSpecs(p_BuildingType);
+  if(!l_BuildingSpecs.isBuild){
+    return GPair<bool, RCostBuildingUpgrade>::Make(false, RCostBuildingUpgrade());
+  }
+
+  return IsCanUpgrade(p_BuildingType, BuildingConst::Get()->FirstLvl);
 }

@@ -21,19 +21,23 @@ private:
   ui::Layout *m_NodeTop;
   ui::Layout *m_NodeBottom;
   class UIWheelScrollView *m_SelectWheel;
-  GVector<RBuildingUnitSpecs> m_BuildableList;
+  GVector<RBuildingSpecs> m_BuildableList;
   int m_CurrentIndex = 1;
-  RBuildingUnitSpecs m_CurrentBuilding;
+  RBuildingSpecs m_CurrentBuilding;
+  RCostBuildingUpgrade m_CostBuildingUpgrade;
 
   
 public:
   UICreateBuildingPanel();
   ~UICreateBuildingPanel();
-  void initPanel() override;
-  void setBuildingTypeAndData(EBuildingType p_BuildingType = EBuildingType::None, int32 p_BuildingIndex = 0);
-  void createWheelScrollView();
-  void wheelScrollBack(const RBuildingUnitSpecs& p_BuildingInfoUnit, size_t p_Index);
-  void updateView();
+  void InitPanel() override;
+  void SetBuildingTypeAndData(EBuildingType p_BuildingType = EBuildingType::None, int32 p_BuildingIndex = 0);
+  void CreateWheelScrollView();
+  void WheelScrollBack(const RBuildingSpecs& p_BuildingInfoUnit, size_t p_Index);
+  void UpdateView();
+  void SelectWheelByBuildingType(EBuildingType p_BuildingType);
+  void ClickEffect(Node *p_Target);
+  void CreateWheelAction();
   CREATE_FUNC(UICreateBuildingPanel);
 
 };

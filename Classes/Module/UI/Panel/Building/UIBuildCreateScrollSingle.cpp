@@ -12,7 +12,7 @@ UIBuildCreateScrollSingle::~UIBuildCreateScrollSingle(){
 
 }
 
-void UIBuildCreateScrollSingle::initPanel(){
+void UIBuildCreateScrollSingle::InitPanel(){
   Node *panel = CSLoader::createNode(CsbUiFilePath::UIBuildCreateScrollSingle);
   if(!panel){
     cocos2d::log("UIBuildCreateScrollSingle::initPanel error No find %s", CsbUiFilePath::UIBuildCreateScrollSingle.c_str());
@@ -34,7 +34,7 @@ void UIBuildCreateScrollSingle::initData(EBuildingType p_BuildingType){
     m_ImgIcon->removeFromParent();
     m_ImgIcon = nullptr;
   }
-  RBuildingUnitSpecs l_BuildingInfoUnit = BuildingStatic::getBuildingUnitSpecs(p_BuildingType);
+  RBuildingSpecs l_BuildingInfoUnit = BuildingStatic::getBuildingSpecs(p_BuildingType);
   m_LabelName->setString(Translate::i18n(l_BuildingInfoUnit.BuildingName.c_str()));
   if(!BuildingLib::isCanBuild(p_BuildingType))
     m_ImgLock->setVisible(false);

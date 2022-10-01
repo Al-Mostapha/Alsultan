@@ -31,21 +31,21 @@ bool BuildingStatic::isValidBuildingLvl(EBuildingType p_BuildingType, uint32 p_L
   return false;
 }
 
-GHashMap<EBuildingType, RBuildingUnitSpecs> BuildingStatic::BuildingInfo;
+GHashMap<EBuildingType, RBuildingSpecs> BuildingStatic::BuildingInfo;
 
-RBuildingUnitSpecs& BuildingStatic::getBuildingUnitSpecs(EBuildingType p_BuildingType) {
+RBuildingSpecs& BuildingStatic::getBuildingSpecs(EBuildingType p_BuildingType) {
   auto l_Instance = Get();
   if (!l_Instance->m_BuildingInfo.Contains(p_BuildingType)) {
     uint32 l_BT = static_cast<uint32>(p_BuildingType);
     GString l_ErrorMsg = StringUtils::format("Trying To get Invalid Building Type %d", l_BT);
     Logger::Log(l_ErrorMsg, ELogLvl::Error, true);
-    return l_Instance->m_InvalidBuildingUnitSpecs;
+    return l_Instance->m_InvalidBuildingSpecs;
   }
   return l_Instance->m_BuildingInfo[p_BuildingType];
 }
 
 RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl) {
-  auto l_BuildingUnit = getBuildingUnitSpecs(p_BuildingType);
+  auto l_BuildingUnit = getBuildingSpecs(p_BuildingType);
   auto l_Instance = Get();
   if (!l_BuildingUnit.Lvls.Contains(p_Lvl)) {
     uint32 l_BT = static_cast<uint32>(p_BuildingType);

@@ -13,6 +13,6 @@ class BuildingLib {
   static RCityBuilding& getCurentCityBuilding();
   static GVector<RCityBuildingUnit> getBuildingList(EBuildingType p_BuildingType);
   static GVector<RCityBuildingUnit> getBuildingResList();
-  static GVector<RBuildingUnitSpecs> getCanBuildList(EBuildingType p_BuildingType);
+  static GVector<RBuildingSpecs> getCanBuildList(EBuildingType p_BuildingType);
   static bool isCanBuild(EBuildingType p_BuildingType);
 };

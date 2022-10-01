@@ -1,6 +1,11 @@
 #include "Resource.Ctrl.h"
 #include "Resource.Static.h"
 
+ResourceCtrl *ResourceCtrl::Get(){
+  static ResourceCtrl *l_Instance = new ResourceCtrl();
+  return l_Instance;
+}
+
 GPair<bool, RCostResourceEnough> ResourceCtrl::IsEnough(RResource& p_Resource){
   RCityResource l_CityRes = ResourceStatic::getCityResource();
   RCostResourceEnough l_IsEnough;

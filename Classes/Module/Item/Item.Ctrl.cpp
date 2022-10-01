@@ -5,7 +5,8 @@ ItemCtrl *ItemCtrl::Get(){
   ItemCtrl *l_Instance = new ItemCtrl();
   return l_Instance;
 }
-GPair<bool, uint32> ItemCtrl::IsEnough(uint32 idItem, uint32 amount){
+
+GPair<bool, uint32> ItemCtrl::IsEnough(uint32 p_IdItem, uint32 p_Amount){
   return GPair<bool, uint32>::Make(true, 0);
 }
 
@@ -17,11 +18,11 @@ GPair<bool, GVector<RCostItemEnough>> ItemCtrl::IsEnough(GVector<RCostItem> &p_C
   for(auto &l_OneCost : p_CostItem){
     l_OneIsEnough = IsEnough(l_OneCost.idItem, l_OneCost.amount);
     l_OneCostItemEnough.AmountReq = l_OneCost.amount;
-    l_OneCostItemEnough.AmountLack = l_OneIsEnough.second - l_OneCost.amount;
+    l_OneCostItemEnough.AmountLack = l_OneIsEnough.Second - l_OneCost.amount;
     //TODO
-    l_OneCostItemEnough.AmountCur  = l_OneIsEnough.second;
+    l_OneCostItemEnough.AmountCur  = l_OneIsEnough.Second;
     l_OneCostItemEnough.idItem  = l_OneCost.idItem;
-    l_OneCostItemEnough.isEnough  = l_OneIsEnough.first;
+    l_OneCostItemEnough.isEnough  = l_OneIsEnough.First;
     
     if(!l_OneCostItemEnough.isEnough)
       l_IsEnough = false;

@@ -17,8 +17,8 @@
 // REFLECT_MEMBER(atkAdd)
 // REFLECT_END()
 
-RBuildingUnitSpecs RBuildingUnitSpecs::fromJson(GJson* json) {
-  RBuildingUnitSpecs temp;
+RBuildingSpecs RBuildingSpecs::fromJson(GJson* json) {
+  RBuildingSpecs temp;
   temp.index = json->GetInt("index");
   temp.idBuilding = json->GetInt("idBuilding");
   temp.isDemolish = json->GetBool("isdemolish");

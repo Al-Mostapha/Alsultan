@@ -39,7 +39,7 @@ void BuildingService::fetchBuildingInfo() {
         GJson doc;
         GJson* jsonObject = new GJson();
         jsonObject->CopyFrom(it->value, jsonObject->GetAllocator());
-        BuildingStatic::BuildingInfo[l_BuildingType] = RBuildingUnitSpecs::fromJson(jsonObject);
+        BuildingStatic::BuildingInfo[l_BuildingType] = RBuildingSpecs::fromJson(jsonObject);
       }
     } else
       cocos2d::log("Error Fetching fetchBuildingInfo From Server ....");

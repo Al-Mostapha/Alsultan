@@ -51,7 +51,7 @@ void CityModule::showCityEffect()
   CitySceneEffect::cloudRunEffect();
 
   auto p = UICreateBuildingPanel::create();
-  p->initPanel();
+  p->InitPanel();
   Scene *scene = Director::getInstance()->getRunningScene();
   scene->addChild(p);
 

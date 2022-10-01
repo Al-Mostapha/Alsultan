@@ -32,6 +32,10 @@ struct RCostResourceEnough
   int32 MetalNeed = 0;
   int32 CrystalNeed = 0;
   int32 MeteorCrystalNeed = 0;
+
+  bool IsEnough() const {
+    return Coin && Grain && Lumber && Iron && Silver && Metal && Crystal && MeteorCrystal ;
+  }
 };
 
 struct RCityResource : public RResource
