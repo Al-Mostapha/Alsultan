@@ -6,15 +6,15 @@ BuildingStatic *BuildingStatic::Get() {
   return l_Instance;
 }
 
-GVector<EBuildingType> BuildingStatic::BuildableList = {
-        EBuildingType::None,         EBuildingType::Castle,       EBuildingType::Wall,        EBuildingType::ArrowTower, EBuildingType::WatchTower,
-        EBuildingType::Warehouse,    EBuildingType::Embassy,      EBuildingType::Market,      EBuildingType::Institute,  EBuildingType::TreasurePool,
-        EBuildingType::Blacksmith,   EBuildingType::Stable,       EBuildingType::TargetRange, EBuildingType::Barrack,    EBuildingType::ChariotPlant,
-        EBuildingType::Fortress,     EBuildingType::DrillGrounds, EBuildingType::HallOfWar,   EBuildingType::TrainHall,  EBuildingType::Prison,
-        EBuildingType::Farm,         EBuildingType::LumberMill,   EBuildingType::IronMine,    EBuildingType::SilverMine, EBuildingType::MarchingTent,
-        EBuildingType::FirstAidTent, EBuildingType::CrystalMine,  EBuildingType::Miracle,     EBuildingType::ElitePalace};
+GVector<EBuilding> BuildingStatic::BuildableList = {
+        EBuilding::None,         EBuilding::Castle,       EBuilding::Wall,        EBuilding::ArrowTower, EBuilding::WatchTower,
+        EBuilding::Warehouse,    EBuilding::Embassy,      EBuilding::Market,      EBuilding::Institute,  EBuilding::TreasurePool,
+        EBuilding::Blacksmith,   EBuilding::Stable,       EBuilding::TargetRange, EBuilding::Barrack,    EBuilding::ChariotPlant,
+        EBuilding::Fortress,     EBuilding::DrillGrounds, EBuilding::HallOfWar,   EBuilding::TrainHall,  EBuilding::Prison,
+        EBuilding::Farm,         EBuilding::LumberMill,   EBuilding::IronMine,    EBuilding::SilverMine, EBuilding::MarchingTent,
+        EBuilding::FirstAidTent, EBuilding::CrystalMine,  EBuilding::Miracle,     EBuilding::ElitePalace};
 
-bool BuildingStatic::isValidBuilding(EBuildingType p_BuildingType) {
+bool BuildingStatic::isValidBuilding(EBuilding p_BuildingType) {
   auto l_Instance = Get();
   for (auto& l_OneBuilding : l_Instance->m_BuildingInfo) {
     if (l_OneBuilding.second.buildingType == p_BuildingType) return true;
@@ -22,7 +22,7 @@ bool BuildingStatic::isValidBuilding(EBuildingType p_BuildingType) {
   return false;
 }
 
-bool BuildingStatic::isValidBuildingLvl(EBuildingType p_BuildingType, uint32 p_Lvl) {
+bool BuildingStatic::isValidBuildingLvl(EBuilding p_BuildingType, uint32 p_Lvl) {
   auto l_Instance = Get();
   for (auto& l_OneBuilding : l_Instance->m_BuildingInfo) {
     for (auto& l_OneBuildingLvl : l_OneBuilding.second.Lvls)
@@ -31,9 +31,9 @@ bool BuildingStatic::isValidBuildingLvl(EBuildingType p_BuildingType, uint32 p_L
   return false;
 }
 
-GHashMap<EBuildingType, RBuildingSpecs> BuildingStatic::BuildingInfo;
+GHashMap<EBuilding, RBuildingSpecs> BuildingStatic::BuildingInfo;
 
-RBuildingSpecs& BuildingStatic::getBuildingSpecs(EBuildingType p_BuildingType) {
+RBuildingSpecs& BuildingStatic::getBuildingSpecs(EBuilding p_BuildingType) {
   auto l_Instance = Get();
   if (!l_Instance->m_BuildingInfo.Contains(p_BuildingType)) {
     uint32 l_BT = static_cast<uint32>(p_BuildingType);
@@ -44,7 +44,7 @@ RBuildingSpecs& BuildingStatic::getBuildingSpecs(EBuildingType p_BuildingType) {
   return l_Instance->m_BuildingInfo[p_BuildingType];
 }
 
-RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl) {
+RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuilding p_BuildingType, uint32 p_Lvl) {
   auto l_BuildingUnit = getBuildingSpecs(p_BuildingType);
   auto l_Instance = Get();
   if (!l_BuildingUnit.Lvls.Contains(p_Lvl)) {

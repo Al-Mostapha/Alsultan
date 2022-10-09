@@ -69,3 +69,13 @@ void BuildingOCrystalMine::setBuildingParticle()
 	Part3->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part3, 1);
 }
+
+void BuildingOCrystalMine::Clicked(Touch *p_Touch, Event *p_Event){
+  if(IsLockVisible())
+    return;
+  if(IsLocked()){
+    GBase::DShowMsgTip(Translate::i18n("common_text_3970", { {"lv", "3"} }));
+    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+  }
+
+}

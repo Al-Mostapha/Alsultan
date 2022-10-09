@@ -2,7 +2,7 @@
 
 
 #include "BuildingIBlackSmith.h"
-
+#include "Module/UI/Common/Message/UIMsgNotice.h"
 
 BuildingIBlackSmith::BuildingIBlackSmith() {
 
@@ -72,7 +72,15 @@ void BuildingIBlackSmith::setBuildingParticle() {
 }
 
 
-
+void BuildingIBlackSmith::Clicked(Touch *p_Touch, Event *p_Event){
+  if(IsLocked()){
+    auto l_Notice = UIMsgNotice::Create();
+    l_Notice->InitPanel();
+    l_Notice->Notice("common_text_796");
+    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    return;
+  }
+}
 
 /**
 void BuildingClassBarrack::setBarrackInfantry() {}

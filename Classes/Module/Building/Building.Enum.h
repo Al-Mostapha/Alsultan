@@ -1,6 +1,7 @@
 #pragma once
 #include "Include/IncludeBase.h"
-enum class EBuildingType : uint32 {
+
+enum class EBuilding  {
   None = 0,
   Castle = 101,
   Wall = 102,
@@ -46,7 +47,19 @@ enum class EBuildingType : uint32 {
   EpicBattle = 30006
 };
 
-enum class EBuildingPlace { None = 0 };
+enum class EBuildingInteractivity {
+  Decore = 0,
+  Interactive = 1
+};
+
+enum class EBuildingIndex { 
+  None = 0,
+  ArrowTowerR = 1053,
+  WallGate = 1053,
+  ArrowTowerL = 1054,
+  BehindArrowTowerR = 1065,
+  BehindArrowTowerL = 1066,
+};
 
 enum class EBuildingPos { CBPlace_None = 0, CBPlace_Fixed = 1, CBPlace_Inner = 2, CBPlace_Outer = 3 };
 
@@ -59,4 +72,24 @@ enum class EBuildingViewModel {
   ViewModel_6 = 6,
   ViewModel_7 = 7,
   ViewModel_8 = 8
+};
+
+
+enum class EBuildingState {
+  None  = 0,
+  Idle = 1,
+  Building = 2,
+  Demolishing = 3,
+  Harvesting = 4,
+  Working = 5
+};
+
+
+enum class EBuildingActionTag{
+  None = 0, 
+  Tag_delayUpdateMainCityPos = 1000,
+  Tag_ContainerViewMove = 1001,
+  Tag_ContainerViewScale = 1002,
+  Tag_Play_Click_Default_Sound = 1003,
+  TagPlayClickBuildSound = 1004
 };

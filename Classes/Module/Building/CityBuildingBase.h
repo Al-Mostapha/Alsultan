@@ -5,6 +5,8 @@
 #include "Module/Building/Building.Const.h"
 #include "Module/City/CityBuildingUtils/CityBuildingBtnAction.h"
 #include "ui/UILayout.h"
+#include "Module/Translation/Translate.h"
+#include "Module/City/City.Lib.h"
 
 USING_NS_CC;
 using namespace ui;
@@ -54,10 +56,16 @@ public:
 	
 	RCityBuildingUnit BuildingUnitData;
 
-	Vec2 LvlBgOffset;
+	Vec2    LvlBgOffset;
 	GString BuildingSpriteImage;
 	GString BuildingIconMiracle;
-	Vec2 BuildingSpriteOffset;
+	Vec2    BuildingSpriteOffset;
+
+  Node *m_CurrentSelectTip = nullptr;
+  bool m_TouchIsMoveOnBuild = false;
+  bool m_IsBuildBtnEnabled = true;
+  EBuildingIndex m_BuildingIndex;
+ 
 
 	virtual bool init();
 	virtual void onEnter();
@@ -71,5 +79,29 @@ public:
 	virtual void setBuildingAnimation();
 	virtual void setBuildingBtn();
 	void setBuildingUnitData(RCityBuildingUnit &_CBUD);
+  virtual void Clicked(Touch* p_Touch, Event* p_Event);
+  virtual void InitEvents();
+  virtual void InitTouchEvents();
+  virtual void RemoveBuildingTip();
+  virtual void CancelTint();
+  virtual bool IsLocked(){ return false;}
+  virtual bool IsLockVisible(){ return false;}
+  virtual void ShowTintOnce(){}
+  virtual bool IsCanSpeedUpStrongFree(){ return false; }
+  virtual bool IsCanSpeedUpFree(){ return false; }
+  virtual bool IsCanSpeedUpResearchFree(){ return false; }
+  virtual bool IsNeedRequestHelp(){ return false; }
+  virtual bool IsFignting() { return  false; }
+  virtual bool HasAnyAllianceHelpList(){ return false; }
+  virtual bool AllianceHelpAll(){ return false; }
+  virtual bool RequestHelp(){ return false; }
+  virtual bool SpeedUpStrongFree(){ return true; }
+  virtual bool SpeedUpFree(){ return true; }
+  virtual bool SpeedUpResearchFree(){ return true; }
+  virtual bool IsCanHarvest() { return false; } // can harvest resource or army or any other tip
+  virtual bool HarvestAll(){ return false; } // can harvest resource or army or any other tip
+  virtual EBuildingState GetState() { return EBuildingState::None;}
 	static Vector<SpriteFrame *> getAnimation(GString Frame, int32 start, int32 end);
+private:
+  virtual bool IgnoreClickEvent(Touch* p_T, Event* p_E) const;
 };

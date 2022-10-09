@@ -16,13 +16,13 @@
 
 
 struct RCostBuilding {
-  EBuildingType TypeReq = EBuildingType::None;
+  EBuilding TypeReq = EBuilding::None;
   uint32 lvlReq = 0;
   static RCostBuilding fromJson(GJson* json) { RCostBuilding temp; }
 };
 
 struct RCostBuildingEnough{
-  EBuildingType  TypeReq;
+  EBuilding  TypeReq;
   uint32 lvlReq;
   uint32 lvlCurMax;
   int32 lvlLack;
@@ -67,7 +67,7 @@ struct RBuildingLvlSpecs {
   uint32 forgeSpeed = 0;
   uint32 steelReduce = 0;
   uint32 kingdomLv = 0;
-  EBuildingType unlockedBuild = EBuildingType::None;
+  EBuilding unlockedBuild = EBuilding::None;
   EScience unlockedTechnology = EScience::None;
   uint32 capacity = 0;
   uint32 output = 0;
@@ -101,7 +101,7 @@ struct RCityBuildingUnit {
   int32 buildingLvl;
   GString NodeName;
   GString BuildingPlace;
-  EBuildingType eBuildingType;
+  EBuilding eBuildingType;
   EBuildingPos eBuildingPos;
   RCityBuildingUnit(char* nodeName, char* buildingPlace, EBuildingPos eBP) 
   : NodeName(nodeName), BuildingPlace(buildingPlace), eBuildingPos(eBP){};
@@ -118,7 +118,7 @@ struct RBuildingSpecs {
   bool isExchange = false;
   bool isBuild = false;
   bool isUpgrade = false;
-  EBuildingType buildingType = EBuildingType::None;
+  EBuilding buildingType = EBuilding::None;
   int32 bType = 0;
   int32 maxCount = 0;
   int32 maxLvl = 0;

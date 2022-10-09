@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingFMaterialWorkShop.h"
+#include "Module/UI/Panel/Building/MatrialFactory/UIMatrialFactoryView.h"
 
 BuildingFMaterialWorkShop::BuildingFMaterialWorkShop()
 {
@@ -91,4 +92,21 @@ void BuildingFMaterialWorkShop::setBuildingParticle()
 	Part5->setScaleY(1.99);
 	Part5->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part5, 10);
+}
+
+
+void BuildingFMaterialWorkShop::Clicked(Touch *p_Touch, Event *p_Event){
+  if(IsLocked()){
+    auto l_TipInfo = Translate::i18n("common_text_2122", {
+      {"name", Translate::i18n("common_text_2123")},
+      {"lv", ""}
+    });
+    GBase::DShowMsgTip(l_TipInfo, "gongfang.png");
+    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    return;
+  }
+
+  auto l_Panel = UIMatrialFactoryView::Create();
+  l_Panel->InitPanel();
+  l_Panel->Show();
 }

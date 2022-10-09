@@ -31,11 +31,11 @@ public:
   UICreateBuildingPanel();
   ~UICreateBuildingPanel();
   void InitPanel() override;
-  void SetBuildingTypeAndData(EBuildingType p_BuildingType = EBuildingType::None, int32 p_BuildingIndex = 0);
+  void SetBuildingTypeAndData(EBuilding p_BuildingType = EBuilding::None, int32 p_BuildingIndex = 0);
   void CreateWheelScrollView();
   void WheelScrollBack(const RBuildingSpecs& p_BuildingInfoUnit, size_t p_Index);
   void UpdateView();
-  void SelectWheelByBuildingType(EBuildingType p_BuildingType);
+  void SelectWheelByBuildingType(EBuilding p_BuildingType);
   void ClickEffect(Node *p_Target);
   void CreateWheelAction();
   CREATE_FUNC(UICreateBuildingPanel);

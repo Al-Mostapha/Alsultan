@@ -7,7 +7,7 @@
 
 void BuildingLib::buildCity() {}
 
-void BuildingLib::buildAt(const char* BuildingPlace) { EBuildingType buildingType; }
+void BuildingLib::buildAt(const char* BuildingPlace) { EBuilding buildingType; }
 
 RCityBuildingUnit& BuildingLib::getBuildingAt(const char* BuildingPlace) {
   RCityBuildingUnit t("", "", EBuildingPos::CBPlace_None);
@@ -15,81 +15,81 @@ RCityBuildingUnit& BuildingLib::getBuildingAt(const char* BuildingPlace) {
 }
 CityBuildingBase* BuildingLib::getBuildingNodeAt(const char* BuildingPlace) { return nullptr; }
 
-CityBuildingBase* BuildingLib::getBuildingClassByType(EBuildingType buildingType) {
+CityBuildingBase* BuildingLib::getBuildingClassByType(EBuilding buildingType) {
   switch (buildingType) {
-    case EBuildingType::None:
+    case EBuilding::None:
       return BuildingNone::create();
-    case EBuildingType::Barrack:
+    case EBuilding::Barrack:
       return BuildingABarrack::create();
-    case EBuildingType::ChariotPlant:
+    case EBuilding::ChariotPlant:
       return BuildingAChariotPlant::create();
-    case EBuildingType::Fortress:
+    case EBuilding::Fortress:
       return BuildingAFortress::create();
-    case EBuildingType::TargetRange:
+    case EBuilding::TargetRange:
       return BuildingARange::create();
-    case EBuildingType::Stable:
+    case EBuilding::Stable:
       return BuildingAStable::create();
-    case EBuildingType::ArrowTower:
+    case EBuilding::ArrowTower:
       return BuildingFArrowTower::create();
-    case EBuildingType::StarBraveStatue:
+    case EBuilding::StarBraveStatue:
       return BuildingFBraveStatue::create();
-    case EBuildingType::Castle:
+    case EBuilding::Castle:
       return BuildingFCastle::create();
-    case EBuildingType::ElitePalace:
+    case EBuilding::ElitePalace:
       return BuildingFElitePalace::create();
-    case EBuildingType::EpicBattle:
+    case EBuilding::EpicBattle:
       return BuildingFEpicBattle::create();
-    case EBuildingType::Port:
+    case EBuilding::Port:
       return BuildingFHarbor::create();
-    case EBuildingType::LeisureHouse:
+    case EBuilding::LeisureHouse:
       return BuildingFLeisureCenter::create();
-    case EBuildingType::MaterialWorkShop:
+    case EBuilding::MaterialWorkShop:
       return BuildingFMaterialWorkShop::create();
-    case EBuildingType::Miracle:
+    case EBuilding::Miracle:
       return BuildingFMiracle::create();
-    case EBuildingType::Monument:
+    case EBuilding::Monument:
       return BuildingFMonument::create();
-    case EBuildingType::PetHouse:
+    case EBuilding::PetHouse:
       return BuildingFPetCenter::create();
-    case EBuildingType::Prison:
+    case EBuilding::Prison:
       return BuildingFPrison::create();
-    case EBuildingType::ResurrectionHall:
+    case EBuilding::ResurrectionHall:
       return BuildingFRevivalHall::create();
-    case EBuildingType::ServiceCenter:
+    case EBuilding::ServiceCenter:
       return BuildingFServiceCenter::create();
-    case EBuildingType::TrainHall:
+    case EBuilding::TrainHall:
       return BuildingFTrainHall::create();
-    case EBuildingType::Wall:
+    case EBuilding::Wall:
       return BuildingFWall::create();
-    case EBuildingType::Blacksmith:
+    case EBuilding::Blacksmith:
       return BuildingIBlackSmith::create();
-    case EBuildingType::DrillGrounds:
+    case EBuilding::DrillGrounds:
       return BuildingIDrillGrounds::create();
-    case EBuildingType::Embassy:
+    case EBuilding::Embassy:
       return BuildingIEmbassy::create();
-    case EBuildingType::HallOfWar:
+    case EBuilding::HallOfWar:
       return BuildingIHallOfWar::create();
-    case EBuildingType::Institute:
+    case EBuilding::Institute:
       return BuildingIInstitute::create();
-    case EBuildingType::Market:
+    case EBuilding::Market:
       return BuildingIMarket::create();
-    case EBuildingType::Warehouse:
+    case EBuilding::Warehouse:
       return BuildingIWareHouse::create();
-    case EBuildingType::TreasurePool:
+    case EBuilding::TreasurePool:
       return BuildingIWishWell::create();
-    case EBuildingType::CrystalMine:
+    case EBuilding::CrystalMine:
       return BuildingOCrystalMine::create();
-    case EBuildingType::Farm:
+    case EBuilding::Farm:
       return BuildingOFarm::create();
-    case EBuildingType::FirstAidTent:
+    case EBuilding::FirstAidTent:
       return BuildingOHosptial::create();
-    case EBuildingType::IronMine:
+    case EBuilding::IronMine:
       return BuildingOIronMine::create();
-    case EBuildingType::MarchingTent:
+    case EBuilding::MarchingTent:
       return BuildingOMilitaryTent::create();
-    case EBuildingType::LumberMill:
+    case EBuilding::LumberMill:
       return BuildingOSawmill::create();
-    case EBuildingType::SilverMine:
+    case EBuilding::SilverMine:
       return BuildingOSilver::create();
     default:
       return BuildingNone::create();
@@ -98,7 +98,7 @@ CityBuildingBase* BuildingLib::getBuildingClassByType(EBuildingType buildingType
 
 RCityBuilding& BuildingLib::getCurentCityBuilding() { return PlayerStatic::SultanPlayer.City.CityBuilding; }
 
-GVector<RCityBuildingUnit> BuildingLib::getBuildingList(EBuildingType buildingType) {
+GVector<RCityBuildingUnit> BuildingLib::getBuildingList(EBuilding buildingType) {
   GVector<RCityBuildingUnit> BuildingList;
   auto buildings = getCurentCityBuilding().BuildingList;
   for (auto building : buildings) {
@@ -112,11 +112,11 @@ GVector<RCityBuildingUnit> BuildingLib::getBuildingList(EBuildingType buildingTy
 
 GVector<RCityBuildingUnit> BuildingLib::getBuildingResList() {
   GVector<RCityBuildingUnit> BuildingList;
-  auto Frams = getBuildingList(EBuildingType::Farm);
-  auto SawMills = getBuildingList(EBuildingType::LumberMill);
-  auto IronMines = getBuildingList(EBuildingType::IronMine);
-  auto SilverMines = getBuildingList(EBuildingType::SilverMine);
-  auto CrystalMines = getBuildingList(EBuildingType::CrystalMine);
+  auto Frams = getBuildingList(EBuilding::Farm);
+  auto SawMills = getBuildingList(EBuilding::LumberMill);
+  auto IronMines = getBuildingList(EBuilding::IronMine);
+  auto SilverMines = getBuildingList(EBuilding::SilverMine);
+  auto CrystalMines = getBuildingList(EBuilding::CrystalMine);
 
   BuildingList.insert(BuildingList.end(), Frams.begin(), Frams.end());
   BuildingList.insert(BuildingList.end(), SawMills.begin(), SawMills.end());
@@ -127,7 +127,7 @@ GVector<RCityBuildingUnit> BuildingLib::getBuildingResList() {
   return BuildingList;
 }
 
-GVector<RBuildingSpecs> BuildingLib::getCanBuildList(EBuildingType p_BuildingType) {
+GVector<RBuildingSpecs> BuildingLib::getCanBuildList(EBuilding p_BuildingType) {
   GVector<RBuildingSpecs> l_BuildableList;
   for (auto l_building : BuildingStatic::BuildableList) {
     if (BuildingStatic::BuildingInfo.count(l_building)) l_BuildableList.push_back(BuildingStatic::BuildingInfo[l_building]);
@@ -135,4 +135,4 @@ GVector<RBuildingSpecs> BuildingLib::getCanBuildList(EBuildingType p_BuildingTyp
   return l_BuildableList;
 }
 
-bool BuildingLib::isCanBuild(EBuildingType p_BuildingType) { return true; }
+bool BuildingLib::isCanBuild(EBuilding p_BuildingType) { return true; }

@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingFMonument.h"
+#include "Scene/CityScene.h"
+#include "Module/UI/Panel/Building/Monument/UILegendMView.h"
 
 BuildingFMonument::BuildingFMonument()
 {
@@ -68,4 +70,44 @@ void BuildingFMonument::onEnter()
 {
 
 	CityBuildingBase::onEnter();
+}
+
+void BuildingFMonument::Clicked(Touch *p_Touch, Event *p_Event){
+  if(IsLocked()){
+    GBase::DShowMsgTip(Translate::i18n("common_text_2122", {
+      {"name", Translate::i18n("history_name_11")},
+      {"lv", std::to_string(GBase::Const::Get()->CastleLvl6)}
+    }));
+    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    return;
+  }
+  auto l_Sequence = Sequence::create(
+    CallFunc::create([this](){
+      CityLib::Get()->PlaySound(
+        "innerbuildsound", EBuilding::Monument,
+        EBuildingActionTag::TagPlayClickBuildSound
+      );
+      auto l_Scene = CityScene::Get();
+      if(l_Scene && l_Scene->ButtonMonument){
+        l_Scene->ButtonMonument->setEnabled(false);
+        CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+      }
+    }),
+    DelayTime::create(0.3),
+    CallFunc::create([](){
+      auto l_Panel = UILegendMView::Create();
+      l_Panel->InitPanel();
+      l_Panel->Show();
+    }),
+    DelayTime::create(0.3),
+    CallFunc::create([this](){
+      auto l_Scene = CityScene::Get();
+      if(l_Scene && l_Scene->ButtonMonument){
+        l_Scene->ButtonMonument->setEnabled(true);
+        l_Scene->ButtonMonument->setSwallowTouches(false);
+      }
+    })
+  );
+  if(CityScene::Get())
+    CityScene::Get()->runAction(l_Sequence);
 }

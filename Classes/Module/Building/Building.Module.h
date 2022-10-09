@@ -15,7 +15,7 @@ class BuildingModule
 public:
     static void init();
     static void buildCity();
-    //static cocos2d::Vector<DSCityBuildingUnit *> getBuildingList(EBuildingType buildingType);
+    //static cocos2d::Vector<DSCityBuildingUnit *> getBuildingList(EBuilding buildingType);
     //static cocos2d::Vector<DSCityBuildingUnit *> getBuildingResList();
     static RCityBuilding& getCurentCityBuilding();
 };

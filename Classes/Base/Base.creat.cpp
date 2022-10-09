@@ -44,3 +44,8 @@ Vector<SpriteFrame *> BaseCreate::getAnimationFrames(GString Frame, int32 start,
     }
     return animFrames;
 }
+
+
+Sprite *BaseCreate::CreateSprite(const char *p_Sprite){
+  return Sprite::createWithSpriteFrameName(p_Sprite);
+}

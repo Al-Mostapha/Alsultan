@@ -2,6 +2,7 @@
 
 #include "BuildingFArrowTower.h"
 #include "Module/Player/Player.Static.h"
+#include "Module/UI/Common/Message/UIMsgNotice.h"
 
 BuildingFArrowTower::BuildingFArrowTower()
 {
@@ -62,4 +63,14 @@ EBuildingViewModel BuildingFArrowTower::getViewModel(int32 walLvl)
 		return EBuildingViewModel::ViewModel_4;
 	if (walLvl <= 130)
 		return EBuildingViewModel::ViewModel_5;
+}
+
+void BuildingFArrowTower::Clicked(Touch *p_Touch, Event *p_Event){
+  if(IsLocked()){
+    auto l_Notice = UIMsgNotice::Create();
+    l_Notice->InitPanel();
+    l_Notice->Notice("notice_0056");
+    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    return;
+  }
 }

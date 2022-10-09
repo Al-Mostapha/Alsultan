@@ -58,7 +58,7 @@ void UICreateBuildingPanel::InitPanel(){
   addChild(panel);
 }
 
-void UICreateBuildingPanel::SetBuildingTypeAndData(EBuildingType p_BuildingType, int32 p_BuildingIndex){
+void UICreateBuildingPanel::SetBuildingTypeAndData(EBuilding p_BuildingType, int32 p_BuildingIndex){
   m_BuildableList = BuildingLib::getCanBuildList(p_BuildingType);
   if(m_SelectWheel == nullptr){
     CreateWheelScrollView();
@@ -165,7 +165,7 @@ void UICreateBuildingPanel::WheelScrollBack(const RBuildingSpecs& p_BuildingInfo
   UpdateView();
 }
 
-void UICreateBuildingPanel::SelectWheelByBuildingType(EBuildingType p_BuildingType){
+void UICreateBuildingPanel::SelectWheelByBuildingType(EBuilding p_BuildingType){
   if(!m_SelectWheel)
     return;
   

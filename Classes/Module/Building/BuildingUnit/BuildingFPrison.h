@@ -16,6 +16,7 @@ public:
 	void onEnter();
 	void setBuildingParticle();
 	static void initBuilingData();
+  void Clicked(Touch *p_Touch, Event *p_Event) override;
 	CREATE_FUNC(BuildingFPrison);
 
 	/**

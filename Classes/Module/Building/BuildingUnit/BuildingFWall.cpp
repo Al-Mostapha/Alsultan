@@ -80,3 +80,8 @@ void BuildingFWall::onEnter()
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 }
+
+
+void BuildingFWall::Clicked(Touch *p_Touch, Event *p_Event){
+  
+}

@@ -24,4 +24,5 @@ public:
   static ParticleSystemQuad *createParticle(const std::string &Part, Vec2 Pos, Vec2 Scl, float rot);
   static Sprite *createAnimation(GAnimationParm AnimationParm);
   static Vector<SpriteFrame *> getAnimationFrames(GString Frame, int32 start, int32 end);
+  static Sprite *CreateSprite(const char *p_Sprite);
 };

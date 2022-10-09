@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingFEpicBattle.h"
+#include "Module/UI/Panel/Building/EpicWar/UIEpicWarView.h"
+#include "Scene/CityScene.h"
 
 BuildingFEpicBattle::BuildingFEpicBattle()
 {
@@ -80,4 +82,40 @@ void BuildingFEpicBattle::onEnter()
 {
 
 	CityBuildingBase::onEnter();
+}
+
+void BuildingFEpicBattle::Clicked(Touch *p_Touch, Event *p_Event){
+  if(IsLocked()){
+    GBase::DShowMsgTip(Translate::i18n("common_text_2122", {
+      {"name", Translate::i18n("epicbattle_title_01")},
+      {"lv", std::to_string(GBase::Const::Get()->CastleLvl7)}
+    }));
+    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    return;
+  }
+
+  auto l_Sequance = Sequence::create(
+    CallFunc::create([](){
+      CityLib::Get()->PlaySound(
+        "innerbuildsound", EBuilding::Prison,
+        EBuildingActionTag::TagPlayClickBuildSound
+      );
+    }),
+    DelayTime::create(0.3),
+    CallFunc::create([](){
+      auto l_Panel = UIEpicWarView::Create();
+      l_Panel->InitPanel();
+      l_Panel->Show();
+    }),
+    DelayTime::create(0.3),
+    CallFunc::create([](){
+      if(!CityScene::Get())
+        return;
+      CityScene::Get()->ButtonEpicBattle->setEnabled(true);
+      CityScene::Get()->ButtonEpicBattle->setSwallowTouches(false);
+    }),
+    nullptr
+  );
+  CityScene::Get()->runAction(l_Sequance);
+  return;
 }

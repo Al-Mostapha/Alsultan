@@ -4,8 +4,8 @@
 #include "Building.Enum.h"
 
 struct RBuildingTask : public ITask {
-  EBuildingType BuildingType = EBuildingType::None;
-  EBuildingPlace BuildingPlace = EBuildingPlace::None;
+  EBuilding BuildingType = EBuilding::None;
+  EBuildingIndex BuildingPlace = EBuildingIndex::None;
 };
 
 class BuildingTask {

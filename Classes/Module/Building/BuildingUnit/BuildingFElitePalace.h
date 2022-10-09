@@ -16,7 +16,7 @@ public:
 	bool init();
 	void onEnter();
 	static void initBuilingData();
-
+  void Clicked(Touch *p_Touch, Event *p_Event) override;
 	CREATE_FUNC(BuildingFElitePalace);
 
 	/**

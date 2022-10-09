@@ -13,10 +13,10 @@ private:
 public:
   static BuildingCtrl *Get();
   GPair<bool, GVector<struct RCostBuildingEnough>> IsEnough(const GVector<struct RCostBuilding>& p_CostBuilding);
-  uint32 getBuildingMaxLvl(EBuildingType p_BuildingType);
-  uint32 getBuildingCount(EBuildingType p_BuildingType);
-  class CityBuildingBase *getBuildingCell(EBuildingType p_BuildingType);
-  GVector<RCostBuilding> checkBuildingPreCond(EBuildingType p_BuildingType, uint32 p_CurrentLvl);
-  RCostResourceEnough checkBuildingCostRes(EBuildingType p_BuildingType, uint32 p_CurrentLvl);
-  RBuildingLvlSpecs getReducedLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl);
+  uint32 getBuildingMaxLvl(EBuilding p_BuildingType);
+  uint32 getBuildingCount(EBuilding p_BuildingType);
+  class CityBuildingBase *getBuildingCell(EBuilding p_BuildingType);
+  GVector<RCostBuilding> checkBuildingPreCond(EBuilding p_BuildingType, uint32 p_CurrentLvl);
+  RCostResourceEnough checkBuildingCostRes(EBuilding p_BuildingType, uint32 p_CurrentLvl);
+  RBuildingLvlSpecs getReducedLvlSpec(EBuilding p_BuildingType, uint32 p_Lvl);
 };

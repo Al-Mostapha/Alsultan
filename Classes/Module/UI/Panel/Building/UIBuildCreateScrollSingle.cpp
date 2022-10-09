@@ -29,7 +29,7 @@ void UIBuildCreateScrollSingle::InitPanel(){
 }
 
 
-void UIBuildCreateScrollSingle::initData(EBuildingType p_BuildingType){
+void UIBuildCreateScrollSingle::initData(EBuilding p_BuildingType){
   if(m_ImgIcon){
     m_ImgIcon->removeFromParent();
     m_ImgIcon = nullptr;

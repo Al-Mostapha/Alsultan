@@ -47,3 +47,12 @@ void BuildingFRevivalHall::onEnter()
 
 	CityBuildingBase::onEnter();
 }
+
+
+void BuildingFRevivalHall::Clicked(Touch *p_Touch, Event *p_Event){
+  if(IsLocked()){
+    GBase::DShowMsgTip(Translate::i18n("common_text_3499"));
+    CityLib::Get()->ShowTintOnce(this, "buildImg");
+    return ;
+  }
+}

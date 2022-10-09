@@ -15,6 +15,7 @@ public:
 	bool init();
 	void onEnter();
 	void setBuildingParticle();
+  void Clicked(Touch *p_Touch, Event *p_Event);
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFTrainHall);
 

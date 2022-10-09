@@ -28,7 +28,7 @@ bool BuildingLogic::IsBuildingCostAchieved(const RCostBuildingUpgrade& p_CostUpg
   return true;
 } 
 
-GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanUpgrade(EBuildingType p_BuildingType, uint32 p_CurrentLvl) {
+GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanUpgrade(EBuilding p_BuildingType, uint32 p_CurrentLvl) {
   auto l_CostUpgrade = GPair<bool, RCostBuildingUpgrade>::Make(true, RCostBuildingUpgrade());
   RBuildingLvlSpecs l_lvlReq = BuildingCtrl::Get()->getReducedLvlSpec(p_BuildingType, p_CurrentLvl);
 
@@ -48,7 +48,7 @@ GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanUpgrade(EBuildingType p_Bu
   return l_CostUpgrade;
 }
 
-GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanBuild(EBuildingType p_BuildingType){
+GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanBuild(EBuilding p_BuildingType){
   auto l_BuildingSpecs = BuildingStatic::getBuildingSpecs(p_BuildingType);
   if(!l_BuildingSpecs.isBuild){
     return GPair<bool, RCostBuildingUpgrade>::Make(false, RCostBuildingUpgrade());

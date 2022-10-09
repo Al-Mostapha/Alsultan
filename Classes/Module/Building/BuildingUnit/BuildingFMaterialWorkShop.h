@@ -16,6 +16,7 @@ public:
 	void onEnter();
 	void setBuildingParticle();
 	void setBuildingAnimation();
+  void Clicked(Touch *p_Touch, Event *p_Event);
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFMaterialWorkShop);
 

@@ -189,7 +189,7 @@ int UIWheelScrollView::pointCurSelectSingle(bool p_UpdateCurI)
   {
     if (m_CurrentIndex != -1 && !p_UpdateCurI && m_IsSound)
     {
-      GBase::playSound(GBase::getSoundPath(MusicConfig::MusicPath::city_click));
+      GBase::PlaySound(GBase::getSoundPath(MusicConfig::MusicPath::city_click));
     }
     if (!p_UpdateCurI)
     {

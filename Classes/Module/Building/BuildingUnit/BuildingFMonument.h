@@ -16,6 +16,7 @@ public:
 	void onEnter();
 	void setBuildingAnimation() override;
 	void setBuildingParticle() override;
+  void Clicked(Touch *p_Touch, Event *p_Event) override;
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFMonument);
 

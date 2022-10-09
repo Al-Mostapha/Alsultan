@@ -25,32 +25,41 @@
 
 #include "ui/CocosGUI.h"
 
-class CityScene : public cocos2d::Scene
-{
+class CityScene : public cocos2d::Scene {
 public:
-    cocos2d::Node *CityFloorLayer;
-    cocos2d::Node *CityBuildingLayer;
-    cocos2d::Node *containerView;
-    cocos2d::Node *batchNodeXiyiNpc;
-    cocos2d::Node *batchNodeNpc;
-    cocos2d::Node *batchNodeSoldierGuards;
-    cocos2d::Node *CityDecoreLayer;
-    cocos2d::Node *CityUiLayer;
-    cocos2d::Map<std::string, Node *> bufferNodeArray;
+  static CityScene* Get();
+  cocos2d::Node* CityFloorLayer;
+  cocos2d::Node* CityBuildingLayer;
+  cocos2d::Node* containerView;
+  cocos2d::Node* batchNodeXiyiNpc;
+  cocos2d::Node* batchNodeNpc;
+  cocos2d::Node* batchNodeSoldierGuards;
+  cocos2d::Node* CityDecoreLayer;
+  cocos2d::Node* CityUiLayer;
+  cocos2d::Map<std::string, Node*> bufferNodeArray;
+  Node *TipBoxGuardSoldier;
+  Node *ButtonMerchante;
+  ui::Button *ButtonEpicBattle;
+  ui::Button *ButtonMonument;
 
-    static cocos2d::Scene *createScene();
+  bool IsMoving(){ return false;}
+  static cocos2d::Scene* createScene();
+  template<typename T>
+  T GetNode(const char *p_NodeName){
+    return nullptr;
+  };
 
-    cocos2d::ui::ScrollView *BaseScrollLayer;
+  cocos2d::ui::ScrollView* BaseScrollLayer;
 
-    virtual bool init();
-    void initDraggingEvent();
-    void initCityLayers();
-    void menuCloseCallback(cocos2d::Ref *pSender);
-    void onEnter();
-    static CityScene *getCityScene();
+  virtual bool init();
+  void initDraggingEvent();
+  void initCityLayers();
+  void menuCloseCallback(cocos2d::Ref* pSender);
+  void onEnter();
+  static CityScene* getCityScene();
 
-    // implement the "static create()" method manually
-    CREATE_FUNC(CityScene);
+  // implement the "static create()" method manually
+  CREATE_FUNC(CityScene);
 };
 
-#endif // __CITYSCENE_H_
+#endif  // __CITYSCENE_H_

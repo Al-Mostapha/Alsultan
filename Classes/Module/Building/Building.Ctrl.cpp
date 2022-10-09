@@ -15,17 +15,17 @@ BuildingCtrl *BuildingCtrl::Get(){
   return l_Instance;
 }
 
-uint32  BuildingCtrl::getBuildingMaxLvl(EBuildingType p_BuildingType){
+uint32  BuildingCtrl::getBuildingMaxLvl(EBuilding p_BuildingType){
   // TODO:: 
   return 0;
 }
 
-uint32 BuildingCtrl::getBuildingCount(EBuildingType p_BuildingType){
+uint32 BuildingCtrl::getBuildingCount(EBuilding p_BuildingType){
   return 0;
 }
 
 
-CityBuildingBase *BuildingCtrl::getBuildingCell(EBuildingType p_BUildingType){
+CityBuildingBase *BuildingCtrl::getBuildingCell(EBuilding p_BUildingType){
   return nullptr;
 }
 
@@ -72,7 +72,7 @@ void BuildingCtrl::getReducedCostResource(RBuildingLvlSpecs& p_OriginalSpec) {
 
 void BuildingCtrl::getReducedCostScience(RBuildingLvlSpecs& p_OriginalSpec) {}
 
-RBuildingLvlSpecs BuildingCtrl::getReducedLvlSpec(EBuildingType p_BuildingType, uint32 p_Lvl) {
+RBuildingLvlSpecs BuildingCtrl::getReducedLvlSpec(EBuilding p_BuildingType, uint32 p_Lvl) {
   if(!BuildingStatic::isValidBuildingLvl(p_BuildingType, p_Lvl))
     return BuildingStatic::Get()->getBuildingLvlSpec(p_BuildingType, p_Lvl);
   RBuildingLvlSpecs l_BuildingLvlSpec = BuildingStatic::getBuildingLvlSpec(p_BuildingType, p_Lvl);

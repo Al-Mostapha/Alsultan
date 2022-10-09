@@ -33,6 +33,15 @@ THE SOFTWARE.
 
 USING_NS_CC;
 
+CityScene *CityScene::Get(){
+  Scene* l_RunningScene = Director::getInstance()->getRunningScene();
+  if (l_RunningScene == nullptr) {
+    cocos2d::log("Error: No Current Scene ... ");
+    return nullptr;
+  }
+  return dynamic_cast<CityScene*>(l_RunningScene);
+}
+
 Scene *CityScene::createScene()
 {
     return CityScene::create();
@@ -115,9 +124,9 @@ void CityScene::initCityLayers()
 void CityScene::initDraggingEvent()
 {
 
-    // auto MouseListiner = EventListenerTouchOneByOne::create();
-
-    // MouseListiner->setSwallowTouches(true);
+  auto MouseListiner = EventListenerTouchOneByOne::create();
+  MouseListiner->setSwallowTouches(true);
+  //MouseListiner->onTouchEnded
     // static bool isDragging = false;
 
     // MouseListiner->onTouchBegan = [](Touch *T, Event *event)
@@ -133,7 +142,7 @@ void CityScene::initDraggingEvent()
     // {
     //     // your code
     // };
-
+  
     //_eventDispatcher->addEventListenerWithSceneGraphPriority(MouseListiner, this);
 }
 

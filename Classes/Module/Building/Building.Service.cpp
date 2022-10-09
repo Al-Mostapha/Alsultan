@@ -31,11 +31,11 @@ void BuildingService::fetchBuildingInfo() {
     if (GString(json->GetString("state")) == "ok") {
       GJson* BuildingInfo = json->GetJsonObject("BuildingInfo");
       for (auto it = BuildingInfo->MemberBegin(); it != BuildingInfo->MemberEnd(); ++it) {
-        EBuildingType l_BuildingType = EBuildingType::None;
+        EBuilding l_BuildingType = EBuilding::None;
         if (it->name.IsInt())
-          l_BuildingType = static_cast<EBuildingType>(it->name.GetInt());
+          l_BuildingType = static_cast<EBuilding>(it->name.GetInt());
         else if (it->name.IsString())
-          l_BuildingType = static_cast<EBuildingType>(std::stoi(it->name.GetString()));
+          l_BuildingType = static_cast<EBuilding>(std::stoi(it->name.GetString()));
         GJson doc;
         GJson* jsonObject = new GJson();
         jsonObject->CopyFrom(it->value, jsonObject->GetAllocator());

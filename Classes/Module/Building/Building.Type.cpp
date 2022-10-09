@@ -25,7 +25,7 @@ RBuildingSpecs RBuildingSpecs::fromJson(GJson* json) {
   temp.isExchange = json->GetBool("isExchange");
   temp.isBuild = json->GetBool("isBuild");
   temp.isUpgrade = json->GetBool("isUpgrade");
-  temp.buildingType = static_cast<EBuildingType>(json->GetInt("buildingType"));
+  temp.buildingType = static_cast<EBuilding>(json->GetInt("buildingType"));
   temp.bType = json->GetInt("bType");
   temp.maxCount = json->GetInt("maxCount");
   temp.maxLvl = json->GetInt("maxLvl");
@@ -48,22 +48,17 @@ RBuildingSpecs RBuildingSpecs::fromJson(GJson* json) {
 void RCityBuildingUnit::fromJson(GJson* json) {
   if (json == nullptr) return;
   buildingLvl = json->GetInt("buildingLvl", 0);
-  eBuildingType = static_cast<EBuildingType>(json->GetInt("buildingType", 0));
+  eBuildingType = static_cast<EBuilding>(json->GetInt("buildingType", 0));
 }
 
 RCityBuildingUnit& RCityBuildingUnit::buildUnit() {
-  Scene* runningScene = Director::getInstance()->getRunningScene();
-  if (runningScene == nullptr) {
+  CityScene* l_RunningScene = CityScene::Get();
+  if (l_RunningScene == nullptr) {
     cocos2d::log("Error: No Current Scene ... ");
     return *this;
   }
-  CityScene* _scene = dynamic_cast<CityScene*>(runningScene);
-  if (_scene == nullptr) {
-    cocos2d::log("Error: The Current Lvl not CityScene... ");
-    return *this;
-  }
 
-  auto _node = _scene->CityBuildingLayer->getChildByName(NodeName);
+  auto _node = l_RunningScene->CityBuildingLayer->getChildByName(NodeName);
   if (!_node) {
     cocos2d::log("Error: The Current Node Has No Name Node With %s", NodeName.c_str());
     return *this;

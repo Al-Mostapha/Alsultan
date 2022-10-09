@@ -14,6 +14,7 @@ public:
 	BuildingFPetCenter();
 	bool init();
 	void onEnter();
+  void Clicked(Touch *p_Touch, Event *p_Event);
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFPetCenter);
 
