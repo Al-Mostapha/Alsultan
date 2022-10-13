@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 
 
@@ -12,7 +12,7 @@
 /**
  * 
  */
-class  BuildingOSawmill : public CityBuildingBase
+class  BuildingOSawmill : public IBuilding
 {
 
 public:

@@ -16,7 +16,7 @@ BuildingFWall::BuildingFWall()
 bool BuildingFWall::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	// setBuildingIconMiracle();
@@ -72,7 +72,7 @@ void BuildingFWall::setBuildingSprite()
 void BuildingFWall::onEnter()
 {
 	//"Sprite_Cq_3"
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 	setBuildingSprite();
 	setBuildingLvBg();

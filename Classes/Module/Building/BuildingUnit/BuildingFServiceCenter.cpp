@@ -27,7 +27,7 @@ BuildingFServiceCenter::BuildingFServiceCenter()
 bool BuildingFServiceCenter::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -43,5 +43,5 @@ bool BuildingFServiceCenter::init()
 void BuildingFServiceCenter::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }

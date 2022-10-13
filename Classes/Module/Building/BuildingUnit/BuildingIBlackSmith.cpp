@@ -3,6 +3,7 @@
 
 #include "BuildingIBlackSmith.h"
 #include "Module/UI/Common/Message/UIMsgNotice.h"
+#include "Module/Building/Building.Event.h"
 
 BuildingIBlackSmith::BuildingIBlackSmith() {
 
@@ -17,7 +18,7 @@ BuildingIBlackSmith::BuildingIBlackSmith() {
 bool BuildingIBlackSmith::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -32,7 +33,8 @@ bool BuildingIBlackSmith::init() {
 }
 
 void BuildingIBlackSmith::onEnter() {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_BLACKSMITH_VIEW");
 }
 
 
@@ -80,6 +82,21 @@ void BuildingIBlackSmith::Clicked(Touch *p_Touch, Event *p_Event){
     CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
     return;
   }
+}
+
+
+void BuildingIBlackSmith::ShowWorkDone(){
+  
+  ShowTopTip();
+  HideAnimWorking();
+  ShowGlow();
+  HideZAnimation();
+  ShowBrightParticle();
+
+  std::unique_ptr<ABuildingMsg> l_BuildingMsg = std::make_unique<ABuildingMsg>();
+  l_BuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_BuildingMsg->BuildingNode = nullptr;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());
 }
 
 /**

@@ -1,7 +1,7 @@
 #include "Module/Building/Building.Type.h"
 #include "Module/Building/Building.Enum.h"
 #include "Module/Building/Building.Lib.h"
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 #include "Module/City/City.Module.h"
 #include "Module/Player/Player.Static.h"
 #include "Scene/CityScene.h"
@@ -66,7 +66,7 @@ RCityBuildingUnit& RCityBuildingUnit::buildUnit() {
 
   _node->setAnchorPoint(cocos2d::Vec2(0, 0));
   _node->removeAllChildren();
-  CityBuildingBase* _building = BuildingLib::getBuildingClassByType(eBuildingType);
+  IBuilding* _building = BuildingLib::getBuildingClassByType(eBuildingType);
 
   if (_building != nullptr) {
     _building->setBuildingUnitData(*this);

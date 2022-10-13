@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 
 
@@ -12,7 +12,7 @@
 /**
  * 
  */
-class  BuildingAFortress : public CityBuildingBase
+class  BuildingAFortress : public IBuilding
 {
 
 public:
@@ -20,6 +20,7 @@ public:
 	BuildingAFortress();
 	bool init();
 	void onEnter();
+  void ShowWorkDone() override;
 	static void initBuilingData();
 	CREATE_FUNC(BuildingAFortress);
 

@@ -1,21 +1,22 @@
-#include "CityBuildingBase.h"
+#include "IBuilding.h"
 #include "Scene/CityScene.h"
+#include "Building.Event.h"
 USING_NS_CC;
 
-bool CityBuildingBase::init() {
+bool IBuilding::init() {
   if (!Node::init()) return false;
-
+  InitStateMachine();
   // setAnchorPoint(Vec2(0, 0));
   return true;
 }
 
-void CityBuildingBase::Clicked(Touch* p_Touch, Event* p_Event) {}
+void IBuilding::Clicked(Touch* p_Touch, Event* p_Event) {}
 
-void CityBuildingBase::InitTouchEvents() {}
-void CityBuildingBase::CancelTint() {}
-void CityBuildingBase::RemoveBuildingTip() {}
+void IBuilding::InitTouchEvents() {}
+void IBuilding::CancelTint() {}
+void IBuilding::RemoveBuildingTip() {}
 
-bool CityBuildingBase::IgnoreClickEvent(Touch* p_Touch, Event* p_Event) const {
+bool IBuilding::IgnoreClickEvent(Touch* p_Touch, Event* p_Event) const {
   auto l_TPoint = p_Touch->getLocation();
   if(!CityScene::Get()){
     Logger::Log("Current Scene is not CityScene", ELogLvl::Error, true);
@@ -66,7 +67,7 @@ bool CityBuildingBase::IgnoreClickEvent(Touch* p_Touch, Event* p_Event) const {
   return false;
 }
 
-void CityBuildingBase::InitEvents() {
+void IBuilding::InitEvents() {
   auto l_MouseListiner = EventListenerTouchOneByOne::create();
   l_MouseListiner->setSwallowTouches(true);
 
@@ -106,45 +107,146 @@ void CityBuildingBase::InitEvents() {
       return;
     if(GetState() == EBuildingState::Demolishing && IsCanSpeedUpFree() && SpeedUpFree())
       return;
-    if(GetState() == EBuildingState::Harvesting && HarvestAll())
+    if(GetState() == EBuildingState::Training && IsCanHarvest() && HarvestAll())
       return;
-    if(GetState() == EBuildingState::Working && IsCanHarvest() && HarvestAll())
+    if(GetState() == EBuildingState::TrapBuilding && IsCanHarvest() && HarvestAll())
       return;
-    if(GetState() == EBuildingState::Working && IsCanSpeedUpResearchFree() && SpeedUpResearchFree())
+    if(GetState() == EBuildingState::Studying && IsCanSpeedUpResearchFree() && SpeedUpResearchFree())
       return;
     if(IsNeedRequestHelp() && RequestHelp())
       return;
-    if(GetState() == EBuildingState::Idle && HasAnyAllianceHelpList() && AllianceHelpAll())
+    if(GetState() == EBuildingState::None && HasAnyAllianceHelpList() && AllianceHelpAll())
       return;
     Clicked(p_Touch, p_E);
   };
   _eventDispatcher->addEventListenerWithSceneGraphPriority(l_MouseListiner, this);
 }
 
-void CityBuildingBase::onEnter() { Node::onEnter(); }
+void IBuilding::onEnter() { 
+  Node::onEnter();
+  EndTimer();
+  UpdateLvl();
+  UpdateStarLvl();
+  StartTimer();
+  UpdateTimer();
+  m_HarvestState = EHarvestState::None;
+  if(IsOpen()){
+    ShowAnimBuildWorker();
+    ShowBuildLock();
+  }
+  ShowBuildLvl();
+  OnAfterInitWithBuildCell();
+}
 
-void CityBuildingBase::setBuildingSprite() {
+void IBuilding::OnMessageListener(){
+  _eventDispatcher->addCustomEventListener("MESSAGE_MAINCITYVIEW_CITYBUFF_DISAPPEAR",
+    std::bind(&IBuilding::SMsgRemoveBuff, this, std::placeholders::_1));
+
+  _eventDispatcher->addCustomEventListener("MESSAGE_SERVER_UPDATE_BUILD_CAN_UPGRADE", 
+    [this](EventCustom *p_Event){SMsgUpdateBuildCanUpgrade(p_Event);});
+    
+  _eventDispatcher->addCustomEventListener("MESSAGE_MAINCITYVIEW_TRAIN_ARMY_IMMDIATELY_BACK", 
+    std::bind(&IBuilding::SMsgTrainArmyImmediatelyBack, this, std::placeholders::_1));
+
+  _eventDispatcher->addCustomEventListener("MESSAGE_MAINCITYVIEW_BUILD_TRAIN_FAILED", 
+    std::bind(&IBuilding::SMsgBuildTrainFailed, this, std::placeholders::_1));
+
+  _eventDispatcher->addCustomEventListener("MESSAGE_MAINCITYVIEW_BUILDSTAR_QUEQUE_CALLBACK", 
+    std::bind(static_cast<void(IBuilding::*)(EventCustom *)>(&IBuilding::UpdateStarLvl), this, std::placeholders::_1));
+
+  _eventDispatcher->addCustomEventListener("MESSAGE_BUILD_STAR_UPGRADE", 
+    std::bind(static_cast<void(IBuilding::*)(EventCustom *)>(&IBuilding::UpdateStarLvl), this, std::placeholders::_1));
+};
+
+void IBuilding::SMsgRemoveBuff(EventCustom *p_Event){
+
+}
+
+void IBuilding::SMsgUpdateBuildCanUpgrade(EventCustom *p_Event){
+  bool l_NeedUpdate = true;
+  if(m_UdpateIsCanUpGradeTime > 0 && GDateTime::Now() - m_UdpateIsCanUpGradeTime <= 1){
+    l_NeedUpdate = false;
+    auto l_Sequence = Sequence::create(
+      DelayTime::create(0.5),
+      CallFunc::create([this](){
+        UpdateIsCanUpgrade();
+        UpdateStarLvl();
+      }),
+      nullptr
+    );
+  }
+  if(l_NeedUpdate){
+    UpdateIsCanUpgrade();
+    UpdateStarLvl();
+  }
+  m_UdpateIsCanUpGradeTime = GDateTime::Now();
+}
+
+void IBuilding::SMsgTrainArmyImmediatelyBack(EventCustom *p_Event){}
+void IBuilding::SMsgBuildTrainFailed(EventCustom *p_Event){}
+void IBuilding::UpdateStarLvl(EventCustom *p_Event){}
+
+
+void IBuilding::ShowTopTip(){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg =  std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode  = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_TOP_TIP", l_ABuildingMsg.get());
+}
+
+void IBuilding::HideTopTip(){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg =  std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode  = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TOP_TIP", l_ABuildingMsg.get());  
+}
+
+void IBuilding::ShowWorkDone(){
+  // local bid = tonumber(self:getBuildBid())
+  //if bid == BUILDID.MATERIAL_WORKSHOP then
+  //   self:hideAnimWorking()
+  //   self:showTopTipEffect()
+  //   self:showBrightParticle()
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP",
+  //     buildIndex = self.buildIndex
+  //   })
+  // elseif bid == BUILDID.FARM or bid == BUILDID.SAWMILL or bid == BUILDID.IRON_MINE or bid == BUILDID.STEEL or bid == BUILDID.CRYSTAL_MINE then
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP",
+  //     buildIndex = self.buildIndex
+  //   })
+  //   self:showTopTipEffect()
+  // elseif bid == BUILDID.STAR_BRAVE_STATUE then
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP",
+  //     buildIndex = self.buildIndex
+  //   })
+  // end
+}
+
+void IBuilding::setBuildingSprite() {
   BuildingSprite = Sprite::createWithSpriteFrameName(BuildingSpriteImage);
   BuildingSprite->setPosition(this->BuildingSpriteOffset.x, this->BuildingSpriteOffset.y);
   BuildingSprite->setName("buildImg");
   addChild(BuildingSprite);
 }
 
-void CityBuildingBase::setUpgradeSprite() {
+void IBuilding::setUpgradeSprite() {
   UpgradeSprite = Sprite::createWithSpriteFrameName("icon_main_build_lv.png");
   UpgradeSprite->setPosition(LvlBgOffset.x - 46, LvlBgOffset.y - 22);
   UpgradeSprite->setLocalZOrder(5);
   addChild(UpgradeSprite);
 }
 
-void CityBuildingBase::setBuildingLvBg() {
+void IBuilding::setBuildingLvBg() {
   BuildingLvBg = Sprite::createWithSpriteFrameName("icon_main_build_upgrade.png");
   BuildingLvBg->setPosition(LvlBgOffset.x, LvlBgOffset.y);
   BuildingLvBg->setLocalZOrder(5);
   addChild(BuildingLvBg);
 }
 
-void CityBuildingBase::setBuildingLvlText() {
+void IBuilding::setBuildingLvlText() {
   BuildingLvText = Label::createWithSystemFont("8", "Arial", 18);
   BuildingLvText->setSkewY(25);
   BuildingLvText->setAnchorPoint(Vec2(0.5, 0.5));
@@ -155,7 +257,7 @@ void CityBuildingBase::setBuildingLvlText() {
   addChild(BuildingLvText);
 }
 
-void CityBuildingBase::setBuildingSleepSprite() {
+void IBuilding::setBuildingSleepSprite() {
   int32 offsetX = 50;
   int32 offsetY = 40;
   int32 oriX = 44;
@@ -202,14 +304,14 @@ void CityBuildingBase::setBuildingSleepSprite() {
   SleepSprite->runAction(actionRepeat);
 }
 
-void CityBuildingBase::setBuildingIconMiracle() {
+void IBuilding::setBuildingIconMiracle() {
   auto SleepSprite2 = Sprite::createWithSpriteFrameName(BuildingIconMiracle);
   SleepSprite2->setPosition(80, 18);
   SleepSprite2->setLocalZOrder(3);
   addChild(SleepSprite2);
 }
 
-Vector<SpriteFrame*> CityBuildingBase::getAnimation(GString Frame, int32 start, int32 end) {
+Vector<SpriteFrame*> IBuilding::getAnimation(GString Frame, int32 start, int32 end) {
   auto spritecache = SpriteFrameCache::getInstance();
   Vector<SpriteFrame*> animFrames;
   char str[100];
@@ -220,10 +322,10 @@ Vector<SpriteFrame*> CityBuildingBase::getAnimation(GString Frame, int32 start, 
   return animFrames;
 }
 
-void CityBuildingBase::setBuildingParticle() {}
+void IBuilding::setBuildingParticle() {}
 
-void CityBuildingBase::setBuildingAnimation() {}
+void IBuilding::setBuildingAnimation() {}
 
-void CityBuildingBase::setBuildingUnitData(RCityBuildingUnit& _CBUD) { BuildingUnitData = _CBUD; }
+void IBuilding::setBuildingUnitData(RCityBuildingUnit& _CBUD) { BuildingUnitData = _CBUD; }
 
-void CityBuildingBase::setBuildingBtn() {}
+void IBuilding::setBuildingBtn() {}

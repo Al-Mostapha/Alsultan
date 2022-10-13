@@ -17,7 +17,7 @@ BuildingOFarm::BuildingOFarm() {
 bool BuildingOFarm::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -34,13 +34,13 @@ bool BuildingOFarm::init() {
 
 void BuildingOFarm::onEnter() {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 }
 
 void BuildingOFarm::setBuildingSprite() {
 
-	CityBuildingBase::setBuildingSprite();
+	IBuilding::setBuildingSprite();
 
 	auto _Sp1 = Sprite::createWithSpriteFrameName("nt_lvmiao_01.png"); // green grass
 	auto _Sp2 = Sprite::createWithSpriteFrameName("nt_maizi_01.png");  // befor yeild 

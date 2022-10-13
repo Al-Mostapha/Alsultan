@@ -4,6 +4,7 @@
 #include "ui/UIButton.h"
 #include "Scene/CityScene.h"
 #include "Include/IncludeBuildingBase.h"
+#include "Module/Building/Building.Event.h"
 #include <iostream>
 
 BuildingABarrack::BuildingABarrack()
@@ -21,7 +22,7 @@ void BuildingABarrack::initBuilingData()
 bool BuildingABarrack::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 
@@ -31,7 +32,7 @@ bool BuildingABarrack::init()
 
 void BuildingABarrack::onEnter()
 {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 	setBuildingSprite();
 	setBuildingLvBg();
 	setUpgradeSprite();
@@ -55,4 +56,14 @@ void BuildingABarrack::setBuildingBtn(){
 	menu->setPosition(Vec2(100, 100));
 	BuildingBtn->addChild(menu);
 	addChild(BuildingBtn, 1500);
+}
+
+void BuildingABarrack::ShowWorkDone(){
+  ShowTopTip();
+  ShowAnimWorking();
+  std::unique_ptr<ABuildingMsg> l_BuildingMsg = std::make_unique<ABuildingMsg>();
+  l_BuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_BuildingMsg->BuildingNode = nullptr;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_WORK_DONE_EFFECT", l_BuildingMsg.get());
 }

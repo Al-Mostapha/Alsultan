@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingIInstitute : public CityBuildingBase
+class BuildingIInstitute : public IBuilding
 {
 
 public:

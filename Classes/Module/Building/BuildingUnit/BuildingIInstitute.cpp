@@ -12,7 +12,7 @@ BuildingIInstitute::BuildingIInstitute()
 bool BuildingIInstitute::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -28,7 +28,7 @@ bool BuildingIInstitute::init()
 void BuildingIInstitute::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 /**

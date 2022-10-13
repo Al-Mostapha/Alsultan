@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingFArrowTower : public CityBuildingBase
+class BuildingFArrowTower : public IBuilding
 {
 	EBuildingViewModel getViewModel(int32 wallLvl);
 	void setTowerOffet();

@@ -2,18 +2,18 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingOCrystalMine : public CityBuildingBase
+class BuildingOCrystalMine : public IBuilding
 {
 
 public:
 	BuildingOCrystalMine();
 	bool init();
-	void onEnter();
+	void onEnter() override;
 	static void initBuilingData();
 	void setBuildingSprite();
 	void setBuildingAnimation();

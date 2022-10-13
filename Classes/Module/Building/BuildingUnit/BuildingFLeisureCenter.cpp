@@ -13,7 +13,7 @@ BuildingFLeisureCenter::BuildingFLeisureCenter()
 bool BuildingFLeisureCenter::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -30,7 +30,7 @@ bool BuildingFLeisureCenter::init()
 void BuildingFLeisureCenter::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 void BuildingFLeisureCenter::setBuildingParticle()

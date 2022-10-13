@@ -12,7 +12,7 @@ BuildingIWareHouse::BuildingIWareHouse()
 bool BuildingIWareHouse::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -27,7 +27,7 @@ bool BuildingIWareHouse::init()
 
 void BuildingIWareHouse::onEnter()
 {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 /**

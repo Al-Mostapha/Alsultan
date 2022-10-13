@@ -8,8 +8,8 @@ namespace GBase{
       static Display *l_Instance = new Display();
       return l_Instance;
     }
-    float cx;
-    float cy;
+    float cx; // CenterX
+    float cy; //CenterY
   };
   struct GLobalSettings{
     static bool ShowMsgTip;
@@ -41,14 +41,14 @@ namespace GBase{
     int32 CastleLvl14   = 14;
     int32 CastleLvl15   = 15;
     int32 CastleLvl16   = 16;
-    int32 CASTLE_LV19_LIMITED   = 19;
-    int32 CASTLE_LV22_LIMITED   = 22;
-    int32 CASTLE_LV25_LIMITED   = 25;
-    int32 CASTLE_LV26_LIMITED   = 26;
-    int32 CASTLE_LV27_LIMITED   = 27;
-    int32 CASTLE_LV30_LIMITED   = 30;
-    int32 CASTLE_LV40_LIMITED   = 40;
-    int32 CASTLE_LV50_LIMITED   = 50;
+    int32 CastleLvl19   = 19;
+    int32 CastleLvl22   = 22;
+    int32 CastleLvl25   = 25;
+    int32 CastleLvl26   = 26;
+    int32 CastleLvl27   = 27;
+    int32 CastleLvl30   = 30;
+    int32 CastleLvl40   = 40;
+    int32 CastleLvl50   = 50;
     int32 CASTLE_LV60_LIMITED   = 60;
     int32 CASTLE_LV80_LIMITED   = 80;
     int32 CASTLE_LV90_LIMITED   = 90;

@@ -15,7 +15,7 @@ BuildingFArrowTower::BuildingFArrowTower()
 
 bool BuildingFArrowTower::init()
 {
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 	// setBuildingIconMiracle();
 	return true;
@@ -24,7 +24,7 @@ bool BuildingFArrowTower::init()
 void BuildingFArrowTower::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 	auto _vm = getViewModel(
 		PlayerStatic::SultanPlayer

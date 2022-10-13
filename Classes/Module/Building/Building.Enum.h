@@ -47,7 +47,7 @@ enum class EBuilding  {
   EpicBattle = 30006
 };
 
-enum class EBuildingInteractivity {
+enum class EBuildingInteractivity { // inner / outter
   Decore = 0,
   Interactive = 1
 };
@@ -76,14 +76,22 @@ enum class EBuildingViewModel {
 
 
 enum class EBuildingState {
-  None  = 0,
-  Idle = 1,
-  Building = 2,
+  
+  None = 0, // Normal
+  Building = 1,
+  Upgrading = 2,
   Demolishing = 3,
-  Harvesting = 4,
-  Working = 5
+  Training = 4,
+  TrapBuilding = 5,
+  TREATING = 6,
+  Studying = 7,
+  LOCK = 8,
+  ARMORFORG = 9
 };
 
+enum class EHarvestState{
+  None = 0
+};
 
 enum class EBuildingActionTag{
   None = 0, 

@@ -14,7 +14,7 @@ BuildingFBraveStatue::BuildingFBraveStatue()
 bool BuildingFBraveStatue::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -36,7 +36,7 @@ void BuildingFBraveStatue::setBuildingLvBg()
 void BuildingFBraveStatue::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 	// UpgradeSprite->setTexture("frame_armor_quality_01.png");
 }

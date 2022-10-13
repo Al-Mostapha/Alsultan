@@ -8,8 +8,8 @@ class BuildingLib {
   static void buildCity();
   static void buildAt(const char* p_BuildingPlace);
   static RCityBuildingUnit& getBuildingAt(const char* p_BuildingPlace);
-  static class CityBuildingBase* getBuildingNodeAt(const char* p_BuildingPlace);
-  static class CityBuildingBase* getBuildingClassByType(EBuilding p_BuildingType);
+  static class IBuilding* getBuildingNodeAt(const char* p_BuildingPlace);
+  static class IBuilding* getBuildingClassByType(EBuilding p_BuildingType);
   static RCityBuilding& getCurentCityBuilding();
   static GVector<RCityBuildingUnit> getBuildingList(EBuilding p_BuildingType);
   static GVector<RCityBuildingUnit> getBuildingResList();

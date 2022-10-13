@@ -3,7 +3,7 @@
 #include "Building.Ctrl.h"
 #include "Building.Lib.h"
 #include "Building.Static.h"
-#include "CityBuildingBase.h"
+#include "IBuilding.h"
 #include "Module/CityResource/Resource.Ctrl.h"
 #include "Module/Item/Item.Ctrl.h"
 #include "Module/Player/Gold/Gold.Ctrl.h"

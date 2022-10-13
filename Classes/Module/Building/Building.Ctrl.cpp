@@ -25,7 +25,7 @@ uint32 BuildingCtrl::getBuildingCount(EBuilding p_BuildingType){
 }
 
 
-CityBuildingBase *BuildingCtrl::getBuildingCell(EBuilding p_BUildingType){
+IBuilding *BuildingCtrl::getBuildingCell(EBuilding p_BUildingType){
   return nullptr;
 }
 

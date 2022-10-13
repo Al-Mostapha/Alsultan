@@ -14,7 +14,7 @@ BuildingFMaterialWorkShop::BuildingFMaterialWorkShop()
 bool BuildingFMaterialWorkShop::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -52,7 +52,7 @@ void BuildingFMaterialWorkShop::setBuildingAnimation()
 void BuildingFMaterialWorkShop::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 void BuildingFMaterialWorkShop::setBuildingParticle()

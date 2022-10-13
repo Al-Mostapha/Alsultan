@@ -1,5 +1,5 @@
 #include "Base/Base.create.h"
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 ParticleSystemQuad *BaseCreate::createParticle(const std::string &Part, Vec2 Pos, Vec2 Scl, float rot)
 {
@@ -13,7 +13,7 @@ ParticleSystemQuad *BaseCreate::createParticle(const std::string &Part, Vec2 Pos
 }
 Sprite *BaseCreate::createAnimation(GAnimationParm AniPar)
 {
-  /*auto frames = CityBuildingBase::getAnimation(
+  /*auto frames = IBuilding::getAnimation(
       AniPar.AnimateData.Frame,
       AniPar.AnimateData.start,
       AniPar.AnimateData.end);

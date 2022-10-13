@@ -17,7 +17,7 @@ BuildingOIronMine::BuildingOIronMine() {
 bool BuildingOIronMine::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -34,13 +34,13 @@ bool BuildingOIronMine::init() {
 
 void BuildingOIronMine::onEnter() {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 }
 
 void BuildingOIronMine::setBuildingSprite() {
 
-	CityBuildingBase::setBuildingSprite();
+	IBuilding::setBuildingSprite();
 
 }
 

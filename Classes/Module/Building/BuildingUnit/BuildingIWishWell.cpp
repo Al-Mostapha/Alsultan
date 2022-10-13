@@ -16,7 +16,7 @@ BuildingIWishWell::BuildingIWishWell() {
 bool BuildingIWishWell::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -141,8 +141,8 @@ void BuildingIWishWell::setBuildingParticle() {
 }
 
 void BuildingIWishWell::onEnter() {
-	CityBuildingBase::onEnter();
-
+	IBuilding::onEnter();
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_WISHINGWELL_VIEW");
 }
 
 

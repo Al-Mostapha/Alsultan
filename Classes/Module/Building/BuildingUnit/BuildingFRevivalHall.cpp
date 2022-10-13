@@ -13,7 +13,7 @@ BuildingFRevivalHall::BuildingFRevivalHall()
 bool BuildingFRevivalHall::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -45,14 +45,14 @@ void BuildingFRevivalHall::setBuildingParticle()
 void BuildingFRevivalHall::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 
 void BuildingFRevivalHall::Clicked(Touch *p_Touch, Event *p_Event){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_3499"));
-    CityLib::Get()->ShowTintOnce(this, "buildImg");
+    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
     return ;
   }
 }

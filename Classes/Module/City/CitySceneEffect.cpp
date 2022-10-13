@@ -1,6 +1,6 @@
 #include "Module/City/CitySceneEffect.h"
 #include "Scene/CityScene.h"
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 #include "Module/City/City.Const.h"
 #include "Module/Building/Building.Module.h"
 #include "Module/Building/Building.Lib.h"

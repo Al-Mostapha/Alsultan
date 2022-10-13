@@ -17,7 +17,7 @@ BuildingOMilitaryTent::BuildingOMilitaryTent() {
 bool BuildingOMilitaryTent::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -34,13 +34,13 @@ bool BuildingOMilitaryTent::init() {
 
 void BuildingOMilitaryTent::onEnter() {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 }
 
 void BuildingOMilitaryTent::setBuildingSprite() {
 
-	CityBuildingBase::setBuildingSprite();
+	IBuilding::setBuildingSprite();
 
 }
 

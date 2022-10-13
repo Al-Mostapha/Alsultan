@@ -11,6 +11,7 @@
 #include "Module/CityResource/Resource.Type.h"
 #include "Module/Science/Science.Enum.h"
 #include "Module/Item/Item.Type.h"
+#include "Module/City/CityBuildingUtils/CityBuildingBtnAction.h"
 
 
 
@@ -328,3 +329,33 @@ struct RCityBuilding {
   }
 };
 
+struct RBuilding : public GStruct
+{
+	int idBuilding;
+	GString BuildingName;
+	GString BuildingIcon;
+	GString BuildingImg;
+	GString BuildingImg_byzt;
+	GString BuildingBrief;
+	GString UpgradeBrief;
+	GString Desc;
+	GString WarDesc;
+	GString StarDesc;
+	GString AliasName;
+	struct
+	{
+		int32 x, y;
+	} TipsOffset;
+
+	bool bIsInnerBuilding;
+	bool bCanBuild;
+	GArray<RCityBtnAction> ActionBtnList;
+	struct
+	{
+		int32 x, y;
+	} offset;
+	struct
+	{
+		int32 x, y;
+	} offsetByzantine;
+};

@@ -24,18 +24,18 @@
 #include "cocos2d.h"
 
 #include "ui/CocosGUI.h"
-
+USING_NS_CC;
 class CityScene : public cocos2d::Scene {
 public:
   static CityScene* Get();
-  cocos2d::Node* CityFloorLayer;
-  cocos2d::Node* CityBuildingLayer;
-  cocos2d::Node* containerView;
-  cocos2d::Node* batchNodeXiyiNpc;
-  cocos2d::Node* batchNodeNpc;
-  cocos2d::Node* batchNodeSoldierGuards;
-  cocos2d::Node* CityDecoreLayer;
-  cocos2d::Node* CityUiLayer;
+  Node* CityFloorLayer;
+  Node* CityBuildingLayer;
+  Node* containerView;
+  Node* batchNodeXiyiNpc;
+  Node* batchNodeNpc;
+  Node* batchNodeSoldierGuards;
+  Node* CityDecoreLayer;
+  Node* CityUiLayer;
   cocos2d::Map<std::string, Node*> bufferNodeArray;
   Node *TipBoxGuardSoldier;
   Node *ButtonMerchante;

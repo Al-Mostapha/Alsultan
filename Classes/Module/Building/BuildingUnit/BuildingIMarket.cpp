@@ -16,7 +16,7 @@ BuildingIMarket::BuildingIMarket() {
 bool BuildingIMarket::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -30,12 +30,28 @@ bool BuildingIMarket::init() {
 }
 
 void BuildingIMarket::onEnter() {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
-
-
-
+void BuildingIMarket::Clicked(Touch *p_Touch, Event *p_Event){
+  // if cityBuild:getBuildBid() == BUILDID.MARKET then
+  //   local gametop = gModuleMgr.getObject("gametop")
+  //   local guideCtrl = gametop.playertop_:getModule("guideCtrl")
+  //   local lordInfoCtrl = gametop.playertop_:getModule("lordInfoCtrl")
+  //   local conquestWarCtrl = gametop.playertop_:getModule("conquestWarCtrl")
+  //   local activityShowCtrl = gametop.playertop_:getModule("activityShowCtrl")
+  //   local worldMapDefine = include("worldMapDefine")
+  //   if worldMapDefine:isInWar() or conquestWarCtrl:isPlayerConquestWarMigration() and 0 < lordInfoCtrl:getSourceKid() or not activityShowCtrl:isActivityOpen(gActivityTimeActivityID.SALESROOM_ACTIVITY) then
+  //   else
+  //     local hasGuide = guideCtrl:isGuideNotCompleted(gGuideModule.AUCTION)
+  //     if hasGuide then
+  //       cityBuild:removeGuideEffect()
+  //       guideCtrl:updateGuideModule(gGuideModule.AUCTION)
+  //       gModuleMgr.sharedMgr("mildGuideManager"):clean()
+  //     end
+  //   end
+  // end
+}
 
 
 /**

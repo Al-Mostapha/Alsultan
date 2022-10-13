@@ -2,19 +2,22 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingIEmbassy : public CityBuildingBase
+class BuildingIEmbassy : public IBuilding
 {
+
 
 public:
 	BuildingIEmbassy();
 	bool init();
 	void onEnter();
 	static void initBuilingData();
+  void UpdateAllianceHelpList();
+  bool IsCanHelp(){return false;}
 	CREATE_FUNC(BuildingIEmbassy);
 
 	/**

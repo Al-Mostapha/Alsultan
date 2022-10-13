@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingAStable.h"
+#include "Module/Building/Building.Event.h"
 
 BuildingAStable::BuildingAStable()
 {
@@ -14,7 +15,7 @@ BuildingAStable::BuildingAStable()
 bool BuildingAStable::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -29,7 +30,7 @@ bool BuildingAStable::init()
 
 void BuildingAStable::onEnter()
 {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 void BuildingAStable::setBuildingAnimation()
@@ -67,4 +68,14 @@ void BuildingAStable::setBuildingIconMiracle()
 	SleepSprite2->setLocalZOrder(10);
 	SleepSprite2->setScale(0.3);
 	addChild(SleepSprite2);
+}
+
+void BuildingAStable::ShowWorkDone(){
+  ShowTopTip();
+  ShowAnimWorking();
+  std::unique_ptr<ABuildingMsg> l_BuildingMsg = std::make_unique<ABuildingMsg>();
+  l_BuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_BuildingMsg->BuildingNode = nullptr;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_WORK_DONE_EFFECT", l_BuildingMsg.get());
 }

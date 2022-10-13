@@ -15,7 +15,7 @@ BuildingFEpicBattle::BuildingFEpicBattle()
 bool BuildingFEpicBattle::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 	setBuildingSprite();
 	setBuildingSleepSprite();
@@ -81,7 +81,7 @@ bool BuildingFEpicBattle::init()
 void BuildingFEpicBattle::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 void BuildingFEpicBattle::Clicked(Touch *p_Touch, Event *p_Event){

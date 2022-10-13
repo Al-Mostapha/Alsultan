@@ -2,18 +2,18 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingIWishWell : public CityBuildingBase
+class BuildingIWishWell : public IBuilding
 {
 
 public:
 	BuildingIWishWell();
 	bool init();
-	void onEnter();
+	void onEnter() override ;
 	void setBuildingParticle();
 	static void initBuilingData();
 	CREATE_FUNC(BuildingIWishWell);

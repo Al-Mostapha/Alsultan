@@ -18,7 +18,7 @@ BuildingIHallOfWar::BuildingIHallOfWar() {
 bool BuildingIHallOfWar::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -33,8 +33,8 @@ bool BuildingIHallOfWar::init() {
 
 void BuildingIHallOfWar::onEnter() {
 
-	CityBuildingBase::onEnter();
-
+	IBuilding::onEnter();
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_HALLOFWAR_VIEW");
 }
 
 

@@ -14,7 +14,7 @@ BuildingFTrainHall::BuildingFTrainHall()
 bool BuildingFTrainHall::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -53,7 +53,7 @@ void BuildingFTrainHall::setBuildingParticle()
 void BuildingFTrainHall::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 

@@ -14,7 +14,7 @@ BuildingNone::BuildingNone()
 bool BuildingNone::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	return true;
@@ -22,7 +22,7 @@ bool BuildingNone::init()
 
 void BuildingNone::onEnter()
 {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 	cocos2d::log("Building ------------------------ Pos Place %d", static_cast<int32>(this->BuildingUnitData.eBuildingPos));
 	if (BuildingUnitData.eBuildingPos == EBuildingPos::CBPlace_Inner)

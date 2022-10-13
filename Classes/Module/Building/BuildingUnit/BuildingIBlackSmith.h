@@ -2,19 +2,20 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingIBlackSmith : public CityBuildingBase
+class BuildingIBlackSmith : public IBuilding
 {
 
 public:
 	BuildingIBlackSmith();
 	bool init();
-	void onEnter();
+	void onEnter() override;
 	void setBuildingParticle();
+  void ShowWorkDone() override;
 	static void initBuilingData();
   void Clicked(Touch *p_Touch, Event *p_Event) override;
 	CREATE_FUNC(BuildingIBlackSmith);

@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingFElitePalace.h"
+#include "Module/Building/Building.Event.h"
 
 BuildingFElitePalace::BuildingFElitePalace()
 {
@@ -14,7 +15,7 @@ BuildingFElitePalace::BuildingFElitePalace()
 bool BuildingFElitePalace::init()
 {
 
-  if (!CityBuildingBase::init())
+  if (!IBuilding::init())
     return false;
   setBuildingSprite();
   setBuildingLvBg();
@@ -28,8 +29,8 @@ bool BuildingFElitePalace::init()
 
 void BuildingFElitePalace::onEnter()
 {
-
-  CityBuildingBase::onEnter();
+  IBuilding::onEnter();
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_ELITE_PALACE_VIEW");
 }
 
 void BuildingFElitePalace::showWorkingEffect()
@@ -79,4 +80,14 @@ void BuildingFElitePalace::Clicked(Touch *p_Touch, Event *p_Event){
     CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
     return;
   }
+}
+
+void BuildingFElitePalace::ShowWorkDone(){
+  ShowTopTip();
+  ShowAnimWorking();
+  std::unique_ptr<ABuildingMsg> l_BuildingMsg = std::make_unique<ABuildingMsg>();
+  l_BuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_BuildingMsg->BuildingNode = nullptr;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_WORK_DONE_EFFECT", l_BuildingMsg.get());
 }

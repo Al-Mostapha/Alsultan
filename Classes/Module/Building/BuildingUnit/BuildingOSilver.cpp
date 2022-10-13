@@ -14,7 +14,7 @@ BuildingOSilver::BuildingOSilver()
 bool BuildingOSilver::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -32,13 +32,13 @@ bool BuildingOSilver::init()
 void BuildingOSilver::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 void BuildingOSilver::setBuildingSprite()
 {
 
-	CityBuildingBase::setBuildingSprite();
+	IBuilding::setBuildingSprite();
 }
 
 void BuildingOSilver::setBuildingAnimation(){};

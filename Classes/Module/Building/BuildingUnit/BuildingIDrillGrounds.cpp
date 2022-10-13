@@ -17,7 +17,7 @@ BuildingIDrillGrounds::BuildingIDrillGrounds() {
 bool BuildingIDrillGrounds::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -32,12 +32,26 @@ bool BuildingIDrillGrounds::init() {
 
 void BuildingIDrillGrounds::onEnter() {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 }
 
-
-
+void BuildingIDrillGrounds::Clicked(Touch *p_Touch, Event *p_Event){
+  // if cityBuild:getBuildBid() == BUILDID.DRILL_GROUDS then
+  //   local gametop = gModuleMgr.getObject("gametop")
+  //   local guideCtrl = gametop.playertop_:getModule("guideCtrl")
+  //   local cityCtrl = gametop.playertop_:getModule("cityCtrl")
+  //   local cLevel = cityCtrl:getBuildMaxLv(BUILDID.DRILL_GROUDS)
+  //   local lordInfoCtrl = gametop.playertop_:getModule("lordInfoCtrl")
+  //   local activityShowCtrl = gametop.playertop_:getModule("activityShowCtrl")
+  //   local isOpen = activityShowCtrl:isActivityOpen(gActivityTimeActivityID.ARENA_ACTIVITY)
+  //   local hasGuide = guideCtrl:isGuideNotCompleted(gGuideModule.ARENA)
+  //   if hasGuide and cLevel >= CASTLE_LV16_LIMITED and isOpen and 0 >= lordInfoCtrl:getSourceKid() then
+  //     cityBuild:removeGuideEffect()
+  //     guideCtrl:updateGuideModule(gGuideModule.ARENA)
+  //   end
+  // end
+}
 
 
 

@@ -14,7 +14,7 @@ BuildingFPrison::BuildingFPrison()
 bool BuildingFPrison::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -80,7 +80,7 @@ void BuildingFPrison::setBuildingParticle()
 
 void BuildingFPrison::onEnter()
 {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 void BuildingFPrison::Clicked(Touch *p_Touch, Event *p_Event){

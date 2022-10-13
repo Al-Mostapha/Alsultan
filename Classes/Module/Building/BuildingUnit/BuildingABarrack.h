@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingABarrack : public CityBuildingBase
+class BuildingABarrack : public IBuilding
 {
 
 public:
@@ -15,6 +15,7 @@ public:
 	bool init();
 	void onEnter();
 	void setBuildingBtn() override;
+  void ShowWorkDone() override;
 	static void initBuilingData();
 
 	CREATE_FUNC(BuildingABarrack);

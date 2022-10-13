@@ -16,7 +16,7 @@ BuildingIEmbassy::BuildingIEmbassy() {
 bool BuildingIEmbassy::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -30,10 +30,18 @@ bool BuildingIEmbassy::init() {
 }
 
 void BuildingIEmbassy::onEnter() {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
+  UpdateAllianceHelpList();
 }
 
-
+void BuildingIEmbassy::UpdateAllianceHelpList(){
+  if(GetState() == EBuildingState::None){
+    if(IsCanHelp())
+      ShowTopTip();
+    else 
+      HideTopTip();
+  }
+}
 
 
 

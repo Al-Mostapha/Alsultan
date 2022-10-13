@@ -2,18 +2,18 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingOHosptial : public CityBuildingBase
+class BuildingOHosptial : public IBuilding
 {
 
 public:
 	BuildingOHosptial();
 	bool init();
-	void onEnter();
+	void onEnter() override;
 
 	void setBuildingSprite();
 	void setBuildingAnimation();

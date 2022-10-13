@@ -17,7 +17,7 @@ BuildingOSawmill::BuildingOSawmill() {
 bool BuildingOSawmill::init() {
 
 	
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -34,13 +34,13 @@ bool BuildingOSawmill::init() {
 
 void BuildingOSawmill::onEnter() {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 
 }
 
 void BuildingOSawmill::setBuildingSprite() {
 
-	CityBuildingBase::setBuildingSprite();
+	IBuilding::setBuildingSprite();
 
 	auto _Sp1 = Sprite::createWithSpriteFrameName("fmc_tree_01.png"); // green grass
 	auto _Sp2 = Sprite::createWithSpriteFrameName("fmc_tree_02.png");  // befor yeild 

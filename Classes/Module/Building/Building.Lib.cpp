@@ -2,7 +2,7 @@
 #include "Building.Static.h"
 #include "Include/IncludeBuildingBase.h"
 #include "Include/IncludeCityBuilding.h"
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 #include "Module/Player/Player.Static.h"
 
 void BuildingLib::buildCity() {}
@@ -13,9 +13,9 @@ RCityBuildingUnit& BuildingLib::getBuildingAt(const char* BuildingPlace) {
   RCityBuildingUnit t("", "", EBuildingPos::CBPlace_None);
   return t;
 }
-CityBuildingBase* BuildingLib::getBuildingNodeAt(const char* BuildingPlace) { return nullptr; }
+IBuilding* BuildingLib::getBuildingNodeAt(const char* BuildingPlace) { return nullptr; }
 
-CityBuildingBase* BuildingLib::getBuildingClassByType(EBuilding buildingType) {
+IBuilding* BuildingLib::getBuildingClassByType(EBuilding buildingType) {
   switch (buildingType) {
     case EBuilding::None:
       return BuildingNone::create();

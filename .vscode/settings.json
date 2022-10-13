@@ -1,6 +1,7 @@
 {
   "compile-hero.disable-compile-files-on-did-save-code": true,
   "files.associations": {
+    "*.csd": "xml",
     "xstring": "cpp",
     "ios": "cpp",
     "string": "cpp",
@@ -52,7 +53,8 @@
     "ctime": "cpp",
     "iterator": "cpp",
     "future": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "functional": "cpp"
   },
   "intelephense.environment.includePaths": [
     "${workspaceRoot}"

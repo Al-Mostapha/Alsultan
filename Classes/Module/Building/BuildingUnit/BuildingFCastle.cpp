@@ -14,7 +14,7 @@ BuildingFCastle::BuildingFCastle()
 bool BuildingFCastle::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();

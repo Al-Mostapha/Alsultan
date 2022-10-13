@@ -13,7 +13,7 @@ BuildingFPetCenter::BuildingFPetCenter()
 bool BuildingFPetCenter::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -34,7 +34,7 @@ bool BuildingFPetCenter::init()
 void BuildingFPetCenter::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 void BuildingFPetCenter::Clicked(Touch *p_Touch, Event *p_Event){

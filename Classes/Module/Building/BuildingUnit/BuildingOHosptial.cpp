@@ -14,7 +14,7 @@ BuildingOHosptial::BuildingOHosptial()
 bool BuildingOHosptial::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -33,13 +33,14 @@ bool BuildingOHosptial::init()
 void BuildingOHosptial::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_HOSPTIAL_VIEW");
 }
 
 void BuildingOHosptial::setBuildingSprite()
 {
 
-	CityBuildingBase::setBuildingSprite();
+	IBuilding::setBuildingSprite();
 }
 
 void BuildingOHosptial::setBuildingAnimation(){};

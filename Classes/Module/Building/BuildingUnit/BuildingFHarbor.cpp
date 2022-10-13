@@ -11,7 +11,7 @@ BuildingFHarbor::BuildingFHarbor()
 bool BuildingFHarbor::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 	setBuildingSprite();
 	// setBuildingLvBg();
@@ -25,5 +25,5 @@ bool BuildingFHarbor::init()
 
 void BuildingFHarbor::onEnter()
 {
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }

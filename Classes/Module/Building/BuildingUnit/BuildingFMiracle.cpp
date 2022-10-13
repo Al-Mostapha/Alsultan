@@ -13,7 +13,7 @@ BuildingFMiracle::BuildingFMiracle()
 
 bool BuildingFMiracle::init()
 {
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 	setBuildingSprite();
 	setBuildingLvBg();
@@ -27,5 +27,5 @@ bool BuildingFMiracle::init()
 void BuildingFMiracle::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }

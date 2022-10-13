@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include "Module/Building/CityBuildingBase.h"
+#include "Module/Building/IBuilding.h"
 
 /**
  *
  */
-class BuildingARange : public CityBuildingBase
+class BuildingARange : public IBuilding
 {
 
 public:
@@ -16,6 +16,7 @@ public:
 	void onEnter();
 	void setBuildingAnimation();
 	void setBuildingIconMiracle();
+  void ShowWorkDone() override;
 	static void initBuilingData();
 	CREATE_FUNC(BuildingARange);
 

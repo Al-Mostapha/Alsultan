@@ -14,7 +14,7 @@ BuildingOCrystalMine::BuildingOCrystalMine()
 bool BuildingOCrystalMine::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -33,13 +33,14 @@ bool BuildingOCrystalMine::init()
 void BuildingOCrystalMine::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITY_UPDATE_CRYSTAL_MINE");
 }
 
 void BuildingOCrystalMine::setBuildingSprite()
 {
 
-	CityBuildingBase::setBuildingSprite();
+	IBuilding::setBuildingSprite();
 }
 
 void BuildingOCrystalMine::setBuildingAnimation(){};

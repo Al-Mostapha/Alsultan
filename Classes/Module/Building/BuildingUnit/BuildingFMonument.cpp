@@ -15,7 +15,7 @@ BuildingFMonument::BuildingFMonument()
 bool BuildingFMonument::init()
 {
 
-	if (!CityBuildingBase::init())
+	if (!IBuilding::init())
 		return false;
 
 	setBuildingSprite();
@@ -69,7 +69,7 @@ void BuildingFMonument::setBuildingParticle()
 void BuildingFMonument::onEnter()
 {
 
-	CityBuildingBase::onEnter();
+	IBuilding::onEnter();
 }
 
 void BuildingFMonument::Clicked(Touch *p_Touch, Event *p_Event){

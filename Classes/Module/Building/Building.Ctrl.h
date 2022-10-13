@@ -15,7 +15,7 @@ public:
   GPair<bool, GVector<struct RCostBuildingEnough>> IsEnough(const GVector<struct RCostBuilding>& p_CostBuilding);
   uint32 getBuildingMaxLvl(EBuilding p_BuildingType);
   uint32 getBuildingCount(EBuilding p_BuildingType);
-  class CityBuildingBase *getBuildingCell(EBuilding p_BuildingType);
+  class IBuilding *getBuildingCell(EBuilding p_BuildingType);
   GVector<RCostBuilding> checkBuildingPreCond(EBuilding p_BuildingType, uint32 p_CurrentLvl);
   RCostResourceEnough checkBuildingCostRes(EBuilding p_BuildingType, uint32 p_CurrentLvl);
   RBuildingLvlSpecs getReducedLvlSpec(EBuilding p_BuildingType, uint32 p_Lvl);
