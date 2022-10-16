@@ -74,3 +74,8 @@ void BuildingFArrowTower::Clicked(Touch *p_Touch, Event *p_Event){
     return;
   }
 }
+
+void BuildingFArrowTower::UpdateLvl(){
+  UpdateIsLock();
+  IBuilding::UpdateLvl();
+}

@@ -14,7 +14,7 @@ public:
 	BuildingAChariotPlant();
 	bool init();
 	void onEnter();
-	void setBuildingAnimation();
+	void ShowAnimWorking();
 	void setBuildingIconMiracle();
   void ShowWorkDone() override;
 	static void initBuilingData();

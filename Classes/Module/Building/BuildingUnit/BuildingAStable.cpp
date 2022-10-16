@@ -24,7 +24,7 @@ bool BuildingAStable::init()
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	setBuildingIconMiracle();
-	setBuildingAnimation();
+	ShowAnimWorking();
 	return true;
 }
 
@@ -33,7 +33,7 @@ void BuildingAStable::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingAStable::setBuildingAnimation()
+void BuildingAStable::ShowAnimWorking()
 {
 
 	auto frames = getAnimation("shibing2_%02d.png", 1, 8);

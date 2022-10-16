@@ -24,7 +24,7 @@ bool BuildingAChariotPlant::init()
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	setBuildingIconMiracle();
-	setBuildingAnimation();
+	ShowAnimWorking();
 
 	return true;
 }
@@ -34,7 +34,7 @@ void BuildingAChariotPlant::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingAChariotPlant::setBuildingAnimation()
+void BuildingAChariotPlant::ShowAnimWorking()
 {
 
 	auto frames = getAnimation("shibing1_%02d.png", 1, 8);

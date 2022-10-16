@@ -26,9 +26,9 @@ bool BuildingOMilitaryTent::init() {
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	//setBuildingIconMiracle();
-	setBuildingAnimation();
-	BuildingLvBg->setLocalZOrder(6);
-	BuildingLvText->setLocalZOrder(8);
+	ShowAnimWorking();
+	n_BuildingLvBg->setLocalZOrder(6);
+	n_BuildingLvText->setLocalZOrder(8);
 	return true;
 }
 
@@ -45,4 +45,4 @@ void BuildingOMilitaryTent::setBuildingSprite() {
 }
 
 
-void BuildingOMilitaryTent::setBuildingAnimation() {};
+void BuildingOMilitaryTent::ShowAnimWorking() {};

@@ -22,13 +22,13 @@ bool BuildingFTrainHall::init()
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	setBuildingParticle();
+	ShowNormalParticle();
 	// setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingFTrainHall::setBuildingParticle()
+void BuildingFTrainHall::ShowNormalParticle()
 {
 	auto Part1 = ParticleSystemQuad::create("Particle/et_diaoxiang_02.plist");
 	Part1->setPosition(0, 0);

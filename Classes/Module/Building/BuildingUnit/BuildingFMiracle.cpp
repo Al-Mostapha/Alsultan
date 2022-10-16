@@ -29,3 +29,14 @@ void BuildingFMiracle::onEnter()
 
 	IBuilding::onEnter();
 }
+
+void BuildingFMiracle::ShowBuildLvl(){
+  if(!GetStarLvl())
+    return;
+  IBuilding::ShowBuildLvl();
+}
+
+void BuildingFMiracle::UpdateLvl(){
+  ShowBuildLvl();
+  IBuilding::UpdateLvl();
+}

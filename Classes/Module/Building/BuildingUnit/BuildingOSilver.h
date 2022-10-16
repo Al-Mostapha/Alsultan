@@ -14,9 +14,9 @@ public:
 	BuildingOSilver();
 	bool init();
 	void onEnter();
-
+  void ShowWorkDone() override;
 	void setBuildingSprite();
-	void setBuildingAnimation();
+	void ShowAnimWorking();
 	static void initBuilingData();
 	CREATE_FUNC(BuildingOSilver);
 

@@ -14,8 +14,10 @@ public:
 	BuildingIBlackSmith();
 	bool init();
 	void onEnter() override;
-	void setBuildingParticle();
+	void ShowNormalParticle() override;
+  void ShowAnimWorking(bool p_ShowGlow = false) override;
   void ShowWorkDone() override;
+  void HideWorkDone() override;
 	static void initBuilingData();
   void Clicked(Touch *p_Touch, Event *p_Event) override;
 	CREATE_FUNC(BuildingIBlackSmith);

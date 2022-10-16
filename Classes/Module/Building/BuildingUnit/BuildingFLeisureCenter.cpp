@@ -22,7 +22,7 @@ bool BuildingFLeisureCenter::init()
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	// setBuildingIconMiracle();
-	setBuildingParticle();
+	ShowNormalParticle();
 
 	return true;
 }
@@ -33,7 +33,7 @@ void BuildingFLeisureCenter::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingFLeisureCenter::setBuildingParticle()
+void BuildingFLeisureCenter::ShowNormalParticle()
 {
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_pyramid_building_01.plist");

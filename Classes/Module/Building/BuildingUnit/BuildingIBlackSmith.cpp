@@ -27,7 +27,7 @@ bool BuildingIBlackSmith::init() {
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	//setBuildingIconMiracle();
-	setBuildingParticle();
+	ShowNormalParticle();
 
 	return true;
 }
@@ -38,7 +38,7 @@ void BuildingIBlackSmith::onEnter() {
 }
 
 
-void BuildingIBlackSmith::setBuildingParticle() {
+void BuildingIBlackSmith::ShowNormalParticle() {
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_tiejiangpuyan_01.plist");
 	Part1->setPosition(-20.0f, 130.0f);
@@ -84,6 +84,10 @@ void BuildingIBlackSmith::Clicked(Touch *p_Touch, Event *p_Event){
   }
 }
 
+void BuildingIBlackSmith::ShowAnimWorking(bool p_ShowGlow) {
+  IBuilding::ShowAnimWorking(p_ShowGlow);
+  ShowNormalParticle();
+}
 
 void BuildingIBlackSmith::ShowWorkDone(){
   
@@ -99,6 +103,9 @@ void BuildingIBlackSmith::ShowWorkDone(){
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());
 }
 
+void BuildingIBlackSmith::HideWorkDone(){
+  HideBrightParticle();
+}
 /**
 void BuildingClassBarrack::setBarrackInfantry() {}
 

@@ -8,4 +8,7 @@ struct ITask{
   GTime TimeEnd;
   GTime TimeStart;
   GTime TimeEndOrginal;
+  int32 GetRemainTime(){
+    return TimeEnd - GDateTime::Now();
+  }
 };

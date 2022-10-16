@@ -2,7 +2,7 @@
 
 
 #include "BuildingOFarm.h"
-
+#include "Module/Building/Building.Event.h"
 
 BuildingOFarm::BuildingOFarm() {
 
@@ -26,9 +26,9 @@ bool BuildingOFarm::init() {
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	//setBuildingIconMiracle();
-	setBuildingAnimation();
-	BuildingLvBg->setLocalZOrder(6);
-	BuildingLvText->setLocalZOrder(8);
+	ShowAnimWorking();
+	n_BuildingLvBg->setLocalZOrder(6);
+	n_BuildingLvText->setLocalZOrder(8);
 	return true;
 }
 
@@ -81,7 +81,7 @@ void BuildingOFarm::setBuildingSprite() {
 }
 
 
-void BuildingOFarm::setBuildingAnimation() {
+void BuildingOFarm::ShowAnimWorking() {
 
 
 	auto frames = getAnimation("nongmin_%02d.png", 1, 8);
@@ -93,6 +93,13 @@ void BuildingOFarm::setBuildingAnimation() {
 	sprite->runAction(RepeatForever::create(Animate::create(animation)));
 	addChild(sprite);
 
+}
 
+void BuildingOFarm::ShowWorkDone(){
+  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode  = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());
+  ShowTopTip();
 }
 

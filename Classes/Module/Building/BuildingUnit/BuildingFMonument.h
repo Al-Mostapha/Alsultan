@@ -14,8 +14,8 @@ public:
 	BuildingFMonument();
 	bool init();
 	void onEnter();
-	void setBuildingAnimation() override;
-	void setBuildingParticle() override;
+	void ShowAnimWorking(bool p_ShowGlow = false) override;
+	void ShowNormalParticle() override;
   void Clicked(Touch *p_Touch, Event *p_Event) override;
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFMonument);

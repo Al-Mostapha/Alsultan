@@ -15,6 +15,7 @@ public:
   bool init();
   void onEnter();
   void setBuildingSprite();
+  void UpdateLvl() override;
 	static void initBuilingData();
   CREATE_FUNC(BuildingFCastle);
 

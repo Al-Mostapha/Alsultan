@@ -2,11 +2,14 @@
 #include "cocos2d.h"
 #include "Include/IncludeBase.h"
 #include "Include/IncludeBuildingBase.h"
+#include "Include/IncludeConfig.h"
 #include "Module/Building/Building.Const.h"
 #include "Module/City/CityBuildingUtils/CityBuildingBtnAction.h"
 #include "ui/UILayout.h"
 #include "Module/Translation/Translate.h"
 #include "Module/City/City.Lib.h"
+#include "Module/City/City.Ctrl.h"
+#include "State/Building.State.h"
 
 USING_NS_CC;
 using namespace ui;
@@ -18,9 +21,9 @@ public:
 	CREATE_FUNC(IBuilding);
 
 	Sprite *BuildingSprite;
-	Sprite *UpgradeSprite;
-	Label  *BuildingLvText;
-	Sprite *BuildingLvBg;
+	Sprite *n_UpgradeSprite;
+	Label  *n_BuildingLvText;
+	Sprite *n_BuildingLvBg;
 	Layout *BuildingBtn;
 	
 	RCityBuildingUnit BuildingUnitData;
@@ -31,6 +34,10 @@ public:
 	Vec2    BuildingSpriteOffset;
 
   Node *m_CurrentSelectTip = nullptr;
+  Node *n_BuildStarLight = nullptr;
+  Sprite *n_SpStarLight = nullptr;
+  Node *n_BuildGlowWar = nullptr;
+
   bool m_TouchIsMoveOnBuild = false;
   bool m_IsBuildBtnEnabled = true;
   bool m_SingleIsMoved = false;
@@ -49,11 +56,13 @@ public:
   bool m_QueueDirty = false;
   Vec2 m_PosEtUpgradeOffset = Vec2(0, 0);
   bool m_IsTraining = false;
-  bool m_IsHowWarLv = false;
-  
-
+  bool m_IsSHowWarLv = false;
+  bool m_IsCanUpgrade = false;
+  bool m_IsCanUpgradeStar = false;
+  RBuildingTask *m_BuildingTask = nullptr;
+  GHashMap<EBuildingState, IState*> m_States;
 	virtual bool init() override;
-  virtual void InitStateMachine(){}
+  virtual void InitStateMachine();
 	virtual void onEnter();
   virtual void OnMessageListener(); // InitEvents
 	virtual void setBuildingSprite();
@@ -62,8 +71,9 @@ public:
 	virtual void setBuildingLvlText();
 	virtual void setBuildingSleepSprite();
 	virtual void setBuildingIconMiracle();
-	virtual void setBuildingParticle();
-	virtual void setBuildingAnimation();
+	virtual void ShowNormalParticle();
+	virtual void HideNormalParticle();
+	virtual void ShowAnimWorking(bool p_ShowGlow = false);
 	virtual void setBuildingBtn();
 	void setBuildingUnitData(RCityBuildingUnit &_CBUD);
   virtual void Clicked(Touch* p_Touch, Event* p_Event);
@@ -71,10 +81,14 @@ public:
   virtual void InitTouchEvents();
   virtual void RemoveBuildingTip();
   virtual void CancelTint();
+  virtual Node *GetBuildingCell(){ return nullptr;}
+  virtual EBuildingIndex GetBuildingIndex(){ return EBuildingIndex::None;}
+
   virtual bool IsLocked(){ return false;}
   virtual bool IsLockVisible(){ return false;}
   virtual void ShowTintOnce(){}
   virtual bool IsCanSpeedUpStrongFree(){ return false; }
+  virtual bool IsTraining(){ return m_IsTraining; }
   virtual bool IsCanSpeedUpFree(){ return false; }
   virtual bool IsCanSpeedUpResearchFree(){ return false; }
   virtual bool IsNeedRequestHelp(){ return false; }
@@ -94,31 +108,75 @@ public:
   virtual void SMsgUpdateBuildCanUpgrade(EventCustom *p_Event);
   virtual void SMsgTrainArmyImmediatelyBack(EventCustom *p_Event);
   virtual void SMsgBuildTrainFailed(EventCustom *p_Event);
-  virtual void UpdateStarLvl(EventCustom *p_Event);
 
-  virtual void UpdateStarLvl(){}
-  virtual void UpdateLvl(){}
-  virtual void UpdateIsCanUpgrade(){}
+  EBuilding GetBuildingId(){ return BuildingUnitData.eBuildingType; }
+  virtual void SetIsCanUpgrade(bool p_IsCan = false);
+  virtual void SetIsCanUpgradeStar(bool p_IsCan = false){}
+
+  virtual void SetQueueDirty(bool p_IsCan = false){}
+  
+ 
+  virtual void UpdateIsCanUpgrade();
+  virtual void UpdateIsCanUpgradeStar();
   virtual void StartTimer(){}
   virtual void EndTimer(){}
   virtual void UpdateTimer(){}
   virtual void ShowTopTip();
   virtual void HideTopTip();
-  virtual bool IsOpen(){ return false; }
-  virtual void ShowAnimBuildWorker(){ }
+  virtual void UpdateTopTip();
+  virtual bool IsOpening(){ return false; }
+
+  virtual void ShowAnimBuildWorker();
+  virtual void HideAnimBuildWorker();
+
   virtual void ShowBuildLock(){ }
-  virtual void ShowBuildLvl(){ }
+
+  virtual uint32 GetBuildingLvl(){ return 0;}
+  virtual uint32 GetStarLvl(){ return 0;}
+  virtual void ShowBuildLvl();
+  virtual void UpdateLvl();
+  virtual void HideBuildLvl();
+  virtual void UpdateStarLvl(){}
+  virtual void SetTextLvl(const GString &p_Lvl){}
+  virtual void UpdateTextLvl();
+  virtual void UpdateLvlPos(){}
+  virtual void UpdateStarLvl(EventCustom *p_Event);
+  virtual void UpdateStarLvlBgLight();
+  virtual void UpdateStarLvlPos(){}
+  virtual void RefreshBuildStarState(void * p_Temp);
+
+  virtual void UpdateIsLock(){}
+  virtual void UpdateViewModel(){}
+
   virtual void ShowWorkDone();
-  virtual void ShowAnimWorking(){}
-  virtual void HideAnimWorking(){}
-  virtual void ShowGlow(){}
+  virtual void HideWorkDone();
+  virtual void HideAnimWorking();
+  virtual void ShowAnimBoost();
+  virtual void HideAnimBoost();
+
+  virtual void HideAnimBuildWorker(){}
+  virtual void ShowGlow();
+  virtual void HideGlow();
+
+  virtual void ShowCoolingPanel();
+  virtual void HideCoolingPanel();
+
+  virtual void ShowEffectUpgrade(){}
+  virtual void HideEffectUpgrade(){}
+
+  virtual void ShowWorkingEffect(){}
+  virtual void HideWorkingEffect(){}
+
   virtual void ShowBrightParticle(){}
   virtual void HideBrightParticle(){}
   virtual void ShowZAnimation(){}
   virtual void HideZAnimation(){}
-  virtual void ShowGlow(){}
   virtual void OnAfterInitWithBuildCell(){ } //PostInit
+  virtual void SetHarvestState(EHarvestState p_HarvestState, bool p_IsAnim = false){ } 
+  virtual void SetBlockState(EBuildingState p_BuildingState){ m_blockState = p_BuildingState; } 
 
+  virtual void UpdateViewAfterBuild() {};
+  virtual void ChangeState();
 private:
   virtual bool IgnoreClickEvent(Touch* p_T, Event* p_E) const;
 };

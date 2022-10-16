@@ -85,8 +85,11 @@ enum class EBuildingState {
   TrapBuilding = 5,
   TREATING = 6,
   Studying = 7,
-  LOCK = 8,
-  ARMORFORG = 9
+  Lock = 8,
+  ARMORFORG = 9,
+  Idle,
+  Working, 
+  Harvesting
 };
 
 enum class EHarvestState{

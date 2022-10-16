@@ -15,6 +15,8 @@ public:
 	void setBuildingLvBg();
 	bool init();
 	void onEnter();
+  void ShowWorkDone() override;
+  void ShowBuildLvl() override;
   void Clicked(Touch *p_Touch, Event *p_Event) override;
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFBraveStatue);

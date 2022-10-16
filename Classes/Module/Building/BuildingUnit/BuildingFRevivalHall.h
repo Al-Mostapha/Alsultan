@@ -14,7 +14,7 @@ public:
 	BuildingFRevivalHall();
 	bool init();
 	void onEnter();
-	void setBuildingParticle();
+	void ShowNormalParticle();
 	static void initBuilingData();
   void Clicked(Touch *p_Touch, Event *p_Event);
 	CREATE_FUNC(BuildingFRevivalHall);

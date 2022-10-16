@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseTypeDef.h"
 #include "Include/IncludeEngine.h"
+#include "Base/Containers/Pair.h"
 #undef PlaySound
 
 enum class EBuildingInteractivity;
@@ -33,6 +34,8 @@ namespace GBase{
   void DSetTextWidthHeight(ui::Text *p_Label, Size p_Size);
   void DSetTextWidthHeight(Label *p_Label, Size p_Size);
   void DShowMsgTip(const GString &p_Message, const GString &p_Icon = "");
+  GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
+
 };
 
 

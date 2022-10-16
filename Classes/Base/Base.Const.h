@@ -55,7 +55,7 @@ namespace GBase{
     int32 CASTLE_MAXLV_NOWAR    = 30;
     int32 CASTLE_MINLV_WAR      = 31;
     int32 CASTLE_MAXLV_WAR      = 80;
-    int32 CASTLE_MIN_WARLV                = 1;
+    int32 CastleMinWarLvl                = 1;
     int32 CASTLE_MAX_WARLV                = 5;
     int32 CASTLE_NEX_MAX_WARLV            = 10;
     int32 CASTLE_MAXLV_NEW_WAR            = 130;
@@ -208,6 +208,6 @@ namespace GBase{
     bool IS_COMPOUND_ORANGE_MATERIALS = false;
     bool IS_BLOCK_USERS_CHAT = true;
     bool IS_BIG_DINNER_POP_REWARD = true;
-
+    GString InvalidName = "";
   };
 };

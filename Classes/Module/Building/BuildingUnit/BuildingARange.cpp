@@ -23,7 +23,7 @@ bool BuildingARange::init()
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	setBuildingIconMiracle();
-	setBuildingAnimation();
+	ShowAnimWorking();
 	return true;
 }
 
@@ -32,7 +32,7 @@ void BuildingARange::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingARange::setBuildingAnimation()
+void BuildingARange::ShowAnimWorking()
 {
 
 	auto frames = getAnimation("shibing3_%02d.png", 1, 8);

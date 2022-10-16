@@ -14,8 +14,10 @@ public:
 	BuildingFMaterialWorkShop();
 	bool init();
 	void onEnter();
-	void setBuildingParticle();
-	void setBuildingAnimation();
+	void ShowNormalParticle();
+	void ShowAnimWorkingSpecific(){}
+	void ShowAnimWorking(bool p_ShowGlow = false) override;
+  void ShowWorkDone() override;
   void Clicked(Touch *p_Touch, Event *p_Event);
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFMaterialWorkShop);

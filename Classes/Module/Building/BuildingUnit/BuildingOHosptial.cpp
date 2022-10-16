@@ -23,10 +23,10 @@ bool BuildingOHosptial::init()
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	// setBuildingIconMiracle();
-	setBuildingAnimation();
-	setBuildingParticle();
-	BuildingLvBg->setLocalZOrder(6);
-	BuildingLvText->setLocalZOrder(8);
+	ShowAnimWorking();
+	ShowNormalParticle();
+	n_BuildingLvBg->setLocalZOrder(6);
+	n_BuildingLvText->setLocalZOrder(8);
 	return true;
 }
 
@@ -43,9 +43,9 @@ void BuildingOHosptial::setBuildingSprite()
 	IBuilding::setBuildingSprite();
 }
 
-void BuildingOHosptial::setBuildingAnimation(){};
+void BuildingOHosptial::ShowAnimWorking(){};
 
-void BuildingOHosptial::setBuildingParticle()
+void BuildingOHosptial::ShowNormalParticle()
 {
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_yiyuan_01.plist");

@@ -40,6 +40,53 @@ void BuildingFCastle::onEnter()
 {
 }
 
+void BuildingFCastle::UpdateLvl(){
+  IBuilding::UpdateLvl();
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_LOCK_AREA");
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl4){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_PET_CENTER_VIEW");
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_GREEN_POINT_UPDATE");
+  }
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl6){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_RESURRECTION_HALL_VIEW");
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_HISTORY_VIEW");
+  }
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl7){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_LOCK_TURRET");
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_EPICBATTLE_VIEW");
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_TRAIN_HALL_VIEW");
+  }
+
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl8){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_DEFENDWALL_VIEW");
+  }
+
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl16){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_ELITE_PALACE_VIEW");
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_PRISON_VIEW");
+  }
+
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl19){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_MONUMENT_VIEW");
+  }
+
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl15){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_MASTERY_VIEW");
+  }
+
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl10){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_BLACKSMITH_VIEW");
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_MATERIAL_WORKSHOP_VIEW");
+  }
+
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl25){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_COMMUNITY_VIEW");
+  }
+  if(GetBuildingLvl() >= GBase::Const::Get()->CastleLvl30){
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITY_UPDATE_CRYSTAL_MINE");
+  }
+
+}
 /**
 void BuildingClassBarrack::setBarrackInfantry() {}
 

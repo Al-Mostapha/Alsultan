@@ -23,14 +23,14 @@ bool BuildingFMonument::init()
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	setBuildingParticle();
-	setBuildingAnimation();
+	ShowNormalParticle();
+	ShowAnimWorking();
 	// setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingFMonument::setBuildingAnimation()
+void BuildingFMonument::ShowAnimWorking(bool p_ShowGlow)
 {
 	auto frames = getAnimation("dh_xwxuzhuang_%02d.png", 1, 15);
 	auto sprite = Sprite::createWithSpriteFrame(frames.front());
@@ -47,7 +47,7 @@ void BuildingFMonument::setBuildingAnimation()
 	addChild(sprite, 11);
 }
 
-void BuildingFMonument::setBuildingParticle()
+void BuildingFMonument::ShowNormalParticle()
 {
 	auto Part1 = ParticleSystemQuad::create("Particle/et_kohbiannianshi_01.plist");
 	Part1->setPosition(3 + -25, -20 + 140);

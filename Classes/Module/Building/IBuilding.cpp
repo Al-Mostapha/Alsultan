@@ -1,6 +1,7 @@
 #include "IBuilding.h"
 #include "Scene/CityScene.h"
 #include "Building.Event.h"
+#include "Module/Building/Building.Logic.h"
 USING_NS_CC;
 
 bool IBuilding::init() {
@@ -130,7 +131,7 @@ void IBuilding::onEnter() {
   StartTimer();
   UpdateTimer();
   m_HarvestState = EHarvestState::None;
-  if(IsOpen()){
+  if(IsOpening()){
     ShowAnimBuildWorker();
     ShowBuildLock();
   }
@@ -184,7 +185,6 @@ void IBuilding::SMsgUpdateBuildCanUpgrade(EventCustom *p_Event){
 
 void IBuilding::SMsgTrainArmyImmediatelyBack(EventCustom *p_Event){}
 void IBuilding::SMsgBuildTrainFailed(EventCustom *p_Event){}
-void IBuilding::UpdateStarLvl(EventCustom *p_Event){}
 
 
 void IBuilding::ShowTopTip(){
@@ -195,35 +195,268 @@ void IBuilding::ShowTopTip(){
 }
 
 void IBuilding::HideTopTip(){
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg =  std::make_unique<ABuildingMsg>();
+  auto l_ABuildingMsg =  std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
   l_ABuildingMsg->BuildingNode  = this;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TOP_TIP", l_ABuildingMsg.get());  
 }
 
-void IBuilding::ShowWorkDone(){
-  // local bid = tonumber(self:getBuildBid())
-  //if bid == BUILDID.MATERIAL_WORKSHOP then
-  //   self:hideAnimWorking()
-  //   self:showTopTipEffect()
-  //   self:showBrightParticle()
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP",
-  //     buildIndex = self.buildIndex
-  //   })
-  // elseif bid == BUILDID.FARM or bid == BUILDID.SAWMILL or bid == BUILDID.IRON_MINE or bid == BUILDID.STEEL or bid == BUILDID.CRYSTAL_MINE then
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP",
-  //     buildIndex = self.buildIndex
-  //   })
-  //   self:showTopTipEffect()
-  // elseif bid == BUILDID.STAR_BRAVE_STATUE then
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP",
-  //     buildIndex = self.buildIndex
-  //   })
-  // end
+void IBuilding::ShowWorkDone(){}
+
+void IBuilding::HideWorkDone(){
+  auto l_ABuildingMsg =  std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode  = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_WORK_DONE_EFFECT", l_ABuildingMsg.get());
+  HideTopTip(); 
 }
+
+void IBuilding::ShowBuildLvl(){
+  if(IsLocked())
+    return;
+  if(IsOpening())
+    return;
+  if(this->n_BuildingLvText)
+    this->n_BuildingLvText->setVisible(true);
+  if(this->n_BuildingLvBg)
+    this->n_BuildingLvBg->setVisible(true);
+}
+
+void IBuilding::UpdateLvl(){
+  auto l_BuildingLvl = GetBuildingLvl();
+  auto l_StarLvl     = GetStarLvl();
+  bool l_IsWarLvl    = BuildingLogic::Get()->IsWarLvl(l_BuildingLvl);
+  auto l_WarLvlText = GBase::DGetBuildWarLv(l_BuildingLvl);
+  UpdateTextLvl();
+  UpdateIsCanUpgrade();
+  if(l_IsWarLvl <= 0 && n_BuildingLvBg){
+    n_BuildingLvBg->setSpriteFrame("con_main_build_lv.png");
+    m_IsSHowWarLv = false;
+  }
+  if(l_IsWarLvl > 0 && n_BuildingLvBg){
+    n_BuildingLvBg->setSpriteFrame("icon_main_build_warlv.png");
+    m_IsSHowWarLv = false;
+  }
+  UpdateViewModel();
+  UpdateLvlPos();
+}
+
+void IBuilding::UpdateStarLvl(EventCustom *p_Event){
+  auto l_ABuildingMsg = static_cast<ABuildingMsg *>(p_Event->getUserData());
+  auto l_BuildingCell = GetBuildingCell();
+  auto l_StarLvl = GetStarLvl();
+
+  if(!l_ABuildingMsg)
+    return;
+  if(l_ABuildingMsg->BuildingIndex != m_BuildingIndex)
+    return;
+  if(!l_BuildingCell) 
+    return;
+  if(l_StarLvl > 0)
+    UpdateStarLvlBgLight();
+  UpdateIsCanUpgrade();
+  UpdateStarLvlPos();
+  RefreshBuildStarState(nullptr);
+}
+
+void IBuilding::RefreshBuildStarState(void *p_Temp){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode = this;
+  _eventDispatcher->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_UPDATE_BUILDSTAR_COOLING_PANEL",
+    l_ABuildingMsg.get()
+  );
+}
+
+void IBuilding::InitStateMachine(){
+  
+}
+
+void IBuilding::UpdateStarLvlBgLight(){
+  auto l_StarLvl = GetStarLvl();
+  if(!n_BuildingLvBg)
+    return;
+  n_BuildingLvBg->setSpriteFrame("icon_main_buildstar_lv.png");
+  UpdateTextLvl();
+  if(!n_SpStarLight){
+    n_SpStarLight = Sprite::create();
+    n_BuildingLvBg->addChild(n_SpStarLight);
+    n_SpStarLight->setPosition(83, 35);
+  }
+  auto l_IconName = CityCtrl::Get()->GetBuildStarLight(l_StarLvl);
+  n_SpStarLight->setSpriteFrame(l_IconName);
+  if(!n_BuildStarLight){
+    auto l_Action = GBase::CreateAnimation(CsbUiFilePath::NodeBuildStarLight.c_str(), n_BuildStarLight);
+    n_BuildingLvBg->addChild(n_BuildStarLight);
+    n_BuildingLvBg->setPosition(83, 35);
+    for(auto l_OneNode : n_BuildingLvBg->getChildren()){
+      l_OneNode->setPosition(0, 0);
+    }
+  }
+  auto l_Lvl = CityCtrl::Get()->GetBuildStarColor(l_StarLvl);
+  auto l_NodeName = StringUtils::format("Node_%d", l_Lvl);
+  for(auto l_OneNode : n_BuildingLvBg->getChildren()){
+    l_OneNode->setVisible(l_OneNode->getName() == l_NodeName);
+  }
+}
+
+//TODO: This functio may Has Bug
+void IBuilding::ChangeState(){
+  std::unique_ptr<IState::Event> l_StateEvent = std::make_unique<IState::Event>(this);
+  if(GetState() == EBuildingState::Idle && m_States.Contains(EBuildingState::Idle)) // Idle Is reset
+    m_States[EBuildingState::Idle]->Enter(l_StateEvent.get());
+  else if(GetState() == EBuildingState::Lock && m_States.Contains(EBuildingState::Lock))
+    m_States[EBuildingState::Lock]->Enter(l_StateEvent.get());
+  else if(GetState() == EBuildingState::Building && m_States.Contains(EBuildingState::Building))
+    m_States[EBuildingState::Building]->Enter(l_StateEvent.get());
+  else if(GetState() == EBuildingState::Working && m_States.Contains(EBuildingState::Working))
+    m_States[EBuildingState::Working]->Enter(l_StateEvent.get());
+  else if(GetState() == EBuildingState::Demolishing && m_States.Contains(EBuildingState::Demolishing))
+    m_States[EBuildingState::Demolishing]->Enter(l_StateEvent.get());
+  else if(GetState() == EBuildingState::Harvesting && m_States.Contains(EBuildingState::Harvesting))
+    m_States[EBuildingState::Harvesting]->Enter(l_StateEvent.get());
+}
+
+void IBuilding::ShowGlow(){
+  auto l_BuildingLvl = GetBuildingLvl();
+  auto l_WarLvl = BuildingLogic::Get()->IsWarLvl(l_BuildingLvl);
+  if(l_WarLvl > GBase::Const::Get()->CastleMinWarLvl){
+    if(!n_BuildGlowWar){
+      //TODO: This Node Should Be Spacified for each Building
+    }
+  }
+}
+
+void IBuilding::HideGlow(){
+  if(!n_BuildGlowWar)
+    return;
+  n_BuildGlowWar->stopAllActions();
+  n_BuildGlowWar->removeFromParent();
+  n_BuildGlowWar = nullptr;
+}
+
+void IBuilding::ShowCoolingPanel(){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode = this;
+  getEventDispatcher()->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_ADD_BUILD_COOLING_PANEL",
+    l_ABuildingMsg.get()
+  );
+}
+
+void IBuilding::HideCoolingPanel(){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode = this;
+  getEventDispatcher()->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_COOLING_PANEL",
+    l_ABuildingMsg.get()
+  );
+}
+//TODO: ADD SHOW AND HIDE BUILDING Glow
+void IBuilding::ShowAnimWorking(bool p_ShowGlow){
+  
+  HideZAnimation();
+  if(p_ShowGlow)
+    ShowGlow();
+  else 
+    HideGlow();
+  ShowWorkingEffect();
+}
+
+void IBuilding::HideAnimWorking(){
+  HideGlow();
+  HideWorkingEffect();
+  HideNormalParticle();
+}
+
+void IBuilding::ShowAnimBoost(){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode = this;
+  getEventDispatcher()->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_ADD_BUILD_ANIM_BOOST",
+    l_ABuildingMsg.get()
+  );
+}
+
+void IBuilding::HideAnimBoost(){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode = this;
+  getEventDispatcher()->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_ANIM_BOOST",
+    l_ABuildingMsg.get()
+  );
+}
+
+void IBuilding::UpdateIsCanUpgradeStar(){
+  /*local bid = self:getBuildBid()
+  local iid = self:getIid()
+  if bid == 0 then
+    return
+  end
+  if bid ~= BUILDID.CASTLE and guideCtrl:isGuideNotCompleted(gGuideModule.CITY_STAR_LV) then
+    return
+  end
+  local isUnlock = buildLogic.isBuildingStarUnlock(bid, iid)
+  if not isUnlock then
+    self:setIsCanUpgradeStar(false)
+    return
+  end
+  local reduce = buildLogic.getUpgradeStarCostReducePercent()
+  local ret, data = buildLogic.isCanUpgradeStar(bid, iid, {isQuick = true, totalReduceRate = reduce})
+  if not ret then
+    self:setIsCanUpgradeStar(false)
+    return
+  end
+  local err = buildLogic.checkUpgradeStarCond(OPERATE_MODE.NORMAL, data)
+  if err == gErrDef.Err_None then
+    self:setIsCanUpgradeStar(true)
+  else
+    self:setIsCanUpgradeStar(false)
+  end*/
+  SetIsCanUpgradeStar(true);
+}
+
+void IBuilding::HideBuildLvl(){}
+
+void IBuilding::UpdateTextLvl(){
+  auto l_BuildingLvl = GetBuildingLvl();
+  if(GetState() == EBuildingState::Building && l_BuildingLvl == 1){
+    SetTextLvl(std::to_string(0));
+    return;
+  }
+  auto l_StarLvl = GetStarLvl();
+  auto l_Textvl = GBase::DGetBuildWarLv(l_BuildingLvl);
+  if(l_StarLvl > 0){
+    SetTextLvl(StringUtils::format("%d-%d", l_Textvl.First, std::to_string(l_StarLvl)));
+  }else{
+    SetTextLvl(l_Textvl.First);
+  }
+}
+
+
+void IBuilding::UpdateIsCanUpgrade(){
+  if(IsOpening())
+    return;
+  auto l_IsCanUpgrade = BuildingLogic::Get()->IsShowUpgrade(m_BuildingIndex);
+  SetIsCanUpgrade(l_IsCanUpgrade);
+}
+
+void IBuilding::SetIsCanUpgrade(bool p_IsCan){
+  m_IsCanUpgrade = p_IsCan;
+  if(m_IsCanUpgradeStar)
+    return;
+  if(!n_UpgradeSprite)
+    return;
+  if(m_IsCanUpgrade)
+    n_UpgradeSprite->setVisible(true);
+  else 
+    n_UpgradeSprite->setVisible(false);
+};
 
 void IBuilding::setBuildingSprite() {
   BuildingSprite = Sprite::createWithSpriteFrameName(BuildingSpriteImage);
@@ -233,28 +466,28 @@ void IBuilding::setBuildingSprite() {
 }
 
 void IBuilding::setUpgradeSprite() {
-  UpgradeSprite = Sprite::createWithSpriteFrameName("icon_main_build_lv.png");
-  UpgradeSprite->setPosition(LvlBgOffset.x - 46, LvlBgOffset.y - 22);
-  UpgradeSprite->setLocalZOrder(5);
-  addChild(UpgradeSprite);
+  n_UpgradeSprite = Sprite::createWithSpriteFrameName("icon_main_build_lv.png");
+  n_UpgradeSprite->setPosition(LvlBgOffset.x - 46, LvlBgOffset.y - 22);
+  n_UpgradeSprite->setLocalZOrder(5);
+  addChild(n_UpgradeSprite);
 }
 
 void IBuilding::setBuildingLvBg() {
-  BuildingLvBg = Sprite::createWithSpriteFrameName("icon_main_build_upgrade.png");
-  BuildingLvBg->setPosition(LvlBgOffset.x, LvlBgOffset.y);
-  BuildingLvBg->setLocalZOrder(5);
-  addChild(BuildingLvBg);
+  n_BuildingLvBg = Sprite::createWithSpriteFrameName("icon_main_build_upgrade.png");
+  n_BuildingLvBg->setPosition(LvlBgOffset.x, LvlBgOffset.y);
+  n_BuildingLvBg->setLocalZOrder(5);
+  addChild(n_BuildingLvBg);
 }
 
 void IBuilding::setBuildingLvlText() {
-  BuildingLvText = Label::createWithSystemFont("8", "Arial", 18);
-  BuildingLvText->setSkewY(25);
-  BuildingLvText->setAnchorPoint(Vec2(0.5, 0.5));
-  BuildingLvText->setColor(Color3B(235, 255, 20));
-  BuildingLvText->setPosition(LvlBgOffset.x - 20, LvlBgOffset.y - 1);
-  BuildingLvText->setLocalZOrder(6);
-  BuildingLvText->setAlignment(TextHAlignment::CENTER);
-  addChild(BuildingLvText);
+  n_BuildingLvText = Label::createWithSystemFont("8", "Arial", 18);
+  n_BuildingLvText->setSkewY(25);
+  n_BuildingLvText->setAnchorPoint(Vec2(0.5, 0.5));
+  n_BuildingLvText->setColor(Color3B(235, 255, 20));
+  n_BuildingLvText->setPosition(LvlBgOffset.x - 20, LvlBgOffset.y - 1);
+  n_BuildingLvText->setLocalZOrder(6);
+  n_BuildingLvText->setAlignment(TextHAlignment::CENTER);
+  addChild(n_BuildingLvText);
 }
 
 void IBuilding::setBuildingSleepSprite() {
@@ -322,9 +555,8 @@ Vector<SpriteFrame*> IBuilding::getAnimation(GString Frame, int32 start, int32 e
   return animFrames;
 }
 
-void IBuilding::setBuildingParticle() {}
+void IBuilding::ShowNormalParticle() {}
 
-void IBuilding::setBuildingAnimation() {}
 
 void IBuilding::setBuildingUnitData(RCityBuildingUnit& _CBUD) { BuildingUnitData = _CBUD; }
 

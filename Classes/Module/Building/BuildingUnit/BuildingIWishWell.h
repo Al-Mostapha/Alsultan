@@ -14,7 +14,7 @@ public:
 	BuildingIWishWell();
 	bool init();
 	void onEnter() override ;
-	void setBuildingParticle();
+	void ShowNormalParticle();
 	static void initBuilingData();
 	CREATE_FUNC(BuildingIWishWell);
 

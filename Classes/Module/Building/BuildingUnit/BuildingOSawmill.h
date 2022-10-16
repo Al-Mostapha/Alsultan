@@ -2,11 +2,7 @@
 
 #pragma once
 
-
 #include "Module/Building/IBuilding.h"
-
-
-
 
 
 /**
@@ -22,7 +18,8 @@ public:
 	void onEnter();
 
 	void setBuildingSprite();
-	void setBuildingAnimation();
+	void ShowAnimWorking();
+  void ShowWorkDone() override;
 	static void initBuilingData();
 	CREATE_FUNC(BuildingOSawmill);
 

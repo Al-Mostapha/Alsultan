@@ -2,6 +2,7 @@
 
 
 #include "BuildingOIronMine.h"
+#include "Module/Building/Building.Event.h"
 
 
 BuildingOIronMine::BuildingOIronMine() {
@@ -26,9 +27,9 @@ bool BuildingOIronMine::init() {
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	//setBuildingIconMiracle();
-	setBuildingAnimation();
-	BuildingLvBg->setLocalZOrder(6);
-	BuildingLvText->setLocalZOrder(8);
+	ShowAnimWorking();
+	n_BuildingLvBg->setLocalZOrder(6);
+	n_BuildingLvText->setLocalZOrder(8);
 	return true;
 }
 
@@ -45,4 +46,12 @@ void BuildingOIronMine::setBuildingSprite() {
 }
 
 
-void BuildingOIronMine::setBuildingAnimation() {};
+void BuildingOIronMine::ShowAnimWorking() {};
+
+void BuildingOIronMine::ShowWorkDone(){
+  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode  = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());
+  ShowTopTip();
+}

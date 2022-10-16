@@ -16,6 +16,7 @@ public:
 	BuildingFArrowTower();
 	bool init();
 	void onEnter();
+  void UpdateLvl() override;
 	static void initBuilingData();
   void Clicked(Touch *p_Touch, Event *p_Event) override;
 	CREATE_FUNC(BuildingFArrowTower);

@@ -16,7 +16,7 @@ public:
 	void onEnter();
 
 	void setBuildingSprite();
-	void setBuildingAnimation();
+	void ShowAnimWorking();
 	static void initBuilingData();
 	CREATE_FUNC(BuildingOMilitaryTent);
 

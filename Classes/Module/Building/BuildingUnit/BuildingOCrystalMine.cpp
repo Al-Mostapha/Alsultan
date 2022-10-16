@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingOCrystalMine.h"
+#include "Module/Building/Building.Event.h"
 
 BuildingOCrystalMine::BuildingOCrystalMine()
 {
@@ -23,10 +24,10 @@ bool BuildingOCrystalMine::init()
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	// setBuildingIconMiracle();
-	setBuildingAnimation();
-	setBuildingParticle();
-	BuildingLvBg->setLocalZOrder(6);
-	BuildingLvText->setLocalZOrder(8);
+	ShowAnimWorking();
+	ShowNormalParticle();
+	n_BuildingLvBg->setLocalZOrder(6);
+	n_BuildingLvText->setLocalZOrder(8);
 	return true;
 }
 
@@ -43,9 +44,9 @@ void BuildingOCrystalMine::setBuildingSprite()
 	IBuilding::setBuildingSprite();
 }
 
-void BuildingOCrystalMine::setBuildingAnimation(){};
+void BuildingOCrystalMine::ShowAnimWorking(){};
 
-void BuildingOCrystalMine::setBuildingParticle()
+void BuildingOCrystalMine::ShowNormalParticle()
 {
 	auto Part1 = ParticleSystemQuad::create("Particle/et_shuijingk_01.plist");
 	Part1->setPosition(0.0f, 20.0f);
@@ -79,4 +80,12 @@ void BuildingOCrystalMine::Clicked(Touch *p_Touch, Event *p_Event){
     CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
   }
 
+}
+
+void BuildingOCrystalMine::ShowWorkDone(){
+  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode  = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());
+  ShowTopTip();
 }

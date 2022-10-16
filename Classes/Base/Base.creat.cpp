@@ -49,3 +49,18 @@ Vector<SpriteFrame *> BaseCreate::getAnimationFrames(GString Frame, int32 start,
 Sprite *BaseCreate::CreateSprite(const char *p_Sprite){
   return Sprite::createWithSpriteFrameName(p_Sprite);
 }
+
+namespace GBase{
+  Action *CreateAnimation(const char *p_FilePath, Node *p_Node, bool p_Loop){
+    if(!p_FilePath)
+      return nullptr;
+    if(p_FilePath == "")
+      return nullptr;
+    auto l_Action = CSLoader::createTimeline(p_FilePath);
+    if(!p_Node)
+      p_Node = CSLoader::createNode(p_FilePath);
+    p_Node->runAction(l_Action);
+    l_Action->gotoFrameAndPlay(0, p_Loop);
+    return l_Action;
+  }
+}

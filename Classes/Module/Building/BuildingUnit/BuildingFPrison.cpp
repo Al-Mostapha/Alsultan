@@ -22,13 +22,13 @@ bool BuildingFPrison::init()
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	setBuildingParticle();
+	ShowNormalParticle();
 	// setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingFPrison::setBuildingParticle()
+void BuildingFPrison::ShowNormalParticle()
 {
 	auto Part1 = ParticleSystemQuad::create("Particle/et_jinzitaloading_01.plist");
 	Part1->setPosition(143.47, 27.63);

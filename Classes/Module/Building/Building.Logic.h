@@ -10,4 +10,7 @@ public:
   static BuildingLogic *Get();
   GPair<bool, RCostBuildingUpgrade> IsCanUpgrade(EBuilding p_BuildingType, uint32 p_CurentLvl);
   GPair<bool, RCostBuildingUpgrade> IsCanBuild(EBuilding p_BuildingType);
+  int32 IsWarLvl(uint32 p_BuildingLvl) { return false; }
+  bool IsShowUpgrade(EBuildingIndex p_BuildingIndex){ return true; }
+  RBuildingTask *GetQueueType(EBuildingIndex p_BuildingIndex);
 };

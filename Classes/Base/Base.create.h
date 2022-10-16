@@ -25,5 +25,8 @@ public:
   static Sprite *createAnimation(GAnimationParm AnimationParm);
   static Vector<SpriteFrame *> getAnimationFrames(GString Frame, int32 start, int32 end);
   static Sprite *CreateSprite(const char *p_Sprite);
-  
+};
+
+namespace GBase{
+  Action *CreateAnimation(const char *p_FilePath, Node *p_Node = nullptr, bool p_Loop = false);
 };

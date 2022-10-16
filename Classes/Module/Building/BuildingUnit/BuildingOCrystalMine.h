@@ -16,8 +16,9 @@ public:
 	void onEnter() override;
 	static void initBuilingData();
 	void setBuildingSprite();
-	void setBuildingAnimation();
-	void setBuildingParticle();
+	void ShowAnimWorking();
+	void ShowNormalParticle();
+  void ShowWorkDone() override;
   void Clicked(Touch *p_Touch, Event *p_Event) override;
 	CREATE_FUNC(BuildingOCrystalMine);
 

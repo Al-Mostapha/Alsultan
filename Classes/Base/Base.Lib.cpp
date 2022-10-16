@@ -78,6 +78,10 @@ namespace GBase{
     l_Panel->ShowTip(p_Message, l_IconSprite);
   }
 
+  GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl) {
+    return GPair<GString, GString>::Make("war_lv_1", "war_lv_2");
+  }
+
 } // namespace
 
 

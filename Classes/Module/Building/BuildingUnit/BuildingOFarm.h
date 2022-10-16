@@ -16,8 +16,8 @@ public:
 	void onEnter();
 	static void initBuilingData();
 	void setBuildingSprite();
-	void setBuildingAnimation();
-
+	void ShowAnimWorking();
+  void ShowWorkDone() override;
 	CREATE_FUNC(BuildingOFarm);
 
 	/**

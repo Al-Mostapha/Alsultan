@@ -3,3 +3,4 @@
 GString CsbUiFilePath::UIPanelCreatBuilding = "UiParts/Panel/Building/BuildingCommon/buildCreatePanel.csb";
 GString CsbUiFilePath::UIBuildCreateScrollSingle = "UiParts/Panel/Building/BuildingCommon/buildCreateScrollSingle.csb";
 GString CsbUiFilePath::UIMsgTipPanel = "UiParts/Panel/Common/Messages/commonPromptTip.csb";
+GString CsbUiFilePath::NodeBuildStarLight = "UiParts/Parts/Building/Node_buildStar_light.csb";

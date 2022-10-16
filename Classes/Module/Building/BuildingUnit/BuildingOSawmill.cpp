@@ -2,7 +2,7 @@
 
 
 #include "BuildingOSawmill.h"
-
+#include "Module/Building/Building.Event.h"
 
 BuildingOSawmill::BuildingOSawmill() {
 
@@ -26,9 +26,9 @@ bool BuildingOSawmill::init() {
 	setBuildingLvlText();
 	setBuildingSleepSprite();
 	//setBuildingIconMiracle();
-	setBuildingAnimation();
-	BuildingLvBg->setLocalZOrder(6);
-	BuildingLvText->setLocalZOrder(8);
+	ShowAnimWorking();
+	n_BuildingLvBg->setLocalZOrder(6);
+	n_BuildingLvText->setLocalZOrder(8);
 	return true;
 }
 
@@ -77,9 +77,7 @@ void BuildingOSawmill::setBuildingSprite() {
 }
 
 
-void BuildingOSawmill::setBuildingAnimation() {
-
-
+void BuildingOSawmill::ShowAnimWorking() {
 	auto frames = getAnimation("fuma_%02d.png", 1, 8);
 	auto sprite = Sprite::createWithSpriteFrame(frames.front());
 
@@ -88,7 +86,13 @@ void BuildingOSawmill::setBuildingAnimation() {
 	auto animation = Animation::createWithSpriteFrames(frames, 1.0f / 8);
 	sprite->runAction(RepeatForever::create(Animate::create(animation)));
 	addChild(sprite);
+}
 
-
+void BuildingOSawmill::ShowWorkDone(){
+  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode  = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());
+  ShowTopTip();
 }
 

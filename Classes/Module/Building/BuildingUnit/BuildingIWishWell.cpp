@@ -24,7 +24,7 @@ bool BuildingIWishWell::init() {
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	setBuildingParticle();
+	ShowNormalParticle();
 	
 
 	//setBuildingIconMiracle();
@@ -33,7 +33,7 @@ bool BuildingIWishWell::init() {
 }
 
 
-void BuildingIWishWell::setBuildingParticle() {
+void BuildingIWishWell::ShowNormalParticle() {
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_xyc_01.plist");
 	Part1->setPosition(5, 100);

@@ -14,7 +14,7 @@ public:
 	BuildingFLeisureCenter();
 	bool init();
 	void onEnter();
-	void setBuildingParticle();
+	void ShowNormalParticle();
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFLeisureCenter);
 

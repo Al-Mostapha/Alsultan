@@ -2,6 +2,7 @@
 
 #include "BuildingFMaterialWorkShop.h"
 #include "Module/UI/Panel/Building/MatrialFactory/UIMatrialFactoryView.h"
+#include "Module/Building/Building.Event.h"
 
 BuildingFMaterialWorkShop::BuildingFMaterialWorkShop()
 {
@@ -23,13 +24,13 @@ bool BuildingFMaterialWorkShop::init()
 	// setBuildingLvlText();
 	setBuildingSleepSprite();
 	// setBuildingIconMiracle();
-	setBuildingParticle();
-	setBuildingAnimation();
+	ShowNormalParticle();
+	ShowAnimWorking();
 
 	return true;
 }
 
-void BuildingFMaterialWorkShop::setBuildingAnimation()
+void BuildingFMaterialWorkShop::ShowAnimWorking(bool p_ShowGlow)
 {
 	auto frames = getAnimation("gongfangfengche_%02d.png", 1, 8);
 	auto frames_1 = getAnimation("gongfangshuiche_%02d.png", 1, 8);
@@ -47,6 +48,9 @@ void BuildingFMaterialWorkShop::setBuildingAnimation()
 
 	addChild(sprite, 5);
 	addChild(sprite_1, -1);
+  ShowAnimWorkingSpecific();
+  ShowNormalParticle();
+  IBuilding::ShowAnimWorking(p_ShowGlow);
 }
 
 void BuildingFMaterialWorkShop::onEnter()
@@ -55,7 +59,7 @@ void BuildingFMaterialWorkShop::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingFMaterialWorkShop::setBuildingParticle()
+void BuildingFMaterialWorkShop::ShowNormalParticle()
 {
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_gongfang_working_01.plist");
@@ -109,4 +113,14 @@ void BuildingFMaterialWorkShop::Clicked(Touch *p_Touch, Event *p_Event){
   auto l_Panel = UIMatrialFactoryView::Create();
   l_Panel->InitPanel();
   l_Panel->Show();
+}
+
+void BuildingFMaterialWorkShop::ShowWorkDone(){
+  HideAnimWorking();
+  ShowTopTip();
+  ShowBrightParticle();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode  = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());
 }

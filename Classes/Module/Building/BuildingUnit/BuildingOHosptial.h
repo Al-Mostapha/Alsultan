@@ -16,8 +16,8 @@ public:
 	void onEnter() override;
 
 	void setBuildingSprite();
-	void setBuildingAnimation();
-	void setBuildingParticle();
+	void ShowAnimWorking();
+	void ShowNormalParticle();
 	static void initBuilingData();
 	CREATE_FUNC(BuildingOHosptial);
 

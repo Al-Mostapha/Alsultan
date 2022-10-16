@@ -54,7 +54,8 @@
     "iterator": "cpp",
     "future": "cpp",
     "algorithm": "cpp",
-    "functional": "cpp"
+    "functional": "cpp",
+    "unordered_set": "cpp"
   },
   "intelephense.environment.includePaths": [
     "${workspaceRoot}"

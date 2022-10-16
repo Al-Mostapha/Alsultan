@@ -21,13 +21,13 @@ bool BuildingFRevivalHall::init()
 	setUpgradeSprite();
 	setBuildingLvlText();
 	setBuildingSleepSprite();
-	setBuildingParticle();
+	ShowNormalParticle();
 	// setBuildingIconMiracle();
 
 	return true;
 }
 
-void BuildingFRevivalHall::setBuildingParticle()
+void BuildingFRevivalHall::ShowNormalParticle()
 {
 	auto Part1 = ParticleSystemQuad::create("Particle/et_lifetree_01_01.plist");
 	Part1->setPosition(0, 0);

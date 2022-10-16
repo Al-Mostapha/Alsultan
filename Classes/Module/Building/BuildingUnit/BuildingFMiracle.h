@@ -14,6 +14,8 @@ public:
 	BuildingFMiracle();
 	bool init();
 	void onEnter();
+  void ShowBuildLvl() override;
+  void UpdateLvl() override;
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFMiracle);
 
