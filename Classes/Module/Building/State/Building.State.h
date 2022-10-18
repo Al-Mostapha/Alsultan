@@ -44,7 +44,7 @@ namespace Building{
     public:
     void PreEnter(Event *p_Event) ;
     void OnEnter(Event *p_Event) {}
-    void PostEnter(Event *p_Event) {}
+    void PostEnter(Event *p_Event) ;
     void Enter(Event *p_Event) {}
     void OnExit(Event *p_Event) {}
     static IState *Create(){

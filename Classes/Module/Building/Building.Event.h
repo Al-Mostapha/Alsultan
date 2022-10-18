@@ -6,4 +6,6 @@
 struct ABuildingMsg{
   EBuildingIndex BuildingIndex;
   Node *BuildingNode;
+  bool IsHideHammer = false;
+  Vec2 PosEtUpgradeOffset;
 };

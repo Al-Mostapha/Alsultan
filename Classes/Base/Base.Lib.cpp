@@ -23,8 +23,8 @@ namespace GBase{
 
   void SoraDFTarget(Node *p_node){}
 
-  EBuildingInteractivity DGetBuildingTypeByIndex(EBuilding p_Building){
-    return EBuildingInteractivity::Interactive;
+  EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building){
+    return EBuildingPlace::Outer;
   }
 
   bool IsTouchOnNode(Vec2 p_Point, Node *p_Node){

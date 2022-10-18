@@ -8,7 +8,10 @@ struct ITask{
   GTime TimeEnd;
   GTime TimeStart;
   GTime TimeEndOrginal;
-  int32 GetRemainTime(){
+  GTime GetRemainTime(){
     return TimeEnd - GDateTime::Now();
+  }
+  ETask GetQueueType(){
+    return TaskType;
   }
 };

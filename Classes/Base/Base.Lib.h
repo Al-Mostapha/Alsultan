@@ -4,7 +4,7 @@
 #include "Base/Containers/Pair.h"
 #undef PlaySound
 
-enum class EBuildingInteractivity;
+enum class EBuildingPlace;
 enum class EBuilding;
 namespace GBase{
   
@@ -27,7 +27,7 @@ namespace GBase{
   void PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
   const char *getSoundPath(const char *p_SoundName);
   void SoraDFTarget(Node *p_node);
-  EBuildingInteractivity DGetBuildingTypeByIndex(EBuilding p_Building);
+  EBuildingPlace DGetBuildingTypeByIndex(EBuilding p_Building);
   bool IsTouchOnNode(Vec2 p_Point, Node *p_Node);
 
   float DGetAutoHeightLabel(ui::Text *p_Label, float p_Width = 0.0f);
@@ -35,7 +35,9 @@ namespace GBase{
   void DSetTextWidthHeight(Label *p_Label, Size p_Size);
   void DShowMsgTip(const GString &p_Message, const GString &p_Icon = "");
   GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
-
+  Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc);
+  bool DRemoveTimer(Node *p_Target, Scheduler *p_Scheduler);
+  bool DGetEquip(){}
 };
 
 

@@ -5,7 +5,13 @@
 
 struct RBuildingTask : public ITask {
   EBuilding BuildingType = EBuilding::None;
-  EBuildingIndex BuildingPlace = EBuildingIndex::None;
+  EBuildingIndex BuildingIndex = EBuildingIndex::None;
+  EBuilding GetBuildingType() {
+    return BuildingType;
+  }
+  EBuildingIndex GetBuildingIndex() {
+    return BuildingIndex;
+  }
 };
 
 class BuildingTask {

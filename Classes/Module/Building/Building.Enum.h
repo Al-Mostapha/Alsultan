@@ -47,9 +47,10 @@ enum class EBuilding  {
   EpicBattle = 30006
 };
 
-enum class EBuildingInteractivity { // inner / outter
-  Decore = 0,
-  Interactive = 1
+enum class EBuildingPlace { // inner / outter
+  Inner = 0,
+  Outer = 1,
+  None = 2
 };
 
 enum class EBuildingIndex { 
@@ -93,7 +94,9 @@ enum class EBuildingState {
 };
 
 enum class EHarvestState{
-  None = 0
+  None = 0,
+  Some,
+  Much
 };
 
 enum class EBuildingActionTag{

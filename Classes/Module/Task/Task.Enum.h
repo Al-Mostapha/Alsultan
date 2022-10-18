@@ -2,6 +2,7 @@
 
 #include "Include/IncludeBase.h"
 enum class ETask {
+  None = 0,
   free_build_queue = 1200,
   charge_build_queue = 1201,
   hostpital_queue = 1202,
@@ -50,12 +51,16 @@ enum class ETask {
   war_tech_research = 1250,
   build_mastery = 1255,
   construction_drawing = 1256,
-  build_star_queue = 1257,
+  BuildStarQueue = 1257,
   radiance_war_hostpital_queue = 1261,
-  endless_treasure_queue = 1262,
-  build_star_queue_privilege = 1263,
+  EndlessTreasureQueue = 1262,
+  BuildStarQueuePrivilege = 1263,
   craft_study = 1264,
   armor_forging = 1265,
-  glorious_upgrade = 1266,
-  atlantis_war_hostpital_queue = 1267
+  GloriousUpgrade = 1266,
+  atlantis_war_hostpital_queue = 1267,
+  hero_cenotaph = 1251,
+  hero_upgrade = 1252,
+  PromptArmy = 1253,
+  miraculous_weapon_unlock = 1254
 };

@@ -8,7 +8,7 @@ enum class EArmyCategory {
   Wall = 5
 };
 
-enum class EArmyType {
+enum class EArmy {
   None = 0,
   Infantry_Militia = 401,
   Infantry_SaracenMilitia = 402,

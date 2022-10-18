@@ -56,3 +56,7 @@ GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanBuild(EBuilding p_Building
 
   return IsCanUpgrade(p_BuildingType, BuildingConst::Get()->FirstLvl);
 }
+
+ETask BuildingLogic::GetQueueType(EBuildingIndex p_BuildingIndex) {
+  return ETask::None;
+}

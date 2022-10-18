@@ -2,6 +2,10 @@
 #include "Scene/CityScene.h"
 #include "Building.Event.h"
 #include "Module/Building/Building.Logic.h"
+#include "Module/Science/Science.Ctrl.h"
+#include "Module/Equip/Equip.Ctrl.h"
+#include "Module/Building/BuildingLib/StuffWorkshop.Ctrl.h"
+#include "Module/Army/Army.Ctrl.h"
 USING_NS_CC;
 
 bool IBuilding::init() {
@@ -129,7 +133,7 @@ void IBuilding::onEnter() {
   UpdateLvl();
   UpdateStarLvl();
   StartTimer();
-  UpdateTimer();
+  UpdateTimer(0.0f);
   m_HarvestState = EHarvestState::None;
   if(IsOpening()){
     ShowAnimBuildWorker();
@@ -392,6 +396,442 @@ void IBuilding::HideAnimBoost(){
   );
 }
 
+void IBuilding::ShowAnimBuildWorker(bool p_HideHammer){
+  HideZAnimation();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode = this;
+  l_ABuildingMsg->IsHideHammer = p_HideHammer;
+  getEventDispatcher()->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_ADD_BUILD_ANIM_WORKER",
+    l_ABuildingMsg.get()
+  );
+}
+
+void IBuilding::HideAnimBuildWorker(){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode = this;
+  getEventDispatcher()->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_ANIM_WORKER",
+    l_ABuildingMsg.get()
+  );
+}
+
+//TODO: Should be added from Building Config
+void IBuilding::ShowNormalParticle() {
+  // for i = 1, 10 do
+  //   local nodeName = "buildParticleNormal_" .. i
+  //   local nodeCfgItem = self:getCfgItemByName(nodeName)
+  //   if nodeCfgItem ~= nil and self[nodeName] ~= nil then
+  //     break
+  //   end
+  //   local node = self:loadNodeByName(nodeName)
+  //   if node == nil then
+  //     break
+  //   end
+  // end
+  // self:loadNodeByName("buildCsdNormal")
+}
+
+void IBuilding::HideNormalParticle() {
+  // for i = 1, 10 do
+  //   local nodeName = "buildParticleNormal_" .. i
+  //   local node = self[nodeName]
+  //   if node ~= nil then
+  //     self[nodeName] = nil
+  //     node:removeFromParent()
+  //   else
+  //     break
+  //   end
+  // end
+  // local nodeName = "buildCsdNormal"
+  // local node = self[nodeName]
+  // if node ~= nil then
+  //   self[nodeName] = nil
+  //   node:removeFromParent()
+  // end
+}
+
+void IBuilding::ShowBrightParticle(){
+  // for i = 1, 10 do
+  //   local nodeName = "buildParticleBright_" .. i
+  //   local nodeCfgItem = self:getCfgItemByName(nodeName)
+  //   if nodeCfgItem ~= nil and self[nodeName] ~= nil then
+  //     break
+  //   end
+  //   local node = self:loadNodeByName(nodeName)
+  //   if node == nil then
+  //     break
+  //   end
+  // end
+  // self:loadNodeByName("buildCsdBright")
+}
+
+void IBuilding::HideBrightParticle(){
+  // for i = 1, 10 do
+  //   local nodeName = "buildParticleBright_" .. i
+  //   local node = self[nodeName]
+  //   if node ~= nil then
+  //     self[nodeName] = nil
+  //     node:removeFromParent()
+  //   else
+  //     break
+  //   end
+  // end
+  // local nodeName = "buildCsdBright"
+  // local node = self[nodeName]
+  // if node ~= nil then
+  //   self[nodeName] = nil
+  //   node:removeFromParent()
+  // end
+}
+
+void IBuilding::ShowEffectUpgrade(){
+ std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
+  l_ABuildingMsg->BuildingNode = this;
+  l_ABuildingMsg->PosEtUpgradeOffset = m_PosEtUpgradeOffset;
+  getEventDispatcher()->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_ADD_BUILD_EFFECT_UPGRADE",
+    l_ABuildingMsg.get()
+  );
+}
+
+void IBuilding::HideEffectUpgrade(){}
+
+void IBuilding::StartTimer(){
+  if(m_TimeHandler != nullptr){
+    GBase::DRemoveTimer(this, m_TimeHandler);
+    m_TimeHandler = nullptr;
+    return;
+  }
+  
+  //m_TimeHandler = GBase::DCreateTimer(this, CC_CALLBACK_1(IBuilding::UpdateTimer, 0.0f));
+  UpdateTimer(0.0f);
+}
+
+void IBuilding::EndTimer(){
+  if(m_TimeHandler != nullptr){
+    GBase::DRemoveTimer(this, m_TimeHandler);
+    m_TimeHandler = nullptr;
+  }
+}
+
+void IBuilding::UpdateTimer(float p_Delta){
+  if(GetState() == EBuildingState::Building 
+    || GetState() == EBuildingState::Upgrading 
+    || GetState() == EBuildingState::Demolishing 
+    || GetState() == EBuildingState::Lock){
+    return;
+  }
+  auto l_BuildingType = GetBuildingId();
+  auto l_BuidingIndex = GetBuildingIndex();
+  UpdateBuff();
+  auto l_CurrentHarvest = GetCurrentHarvest();
+  auto l_MaxHarvest = GetMaxHarvest();
+  auto l_HarvestState = GetHarvestState();
+  if(l_CurrentHarvest == 0 && GetState() != EBuildingState::Working){
+    SetBlockState(EBuildingState::Working);
+    ChangeState();
+  }
+  if(l_CurrentHarvest > 0 && l_HarvestState == EHarvestState::None){
+    if(GetState() != EBuildingState::Working){
+      SetBlockState(EBuildingState::Working);
+      ChangeState();
+    }
+    SetHarvestState(EHarvestState::Some, true);
+  }
+  if(IsHarvestMuch(l_CurrentHarvest, l_MaxHarvest) && l_HarvestState == EHarvestState::Some){
+    SetHarvestState(EHarvestState::Much, true);
+    SetBlockState(EBuildingState::Harvesting);
+    ChangeState();
+  //   if self.turnToHarvestView then
+  //     self:turnToHarvestView(true)
+  //   end
+  }
+}
+
+EHarvestState IBuilding::GetHarvestState(){
+  return m_HarvestState;
+}
+
+void IBuilding::SetHarvestState(EHarvestState p_HarvestState, bool p_IsAnim){
+  if(m_HarvestState == p_HarvestState)
+    return;
+  m_HarvestState = p_HarvestState;
+}
+
+bool IBuilding::IsNeedRequestHelp(){
+  return GetReqHelpQueueTypeList().size() > 0;
+}
+
+GVector<ETask> IBuilding::GetReqHelpQueueTypeList(){
+  GVector<ETask> l_ReqHelpQueueTypeList;
+  auto l_QueueType = GetQueueType();
+  auto l_StarQueueType = GetBuildStarQueueType();
+  if(l_QueueType != ETask::None){
+    l_ReqHelpQueueTypeList.push_back(l_QueueType);
+  }
+  if(l_StarQueueType != ETask::None){
+    l_ReqHelpQueueTypeList.push_back(l_StarQueueType);
+  }
+  return l_ReqHelpQueueTypeList;
+}
+
+void IBuilding::DoReqHelp(){
+  for(auto l_QueueType : GetReqHelpQueueTypeList()){
+    DoReqHelpByQueueType(l_QueueType);
+  }
+}
+
+void IBuilding::DoReqHelpByQueueType(ETask p_Task){
+  struct {int Id; uint32 Lvl;} l_Data;
+  auto l_BuildingType = GetBuildingId();
+  if(p_Task == ETask::BuildStarQueue
+  ||p_Task == ETask::BuildStarQueuePrivilege
+  ||p_Task == ETask::GloriousUpgrade){
+    l_Data.Id = static_cast<int>(GetBuildingId());
+    l_Data.Lvl = GetStarLvl() + 1;
+  }else if(GetState() == EBuildingState::None){
+    if(l_BuildingType == EBuilding::FirstAidTent){
+      //       data = nil
+    }else if(l_BuildingType == EBuilding::Institute){
+      l_Data.Id =  static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+    }else if(l_BuildingType == EBuilding::Miracle){
+      l_Data.Id =  static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+    }else if(l_BuildingType == EBuilding::Blacksmith){
+      //  local eid, count = self:getTrainingAidAndCount()
+      //  data = {equipid = eid}
+    }else if(l_BuildingType == EBuilding::StarBraveStatue){
+      l_Data.Id =  static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+    }
+  }else if(GetState() == EBuildingState::Building || GetState() == EBuildingState::Upgrading){
+    l_Data.Id = static_cast<int>(GetBuildingId());
+    l_Data.Lvl = GetBuildingLvl() + 1;
+  }
+  
+  GuildHelp::Get()->ReqAllianceHelp(p_Task, l_Data.Id, l_Data.Lvl);
+}
+
+bool IBuilding::SpeedUpFree(){
+  TaskCtrl::Get()->SpeedUpQueueReq(GetQueueType(), ESpeedType::Free);
+}
+
+bool IBuilding::SpeedUpStrongFree(){
+  TaskCtrl::Get()->SpeedUpQueueReq(GetBuildStarQueueType(), ESpeedType::Free);
+}
+
+bool IBuilding::SpeedUpResearchFree(){
+  TaskCtrl::Get()->SpeedUpQueueReq(GetQueueType(), ESpeedType::Gold);
+}
+
+bool IBuilding::IsCanHarvest(){
+  bool l_IsCanHarvest = false;
+  auto l_BuildingType = GetBuildingId();
+  if(l_BuildingType == EBuilding::Blacksmith){
+    return EquipCtrl::Get()->IsCanGetEquip();
+  }else if(l_BuildingType == EBuilding::MaterialWorkShop){
+    return StuffWorkshopCtrl::Get()->GetDoneID() != 0;
+  }
+  if(l_BuildingType == EBuilding::ElitePalace){
+    //   print("elite")
+  }
+  auto l_TrainedType = ArmyCtrl::Get()->GetTrainedArmy(l_BuildingType);
+  if(l_TrainedType != EArmy::None){
+    m_IsCanHarvestTrain = true;
+    m_TrainedArmy = l_TrainedType;
+  }
+  return m_IsCanHarvestTrain;
+}
+
+bool IBuilding::IsTraining(){
+  bool l_IsTraining = false;
+  auto l_BuildingType = GetBuildingId();
+  auto l_QueueType = BuildingRead::Get()->GetQueueType(l_BuildingType);
+  auto l_Queue = TaskCtrl::Get()->QueryQueue(l_QueueType);
+  if(l_Queue == nullptr)
+    return false;
+  l_IsTraining = false;
+  if(GetState() == EBuildingState::None){
+    auto l_RemainTime = l_Queue->GetRemainTime();
+    if(l_RemainTime <= 0){
+      l_IsTraining = false;
+    }else{
+      l_IsTraining = true;
+    }
+  }
+  return l_IsTraining;
+}
+
+ITask *IBuilding::GetPromotingQueue(){
+  return TaskCtrl::Get()->QueryQueue(ETask::PromptArmy);
+}
+
+ITask *IBuilding::GetTrainingQueue(){
+  auto l_QueueType = BuildingRead::Get()->GetQueueType(GetBuildingId());
+  return TaskCtrl::Get()->QueryQueue(l_QueueType);
+}
+
+void IBuilding::SetQueueDirty(bool p_IsDirty){
+  m_QueueDirty = p_IsDirty;
+}
+
+ITask *IBuilding::GetQueue(){
+  if(m_Queue != nullptr && m_QueueDirty == true)
+    return m_Queue;
+  if(IsTraining())
+    m_Queue = GetTrainingQueue();
+  else
+    m_Queue = GetBuildingQueue();
+  return m_Queue;
+}
+
+ITask *IBuilding::GetBuildingQueue(){
+  auto l_QueueType = BuildingLogic::Get()->GetQueueType(GetBuildingIndex());
+  return l_QueueType;
+}
+
+ETask IBuilding::GetQueueType(){
+  auto l_QueuType = ETask::None;
+  if(IsTraining()){
+    l_QueuType = GetTrainingQueueType();
+  }else{
+    l_QueuType = GetBuildQueueType();
+  }
+  return l_QueuType;
+}
+
+ETask IBuilding::GetBuildQueueType(){
+  auto l_QueueType = BuildingLogic::Get()->GetQueueType(GetBuildingIndex());
+  if(!l_QueueType)
+    return ETask::None;
+  return l_QueueType->GetQueueType();
+}
+
+ETask IBuilding::GetTrainingQueueType(){
+  auto l_QueueType = BuildingRead::Get()->GetQueueType(GetBuildingId());
+  return l_QueueType;
+}
+
+ETask IBuilding::GetBuildStarQueueType(){
+  auto l_Queue = GetBuildStarQueue();
+  if(l_Queue == nullptr)
+    l_Queue = GetBuildStarSecondQueue();
+  if(l_Queue == nullptr)
+    l_Queue = GetBuildStatueBraveQueue();
+  if(l_Queue != nullptr)
+    return l_Queue->GetQueueType();
+  return ETask::None;
+}
+
+ITask *IBuilding::GetBuildStarQueue(){
+  auto l_BuildingType = GetBuildingId();
+  auto l_BuildingIndex = GetBuildingIndex();
+  ITask *l_Queue = TaskCtrl::Get()->QueryQueue(ETask::BuildStarQueue);
+  auto l_BuildingQueue = static_cast<RBuildingTask *>(l_Queue);
+  if(l_BuildingQueue == nullptr)
+    return nullptr;
+  if(l_BuildingQueue->GetBuildingType() != l_BuildingType)
+    return nullptr;
+  if(l_BuildingQueue->GetBuildingIndex() != l_BuildingIndex)
+    return nullptr;
+  return l_BuildingQueue;
+}
+
+ITask *IBuilding::GetBuildStarSecondQueue(){
+  auto l_BuildingType = GetBuildingId();
+  auto l_BuildingIndex = GetBuildingIndex();
+  ITask *l_Queue = TaskCtrl::Get()->QueryQueue(ETask::BuildStarQueuePrivilege);
+  auto l_BuildingQueue = static_cast<RBuildingTask *>(l_Queue);
+  if(l_BuildingQueue == nullptr)
+    return nullptr;
+  if(l_BuildingQueue->GetBuildingType() != l_BuildingType)
+    return nullptr;
+  if(l_BuildingQueue->GetBuildingIndex() != l_BuildingIndex)
+    return nullptr;
+  return l_BuildingQueue;
+}
+
+ITask *IBuilding::GetBuildStatueBraveQueue(){
+  auto l_BuildingType = GetBuildingId();
+  auto l_BuildingIndex = GetBuildingIndex();
+  ITask *l_Queue = TaskCtrl::Get()->QueryQueue(ETask::GloriousUpgrade);
+  auto l_BuildingQueue = static_cast<RBuildingTask *>(l_Queue);
+  if(l_BuildingQueue == nullptr)
+    return nullptr;
+  if(l_BuildingQueue->GetBuildingType() != l_BuildingType)
+    return nullptr;
+  return l_BuildingQueue;
+}
+
+ITask *IBuilding::GetBuildDiggingQueue(){
+  auto l_BuildingType = GetBuildingId();
+  ITask *l_Queue = TaskCtrl::Get()->QueryQueue(ETask::EndlessTreasureQueue);
+  if(!l_Queue)
+    return nullptr;
+  if(l_BuildingType != EBuilding::TreasurePool)
+    return nullptr;
+  return l_Queue;
+}
+
+bool IBuilding::HasSpeedUpCooling(){
+  if(GetBuildingId() == EBuilding::FirstAidTent /*and worldMapDefine.isInPyramid()*/){
+    auto l_CdQueue = ArmyCtrl::Get()->GetHostpitalPyramidWarCDQueueTime();
+    if(l_CdQueue > 0)
+      return true;
+  }
+  return false;
+}
+
+GTime IBuilding::GetSpeedUpCoolingTime(){
+  if(GetBuildingId() == EBuilding::FirstAidTent){
+    return ArmyCtrl::Get()->GetHostpitalPyramidWarCDQueueTime();
+  }
+  return 0;
+}
+
+void IBuilding::DoHarvesting(){
+  auto l_BuildingPlace = GBase::DGetBuildingTypeByIndex(GetBuildingIndex());
+  auto l_BuildingId = GetBuildingId();
+  if(l_BuildingPlace == EBuildingPlace::Inner){
+    if(l_BuildingId == EBuilding::Stable 
+    || l_BuildingId == EBuilding::TargetRange
+    || l_BuildingId == EBuilding::Barrack
+    || l_BuildingId == EBuilding::Fortress
+    || l_BuildingId == EBuilding::ChariotPlant
+    || l_BuildingId == EBuilding::MaterialWorkShop
+    || l_BuildingId == EBuilding::ElitePalace
+    ){
+      HarvestTrainArmy();
+    }else{
+      //     self.fsm_:doEvent("reset")
+    }
+  }else{
+    HarvestRes();
+  }
+}
+
+void IBuilding::HarvestTrainArmy(){
+ 
+  auto l_BuildingId = GetBuildingId();
+  GBase::PlaySound("trainsoilder"/**, l_BuildingId*/);
+  if(l_BuildingId == EBuilding::Blacksmith){
+    GBase::DGetEquip();
+  else if (l_BuildingId == EBuilding::MaterialWorkShop)
+    StuffWorkshopCtrl::Get()->SendGetStuff();
+  else{
+    if(l_BuildingId == EBuilding::Stable 
+    || l_BuildingId == EBuilding::TargetRange
+    || l_BuildingId == EBuilding::Barrack
+    || l_BuildingId == EBuilding::Fortress
+    || l_BuildingId == EBuilding::ChariotPlant
+    || l_BuildingId == EBuilding::ElitePalace /**and worldMapDefine.isInWarForbidSoldier() */)
+      return;
+   ArmyCtrl::Get()->GetTrainArmyReq();
+  }
+}
+
 void IBuilding::UpdateIsCanUpgradeStar(){
   /*local bid = self:getBuildBid()
   local iid = self:getIid()
@@ -555,7 +995,6 @@ Vector<SpriteFrame*> IBuilding::getAnimation(GString Frame, int32 start, int32 e
   return animFrames;
 }
 
-void IBuilding::ShowNormalParticle() {}
 
 
 void IBuilding::setBuildingUnitData(RCityBuildingUnit& _CBUD) { BuildingUnitData = _CBUD; }

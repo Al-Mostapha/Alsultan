@@ -12,5 +12,5 @@ public:
   GPair<bool, RCostBuildingUpgrade> IsCanBuild(EBuilding p_BuildingType);
   int32 IsWarLvl(uint32 p_BuildingLvl) { return false; }
   bool IsShowUpgrade(EBuildingIndex p_BuildingIndex){ return true; }
-  RBuildingTask *GetQueueType(EBuildingIndex p_BuildingIndex);
+  ITask *GetQueueType(EBuildingIndex p_BuildingIndex);
 };

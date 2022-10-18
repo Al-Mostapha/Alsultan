@@ -64,7 +64,7 @@ struct RBuildingLvlSpecs {
   uint32 atkSpeedAdd = 0;
   uint32 baseAtkSpeed = 0;
   uint32 gunshot = 0;
-  EArmyType unlockedSoldier;
+  EArmy unlockedSoldier;
   uint32 forgeSpeed = 0;
   uint32 steelReduce = 0;
   uint32 kingdomLv = 0;
