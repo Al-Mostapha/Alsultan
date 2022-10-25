@@ -24,10 +24,10 @@ void BuildingNone::onEnter()
 {
 	IBuilding::onEnter();
 
-	cocos2d::log("Building ------------------------ Pos Place %d", static_cast<int32>(this->BuildingUnitData.eBuildingPos));
-	if (BuildingUnitData.eBuildingPos == EBuildingPos::CBPlace_Inner)
+	cocos2d::log("Building ------------------------ Pos Place %d", static_cast<int32>(this->Info.eBuildingPos));
+	if (Info.eBuildingPos == EBuildingPos::CBPlace_Inner)
 		BuildingSpriteImage = "inner_city_building_tile.png";
-	else if (BuildingUnitData.eBuildingPos == EBuildingPos::CBPlace_Outer)
+	else if (Info.eBuildingPos == EBuildingPos::CBPlace_Outer)
 		BuildingSpriteImage = "res_tile.png";
 
 	setBuildingSprite();

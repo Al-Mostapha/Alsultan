@@ -17,3 +17,7 @@ GPair<bool, GVector<RCostScienceEnough>> ScienceCtrl::IsEnough(GVector<RCostScie
   auto l_IsEnough = GPair<bool, GVector<RCostScienceEnough>>::Make(true, {});
   return l_IsEnough;
 }
+
+EScience ScienceCtrl::StudyingTechnology(){
+  return EScience::None;
+}

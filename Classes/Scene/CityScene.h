@@ -36,7 +36,7 @@ public:
   Node* batchNodeSoldierGuards;
   Node* CityDecoreLayer;
   Node* CityUiLayer;
-  cocos2d::Map<std::string, Node*> bufferNodeArray;
+  Map<std::string, Node*> bufferNodeArray;
   Node *TipBoxGuardSoldier;
   Node *ButtonMerchante;
   ui::Button *ButtonEpicBattle;

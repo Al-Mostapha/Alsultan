@@ -10,3 +10,13 @@ void GuildHelp::ReqAllianceHelp(ETask p_Task, int p_TargetID, int p_TargetLvl)
 {
   // ...
 }
+
+bool GuildHelp::IsCanHelp()
+{
+  return false;
+}
+
+void GuildHelp::ReqHelpAll()
+{
+  
+}

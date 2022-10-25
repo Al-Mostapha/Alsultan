@@ -45,7 +45,7 @@ void BuildingFArrowTower::onEnter()
 void BuildingFArrowTower::setTowerOffet()
 {
 
-	if (BuildingUnitData.BuildingPlace == "arrowTowerR")
+	if (Info.BuildingPlace == "arrowTowerR")
 		BuildingSprite->setPosition(BuildingSprite->getPosition() + Vec2(-7, 27));
 	else
 		BuildingSprite->setPosition(BuildingSprite->getPosition() + Vec2(-10, 32));

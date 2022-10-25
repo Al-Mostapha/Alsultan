@@ -1,11 +1,12 @@
 #include "StuffWorkshop.Ctrl.h"
 
-StuffWorkShopCtrl *StuffWorkShopCtrl::Get() {
-  static StuffWorkShopCtrl *s_StuffWorkShopCtrl = new StuffWorkShopCtrl();
-  return s_StuffWorkShopCtrl;
+StuffWorkshopCtrl *StuffWorkshopCtrl::Get(){
+  static StuffWorkshopCtrl *instance = new StuffWorkshopCtrl();
+  return instance;
 }
 
-uint32 StuffWorkShopCtrl::GetDoneID() {
+uint32 StuffWorkshopCtrl::GetDoneID() {
   return 0;
 }
-void  StuffWorkShopCtrl::SendGetStuff() {}
+
+void  StuffWorkshopCtrl::SendGetStuff() {}

@@ -82,6 +82,15 @@ namespace GBase{
     return GPair<GString, GString>::Make("war_lv_1", "war_lv_2");
   }
 
+  void DGetEquip(){}
+  bool  DRemoveTimer(Node *p_Target, Scheduler *p_Scheduler){
+    return false;
+  }
+
+  void DShowNameOnTouchEven(Node * p_Node, GPair<GString, Vec2> p_Data){
+
+  }
+
 } // namespace
 
 

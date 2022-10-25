@@ -21,7 +21,8 @@ using namespace ui;
 
 class IBuilding : public cocos2d::Node
 {
-
+private:
+  static const GHashMap<EBuilding, uint32> m_SearchBoostToolTable;
 public:
 	CREATE_FUNC(IBuilding);
 
@@ -31,7 +32,7 @@ public:
 	Sprite *n_BuildingLvBg;
 	Layout *BuildingBtn;
 	
-	RCityBuildingUnit BuildingUnitData;
+	RCityBuildingUnit Info;
 
 	Vec2    LvlBgOffset;
 	GString BuildingSpriteImage;
@@ -42,6 +43,7 @@ public:
   Node *n_BuildStarLight = nullptr;
   Sprite *n_SpStarLight = nullptr;
   Node *n_BuildGlowWar = nullptr;
+  Node *n_ImgLock = nullptr;
 
   Scheduler *m_TimeHandler = nullptr;
 
@@ -100,8 +102,8 @@ public:
   virtual Node *GetBuildingCell(){ return nullptr;}
   virtual EBuildingIndex GetBuildingIndex(){ return EBuildingIndex::None;}
 
-  virtual bool IsLocked(){ return false;}
-  virtual bool IsLockVisible(){ return false;}
+
+  virtual bool IsLockVisible();
   virtual void ShowTintOnce(){}
   virtual bool IsCanSpeedUpStrongFree(){ return false; }
   virtual bool IsTraining();
@@ -116,8 +118,9 @@ public:
 
   virtual bool IsNeedRequestHelp();
   virtual bool IsFignting() { return  false; }
-  virtual bool HasAnyAllianceHelpList(){ return false; }
-  virtual bool AllianceHelpAll(){ return false; }
+  virtual bool HasAnyAllianceHelpList();
+  virtual void UpdateAllianceHelpList();
+  virtual bool AllianceHelpAll();
   virtual bool RequestHelp(){ return false; }
 
   virtual EBuildingState GetState() { return EBuildingState::None;}
@@ -128,7 +131,7 @@ public:
   virtual void SMsgTrainArmyImmediatelyBack(EventCustom *p_Event);
   virtual void SMsgBuildTrainFailed(EventCustom *p_Event);
 
-  EBuilding GetBuildingId(){ return BuildingUnitData.eBuildingType; }
+  EBuilding GetBuildingId(){ return Info.eBuildingType; }
   virtual void SetIsCanUpgrade(bool p_IsCan = false);
   virtual void SetIsCanUpgradeStar(bool p_IsCan = false){}
 
@@ -158,13 +161,17 @@ public:
   virtual void UpdateTimer(float p_delta);
   virtual void ShowTopTip();
   virtual void HideTopTip();
-  virtual void UpdateTopTip();
+  virtual void UpdateTopTip(){}
+
   virtual bool IsOpening(){ return false; }
 
   virtual void ShowAnimBuildWorker(bool p_HideHammer = false);
   virtual void HideAnimBuildWorker();
 
   virtual void ShowBuildLock(){ }
+  virtual void ShowLock();
+  virtual void HideLock();
+  virtual bool IsLocked();
 
   virtual uint32 GetBuildingLvl(){ return 0;}
   virtual uint32 GetStarLvl(){ return 0;}
@@ -180,7 +187,7 @@ public:
   virtual void UpdateStarLvlPos(){}
   virtual void RefreshBuildStarState(void * p_Temp);
 
-  virtual void UpdateIsLock(){}
+  virtual void UpdateIsLock();
   virtual void UpdateViewModel(){}
 
 
@@ -249,6 +256,9 @@ public:
   virtual void DoHarvesting(); // can harvest resource or army or any other tip
   virtual void HarvestTrainArmy(); // can harvest resource or army or any other tip
   virtual void HarvestRes(); // can harvest resource or army or any other tip
+  virtual void HarvestBatchRes(); 
+  virtual bool CanHarvestBatchRes();
+  virtual void BuildButtonCallFun(Touch* p_Touch, Event* p_Event, ETouchEventType p_Type = ETouchEventType::None);
 
 private:
   virtual bool IgnoreClickEvent(Touch* p_T, Event* p_E) const;

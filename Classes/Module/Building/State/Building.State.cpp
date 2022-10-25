@@ -79,7 +79,7 @@ void Building::StateBuilding::PostEnter(IState::Event *p_Event){
     l_Building->UpdateLvl();
     return;
   }else{
-    l_Building->m_BuildingTask = l_QueuedTask;
+    l_Building->m_BuildingTask = static_cast<RBuildingTask *>(l_QueuedTask);
   }
   if(!l_Building->m_BuildingTask)
     return;
@@ -160,7 +160,7 @@ void Building::StateDemolish::PostEnter(IState::Event *p_Event){
   auto l_QueuedTask = BuildingLogic::Get()->GetQueueType(l_Building->GetBuildingIndex());
   if(!l_QueuedTask)
     return;
-  l_Building->m_BuildingTask = l_QueuedTask;
+  l_Building->m_BuildingTask = static_cast<RBuildingTask *>(l_QueuedTask);
   auto l_RemainTime = l_Building->m_BuildingTask->GetRemainTime();
   if(l_RemainTime <= 0){
     l_Building->SetBlockState(EBuildingState::Idle);

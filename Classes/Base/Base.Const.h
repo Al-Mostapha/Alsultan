@@ -1,5 +1,6 @@
 #pragma once 
 #include "BaseTypeDef.h"
+#include "cocos2d.h"
 
 
 namespace GBase{
@@ -8,8 +9,19 @@ namespace GBase{
       static Display *l_Instance = new Display();
       return l_Instance;
     }
+    static cocos2d::Node *NewNode(){
+      return cocos2d::Node::create();
+    }
     float cx; // CenterX
-    float cy; //CenterY
+    float cy;  //CenterY
+    float rcy; //ReverseCenterY
+    float iPhoneXOffset = 0;
+    void AddSpriteFrames(
+      const GString &p_PlistName, const GString &p_ImageName,
+      const std::function<void()> &p_CallBack){
+        SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_PlistName);
+        p_CallBack();
+      }
   };
   struct GLobalSettings{
     static bool ShowMsgTip;
@@ -20,7 +32,8 @@ namespace GBase{
       static Const *l_Instance = new Const();
       return l_Instance;
     }
-
+    bool IsArClient = true;
+    bool RamadanSwitch = false;
     int32 COMMON_CONSTANT       = 1;
     int32 BATCH_USE_MIN         = 2;
     int32 TIME_LIMITED_4_HOURS  = 4;

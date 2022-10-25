@@ -2,12 +2,13 @@
 #include "BaseTypeDef.h"
 #include "Include/IncludeEngine.h"
 #include "Base/Containers/Pair.h"
+#include "Base/Containers/HashMap.h"
 #undef PlaySound
 
 enum class EBuildingPlace;
 enum class EBuilding;
+enum class EBuildingIndex;
 namespace GBase{
-  
   template <typename T>
   T getChildByName(Node* p_Node, const char* p_name){
     if(!p_Node)
@@ -27,7 +28,7 @@ namespace GBase{
   void PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
   const char *getSoundPath(const char *p_SoundName);
   void SoraDFTarget(Node *p_node);
-  EBuildingPlace DGetBuildingTypeByIndex(EBuilding p_Building);
+  EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building);
   bool IsTouchOnNode(Vec2 p_Point, Node *p_Node);
 
   float DGetAutoHeightLabel(ui::Text *p_Label, float p_Width = 0.0f);
@@ -37,7 +38,14 @@ namespace GBase{
   GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
   Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc);
   bool DRemoveTimer(Node *p_Target, Scheduler *p_Scheduler);
-  bool DGetEquip(){}
+  // this calld when player click on a building black smith
+  void DGetEquip();
+  void DShowNameOnTouchEven(Node * p_Node, GPair<GString, Vec2> p_Data);
+
+  Node *DPopItemAward(){return nullptr;}
+  void DPushItemAward(Node *){}
+  bool DCloseLoginView(){return true;}
+  void DSendMessage(const char *p_EventId, void *p_Data = nullptr){}
 };
 
 

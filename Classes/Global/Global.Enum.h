@@ -7,3 +7,11 @@ enum class ESpeedType{
   Gold = 2,
   Item = 3
 };
+
+enum class ETouchEventType{
+  None = 0,
+  Begin = 1,
+  Move = 2,
+  End = 3,
+  Cancel = 4
+};

@@ -11,4 +11,5 @@
 #include "Base/Base.Const.h"
 #include "Base/DateTime.h"
 #include "Base/State/IState.h"
+#include "Module/Translation/Translate.h"
 

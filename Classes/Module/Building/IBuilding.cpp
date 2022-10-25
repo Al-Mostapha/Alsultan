@@ -616,14 +616,17 @@ void IBuilding::DoReqHelpByQueueType(ETask p_Task){
 
 bool IBuilding::SpeedUpFree(){
   TaskCtrl::Get()->SpeedUpQueueReq(GetQueueType(), ESpeedType::Free);
+  return true;
 }
 
 bool IBuilding::SpeedUpStrongFree(){
   TaskCtrl::Get()->SpeedUpQueueReq(GetBuildStarQueueType(), ESpeedType::Free);
+  return true;
 }
 
 bool IBuilding::SpeedUpResearchFree(){
   TaskCtrl::Get()->SpeedUpQueueReq(GetQueueType(), ESpeedType::Gold);
+  return true;
 }
 
 bool IBuilding::IsCanHarvest(){
@@ -816,7 +819,7 @@ void IBuilding::HarvestTrainArmy(){
  
   auto l_BuildingId = GetBuildingId();
   GBase::PlaySound("trainsoilder"/**, l_BuildingId*/);
-  if(l_BuildingId == EBuilding::Blacksmith){
+  if(l_BuildingId == EBuilding::Blacksmith)
     GBase::DGetEquip();
   else if (l_BuildingId == EBuilding::MaterialWorkShop)
     StuffWorkshopCtrl::Get()->SendGetStuff();
@@ -828,9 +831,329 @@ void IBuilding::HarvestTrainArmy(){
     || l_BuildingId == EBuilding::ChariotPlant
     || l_BuildingId == EBuilding::ElitePalace /**and worldMapDefine.isInWarForbidSoldier() */)
       return;
-   ArmyCtrl::Get()->GetTrainArmyReq();
+    ArmyCtrl::Get()->GetTrainArmyReq(l_BuildingId);
   }
 }
+
+void IBuilding::HarvestRes(){
+  
+  auto l_BuildingId = GetBuildingId();
+  auto l_BuildingIndex = GetBuildingIndex();
+  auto l_BuildingPlace = GBase::DGetBuildingTypeByIndex(l_BuildingIndex);
+  if(l_BuildingPlace != EBuildingPlace::Inner){
+    std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+    l_ABuildingMsg->BuildingIndex = l_BuildingIndex;
+    l_ABuildingMsg->BuildingNode = this;
+    getEventDispatcher()->dispatchCustomEvent(
+      "MESSAGE_MAINCITYVIEW_ADD_HARVEST_FLOATING",
+      l_ABuildingMsg.get()
+    );
+    SetHarvestState(EHarvestState::None, false);
+  }
+
+  GBase::PlaySound("trainsoilder"/*, l_BuildingId*/);
+  CityCtrl::Get()->CollectResReq(l_BuildingId, l_BuildingIndex);
+  // self.fsm_:doEvent("reset")
+  // if self.turnToNormalView then
+  //   self:turnToNormalView(true)
+  // end
+}
+
+void IBuilding::HarvestBatchRes(){
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  l_ABuildingMsg->BuildingIndex = GetBuildingIndex();
+  l_ABuildingMsg->BuildingNode = this;
+  getEventDispatcher()->dispatchCustomEvent(
+    "MESSAGE_MAINCITYVIEW_COLLECT_BATCH_RES",
+    l_ABuildingMsg.get()
+  );
+}
+
+bool IBuilding::CanHarvestBatchRes(){
+  if(GetBuildingId() == EBuilding::Farm)
+    return true;
+  if(GetBuildingId() == EBuilding::LumberMill)
+    return true;
+  if(GetBuildingId() == EBuilding::IronMine)
+    return true;
+  if(GetBuildingId() == EBuilding::SilverMine)
+    return true;
+  if(GetBuildingId() == EBuilding::CrystalMine)
+    return true;
+  return false;
+}
+
+void IBuilding::BuildButtonCallFun(Touch* p_Touch, Event* p_Event, ETouchEventType p_Type){
+  auto l_ABuildingMsg = std::make_unique<ABuildingTouchMsg>();
+  l_ABuildingMsg->BuildingIndex = GetBuildingIndex();
+  l_ABuildingMsg->BuildingNode = this;
+  l_ABuildingMsg->TouchEvent = p_Event;
+  l_ABuildingMsg->TouchEventType = p_Type;
+  if(p_Type == ETouchEventType::Begin){
+    getEventDispatcher()->dispatchCustomEvent(
+      "MESSAGE_MAINCITYVIEW_BUILDING_BUTTON_TOUCH_BEGIN",
+      l_ABuildingMsg.get()
+    );
+  }else if(p_Type == ETouchEventType::End){
+    if(m_SingleIsMoved){
+      l_ABuildingMsg->TouchEventType = ETouchEventType::Cancel;
+      getEventDispatcher()->dispatchCustomEvent(
+        "MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT",
+        l_ABuildingMsg.get()
+      );
+      return;
+    }
+    m_SingleIsMoved = false;
+    getEventDispatcher()->dispatchCustomEvent(
+      "MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT",
+      l_ABuildingMsg.get()
+    );
+  } else if(p_Type == ETouchEventType::Move){
+    auto l_TouchBeganPoint = p_Touch->getStartLocation();
+    auto l_TouchMovePoint = p_Touch->getLocation();
+    auto l_Distance = l_TouchBeganPoint.getDistance(l_TouchMovePoint);
+    if(l_Distance > TOUCH_MOVED_ERROR_VALUE){
+      m_SingleIsMoved = true;
+    }
+  }else if(p_Type == ETouchEventType::Cancel){
+    getEventDispatcher()->dispatchCustomEvent(
+      "MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT",
+      l_ABuildingMsg.get()
+    );
+    m_SingleIsMoved = false;
+  }
+}
+
+void IBuilding::ShowLock(){
+  if(!n_ImgLock)
+    return;
+  n_ImgLock->setVisible(true);
+}
+
+void IBuilding::HideLock(){
+  if(!n_ImgLock)
+    return;
+  n_ImgLock->setVisible(false);
+}
+
+bool IBuilding::IsLockVisible(){
+  auto l_IsLockVisible = false;
+  if(GetBuildingId() != EBuilding::CrystalMine)
+    return l_IsLockVisible;
+  auto l_BuildingCell = CityCtrl::Get()->GetBuildingCell(EBuilding::Castle, EBuildingIndex::None);
+  if(!l_BuildingCell)
+    return l_IsLockVisible;
+  if(l_BuildingCell->Info.buildingLvl < 30)
+    l_IsLockVisible = true;
+  return l_IsLockVisible;
+}
+
+bool IBuilding::IsLocked(){
+  bool l_IsLocked = false;
+  auto l_BuildingId = GetBuildingId();
+  auto l_BuildingCell = CityCtrl::Get()->GetBuildingCell(EBuilding::Castle, EBuildingIndex::None);
+  if(!l_BuildingCell)
+    return l_IsLocked;
+  auto l_CastleLv = l_BuildingCell->Info.buildingLvl;
+
+  if(l_BuildingId == EBuilding::ArrowTower){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl7)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  } else if(l_BuildingId == EBuilding::Blacksmith){
+     if(l_CastleLv >= GBase::Const::Get()->CastleLvl10)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  } else if(l_BuildingId == EBuilding::MaterialWorkShop){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl10)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  } else if(l_BuildingId == EBuilding::PetHouse){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl4)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  }else if(l_BuildingId == EBuilding::ElitePalace){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl16)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  } else if(l_BuildingId == EBuilding::TrainHall){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl7)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  }
+
+  // elseif bid == BUILDID.HERO_CENOTAPH then
+  //   local castleBid = BUILDID.CASTLE
+  //   local buildCell = cityCtrl:getBuildCell(castleBid, 0)
+  //   if nil == buildCell then
+  //     return isLocked
+  //   end
+  //   local castleLv = tonumber(buildCell.info.lv)
+  //   if castleLv >= CASTLE_LV19_LIMITED then
+  //     isLocked = false
+  //   else
+  //     isLocked = true
+  //   end
+  //   print("\231\186\170\229\191\181\231\162\145\239\188\140\233\156\128\232\166\129\229\159\142\229\160\16119\231\186\167\232\167\163\233\148\129===", castleLv, CASTLE_LV19_LIMITED, isLocked)
+  else if(l_BuildingId == EBuilding::Prison){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl16)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  } else if( l_BuildingId == EBuilding::EpicBattle){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl7)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  } else if(l_BuildingId == EBuilding::Monument){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl6)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+  } else if(l_BuildingId == EBuilding::ResurrectionHall){
+    if(l_CastleLv >= GBase::Const::Get()->CastleLvl6)
+      l_IsLocked = false;
+    else
+      l_IsLocked = true;
+
+    //   if isLocked ~= true then
+    //     local lordInfoCtrl = gametop.playertop_:getModule("lordInfoCtrl")
+    //     print("lordInfoCtrl:getBaseInfo().isSrcKingWarEnabled ", lordInfoCtrl:getBaseInfo().isSrcKingWarEnabled)
+    //     if not lordInfoCtrl:getBaseInfo().isSrcKingWarEnabled then
+    //       isLocked = true
+    //     end
+    //   end
+  } else if(l_BuildingId == EBuilding::CrystalMine){
+    //   local castleLv = tonumber(buildCell.info.lv)
+    //   local isShowWarLv, textLv = SoraDGetBuildWarLv(castleLv)
+    //   print("isShowWarLv = ", isShowWarLv, ", textLv = ", textLv)
+    //   if not isShowWarLv or textLv < 3 then
+    //     isLocked = true
+    //   else
+    //     isLocked = false
+    //   end
+  }  
+  return l_IsLocked;
+}
+
+void IBuilding::UpdateIsLock(){
+//   function cityBuildBaseEntity:updateIsLock()
+//   local bid = self:getBuildBid()
+//   local checkLockVisible = {
+//     BUILDID.CRYSTAL_MINE
+//   }
+//   local isNeedCheckVisible = false
+//   for i = 1, #checkLockVisible do
+//     if checkLockVisible[i] == bid then
+//       isNeedCheckVisible = true
+//       break
+//     end
+//   end
+//   if isNeedCheckVisible then
+//     if self:getIsLockVisible() then
+//       self:setVisible(false)
+//       return
+//     else
+//       self:setVisible(true)
+//     end
+//   end
+//   if bid == BUILDID.TURRET then
+//     local isLocked = self:getIsLocked()
+//     if isLocked then
+//       if self.showLock then
+//         self:showLock()
+//       end
+//     else
+//       if self.hideLock then
+//         self:hideLock()
+//       end
+//       self:showBuildLv()
+//     end
+//   end
+//   local checkLockTb = {
+//     BUILDID.BLACK_SMITH,
+//     BUILDID.MATERIAL_WORKSHOP,
+//     cityBuildConstDef.fixedBuildDef.PetCenter,
+//     BUILDID.ELITE_PALACE,
+//     cityBuildConstDef.fixedBuildDef.ResurrectionHall,
+//     BUILDID.CRYSTAL_MINE,
+//     cityBuildConstDef.fixedBuildDef.EpicBattle,
+//     BUILDID.HERO_TRAIN_GROUND,
+//     BUILDID.HERO_PRISON,
+//     BUILDID.MONUMENT,
+//     cityBuildConstDef.fixedBuildDef.Mastery
+//   }
+//   local isNeedCheck = false
+//   for i = 1, #checkLockTb do
+//     if checkLockTb[i] == bid then
+//       isNeedCheck = true
+//       break
+//     end
+//   end
+//   if isNeedCheck then
+//     local isLocked = self:getIsLocked()
+//     if isLocked then
+//       if self.showBuildLock then
+//         self:showBuildLock()
+//       end
+//     else
+//       if self.hideBuildLock then
+//         self:hideBuildLock()
+//       end
+//       local isNeedRefreshHarvestEffect = false
+//       local checkHarvestTb = {
+//         BUILDID.CRYSTAL_MINE
+//       }
+//       for i, v in ipairs(checkHarvestTb) do
+//         if bid == v then
+//           isNeedRefreshHarvestEffect = true
+//           break
+//         end
+//       end
+//       if isNeedRefreshHarvestEffect then
+//         SoraDSendMessage({
+//           msg = "MESSAGE_MAINCITY_UPDATE_HARVEST_EFFECT"
+//         })
+//       end
+//     end
+//   end
+// end
+}
+
+bool IBuilding::HasAnyAllianceHelpList(){
+  auto l_Has = false;
+  auto l_BuildingId = GetBuildingId();
+  if(l_BuildingId != EBuilding::Embassy)
+    return l_Has;
+  return GuildHelp::Get()->IsCanHelp();
+}
+
+void IBuilding::UpdateAllianceHelpList(){
+
+  if(GetBuildingId() != EBuilding::Embassy)
+    return;
+  auto l_IsCanHelp = GuildHelp::Get()->IsCanHelp();
+  auto l_BuildingState = GetState();
+  if(l_IsCanHelp){
+    if(l_BuildingState == EBuildingState::None)
+      ShowTopTip();
+  } else if (l_BuildingState == EBuildingState::None){
+    HideTopTip();
+  }
+}
+
+bool IBuilding::AllianceHelpAll(){
+  GuildHelp::Get()->ReqHelpAll();
+  return true;
+}
+
+
 
 void IBuilding::UpdateIsCanUpgradeStar(){
   /*local bid = self:getBuildBid()
@@ -994,9 +1317,15 @@ Vector<SpriteFrame*> IBuilding::getAnimation(GString Frame, int32 start, int32 e
   }
   return animFrames;
 }
+/**
+const GHashMap<EBuilding, uint32> IBuilding::m_SearchBoostToolTable = {
+  {EBuilding::Farm,        501501},
+  {EBuilding::LumberMill,  501401},
+  {EBuilding::IronMine,    501601},
+  {EBuilding::SilverMine,  501701},
+  {EBuilding::CrystalMine, 503201},
+};*/
 
-
-
-void IBuilding::setBuildingUnitData(RCityBuildingUnit& _CBUD) { BuildingUnitData = _CBUD; }
+void IBuilding::setBuildingUnitData(RCityBuildingUnit& _CBUD) { Info = _CBUD; }
 
 void IBuilding::setBuildingBtn() {}
