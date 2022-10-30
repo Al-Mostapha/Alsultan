@@ -9,4 +9,5 @@ protected:
   GString m_ViewName = "";
 public: 
   virtual void InitPanel() = 0;
+  virtual void Show() {}
 };

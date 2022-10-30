@@ -1,4 +1,15 @@
 #include "CityScene.Create.h"
+#include "CityScene.Move.h"
+#include "CityScene.ABMManager.h"
+#include "Module/City/City.Ctrl.h"
+#include "Module/Building/IBuilding.h"
+#include "Module/City/CityBuilding/CityBuildingSpritePool.h"
+#include "Module/City/CityBuilding/CityBuilding.Mgr.h"
+#include "Module/City/City.Func.h"
+#include "Module/City/CitySceneEffect.h"
+#include "Module/Player/LordInfo.Ctrl.h"
+#include "Module/Building/BuildingLib/Wall.Ctrl.h"
+
 
 void MainCityCreate::Ctor(){
   // self:setAnchorPoint(cc.p(0.5, 0.5))
@@ -460,23 +471,458 @@ void MainCityCreate::InitBufferNodeArray(){
 
 void MainCityCreate::InitAfterCreate(){
   if(m_IsNeedFirstFight){
-
+    ShowFirstEnter();
+    return;
   }
-  // if self.isNeedFirstFight == true then
-  //   mainCityCreate.showFirstEnter(self)
-  //   return
+  UpdatePeriod();
+  InitWithBuildData();
+  InitWithHuoChuangData();
+  InitMatouData();
+  InitCelebrateGift();
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_PYRAMID_BATTLE_MSG");
+  MsgUpdateLion();
+  MainCityBuildingMove::Get()->Init(this);
+  MainCityABMManager::Get()->Init(this);
+}
+
+void MainCityCreate::ShowFirstEnter(){
+  // userSDKManager.logEvent(gSDKDef.TDonEvent.game_cg_play_complete, {})
+  // local self = mainCity
+  // self:hideAllRamadanEffectNode()
+  // for i = 1, 4 do
+  //   local cqName = "Sprite_Cq_" .. i
+  //   local spriteCqItem = self:getBufferNodeByName(cqName)
+  //   if spriteCqItem then
+  //     spriteCqItem:setVisible(false)
+  //   end
   // end
-  // self:updatePeriod()
-  // mainCityCreate.initWithBuildData(self)
-  // mainCityCreate.initWithHuoChuangData(self)
-  // mainCityCreate.initMatouData(self)
-  // self:initCelebrateGift()
-  // SoraDSendMessage({
-  //   msg = "MESSAGE_MAINCITYVIEW_PYRAMID_BATTLE_MSG"
-  // })
-  // self:msgUpdateLion()
-  // mainCityBuildingMove:init(self)
-  // mainCityABMManager:init(self)
+  // local spriteJiantachengduoR = self:getBufferNodeByName("Sprite_Jiantachengduo_R")
+  // local spriteJiantachengduoL = self:getBufferNodeByName("Sprite_Jiantachengduo_L")
+  // if spriteJiantachengduoR then
+  //   spriteJiantachengduoR:setVisible(false)
+  // end
+  // if spriteJiantachengduoL then
+  //   spriteJiantachengduoL:setVisible(false)
+  // end
+  // self.isSkipClick = false
+  // local lang = SoraDGetDefaultLanguage()
+  // local btnRes = SoraDGetImageNameByLang("res/video/icon_xsyd_%s.png", {"ar", "en"})
+  // local csbNode = display.getRunningScene()
+  // local data = {
+  //   videoFile = "cg/gameCG.mp4",
+  //   onCompleteFun = function(_video)
+  //     if self.isSkipClick then
+  //       userSDKManager.logEvent(gSDKDef.TDonEvent.game_cg_play_complete, {jump = 3021010})
+  //     end
+  //     SoraDGetCtrl("guideCtrl"):setSkipFirstFight(true)
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_SERVER_GUIDE_STEP_END",
+  //       step = 1007
+  //     })
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_FIRST_FIGHT_END"
+  //     })
+  //   end,
+  //   onPanelClick = function(_video)
+  //     if not _video.isAddBtn then
+  //       _video:addSkipButton(" ", false, btnRes, true)
+  //     end
+  //   end,
+  //   onStopfunc = function(_video)
+  //     print("==onStopfunc==")
+  //   end,
+  //   onSkipfunc = function(_video)
+  //     self.isSkipClick = true
+  //   end,
+  //   needRemove = true,
+  //   displaySize = cc.size(640, 1386)
+  // }
+  // local videoPlayer = SoraDCreateVideoPlayerSingle(data)
+  // if videoPlayer then
+  //   videoPlayer:play()
+  //   videoPlayer:setContentSize(cc.size(640, 1386))
+  //   do
+  //     local lang = SoraDGetDefaultLanguage()
+  //     local btnRes = SoraDGetImageNameByLang("res/video/icon_xsyd_%s.png", {"ar", "en"})
+  //     SoraDCallOnNextFrame(videoPlayer, function()
+  //       if not videoPlayer.isAddBtn then
+  //         videoPlayer:addSkipButton(" ", false, btnRes, true)
+  //       end
+  //     end, 0.5)
+  //   end
+  // end
+}
+
+void MainCityCreate::UpdatePeriod(){
+
 }
 
 
+void MainCityCreate::InitWithHuoChuangData(){
+  // local self = mainCity
+  // local isCanReceive = loginRewardCtrl:getCanReceive()
+  // if isCanReceive then
+  //   self:addBuildEffect(cityBuildConstDef.OtherBuildDef.HuoChuang)
+  // else
+  //   self:removeBuildEffect(cityBuildConstDef.OtherBuildDef.HuoChuang)
+  // end
+  // effectMainCityView.addBuildTopTipHuochuang(self)
+}
+
+void MainCityCreate::InitMatouData(){
+  // local self = mainCity
+  // local onlineRewardData = timeRewardCtrl:getTimeRewardData()
+  // self.isCanGetReward = 1
+  // self.rewardCount = 0
+  // self.rewardOnline = {}
+  // self.isAllReceive = 0
+  // if onlineRewardData then
+  //   self.isCanGetReward = onlineRewardData.isReceive
+  //   self.rewardCount = onlineRewardData.sequence
+  //   self.rewardOnline = onlineRewardData.reward
+  //   self.isAllReceive = onlineRewardData.isAllReceive or 0
+  // end
+  // if self.isCanGetReward == 2 then
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_DELETE_MATOU_TIP"
+  //   })
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_ADD_BUILD_EFFECT",
+  //     buildIndex = cityBuildConstDef.OtherBuildDef.Gangkou
+  //   })
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_ADD_BUILD_TOP_TIP",
+  //     buildIndex = cityBuildConstDef.OtherBuildDef.Gangkou
+  //   })
+  // else
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TOP_TIP",
+  //     buildIndex = cityBuildConstDef.OtherBuildDef.Gangkou
+  //   })
+  //   if self.isAllReceive == 1 then
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_DELETE_MATOU_TIP"
+  //     })
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_EFFECT",
+  //       buildIndex = cityBuildConstDef.OtherBuildDef.Gangkou
+  //     })
+  //   elseif onlineRewardData then
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_ADD_BUILD_EFFECT",
+  //       buildIndex = cityBuildConstDef.OtherBuildDef.Gangkou
+  //     })
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_ADD_MATOU_TIP"
+  //     })
+  //   end
+  // end
+}
+
+void MainCityCreate::CreateInnerCityBuilds(){
+  auto l_BuildList = CityCtrl::Get()->GetBuildList();
+  for (auto l_Build : l_BuildList){
+    if(!l_Build)
+      continue;
+    if(l_Build->GetBuildingIndex() == EBuildingIndex::ArrowTowerL ||
+        l_Build->GetBuildingIndex() == EBuildingIndex::WallGate ||
+        l_Build->GetBuildingIndex() == EBuildingIndex::ArrowTowerR ||
+        l_Build->GetBuildingIndex() == EBuildingIndex::WatchTower)
+      continue;
+    auto l_BuildingIndex = static_cast<int32>(l_Build->GetBuildingIndex());
+    if(l_BuildingIndex >= 1100)
+      continue;
+    auto l_CellIndexName = StringUtils::format("build_%d", l_BuildingIndex);
+    auto l_BuildBtn = GetBufferNodeByName(l_CellIndexName.c_str());
+    if(!l_BuildBtn)
+      continue;
+      // The Building is Inserted on node wich called "buildName"
+    auto l_BuildEntity = l_BuildBtn->getChildByName<IBuilding *>("buildName");
+    if(!l_BuildEntity)
+      AddBuild(l_Build->GetBuildingIndex(), l_Build->GetBuildingId());
+    else{
+      l_BuildBtn->setCascadeOpacityEnabled(false);
+      l_BuildBtn->setOpacity(0);
+      l_BuildEntity->InitWithBuildCell(l_Build);
+    }
+  }
+  CreateOuterCityBuilds();
+}
+
+void MainCityCreate::CreateOuterCityBuilds(){
+  auto l_BuildList = CityCtrl::Get()->GetBuildList();
+  for (auto l_Build : l_BuildList){
+    if(!l_Build)
+      continue;
+    auto l_BuildingIndex = static_cast<int32>(l_Build->GetBuildingIndex());
+    if(l_BuildingIndex < 1100)
+      continue;
+    auto l_CellIndexName = StringUtils::format("build_%d", l_BuildingIndex);
+    auto l_BuildBtn = GetBufferNodeByName(l_CellIndexName.c_str());
+    if(!l_BuildBtn)
+      continue;
+      // The Building is Inserted on node wich called "buildName"
+    auto l_BuildEntity = l_BuildBtn->getChildByName<IBuilding *>("buildName");
+    if(!l_BuildEntity)
+      AddBuild(l_Build->GetBuildingIndex(), l_Build->GetBuildingId());
+    else{
+      l_BuildBtn->setCascadeOpacityEnabled(false);
+      l_BuildBtn->setOpacity(0);
+      l_BuildEntity->InitWithBuildCell(l_Build);
+    }
+  }
+  CityBuildingMgr::Get()->InitWithData(this);
+  auto l_Delay = DelayTime::create(0.016666666666666666f);
+  auto l_CallFunc = CallFunc::create([this](){
+    this->DelayInitWithBuildData();
+  });
+  runAction(Sequence::create(l_Delay, l_CallFunc, nullptr));
+  // effectMainCityView.addHarvestEffect(self)
+}
+
+void MainCityCreate::DelayInitWithBuildData(){
+  // local self = mainCity
+  // userSDKManager.timeInfo.t_maincity.tend = SoraDGetSocketTime()
+  // userSDKManager.timeInfo.t_maincityp.tbegin = SoraDGetSocketTime()
+
+  // mainCityFunctions.updateLockArea(self)
+  MainCityFunctions::Get()->UpdateLockArea(this);
+  UpdateBuildTiles();
+
+  // if SoraDIsGameGuide() == nil then
+  //   self:autoUpdateViewScrollViewPos()
+  //   self:setZoomScale(self.defaultScale, false)
+  if(!GBase::DIsGameGuide()){
+    AutoUpdateViewScrollViewPos();
+    SetZoomScale(m_DefaultScale, false);
+    //   guideCtrl:updateNewGuide()
+    //   if SoraDGetCastleLv() >= CASTLE_LV3_LIMITED and not guideCtrl:updateGuideModule(gGuideModule.OVERVIEW) and not SoraDCurrentTopPanelFromManager() then
+    //     print("\232\167\166\229\143\145\230\128\187\232\167\136\229\188\149\229\175\188")
+    //   end
+    //   if SoraDGetCastleLv() >= CASTLE_LV7_LIMITED then
+    //     local beginStep = guideCtrl:getStepByGuideModule(gGuideModule.NEW_EPIC_WAR)
+    //     print("beginStep==========", beginStep)
+    //     if beginStep == 73001 and not guideCtrl:updateGuideModule(gGuideModule.NEW_EPIC_WAR) and not SoraDCurrentTopPanelFromManager() then
+    //       print("\232\167\166\229\143\145\229\143\178\232\175\151\228\185\139\230\136\152\229\188\149\229\175\188")
+    //     end
+    //   end
+  } else {
+    AutoUpdateViewScrollViewPos();
+    SetZoomScale(m_DefaultScale, false);
+  }
+  LoadSoldiers();
+  m_TimeHandler = GBase::DCreateTimer(this, std::bind(&MainCityView::UpdateTime, this, std::placeholders::_1));
+  m_TimeHandlerPerFrame = GBase::DCreateTimer(this, std::bind(&MainCityView::UpdateTimePerFrame, this, std::placeholders::_1));
+  UpdateTimePerFrame(Director::getInstance()->getDeltaTime());
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_WALL_VIEW");
+  auto l_Build = GetBufferNodeByName("build_" + static_cast<int32>(EBuildingIndex::WallGate));
+  if(l_Build){
+    auto l_BuildEntity = l_Build->getChildByName<IBuilding *>("buildName");
+    if(l_BuildEntity){
+     // auto l_ViewModelWall = l_BuildEntity->GetViewModel();
+     GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_TURRET_OFFSET", l_BuildEntity);
+    }
+      
+  }
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_WALL_EFFECT");
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_HOSPTIAL_VIEW");
+  GBase::DSendMessage("MESSAGE_QUEST_NOTICE_RECOMMEND_UPDATE");
+  CitySceneEffect::showEagle();
+
+  // cityHorseCtrl:sendInit()
+
+  InitPlayerLevelOffLine();
+  if(GBase::DIsGameGuide()){
+    //   if self.initOtherData ~= nil then
+    //     local otherData = self.initOtherData
+    //     local bDealed = mainCityCreate.dealWithInitData(self, otherData)
+    //     if bDealed == false then
+    //       self:autoUpdateMainCityPos()
+    //     end
+    //   else
+    //     self:autoUpdateMainCityPos()
+    //     if self.isLogin and not wallsCtrl:isDestruction() and SoraDIsGameGuide() == nil and not SoraDJumpToBuyGift() then
+    //       local isDebug = false
+    //       if isDebug then
+    //         cityBuildFunction:checkPopUpWindow()
+    //       elseif xpcall(function()
+    //         cityBuildFunction:checkPopUpWindow()
+    //       end, function()
+    //         print(debug.traceback())
+    //       end) then
+    //       else
+    //         print("cityBuildFunction:checkPopUpWindow \229\188\130\229\184\184\228\186\134\239\188\140\232\175\183\229\164\132\231\144\134-------@ct")
+    //       end
+    //     end
+    //   end
+  }else{
+    SetMainCityEnabled(true);
+  }
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_BUILD_TIP_BOX");
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_MERCHANT_VIEW");
+  GBase::DSendMessage("MESSAGE_WALLS_NOTIFY_SUCCESS");
+  if(WallCtrl::Get()->IsDestruction())
+    GBase::DSendMessage("MESSAGE_WALLS_DEFENCE_DESTROY");
+  if(m_IsLogin){
+    auto l_ActDelay = DelayTime::create(0.15);
+    std::unique_ptr<bool> l_IsHiddle(new bool(false));
+    auto l_CallFunc = CallFunc::create([&](){
+      GBase::DSendMessage("MESSAGE_MAIN_UI_HIDDLE", l_IsHiddle.get());
+    });
+    auto l_Seq = Sequence::create(l_ActDelay, l_CallFunc, nullptr);
+    runAction(l_Seq);
+  }
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_CLOSE_FIRST_FIGHT");
+  if(GBase::DGetFactionType() == EFactionType::Normal){
+    auto l_BuildFirst = GetBufferNodeByName("city_First_build_castle");
+    if(l_BuildFirst)
+      l_BuildFirst->setVisible(false);
+  }
+  CitySceneEffect::addWaveEffect();
+  CitySceneEffect::addSoldierGuard();
+  CitySceneEffect::addHarborWorker();
+  CitySceneEffect::addActivityCentetNpc();
+  CitySceneEffect::addCastleGateNpc();
+  CitySceneEffect::showXiyiAnimation();
+  CitySceneEffect::addConquerGateAnimation();
+  GBase::DSendMessage("MESSAGE_SERVER_UPDATE_IDLE_GUIDE");
+  RefreshCastleSkin(true);
+  CheckCastleGift();
+  CheckEndlessTreasure();
+  CheckAllianceTreasure();
+  CheckFriend();
+  CheckEpicWar();
+  CheckPromoteArmy();
+  CheckMastery();
+  InitVisibleArea();
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_PET_SHOW");
+  // userSDKManager.timeInfo.t_maincityp.tend = SoraDGetSocketTime()
+  // userSDKManager.timeInfo.t_total.tend = SoraDGetSocketTime()
+  if(GBase::DIsGameGuide()){
+    //   local npcTipClient = include("npcTipClient")
+    //   npcTipClient:cleanTipInfo()
+    //   if npcTipClient:hasTip() then
+    //     print("-------\228\186\167\231\148\159\228\186\134npc\230\153\186\232\131\189\230\143\144\231\164\186-----------")
+    //     local tipInfo = npcTipClient:getOrCreateTipInfo()
+    //     if tipInfo.bid ~= 0 or tipInfo.bIndex ~= 0 then
+    //       npcTipClient:setTopTipOn(true)
+    //       SoraDSendMessage({
+    //         msg = "MESSAGE_MAINCITYVIEW_ADD_NPC_TOP_TIP",
+    //         bid = tipInfo.bid,
+    //         bIndex = tipInfo.bIndex
+    //       })
+    //     end
+  }
+  GBase::DCloseSwitcherView();
+  auto l_IsNeedHideAutoTrans = false;
+
+  // if device.platform == "ios" then
+  //   local iOSVersion = userSDKManager.getDeviceOSVersion()
+  //   iOSVersion = iOSVersion and string.match(iOSVersion, "%d+.%d+")
+  //   if iOSVersion and tonumber(iOSVersion) < 8.4 then
+  //     isNeedHideAutoTrans = true
+  //   end
+  // end
+  // if isNeedHideAutoTrans then
+  //   local settingCtrl = gametop.playertop_:getModule("settingCtrl")
+  //   print("\230\163\128\230\181\139\229\136\1768.4\228\187\165\228\184\139ios\231\179\187\231\187\159\239\188\140\229\188\128\229\144\175\232\135\170\229\138\168\231\191\187\232\175\145&\230\137\128\230\156\137\231\154\132\232\135\170\229\138\168\231\191\187\232\175\145")
+  //   settingCtrl:setAutoTranslateSwitchOn()
+  //   local checkList = {}
+  //   for k, v in pairs(settingCtrl:getTLList()) do
+  //     checkList[k] = true
+  //   end
+  //   dump(checkList, "checkList")
+  //   settingCtrl:setTranslateLanguage(checkList)
+  // end
+  // userSDKManager.h5Preload()
+}
+
+void MainCityCreate::CheckCastleGift(){
+  // local privilegeGiftCtrl = gametop.playertop_:getModule("privilegeGiftCtrl")
+  // local gift = privilegeGiftCtrl:getCurCanBuyRechargeID() or {}
+  // local starGift = not privilegeGiftCtrl:getCurStarLvCanBuyRechargeID() and {}
+  // local isShow = false
+  // if next(gift) or next(starGift) then
+  //   isShow = true
+  // end
+  // local clickTime = SoraDConfigGet("Game:MainCityView:castleGiftTipTime~integer", {byUID = true})
+  // if (clickTime == 0 or not serviceFunctions.isSameDay(clickTime)) and isShow then
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_ADD_CASTLE_GIFT_TOP_TIP"
+  //   })
+  // end
+}
+
+void MainCityCreate::CheckEndlessTreasure(){
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_ADD_ENDLESSTREASURE_TOP_TIP");
+}
+
+void MainCityCreate::CheckAllianceTreasure(){
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_ADD_WAREHOUSE_GIFT_TOP_TIP");
+}
+
+void MainCityCreate::CheckFriend(){
+  GBase::DSendMessage("MESSAGE_SERVER_FRIEND_UPDATE_TIP");
+}
+
+void MainCityCreate::CheckEpicWar(){
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_ADD_EPICWAR_TOP_TIP");
+}
+
+void MainCityCreate::CheckPromoteArmy(){
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_ADD_PROMOTE_TOP_TIP");
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_FLAG_COOLING_PANEL");
+}
+
+void MainCityCreate::CheckMastery(){
+  if(!GBase::Const::Get()->IsArClient){
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_MASTERY_VIEW");
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_MASTERY_COOLING_PANEL");
+    GBase::DSendMessage("MESSAGE_UPDATE_MASTERY_TOP_TIP");
+  }
+}
+
+bool MainCityCreate::InitPlayerLevelOffLine(){
+  // local self = mainCity
+  GBase::DSendMessage("MESSAGE_MAIN_AGREEMENT_BOX");
+  auto l_IsShow = false;
+  auto l_IsPop = LordInfoCtrl::Get()->GetLordUpgradePopStatus();
+  if (l_IsPop ) {
+    GBase::DSendMessage("MESSAGE_LORDINFO_UPGRADE_LEVEL");
+    l_IsShow = true;
+  }
+
+  // local remainsTeamCtrl = gametop.playertop_:getModule("remainsTeamCtrl")
+  // if remainsTeamCtrl:isHasInvitedInfo() then
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_SERVER_REMAINS_TEAM_INVITED_INFO"
+  //   })
+  //   isShow = true
+  // end
+  if(CityCtrl::Get()->GetCastleUpgradePopStatus()){
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_CASTLE_LEVELUP");
+    l_IsShow = true;
+  }
+  return l_IsShow;
+}
+
+void MainCityCreate::InitWithBuildData(){
+  auto l_ATLeft     = CityCtrl::Get()->GetBuildingCellByIndex(EBuildingIndex::ArrowTowerL);
+  auto l_Gate       = CityCtrl::Get()->GetBuildingCellByIndex(EBuildingIndex::WallGate);
+  auto l_ATRight    = CityCtrl::Get()->GetBuildingCellByIndex(EBuildingIndex::ArrowTowerR);
+  auto l_WatchTower = CityCtrl::Get()->GetBuildingCellByIndex(EBuildingIndex::WatchTower);
+  AddBuild(l_ATLeft->GetBuildingIndex(), l_ATLeft->GetBuildingId());
+  AddBuild(l_Gate->GetBuildingIndex(), l_Gate->GetBuildingId());
+  AddBuild(l_ATRight->GetBuildingIndex(), l_ATRight->GetBuildingId());
+  AddBuild(l_WatchTower->GetBuildingIndex(), l_WatchTower->GetBuildingId());
+  // effectMainCityView.updateCommunityView(self)
+  // effectMainCityView.updateStarBraveStatueView(self)
+  CityBuildingSpritePool::Get()->Init();
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_WALL_EFFECT");
+  SetMainCityEnabled(false);
+  auto l_ActDelay = DelayTime::create(0.1f);
+  auto l_CallFunc = CallFunc::create([this](){
+    this->CreateInnerCityBuilds();
+  });
+  runAction(Sequence::create(l_ActDelay, l_CallFunc, nullptr));
+}

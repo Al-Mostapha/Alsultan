@@ -2,6 +2,7 @@
 #include "AudioEngine.h"
 #include "Module/Building/Building.Enum.h"
 #include "Module/UI/Common/Message/UIMsgTip.h"
+#include "Global/Global.Enum.h"
 
 namespace GBase{
 
@@ -90,7 +91,19 @@ namespace GBase{
   void DShowNameOnTouchEven(Node * p_Node, GPair<GString, Vec2> p_Data){
 
   }
+  Node *DPopItemAward(){return nullptr;}
+  void DPushItemAward(Node *){}
+  bool DCloseLoginView(){return true;}
+  void DSendMessage(const char *p_EventId, void *p_Data){}
+  bool DIsGameGuide(){return false;}
+  Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc){ return nullptr; }
+  EFactionType DGetFactionType(){ return EFactionType::Normal; }
+  
 
+  void DCloseSwitcherView(){}
+  void DAddMessage(Node * p_Node, const char *p_EventId, const std::function<void(EventCustom *)> &p_Callback){}
+  void DManagerRemoveTimer(Scheduler *P_Timer){}
+  GString DConvertSecondToString(int p_Second){return "";}
 } // namespace
 
 

@@ -48,7 +48,7 @@ public:
   bool m_IsMoveOnBuild = false;
   class IBuilding *n_CurrentSelectBuild = nullptr;
   Node *n_CurrentSelectTip = nullptr;
-  Ext::ScrollView *n_ViewScrollView = nullptr;
+ // Ext::ScrollView *n_ViewScrollView = nullptr;
   Node *n_ContainerView = nullptr;
   Node *n_MainCityFarCsb = nullptr;
   Node *n_MainCityMiddleCsb = nullptr;
@@ -141,5 +141,20 @@ public:
   ui::Layout *GetBufferNodeByName(const char *p_NodeName){ return nullptr; }
 private:
   void CreateGroupNode(ECityTargetGroupID p_GroupId, int32 p_ZOrder);
-  
+  void ShowFirstEnter();
+  void UpdatePeriod();
+  void InitWithBuildData();
+  void InitWithHuoChuangData();
+  void InitMatouData();
+  void CreateInnerCityBuilds();
+  void CreateOuterCityBuilds();
+  void DelayInitWithBuildData();
+  bool InitPlayerLevelOffLine();
+  void CheckCastleGift();
+  void CheckEndlessTreasure();
+  void CheckAllianceTreasure();
+  void CheckFriend();
+  void CheckEpicWar();
+  void CheckPromoteArmy();
+  void CheckMastery();
 };

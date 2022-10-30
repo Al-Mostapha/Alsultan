@@ -55,9 +55,10 @@ enum class EBuildingPlace { // inner / outter
 
 enum class EBuildingIndex { 
   None = 0,
-  ArrowTowerR = 1053,
+  ArrowTowerL = 1052,
   WallGate = 1053,
-  ArrowTowerL = 1054,
+  ArrowTowerR = 1054,
+  WatchTower = 1055,
   BehindArrowTowerR = 1065,
   BehindArrowTowerL = 1066,
 };

@@ -12,4 +12,5 @@
 #include "Base/DateTime.h"
 #include "Base/State/IState.h"
 #include "Module/Translation/Translate.h"
+#include "Base/Sdk.Manager.h"
 

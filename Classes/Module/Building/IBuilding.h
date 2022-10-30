@@ -215,6 +215,7 @@ public:
   virtual void ShowZAnimation(){}
   virtual void HideZAnimation(){}
   virtual void OnAfterInitWithBuildCell(){ } //PostInit
+  virtual void InitWithBuildCell(IBuilding * p_Building){ } //PostInit
   virtual void SetBlockState(EBuildingState p_BuildingState){ m_blockState = p_BuildingState; } 
 
   virtual void UpdateViewAfterBuild() {};
@@ -259,7 +260,7 @@ public:
   virtual void HarvestBatchRes(); 
   virtual bool CanHarvestBatchRes();
   virtual void BuildButtonCallFun(Touch* p_Touch, Event* p_Event, ETouchEventType p_Type = ETouchEventType::None);
-
+  virtual void GetViewModel(){}
 private:
   virtual bool IgnoreClickEvent(Touch* p_T, Event* p_E) const;
 };

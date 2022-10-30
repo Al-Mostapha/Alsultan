@@ -15,11 +15,16 @@ namespace GBase{
     float cx; // CenterX
     float cy;  //CenterY
     float rcy; //ReverseCenterY
+    float height;
+    float width;
     float iPhoneXOffset = 0;
+    cocos2d::Size size(){
+      return cocos2d::Director::getInstance()->getVisibleSize();
+    }
     void AddSpriteFrames(
       const GString &p_PlistName, const GString &p_ImageName,
       const std::function<void()> &p_CallBack){
-        SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_PlistName);
+        cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_PlistName);
         p_CallBack();
       }
   };

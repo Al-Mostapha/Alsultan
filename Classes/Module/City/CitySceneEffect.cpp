@@ -5,7 +5,7 @@
 #include "Module/Building/Building.Module.h"
 #include "Module/Building/Building.Lib.h"
 #include <cmath>
-
+// Sould be moved to main city View
 cocos2d::Sprite *CitySceneEffect::eagle = nullptr;
 cocos2d::Sprite *CitySceneEffect::eagleShadow = nullptr;
 cocos2d::Node *CitySceneEffect::eagleEffect = nullptr;

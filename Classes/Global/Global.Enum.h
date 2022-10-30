@@ -15,3 +15,8 @@ enum class ETouchEventType{
   End = 3,
   Cancel = 4
 };
+
+enum class EFactionType{
+  None = 0,
+  Normal = 1
+};

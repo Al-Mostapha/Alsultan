@@ -359,3 +359,10 @@ struct RBuilding : public GStruct
 		int32 x, y;
 	} offsetByzantine;
 };
+
+struct RBuildingSlot{
+  struct RInfo{
+    EBuildingIndex Index = EBuildingIndex::None;
+    EBuilding BuildingId = EBuilding::None;
+  } Info;
+};

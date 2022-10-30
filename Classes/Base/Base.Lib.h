@@ -8,6 +8,7 @@
 enum class EBuildingPlace;
 enum class EBuilding;
 enum class EBuildingIndex;
+enum class EFactionType;
 namespace GBase{
   template <typename T>
   T getChildByName(Node* p_Node, const char* p_name){
@@ -42,10 +43,16 @@ namespace GBase{
   void DGetEquip();
   void DShowNameOnTouchEven(Node * p_Node, GPair<GString, Vec2> p_Data);
 
-  Node *DPopItemAward(){return nullptr;}
-  void DPushItemAward(Node *){}
-  bool DCloseLoginView(){return true;}
-  void DSendMessage(const char *p_EventId, void *p_Data = nullptr){}
+  Node *DPopItemAward();
+  void DPushItemAward(Node *);
+  bool DCloseLoginView();
+  void DSendMessage(const char *p_EventId, void *p_Data = nullptr);
+  bool DIsGameGuide();
+  EFactionType DGetFactionType();
+  void DCloseSwitcherView();
+  void DManagerRemoveTimer(Scheduler *P_Timer);
+  void DAddMessage(Node *p_Node, const char *p_EventId, const std::function<void(EventCustom *)> &p_Callback);
+  GString DConvertSecondToString(int p_Second);
 };
 
 
