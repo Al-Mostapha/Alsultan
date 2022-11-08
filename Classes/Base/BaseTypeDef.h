@@ -7,6 +7,7 @@
 #include <time.h>
 
 typedef std::string GString;
+
 typedef signed char int8;
 typedef unsigned char uint8;
 
@@ -24,13 +25,11 @@ typedef unsigned long int uint64;
 typedef rapidjson::Document GJsonObject;
 typedef time_t GTime;
 
-
-
 template <class T>
 using GArray = cocos2d::Vector<T>;
-
 template <class T>
 using GVector = std::vector<T>;
+
 template <class K, class V>
 using GMap = std::map<K, V>;
 

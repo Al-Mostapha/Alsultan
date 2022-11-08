@@ -9,10 +9,10 @@ void UIMsgTip::InitPanel(){
   }
   m_ViewName  = "commonPromptTip";
   m_MaxHeight = 80.0f;
-  m_ImageIconBg = GBase::getChildByName<Sprite *>(panel, "Image_IconBg");
-  m_TextMessage = GBase::getChildByName<ui::Text *>(panel, "Text_message");
-  m_ImageBgL = GBase::getChildByName<ui::ImageView *>(panel, "Image_bg_1");
-  m_ImageBgR = GBase::getChildByName<ui::ImageView *>(panel, "Image_bg_1");
+  m_ImageIconBg = GBase::GetChildByName<Sprite *>(panel, "Image_IconBg");
+  m_TextMessage = GBase::GetChildByName<ui::Text *>(panel, "Text_message");
+  m_ImageBgL = GBase::GetChildByName<ui::ImageView *>(panel, "Image_bg_1");
+  m_ImageBgR = GBase::GetChildByName<ui::ImageView *>(panel, "Image_bg_1");
   if(m_ImageIconBg)
     m_ImageIconBg->setVisible(false);
   m_Panel->addChild(panel, 1);

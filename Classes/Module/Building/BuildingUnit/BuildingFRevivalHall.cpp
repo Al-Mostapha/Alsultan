@@ -52,7 +52,7 @@ void BuildingFRevivalHall::onEnter()
 void BuildingFRevivalHall::Clicked(Touch *p_Touch, Event *p_Event){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_3499"));
-    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    CityLib::Get()->ShowTintOnce(GBase::GetChildByName<Node *>(this, "buildImg"));
     return ;
   }
 }

@@ -70,10 +70,10 @@ void BuildingFPrison::ShowNormalParticle()
 	addChild(Part5, 5);
 
 	auto Part6 = ParticleSystemQuad::create("Particle/et_jinzitaloading_01.plist");
-	Part6->setPosition(44.06, 25.74);
-	Part6->setScaleX(0.12);
-	Part6->setScaleY(0.135);
-	Part6->setRotation(130.31);
+	Part6->setPosition(44.06, 25.74f);
+	Part6->setScaleX(0.12f);
+	Part6->setScaleY(0.135f);
+	Part6->setRotation(130.31f);
 	Part6->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part6, 6);
 }
@@ -89,7 +89,7 @@ void BuildingFPrison::Clicked(Touch *p_Touch, Event *p_Event){
       {"name", Translate::i18n("buildDes_name_125")},
       {"lv", std::to_string(GBase::Const::Get()->CastleLvl16)}
     }));
-    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    CityLib::Get()->ShowTintOnce(GBase::GetChildByName<Node *>(this, "buildImg"));
     return;
   }
 }

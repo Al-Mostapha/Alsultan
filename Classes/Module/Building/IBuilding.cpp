@@ -38,8 +38,8 @@ bool IBuilding::IgnoreClickEvent(Touch* p_Touch, Event* p_Event) const {
     auto l_ArrowTowerL   = CityScene::Get()->GetNode<Node *>("build_1054");
     auto l_BehindArrowTower = CityScene::Get()->GetNode<Node *>("build_1066");
     
-    auto l_JiantaBaseLBtn = GBase::getChildByName<Node *>(l_JiantaBaseL, "buildBtn");
-    auto l_JiantaBaseRBtn = GBase::getChildByName<Node *>(l_JiantaBaseR, "buildBtn");
+    auto l_JiantaBaseLBtn = GBase::GetChildByName<Node *>(l_JiantaBaseL, "buildBtn");
+    auto l_JiantaBaseRBtn = GBase::GetChildByName<Node *>(l_JiantaBaseR, "buildBtn");
     auto l_TipBoxGuardSoldier = CityScene::Get()->TipBoxGuardSoldier;
     GVector<Node *> l_BlockingNode = {
       l_BuildingLayer, l_TipBoxWall, l_JiantaBaseL, l_JiantaBaseR, 
@@ -291,7 +291,7 @@ void IBuilding::UpdateStarLvlBgLight(){
   auto l_IconName = CityCtrl::Get()->GetBuildStarLight(l_StarLvl);
   n_SpStarLight->setSpriteFrame(l_IconName);
   if(!n_BuildStarLight){
-    auto l_Action = GBase::CreateAnimation(CsbUiFilePath::NodeBuildStarLight.c_str(), n_BuildStarLight);
+    auto l_Action = GBase::DCreateAnimation(CsbUiFilePath::NodeBuildStarLight.c_str(), n_BuildStarLight).Second;
     n_BuildingLvBg->addChild(n_BuildStarLight);
     n_BuildingLvBg->setPosition(83, 35);
     for(auto l_OneNode : n_BuildingLvBg->getChildren()){

@@ -11,6 +11,7 @@ public:
   void CollectResReq(EBuilding p_Building, EBuildingIndex p_BuildingIndex) {}
   class IBuilding *GetBuildingCell(EBuilding p_Building, EBuildingIndex p_BuildingIndex) { return nullptr ;}
   class IBuilding *GetBuildingCellByIndex(EBuildingIndex p_BuildingIndex) { return nullptr ;}
-  GVector<IBuilding *> GetBuildList();
+  GVector<class IBuilding *> GetBuildList();
   bool GetCastleUpgradePopStatus();
+  int32 GetBuildingMaxLv(EBuilding p_Building){ return 0;}
 };

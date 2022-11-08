@@ -1,4 +1,6 @@
 #include "UICommonShareButton.h"
+#include "Module/UI/Panel/Lord/Settings/Options/UIGameOptionsView.h"
+#include "Module/UI/Common/UICommonSharePic.h"
 
 
 UICommonShareButton::UICommonShareButton()
@@ -10,9 +12,7 @@ UICommonShareButton::~UICommonShareButton()
 }
 
 void UICommonShareButton::InitPanel(){
-  // self.hiddleModel = 0.5
   m_HiddleModel = 0.5f;
-  // self.btnBg = ccui.Button:create("bg_transparent.png", "bg_transparent.png", "bg_transparent.png", ccui.TextureResType.plistType)
   m_BtnBg = ui::Button::create("bg_transparent.png", "bg_transparent.png", "bg_transparent.png", ui::Widget::TextureResType::PLIST);
   m_BtnBg->ignoreContentAdaptWithSize(false);
   m_BtnBg->setAnchorPoint(Vec2(0, 0));
@@ -285,11 +285,11 @@ void UICommonShareButton::BtnClickCallBack(Ref* p_Sender, ui::Widget::TouchEvent
     GBase::PlaySound("");
       //userSDKManager.startRecording()
     }else if(l_Tag == 2){
-      //     self.btnMain:setVisible(false)
       m_BtnMain->setVisible(false);
-      //       local panel = SoraDCreatePanel("commonSharePic")
-      //       panel:initData(SoraDCreateScreenShot(), 1)
-      //       panel:show(self)
+      auto l_Panel = UICommonSharePic::Create();
+      l_Panel->InitPanel();
+      l_Panel->InitData(GBase::DCreateScreenShot(), 1);
+      l_Panel->Show();
       m_BtnMain->setVisible(true);
       auto l_View = ui::Layout::create();
       l_View->setContentSize(GBase::Display::Get()->size());
@@ -311,9 +311,9 @@ void UICommonShareButton::BtnClickCallBack(Ref* p_Sender, ui::Widget::TouchEvent
       );
     }else if(l_Tag == 3){
       GBase::PlaySound("");
-      //     local panel = SoraDCreatePanel("gameOptionsView")
-      //     panel:jumpByName("CCS_gameSettingCommonPanel_share")
-      //     panel:show()
+      auto l_Panel = UIGameOptionsView::Create();
+      l_Panel->JumpByName("CCS_gameSettingCommonPanel_share");
+      l_Panel->Show();
       //     userSDKManager.logEvent(gSDKDef.TDonEvent.share_button_set, {})
     }else if(l_Tag == 4){
         GBase::PlaySound("");

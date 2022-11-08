@@ -6,4 +6,5 @@ class LordInfoCtrl
 public:
   static LordInfoCtrl *Get();
   bool GetLordUpgradePopStatus();
+  bool GetUserAgreementPop();
 };

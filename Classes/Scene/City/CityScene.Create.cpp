@@ -270,7 +270,7 @@ void MainCityCreate::InitBuild(){
   }
   KipchaksUpdate();
   // Army
-  auto l_ButtonMilitaryInfo = GBase::getChildByName<ui::Layout *>(n_ContainerView, "Button_MilitaryInfo");
+  auto l_ButtonMilitaryInfo = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "Button_MilitaryInfo");
   if(l_ButtonMilitaryInfo){
     l_ButtonMilitaryInfo->setSwallowTouches(false);
     l_ButtonMilitaryInfo->addTouchEventListener([=](Ref * p_Ref, ui::Widget::TouchEventType p_Touch){
@@ -278,7 +278,7 @@ void MainCityCreate::InitBuild(){
     });
     n_ButtonMilitaryInfo = l_ButtonMilitaryInfo;
   }
-  auto l_ButtonMerchante = GBase::getChildByName<ui::Layout *>(n_ContainerView, "Button_Merchante");
+  auto l_ButtonMerchante = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "Button_Merchante");
   if(l_ButtonMerchante){
     l_ButtonMerchante->setSwallowTouches(false);
     l_ButtonMerchante->addTouchEventListener([=](Ref * p_Ref, ui::Widget::TouchEventType p_Touch){
@@ -289,7 +289,7 @@ void MainCityCreate::InitBuild(){
       Translate::i18n("common_text_441"), Vec2(80, 0)
     ));
   }
-  auto l_ButtonActivity = GBase::getChildByName<ui::Layout *>(n_ContainerView, "Button_Activity");
+  auto l_ButtonActivity = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "Button_Activity");
   if(l_ButtonActivity){
     l_ButtonActivity->setSwallowTouches(false);
     l_ButtonActivity->addTouchEventListener([=](Ref * p_Ref, ui::Widget::TouchEventType p_Touch){
@@ -297,13 +297,13 @@ void MainCityCreate::InitBuild(){
     });
     n_ButtonActivity = l_ButtonActivity;
   }
-  auto l_ButtonEpicBattle = GBase::getChildByName<ui::Layout *>(n_ContainerView, "build_30006");
+  auto l_ButtonEpicBattle = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "build_30006");
   if(l_ButtonEpicBattle)
     n_ButtonEpicBattle = l_ButtonEpicBattle;
-  auto l_ButtonMonument = GBase::getChildByName<ui::Layout *>(n_ContainerView, "build_30007");
+  auto l_ButtonMonument = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "build_30007");
   if(l_ButtonMonument)
     n_ButtonMonument = l_ButtonMonument;
-  auto l_ButtonPyramidBattle = GBase::getChildByName<ui::Layout *>(n_ContainerView, "build_20008");
+  auto l_ButtonPyramidBattle = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "build_20008");
   if(l_ButtonPyramidBattle){
     l_ButtonPyramidBattle->setTouchEnabled(true);
     l_ButtonPyramidBattle->addTouchEventListener([=](Ref * p_Ref, ui::Widget::TouchEventType p_Touch){
@@ -312,7 +312,7 @@ void MainCityCreate::InitBuild(){
     l_ButtonPyramidBattle->setSwallowTouches(false);
     n_ButtonPyramidBattle = l_ButtonPyramidBattle;
   }
-  auto l_ButtonLion =  GBase::getChildByName<ui::Layout *>(n_ContainerView, "Button_lion");
+  auto l_ButtonLion =  GBase::GetChildByName<ui::Layout *>(n_ContainerView, "Button_lion");
   if(l_ButtonLion){
     l_ButtonLion->setSwallowTouches(false);
     l_ButtonLion->addTouchEventListener([=](Ref * p_Ref, ui::Widget::TouchEventType p_Touch){
@@ -326,7 +326,7 @@ void MainCityCreate::InitBuild(){
     ));
     getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITY_LION_MSG");
   }
-  auto l_ButtonMaTou = GBase::getChildByName<ui::Layout *>(n_ContainerView, "Button_MaTou");
+  auto l_ButtonMaTou = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "Button_MaTou");
   if(l_ButtonMaTou){
     l_ButtonMaTou->setTouchEnabled(true);
     l_ButtonMaTou->setSwallowTouches(false);
@@ -339,7 +339,7 @@ void MainCityCreate::InitBuild(){
       Const::
       Get()->Gangkou);
   }
-  auto l_ButtonConquer = GBase::getChildByName<ui::Layout *>(n_ContainerView, "Button_conquer");
+  auto l_ButtonConquer = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "Button_conquer");
   if(l_ButtonConquer){
     l_ButtonConquer->setTouchEnabled(true);
     l_ButtonConquer->setSwallowTouches(false);
@@ -349,7 +349,7 @@ void MainCityCreate::InitBuild(){
     n_ButtonConquer = l_ButtonConquer;
     n_ButtonConquer->setTag(GCity::Const::Get()->ConquerGate);
   }
-  auto l_ButtonBulletInBoard = GBase::getChildByName<ui::Layout *>(n_ContainerView, "Button_bulletin_board");
+  auto l_ButtonBulletInBoard = GBase::GetChildByName<ui::Layout *>(n_ContainerView, "Button_bulletin_board");
   if(l_ButtonBulletInBoard){
     l_ButtonBulletInBoard->setTouchEnabled(false);
     l_ButtonBulletInBoard->setSwallowTouches(false);

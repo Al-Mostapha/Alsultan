@@ -40,7 +40,7 @@ void UIWheelScrollView::initData(const UIWheelScrollViewArgs& p_WheelScrollViewA
   for (uint32 i = 0; i < m_WidgetArray.size(); i++)
   {
     ui::Widget *oneWidget = m_WidgetArray[i];
-    ui::Widget *l_TransPanel = GBase::getChildByName<ui::Widget *>(oneWidget, "Panel_transparent");
+    ui::Widget *l_TransPanel = GBase::GetChildByName<ui::Widget *>(oneWidget, "Panel_transparent");
     if (l_TransPanel)
       l_TransPanel->setSwallowTouches(false);
     oneWidget->setPosition(Vec2(m_OffsetPosX, m_CellHeight * (i - 1) + 0.5 * m_ScrollView->getContentSize().height));
@@ -258,7 +258,7 @@ void UIWheelScrollView::updateItems()
     }
     if (!m_IgnoreOpacity)
       m_WidgetArray[i]->setOpacity(l_ItemOpacity);
-    auto l_TransparentPanel = GBase::getChildByName<Node *>(m_WidgetArray[i], "Panel_transparent");
+    auto l_TransparentPanel = GBase::GetChildByName<Node *>(m_WidgetArray[i], "Panel_transparent");
     if (l_TransparentPanel)
     {
       if (!m_IgnoreOpacity)

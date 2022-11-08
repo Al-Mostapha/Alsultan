@@ -42,7 +42,7 @@ void BuildingFPetCenter::Clicked(Touch *p_Touch, Event *p_Event){
     GBase::DShowMsgTip(Translate::i18n("common_text_1973", {
       {"lv" , std::to_string(GBase::Const::Get()->CastleLvl4)}
     }));
-    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    CityLib::Get()->ShowTintOnce(GBase::GetChildByName<Node *>(this, "buildImg"));
     return;
   }
   

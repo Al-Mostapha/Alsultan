@@ -10,3 +10,8 @@ bool LordInfoCtrl::GetLordUpgradePopStatus()
 {
   return false;
 }
+
+bool LordInfoCtrl::GetUserAgreementPop()
+{
+  return false;
+}

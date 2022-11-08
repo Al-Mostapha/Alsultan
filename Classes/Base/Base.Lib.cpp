@@ -104,6 +104,70 @@ namespace GBase{
   void DAddMessage(Node * p_Node, const char *p_EventId, const std::function<void(EventCustom *)> &p_Callback){}
   void DManagerRemoveTimer(Scheduler *P_Timer){}
   GString DConvertSecondToString(int p_Second){return "";}
+  RenderTexture *DCreateScreenShot(bool p_IsBlur){
+    auto l_Width = GBase::Display::Get()->size().width;
+    auto l_Height= GBase::Display::Get()->size().height;
+    //TODO: 35056
+    auto l_RenderTexture = RenderTexture::create(l_Width, l_Height, PixelFormat::RGBA8888/*,35056*/);
+    // renderTexture:setKeepMatrix(true)
+    l_RenderTexture->begin();
+    l_RenderTexture->setKeepMatrix(true);
+    // renderTexture:beginWithClear(0, 0, 0, 0, 1, 0)
+    l_RenderTexture->beginWithClear(0, 0, 0, 0, 1, 0);
+    // cc.Director:getInstance():getRunningScene():visit()
+    Director::getInstance()->getRunningScene()->visit();
+    // renderTexture:endToLua()
+    l_RenderTexture->end();
+    // renderTexture:setPosition(cc.p(display.cx, display.cy))
+    l_RenderTexture->setPosition(Vec2(GBase::Display::Get()->cx, GBase::Display::Get()->cy));
+    // local renderSprite = renderTexture:getSprite()
+    auto l_RenderSprite = l_RenderTexture->getSprite();
+    // if isBlur then
+
+    // end
+    if(p_IsBlur){
+    //   local program = cc.GLProgram:createWithFilenames("Shaders/blur.vsh", "Shaders/blur.fsh")
+    //   local state = cc.GLProgramState:create(program)
+    //   state:setUniformVec2("resolution", {
+    //     x = display.size.width,
+    //     y = display.size.height
+    //   })
+    //   state:setUniformFloat("blurRadius", 20)
+    //   state:setUniformFloat("sampleNum", 10)
+    //   renderSprite:setGLProgramState(state)
+      // auto l_State = GLProgramState::create(l_Program);
+      // l_State->setUniformVec2("resolution", Vec2(GBase::Display::Get()->size().width, GBase::Display::Get()->size().height));
+      // l_State->setUniformFloat("blurRadius", 20);
+      // l_State->setUniformFloat("sampleNum", 10);
+      // l_RenderSprite->setGLProgramState(l_State);
+    }
+    // return renderTexture
+    return l_RenderTexture;
+  }
+
+  GString DGetDefaultLanguage(){
+    return "en";
+  }
+  //RA is RightAlignment
+  bool DFIsRA(){return false;}
+
+  void DNewChapterOpen(bool p_IsFromLogin){}
+
+  void DShowCastleUnlockView(){}
+  uint32 DGetCastleLv(){ return 0; }
+
+  void DShowCastleUPView(){}
+  void DShowRateStarView(){}
+  class UIPanelBase *DCurrentTopPanelFromManager(){
+    return nullptr;
+  }
+
+   void DShowMsgBox(
+    GString p_Msg, GString p_YesBtnTitle, GString p_NoBtnTitle,
+    std::function<void(EMsgBoxCallBack)> p_CallBack, void *p_Data,
+    int p_Align, bool p_NoSound){}
+
+  bool DIsBrave8Level(){ return false; }
 } // namespace
 
 

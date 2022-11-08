@@ -10,3 +10,18 @@ bool SDKManager::IsSupportReplay()
 {
   return true;
 }
+
+int32 SDKManager::GetPushNotificationState()
+{
+  return false;
+}
+
+void SDKManager::SetSDKNoticeEnable()
+{
+  
+}
+
+void SDKManager::GotoSettingPushNotification()
+{
+
+}

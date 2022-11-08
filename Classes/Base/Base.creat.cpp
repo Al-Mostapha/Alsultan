@@ -51,16 +51,16 @@ Sprite *BaseCreate::CreateSprite(const char *p_Sprite){
 }
 
 namespace GBase{
-  Action *CreateAnimation(const char *p_FilePath, Node *p_Node, bool p_Loop){
+  GPair<Node *, Action *> DCreateAnimation(const char *p_FilePath, Node *p_Node, bool p_Loop){
     if(!p_FilePath)
-      return nullptr;
+      return GPair<Node *, Action *>(nullptr, nullptr);
     if(p_FilePath == "")
-      return nullptr;
+      return GPair<Node *, Action *>(nullptr, nullptr);
     auto l_Action = CSLoader::createTimeline(p_FilePath);
     if(!p_Node)
       p_Node = CSLoader::createNode(p_FilePath);
     p_Node->runAction(l_Action);
     l_Action->gotoFrameAndPlay(0, p_Loop);
-    return l_Action;
+    return GPair<Node *, Action *>(p_Node, l_Action);;
   }
 }

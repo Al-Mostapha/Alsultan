@@ -23,17 +23,17 @@ void UICreateBuildingPanel::InitPanel(){
     return;
   }
   
-  m_LabelDes   = GBase::getChildByName<Label*>(panel, "Text_des");
-  m_LabelCount = GBase::getChildByName<Label*>(panel,"Text_count");
-  m_LabelNeed  = GBase::getChildByName<Label*>(panel,"Text_need");
-  m_LabelName  = GBase::getChildByName<Label*>(panel,"Text_name");
-  m_BackGround = GBase::getChildByName<ui::ImageView *>(panel,"Image_bbg");
-  m_BtnBuild   = GBase::getChildByName<ui::Button *>(panel,"Button_build");
-  m_NodeLeft   = GBase::getChildByName<ui::Layout *>(panel,"Center_Panel_left");
-  m_NodeRight  = GBase::getChildByName<ui::Layout *>(panel,"Center_Panel_right");
-  m_NodeTop    = GBase::getChildByName<ui::Layout *>(panel,"Top_Panel");
-  m_NodeBottom = GBase::getChildByName<ui::Layout *>(panel,"Bottom_Panel");
-  m_NodeCenter = GBase::getChildByName<Node *>(panel,"Center_Node");
+  m_LabelDes   = GBase::GetChildByName<Label*>(panel, "Text_des");
+  m_LabelCount = GBase::GetChildByName<Label*>(panel,"Text_count");
+  m_LabelNeed  = GBase::GetChildByName<Label*>(panel,"Text_need");
+  m_LabelName  = GBase::GetChildByName<Label*>(panel,"Text_name");
+  m_BackGround = GBase::GetChildByName<ui::ImageView *>(panel,"Image_bbg");
+  m_BtnBuild   = GBase::GetChildByName<ui::Button *>(panel,"Button_build");
+  m_NodeLeft   = GBase::GetChildByName<ui::Layout *>(panel,"Center_Panel_left");
+  m_NodeRight  = GBase::GetChildByName<ui::Layout *>(panel,"Center_Panel_right");
+  m_NodeTop    = GBase::GetChildByName<ui::Layout *>(panel,"Top_Panel");
+  m_NodeBottom = GBase::GetChildByName<ui::Layout *>(panel,"Bottom_Panel");
+  m_NodeCenter = GBase::GetChildByName<Node *>(panel,"Center_Node");
   m_LabelCount->setVisible(false);  
   m_LabelNeed->setVisible(false); 
   

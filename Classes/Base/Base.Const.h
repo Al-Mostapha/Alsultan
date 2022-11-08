@@ -15,6 +15,7 @@ namespace GBase{
     float cx; // CenterX
     float cy;  //CenterY
     float rcy; //ReverseCenterY
+    float rcx; //ReverseCenterY
     float height;
     float width;
     float iPhoneXOffset = 0;

@@ -77,7 +77,7 @@ void BuildingOCrystalMine::Clicked(Touch *p_Touch, Event *p_Event){
     return;
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_3970", { {"lv", "3"} }));
-    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    CityLib::Get()->ShowTintOnce(GBase::GetChildByName<Node *>(this, "buildImg"));
   }
 
 }

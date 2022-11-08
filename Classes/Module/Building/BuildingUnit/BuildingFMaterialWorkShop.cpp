@@ -106,7 +106,7 @@ void BuildingFMaterialWorkShop::Clicked(Touch *p_Touch, Event *p_Event){
       {"lv", ""}
     });
     GBase::DShowMsgTip(l_TipInfo, "gongfang.png");
-    CityLib::Get()->ShowTintOnce(GBase::getChildByName<Node *>(this, "buildImg"));
+    CityLib::Get()->ShowTintOnce(GBase::GetChildByName<Node *>(this, "buildImg"));
     return;
   }
 

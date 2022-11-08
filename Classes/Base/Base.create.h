@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "Include/IncludeBase.h"
+#include "Base/Containers/Pair.h"
 USING_NS_CC;
 
 struct GAnimationParm
@@ -28,5 +29,5 @@ public:
 };
 
 namespace GBase{
-  Action *CreateAnimation(const char *p_FilePath, Node *p_Node = nullptr, bool p_Loop = false);
+  GPair<Node *, Action *> DCreateAnimation(const char *p_FilePath, Node *p_Node = nullptr, bool p_Loop = false);
 };

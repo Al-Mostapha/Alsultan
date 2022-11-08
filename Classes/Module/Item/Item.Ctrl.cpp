@@ -34,3 +34,16 @@ GPair<bool, GVector<RCostItemEnough>> ItemCtrl::IsEnough(GVector<RCostItem> &p_C
 uint32 ItemCtrl::GetItemPrice(uint32 p_IdItem){
   return 0;
 }
+
+GVector<ItemCtrl::ItemGift> ItemCtrl::GetRandomGiftShowItems(uint32 p_IdItem){
+  return GVector<ItemCtrl::ItemGift>();
+}
+
+bool ItemCtrl::HasDesc(uint32 p_IdItem){
+  return false;
+}
+
+bool ItemCtrl::IsSkinShow(uint32 p_IdItem){
+  return false;
+}
+
