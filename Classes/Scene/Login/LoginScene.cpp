@@ -3,6 +3,7 @@
 #include "Module/Effect/Effect.Enum.h"
 #include "Module/Effect/Include.h"
 #include "Module/Item/Include.h"
+#include "Base/Device/Shack.Module.h"
 #include "Module/UI/Common/Button/UICommonShareButton.h"
 #include "Module/UI/Common/UICommonDressPreview.h"
 #include "Module/UI/Common/UICommonItemShowBox.h"
@@ -13,7 +14,7 @@
 
 // on "init" you need to initialize your instance
 bool LoginScene::init() {
-  if (!LoginScene::init()) {
+  if (!Scene::init()) {
     return false;
   }
   return true;
@@ -27,13 +28,81 @@ void LoginScene::onEnter() {
   auto l_DeviceDPI = Device::getDPI();
   cocos2d::log("deviceDPI: %f", l_DeviceDPI);
   GBase::DGetDefaultLanguage();
-
-  // self:startGame()
-
-  // self:onMessageListener()
+  StartGame();
+  OnMessageListener();
   // if device.platform == "mac" then
   //   self:listenerKeyPad_imgui()
   // end
+}
+
+void LoginScene::onExit() {
+  Scene::onExit();
+  GBase::DRemoveMessageByTarget(this);
+}
+
+void LoginScene::OnMessageListener(){
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_GOTO_FOREG_BACK_GROUD", CC_CALLBACK_1(LoginScene::GotoForeBackGroud, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_ONSHOW", CC_CALLBACK_1(LoginScene::ShowView, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_HIDE_SCENEVIEW_MAINUI", CC_CALLBACK_1(LoginScene::HideCurrentSceneViewAndMainUI, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINSUCCESS", CC_CALLBACK_1(LoginScene::CreatMainView, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINFINSH", CC_CALLBACK_1(LoginScene::LoginFinsh, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINFAIL", CC_CALLBACK_1(LoginScene::ServerSocketLoginFail, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINAGAIN", CC_CALLBACK_1(LoginScene::ServerSocketLoginAgain, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINAGAIN_QUICK", CC_CALLBACK_1(LoginScene::ServerSocketLoginAgain_Quick, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_SOCKET_KICKOUT", CC_CALLBACK_1(LoginScene::ServerSocketKickOut, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_MESSAGEINFO", CC_CALLBACK_1(LoginScene::ShowServerMessageInfo, this));
+  GBase::DAddMessage(this, "MESSAGE_LORDINFO_UPGRADE_LEVEL", CC_CALLBACK_1(LoginScene::MsgLordLevelUpView, this));
+  GBase::DAddMessage(this, "MESSAGE_SERVER_GUIDE_START_BY_STEP", CC_CALLBACK_1(LoginScene::GameGuideStart, this));
+  GBase::DAddMessage(this, "MESSAGE_MAIN_SCENE_IPHONEX", CC_CALLBACK_1(LoginScene::ShowIphoneX, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LUA_WILL_RELOAD", CC_CALLBACK_1(LoginScene::LuaWillReload, this));
+  GBase::DAddMessage(this, "MESSAGE_SERVER_OPTION_SHARE_BTN_UPDATE", CC_CALLBACK_1(LoginScene::UpdateShareButton, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINCITYVIEW_BUILD_QUEQUE_CALLBACK", CC_CALLBACK_1(LoginScene::BuildQuequeCallback, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_COMMON_ICON_TIP", CC_CALLBACK_1(LoginScene::UpdateCommonIconTip, this));
+  GBase::DAddMessage(this, "MESSAGE_VOICECHAT_SPEAKSTYLE_REFRESH", CC_CALLBACK_1(LoginScene::UpdateVoiceButton, this));
+  GBase::DAddMessage(this, "MESSAGE_VOICECHAT_SERVER_NOTICE_INVITEMSG", CC_CALLBACK_1(LoginScene::UpdateVoiceInviteButton, this));
+  GBase::DAddMessage(this, "MESSAGE_SERVER_GUIDE_END", CC_CALLBACK_1(LoginScene::ServerGuideEnd, this));
+
+}
+
+void LoginScene::BuildQuequeCallback(EventCustom *p_Event) {
+  if(!p_Event) 
+    return;
+  auto l_Data = p_Event->getUserData();
+  if(!l_Data) 
+    return;
+  auto l_BuildingId = static_cast<EBuilding *>(l_Data);
+  if(!l_BuildingId) 
+    return;
+  if(*l_BuildingId == EBuilding::Castle)
+    UpdateShareButton(nullptr);
+}
+
+
+void LoginScene::ServerGuideEnd(EventCustom *p_Event){
+  //   self.gameGuideView = nil
+  //   if data.needUpdate then
+  //     local gametop = gModuleMgr.getObject("gametop")
+  //     local guideCtrl = gametop.playertop_:getModule("guideCtrl")
+  //     local step = guideCtrl:updateNewGuide()
+  //     print("step=========", step)
+  //     if not step then
+  //       local newPlayerTaskCtrl = gametop.playertop_:getModule("newPlayerTaskCtrl")
+  //       if newPlayerTaskCtrl:getCurChapterID() > 4103000 then
+  //         SoraDSendMessage({
+  //           msg = "MESSAGE_MAIN_AGREEMENT_BOX"
+  //         })
+  //       end
+  //       local remainsTeamCtrl = gametop.playertop_:getModule("remainsTeamCtrl")
+  //       if remainsTeamCtrl:isHasInvitedInfo() then
+  //         SoraDSendMessage({
+  //           msg = "MESSAGE_SERVER_REMAINS_TEAM_INVITED_INFO"
+  //         })
+  //       end
+  //       SoraDSendMessage({
+  //         msg = "MESSAGE_SERVER_PYRAMIDBATTLE_GUIDECLOSEPOPEXPLAIN"
+  //       })
+  //     end
+  //   end
 }
 
 void LoginScene::StartGame() { InitData(); }
@@ -41,6 +110,17 @@ void LoginScene::StartGame() { InitData(); }
 void LoginScene::InitData() {
   CreatePanelView();
   CreateLoginView();
+}
+
+void LoginScene::LoginFinsh(EventCustom *p_Event){
+  GBase::DCloseLoading(nullptr);
+}
+
+void LoginScene::CleanPanelView() {
+  UIManger::Get()->CloseAllUI();
+  for (auto l_OneChild : m_PanelView->getChildren()) {
+    if (l_OneChild->getName() != "commonSystemMsgBox") l_OneChild->removeFromParent();
+  }
 }
 
 void LoginScene::CreatePanelView() {
@@ -63,21 +143,15 @@ void LoginScene::CreatePanelView() {
   Director::getInstance()->getRunningScene()->addChild(m_PanelView, 5);
 }
 
-void LoginScene::CleanPanelView() {
-  UIManger::Get()->CloseAllUI();
-  for (auto l_OneChild : m_PanelView->getChildren()) {
-    if (l_OneChild->getName() != "commonSystemMsgBox") l_OneChild->removeFromParent();
-  }
-}
+
 
 void LoginScene::CreateLoginView(EScene p_Type, EKingdomClass p_Kingdom) {
-  //   showViewType = showViewType or VIEW_TYPE_CITY
   if (p_Type == EScene::None) p_Type = EScene::City;
   stopAllActions();
   runAction(Sequence::create(DelayTime::create(0.016666666666666666),
                               CallFunc::create([=]() {
                                 GAudioEngine::Get()->Init();
-                                 // self:loginSettingRun()
+                                LoginSettingRun();
                                 GAudioEngine::Get()->StopMusic();
                                 GAudioEngine::Get()->PlayMusic("loading", true);
                                 GAudioEngine::Get()->SetMusicVolume(0.5f);
@@ -93,31 +167,27 @@ void LoginScene::CreateLoginView(EScene p_Type, EKingdomClass p_Kingdom) {
   addChild(l_LoginView, 4);
   m_LoginView = l_LoginView;
   GBase::DCloseSwitcherView();
-  // ShackModule.unload()
+  ShackModule::Get()->Unload();
   ReleaseMainView();
 }
 
 bool LoginScene::RemoveLoginView() {
-  //   local ret = false
   auto l_Ret = false;
-  // if self.loginView then
   if (m_LoginView) {
     m_LoginView->removeFromParent();
     m_LoginView = nullptr;
     l_Ret = true;
     if (m_IphoneXTop) {
-      //  self.iphoneXTop:setVisible(device.isIphoneXMode())
-      m_IphoneXTop->setVisible(Application::getInstance()->getTargetPlatform() == Application::Platform::OS_IPHONE);
+      m_IphoneXTop->setVisible(GDevice::Get()->IsIphoneXMode());
     }
     if (m_IphoneXBottom) {
-      //  self.iphoneXBottom:setVisible(device.isIphoneXMode())
-      m_IphoneXBottom->setVisible(Application::getInstance()->getTargetPlatform() == Application::Platform::OS_IPHONE);
+      m_IphoneXBottom->setVisible(GDevice::Get()->IsIphoneXMode());
     }
   }
   return l_Ret;
 }
 
-void LoginScene::LuaWillReload() {
+void LoginScene::LuaWillReload(EventCustom *p_Event) {
   // VoiceChatSDKManager:getInstance():leaveChannel()
 }
 
@@ -146,19 +216,20 @@ void LoginScene::UpdateShareButton(EventCustom* p_Event) {
   }
 }
 
-void LoginScene::UpdateCommonIconTip(RCommonIconData p_IconData) {
-  auto l_Id = p_IconData.id;
-  auto l_Num = p_IconData.num;
-  auto l_Pos = p_IconData.Pos;
-  auto l_CustomName = p_IconData.CustomName;
-  auto l_CustomTip = p_IconData.CustomTip;
-  //   local commonTip = display.getRunningScene():getChildByName("commonItemTips")
+void LoginScene::UpdateCommonIconTip(EventCustom *p_Event) {
+  if(!p_Event || !p_Event->getUserData()) return;
+  auto p_IconData = static_cast<RCommonIconData *>(p_Event->getUserData());
+  if(!p_IconData) return;
+  auto l_Id = p_IconData->id;
+  auto l_Num = p_IconData->num;
+  auto l_Pos = p_IconData->Pos;
+  auto l_CustomName = p_IconData->CustomName;
+  auto l_CustomTip = p_IconData->CustomTip;
   auto l_CommonTip = Director::getInstance()->getRunningScene()->getChildByName<UICommonItemTips*>("commonItemTips");
   if (!l_Id && !l_CustomTip)
     if (l_CommonTip) l_CommonTip->setVisible(false);
 
   //   pos.y = fgui.GRoot:getInstance():getSize().height - pos.y
-
   //   local ret, show, isShow = backpackltCtrl:getRandomGiftShowItems(id)
   auto l_Ret = ItemCtrl::Get()->GetRandomGiftShowItems(l_Id);
   if (l_Ret.size() > 0 && ItemCtrl::Get()->HasDesc(l_Id)) {
@@ -234,7 +305,7 @@ void LoginScene::UpdateCommonIconTip(RCommonIconData p_IconData) {
   l_CommonTip->setPosition(l_Pos);
 }
 
-void LoginScene::UpdateVoiceButton(){
+void LoginScene::UpdateVoiceButton(EventCustom *p_Event){
   // if VoiceChatSDKManager:getInstance().voiceState == gVoiceState.inRoom then
   //   if not self.voiceBtn then
   //     self.voiceBtn = SoraDCreatePanel("voiceChatFloatButton")
@@ -247,7 +318,7 @@ void LoginScene::UpdateVoiceButton(){
   // end
 }
 
-void LoginScene::UpdateVoiceInviteButton(){
+void LoginScene::UpdateVoiceInviteButton(EventCustom *p_Event){
   // local info = redata.redata
   // local voiceInviteBtn = SoraDCreatePanel("voiceChatInviteButton")
   // voiceInviteBtn:initData(info)
@@ -255,7 +326,7 @@ void LoginScene::UpdateVoiceInviteButton(){
   // self:addChild(voiceInviteBtn, 10)
 }
 
-void LoginScene::ShowIphoneX(){
+void LoginScene::ShowIphoneX(EventCustom *p_Event){
   // if data.isShow then
   //   if self.iphoneXTop then
   //     self.iphoneXTop:setVisible(device.isIphoneXMode())
@@ -284,7 +355,7 @@ void LoginScene::CreateWorldResourceMap(){
   // return self.worldResourceMap
 }
 
-void LoginScene::CreatMainView(EScene p_Type){
+void LoginScene::CreatMainView(EventCustom *p_Event){
   InitLoginSuccess();
   ReleaseMainView();
   m_CurrentShowView = nullptr;

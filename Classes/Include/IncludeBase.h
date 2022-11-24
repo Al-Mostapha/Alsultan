@@ -14,4 +14,5 @@
 #include "Module/Translation/Translate.h"
 #include "Base/Sdk.Manager.h"
 #include "Base/Device/Device.h"
+#include "Base/Math/Math.Base.h"
 

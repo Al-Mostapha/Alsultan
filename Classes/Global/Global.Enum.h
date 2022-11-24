@@ -28,10 +28,6 @@ enum class EScene{
   World
 };
 
-enum class EKingdomClass{
-  None
-};
-
 enum class ENoticeIcon{
   None = -1,
   Build = 0,
@@ -52,4 +48,31 @@ enum class EMsgBoxCallBack{
   SpeedUp = 3,
   Other = 4,
   TimeEnd = 5,
+};
+
+enum class EMainUIStyle{
+  None = 0,
+  Easter = 1,
+  Halloween = 2,
+  Chritmas = 3,
+  QuickSand = 4,
+  RosNormal = 5
+};
+
+enum class ELuckyBlessActivityEffectType{
+  None = 0,
+  BuildUpgrade = 1,
+  TechnologyResearch = 2,
+  TrainSoldiers = 3,
+  BuildStrength = 4
+};
+
+
+enum class ELoginRangeTbl {
+  None = 0,
+  GameUpdate = 1,
+  LoadImages = 2,
+  ConnectServer = 3,
+  ObbUpdate = 4,
+  ObbValidate = 5
 };

@@ -21,4 +21,3 @@ GString Translate::i18n(const char *key, GMap<GString, GString> p_Replace)
   }
   return l_Translated;
 }
- 

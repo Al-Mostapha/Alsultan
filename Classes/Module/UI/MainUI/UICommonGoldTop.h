@@ -18,4 +18,5 @@ public:
   static UICommonGoldTop *Create() {return create();};
   void SetMainUIStyle();
   void ShowAnimation();
+  void UpdateGold();
 };

@@ -12,6 +12,7 @@ enum class EBuilding;
 enum class EBuildingIndex;
 enum class EFactionType;
 enum class EMsgBoxCallBack;
+class UICommonPromptBox;
 namespace GBase{
   template <typename T>
   T GetChildByName(Node* p_Node, const char* p_name){
@@ -50,9 +51,11 @@ namespace GBase{
         return l_Inst;
       }
     }
+    return nullptr;
   }
 
   void PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
+  void PlaySound(const char* p_SoundName, int32 p_index, float p_delay = 0.0f,  bool p_Tag3d = false);
   const char *getSoundPath(const char *p_SoundName);
   void SoraDFTarget(Node *p_node);
   EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building);
@@ -62,8 +65,11 @@ namespace GBase{
   void DSetTextWidthHeight(ui::Text *p_Label, Size p_Size);
   void DSetTextWidthHeight(Label *p_Label, Size p_Size);
   void DShowMsgTip(const GString &p_Message, const GString &p_Icon = "");
+
   GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
-  Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc);
+  GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building);
+
+  Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_Priority = false);
   bool DRemoveTimer(Node *p_Target, Scheduler *p_Scheduler);
   // this calld when player click on a building black smith
   void DGetEquip();
@@ -81,6 +87,7 @@ namespace GBase{
   GString DConvertSecondToString(int p_Second);
   RenderTexture *DCreateScreenShot(bool p_IsBlur = false);
   GString DGetDefaultLanguage();
+  void DSetDefaultLanguage(bool p_IsNeedUpdate = false, bool p_IsNeedRefresh = false);
   template<typename T>
   T DConfigGet(const char *p_Key, bool p_ByUid = false, bool p_ByLTID = false){
     return T();
@@ -95,12 +102,20 @@ namespace GBase{
   void DShowRateStarView();
   class UIPanelBase *DCurrentTopPanelFromManager();
   //showMsg, yesBtnTitle, noBtnTitle, callBackHandle, data, align, noSound
-  void DShowMsgBox(
+  UICommonPromptBox *DShowMsgBox(
     GString p_Msg, GString p_YesBtnTitle, GString p_NoBtnTitle,
     std::function<void(EMsgBoxCallBack)> p_CallBack, void *p_Data = nullptr,
     int p_Align = 0, bool p_NoSound = false);
   bool DIsBrave8Level();
+  void DMixtureGLONE(Node *p_Node);
+  void DRemoveMessageByTarget(Node *p_Node);
+  void DRemoveMessageFromTargetByName(Node *p_Node, const char *p_EventId);
+  
+  void DCloseLoading(Node *p_Parent, const char *p_Mark = "", bool p_All = false);
 
+  bool DPostCheckMaintain(int32 p_KingdomId = 0);
+  GString DFValueSuit(const GString &p_Value, const GString &p_Sign = "+");
+  GString GetCCSPath(const char *p_CCSName);
 };
 
 

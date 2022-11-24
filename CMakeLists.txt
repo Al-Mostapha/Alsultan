@@ -26,6 +26,7 @@
 cmake_minimum_required(VERSION 3.6)
 
 set(APP_NAME Alsultan)
+set(BUILD_EDITOR_SPINE ON CACHE BOOL "Build editor support for spine" FORCE)
 
 project(${APP_NAME})
 
@@ -144,6 +145,23 @@ target_include_directories(${APP_NAME}
         PRIVATE Classes
         PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
 )
+message(STATUS "COCOS2DX_ROOT_PATH: ${COCOS2DX_ROOT_PATH}")
+# add spine
+# set(BUILD_EDITOR_SPINE OFF CACHE BOOL "Build editor support for spine" FORCE)
+# add_subdirectory(${COCOS2DX_ROOT_PATH}/external/spine ${PROJECT_BINARY_DIR}/spine)
+# get_target_property(spine_INCLUDE_DIRS spine-static INTERFACE_INCLUDE_DIRECTORIES)
+# target_link_libraries(${APP_NAME} PRIVATE spine-static)
+# target_include_directories(${APP_NAME}
+# 	PRIVATE ${spine_INCLUDE_DIRS}
+# )
+
+# # spine cocos2d-x specific
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/spine-cocos2dx ${PROJECT_BINARY_DIR}/spine-cocos2dx)
+# get_target_property(spine_cocos2dx_INCLUDE_DIRS spine-cocos2dx-static INTERFACE_INCLUDE_DIRECTORIES)
+# target_link_libraries(${APP_NAME} PRIVATE spine-cocos2dx-static)
+# target_include_directories(${APP_NAME}
+# 	PRIVATE ${spine_cocos2dx_INCLUDE_DIRS}
+# )
 
 # mark app resources
 setup_cocos_app_config(${APP_NAME})

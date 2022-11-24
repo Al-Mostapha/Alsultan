@@ -17,6 +17,8 @@ namespace GBase{
       );
   }
 
+  void PlaySound(const char* p_SoundName, int32 p_index, float p_delay, bool p_Tag3d) {  }
+
   const char *getSoundPath(const char *p_SoundName)
   {
     return StringUtils::format("Music/%s", p_SoundName).c_str();
@@ -82,7 +84,9 @@ namespace GBase{
   GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl) {
     return GPair<GString, GString>::Make("war_lv_1", "war_lv_2");
   }
-
+  GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building){
+    return GPair<int32, int32>::Make(0, 0);
+  }
   void DGetEquip(){}
   bool  DRemoveTimer(Node *p_Target, Scheduler *p_Scheduler){
     return false;
@@ -96,7 +100,7 @@ namespace GBase{
   bool DCloseLoginView(){return true;}
   void DSendMessage(const char *p_EventId, void *p_Data){}
   bool DIsGameGuide(){return false;}
-  Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc){ return nullptr; }
+  Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_Priority){ return nullptr; }
   EFactionType DGetFactionType(){ return EFactionType::Normal; }
   
 
@@ -148,6 +152,10 @@ namespace GBase{
   GString DGetDefaultLanguage(){
     return "en";
   }
+  void DSetDefaultLanguage(bool p_IsNeedUpdate, bool p_IsNeedRefresh){
+    
+  }
+
   //RA is RightAlignment
   bool DFIsRA(){return false;}
 
@@ -162,12 +170,32 @@ namespace GBase{
     return nullptr;
   }
 
-   void DShowMsgBox(
+  UICommonPromptBox *DShowMsgBox(
     GString p_Msg, GString p_YesBtnTitle, GString p_NoBtnTitle,
     std::function<void(EMsgBoxCallBack)> p_CallBack, void *p_Data,
-    int p_Align, bool p_NoSound){}
+    int p_Align, bool p_NoSound){ return nullptr; }
 
   bool DIsBrave8Level(){ return false; }
+  
+  void DMixtureGLONE(Node *p_Node){}
+
+  void DRemoveMessageByTarget(Node *p_Node){
+    
+  }
+
+ void DRemoveMessageFromTargetByName(Node *p_Node, const char *p_EventId){}
+
+  void DCloseLoading(Node *p_Parent, const char *p_Mark, bool p_All){}
+
+  bool DPostCheckMaintain(int32 p_KingdomId){ return false; }
+  GString DFValueSuit(GString p_Value, GString p_Sign = "+"){
+    return p_Value + p_Sign;
+  }
+
+  GString GetCCSPath(const char *p_CCSName){
+    return "";
+  }
+
 } // namespace
 
 

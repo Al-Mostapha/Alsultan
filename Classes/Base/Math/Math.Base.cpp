@@ -13,4 +13,5 @@ int32 Min(int32 p_First, int32 p_Second) { return std::min(p_First, p_Second); }
 float Min(float p_First, float p_Second) { return std::min(p_First, p_Second); }
 
 double Min(double p_First, double p_Second) { return std::min(p_First, p_Second); }
+GString DConvertNumberWithUnit(float p_Num){return "";}
 }  // namespace GMath

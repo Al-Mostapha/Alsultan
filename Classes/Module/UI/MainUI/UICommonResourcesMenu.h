@@ -3,6 +3,7 @@
 
 #include "Include/IncludeEngine.h"
 #include "Module/UI/Panel/UIPanelBase.h"
+#include "Module/CityResource/Resource.Enum.h" 
 
 
 class UICommonResourcesMenu : public UIPanelBase
@@ -18,4 +19,11 @@ public:
   static UICommonResourcesMenu *Create() {return create();};
   void RunAnimation();
   void HiddleMainUI(bool p_IsHiddle = false);
+  Node *GetResTarget(EResource p_ResType){
+    return nullptr;
+  }
+
+  void UpdateResources(){
+
+  }
 };

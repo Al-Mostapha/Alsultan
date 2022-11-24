@@ -14,3 +14,8 @@ EPlatform GDevice::Platform()
 {
   return EPlatform::None;
 }
+
+bool GDevice::IsIphoneXMode()
+{
+  return Application::getInstance()->getTargetPlatform() == Application::Platform::OS_IPHONE;
+}

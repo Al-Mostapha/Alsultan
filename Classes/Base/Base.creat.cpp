@@ -1,8 +1,7 @@
 #include "Base/Base.create.h"
 #include "Module/Building/IBuilding.h"
 
-ParticleSystemQuad *BaseCreate::createParticle(const std::string &Part, Vec2 Pos, Vec2 Scl, float rot)
-{
+ParticleSystemQuad* BaseCreate::createParticle(const std::string& Part, Vec2 Pos, Vec2 Scl, float rot) {
   auto Particle = ParticleSystemQuad::create(Part);
   Particle->setPosition(Pos.x, Pos.y);
   Particle->setScaleX(Scl.x);
@@ -11,8 +10,7 @@ ParticleSystemQuad *BaseCreate::createParticle(const std::string &Part, Vec2 Pos
   Particle->setPositionType(ParticleSystem::PositionType::RELATIVE);
   return Particle;
 }
-Sprite *BaseCreate::createAnimation(GAnimationParm AniPar)
-{
+Sprite* BaseCreate::createAnimation(GAnimationParm AniPar) {
   /*auto frames = IBuilding::getAnimation(
       AniPar.AnimateData.Frame,
       AniPar.AnimateData.start,
@@ -31,36 +29,47 @@ Sprite *BaseCreate::createAnimation(GAnimationParm AniPar)
   return nullptr;
 }
 
-Vector<SpriteFrame *> BaseCreate::getAnimationFrames(GString Frame, int32 start, int32 end)
-{
-
-    auto spritecache = SpriteFrameCache::getInstance();
-    Vector<SpriteFrame *> animFrames;
-    char str[100];
-    for (int i = start; i <= end; i++)
-    {
-        sprintf(str, Frame.c_str(), i);
-        animFrames.pushBack(spritecache->getSpriteFrameByName(str));
-    }
-    return animFrames;
+Vector<SpriteFrame*> BaseCreate::getAnimationFrames(GString Frame, int32 start, int32 end) {
+  auto spritecache = SpriteFrameCache::getInstance();
+  Vector<SpriteFrame*> animFrames;
+  char str[100];
+  for (int i = start; i <= end; i++) {
+    sprintf(str, Frame.c_str(), i);
+    animFrames.pushBack(spritecache->getSpriteFrameByName(str));
+  }
+  return animFrames;
 }
 
+Sprite* BaseCreate::CreateSprite(const char* p_Sprite) { return Sprite::createWithSpriteFrameName(p_Sprite); }
 
-Sprite *BaseCreate::CreateSprite(const char *p_Sprite){
-  return Sprite::createWithSpriteFrameName(p_Sprite);
-}
-
-namespace GBase{
-  GPair<Node *, Action *> DCreateAnimation(const char *p_FilePath, Node *p_Node, bool p_Loop){
-    if(!p_FilePath)
-      return GPair<Node *, Action *>(nullptr, nullptr);
-    if(p_FilePath == "")
-      return GPair<Node *, Action *>(nullptr, nullptr);
+namespace GBase {
+  GPair<Node*, Action*> DCreateAnimation(const char* p_FilePath, Node* p_Node, bool p_Loop) {
+    if (!p_FilePath) return GPair<Node*, Action*>(nullptr, nullptr);
+    if (p_FilePath == "") return GPair<Node*, Action*>(nullptr, nullptr);
     auto l_Action = CSLoader::createTimeline(p_FilePath);
-    if(!p_Node)
-      p_Node = CSLoader::createNode(p_FilePath);
+    if (!p_Node) p_Node = CSLoader::createNode(p_FilePath);
     p_Node->runAction(l_Action);
     l_Action->gotoFrameAndPlay(0, p_Loop);
-    return GPair<Node *, Action *>(p_Node, l_Action);;
+    return GPair<Node*, Action*>(p_Node, l_Action);
+    ;
   }
-}
+
+  Sprite* CreateSprite(const char* p_SpritePath) { return Sprite::create(p_SpritePath); }
+
+  GPair<Node*, Action*> DCreateAnimationEx(const char* p_FilePath, Node* p_Node, bool p_Loop, float p_Speed, int32 p_StartIndex, int32 p_EndIndex) {
+
+    if (!p_FilePath) return GPair<Node*, Action*>(nullptr, nullptr);
+    auto l_CssFilePath = p_FilePath;
+    if (GBase::GetCCSPath(p_FilePath) != "") l_CssFilePath = GBase::GetCCSPath(p_FilePath).c_str();
+    auto l_Action = CSLoader::createTimeline(l_CssFilePath);
+    if (!p_Node) p_Node = CSLoader::createNode(l_CssFilePath);
+    if (p_Speed != 1.0f) l_Action->setTimeSpeed(p_Speed);
+    p_Node->runAction(l_Action);
+    if (p_StartIndex != -1 && p_EndIndex != -1)
+      l_Action->gotoFrameAndPlay(p_StartIndex, p_EndIndex, p_Loop);
+    else
+      l_Action->gotoFrameAndPlay(0, p_Loop);
+    return GPair<Node*, Action*>(p_Node, l_Action);
+  }
+
+}  // namespace GBase

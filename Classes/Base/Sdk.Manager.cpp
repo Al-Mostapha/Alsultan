@@ -25,3 +25,13 @@ void SDKManager::GotoSettingPushNotification()
 {
 
 }
+
+bool SDKManager::IsRecording()
+{
+  return false;
+}
+
+bool SDKManager::IsKo()
+{
+  return true;
+}

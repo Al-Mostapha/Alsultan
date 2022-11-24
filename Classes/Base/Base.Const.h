@@ -1,7 +1,16 @@
 #pragma once 
 #include "BaseTypeDef.h"
 #include "cocos2d.h"
+USING_NS_CC;
 
+#define  RECHARGE_AD_OFFSET_Y  -78
+
+struct RPolygonProps{
+    Color4F FillColor{1,1,1,0};
+    float borderWidth = 0.5;
+    Color4F BorderColor{0,0,0,1};
+    float scale = 1.0f;
+};
 
 namespace GBase{
   struct Display {
@@ -14,20 +23,26 @@ namespace GBase{
     }
     float cx; // CenterX
     float cy;  //CenterY
-    float rcy; //ReverseCenterY
-    float rcx; //ReverseCenterY
+    float rcy; //realCenterY
+    float rcx; //realCenterY
     float height;
+    float rheight;
     float width;
     float iPhoneXOffset = 0;
+    Size realSize;
     cocos2d::Size size(){
       return cocos2d::Director::getInstance()->getVisibleSize();
     }
     void AddSpriteFrames(
       const GString &p_PlistName, const GString &p_ImageName,
       const std::function<void()> &p_CallBack){
-        cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_PlistName);
-        p_CallBack();
-      }
+      cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_PlistName);
+      p_CallBack();
+    }
+    cocos2d::DrawNode *NewPolygon(
+      const GVector<Vec2> &p_Points,
+      const RPolygonProps &p_Props = RPolygonProps(),
+      DrawNode *p_DrawNode = nullptr);
   };
   struct GLobalSettings{
     static bool ShowMsgTip;
@@ -46,28 +61,28 @@ namespace GBase{
     int32 TIME_LIMITED_24_HOURS = 24;
     int32 TIME_LIMITED_48_HOURS = 48;
     int32 RES_MAX_IN_LOWCASTLE  = 500000;
-    int32 CastleLvl2    = 2;
-    int32 CastleLvl3    = 3;
-    int32 CastleLvl4    = 4;
-    int32 CastleLvl5    = 5;
-    int32 CastleLvl6    = 6;
-    int32 CastleLvl7    = 7;
-    int32 CastleLvl8    = 8;
-    int32 CastleLvl9    = 9;
-    int32 CastleLvl10   = 10;
-    int32 CastleLvl12   = 12;
-    int32 CastleLvl13   = 13;
-    int32 CastleLvl14   = 14;
-    int32 CastleLvl15   = 15;
-    int32 CastleLvl16   = 16;
-    int32 CastleLvl19   = 19;
-    int32 CastleLvl22   = 22;
-    int32 CastleLvl25   = 25;
-    int32 CastleLvl26   = 26;
-    int32 CastleLvl27   = 27;
-    int32 CastleLvl30   = 30;
-    int32 CastleLvl40   = 40;
-    int32 CastleLvl50   = 50;
+    uint32 CastleLvl2    = 2;
+    uint32 CastleLvl3    = 3;
+    uint32 CastleLvl4    = 4;
+    uint32 CastleLvl5    = 5;
+    uint32 CastleLvl6    = 6;
+    uint32 CastleLvl7    = 7;
+    uint32 CastleLvl8    = 8;
+    uint32 CastleLvl9    = 9;
+    uint32 CastleLvl10   = 10;
+    uint32 CastleLvl12   = 12;
+    uint32 CastleLvl13   = 13;
+    uint32 CastleLvl14   = 14;
+    uint32 CastleLvl15   = 15;
+    uint32 CastleLvl16   = 16;
+    uint32 CastleLvl19   = 19;
+    uint32 CastleLvl22   = 22;
+    uint32 CastleLvl25   = 25;
+    uint32 CastleLvl26   = 26;
+    uint32 CastleLvl27   = 27;
+    uint32 CastleLvl30   = 30;
+    uint32 CastleLvl40   = 40;
+    uint32 CastleLvl50   = 50;
     int32 CASTLE_LV60_LIMITED   = 60;
     int32 CASTLE_LV80_LIMITED   = 80;
     int32 CASTLE_LV90_LIMITED   = 90;
@@ -228,5 +243,21 @@ namespace GBase{
     bool IS_BLOCK_USERS_CHAT = true;
     bool IS_BIG_DINNER_POP_REWARD = true;
     GString InvalidName = "";
+  };
+
+  struct GameDefs {
+    static GameDefs *Get() {
+      static GameDefs *instance = new GameDefs();
+      return instance;
+    }
+    bool RAMADAN_SWITCH = false;
+    GString GAME_VERSION = "1.0.0";
+    GVector<GString> CommonArrayImagesPath = {
+      "newAndRepair/newAndRepair.plist", "CommonUI/CommonUI0.plist",
+      "CommonUI/CommonUI1.plist", "Resident/frameMainUI.plist",
+      "Resident/switcher.plist", "NormalUI/NormalUI0.plist",
+      "NormalUI/NormalUI1.plist", "NormalUI/NormalUI2.plist",
+      "NormalUI/NormalUI3.plist", "NormalUI/NormalUI4.plist"
+    };
   };
 };

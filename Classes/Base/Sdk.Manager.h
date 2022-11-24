@@ -12,4 +12,6 @@ public:
   int32 GetPushNotificationState();
   void SetSDKNoticeEnable();
   void GotoSettingPushNotification();
+  bool IsRecording();
+  bool IsKo();
 };

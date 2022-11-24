@@ -9,11 +9,17 @@
 #include "Module/UI/MainUI/UIMarchingTroops.h"
 #include "Module/UI/MainUI/UICommonGoldTop.h"
 #include "Module/UI/MainUI/UICommonResourcesMenu.h"
+#include "Module/UI/Common/UICommonPromptBox.h"
+#include "Module/Activity/Activity.Enum.h"
 #include "Base/Base.create.h"
 
 
 class UIMainTop : public UIPanelBase
 {
+private: 
+  bool m_IsUpdateHP = false;
+  bool m_IsSetHPStyle = false;
+  bool m_IsShowEXP = false;
 
 private:
   CREATE_FUNC(UIMainTop);
@@ -100,6 +106,8 @@ private:
   ui::Text *n_TextLostTaskStatus = nullptr;
   Node *n_NodeStylePower = nullptr;
   Node *n_NodeStyleHead = nullptr;
+  Node *n_EffectShine = nullptr;
+  UICommonPromptBox *m_HasShowNewTrialBox = nullptr;
 public:
   UIMainTop(){};
   ~UIMainTop(){};
@@ -107,10 +115,14 @@ public:
   void Ctor();
   void Show() override {};
   static UIMainTop *Create() {return create();};
+  void onEnter() override;
+  void onExit() override;
   void OnBtnJourneyClick(Ref*, ui::Widget::TouchEventType);
   void BtnHeroRechargeClick(Ref*, ui::Widget::TouchEventType);
   void BtnLostRuinsGetAward(Ref*, ui::Widget::TouchEventType);
   void OnBtnClick(Ref*, ui::Widget::TouchEventType);
+  void BtnPowerClickCallBack(Ref*, ui::Widget::TouchEventType);
+  void BtnExplainClick(Ref*, ui::Widget::TouchEventType);
   void AddBuildStarButton();
   void RegisterListener();
   void InitView();
@@ -118,14 +130,101 @@ public:
   void InitData();
   void InitStyle();
   
-  void UpdateHeadPos();
+
   void RangeLeftNodes();
   void RangeLeft2Nodes();
   void UpdateBuilderPos(float p_OffsetY);
-  void UpdateLostRuinsNode();
-  void UpdateWindTowerNode();
-  void UpdateSnowWolfLostNode();
+
+
+ 
   void InitHalloweenShineEffect();
+
+  void InitKingNode(EventCustom *p_Event);
+  void InitSultansBackNode(EventCustom *p_Event); 
+  void TradeBoardMsgShowTip(EventCustom *p_Event); 
+  void UpdateRedPoint(EventCustom *p_Event); 
+  void UpdateLostRuinsNode(EventCustom *p_Event);
+  void UpdateWindTowerNode(EventCustom *p_Event);
+  void UpdateSnowWolfLostNode(EventCustom *p_Event);
+  void UpdateHeadPos(EventCustom *p_Event);
+
+  void ReLoginFinish(EventCustom *p_Event); 
+  void SetMarchingTroopsVisible(EventCustom *p_Event); 
+  void UpdateLordInfo(EventCustom *p_Event); 
+  void UpdateVip(EventCustom *p_Event); 
+  void DefineWallDestroy(EventCustom *p_Event); 
+  void InitRechargeBtn(EventCustom *p_Event); 
+  void UpdateRechargeRedPoint(EventCustom *p_Event); 
+  void GetEventCenterReturn(EventCustom *p_Event); 
+  void InitCrazyBtn(EventCustom *p_Event); 
+  void LuckyBtnPoint(EventCustom *p_Event); 
+  void InitLuckyBtn(EventCustom *p_Event); 
+  void RechargeCloseLoading(EventCustom *p_Event); 
+  void ShowLordHPChange(EventCustom *p_Event); 
+  void ShowLordPowerEXPChange(EventCustom *p_Event); 
+  void LordPowerChange(EventCustom *p_Event); 
+  void ShowLordEXPChange(EventCustom *p_Event); 
+  void SetLordHPUpdate(EventCustom *p_Event); 
+  void KingBattleFun(EventCustom *p_Event); 
+  void LegendLordBattleVectoryFun(EventCustom *p_Event); 
+  void PyramidBattleStartFun(EventCustom *p_Event); 
+  void EndPyramid(EventCustom *p_Event); 
+  void EndLegendLordWar(EventCustom *p_Event); 
+  void GetEquipSuccess(EventCustom *p_Event); 
+  void CheckServerIsOK4SDKCallBack(EventCustom *p_Event); 
+  void HandlEscort(EventCustom *p_Event); 
+  void InitEventNode(EventCustom *p_Event); 
+  void MsgGuideEnd(EventCustom *p_Event); 
+  void MsgInvitedInfo(EventCustom *p_Event); 
+  void UpdateTeamMainUIWidget(EventCustom *p_Event); 
+  void OnTeamMatchSuc(EventCustom *p_Event); 
+  void OnRemainsWarEnd(EventCustom *p_Event); 
+  void OnRadianceWarEnd(EventCustom *p_Event); 
+  void OnRemainsWarTeamJoin(EventCustom *p_Event); 
+  void UpdateAttackInfo(EventCustom *p_Event); 
+  void RefreshNewTrialUI(EventCustom *p_Event); 
+  void RefreshNewTrialTeam(EventCustom *p_Event); 
+  void RefreshBeginNewTrial(EventCustom *p_Event); 
+  void NewTrialEndRefresh(EventCustom *p_Event); 
+  void RoyalSummonsGold(EventCustom *p_Event); 
+  void AncientReelGold(EventCustom *p_Event); 
+  void InitHeroGiftBtn(EventCustom *p_Event); 
+  void CastleLevelUp(EventCustom *p_Event); 
+  void KingdomLevelUp(EventCustom *p_Event); 
+  void CheckSecondBuildStarButton(EventCustom *p_Event); 
+  void ShowOrHideGuideView(EventCustom *p_Event); 
+  void InitExplainBtn(); 
+  void InitNewJourney();
+
+  void UpdatePlayer(bool p_IsFirset = false);
+  void UpdateLordPower();
+
+  Label *ExchangeGroupText(Label *p_Label, float p_Height);
+  Node *GetResTarget(EResource p_ResType);
+
+  void RangeNodes(GVector<GString> p_TableBtnName, float p_PosY = 0);
+  void OnMessageListener();
+  void RefreshNodeEvent();
+
+  Node *GetLodNode(){ return n_NodeLOD;}
+  Node *GetNodeAreaTop(){ return n_NodeAreaT;}
+  Node *GetNodeAreaRT(){ return n_NodeAreaRt;}
+  Node *GetNodeAreaLT(){ return n_NodeAreaLt;}
+
+private:
+  bool IsRedPoint();
+  void PopLuckyFrame();
+  void UpdateSultansBackRed();
+  void PopEventFrame(bool p_IsAdd = false);
+  void UpdateGoldRedPoint();
+  void UpdateMonthRedPoint();
+  void PopEventFromEventCenter();
+
+  void AddEffectOrAnimationByEventIndex(int p_EventIndex);
+  void GetLuckyGiftEffect();
+  void GetEventCenterReturn_imp(EActivityTime p_Activity);
+
+  void CheckBuildStarButton();
 };
 
 

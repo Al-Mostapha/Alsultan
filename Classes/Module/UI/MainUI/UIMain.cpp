@@ -10,7 +10,7 @@
 #include "Module/Player/Skill/LordSkill.Enum.h"
 #include "Scene/Login/LoginScene.h"
 #include "Module/UI/Panel/Lord/Skill/UICommonUseSkill.h"
-#include "Game/Effect/EffectMainUITop.h"
+#include "Module/Effect/EffectMainUITop.h"
 #include "Base/Containers/HashMap.h"
 #include "Module/UI/Common/Message/UIMsgNotice.h"
 #include "Module/Player/LordInfo.Ctrl.h"
