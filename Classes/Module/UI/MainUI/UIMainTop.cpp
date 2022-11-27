@@ -181,7 +181,7 @@ void UIMainTop::UpdateHeadPos(EventCustom *p_Event){
 void UIMainTop::UpdateBuilderPos(float p_OffsetY){
   for(int32 i = 0; i < (int32)m_TableBuilder.size(); i++){
     m_TableBuilder.at(i)->setPositionY(p_OffsetY - 80 * (i - 1));
-    if(std::floor(GBase::Display::Get()->height == 853/**and v:getBuilderType() == gQueueTypeDef.build_star_queue_privilege */)){
+    if(std::floor(GDisplay::Get()->height == 853/**and v:getBuilderType() == gQueueTypeDef.build_star_queue_privilege */)){
       auto l_IsHide = GBase::DConfigGet<bool>("Game:GameSettingView:gameExplainSwitch~bool");
       m_TableBuilder.at(i)->setPosition(Vec2(GBase::DFIsRA() ? 490 : 150, l_IsHide ? -100 : -180));
     }

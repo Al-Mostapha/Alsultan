@@ -8,11 +8,10 @@ private:
   GSet<GString> m_ArrayImagesPath;
   bool m_ADType = false;
   int32 m_MenuID = 0;
-private:
-  CREATE_FUNC(UIBaseView);
 public:
+  CREATE_FUNC(UIBaseView);
   static UIBaseView *Create(Size p_Size, bool p_IsColor = false, Node *p_Target = nullptr);
-  void Ctor();
+  void CtorBase();
   void SetBackGround(float p_Opacity, Color3B p_Color);
   float GetPanelOffsetHeight();
   typedef std::function<void()> CallBack;

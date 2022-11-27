@@ -7,6 +7,8 @@ public:
   static GString UIBuildCreateScrollSingle;
   static GString UIMsgTipPanel;
   static GString NodeBuildStarLight;
+  static GString LoginView;
+  static GString AnimationLogo;
 public:
   CsbUiFilePath(/* args */);
   ~CsbUiFilePath();

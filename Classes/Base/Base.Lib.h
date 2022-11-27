@@ -22,9 +22,9 @@ namespace GBase{
       return static_cast<T>(p_Node);
 
     for(auto child : p_Node->getChildren()){
-      auto l_node = GetChildByName<Node *>(child, p_name);
+      auto l_node = GetChildByName<T>(child, p_name);
       if(l_node)
-        return static_cast<T>(l_node);
+        return l_node;
     }
       
     return nullptr;

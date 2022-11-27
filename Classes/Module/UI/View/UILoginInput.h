@@ -6,9 +6,11 @@
 class UILoginInput : public UIBasePanel
 {
 public:
-  static UILoginInput *Create();
-  void Ctor() override;
-  void SetModel(int32 p_Model);
+  static UILoginInput *Create(){
+    return nullptr;
+  };
+  void Ctor(){};
+  void SetModel(int32 p_Model){}
 };
 
 

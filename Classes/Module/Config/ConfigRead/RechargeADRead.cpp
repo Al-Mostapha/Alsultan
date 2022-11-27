@@ -8,7 +8,7 @@ RechargeADRead *RechargeADRead::Get(){
 }
 
 RRechargeAD RechargeADRead::IsADOpen(const GString &p_CCSFile){
-  auto l_Ret = RRechargeAD(std::make_pair(GString(""), 0));
+  RRechargeAD l_Ret = std::make_pair(GString(""), 0);
   l_Ret.ADType = 0;
   for(auto &l_Pair : m_MapRechargeAD){
     if(l_Pair.second.ClassName == p_CCSFile){

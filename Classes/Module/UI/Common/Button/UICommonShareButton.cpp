@@ -17,7 +17,7 @@ void UICommonShareButton::InitPanel(){
   m_BtnBg->ignoreContentAdaptWithSize(false);
   m_BtnBg->setAnchorPoint(Vec2(0, 0));
   m_BtnBg->setPosition(Vec2(0, 0));
-  m_BtnBg->setContentSize(Size(GBase::Display::Get()->size()));
+  m_BtnBg->setContentSize(Size(GDisplay::Get()->size()));
   this->addChild(m_BtnBg);
   m_BtnBg->setVisible(false);
   m_ImgBg = ui::ImageView::create("frame_jt_bjd.png", ui::Widget::TextureResType::PLIST);
@@ -33,7 +33,7 @@ void UICommonShareButton::InitPanel(){
   m_BtnWidth = 0.5f * m_BtnMain->getContentSize().width;
   m_BtnMain->setPressedActionEnabled(false);
   m_BtnMain->setAnchorPoint(Vec2(0.5, 0.5));
-  m_BtnMain->setPosition(Vec2(GBase::Display::Get()->size().width - 5 - m_BtnWidth, 480));
+  m_BtnMain->setPosition(Vec2(GDisplay::Get()->size().width - 5 - m_BtnWidth, 480));
   m_BtnMain->setOpacity(m_HiddleModel * 255);
   this->addChild(m_BtnMain);
   if(SDKManager::Get()->IsSupportReplay())
@@ -166,14 +166,14 @@ void UICommonShareButton::UpdateAP(){
   auto l_Pos = m_BtnMain->getPosition();
   float l_Ax = 0, l_Ay = 0, l_Vec = 1;
   auto l_Size = m_ImgBg->getContentSize();
-  if(l_Pos.x > GBase::Display::Get()->cx){
+  if(l_Pos.x > GDisplay::Get()->cx){
     l_Ax = 1;
     l_Vec = -1;
     l_Pos.x = l_Pos.x + l_Size.width * 0.5;
   }else{
     l_Pos.x = l_Pos.x - l_Size.width * 0.5;
   }
-  if(l_Pos.y > GBase::Display::Get()->cy){
+  if(l_Pos.y > GDisplay::Get()->cy){
     l_Ay = 1;
     l_Pos.y = l_Pos.y + l_Size.height * 0.5;
   }else{
@@ -211,22 +211,22 @@ void UICommonShareButton::StarMainBtnOpacity(bool p_IsTouch) {
     return;
   auto l_Pos = m_BtnMain->getPosition();
   auto l_Size = m_BtnMain->getContentSize();
-  if(l_Pos.y + 0.5 * l_Size.height >= GBase::Display::Get()->height - l_Size.height){
-    l_Pos.y = GBase::Display::Get()->height - 0.5 * l_Size.height - 5;
+  if(l_Pos.y + 0.5 * l_Size.height >= GDisplay::Get()->height - l_Size.height){
+    l_Pos.y = GDisplay::Get()->height - 0.5 * l_Size.height - 5;
   }else if(l_Pos.y - 0.5 * l_Size.height <= l_Size.height){
     l_Pos.y = 0.5 * l_Size.height + 5;
-  }else if(l_Pos.x >= GBase::Display::Get()->cx){
-    l_Pos.x = GBase::Display::Get()->width - 0.5 * l_Size.width - 5;
+  }else if(l_Pos.x >= GDisplay::Get()->cx){
+    l_Pos.x = GDisplay::Get()->width - 0.5 * l_Size.width - 5;
   }else{
     l_Pos.x = 0.5 * l_Size.width + 5;
   }
-  if(l_Pos.x +0.5*l_Size.width + 5 > GBase::Display::Get()->width){
-    l_Pos.x = GBase::Display::Get()->width - 0.5 * l_Size.width - 5;
+  if(l_Pos.x +0.5*l_Size.width + 5 > GDisplay::Get()->width){
+    l_Pos.x = GDisplay::Get()->width - 0.5 * l_Size.width - 5;
   }else if(l_Pos.x - 0.5 * l_Size.width - 5 < 0){
     l_Pos.x = 0.5 * l_Size.width + 5;
   }
-  if(l_Pos.y + 0.5*l_Size.height + 5 > GBase::Display::Get()->height){
-    l_Pos.y = GBase::Display::Get()->height - 0.5 * l_Size.height - 5;
+  if(l_Pos.y + 0.5*l_Size.height + 5 > GDisplay::Get()->height){
+    l_Pos.y = GDisplay::Get()->height - 0.5 * l_Size.height - 5;
   }else if(l_Pos.y - 0.5 * l_Size.height - 5 < 0){
     l_Pos.y = 0.5 * l_Size.height + 5;
   }
@@ -263,8 +263,8 @@ void UICommonShareButton::BtnMainClickCallBack(Ref* p_Sender, ui::Widget::TouchE
       l_SingleIsMoved = true;
     if(l_SingleIsMoved){
       float l_Prolong = 0.5 * m_BtnWidth;
-      float l_PosX = std::max(m_BtnWidth - l_Prolong, std::min(l_TouchMovePoint.x, GBase::Display::Get()->width - m_BtnWidth + l_Prolong));
-      float l_PosY = std::max(m_BtnWidth - l_Prolong, std::min(l_TouchMovePoint.y, GBase::Display::Get()->height - m_BtnWidth + l_Prolong));
+      float l_PosX = std::max(m_BtnWidth - l_Prolong, std::min(l_TouchMovePoint.x, GDisplay::Get()->width - m_BtnWidth + l_Prolong));
+      float l_PosY = std::max(m_BtnWidth - l_Prolong, std::min(l_TouchMovePoint.y, GDisplay::Get()->height - m_BtnWidth + l_Prolong));
       auto l_Pos = convertToNodeSpace(Vec2(l_PosX, l_PosY));
       m_BtnMain->setPosition(l_Pos);
     }
@@ -292,12 +292,12 @@ void UICommonShareButton::BtnClickCallBack(Ref* p_Sender, ui::Widget::TouchEvent
       l_Panel->Show();
       m_BtnMain->setVisible(true);
       auto l_View = ui::Layout::create();
-      l_View->setContentSize(GBase::Display::Get()->size());
+      l_View->setContentSize(GDisplay::Get()->size());
       l_View->setBackGroundColorType(ui::Layout::BackGroundColorType::SOLID);
       l_View->setBackGroundColor(Color3B::WHITE);
       l_View->setBackGroundColorOpacity(255);
       l_View->setAnchorPoint(Vec2(0.5, 0.5));
-      l_View->setPosition(Vec2(GBase::Display::Get()->cx, GBase::Display::Get()->cy));
+      l_View->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
       addChild(l_View, 1);
       l_View->runAction(
         Sequence::create(

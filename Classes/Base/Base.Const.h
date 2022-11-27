@@ -5,45 +5,7 @@ USING_NS_CC;
 
 #define  RECHARGE_AD_OFFSET_Y  -78
 
-struct RPolygonProps{
-    Color4F FillColor{1,1,1,0};
-    float borderWidth = 0.5;
-    Color4F BorderColor{0,0,0,1};
-    float scale = 1.0f;
-};
-
 namespace GBase{
-  struct Display {
-    static Display *Get(){
-      static Display *l_Instance = new Display();
-      return l_Instance;
-    }
-    static cocos2d::Node *NewNode(){
-      return cocos2d::Node::create();
-    }
-    float cx; // CenterX
-    float cy;  //CenterY
-    float rcy; //realCenterY
-    float rcx; //realCenterY
-    float height;
-    float rheight;
-    float width;
-    float iPhoneXOffset = 0;
-    Size realSize;
-    cocos2d::Size size(){
-      return cocos2d::Director::getInstance()->getVisibleSize();
-    }
-    void AddSpriteFrames(
-      const GString &p_PlistName, const GString &p_ImageName,
-      const std::function<void()> &p_CallBack){
-      cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_PlistName);
-      p_CallBack();
-    }
-    cocos2d::DrawNode *NewPolygon(
-      const GVector<Vec2> &p_Points,
-      const RPolygonProps &p_Props = RPolygonProps(),
-      DrawNode *p_DrawNode = nullptr);
-  };
   struct GLobalSettings{
     static bool ShowMsgTip;
   };

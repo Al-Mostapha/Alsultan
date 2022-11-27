@@ -3,5 +3,6 @@
 #include "cocostudio/CocoStudio.h"
 #include "extensions/GUI/CCScrollView/CCScrollView.h"
 #include "Base/Audio/Audio.Engine.h"
+#include "Engine/Display.h"
 USING_NS_CC;
 namespace Ext = cocos2d::extension;

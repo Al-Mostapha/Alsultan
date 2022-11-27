@@ -21,7 +21,7 @@ struct RLoginRangeState{
 
 class UILoginView : public UIBasePanel
 {
-  GVector<const GString &> m_TestArrayImages;
+  GVector<GString> m_TestArrayImages;
   int32 m_InitFinishCount = 0;
   EScene m_ShowViewType = EScene::None;
   Sprite *n_LoginInitBg = nullptr;
@@ -52,12 +52,13 @@ class UILoginView : public UIBasePanel
   ActionTimeline *n_AnimationLotuo = nullptr;
   ClippingNode *n_CliperNode = nullptr;
   ParticleSystemQuad *n_Loading = nullptr;
+  ParticleSystemQuad *n_EtStar = nullptr;
   EKingdomClassType m_KingdomClass = EKingdomClassType::None;
 public:
   static UILoginView *Create();
-  void SetKingdomClass(EKingdomClassType p_KingdomClass){}
-  void SetShowViewType(EScene p_Type){}
-  void Ctor() override;
+  void SetKingdomClass(EKingdomClassType p_KingdomClass);
+  void SetShowViewType(EScene p_Type);
+  void Ctor();
   void InitVars();
   void InitView();
   void InitROSView();
@@ -78,7 +79,7 @@ public:
   void StartValidateObb();
   void ValidateObbSuccess();
   void FinishRange(ELoginRangeTbl p_Range);
-  void StartCheckUpdate();
+  void StartCheckUpdate(){}
   void StartPatchUpdate();
   void WaitForAttGranted();
   void OnAttGrantedComplete();
@@ -108,9 +109,10 @@ public:
   float GetPercent();
   void AutoLoadingBar(float  p_EPercent, float p_Frame);
   void LoadingBarEffect(float p_Percent);
-  void SetInitCliper();
   void SpineAction();
   void AddEffectLogin();
+  void AddSubViews() override;
+
 };
 
 

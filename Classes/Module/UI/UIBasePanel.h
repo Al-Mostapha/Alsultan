@@ -6,13 +6,14 @@
 #include "View/Recharge/UIRechargeTinyPageNode.h"
 #include "Module/Translation/Translate.h"
 
+class UIRechargeTinyPageNode;
 struct RBasePenelData{
   GString FutureName;
 };
 
 class UIBasePanel : public UIBaseView
 {
-protected:
+public:
   RRechargeAD m_IsADShow;
   bool m_IsHaveTextField = false;
   bool m_IsHideCurrentSceneView = false;
@@ -24,10 +25,12 @@ protected:
   bool m_IsAddToPopManager = false;
   bool m_IsCantCloseByReturn = false;
   ui::Button *m_CloseButton = nullptr;
+  CREATE_FUNC(UIBasePanel);
+  UIBaseView *m_Panel;
 public: 
   static UIBasePanel* Create(GString p_CCsFile, RBasePenelData *p_Data = nullptr);
   static UIBasePanel* Create(Node *p_CCsFile, RBasePenelData *p_Data = nullptr);
-  virtual void Ctor();
+  void CtorPanel();
   void DeviceFitOffset();
   void BindBtnClose();
   void ClosePanel();
@@ -46,4 +49,5 @@ public:
   virtual void OnEnterPanel(){}
   virtual void OnExitPanel(){}
   virtual void OnEnterOther(){OnEnterPanel();}
+  virtual void AddSubViews() = 0;
 };

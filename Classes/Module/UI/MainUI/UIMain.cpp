@@ -39,7 +39,7 @@ void UIMain::InitPanel()
   // if SoraDConfigGet("System:GameDevelopLangCN~bool") then
   //   SoraDSetGameLanguage("zh_cn")
   // end
-  setPositionX(GBase::Display::Get()->rcx);
+  setPositionX(GDisplay::Get()->rcx);
   m_CurrentViewType = EScene::City;
   m_TopArea = UIMainTop::Create();
   m_TopArea->InitPanel();
@@ -50,7 +50,7 @@ void UIMain::InitPanel()
   m_PandectView->InitPanel();
   m_PandectView->setAnchorPoint(Vec2(0, 0.5));
   // self.pandectView:setPosition(SoraDFPoint(display.width - 139, self:getContentSize().height / 2, display.width))
-  m_PandectView->setPosition(Vec2(GBase::Display::Get()->rcx - 139, getContentSize().height / 2));
+  m_PandectView->setPosition(Vec2(GDisplay::Get()->rcx - 139, getContentSize().height / 2));
   addChild(m_PandectView, 20);
   m_BottomArea = UIMainBottom::Create();
   m_BottomArea->InitPanel();
@@ -77,14 +77,14 @@ void UIMain::BindTest()
       this->addChild(l_Button, 99);
       return l_Button;
     };
-    l_ButtonCheat = l_ButtonCheat ? l_ButtonCheat : l_CreateButton(Vec2(200, GBase::Display::Get()->height - 110));
+    l_ButtonCheat = l_ButtonCheat ? l_ButtonCheat : l_CreateButton(Vec2(200, GDisplay::Get()->height - 110));
     if(l_ButtonCheat)
     {
       l_ButtonCheat->addTouchEventListener(CC_CALLBACK_2(UIMain::ButtonCheatSendClick, this));
       l_ButtonCheat->setTitleText("cheat");
       l_ButtonCheat->setVisible(true);
     }
-    l_ButtonTest = l_ButtonTest ? l_ButtonTest : l_CreateButton(Vec2(440, GBase::Display::Get()->height - 110));
+    l_ButtonTest = l_ButtonTest ? l_ButtonTest : l_CreateButton(Vec2(440, GDisplay::Get()->height - 110));
     if(l_ButtonTest)
     {
       l_ButtonTest->addTouchEventListener(CC_CALLBACK_2(UIMain::ButtonCheatSendClick, this));

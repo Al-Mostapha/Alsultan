@@ -31,7 +31,7 @@ void UIMsgTip::ShowTip( GString p_Message, Node *p_Icon ){
   m_Panel->setScaleY(0.1f);
   m_MaxHeight = 120;
 
-  float l_ShowY = GBase::Display::Get()->cy + 40.0f;
+  float l_ShowY = GDisplay::Get()->cy + 40.0f;
   if(p_Icon){
     auto l_Offest = Vec2(0, 0);
     m_ImageIconBg->setVisible(true);
@@ -87,7 +87,7 @@ void UIMsgTip::Show(){
   if(l_PrePromptTip){
     auto l_Height = 100;//l_PrePromptTip->getViewHeight();
     auto l_PosY = l_PrePromptTip->getPositionY() + l_Height + 5;
-    if(l_PosY > GBase::Display::Get()->cy + 230)
+    if(l_PosY > GDisplay::Get()->cy + 230)
       return;
     m_Panel->setPositionY(l_PosY);
     l_PrePromptTip->setName(m_ViewName + "prefix");

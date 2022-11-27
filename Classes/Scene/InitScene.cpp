@@ -57,7 +57,9 @@ bool InitScene::init()
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
-
+    auto l_Bear = Sprite3D::create("3d/pet/bear/et_bear01.c3b", "3d/pet/bear/xuliyaxiong_01.png");
+    l_Bear->setPosition(Vec2(visibleSize.width/2 - 400, visibleSize.height/2 - 100));
+    this->addChild(l_Bear, 100);
     /////////////////////////////
     // 3. add your codes below...
 

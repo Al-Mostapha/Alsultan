@@ -16,13 +16,13 @@ void MainCityCreate::Ctor(){
   // self:setPosition(cc.p(display.cx, display.rcy))
   setContentSize(Director::getInstance()->getVisibleSize());
   setAnchorPoint(Vec2(0.5, 0.5));
-  GBase::Display::Get()->cx = Director::getInstance()->getVisibleSize().width / 2;
-  GBase::Display::Get()->rcy = -Director::getInstance()->getVisibleSize().height / 2;
-  setPosition(GBase::Display::Get()->cx, GBase::Display::Get()->rcy);
+  GDisplay::Get()->cx = Director::getInstance()->getVisibleSize().width / 2;
+  GDisplay::Get()->rcy = -Director::getInstance()->getVisibleSize().height / 2;
+  setPosition(GDisplay::Get()->cx, GDisplay::Get()->rcy);
   n_ContainerView     = CSLoader::createNode("Scene/City/mainCityViewInfo.csb");
   n_MainCityFarCsb    = CSLoader::createNode("Scene/City/mainCityView_info_far.csb");
   n_MainCityMiddleCsb = CSLoader::createNode("Scene/City/mainCityView_info_middle.csb");
-  m_ViewScrollViewSize = Size(getContentSize().width, getContentSize().height - (m_HUITop + m_HUIBottom + GBase::Display::Get()->iPhoneXOffset));
+  m_ViewScrollViewSize = Size(getContentSize().width, getContentSize().height - (m_HUITop + m_HUIBottom + GDisplay::Get()->iPhoneXOffset));
   if(m_IsNeedFirstFight)
     m_ViewScrollViewSize = Size(getContentSize().width, getContentSize().height);
   m_ZoomMinOffsetX = m_ViewScrollViewSize.width - n_ContainerView->getContentSize().width;
@@ -59,7 +59,7 @@ void MainCityCreate::Ctor(){
     end*/
   Director::getInstance()->setProjection(Director::Projection::_2D);
   if(!m_IsNeedFirstFight)
-    n_ViewScrollView->setContentOffset(Vec2(GBase::Display::Get()->cx - 1650, GBase::Display::Get()->rcy - 1000));
+    n_ViewScrollView->setContentOffset(Vec2(GDisplay::Get()->cx - 1650, GDisplay::Get()->rcy - 1000));
 }
 
 void MainCityCreate::CreateGroupNode(ECityTargetGroupID p_GroupId, int32 p_ZOrder){
@@ -108,51 +108,51 @@ void MainCityCreate::ViewOnClick(Ref* p_Ref, ui::Widget::TouchEventType p_Type){
 }
 
 void MainCityCreate::CreateBatchNodes(){
-  n_BatchNodeOuterTiles = GBase::Display::NewNode();
+  n_BatchNodeOuterTiles = GDisplay::NewNode();
   n_BatchNodeOuterTiles->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeOuterTiles, 69);
-  n_BatchNodeOuterBuilds = GBase::Display::NewNode();
+  n_BatchNodeOuterBuilds = GDisplay::NewNode();
   n_BatchNodeOuterBuilds->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeOuterBuilds, 70);
-  n_BatchNodeOuterBuildNpc = GBase::Display::NewNode();
+  n_BatchNodeOuterBuildNpc = GDisplay::NewNode();
   n_BatchNodeOuterBuildNpc->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeOuterBuildNpc, 71);
-  n_BatchNodeOuterBuildCommon = GBase::Display::NewNode();
+  n_BatchNodeOuterBuildCommon = GDisplay::NewNode();
   n_BatchNodeOuterBuildCommon->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeOuterBuildCommon, 72);
-  n_BatchNodeKipchaks = GBase::Display::NewNode();
+  n_BatchNodeKipchaks = GDisplay::NewNode();
   n_BatchNodeKipchaks->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeKipchaks, 73);
   m_TblBatchNodesOuter["mainCityOuter"]     = n_BatchNodeOuterBuilds;
   m_TblBatchNodesOuter["mainCityNpc"]       = n_BatchNodeOuterBuildNpc;
   m_TblBatchNodesOuter["mainCityCommon"]    = n_BatchNodeOuterBuildCommon;
   m_TblBatchNodesOuter["mainCityKipchaks"]  = n_BatchNodeKipchaks;
-  n_BatchNodeTopTip = GBase::Display::NewNode();
+  n_BatchNodeTopTip = GDisplay::NewNode();
   n_BatchNodeTopTip->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeTopTip, 402);
   m_TblBatchNodesTopTip["default"] = n_BatchNodeTopTip;
-  n_BatchNodeCityOthers = GBase::Display::NewNode();
+  n_BatchNodeCityOthers = GDisplay::NewNode();
   n_BatchNodeCityOthers->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeCityOthers, 1);
-  n_BatchNodeCityEffect = GBase::Display::NewNode();
+  n_BatchNodeCityEffect = GDisplay::NewNode();
   n_BatchNodeCityEffect->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeCityEffect, 2);
-  n_BatchNodeSoldierGuards = GBase::Display::NewNode();
+  n_BatchNodeSoldierGuards = GDisplay::NewNode();
   n_ContainerView->addChild(n_BatchNodeSoldierGuards);
   n_BatchNodeSoldierGuards->setLocalZOrder(ECityTargetZOrder::Get()->soldiers);
   n_BatchNodeSoldierGuards->setPosition(0, 0);
   // if SoraDGetFactionType() == FACTION_TYPE.FACTION_BYZANTINE then
   //   self.batchNodeSoldierGuards:setPosition(cc.p(100, -10))
   // end
-  n_BatchNodeNpc = GBase::Display::NewNode();
+  n_BatchNodeNpc = GDisplay::NewNode();
   n_BatchNodeNpc->setPosition(0, 0);
   n_ContainerView->addChild(n_BatchNodeNpc);
   n_BatchNodeNpc->setLocalZOrder(ECityTargetZOrder::Get()->banyungong);
-  n_BatchNodeXiyiNpc = GBase::Display::NewNode();
+  n_BatchNodeXiyiNpc = GDisplay::NewNode();
   n_ContainerView->addChild(n_BatchNodeXiyiNpc);
   n_BatchNodeXiyiNpc->setLocalZOrder(ECityTargetZOrder::Get()->banyungong);
   n_BatchNodeXiyiNpc->setPosition(0, 0);
-  n_BatchNodeCollect = GBase::Display::NewNode();
+  n_BatchNodeCollect = GDisplay::NewNode();
   if(n_BatchNodeCollect){
     n_BatchNodeCollect->removeAllChildrenWithCleanup(true);
     n_BatchNodeCollect->stopAllActions();
@@ -160,7 +160,7 @@ void MainCityCreate::CreateBatchNodes(){
     n_BatchNodeCollect = nullptr;
   }
   if(n_BatchNodeCollect == nullptr){
-    n_BatchNodeCollect = GBase::Display::NewNode();
+    n_BatchNodeCollect = GDisplay::NewNode();
     Director::getInstance()->getRunningScene()->addChild(n_BatchNodeCollect, 1000);
     n_BatchNodeCollect->setPosition(0, 0);
     n_BatchNodeCollect->setName("mainCityView_batchNode_collect");
@@ -169,23 +169,23 @@ void MainCityCreate::CreateBatchNodes(){
 
 void MainCityCreate::CreateFightBatchNodes(){
   if(!n_BatchNodeFightBullet){
-    n_BatchNodeFightBullet = GBase::Display::NewNode();
+    n_BatchNodeFightBullet = GDisplay::NewNode();
     n_ContainerView->addChild(n_BatchNodeFightBullet, 50);
   }
   if(!n_BatchNodeFightBuilds){
-    n_BatchNodeFightBuilds = GBase::Display::NewNode();
+    n_BatchNodeFightBuilds = GDisplay::NewNode();
     n_ContainerView->addChild(n_BatchNodeFightBuilds, 20);
   }
   if(!n_BatchNodeFightBuildWalls){
-    n_BatchNodeFightBuildWalls = GBase::Display::NewNode();
+    n_BatchNodeFightBuildWalls = GDisplay::NewNode();
     n_ContainerView->addChild(n_BatchNodeFightBuildWalls, 30);
   }
   if(!n_BatchNodeFightSoldiers){
-    n_BatchNodeFightSoldiers = GBase::Display::NewNode();
+    n_BatchNodeFightSoldiers = GDisplay::NewNode();
     n_ContainerView->addChild(n_BatchNodeFightSoldiers, 45);
   }
   if(!n_EffectFightNode){
-    n_EffectFightNode = GBase::Display::NewNode();
+    n_EffectFightNode = GDisplay::NewNode();
     n_ContainerView->addChild(n_EffectFightNode, 55);
   }
 }

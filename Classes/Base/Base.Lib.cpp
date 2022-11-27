@@ -3,6 +3,7 @@
 #include "Module/Building/Building.Enum.h"
 #include "Module/UI/Common/Message/UIMsgTip.h"
 #include "Global/Global.Enum.h"
+#include "Include/IncludeEngine.h"
 
 namespace GBase{
 
@@ -109,8 +110,8 @@ namespace GBase{
   void DManagerRemoveTimer(Scheduler *P_Timer){}
   GString DConvertSecondToString(int p_Second){return "";}
   RenderTexture *DCreateScreenShot(bool p_IsBlur){
-    auto l_Width = GBase::Display::Get()->size().width;
-    auto l_Height= GBase::Display::Get()->size().height;
+    auto l_Width = GDisplay::Get()->size().width;
+    auto l_Height= GDisplay::Get()->size().height;
     //TODO: 35056
     auto l_RenderTexture = RenderTexture::create(l_Width, l_Height, PixelFormat::RGBA8888/*,35056*/);
     // renderTexture:setKeepMatrix(true)
@@ -123,7 +124,7 @@ namespace GBase{
     // renderTexture:endToLua()
     l_RenderTexture->end();
     // renderTexture:setPosition(cc.p(display.cx, display.cy))
-    l_RenderTexture->setPosition(Vec2(GBase::Display::Get()->cx, GBase::Display::Get()->cy));
+    l_RenderTexture->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
     // local renderSprite = renderTexture:getSprite()
     auto l_RenderSprite = l_RenderTexture->getSprite();
     // if isBlur then
@@ -140,7 +141,7 @@ namespace GBase{
     //   state:setUniformFloat("sampleNum", 10)
     //   renderSprite:setGLProgramState(state)
       // auto l_State = GLProgramState::create(l_Program);
-      // l_State->setUniformVec2("resolution", Vec2(GBase::Display::Get()->size().width, GBase::Display::Get()->size().height));
+      // l_State->setUniformVec2("resolution", Vec2(GDisplay::Get()->size().width, GDisplay::Get()->size().height));
       // l_State->setUniformFloat("blurRadius", 20);
       // l_State->setUniformFloat("sampleNum", 10);
       // l_RenderSprite->setGLProgramState(l_State);
@@ -188,7 +189,7 @@ namespace GBase{
   void DCloseLoading(Node *p_Parent, const char *p_Mark, bool p_All){}
 
   bool DPostCheckMaintain(int32 p_KingdomId){ return false; }
-  GString DFValueSuit(GString p_Value, GString p_Sign = "+"){
+  GString DFValueSuit(const GString &p_Value, const GString &p_Sign){
     return p_Value + p_Sign;
   }
 

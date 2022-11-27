@@ -4,7 +4,9 @@
 #include "Scene/Main/MainScene.h"
 
 UIBasePanel* UIBasePanel::Create(GString p_CCsFile, RBasePenelData *p_Data){
-  auto l_Panel =  static_cast<UIBasePanel*>(UICCSView::Create(p_CCsFile));
+  //UIBasePanel* l_Panel =  dynamic_cast<UIBasePanel*>(UICCSView::Create(p_CCsFile));
+  UIBasePanel* l_Panel =  UIBasePanel::create();
+  l_Panel->addChild(UICCSView::Create(p_CCsFile));
   if(p_Data){
     l_Panel->setName(p_Data->FutureName);
     l_Panel->_name = p_Data->FutureName;
@@ -18,12 +20,11 @@ UIBasePanel* UIBasePanel::Create(Node *p_CCsFile, RBasePenelData *p_Data){
     l_Panel->setName(p_Data->FutureName);
     l_Panel->_name = p_Data->FutureName;
   }
-  l_Panel->Ctor();
   return l_Panel;
 }
 
-void UIBasePanel::Ctor(){
-  UIBaseView::Ctor();
+void UIBasePanel::CtorPanel(){
+  UIBaseView::CtorBase();
   m_IsADShow = RechargeADRead::Get()->IsADOpen(getName());
   m_IsHaveTextField = false;
   m_IsHideCurrentSceneView = false;
@@ -97,8 +98,8 @@ void UIBasePanel::DeviceFitOffset(){
   auto l_CCSView = getChildByName("ccsView");
   if(!l_CCSView)
     return;
-  l_CCSView->setContentSize(GBase::Display::Get()->size());
-  setContentSize(GBase::Display::Get()->size());
+  l_CCSView->setContentSize(GDisplay::Get()->size());
+  setContentSize(GDisplay::Get()->size());
   auto l_AllChild = l_CCSView->getChildren();
   for(auto l_Child : l_AllChild){
     auto l_ChildName = l_Child->getName();
@@ -106,7 +107,7 @@ void UIBasePanel::DeviceFitOffset(){
     GString l_OffsetType = "";
     if(l_NameTabel.size())
         l_OffsetType = l_NameTabel[0];
-    for(auto i = 1; i < l_NameTabel.size(); i++){
+    for(auto i = 1; i < (int32)l_NameTabel.size(); i++){
       auto l_Value  = l_NameTabel[i];
       if(l_Value =="Size"){
         auto l_SetSize = Size(l_Child->getContentSize().width, l_Child->getContentSize().height + GetPanelOffsetHeight() - l_PreViewHeight);
@@ -119,11 +120,11 @@ void UIBasePanel::DeviceFitOffset(){
       }
     }
     if(l_ChildName == "Image_bg"){
-      l_Child->setContentSize(GBase::Display::Get()->size());
+      l_Child->setContentSize(GDisplay::Get()->size());
     }
     if(l_OffsetType == "Top"){
       if(m_IsADShow.ADType == 1 && l_NameTabel.size() >= 4 && l_NameTabel[3] == "commonFramTitle"){
-        l_Child->setPositionY(GBase::Display::Get()->height - (l_PreViewHeight - l_Child->getPositionY()));
+        l_Child->setPositionY(GDisplay::Get()->height - (l_PreViewHeight - l_Child->getPositionY()));
         AddRechargeADNode(l_Child);
         m_IsADShow.ADType = 2;
       }else{
@@ -135,7 +136,7 @@ void UIBasePanel::DeviceFitOffset(){
           auto l_TopChildName = l_TopChild->getName();
           auto l_TopNameTabel = GStringUtils::Split(l_TopChildName, "_");
           if(l_TopNameTabel.size() >= 3 && l_TopNameTabel[2] == "commonFramTitle"){
-            l_TopChild->setPositionY(l_TopChild->getPositionY() + (GBase::Display::Get()->height - GetPanelOffsetHeight()));
+            l_TopChild->setPositionY(l_TopChild->getPositionY() + (GDisplay::Get()->height - GetPanelOffsetHeight()));
             AddRechargeADNode(l_TopChild);
             m_IsADShow.ADType = 2;
             break;
@@ -149,15 +150,15 @@ void UIBasePanel::DeviceFitOffset(){
 }
 
 UIRechargeTinyPageNode *UIBasePanel::AddRechargeADNode(Node *p_Node){
-  auto l_Node  = GBase::GetChildByName<UIRechargeTinyPageNode *>(this, "rechargeTinyPageNode");
-  if(l_Node == nullptr){
-    l_Node = UIRechargeTinyPageNode::Create();
-    p_Node->addChild(l_Node, -1);
-  }
-  l_Node->setPosition(Vec2(0, RECHARGE_AD_OFFSET_Y));
-  if(m_IsADShow.MenuID != 0)
-    l_Node->SetMyGiftType(m_IsADShow.MenuID);
-  return l_Node;
+  //auto l_Node  = GBase::GetChildByName<UIRechargeTinyPageNode *>(this, "rechargeTinyPageNode");
+  // if(l_Node == nullptr){
+  //   l_Node = UIRechargeTinyPageNode::Create();
+  //   p_Node->addChild(l_Node, -1);
+  // }
+  // l_Node->setPosition(Vec2(0, RECHARGE_AD_OFFSET_Y));
+  // if(m_IsADShow.MenuID != 0)
+  //   l_Node->SetMyGiftType(m_IsADShow.MenuID);
+  return nullptr;
 }
 
 bool UIBasePanel::JudgeShowPanelPower(){
@@ -212,5 +213,4 @@ void UIBasePanel::onExit(){
   if(m_IsAddToPopManager)
     GPanelManger::Get()->DRemovePanelFromManager(this);
   // self:autoCheckTexMemary()
-
 }

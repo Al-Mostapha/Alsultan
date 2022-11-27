@@ -1,4 +1,5 @@
 #include "Base.View.h"
+#include "Include/IncludeEngine.h"
 
 void BaseView::LoadImages(GVector<GString> p_Array, const std::function<void()> &p_Callback){
   if(p_Array.empty())
@@ -9,7 +10,7 @@ void BaseView::LoadImages(GVector<GString> p_Array, const std::function<void()> 
     auto l_ImageName = p_Array.at(i);
     m_ArrayImagesPath.insert(l_ImageName);
     auto l_PList = l_ImageName + ".plist";
-    GBase::Display::Get()->AddSpriteFrames(l_ImageName, "", [&](){
+    GDisplay::Get()->AddSpriteFrames(l_ImageName, "", [&](){
       l_Index++;
       if(l_Index >= p_Array.size())
         p_Callback();

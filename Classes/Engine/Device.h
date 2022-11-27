@@ -5,8 +5,10 @@
 class GDevice{
 public: 
   static GDevice *Get();
+  void Init();
   EPlatform Platform();
   bool IsIphoneXMode();
+  bool IsIpadMode();
   bool IsForTest(){return true;}
   bool Is64Bit(){return true;}
 };

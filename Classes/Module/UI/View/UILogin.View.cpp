@@ -12,13 +12,28 @@ UILoginView *UILoginView::Create()
 {
   RBasePenelData l_Data;
   l_Data.FutureName = "loginView";
-  return static_cast<UILoginView*>(UIBasePanel::Create("loginView.csb", &l_Data));
+  UILoginView *l_Panel = dynamic_cast<UILoginView*>(UIBasePanel::Create(CsbUiFilePath::LoginView, &l_Data));
+  l_Panel->Ctor();
+  return l_Panel;
+}
+
+void UILoginView::AddSubViews(){
+  RBasePenelData l_Data;
+  l_Data.FutureName = "animationLogo";
+  auto l_AnimationLogo = UIBasePanel::Create(CsbUiFilePath::AnimationLogo, &l_Data);
+  auto l_Slot = GBase::GetChildByName<Node *>(this, "Top_Node_Logo");
+  //l_Slot->removeAllChildren();
+  l_Slot->addChild(l_AnimationLogo);
+  //l_AnimationLogo->setName("CCS_animationLogo_logo");
 }
 
 void UILoginView::Ctor()
 {
-  UIBasePanel::Ctor();
-  UserDefault::getInstance()->setBoolForKey("System:RAMADAN_SWITCH~bool", GBase::GameDefs::Get()->RAMADAN_SWITCH);
+  UIBasePanel::CtorPanel();
+  AddSubViews();
+  cocos2d::log("ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+  if(UserDefault::getInstance())
+    UserDefault::getInstance()->setBoolForKey("System:RAMADAN_SWITCH~bool", GBase::GameDefs::Get()->RAMADAN_SWITCH);
   m_IsHideCurrentSceneView = true;
   GBase::DGetDefaultLanguage();
   GBase::DSetDefaultLanguage();
@@ -57,7 +72,7 @@ void UILoginView::SetMainSenceMsgListener(){
 
 void UILoginView::InitROSView(){
   n_LoginInitBg = GBase::CreateSprite("SinglePicture/loginInitBg_ros.png");
-  auto l_Display = GBase::Display::Get();
+  auto l_Display = GDisplay::Get();
   n_LoginInitBg->setPosition(Vec2(l_Display->cx, l_Display->rheight / 2 - (1386 - l_Display->rheight) * 0.2));
   if(n_NodeEvent) n_NodeEvent->addChild(n_LoginInitBg);
   n_LoginInitBg->setLocalZOrder(-1);
@@ -93,11 +108,12 @@ void UILoginView::InitKOHView(){
   if(!GBase::GameDefs::Get()->RAMADAN_SWITCH)
     l_KohPath = "SinglePicture/loginInitBg_koh_pre.png";
   n_LoginInitBg = GBase::CreateSprite(l_KohPath);
-  auto l_Display = GBase::Display::Get();
+  auto l_Display = GDisplay::Get();
   n_LoginInitBg->setPosition(Vec2(l_Display->cx, l_Display->rheight / 2 - (1386 - l_Display->rheight) * 0.2));
   if(n_NodeEvent) n_NodeEvent->addChild(n_LoginInitBg);
   n_LoginInitBg->setLocalZOrder(-1);
   m_CCSLogo = GBase::GetChildByName<Node *>(this, "CCS_animationLogo_logo");
+
   m_AnimationLogo = static_cast<ActionTimeline *>(m_CCSLogo->getActionByTag(m_CCSLogo->getTag()));
   m_AnimationLogo->gotoFrameAndPlay(0, true);
   m_Logo = GBase::GetChildByName<Node *>(this, "Top_Node_logo");
@@ -115,8 +131,8 @@ void UILoginView::InitKOHView(){
 }
 
 void UILoginView::InitView(){
-  setContentSize(GBase::Display::Get()->realSize);
-  setPosition(Vec2(GBase::Display::Get()->cx, GBase::Display::Get()->rcy));
+  setContentSize(GDisplay::Get()->realSize);
+  setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->rcy));
   n_NodeEvent = GBase::GetChildByName<Node *>(this, "Node_event");
   n_NodeEvent->setLocalZOrder(-3);
   if(GBase::Const::Get()->IsArClient)
@@ -389,16 +405,16 @@ void UILoginView::SetVersion2Top(){
   m_VersionLabel->setString(GBase::GameDefs::Get()->GAME_VERSION);
   m_VersionLabel->setVisible(true);
   m_VersionLabel->setColor(GBase::Const::Get()->IsArClient ? Color3B(0, 0, 0) : Color3B(255, 255, 255));
-  m_VersionLabel->setPosition(Vec2(GBase::Display::Get()->width - 20, GBase::Display::Get()->rheight - 20));
+  m_VersionLabel->setPosition(Vec2(GDisplay::Get()->width - 20, GDisplay::Get()->rheight - 20));
   if(!GBase::DFIsRA()){
     m_VersionLabel->setAnchorPoint(Vec2(0, 1));
     m_VersionLabel->setPositionX(20);
   }
   if(m_NodeFix){
     if(!GBase::DFIsRA()){
-      m_NodeFix->setPosition(Vec2(GBase::Display::Get()->width - 40, GBase::Display::Get()->rheight - 32));
+      m_NodeFix->setPosition(Vec2(GDisplay::Get()->width - 40, GDisplay::Get()->rheight - 32));
     }else{
-      m_NodeFix->setPosition(Vec2(40, GBase::Display::Get()->rheight - 32));
+      m_NodeFix->setPosition(Vec2(40, GDisplay::Get()->rheight - 32));
     }
   }
 }
@@ -453,17 +469,17 @@ void UILoginView::StartGame(){
   if(GDevice::Get()->Platform() == EPlatform::Mac || GDevice::Get()->IsForTest()){
     auto l_InputNode = UILoginInput::Create();
     l_InputNode->SetModel(1);
-    l_InputNode->setPosition(Vec2(GBase::Display::Get()->cx, GBase::Display::Get()->cy));
+    l_InputNode->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
     addChild(l_InputNode, 99);
   }else if(SDKManager::Get()->IsBeta() || SDKManager::Get()->IsGameDevelop()){
     auto l_InputNode = UILoginInput::Create();
     l_InputNode->SetModel(1);
-    l_InputNode->setPosition(Vec2(GBase::Display::Get()->cx, GBase::Display::Get()->cy));
+    l_InputNode->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
     addChild(l_InputNode, 99);
   }else if(SDKManager::Get()->IsGameService()){
     auto l_InputNode = UILoginInput::Create();
     l_InputNode->SetModel(3);
-    l_InputNode->setPosition(Vec2(GBase::Display::Get()->cx, GBase::Display::Get()->cy));
+    l_InputNode->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
     addChild(l_InputNode, 99);
   }else{
     //   userSDKManager.checkIsEmulator(function(...) userSDKManager.login("")
@@ -708,7 +724,7 @@ void UILoginView::SetInitCliper(){
   };
   RPolygonProps l_Params;
   l_Params.borderWidth = 1;
-  auto l_ShapNode = GBase::Display::Get()->NewPolygon(l_Points, l_Params);
+  auto l_ShapNode = GDisplay::Get()->NewPolygon(l_Points, l_Params);
   n_CliperNode = ClippingNode::create();
   n_CliperNode->setStencil(l_ShapNode);
   n_CliperNode->setInverted(false);
@@ -725,7 +741,7 @@ void UILoginView::SetInitCliper(){
 void UILoginView::SpineAction(){
   auto l_CenterNode = GBase::GetChildByName<Node *>(this, "Center_Node_Spine");
   l_CenterNode->setLocalZOrder(2);
-  l_CenterNode->setPositionY(GBase::Display::Get()->rcy);
+  l_CenterNode->setPositionY(GDisplay::Get()->rcy);
   if(GBase::Const::Get()->IsArClient){
     if(GBase::GameDefs::Get()->RAMADAN_SWITCH){
     //     local criSprite = cc.criSprite.createCriSprite("sp_xndrjm_001.usm", false, true, nil)
@@ -739,7 +755,7 @@ void UILoginView::SpineAction(){
     //     criSprite:addTo(centerNode)
     }
   }else{
-    auto l_Display = GBase::Display::Get();
+    auto l_Display = GDisplay::Get();
     auto l_CPosY = l_Display->rheight/2  - (1386 - l_Display->rheight) * 0.2;
     l_CenterNode->setPosition(Vec2(l_Display->cx, l_CPosY));
     auto l_EtBg = GBase::DCreateAnimationEx("animationLoginBX", nullptr, true, 0.7);
@@ -791,7 +807,7 @@ void UILoginView::LoadingBarEffect(float p_Percent){
   };
   RPolygonProps l_Params;
   l_Params.borderWidth = 1;
-  auto l_ShapNode = GBase::Display::Get()->NewPolygon(l_Points, l_Params);
+  auto l_ShapNode = GDisplay::Get()->NewPolygon(l_Points, l_Params);
   n_CliperNode->setStencil(l_ShapNode);
 }
 
@@ -835,13 +851,25 @@ void UILoginView::AddEffectLogin(){
   //   meshNode:setBlendFunc(gl.ONE, gl.ONE)
   //   meshNode:addTo(self.loginInitBg2, 99)
   //   self.effectLogin = meshNode
-  //   self.etStar = cc.ParticleSystemQuad:create("Particle_login/et_Particle_dljm_001.plist")
-  //   self.etStar:setScaleX(1.4234)
-  //   self.etStar:setScaleY(4.5)
-  //   self.etStar:setRotation(-109.33)
-  //   self.etStar:setPosition(cc.p(501.17, display.height + 100))
-  //   self.etStar:addTo(self, 1)
+      n_EtStar = ParticleSystemQuad::create("Particle/et_Particle_dljm_001.plist");
+      n_EtStar->setScaleX(1.4234);
+      n_EtStar->setScaleY(4.5);
+      n_EtStar->setRotation(-109.33);
+      n_EtStar->setPosition(Vec2(501.17, GDisplay::Get()->rheight + 100));
+      this->addChild(n_EtStar, 1);
   // end
 
   
+}
+
+
+void UILoginView::SetShowViewType(EScene p_Type){
+  m_ShowViewType = p_Type;
+}
+
+void UILoginView::OnClickUpdateFix(Ref *p_Sender, ui::Widget::TouchEventType p_Type){
+  // if event == ccui.TouchEventType.ended then
+  //   SoraDPlaySound()
+  //   require("app.game.updateModule.updateModule"):getInstance():fixUpdateData()
+  // end
 }

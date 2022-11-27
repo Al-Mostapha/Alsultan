@@ -105,7 +105,9 @@ void LoginScene::ServerGuideEnd(EventCustom *p_Event){
   //   end
 }
 
-void LoginScene::StartGame() { InitData(); }
+void LoginScene::StartGame() { 
+  InitData(); 
+}
 
 void LoginScene::InitData() {
   CreatePanelView();
@@ -145,18 +147,20 @@ void LoginScene::CreatePanelView() {
 
 
 
-void LoginScene::CreateLoginView(EScene p_Type, EKingdomClass p_Kingdom) {
+void LoginScene::CreateLoginView(EScene p_Type, EKingdomClassType p_Kingdom) {
   if (p_Type == EScene::None) p_Type = EScene::City;
   stopAllActions();
-  runAction(Sequence::create(DelayTime::create(0.016666666666666666),
-                              CallFunc::create([=]() {
-                                GAudioEngine::Get()->Init();
-                                LoginSettingRun();
-                                GAudioEngine::Get()->StopMusic();
-                                GAudioEngine::Get()->PlayMusic("loading", true);
-                                GAudioEngine::Get()->SetMusicVolume(0.5f);
-                              }),
-                              nullptr));
+  runAction(
+    Sequence::create(
+      DelayTime::create(0.0167),
+      CallFunc::create([=]() {
+        GAudioEngine::Get()->Init();
+        LoginSettingRun();
+        GAudioEngine::Get()->StopMusic();
+        GAudioEngine::Get()->PlayMusic("loading", true);
+        GAudioEngine::Get()->SetMusicVolume(0.5f);
+      }),
+      nullptr));
   if (m_LoginView) {
     m_LoginView->removeFromParent();
     m_LoginView = nullptr;
@@ -164,6 +168,7 @@ void LoginScene::CreateLoginView(EScene p_Type, EKingdomClass p_Kingdom) {
   auto l_LoginView = UILoginView::Create();
   l_LoginView->SetKingdomClass(p_Kingdom);
   l_LoginView->SetShowViewType(p_Type);
+
   addChild(l_LoginView, 4);
   m_LoginView = l_LoginView;
   GBase::DCloseSwitcherView();
