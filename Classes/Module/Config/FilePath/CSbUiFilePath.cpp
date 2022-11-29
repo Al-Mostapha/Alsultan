@@ -5,4 +5,5 @@ GString CsbUiFilePath::UIBuildCreateScrollSingle = "UiParts/Panel/Building/Build
 GString CsbUiFilePath::UIMsgTipPanel = "UiParts/Panel/Common/Messages/commonPromptTip.csb";
 GString CsbUiFilePath::NodeBuildStarLight = "UiParts/Parts/Building/Node_buildStar_light.csb";
 GString CsbUiFilePath::LoginView = "UiParts/Panel/Login/loginView.csb";
-GString CsbUiFilePath::AnimationLogo = "UiParts/Panel/Login/anumationLogo.csb";
+GString CsbUiFilePath::AnimationLogo = "UiParts/Panel/Login/animationLogoZY.csb";
+GString CsbUiFilePath::AnimationLoadingCamel = "UiParts/Panel/Login/animationLuotuo.csb";

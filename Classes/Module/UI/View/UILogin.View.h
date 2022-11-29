@@ -29,15 +29,15 @@ class UILoginView : public UIBasePanel
   Node *n_NodeEvent = nullptr;
   Node *m_Logo = nullptr;
   Node *m_CCSLogo = nullptr;
-  Label *n_TxtPercent = nullptr;
-  ActionTimeline *m_AnimationLogo = nullptr;
+  ui::Text *n_TxtPercent = nullptr;
+  Node *m_AnimationLogo = nullptr;
   Node *m_BottomLoading = nullptr;
   Sprite *n_TxtWarTips = nullptr;
   Node *m_NodeFix = nullptr;
   ui::Layout *m_BtnUpdateFix = nullptr;
-  Label *m_TxtUpdateFix = nullptr;
-  Label *n_TxtNoteTip = nullptr;
-  Label *m_VersionLabel = nullptr;
+  ui::Text *m_TxtUpdateFix = nullptr;
+  ui::Text *n_TxtNoteTip = nullptr;
+  ui::Text *m_VersionLabel = nullptr;
   bool m_IsUpdateReload = false;
   bool m_LoadImageFinish = false;
   bool m_IsServerReturn = false;
@@ -54,11 +54,12 @@ class UILoginView : public UIBasePanel
   ParticleSystemQuad *n_Loading = nullptr;
   ParticleSystemQuad *n_EtStar = nullptr;
   EKingdomClassType m_KingdomClass = EKingdomClassType::None;
+  CREATE_FUNC(UILoginView);
 public:
   static UILoginView *Create();
   void SetKingdomClass(EKingdomClassType p_KingdomClass);
   void SetShowViewType(EScene p_Type);
-  void Ctor();
+  void Ctor() override;
   void InitVars();
   void InitView();
   void InitROSView();

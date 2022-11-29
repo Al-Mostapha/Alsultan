@@ -5,6 +5,10 @@
 #include "Global/Global.Enum.h"
 #include "Include/IncludeEngine.h"
 
+typedef std::function<void(EventCustom*)> FMsgCallBack;
+GHashMap<GString, GQueue<FMsgCallBack>> _tMsgvectorList;
+GHashMap<Node*, GHashMap<GString, bool>> _tMsgObjListionerList;
+
 namespace GBase{
 
   void PlaySound(const char* p_SoundName, bool p_IsLoop, float p_delay)
@@ -99,14 +103,36 @@ namespace GBase{
   Node *DPopItemAward(){return nullptr;}
   void DPushItemAward(Node *){}
   bool DCloseLoginView(){return true;}
-  void DSendMessage(const char *p_EventId, void *p_Data){}
+  void DSendMessage(const char *p_EventId, void *p_Data){
+    // if content and content.clientData then
+    //   data.clientData = content.clientData
+    // end
+    auto l_listioner = _tMsgvectorList.find(p_EventId);
+    if(l_listioner == _tMsgvectorList.end()) return;
+      auto l_list = l_listioner->second;
+      while (!l_list.empty())
+    {
+        auto l_CallBack = l_list.front();
+        EventCustom l_Event(p_EventId);
+        l_Event.setUserData(p_Data);
+        l_CallBack(&l_Event);
+        l_list.pop();
+    }
+
+  }
   bool DIsGameGuide(){return false;}
   Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_Priority){ return nullptr; }
   EFactionType DGetFactionType(){ return EFactionType::Normal; }
   
 
   void DCloseSwitcherView(){}
-  void DAddMessage(Node * p_Node, const char *p_EventId, const std::function<void(EventCustom *)> &p_Callback){}
+  void DAddMessage(Node * p_Node, const char *p_EventId, const std::function<void(EventCustom *)> &p_Callback){
+    if (!p_Callback) return;
+    if (!_tMsgObjListionerList.Contains(p_Node)) _tMsgObjListionerList[p_Node] = GHashMap<GString, bool>();
+    _tMsgObjListionerList[p_Node][p_EventId] = true;
+    if (!_tMsgvectorList.Contains(p_EventId)) _tMsgvectorList[p_EventId] = GQueue<FMsgCallBack>();
+    _tMsgvectorList[p_EventId].push(p_Callback);
+  }
   void DManagerRemoveTimer(Scheduler *P_Timer){}
   GString DConvertSecondToString(int p_Second){return "";}
   RenderTexture *DCreateScreenShot(bool p_IsBlur){

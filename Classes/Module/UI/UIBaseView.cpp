@@ -18,7 +18,7 @@ UIBaseView *UIBaseView::Create(Size p_Size, bool p_IsColor, Node *p_Target)
   return l_View;
 }
 
-void UIBaseView::CtorBase()
+void UIBaseView::Ctor()
 {
   //self:setNodeEventEnabled(true)
   m_FreeImagesOnExit = false;

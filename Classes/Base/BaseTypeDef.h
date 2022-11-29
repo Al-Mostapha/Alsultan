@@ -33,3 +33,5 @@ using GVector = std::vector<T>;
 template <class K, class V>
 using GMap = std::map<K, V>;
 
+template <class K>
+using GQueue = std::queue<K>;

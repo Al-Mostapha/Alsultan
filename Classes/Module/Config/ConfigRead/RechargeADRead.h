@@ -5,6 +5,7 @@ struct RRechargeAD{
   GString ClassName = "";
   int32 ADType = 0;
   int32 MenuID = 0;
+  RRechargeAD(){}
   RRechargeAD(std::pair<GString, int32> p_Init)
     : ClassName(p_Init.first), MenuID(p_Init.second){}
   RRechargeAD &operator=(std::pair<GString, int32> p_Init){

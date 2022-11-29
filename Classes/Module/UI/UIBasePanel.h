@@ -11,7 +11,7 @@ struct RBasePenelData{
   GString FutureName;
 };
 
-class UIBasePanel : public UIBaseView
+class UIBasePanel : public Node
 {
 public:
   RRechargeAD m_IsADShow;
@@ -25,12 +25,13 @@ public:
   bool m_IsAddToPopManager = false;
   bool m_IsCantCloseByReturn = false;
   ui::Button *m_CloseButton = nullptr;
-  CREATE_FUNC(UIBasePanel);
   UIBaseView *m_Panel;
+  CREATE_FUNC(UIBasePanel);
 public: 
+  UIBasePanel* InitPanel(GString p_CCsFile, RBasePenelData *p_Data = nullptr);
+  UIBasePanel* InitPanel(Node *p_CCsFile, RBasePenelData *p_Data = nullptr);
   static UIBasePanel* Create(GString p_CCsFile, RBasePenelData *p_Data = nullptr);
-  static UIBasePanel* Create(Node *p_CCsFile, RBasePenelData *p_Data = nullptr);
-  void CtorPanel();
+  virtual void Ctor();
   void DeviceFitOffset();
   void BindBtnClose();
   void ClosePanel();
@@ -49,5 +50,5 @@ public:
   virtual void OnEnterPanel(){}
   virtual void OnExitPanel(){}
   virtual void OnEnterOther(){OnEnterPanel();}
-  virtual void AddSubViews() = 0;
+  virtual void AddSubViews(){};
 };

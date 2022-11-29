@@ -7,4 +7,5 @@ class GEngine{
   public: 
     static GEngine *Get();
     void Init();
+    void PrintNodeTree(Node *p_Node, int p_Depth = 0);
 };

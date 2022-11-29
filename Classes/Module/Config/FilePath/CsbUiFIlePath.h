@@ -9,6 +9,7 @@ public:
   static GString NodeBuildStarLight;
   static GString LoginView;
   static GString AnimationLogo;
+  static GString AnimationLoadingCamel;
 public:
   CsbUiFilePath(/* args */);
   ~CsbUiFilePath();

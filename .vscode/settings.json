@@ -56,7 +56,8 @@
     "algorithm": "cpp",
     "functional": "cpp",
     "unordered_set": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "queue": "cpp"
   },
   "intelephense.environment.includePaths": [
     "${workspaceRoot}"

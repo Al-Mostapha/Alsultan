@@ -1,4 +1,5 @@
 #include "UILogin.View.h"
+#include "Engine/Engine.h"
 #include "Scene/Login/LoginScene.h"
 #include "UILoginInput.h"
 #include "spine/SkeletonAnimation.h"
@@ -10,28 +11,35 @@
 
 UILoginView *UILoginView::Create()
 {
+  auto l_Panel = create();
   RBasePenelData l_Data;
   l_Data.FutureName = "loginView";
-  UILoginView *l_Panel = dynamic_cast<UILoginView*>(UIBasePanel::Create(CsbUiFilePath::LoginView, &l_Data));
-  l_Panel->Ctor();
+  l_Panel->InitPanel(CsbUiFilePath::LoginView, &l_Data);
   return l_Panel;
 }
 
 void UILoginView::AddSubViews(){
-  RBasePenelData l_Data;
-  l_Data.FutureName = "animationLogo";
-  auto l_AnimationLogo = UIBasePanel::Create(CsbUiFilePath::AnimationLogo, &l_Data);
-  auto l_Slot = GBase::GetChildByName<Node *>(this, "Top_Node_Logo");
-  //l_Slot->removeAllChildren();
-  l_Slot->addChild(l_AnimationLogo);
-  //l_AnimationLogo->setName("CCS_animationLogo_logo");
+  m_AnimationLogo = CSLoader::createNode(CsbUiFilePath::AnimationLogo);
+  m_CCSLogo = GBase::GetChildByName<Node *>(m_Panel, "CCS_animationLogo_logo");
+  
+  auto l_LogoAction = CSLoader::createTimeline(CsbUiFilePath::AnimationLogo);
+  m_CCSLogo->addChild(m_AnimationLogo);
+  m_AnimationLogo->runAction(l_LogoAction);
+  l_LogoAction->gotoFrameAndPlay(0, true);
+
+  n_SpriteAnimationLuotuo = GBase::GetChildByName<Node *>(m_Panel, "Node_luotuo");
+  auto l_LoadingCamel = CSLoader::createNode(CsbUiFilePath::AnimationLoadingCamel);
+  auto l_LoadingCamelAnimation = CSLoader::createTimeline(CsbUiFilePath::AnimationLoadingCamel);
+  n_SpriteAnimationLuotuo->addChild(l_LoadingCamel);
+  l_LoadingCamel->runAction(l_LoadingCamelAnimation);
+  l_LoadingCamelAnimation->gotoFrameAndPlay(0, true);
+  addChild(m_Panel);
 }
 
 void UILoginView::Ctor()
 {
-  UIBasePanel::CtorPanel();
+  UIBasePanel::Ctor();
   AddSubViews();
-  cocos2d::log("ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
   if(UserDefault::getInstance())
     UserDefault::getInstance()->setBoolForKey("System:RAMADAN_SWITCH~bool", GBase::GameDefs::Get()->RAMADAN_SWITCH);
   m_IsHideCurrentSceneView = true;
@@ -45,6 +53,7 @@ void UILoginView::Ctor()
   //   userSDKManager.logEvent(gSDKDef.TDonEvent.require_permssin_success, {})
   // end
   // criAdxAux.loadLanguageAcb()
+
   InitVars();
   InitView();
   SetInitCliper();
@@ -53,6 +62,7 @@ void UILoginView::Ctor()
   SetVersion2Top();
   InitSpineAnimation();
   m_TestArrayImages.clear();
+  LoadBar(50);
 }
 
 void UILoginView::InitVars(){
@@ -74,32 +84,31 @@ void UILoginView::InitROSView(){
   n_LoginInitBg = GBase::CreateSprite("SinglePicture/loginInitBg_ros.png");
   auto l_Display = GDisplay::Get();
   n_LoginInitBg->setPosition(Vec2(l_Display->cx, l_Display->rheight / 2 - (1386 - l_Display->rheight) * 0.2));
-  if(n_NodeEvent) n_NodeEvent->addChild(n_LoginInitBg);
+  n_NodeEvent->addChild(n_LoginInitBg);
   n_LoginInitBg->setLocalZOrder(-1);
-  n_LoginInitBg2 = GBase::CreateSprite("SinglePicture/loginInitBg2.png");
-  n_LoginInitBg2->setPosition(Vec2(l_Display->cx, l_Display->rheight / 2 - (1386 - l_Display->rheight) * 0.2));
-  if(n_NodeEvent) n_NodeEvent->addChild(n_LoginInitBg2);
-  n_LoginInitBg2->setLocalZOrder(0);
-  n_LoginInitBg2->setVisible(false);
-  m_Logo = GBase::GetChildByName<Node *>(this, "Top_Node_logo");
+  // n_LoginInitBg2 = GBase::CreateSprite("SinglePicture/loginInitBg2.png");
+  // n_LoginInitBg2->setPosition(Vec2(l_Display->cx, l_Display->rheight / 2 - (1386 - l_Display->rheight) * 0.2));
+  // if(n_NodeEvent) n_NodeEvent->addChild(n_LoginInitBg2);
+  // n_LoginInitBg2->setLocalZOrder(0);
+  // n_LoginInitBg2->setVisible(false);
+  m_Logo = GBase::GetChildByName<Node *>(m_Panel, "Top_Node_logo");
   m_Logo->setLocalZOrder(9);
-  m_CCSLogo = GBase::GetChildByName<Node *>(this, "CCS_animationLogo_logo");
-  m_AnimationLogo = static_cast<ActionTimeline *>(m_CCSLogo->getActionByTag(m_CCSLogo->getTag()));
-  m_AnimationLogo->gotoFrameAndPlay(0, true);
+  m_CCSLogo = GBase::GetChildByName<Node *>(m_Panel, "CCS_animationLogo_logo");
+  // m_AnimationLogo = static_cast<ActionTimeline *>(m_CCSLogo->getActionByTag(m_CCSLogo->getTag()));
+  // m_AnimationLogo->gotoFrameAndPlay(0, true);
   if(l_Display->rheight < 960)
     m_Logo->setScale(0.6);
-    m_BottomLoading = GBase::GetChildByName<ui::LoadingBar *>(this, "Bottom_Center_Node_loadingBar");
+    m_BottomLoading = GBase::GetChildByName<ui::LoadingBar *>(m_Panel, "Bottom_Center_Node_loadingBar");
     m_BottomLoading->setLocalZOrder(3);
-    m_Logo->setPositionY(l_Display->height - 90);
+    //m_Logo->setPositionY(l_Display->height - 150);
     if(SDKManager::Get()->IsKo()){
     m_Logo->setVisible(false);
-    //   local logoTitle = display.newSprite("#logo_ko.png")
-    auto l_LogoTitle = GBase::CreateSprite("SinglePicture/logo_ko.png");
-    auto l_X = m_Logo->getPositionX();
-    auto l_Y = m_Logo->getPositionY();
-    m_Logo->getParent()->addChild(l_LogoTitle);
-    l_LogoTitle->setPosition(Vec2(l_X, l_Y - 50));
-    l_LogoTitle->setLocalZOrder(2);
+    // auto l_LogoTitle = GBase::CreateSprite("SinglePicture/logo_ko.png");
+    // auto l_X = m_Logo->getPositionX();
+    // auto l_Y = m_Logo->getPositionY();
+    // m_Logo->getParent()->addChild(l_LogoTitle);
+    // l_LogoTitle->setPosition(Vec2(l_X, l_Y - 50));
+    // l_LogoTitle->setLocalZOrder(2);
   }
 }
 
@@ -112,11 +121,7 @@ void UILoginView::InitKOHView(){
   n_LoginInitBg->setPosition(Vec2(l_Display->cx, l_Display->rheight / 2 - (1386 - l_Display->rheight) * 0.2));
   if(n_NodeEvent) n_NodeEvent->addChild(n_LoginInitBg);
   n_LoginInitBg->setLocalZOrder(-1);
-  m_CCSLogo = GBase::GetChildByName<Node *>(this, "CCS_animationLogo_logo");
-
-  m_AnimationLogo = static_cast<ActionTimeline *>(m_CCSLogo->getActionByTag(m_CCSLogo->getTag()));
-  m_AnimationLogo->gotoFrameAndPlay(0, true);
-  m_Logo = GBase::GetChildByName<Node *>(this, "Top_Node_logo");
+  m_Logo = GBase::GetChildByName<Node *>(m_Panel, "Top_Node_logo");
   m_Logo->setLocalZOrder(9);
   if(l_Display->rheight < 960)
     m_Logo->setScale(0.6);
@@ -126,30 +131,30 @@ void UILoginView::InitKOHView(){
     m_Logo->setPositionY(l_Display->rheight - 122);
   if(l_Display->rheight > 1136)
     m_Logo->setPositionY(l_Display->rheight - 180);
-  m_BottomLoading = GBase::GetChildByName<Node *>(this, "Bottom_Center_Node_loadingBar");
+  m_BottomLoading = GBase::GetChildByName<Node *>(m_Panel, "Bottom_Center_Node_loadingBar");
   m_BottomLoading->setLocalZOrder(3);
 }
 
 void UILoginView::InitView(){
-  setContentSize(GDisplay::Get()->realSize);
-  setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->rcy));
-  n_NodeEvent = GBase::GetChildByName<Node *>(this, "Node_event");
+  m_Panel->setContentSize(GDisplay::Get()->realSize);
+  m_Panel->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->rcy));
+  n_NodeEvent = GBase::GetChildByName<Node *>(m_Panel, "Node_event");
   n_NodeEvent->setLocalZOrder(-3);
   if(GBase::Const::Get()->IsArClient)
     InitKOHView();
   else
     InitROSView();
-  n_TxtWarTips = GBase::GetChildByName<Sprite *>(this, "Center_pyramid");
+  n_TxtWarTips = GBase::GetChildByName<Sprite *>(m_Panel, "Center_pyramid");
   if(n_TxtWarTips){
     n_TxtWarTips->setLocalZOrder(3);
     n_TxtWarTips->setVisible(false);
   }
-  m_NodeFix = GBase::GetChildByName<Node *>(this, "Top_Node_fix");
+  m_NodeFix = GBase::GetChildByName<Node *>(m_Panel, "Top_Node_fix");
   if(m_NodeFix){
     m_NodeFix->setLocalZOrder(3);
-    m_BtnUpdateFix = GBase::GetChildByName<ui::Layout *>(this, "Button_box");
+    m_BtnUpdateFix = GBase::GetChildByName<ui::Layout *>(m_Panel, "Button_box");
     m_BtnUpdateFix->addTouchEventListener(CC_CALLBACK_2(UILoginView::OnClickUpdateFix, this));
-    m_TxtUpdateFix = GBase::GetChildByName<Label *>(this, "Text_update_fix");
+    m_TxtUpdateFix = GBase::GetChildByName<ui::Text *>(m_Panel, "Text_update_fix");
     m_TxtUpdateFix->setString(Translate::i18n("download_first_description_013"));
     m_BtnUpdateFix->setContentSize(Size(m_TxtUpdateFix->getContentSize().width + 30, 30));
   }
@@ -160,7 +165,7 @@ void UILoginView::OnEnterOther(){
   GVector<GString> l_ImageArray = {
     "Resident/loginViewUI"
   };
-  LoadImages(l_ImageArray, CC_CALLBACK_0(UILoginView::FinishLoadImages, this));
+  m_Panel->LoadImages(l_ImageArray, CC_CALLBACK_0(UILoginView::FinishLoadImages, this));
 }
 
 
@@ -204,7 +209,7 @@ void UILoginView::ValidateObbSuccess(){
   //   l_FileInstance->initAppExpansionPackage();
   // }
   FinishRange(ELoginRangeTbl::ObbValidate);
-  runAction(Sequence::create(
+  m_Panel->runAction(Sequence::create(
     DelayTime::create(0.0f),
     CallFunc::create([this](){
       StartCheckUpdate();
@@ -242,7 +247,7 @@ void UILoginView::WaitForAttGranted(){
 }
 
 void UILoginView::OnAttGrantedComplete(){
-  GBase::DRemoveMessageFromTargetByName(this, "MESSAGE_IOS_ATT_GRANTED_FIN");
+  GBase::DRemoveMessageFromTargetByName(m_Panel, "MESSAGE_IOS_ATT_GRANTED_FIN");
   StartPatchUpdate();
 }
 
@@ -400,7 +405,7 @@ void UILoginView::OnPreDownloadProgressUNZip(EventCustom *p_Event){
 }
 
 void UILoginView::SetVersion2Top(){
-  m_VersionLabel = GBase::GetChildByName<Label *>(this, "Text_version");
+  m_VersionLabel = GBase::GetChildByName<ui::Text *>(m_Panel, "Text_version");
   m_VersionLabel->setLocalZOrder(5);
   m_VersionLabel->setString(GBase::GameDefs::Get()->GAME_VERSION);
   m_VersionLabel->setVisible(true);
@@ -470,17 +475,17 @@ void UILoginView::StartGame(){
     auto l_InputNode = UILoginInput::Create();
     l_InputNode->SetModel(1);
     l_InputNode->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
-    addChild(l_InputNode, 99);
+    m_Panel->addChild(l_InputNode, 99);
   }else if(SDKManager::Get()->IsBeta() || SDKManager::Get()->IsGameDevelop()){
     auto l_InputNode = UILoginInput::Create();
     l_InputNode->SetModel(1);
     l_InputNode->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
-    addChild(l_InputNode, 99);
+    m_Panel->addChild(l_InputNode, 99);
   }else if(SDKManager::Get()->IsGameService()){
     auto l_InputNode = UILoginInput::Create();
     l_InputNode->SetModel(3);
     l_InputNode->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
-    addChild(l_InputNode, 99);
+    m_Panel->addChild(l_InputNode, 99);
   }else{
     //   userSDKManager.checkIsEmulator(function(...) userSDKManager.login("")
     //   end, function(...) userSDKManager.login("")  end)
@@ -553,11 +558,12 @@ void UILoginView::LoginSuccess(){
   m_IsServerReturn = true;
   FinishRange(ELoginRangeTbl::ConnectServer);
   StopTimer();
-  Sequence::create(
+  auto l_Seq = Sequence::create(
     DelayTime::create(0), 
     CallFunc::create([this](){
       EnterGame();
     }), nullptr);
+    m_Panel->runAction(l_Seq);
 }
 
 void UILoginView::CheckMaintainInfo(){
@@ -566,7 +572,7 @@ void UILoginView::CheckMaintainInfo(){
 
 void UILoginView::StartTimer(){
   StopTimer();
-  m_TimerKey = GBase::DCreateTimer(this, CC_CALLBACK_1(UILoginView::UpdateTime, this));
+  m_TimerKey = GBase::DCreateTimer(m_Panel, CC_CALLBACK_1(UILoginView::UpdateTime, this));
   GBase::DManagerRemoveTimer(m_TimerKey);
 }
 
@@ -677,7 +683,7 @@ void UILoginView::AutoLoadingBar(float  p_EPercent, float p_Frame){
       });
       m_IsServerReturn = false;
       StopTimer();
-      l_ActionLoading = GBase::DCreateTimer(this, [this, p_EPercent](float p_Delta){
+      l_ActionLoading = GBase::DCreateTimer(m_Panel, [this, p_EPercent](float p_Delta){
         if(this->m_IsServerReturn || GetPercent() > p_EPercent){
           this->StopTimer();
           return;
@@ -702,16 +708,17 @@ void UILoginView::SetPercent(float p_Percent){
 }
 
 void UILoginView::SetInitCliper(){
-  n_TxtPercent = GBase::GetChildByName<Label *>(this, "Text_percent");
-  n_TxtNoteTip = GBase::GetChildByName<Label *>(this, "Text_loginNote");
-  n_ProgressbarLogin = GBase::GetChildByName<Sprite *>(this, "progressbar_login_2");
-  n_MaskPregress = GBase::GetChildByName<Layout *>(this, "Panel_progress");
+  n_TxtPercent = GBase::GetChildByName<ui::Text *>(m_Panel, "Text_percent");
+  n_TxtNoteTip = GBase::GetChildByName<ui::Text *>(m_Panel, "Text_loginNote");
+  n_ProgressbarLogin = GBase::GetChildByName<Sprite *>(m_Panel, "progressbar_login_2");
+  n_MaskPregress = GBase::GetChildByName<ui::Layout *>(m_Panel, "Panel_progress");
   n_MaskPregress->setFlippedX(true);
-  n_ProgressPoint = GBase::GetChildByName<Sprite *>(this, "Sprite_point");
-  n_ProgressbarBase = GBase::GetChildByName<Sprite *>(this, "progressbar_login_base_1");
-  n_SpriteAnimationLuotuo = GBase::GetChildByName<Node *>(this, "Node_luotuo");
-  n_AnimationLotuo = static_cast<ActionTimeline *>(n_SpriteAnimationLuotuo->getActionByTag(n_SpriteAnimationLuotuo->getTag()));
-  n_AnimationLotuo->gotoFrameAndPlay(0, true);
+  n_ProgressPoint = GBase::GetChildByName<Sprite *>(m_Panel, "Sprite_point");
+  n_ProgressbarBase = GBase::GetChildByName<Sprite *>(m_Panel, "progressbar_login_base_1");
+
+  //n_AnimationLotuo = static_cast<ActionTimeline *>(n_SpriteAnimationLuotuo->getActionByTag(n_SpriteAnimationLuotuo->getTag()));
+  //n_AnimationLotuo->gotoFrameAndPlay(0, true);
+
   if(GBase::DFIsRA()){
   //   SoraDFTarget(self.progressPoint, nil, true)
     n_MaskPregress->setPositionX(-n_ProgressbarBase->getContentSize().width / 2);
@@ -728,7 +735,7 @@ void UILoginView::SetInitCliper(){
   n_CliperNode = ClippingNode::create();
   n_CliperNode->setStencil(l_ShapNode);
   n_CliperNode->setInverted(false);
-  n_Loading = ParticleSystemQuad::create("Particle_login/et_kaichangdutiao_01.plist");
+  n_Loading = ParticleSystemQuad::create("Particle/et_kaichangdutiao_01.plist");
   n_Loading->setPosition(Vec2(n_ProgressbarBase->getContentSize().width / 2, 8));
   n_Loading->setPositionType(ParticleSystem::PositionType::FREE);
   n_CliperNode->addChild(n_Loading);
@@ -739,15 +746,15 @@ void UILoginView::SetInitCliper(){
 }
 
 void UILoginView::SpineAction(){
-  auto l_CenterNode = GBase::GetChildByName<Node *>(this, "Center_Node_Spine");
+  auto l_CenterNode = GBase::GetChildByName<Node *>(m_Panel, "Center_Node_Spine");
   l_CenterNode->setLocalZOrder(2);
   l_CenterNode->setPositionY(GDisplay::Get()->rcy);
   if(GBase::Const::Get()->IsArClient){
     if(GBase::GameDefs::Get()->RAMADAN_SWITCH){
-    //     local criSprite = cc.criSprite.createCriSprite("sp_xndrjm_001.usm", false, true, nil)
-    //     criSprite:setBlendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
-    //     criSprite:setPosition(0, -(1386 - display.rheight) * 0.2)
-    //     criSprite:addTo(centerNode)
+      //local criSprite = cc.criSprite.createCriSprite("sp_xndrjm_001.usm", false, true, nil)
+      //criSprite:setBlendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
+      //criSprite:setPosition(0, -(1386 - display.rheight) * 0.2)
+      //criSprite:addTo(centerNode)
     }else{
     //     local criSprite = cc.criSprite.createCriSprite("2021loading.usm", false, true, nil)
     //     criSprite:setBlendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
@@ -778,18 +785,19 @@ void UILoginView::SpineAction(){
       }),
       nullptr
     );
-    this->runAction(l_Seq);
+    m_Panel->runAction(l_Seq);
   }
 }
 
 void UILoginView::InitSpineAnimation(){
-  Sequence::create(
+  auto l_Seq = Sequence::create(
     DelayTime::create(0),
     CallFunc::create([=](){
       SpineAction();
     }),
     nullptr
   );
+  m_Panel->runAction(l_Seq);
 }
 
 void UILoginView::LoadingBarEffect(float p_Percent){
@@ -820,7 +828,7 @@ void UILoginView::SetKingdomClassTips(){
     return;
  auto l_StrTips = WorldMapWarDef::Get()->GetKingdomClassTips(m_KingdomClass);
   if(!l_StrTips.empty() || GDevice::Get()->IsForTest()){
-    auto l_Tips = GBase::GetChildByName<Label *>(n_TxtWarTips, "Text_tips");
+    auto l_Tips = GBase::GetChildByName<ui::Text *>(n_TxtWarTips, "Text_tips");
     l_Tips->setString(Translate::i18n(l_StrTips.c_str()));
     GBase::DSetTextWidthHeight(l_Tips, Size(550, 50));
     n_TxtWarTips->setVisible(true);
@@ -856,7 +864,7 @@ void UILoginView::AddEffectLogin(){
       n_EtStar->setScaleY(4.5);
       n_EtStar->setRotation(-109.33);
       n_EtStar->setPosition(Vec2(501.17, GDisplay::Get()->rheight + 100));
-      this->addChild(n_EtStar, 1);
+      m_Panel->addChild(n_EtStar, 1);
   // end
 
   
