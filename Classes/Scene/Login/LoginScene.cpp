@@ -1,9 +1,12 @@
 #include "LoginScene.h"
+#include "Base/Common/Fabric.h"
+#include "Base/Common/Cach/InstanceCach.Mgr.h"
+#include "Base/Device/Shack.Module.h"
 #include "Module/City/City.Ctrl.h"
 #include "Module/Effect/Effect.Enum.h"
 #include "Module/Effect/Include.h"
 #include "Module/Item/Include.h"
-#include "Base/Device/Shack.Module.h"
+#include "Module/Player/Player.Top.h"
 #include "Module/UI/Common/Button/UICommonShareButton.h"
 #include "Module/UI/Common/UICommonDressPreview.h"
 #include "Module/UI/Common/UICommonItemShowBox.h"
@@ -11,6 +14,14 @@
 #include "Module/UI/UIManger.h"
 #include "Module/UI/View/UILogin.View.h"
 #include "Module/UI/MainUI/UIMain.h"
+#include "Module/World/WorldMap/WorldMap.Def.h"
+#include "Module/World/WorldMap/WorldMap.Util.h"
+#include "Module/World/WorldMap/WorldMap.Define.h"
+#include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
+#include "Module/Common/Military/MilitaryRank.Ctrl.h"
+#include "Module/UI/Panel/Notice/SystemNotice/UISystemNotice.View.h"
+
+
 
 // on "init" you need to initialize your instance
 bool LoginScene::init() {
@@ -120,7 +131,7 @@ void LoginScene::LoginFinsh(EventCustom *p_Event){
 
 void LoginScene::CleanPanelView() {
   UIManger::Get()->CloseAllUI();
-  for (auto l_OneChild : m_PanelView->getChildren()) {
+  for (auto l_OneChild : n_PanelView->getChildren()) {
     if (l_OneChild->getName() != "commonSystemMsgBox") l_OneChild->removeFromParent();
   }
 }
@@ -140,9 +151,9 @@ void LoginScene::CreatePanelView() {
   // end
   // self.groot_normal = initGRoot(self.groot_normal, 5)
   // self.panelView = self.groot_normal:getContainer()
-  if (m_PanelView) m_PanelView->removeFromParent();
-  m_PanelView = ui::Layout::create();
-  Director::getInstance()->getRunningScene()->addChild(m_PanelView, 5);
+  if (n_PanelView) n_PanelView->removeFromParent();
+  n_PanelView = ui::Layout::create();
+  Director::getInstance()->getRunningScene()->addChild(n_PanelView, 5);
 }
 
 
@@ -161,16 +172,16 @@ void LoginScene::CreateLoginView(EScene p_Type, EKingdomClassType p_Kingdom) {
         GAudioEngine::Get()->SetMusicVolume(0.5f);
       }),
       nullptr));
-  if (m_LoginView) {
-    m_LoginView->removeFromParent();
-    m_LoginView = nullptr;
+  if (n_LoginView) {
+    n_LoginView->removeFromParent();
+    n_LoginView = nullptr;
   }
   auto l_LoginView = UILoginView::Create();
   l_LoginView->SetKingdomClass(p_Kingdom);
   l_LoginView->SetShowViewType(p_Type);
 
   addChild(l_LoginView, 4);
-  m_LoginView = l_LoginView;
+  n_LoginView = l_LoginView;
   GBase::DCloseSwitcherView();
   ShackModule::Get()->Unload();
   ReleaseMainView();
@@ -178,15 +189,15 @@ void LoginScene::CreateLoginView(EScene p_Type, EKingdomClassType p_Kingdom) {
 
 bool LoginScene::RemoveLoginView() {
   auto l_Ret = false;
-  if (m_LoginView) {
-    m_LoginView->removeFromParent();
-    m_LoginView = nullptr;
+  if (n_LoginView) {
+    n_LoginView->removeFromParent();
+    n_LoginView = nullptr;
     l_Ret = true;
-    if (m_IphoneXTop) {
-      m_IphoneXTop->setVisible(GDevice::Get()->IsIphoneXMode());
+    if (n_IphoneXTop) {
+      n_IphoneXTop->setVisible(GDevice::Get()->IsIphoneXMode());
     }
-    if (m_IphoneXBottom) {
-      m_IphoneXBottom->setVisible(GDevice::Get()->IsIphoneXMode());
+    if (n_IphoneXBottom) {
+      n_IphoneXBottom->setVisible(GDevice::Get()->IsIphoneXMode());
     }
   }
   return l_Ret;
@@ -198,9 +209,9 @@ void LoginScene::LuaWillReload(EventCustom *p_Event) {
 
 void LoginScene::UpdateShareButton(EventCustom* p_Event) {
   if (GBase::CommonCheck::Get()->ScreenShoot)
-    if (m_ShareBtn) m_ShareBtn->setVisible(false);
-  if (p_Event && m_ShareBtn && p_Event->getUserData() != nullptr) {
-    m_ShareBtn->setVisible((bool)p_Event->getUserData());
+    if (n_ShareBtn) n_ShareBtn->setVisible(false);
+  if (p_Event && n_ShareBtn && p_Event->getUserData() != nullptr) {
+    n_ShareBtn->setVisible((bool)p_Event->getUserData());
   } else {
     auto l_IsShow = GBase::DConfigGet<int32>("Game:GameOptionsView:showShareBtn~integer", true);
     if (l_IsShow == 0) {
@@ -209,14 +220,14 @@ void LoginScene::UpdateShareButton(EventCustom* p_Event) {
         l_IsShow = 1;
       }
     }
-    if (l_IsShow == 1 && m_ShareBtn == nullptr) {
-      m_ShareBtn = UICommonShareButton::create();
-      m_ShareBtn->InitPanel();
-      m_ShareBtn->setPosition(Vec2(0, 0));
-      addChild(m_ShareBtn, 8);
-    } else if (l_IsShow != 1 && m_ShareBtn) {
-      m_ShareBtn->removeFromParent();
-      m_ShareBtn = nullptr;
+    if (l_IsShow == 1 && n_ShareBtn == nullptr) {
+      n_ShareBtn = UICommonShareButton::create();
+      n_ShareBtn->InitPanel();
+      n_ShareBtn->setPosition(Vec2(0, 0));
+      addChild(n_ShareBtn, 8);
+    } else if (l_IsShow != 1 && n_ShareBtn) {
+      n_ShareBtn->removeFromParent();
+      n_ShareBtn = nullptr;
     }
   }
 }
@@ -365,17 +376,197 @@ void LoginScene::CreatMainView(EventCustom *p_Event){
   ReleaseMainView();
   m_CurrentShowView = nullptr;
   // userSDKManager.timeInfo.t_mainui.tbegin = SoraDGetSocketTime()
-  m_MainUIView = UIMain::Create();
-  m_MainUIView->InitPanel();
-  m_MainUIView->setSwallowTouches(false);
-  addChild(m_MainUIView, 2);
+  n_MainUIView = UIMain::Create();
+  n_MainUIView->InitPanel();
+  n_MainUIView->setSwallowTouches(false);
+  addChild(n_MainUIView, 2);
   // userSDKManager.timeInfo.t_mainui.tend = SoraDGetSocketTime()
+  n_WorldResourceMap = nullptr;
+  n_SystemNoticeView = UISystemNoticeView::Create();
+  addChild(n_SystemNoticeView, 6);
+  if(n_IphoneXTop){
+    n_IphoneXTop->removeFromParent();
+    n_IphoneXTop = nullptr;
+  }
+  n_IphoneXTop = UIIphoneXTop::Create();
+  n_IphoneXTop->setAnchorPoint(Vec2(0.5, 1));
+  n_IphoneXTop->setVisible(false);
+  auto l_Display = GDisplay::Get();
+  n_IphoneXTop->setPosition(Vec2(l_Display->cx, l_Display->height + l_Display->iPhoneXOffset));
+  addChild(n_IphoneXTop, 6);
+  if(n_IphoneXBottom) n_IphoneXBottom->removeFromParent();
+  n_IphoneXBottom = UIIphoneXBottom::Create();
+  n_IphoneXBottom->setAnchorPoint(Vec2(0.5, 0));
+  n_IphoneXBottom->setPosition(Vec2(l_Display->cx, 0));
+  n_IphoneXBottom->setVisible(false);
+  addChild(n_IphoneXBottom, 6);
+  if(GDevice::Get()->IsIphoneXMode()){
+    // if device.isIpadMode() then
+    //   self.padIndex = 1
+    //   self.padSpirteL = display.newSprite("#frame_ipad_biankuang_L.png")
+    //   self.padSpirteL:setPosition(32, 0)
+    //   self.padSpirteL:setAnchorPoint(cc.p(0.5, 0))
+    //   self:addChild(self.padSpirteL, 6)
+    //   self.padSpirteR = display.newSprite("#frame_ipad_biankuang_R.png")
+    //   self.padSpirteR:setPosition(display.realSize.width - 32, 0)
+    //   self.padSpirteR:setAnchorPoint(cc.p(0.5, 0))
+    //   self:addChild(self.padSpirteR, 6)
+    // end
+  }
+  UpdateShareButton(nullptr);
+  UpdateVoiceButton(nullptr); 
+  auto l_ShowViewType = EScene::City;
+  if(p_Event->getUserData())
+    l_ShowViewType = *(EScene*)p_Event->getUserData();
+  auto l_Data = std::make_unique<RShowView>();
+  l_Data->isFromLogin = true;
+  l_Data->ViewType = l_ShowViewType;
+  GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_Data.get());
 }
 
 
 void LoginScene::ReleaseMainView(){
+  // userSDKManager.need2CallBackEventList = {}
+  m_IsHideMainUICount = 0;
+  m_IsHideCurrentSceneViewCount = 0;
+  GBase::DCloseLoading(this);
+  if (m_CurrentShowView) {
+    m_CurrentShowView->removeFromParent();
+    m_CurrentShowView = nullptr;
+  }
+  if (n_MainUIView) {
+    n_MainUIView->removeFromParent();
+    n_MainUIView = nullptr;
+  }
+  if(UIManger::Get()->IsShow("mainUI")){
+    UIManger::Get()->Close("mainUI");
+  }
+  if(n_WorldResourceMap){
+    n_WorldResourceMap->removeFromParent();
+    n_WorldResourceMap = nullptr;
+  }
+  CleanPanelView();
+  if(n_IphoneXTop){
+    n_IphoneXTop->removeFromParent();
+    n_IphoneXTop = nullptr;
+  }
+  if(n_IphoneXBottom){
+    n_IphoneXBottom->removeFromParent();
+    n_IphoneXBottom = nullptr;
+  }
+  if(n_ShareBtn){
+    n_ShareBtn->removeFromParent();
+    n_ShareBtn = nullptr;
+  }
+  if(n_VoiceBtn){
+    n_VoiceBtn->removeFromParent();
+    n_VoiceBtn = nullptr;
+  }
+  if(n_SystemNoticeView){
+    n_SystemNoticeView->removeFromParent();
+    n_SystemNoticeView = nullptr;
+  }
+  InstanceCachManger::Get()->ClearCache();
+  for(auto l_Warnning : n_WarnningList){
+    l_Warnning->removeFromParent();
+  }
+  n_WarnningList.clear();
+  GBase::DClearItemAwards();
+}
+
+void LoginScene::SwitcherView(RShowView * p_Data){
+  if(!p_Data) return;
+  if(m_CurrentShowView){
+    if(m_CurrentViewType == p_Data->ViewType)
+      m_CurrentShowView->m_Panel->m_FreeImagesOnExit = false;
+    if(p_Data->isFactionSwitch)
+      m_CurrentShowView->m_Panel->m_FreeImagesOnExit = true;
+    m_CurrentShowView->removeFromParentAndCleanup(true);
+    m_CurrentShowView = nullptr;
+  //     criAdxAux.freeAudio()
+  //     imageManager.switchScene()
+  }
+  if(p_Data->OtherData.kingdomID)
+    WorldMapDefine::Get()->CurrentMapKindomID = p_Data->OtherData.kingdomID;
+  else
+    WorldMapDefine::Get()->CurrentMapKindomID = PlayerTop::Get()->GetMapID();
+  AtlantisWarUtil::Get()->RemoveWorldMapAtlantisWarInfo();
+  //   local showView
+  //   AudioEngine.stopMusic()
+  if(p_Data->ViewType == EScene::City){
+    if(n_FaceToDistanceNode)
+      n_FaceToDistanceNode->setVisible(false);
+    if(n_LoginView){
+    //   userSDKManager.logEvent(gSDKDef.TDonEvent.star_enter_city, {})
+    //   local isSupport = gl.isSupportsASTC()
+    //   userSDKManager.logEvent(gSDKDef.TDonEvent.check_astc_support, {support = isSupport})
+    //   userSDKManager.getAdvertisingStrategy()
+    }
+    // showView = include("mainCityView").new(otherData)
+
+    // showView:setName("mainCityView")
+    // local guideCtrl = SoraDGetCtrl("guideCtrl")
+    // if guideCtrl:getCurMainCityGuideStep() ~= nil then
+    //   AudioEngine.playMusic(getAudioFileNameByPlatform("worldMap", "BGM"), true)
+    // else
+    //   AudioEngine.playMusic(getAudioFileNameByPlatform("mainCity", "BGM"), true)
+    // end
+  }
+  //   if data.viewType == VIEW_TYPE_CITY then
+
+  //   elseif data.viewType == VIEW_TYPE_MAP then
+  //     showView = include("worldMapViewFactory").new(otherData)
+  //     showView:setName("worldMapView")
+  //     AudioEngine.playMusic(getAudioFileNameByPlatform("worldMap", "BGM"), true)
+  //   end
+  //   self:addChild(showView, 1)
+  //   self.currentViewType = data.viewType
+  //   self.currentShowView = showView
+  //   self.switcherViewIng = false
+  //   if self:currentMainUI() then
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINSCEN_MAINUITOP_EVENT_REFRESH"
+  //     })
+  //   end
+}
+
+void LoginScene::ShowView(EventCustom *p_Event){
+  // local isJudgeCurScene = data.isJudgeCurScene or false
+  if(!p_Event->getUserData()) return;
+  auto l_Data = static_cast<RShowView *>(p_Event->getUserData());
+  if(l_Data->isJudgeCurScene && l_Data->ViewType == m_CurrentViewType) return;
+  if(l_Data->ViewType == EScene::None) return;
+  // worldMapDefine.currentMapKindomID = nil
+  WorldMapDefine::Get()->CurrentMapKindomID = 0;
+  // local function switcherView()
+
+  // end
+  // util.resetCSDCatch()
+  // if isFromLogin then
+  //   switcherView()
+  //   if data.viewType == VIEW_TYPE_MAP then
+  //     local cityBuildFunction = include("cityBuildFunction")
+  //     cityBuildFunction:setIsFirstLogin(false)
+  //   end
+  // elseif not self.switcherViewIng then
+  //   self.switcherViewIng = true
+  //   SoraDShowSwitcherView(data.otherData)
+  //   transition.execute(self, nil, {
+  //     delay = 1,
+  //     onComplete = function()
+  //       switcherView()
+  //     end
+  //   })
+  // else
+  //   print("\230\173\163\229\156\168\229\136\135\230\141\162\229\156\186\230\153\175\228\184\173ing")
+  //   self:stopAllActions()
+  //   switcherView()
+  // end
 }
 
 void LoginScene::InitLoginSuccess(){
-  
+  WorldMapDef::Get()->DoSwitchToAnchor();
+  GFabric::Get()->ReportDeviceInfoChange();
+  WorldMapUtil::Get()->ResetConfig();
+  MilitaryRankCtrl::Get()->SendMarshalLoginTip();
 }

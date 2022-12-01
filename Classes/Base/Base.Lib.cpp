@@ -184,7 +184,7 @@ namespace GBase{
   }
 
   //RA is RightAlignment
-  bool DFIsRA(){return false;}
+  bool DFIsRA(){return true;}
 
   void DNewChapterOpen(bool p_IsFromLogin){}
 
@@ -212,7 +212,16 @@ namespace GBase{
 
  void DRemoveMessageFromTargetByName(Node *p_Node, const char *p_EventId){}
 
-  void DCloseLoading(Node *p_Parent, const char *p_Mark, bool p_All){}
+  void DCloseLoading(Node *p_Parent, const char *p_Mark, bool p_All){
+    if(!p_Parent) 
+      p_Parent = Director::getInstance()->getRunningScene();
+    auto l_PreLoading = p_Parent->getChildByName("commonLoading");
+    if(l_PreLoading) l_PreLoading->removeFromParent();
+    else if(p_All){
+      l_PreLoading = GBase::GetChildByName<Node *>(p_Parent, "commonLoading");
+      if(l_PreLoading) l_PreLoading->removeFromParent();
+    }
+  }
 
   bool DPostCheckMaintain(int32 p_KingdomId){ return false; }
   GString DFValueSuit(const GString &p_Value, const GString &p_Sign){
@@ -222,6 +231,8 @@ namespace GBase{
   GString GetCCSPath(const char *p_CCSName){
     return "";
   }
+
+  void DClearItemAwards(){}
 
 } // namespace
 

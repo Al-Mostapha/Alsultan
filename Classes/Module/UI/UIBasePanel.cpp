@@ -214,6 +214,7 @@ void UIBasePanel::ClosePanel(){
 }
 
 void UIBasePanel::onExit(){
+  Node::onExit();
   if(m_IsHaveTextField)
     CloseKeyBoard();
   OnExitPanel();

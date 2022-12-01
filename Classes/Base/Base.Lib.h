@@ -96,12 +96,12 @@ void DShowRateStarView();
 class UIPanelBase* DCurrentTopPanelFromManager();
 // showMsg, yesBtnTitle, noBtnTitle, callBackHandle, data, align, noSound
 UICommonPromptBox* DShowMsgBox(GString p_Msg,
-                               GString p_YesBtnTitle,
-                               GString p_NoBtnTitle,
-                               std::function<void(EMsgBoxCallBack)> p_CallBack,
-                               void* p_Data = nullptr,
-                               int p_Align = 0,
-                               bool p_NoSound = false);
+                              GString p_YesBtnTitle,
+                              GString p_NoBtnTitle,
+                              std::function<void(EMsgBoxCallBack)> p_CallBack,
+                              void* p_Data = nullptr,
+                              int p_Align = 0,
+                              bool p_NoSound = false);
 bool DIsBrave8Level();
 void DMixtureGLONE(Node* p_Node);
 void DRemoveMessageByTarget(Node* p_Node);
@@ -112,5 +112,7 @@ void DCloseLoading(Node* p_Parent, const char* p_Mark = "", bool p_All = false);
 bool DPostCheckMaintain(int32 p_KingdomId = 0);
 GString DFValueSuit(const GString& p_Value, const GString& p_Sign = "+");
 GString GetCCSPath(const char* p_CCSName);
+
+void DClearItemAwards();
 
 };  // namespace GBase

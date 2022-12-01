@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <queue>
 #include "cocos2d.h"
 #include "external/json/document.h"
 #include <time.h>

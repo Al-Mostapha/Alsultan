@@ -1,11 +1,26 @@
 #include "UIMainTop.h"
 #include "Module/Event/LostRuins/LostRuins.Ctrl.h"
 #include "Module/UI/Panel/Lord/LordInfo/UILordPowerView.h"
+#include "Module/Activity/ClientEvent.Mgr.h"
+#include "Module/Activity/ActivityShow.Ctrl.h"
 #include "spine/SkeletonAnimation.h"
 
+UIMainTop *UIMainTop::Create(){
+  auto l_Panel = create();
+  RBasePenelData l_Data;
+  l_Data.FutureName = "mainUITop";
+  l_Panel->InitPanel("UiParts/MainUi/mainUITop.csb", &l_Data);
+  return l_Panel;
+}
+
+void UIMainTop::AddSubViews(){
+
+}
+
 void UIMainTop::Ctor(){
-  m_Panel = CSLoader::createNode("UiParts/MainUi/mainUITop.csb");
   //   self.playerInfo = {}
+  UIBasePanel::Ctor();
+  AddSubViews();
   n_NodeLOD = GBase::GetChildByName<Node *>(m_Panel, "Node_LOD");
   n_NodeAreaRt = GBase::GetChildByName<Node *>(n_NodeLOD, "Node_area_rt");
   n_NodeAreaLt = GBase::GetChildByName<Node *>(n_NodeLOD, "Node_area_lt");
@@ -54,7 +69,7 @@ void UIMainTop::Ctor(){
   n_NodeEventIcon = n_NodeEvent->getChildByName<Node *>("Node_icon");
   n_ImageEvent = n_NodeEventIcon->getChildByName<ui::ImageView *>("Image_event");
   n_NodeNew = GBase::GetChildByName<Node *>(m_Panel, "Node_new");
-  auto l_NodeNewJump = GBase::DCreateAnimation("animationNewJump").First;
+  auto l_NodeNewJump = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationNewJump.csb").First;
   l_NodeNewJump->setPosition(38, -60);
   n_NodeNew->addChild(l_NodeNewJump);
   n_BtnEvent = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_event");
@@ -72,11 +87,11 @@ void UIMainTop::Ctor(){
   n_NodeNewJourney->setVisible(false);
   n_NodeEtNew = GBase::GetChildByName<Node *>(n_NodeNewJourney, "Node_etNew");
   //TODO: FullPath
-  auto l_NodeNewJump_2 = GBase::DCreateAnimation("animationNewJump"/**full Path*/).First;
+  auto l_NodeNewJump_2 = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationNewJump.csb").First;
   l_NodeNewJump_2->setPosition(38, -60);
   n_NodeEtNew->addChild(l_NodeNewJump_2);
   n_NodeIconJourney = GBase::GetChildByName<Node *>(n_NodeNewJourney, "Node_iconJourney");
-  auto l_NodeNewJump_3 = GBase::DCreateAnimation("animationJourney").First;
+  auto l_NodeNewJump_3 = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationJourney.csb").First;
   n_NodeIconJourney->addChild(l_NodeNewJump_3);
   n_TextNewJourney = GBase::GetChildByName<ui::Text *>(n_NodeNewJourney, "Text_newJourney");
   n_TextNewJourney->setString(Translate::i18n("journey_art_1001"));
@@ -100,39 +115,10 @@ void UIMainTop::Ctor(){
   n_TxtHeroGiftTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(m_Panel, "Text_choiceLuckyTime"));
   n_BtnHeroGift = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_choiceLucky");
   n_BtnHeroGift->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnHeroRechargeClick, this));
-  auto l_NodeLucky = static_cast<ui::Widget *>(n_NodeLucky);
-  n_NodeKingCom = l_NodeLucky->clone();
-  n_NodeAreaRt->addChild(n_NodeKingCom);
-  n_NodeKingCom->setVisible(true);
-  n_NodeKingCom->setName("nodeKingCom");
-  n_NodeKingCom->setPositionX(n_NodeCrazy->getPositionX());
-  n_BtnKing = GBase::GetChildByName<ui::Button *>(n_NodeKingCom, "Button_rechargeLucky");
-  n_KingRed = GBase::GetChildByName<Sprite *>(n_NodeKingCom, "Sprite_numFrm");
-  n_TxtKingTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(n_NodeKingCom, "Text_luckyTime"));
-  n_NodeKingIcon = n_NodeKingCom->getChildByName("Node_icon");
-  auto l_Node = GBase::DCreateAnimation("kingCompetitionEnterEffect").First;
-  n_NodeKingIcon->addChild(l_Node);
-  l_Node->setPosition(Vec2(8, 40));
-  l_Node->setScale(1.2f);
-  GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "Sprite_9"));
-  GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "Sprite_9_0"));
-  GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "dh_zhounianjm_01_3"));
-  n_BtnKing->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_NodeSultansBack = l_NodeLucky->clone();
-  n_NodeAreaRt->addChild(n_NodeSultansBack);
-  n_NodeSultansBack->setVisible(true);
-  n_NodeSultansBack->setName("nodeSultansBack");
-  n_NodeSultansBack->setPositionX(n_NodeCrazy->getPositionX());
-  auto l_Sprite = BaseCreate::CreateSprite("icon_sudanback_mian.png");
-  n_NodeSultansBack->getChildByName("Node_icon")->addChild(l_Sprite);
-  l_Sprite->setPosition(0, 36);
-  auto l_EtSultan = GBase::DCreateAnimation("animationSultansBack").First;
-  l_EtSultan->setPosition(0, 36);
-  n_NodeSultansBack->getChildByName("Node_icon")->addChild(l_EtSultan);
-  n_BtnSultansBack = GBase::GetChildByName<ui::Button *>(n_NodeSultansBack, "Button_rechargeLucky");
-  n_BtnSultansBack->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_SultansBackRed = GBase::GetChildByName<Sprite *>(n_NodeSultansBack, "Sprite_numFrm");
-  n_TxtSultansBackTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(n_NodeSultansBack, "Text_luckyTime"));
+  auto l_NodeLucky = dynamic_cast<ui::Widget *>(n_NodeLucky);
+  InitKingNode(nullptr);
+  InitSultansBackNode(nullptr);
+
   n_BtnExplain = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_gameExplain");
   n_BtnExplain->setPosition(Vec2(GBase::DFIsRA() ? 490.0f : 150.0f, -100.0f));
   m_TableBuilder.clear();
@@ -157,11 +143,6 @@ void UIMainTop::Ctor(){
   n_NodeStylePower = GBase::GetChildByName<Node *>(m_Panel, "Node_style_power");
   n_NodeStyleHead = GBase::GetChildByName<Node *>(m_Panel, "Node_style_head");
   InitStyle();
-}
-
-void UIMainTop::InitPanel()
-{
-  Ctor();
 }
 
 void UIMainTop::UpdateHeadPos(EventCustom *p_Event){
@@ -370,6 +351,25 @@ void UIMainTop::InitStyle(){
 }
 
 void UIMainTop::InitKingNode(EventCustom *p_Event){
+    if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::NEW_SERVER_RANK_MATCH))
+  {
+    n_NodeKingCom = n_NodeLucky;
+    n_NodeKingCom->setVisible(true);
+    n_NodeKingCom->setName("nodeKingCom");
+    n_NodeKingCom->setPositionX(n_NodeCrazy->getPositionX());
+    n_BtnKing = GBase::GetChildByName<ui::Button *>(n_NodeKingCom, "Button_rechargeLucky");
+    n_KingRed = GBase::GetChildByName<Sprite *>(n_NodeKingCom, "Sprite_numFrm");
+    n_TxtKingTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(n_NodeKingCom, "Text_luckyTime"));
+    n_NodeKingIcon = n_NodeKingCom->getChildByName("Node_icon");
+    auto l_Node = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/kingCompetitionEnterEffect.csb").First;
+    n_NodeKingIcon->addChild(l_Node);
+    l_Node->setPosition(Vec2(8, 40));
+    l_Node->setScale(1.2f);
+    GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "Sprite_9"));
+    GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "Sprite_9_0"));
+    GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "dh_zhounianjm_01_3"));
+    n_BtnKing->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  }
   // local kingCompetitionltCtrl = include("kingCompetitionltCtrl")
   // if not clientEventMgr.judgeIsOpen(gActivityTimeActivityID.NEW_SERVER_RANK_MATCH) then
   //   self.nodeKingCom:setVisible(false)
@@ -415,17 +415,34 @@ void UIMainTop::InitKingNode(EventCustom *p_Event){
 }
 
 void UIMainTop::InitSultansBackNode(EventCustom *p_Event){
-  // local needShow = SoraDConfigGet("Game:sultansBackView:showInMainUITop~bool", {byUID = true})
-  // local sultansBackCtrl = SoraDGetCtrl("sultansBackCtrl")
-  // local activityShowCtrl = SoraDGetCtrl("activityShowCtrl")
-  // local activityIDList = activityShowCtrl:getActivityGroup(gActivityCenterUIEnum.SULTAN_BACK)
-  // local isOpen = false
-  // for k, v in pairs(activityIDList) do
-  //   if clientEventMgr.judgeIsOpen(k) then
-  //     isOpen = true
-  //     break
-  //   end
-  // end
+  auto l_NeedShow = GBase::DConfigGet<bool>("Game:sultansBackView:showInMainUITop~bool", true);
+  auto l_ActivityIdList = ActivityShowCtrl::Get()->GetActivityGroup(EActivityCenter::SultanBack);
+  auto l_IsOpen = false;
+  for(auto l_ActivityId : l_ActivityIdList){
+    if(ClientEventMgr::Get()->JudgeIsOpen(l_ActivityId.first)){
+      l_IsOpen = true;
+      break;
+    }
+  }
+  if(!l_IsOpen){
+    RangeLeft2Nodes();
+    return;
+  }
+  n_NodeSultansBack = n_NodeLucky;
+  n_NodeSultansBack->setVisible(true);
+  n_NodeSultansBack->setName("nodeSultansBack");
+  n_NodeSultansBack->setPositionX(n_NodeCrazy->getPositionX());
+  auto l_Sprite = BaseCreate::CreateSprite("icon_sudanback_mian.png");
+  n_NodeSultansBack->getChildByName("Node_icon")->addChild(l_Sprite);
+  l_Sprite->setPosition(0, 36);
+  auto l_EtSultan = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationSultansBack.csb").First;
+  l_EtSultan->setPosition(0, 36);
+  n_NodeSultansBack->getChildByName("Node_icon")->addChild(l_EtSultan);
+  n_BtnSultansBack = GBase::GetChildByName<ui::Button *>(n_NodeSultansBack, "Button_rechargeLucky");
+  n_BtnSultansBack->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  n_SultansBackRed = GBase::GetChildByName<Sprite *>(n_NodeSultansBack, "Sprite_numFrm");
+  n_TxtSultansBackTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(n_NodeSultansBack, "Text_luckyTime"));
+
   // if not isOpen or not needShow or worldMapDefine.isInNewTrial() then
   //   self.nodeSultansBack:setVisible(false)
   //   self:rangeLeft2Nodes()
@@ -560,11 +577,12 @@ Node *UIMainTop::GetResTarget(EResource p_ResType){
 }
 
 void UIMainTop::onEnter(){
-  UIPanelBase::onEnter();
+  UIBasePanel::onEnter();
   OnMessageListener();
 }
 
 void UIMainTop::onExit(){
+  UIBasePanel::onExit();
   // print("main scene  exit ")
   // if self.upgradePowerHandle ~= nil then
   //   cc.Director:getInstance():getScheduler():unscheduleScriptEntry(self.upgradePowerHandle)

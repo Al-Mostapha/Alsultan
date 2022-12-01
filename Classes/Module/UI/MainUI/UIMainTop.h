@@ -1,6 +1,6 @@
 #pragma once
 #include "Include/IncludeEngine.h"
-#include "Module/UI/Panel/UIPanelBase.h"
+#include "Module/UI/UIBasePanel.h"
 #include "Include/IncludeGlobal.h"
 #include "Module/UI/Common/Label/UICommonScoreLabel.h"
 #include "Module/UI/Common/Timer/UITimerLabel.h"
@@ -14,7 +14,7 @@
 #include "Base/Base.create.h"
 
 
-class UIMainTop : public UIPanelBase
+class UIMainTop : public UIBasePanel
 {
 private: 
   bool m_IsUpdateHP = false;
@@ -22,7 +22,6 @@ private:
   bool m_IsShowEXP = false;
 
 private:
-  CREATE_FUNC(UIMainTop);
   float m_OffestY = 0;
   GVector<UIBuilderIcon *> m_TableBuilder;
   EScene m_CurrentViewType = EScene::City;
@@ -108,13 +107,14 @@ private:
   Node *n_NodeStyleHead = nullptr;
   Node *n_EffectShine = nullptr;
   UICommonPromptBox *m_HasShowNewTrialBox = nullptr;
+  CREATE_FUNC(UIMainTop);
 public:
   UIMainTop(){};
   ~UIMainTop(){};
-  void InitPanel() override;
   void Ctor();
-  void Show() override {};
-  static UIMainTop *Create() {return create();};
+  void Show() {};
+  static UIMainTop *Create();
+  void AddSubViews();
   void onEnter() override;
   void onExit() override;
   void OnBtnJourneyClick(Ref*, ui::Widget::TouchEventType);

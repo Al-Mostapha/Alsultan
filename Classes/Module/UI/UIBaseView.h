@@ -4,11 +4,12 @@
 class UIBaseView : public ui::Layout
 {
 private:
-  bool m_FreeImagesOnExit = false;
+
   GSet<GString> m_ArrayImagesPath;
   bool m_ADType = false;
   int32 m_MenuID = 0;
 public:
+  bool m_FreeImagesOnExit = false;
   CREATE_FUNC(UIBaseView);
   static UIBaseView *Create(Size p_Size, bool p_IsColor = false, Node *p_Target = nullptr);
   void Ctor();

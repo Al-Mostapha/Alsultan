@@ -51,4 +51,5 @@ public:
   virtual void OnExitPanel(){}
   virtual void OnEnterOther(){OnEnterPanel();}
   virtual void AddSubViews(){};
+  virtual GString GetViewName() {return m_Panel ?  m_Panel->getName() : "";}
 };

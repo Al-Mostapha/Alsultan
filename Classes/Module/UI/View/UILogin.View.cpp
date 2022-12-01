@@ -63,6 +63,13 @@ void UILoginView::Ctor()
   InitSpineAnimation();
   m_TestArrayImages.clear();
   LoadBar(50);
+  runAction(Sequence::create(
+    DelayTime::create(1),
+    CallFunc::create([this]{
+      UpdateTime(0);
+    }),
+    nullptr
+  ));
 }
 
 void UILoginView::InitVars(){
@@ -119,6 +126,7 @@ void UILoginView::InitKOHView(){
   n_LoginInitBg = GBase::CreateSprite(l_KohPath);
   auto l_Display = GDisplay::Get();
   n_LoginInitBg->setPosition(Vec2(l_Display->cx, l_Display->rheight / 2 - (1386 - l_Display->rheight) * 0.2));
+  n_LoginInitBg->setContentSize(Size(640, 1386));
   if(n_NodeEvent) n_NodeEvent->addChild(n_LoginInitBg);
   n_LoginInitBg->setLocalZOrder(-1);
   m_Logo = GBase::GetChildByName<Node *>(m_Panel, "Top_Node_logo");
@@ -517,7 +525,7 @@ void UILoginView::EnterGame(){
   //   showViewType = VIEW_TYPE_MAP
   // end
   auto l_Showtype = std::make_unique<EScene>(EScene::City);
-  GBase::DSendMessage("MESSAGE_MAINSCEN_LOGINSUCCESS");
+  GBase::DSendMessage("MESSAGE_MAINSCEN_LOGINSUCCESS", l_Showtype.get());
 }
 
 void UILoginView::ResetIceHuntingRecord(){
@@ -718,7 +726,8 @@ void UILoginView::SetInitCliper(){
 
   //n_AnimationLotuo = static_cast<ActionTimeline *>(n_SpriteAnimationLuotuo->getActionByTag(n_SpriteAnimationLuotuo->getTag()));
   //n_AnimationLotuo->gotoFrameAndPlay(0, true);
-
+  n_MaskPregress->setPositionX(-n_ProgressbarBase->getContentSize().width / 2);
+  n_MaskPregress->setScaleX(-1);
   if(GBase::DFIsRA()){
   //   SoraDFTarget(self.progressPoint, nil, true)
     n_MaskPregress->setPositionX(-n_ProgressbarBase->getContentSize().width / 2);

@@ -4,6 +4,6 @@
 class MainScene : public Scene
 {
   public:
-    ui::Layout *m_PanelView = nullptr;
-    ui::Layout *PanelView(){return m_PanelView;};
+    ui::Layout *n_PanelView = nullptr;
+    ui::Layout *PanelView(){return n_PanelView;};
 };

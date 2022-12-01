@@ -42,7 +42,6 @@ void UIMain::InitPanel()
   setPositionX(GDisplay::Get()->rcx);
   m_CurrentViewType = EScene::City;
   m_TopArea = UIMainTop::Create();
-  m_TopArea->InitPanel();
   m_TopArea->setAnchorPoint(Vec2(0, 1));
   m_TopArea->setPosition(Vec2(0, getContentSize().height));
   addChild(m_TopArea, 10);
@@ -306,7 +305,7 @@ void UIMain::LordSkillEffect(EventCustom *p_Event){
       if(GBase::IEquals(l_CurrentView->GetViewName(), GString("worldMapView"))){
 
       }else{
-        auto l_CurrentScene = std::make_unique<EScene>(EScene::World);
+        auto l_CurrentScene = std::make_unique<GPair<EScene, bool>>(EScene::World, true);
         GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_CurrentScene.get());
       }
     }
@@ -408,8 +407,9 @@ void UIMain::UpdateStyle(EventCustom *p_Event){
 
 GVector<UIPanelBase*> UIMain::GetCheckViewList(){
   auto l_ViewList = GVector<UIPanelBase*>();
-  if(m_TopArea)
-    l_ViewList.push_back(m_TopArea);
+  //TODO: Add View
+  // if(m_TopArea)
+  //   l_ViewList.push_back(m_TopArea);
   if(m_PandectView)
     l_ViewList.push_back(m_PandectView);
   if(m_BottomArea)  

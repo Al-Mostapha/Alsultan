@@ -1,6 +1,7 @@
 #pragma once
 #include "Include/IncludeEngine.h"
 #include "Module/UI/Panel/UIPanelBase.h"
+#include "Module/UI/UIBasePanel.h"
 #include "Include/IncludeGlobal.h"
 #include "UIMainTop.h"
 #include "UIMainBottom.h"
@@ -9,7 +10,7 @@
 class UIMain : public UIPanelBase
 {
   EScene m_CurrentViewType;
-  UIPanelBase *m_TopArea;
+  UIBasePanel *m_TopArea;
   UIPanelBase *m_PandectView;
   UIPanelBase *m_BottomArea;
 private:
