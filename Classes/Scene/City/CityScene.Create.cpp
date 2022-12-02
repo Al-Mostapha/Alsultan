@@ -18,7 +18,7 @@ void MainCityCreate::Ctor(){
   setAnchorPoint(Vec2(0.5, 0.5));
   GDisplay::Get()->cx = Director::getInstance()->getVisibleSize().width / 2;
   GDisplay::Get()->rcy = -Director::getInstance()->getVisibleSize().height / 2;
-  setPosition(GDisplay::Get()->cx, GDisplay::Get()->rcy);
+  setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->rcy));
   n_ContainerView     = CSLoader::createNode("Scene/City/mainCityViewInfo.csb");
   n_MainCityFarCsb    = CSLoader::createNode("Scene/City/mainCityView_info_far.csb");
   n_MainCityMiddleCsb = CSLoader::createNode("Scene/City/mainCityView_info_middle.csb");

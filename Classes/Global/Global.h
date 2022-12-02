@@ -4,6 +4,10 @@
 
 #define INIT_FALSE true
 
+struct RViewOtherData{
+  int32 kingdomID = 0;
+};
+
 namespace GBase{
   bool IEquals(const GString& a, const GString& b);
 }

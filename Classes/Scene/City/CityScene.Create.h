@@ -8,7 +8,7 @@
 #include "CityScene.Const.h"
 
 
-class MainCityCreate : public Scene, public MainCityView{
+class MainCityCreate : public MainCityView{
   GHashMap<ECityTargetGroupID, Vector<Node*>> m_CityGroupNode;
 public:
   //    self.isNeedFirstFight = mainCity:getIsNeedFirstFight()

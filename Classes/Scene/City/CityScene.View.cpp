@@ -2,6 +2,12 @@
 #include "Include/IncludeBase.h"
 #include "CityScene.View.h"
 
+MainCityView *MainCityView::Create(RViewOtherData p_Data){
+  auto l_Panel =  Create("UiParts/Panel/MainCity/mainCityView.csb");
+  l_Panel->m_Param = p_Data;
+  return l_Panel;
+}
+
 void MainCityView::Ctor(){
   //userSDKManager.timeInfo.t_maincity.tbegin = SoraDGetSocketTime()
   //print("\229\188\128\229\167\139\229\136\155\229\187\186\229\134\133\229\159\142------")

@@ -12,16 +12,10 @@
 #include "Module/UI/Part/Common/UIIphoneXTop.h"
 #include "Module/UI/Part/Common/UIIphoneXBottom.h"
 #include "Module/UI/Part/World/WorldMap/UIWorldMapFaceToDistance.h"
+#include "Scene/City/CityScene.View.h"
+#include "Game/Guide/Guide.Ctrl.h"
 
-struct RShowView{
-  bool isJudgeCurScene = false;
-  EScene ViewType = EScene::None;
-  bool isFromLogin = false;
-  bool isFactionSwitch = false;
-  struct {
-    int32 kingdomID = 0;
-  }OtherData;
-};
+
 
 class LoginScene : public MainScene
 {
@@ -42,12 +36,12 @@ private:
   UIBasePanel *n_VoiceBtn = nullptr;
   UIPanelBase *n_MainUIView = nullptr;
   bool m_CommonTipRA = false;
-  UIBasePanel *m_CurrentShowView = nullptr;
+  UIBaseView *n_CurrentShowView = nullptr;
   UIBasePanel *n_WorldResourceMap = nullptr;
   GVector<ui::ImageView *> n_WarnningList;
   UIWorldMapFaceToDistance *n_FaceToDistanceNode = nullptr;
   CREATE_FUNC(LoginScene);
-  void SwitcherView(RShowView * p_Data);
+  void SwitcherView(RShowMainCityView *p_Data);
 public:
   bool init() override;
   void onEnter() override;
@@ -65,7 +59,7 @@ public:
   void RemoveWorldResourceMap();
   void InitLoginSuccess();
   void OnMessageListener();
-  UIBasePanel *CurrentSceneShowView(){ return m_CurrentShowView; }
+  UIBaseView *CurrentSceneShowView(){ return n_CurrentShowView; }
   
   static LoginScene *Create(){return LoginScene::create();}
   // SoraDAddMessage(self, "MESSAGE_MAINSCEN_GOTO_FOREG_BACK_GROUD", handler(self, self.gotoForeBackGroud))
@@ -107,5 +101,5 @@ public:
   void BuildQuequeCallback(EventCustom *p_Event);
   void ServerGuideEnd(EventCustom *p_Event);
   void LoginSettingRun(){}
-
+  UIBaseView *CurrentMainUI();
 };

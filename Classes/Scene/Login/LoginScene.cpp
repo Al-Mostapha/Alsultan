@@ -20,6 +20,8 @@
 #include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
 #include "Module/Common/Military/MilitaryRank.Ctrl.h"
 #include "Module/UI/Panel/Notice/SystemNotice/UISystemNotice.View.h"
+#include "Module/World/WorldMap/View/WorldMap.ViewFactory.h"
+
 
 
 
@@ -374,7 +376,7 @@ void LoginScene::CreateWorldResourceMap(){
 void LoginScene::CreatMainView(EventCustom *p_Event){
   InitLoginSuccess();
   ReleaseMainView();
-  m_CurrentShowView = nullptr;
+  n_CurrentShowView = nullptr;
   // userSDKManager.timeInfo.t_mainui.tbegin = SoraDGetSocketTime()
   n_MainUIView = UIMain::Create();
   n_MainUIView->InitPanel();
@@ -418,7 +420,7 @@ void LoginScene::CreatMainView(EventCustom *p_Event){
   auto l_ShowViewType = EScene::City;
   if(p_Event->getUserData())
     l_ShowViewType = *(EScene*)p_Event->getUserData();
-  auto l_Data = std::make_unique<RShowView>();
+  auto l_Data = std::make_unique<RShowMainCityView>();
   l_Data->isFromLogin = true;
   l_Data->ViewType = l_ShowViewType;
   GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_Data.get());
@@ -430,9 +432,9 @@ void LoginScene::ReleaseMainView(){
   m_IsHideMainUICount = 0;
   m_IsHideCurrentSceneViewCount = 0;
   GBase::DCloseLoading(this);
-  if (m_CurrentShowView) {
-    m_CurrentShowView->removeFromParent();
-    m_CurrentShowView = nullptr;
+  if (n_CurrentShowView) {
+    n_CurrentShowView->removeFromParent();
+    n_CurrentShowView = nullptr;
   }
   if (n_MainUIView) {
     n_MainUIView->removeFromParent();
@@ -474,15 +476,15 @@ void LoginScene::ReleaseMainView(){
   GBase::DClearItemAwards();
 }
 
-void LoginScene::SwitcherView(RShowView * p_Data){
+void LoginScene::SwitcherView(RShowMainCityView *p_Data){
   if(!p_Data) return;
-  if(m_CurrentShowView){
+  if(n_CurrentShowView){
     if(m_CurrentViewType == p_Data->ViewType)
-      m_CurrentShowView->m_Panel->m_FreeImagesOnExit = false;
+      n_CurrentShowView->m_FreeImagesOnExit = false;
     if(p_Data->isFactionSwitch)
-      m_CurrentShowView->m_Panel->m_FreeImagesOnExit = true;
-    m_CurrentShowView->removeFromParentAndCleanup(true);
-    m_CurrentShowView = nullptr;
+      n_CurrentShowView->m_FreeImagesOnExit = true;
+    n_CurrentShowView->removeFromParentAndCleanup(true);
+    n_CurrentShowView = nullptr;
   //     criAdxAux.freeAudio()
   //     imageManager.switchScene()
   }
@@ -491,8 +493,8 @@ void LoginScene::SwitcherView(RShowView * p_Data){
   else
     WorldMapDefine::Get()->CurrentMapKindomID = PlayerTop::Get()->GetMapID();
   AtlantisWarUtil::Get()->RemoveWorldMapAtlantisWarInfo();
-  //   local showView
-  //   AudioEngine.stopMusic()
+  GAudioEngine::Get()->StopMusic();
+  UIBaseView *l_ShowView = nullptr;
   if(p_Data->ViewType == EScene::City){
     if(n_FaceToDistanceNode)
       n_FaceToDistanceNode->setVisible(false);
@@ -502,45 +504,39 @@ void LoginScene::SwitcherView(RShowView * p_Data){
     //   userSDKManager.logEvent(gSDKDef.TDonEvent.check_astc_support, {support = isSupport})
     //   userSDKManager.getAdvertisingStrategy()
     }
-    // showView = include("mainCityView").new(otherData)
-
-    // showView:setName("mainCityView")
-    // local guideCtrl = SoraDGetCtrl("guideCtrl")
-    // if guideCtrl:getCurMainCityGuideStep() ~= nil then
-    //   AudioEngine.playMusic(getAudioFileNameByPlatform("worldMap", "BGM"), true)
-    // else
-    //   AudioEngine.playMusic(getAudioFileNameByPlatform("mainCity", "BGM"), true)
-    // end
+    l_ShowView = MainCityView::Create(p_Data->OtherData);
+    l_ShowView->setName("mainCityView");
+    if(GuideCtrl::Get()->GetCurMainCityGuideStep() != nullptr){
+      GAudioEngine::Get()->PlayMusic("worldMap", true);
+    }else{
+      GAudioEngine::Get()->PlayMusic("mainCity", true);
+    }
+  }else if(p_Data->ViewType == EScene::World){
+    l_ShowView = WorldMapViewFactory::Create(p_Data->OtherData);
+    l_ShowView->setName("worldMapView");
+    GAudioEngine::Get()->PlayMusic("worldMap", true);
   }
-  //   if data.viewType == VIEW_TYPE_CITY then
+  addChild(l_ShowView, 1);
+  m_CurrentViewType = p_Data->ViewType;
+  n_CurrentShowView = l_ShowView;
+  m_SwitcherViewIng = false;
+  if(CurrentMainUI()){
+    GBase::DSendMessage("MESSAGE_MAINSCEN_MAINUITOP_EVENT_REFRESH");
+  }
+}
 
-  //   elseif data.viewType == VIEW_TYPE_MAP then
-  //     showView = include("worldMapViewFactory").new(otherData)
-  //     showView:setName("worldMapView")
-  //     AudioEngine.playMusic(getAudioFileNameByPlatform("worldMap", "BGM"), true)
-  //   end
-  //   self:addChild(showView, 1)
-  //   self.currentViewType = data.viewType
-  //   self.currentShowView = showView
-  //   self.switcherViewIng = false
-  //   if self:currentMainUI() then
-  //     SoraDSendMessage({
-  //       msg = "MESSAGE_MAINSCEN_MAINUITOP_EVENT_REFRESH"
-  //     })
-  //   end
+UIBaseView *CurrentMainUI(){
+  if(UIManger::Get()->GetProxy("mainUI"))
+    return UIManger::Get()->GetProxy("mainUI");
+  return nullptr;
 }
 
 void LoginScene::ShowView(EventCustom *p_Event){
-  // local isJudgeCurScene = data.isJudgeCurScene or false
   if(!p_Event->getUserData()) return;
-  auto l_Data = static_cast<RShowView *>(p_Event->getUserData());
+  auto l_Data = static_cast<RShowMainCityView *>(p_Event->getUserData());
   if(l_Data->isJudgeCurScene && l_Data->ViewType == m_CurrentViewType) return;
   if(l_Data->ViewType == EScene::None) return;
-  // worldMapDefine.currentMapKindomID = nil
   WorldMapDefine::Get()->CurrentMapKindomID = 0;
-  // local function switcherView()
-
-  // end
   // util.resetCSDCatch()
   // if isFromLogin then
   //   switcherView()

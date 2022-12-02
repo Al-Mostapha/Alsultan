@@ -1,15 +1,30 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Include/IncludeEngine.h"
+#include "Include/IncludeGlobal.h"
 #include "Base/Containers/HashMap.h"
-#include "Base/Base.View.h"
+#include "Module/UI/UIBaseView.h"
+#include "Module/UI/UICCSView.h"
 #include "Module/Building/Building.Enum.h"
 
-class MainCityView : public BaseView
-{
-GHashMap<GString, Node *> n_BufferNodeArray;
 
+struct RShowMainCityView{
+  bool isJudgeCurScene = false;
+  EScene ViewType = EScene::None;
+  bool isFromLogin = false;
+  bool isFactionSwitch = false;
+  RViewOtherData OtherData;
+};
+
+class MainCityView : public UIBaseView
+{
+  GHashMap<GString, Node *> n_BufferNodeArray;
+  CREATE_FUNC(MainCityView);
+  CreateUIPanel(MainCityView);
+  CreateUICCSView(MainCityView);
+  RViewOtherData m_Param;
 public:
+  static MainCityView *Create(RViewOtherData p_Data);
   bool m_IsNeedFirstFight = false;
   bool m_IsFinishInit = false;
   Ext::ScrollView *n_ViewScrollView = nullptr;
@@ -27,7 +42,7 @@ public:
   }
   void FinishLoadImages();
   void OnMessageListener_FinishLoadImage();
-  virtual void InitAfterCreate() = 0;
+  virtual void InitAfterCreate(){};
   void InitCelebrateGift(){
     //effectMainCityView.initCelebrateGift(self, target, data)
   }
