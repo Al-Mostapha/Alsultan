@@ -4,6 +4,9 @@
 #include "Module/UI/Common/Message/UIMsgTip.h"
 #include "Global/Global.Enum.h"
 #include "Include/IncludeEngine.h"
+#include "Include/IncludeGlobal.h"
+#include "Module/UI/MainUI/UISwitcher.h"
+#include "Scene/Login/LoginScene.h"
 
 typedef std::function<void(EventCustom*)> FMsgCallBack;
 GHashMap<GString, GQueue<FMsgCallBack>> _tMsgvectorList;
@@ -102,7 +105,17 @@ namespace GBase{
   }
   Node *DPopItemAward(){return nullptr;}
   void DPushItemAward(Node *){}
-  bool DCloseLoginView(){return true;}
+
+  bool DCloseLoginView(){
+    auto l_CurrentScene = Director::getInstance()->getRunningScene();
+    if(!l_CurrentScene)
+      return false;
+    auto l_MainScene = dynamic_cast<LoginScene *>(l_CurrentScene);
+    if(!l_MainScene)
+      return false;
+    return l_MainScene->RemoveLoginView();
+  }
+
   void DSendMessage(const char *p_EventId, void *p_Data){
     // if content and content.clientData then
     //   data.clientData = content.clientData
@@ -125,7 +138,21 @@ namespace GBase{
   EFactionType DGetFactionType(){ return EFactionType::Normal; }
   
 
-  void DCloseSwitcherView(){}
+  void DCloseSwitcherView(){
+    auto l_Scene = Director::getInstance()->getRunningScene();
+    if(!l_Scene)
+      return;
+    auto l_Switcher = l_Scene->getChildByName("switcherView");
+    if(!l_Switcher)
+      l_Switcher = l_Scene->getChildByName("switcherView_fa");
+    if(!l_Switcher)
+      return;
+    auto l_SwitcherView = dynamic_cast<UISwitcher*>(l_Switcher);
+    if(!l_SwitcherView)
+      return;
+    l_SwitcherView->CloseSwitcher();
+  }
+
   void DAddMessage(Node * p_Node, const char *p_EventId, const std::function<void(EventCustom *)> &p_Callback){
     if (!p_Callback) return;
     if (!_tMsgObjListionerList.Contains(p_Node)) _tMsgObjListionerList[p_Node] = GHashMap<GString, bool>();
@@ -233,6 +260,60 @@ namespace GBase{
   }
 
   void DClearItemAwards(){}
+
+  void DShowSwitcherView(RViewOtherData p_Data){
+  // local currentScene = display.getRunningScene()
+  // local switcherName = "switcherView"
+  // if userSDKManager.getChannel() == "fa" then
+  //   switcherName = "switcherView_fa"
+  // end
+  // if currentScene then
+  //   local switcher = currentScene:getChildByName(switcherName)
+  //   if switcher then
+  //     switcher:removeFromParent()
+  //   end
+  //   switcher = include(switcherName).new(params)
+  //   if switcher then
+  //     switcher:showSwitcher(currentScene)
+  //   end
+  // end
+  }
+
+void DDelayCallOnce(GString p_UniqueKey, ccSchedulerFunc p_Func, float p_Time, bool p_CheckHandle)
+{
+  if(p_CheckHandle && DManagerFindTimerByTarget(p_UniqueKey)) return;
+  auto l_SharedScheduler = Director::getInstance()->getScheduler();
+  DManagerRemoveTimerByTarget(p_UniqueKey);
+  l_SharedScheduler->schedule([&p_UniqueKey, &p_Func](float p_Delta){
+    auto l_SharedScheduler = Director::getInstance()->getScheduler();
+    l_SharedScheduler->unschedule(p_UniqueKey, Director::getInstance());
+    p_Func(p_Delta);
+  }, Director::getInstance(), p_Time, false, p_UniqueKey);
+  DManagerAddTimer(p_UniqueKey);
+}
+
+void DShowPowerChange(RUpdatePowerEventArg p_Arg, bool isOnlyGet = false){
+  
+}
+
+void DShowEXPChange(int32 p_Exp){
+  //   local currentScene = display.getRunningScene()
+  // local expUpNode
+  // if currentScene.name == "MainScene" then
+  //   expUpNode = currentScene.expUpNode
+  //   if not expUpNode then
+  //     expUpNode = include("Node_EXPUp").new()
+  //     expUpNode:setPosition(cc.p(display.cx, display.cy + 100))
+  //     expUpNode:setVisible(false)
+  //     expUpNode:addTo(currentScene, 6)
+  //     currentScene.expUpNode = expUpNode
+  //   end
+  //   if not expUpNode:isVisible() then
+  //     expUpNode:playAct(addEXP)
+  //   end
+  // end
+  // return expUpNode
+}
 
 } // namespace
 

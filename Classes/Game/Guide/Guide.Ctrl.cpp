@@ -10,6 +10,6 @@ GuideCtrl *GuideCtrl::Get(){
 }
 
 
-GuideStep *GuideCtrl::GetCurMainCityGuideStep(){
+RGuideStep *GuideCtrl::GetCurMainCityGuideStep(){
   return nullptr;
 }

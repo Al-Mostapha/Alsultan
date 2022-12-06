@@ -4,6 +4,8 @@
 #include "Base/Utils/String.Util.h"
 #include "BaseTypeDef.h"
 #include "Include/IncludeEngine.h"
+#include "Common/Timer.Mgr.h"
+#include "Type/EventArg/Lord.EventArg.h"
 
 #undef PlaySound
 
@@ -13,6 +15,7 @@ enum class EBuildingIndex;
 enum class EFactionType;
 enum class EMsgBoxCallBack;
 class UICommonPromptBox;
+struct RViewOtherData; 
 
 namespace GBase {
 
@@ -114,5 +117,8 @@ GString DFValueSuit(const GString& p_Value, const GString& p_Sign = "+");
 GString GetCCSPath(const char* p_CCSName);
 
 void DClearItemAwards();
-
+void DShowSwitcherView(RViewOtherData p_Data);
+void DShowPowerChange(RUpdatePowerEventArg p_Arg, bool p_IsOnlyGet = false);
+void DShowEXPChange(int32 p_Exp);
+void DDelayCallOnce(GString p_UniqueKey, ccSchedulerFunc p_Func, float p_Time = 0.001, bool p_CheckHandle = true);
 };  // namespace GBase

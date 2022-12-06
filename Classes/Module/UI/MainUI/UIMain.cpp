@@ -46,7 +46,6 @@ void UIMain::InitPanel()
   m_TopArea->setPosition(Vec2(0, getContentSize().height));
   addChild(m_TopArea, 10);
   m_PandectView = UIPandectView::Create();
-  m_PandectView->InitPanel();
   m_PandectView->setAnchorPoint(Vec2(0, 0.5));
   // self.pandectView:setPosition(SoraDFPoint(display.width - 139, self:getContentSize().height / 2, display.width))
   m_PandectView->setPosition(Vec2(GDisplay::Get()->rcx - 139, getContentSize().height / 2));
@@ -405,8 +404,8 @@ void UIMain::UpdateStyle(EventCustom *p_Event){
 
 }
 
-GVector<UIPanelBase*> UIMain::GetCheckViewList(){
-  auto l_ViewList = GVector<UIPanelBase*>();
+GVector<UIBaseView*> UIMain::GetCheckViewList(){
+  auto l_ViewList = GVector<UIBaseView*>();
   //TODO: Add View
   // if(m_TopArea)
   //   l_ViewList.push_back(m_TopArea);

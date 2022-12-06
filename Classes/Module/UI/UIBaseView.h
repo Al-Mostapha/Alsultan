@@ -36,4 +36,5 @@ public:
   typedef std::function<void()> CallBack;
   void LoadImages(const GVector<GString> &p_ArrayImagesPath, CallBack p_CallBack = nullptr);
   bool IsImageLoaded(GString p_ImageName);
+  GString GetViewName(){return getName();}
 };
