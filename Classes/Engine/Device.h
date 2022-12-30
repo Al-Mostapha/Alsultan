@@ -1,6 +1,7 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Device.Enum.h"
+#include "OS.h"
 
 class GDevice{
 public: 

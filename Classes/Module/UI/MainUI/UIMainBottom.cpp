@@ -1,228 +1,230 @@
 #include "UIMainBottom.h"
+#include "Module/Player/LordInfo.Ctrl.h"
 #include "Module/UI/Animations/UIAnimationCollectItems.h"
+#include "Module/World/WorldMap/View/WorldMap.View.h"
+#include "Module/World/WorldMap/WorldMap.Define.h"
 
-void UIMainBottom::Ctor(){
+void UIMainBottom::Ctor() {
   // cityBuildData:removeMessageListener()
   // cityBuildData:registerMessageListener()
   // userSDKManager.setAudioTarget(chatAudioMgr)
   // self.Node_LOD = SoraDGetChildByName(self, "Node_LOD")
-  n_NodeLOD = GBase::GetChildByName<Node *>(m_Panel, "Node_LOD");
-  n_NodeAreaRb = GBase::GetChildByName<Node *>(n_NodeLOD, "Node_area_rb");
-  n_NodeAreaLb = GBase::GetChildByName<Node *>(n_NodeLOD, "Node_area_lb");
-  n_NodeAreaB = GBase::GetChildByName<Node *>(m_Panel, "Node_area_b");
-  auto *l_AnimationCollectItems = UIAnimationCollectItems::Create();
+  n_NodeLOD = GBase::GetChildByName<Node*>(this, "Node_LOD");
+  n_NodeAreaRb = GBase::GetChildByName<Node*>(n_NodeLOD, "Node_area_rb");
+  n_NodeAreaLb = GBase::GetChildByName<Node*>(n_NodeLOD, "Node_area_lb");
+  n_NodeAreaB = GBase::GetChildByName<Node*>(this, "Node_area_b");
+  auto* l_AnimationCollectItems = UIAnimationCollectItems::Create();
   n_NodeAreaB->addChild(l_AnimationCollectItems, 10);
   l_AnimationCollectItems->setName("animationCollectItems");
   m_ViewChangeType = EScene::City;
   InitGroup();
   // self.uiBg = SoraDGetChildByName(self, "UI_Label_BG")
-  n_UiBg = GBase::GetChildByName<Sprite *>(m_Panel, "UI_Label_BG");
+  n_UiBg = GBase::GetChildByName<Sprite*>(this, "UI_Label_BG");
   // self.uiBgLeft = SoraDGetChildByName(self, "Image_decor_left")
-  n_UiBgLeft = GBase::GetChildByName<ui::ImageView *>(m_Panel, "Image_decor_left");
+  n_UiBgLeft = GBase::GetChildByName<ui::ImageView*>(this, "Image_decor_left");
   // self.uiBgLeft:setVisible(IsArClient)
   n_UiBgLeft->setVisible(GBase::Const::Get()->IsArClient);
   // self.uiBgRight = SoraDGetChildByName(self, "Image_decor_right")
-  n_UiBgRight = GBase::GetChildByName<ui::ImageView *>(m_Panel, "Image_decor_right");
+  n_UiBgRight = GBase::GetChildByName<ui::ImageView*>(this, "Image_decor_right");
   // self.uiBgRight:setVisible(IsArClient)
   n_UiBgRight->setVisible(GBase::Const::Get()->IsArClient);
   // self.Node_style_bg = SoraDGetChildByName(self, "Node_style_bg")
-  n_NodeStyleBg = GBase::GetChildByName<Node *>(m_Panel, "Node_style_bg");
+  n_NodeStyleBg = GBase::GetChildByName<Node*>(this, "Node_style_bg");
   // self.Node_style_top = SoraDGetChildByName(self, "Node_style_top")
-  n_NodeStyleTop = GBase::GetChildByName<Node *>(m_Panel, "Node_style_top");
+  n_NodeStyleTop = GBase::GetChildByName<Node*>(this, "Node_style_top");
   // self:initStyle()
   InitStyle();
   // self.tipItems = SoraDGetChildByName(self, "Sprite_items")
-  n_TipItems = GBase::GetChildByName<ui::ImageView *>(m_Panel, "Sprite_items");
+  n_TipItems = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_items");
   // self.tipAlliance = SoraDGetChildByName(self, "Sprite_alliance")
-  n_TipAlliance = GBase::GetChildByName<ui::ImageView *>(m_Panel, "Sprite_alliance");
+  n_TipAlliance = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_alliance");
 
   // self.tipMail = SoraDGetChildByName(self, "Sprite_mail")
-  n_TipMail = GBase::GetChildByName<ui::ImageView *>(m_Panel, "Sprite_mail");
+  n_TipMail = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_mail");
   // self.tipHero = SoraDGetChildByName(self, "Sprite_hero")
-  n_TipHero = GBase::GetChildByName<ui::ImageView *>(m_Panel, "Sprite_hero");
+  n_TipHero = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_hero");
   // self.tipHero:setVisible(false)
   n_TipHero->setVisible(false);
-  n_TipHeroCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_hero"));
+  n_TipHeroCount = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_hero"));
   // self.tipHeroCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipMailCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_mail"));
+  n_TipMailCount = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_mail"));
   // self.tipMailCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipAllianceCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_alliance"));
+  n_TipAllianceCount = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_alliance"));
   // self.tipAllianceCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipItemsCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_items"));
+  n_TipItemsCount = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_items"));
   // self.tipItemsCount:setGroupID(mainUIDef.newGroupID.text)
   // self.imgWarning = SoraDGetRedWarnning()
-  n_ChatMainUIView = GBase::DGetExtendChildFromCCSByName<UIChatMainUiView>(m_Panel, "CCS_chatMainUIView_Node");
+  n_ChatMainUIView = GBase::DGetExtendChildFromCCSByName<UIChatMainUiView>(this, "CCS_chatMainUIView_Node");
   n_ChatMainUIView->InitWithData();
-  n_FrameWorldCity = GBase::GetChildByName<Sprite *>(m_Panel, "frame_btn_worldCity");
-  n_ButtonWorldCity = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_worldCity");
-  n_ImgWorldCity = GBase::GetChildByName<ui::ImageView *>(m_Panel, "img_worldCity");
-  if (n_ImgWorldCity) 
-    n_ButtonWorldCity->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnWorldCityClick, this));
+  n_FrameWorldCity = GBase::GetChildByName<Sprite*>(this, "frame_btn_worldCity");
+  n_ButtonWorldCity = GBase::GetChildByName<ui::Button*>(this, "Button_worldCity");
+  n_ImgWorldCity = GBase::GetChildByName<ui::ImageView*>(this, "img_worldCity");
+  if (n_ImgWorldCity) n_ButtonWorldCity->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnWorldCityClick, this));
   // self.nodeQuestGuide = SoraDGetExtendChildFromCCSByName(self, "CCS_questGuideNode_quest")
   // self.btnAccount = SoraDGetChildByName(self, "Button_account")
-  n_BtnAccount = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_account");
+  n_BtnAccount = GBase::GetChildByName<ui::Button*>(this, "Button_account");
   // self.btnAccount:setVisible(false)
   n_BtnAccount->setVisible(false);
   // self.iconAccount = SoraDGetChildByName(self.btnAccount, "icon_set_account")
-  n_IconAccount = GBase::GetChildByName<Sprite *>(n_BtnAccount, "icon_set_account");
+  n_IconAccount = GBase::GetChildByName<Sprite*>(n_BtnAccount, "icon_set_account");
   // self.redPointAccount = SoraDGetChildByName(self.btnAccount, "Sprite_redPoint")
-  n_RedPointAccount = GBase::GetChildByName<Sprite *>(m_Panel, "Sprite_redPoint");
+  n_RedPointAccount = GBase::GetChildByName<Sprite*>(this, "Sprite_redPoint");
   // self.btnPyramidBattle = SoraDGetChildByName(self, "Button_pyramidBattle")
-  n_BtnPyramidBattle = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_pyramidBattle");
+  n_BtnPyramidBattle = GBase::GetChildByName<ui::Button*>(this, "Button_pyramidBattle");
   // self.spriteBattleTimeBg = SoraDGetChildByName(self, "Sprite_battleTimeBg")
-  n_SpriteBattleTimeBg = GBase::GetChildByName<Sprite *>(m_Panel, "Sprite_battleTimeBg");
-  n_TxtPyramidBattleTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_battleTime"));
+  n_SpriteBattleTimeBg = GBase::GetChildByName<Sprite*>(this, "Sprite_battleTimeBg");
+  n_TxtPyramidBattleTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_battleTime"));
   // self.btnPyramidPlayoffs = SoraDGetChildByName(self, "Button_pyramidPlayoffs")
-  n_BtnPyramidPlayoffs = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_pyramidPlayoffs");
+  n_BtnPyramidPlayoffs = GBase::GetChildByName<ui::Button*>(this, "Button_pyramidPlayoffs");
   // self.imgPyramidPlayoffsBg = SoraDGetChildByName(self.btnPyramidPlayoffs, "Sprite_playoffBg")
-  n_ImgPyramidPlayoffsBg = GBase::GetChildByName<Sprite *>(n_BtnPyramidPlayoffs, "Sprite_playoffBg");
+  n_ImgPyramidPlayoffsBg = GBase::GetChildByName<Sprite*>(n_BtnPyramidPlayoffs, "Sprite_playoffBg");
   // self.txtPyramidPlayoffsTime = SoraDGetChildByName(self, "Text_playoffTime")
-  n_TxtPyramidPlayoffsTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_playoffTime"));
+  n_TxtPyramidPlayoffsTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_playoffTime"));
   // self.btnCityUnlock = SoraDGetChildByName(self, "Button_cityUnlockBuild")
-  n_BtnCityUnlock = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_cityUnlockBuild");
+  n_BtnCityUnlock = GBase::GetChildByName<ui::Button*>(this, "Button_cityUnlockBuild");
   // self.spriteCityUnlock = SoraDGetChildByName(self.btnCityUnlock, "Sprite_unlock")
-  n_SpriteCityUnlock = GBase::GetChildByName<Sprite *>(n_BtnCityUnlock, "Sprite_unlock");
+  n_SpriteCityUnlock = GBase::GetChildByName<Sprite*>(n_BtnCityUnlock, "Sprite_unlock");
   // self.txtCityUnlock = SoraDGetChildByName(self.btnCityUnlock, "Text_unlock")
-  n_TxtCityUnlock = GBase::GetChildByName<ui::Text *>(n_BtnCityUnlock, "Text_unlock");
+  n_TxtCityUnlock = GBase::GetChildByName<ui::Text*>(n_BtnCityUnlock, "Text_unlock");
   // self.btnNewPlayerBuff = SoraDGetChildByName(self, "Button_newPlayerBuff")
-  n_BtnNewPlayerBuff = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_newPlayerBuff");
+  n_BtnNewPlayerBuff = GBase::GetChildByName<ui::Button*>(this, "Button_newPlayerBuff");
   // self.textNewPlayer = SoraDGetChildByName(self.btnNewPlayerBuff, "Text_newPlayer")
-  n_TextNewPlayer = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(n_BtnNewPlayerBuff, "Text_newPlayer"));
+  n_TextNewPlayer = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnNewPlayerBuff, "Text_newPlayer"));
   // self.btnPrinceGiftNewBuff = SoraDGetChildByName(self, "Button_princeGiftNewBuff")
-  n_BtnPrinceGiftNewBuff = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_princeGiftNewBuff");
+  n_BtnPrinceGiftNewBuff = GBase::GetChildByName<ui::Button*>(this, "Button_princeGiftNewBuff");
   // self.textPrinceGiftNew = SoraDGetChildByName(self.btnPrinceGiftNewBuff, "Text_princeGiftNewBuff")
-  n_TextPrinceGiftNew = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(n_BtnPrinceGiftNewBuff, "Text_princeGiftNewBuff"));
+  n_TextPrinceGiftNew = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnPrinceGiftNewBuff, "Text_princeGiftNewBuff"));
   // self.Sprite_princeGiftNewBuff = SoraDGetChildByName(self.btnPrinceGiftNewBuff, "Sprite_princeGiftNewBuff")
-  n_SpritePrinceGiftNewBuff = GBase::GetChildByName<Sprite *>(n_BtnPrinceGiftNewBuff, "Sprite_princeGiftNewBuff");
+  n_SpritePrinceGiftNewBuff = GBase::GetChildByName<Sprite*>(n_BtnPrinceGiftNewBuff, "Sprite_princeGiftNewBuff");
   // self.Sprite_princeGiftNewBuff:setScale(0.5)
   n_SpritePrinceGiftNewBuff->setScale(0.5);
   // self.btnPrinceGiftBuff = SoraDGetChildByName(self, "Button_princeGiftBuff")
-  n_BtnPrinceGiftBuff = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_princeGiftBuff");
+  n_BtnPrinceGiftBuff = GBase::GetChildByName<ui::Button*>(this, "Button_princeGiftBuff");
   // self.textPrinceGift = SoraDGetChildByName(self.btnPrinceGiftBuff, "Text_princeGiftBuff")
-  n_TextPrinceGift = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(n_BtnPrinceGiftBuff, "Text_princeGiftBuff"));
+  n_TextPrinceGift = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnPrinceGiftBuff, "Text_princeGiftBuff"));
   // self.Sprite_princeGiftBuff = SoraDGetChildByName(self.btnPrinceGiftBuff, "Sprite_princeGiftBuff")
-  n_SpritePrinceGiftBuff = GBase::GetChildByName<Sprite *>(n_BtnPrinceGiftBuff, "Sprite_princeGiftBuff");
+  n_SpritePrinceGiftBuff = GBase::GetChildByName<Sprite*>(n_BtnPrinceGiftBuff, "Sprite_princeGiftBuff");
   // self.Sprite_princeGiftBuff:setScale(0.5)
   n_SpritePrinceGiftBuff->setScale(0.5);
   // self.btnSultansWelBack = SoraDGetChildByName(self, "Button_sultanWelBack")
-  n_BtnSultansWelBack = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_sultanWelBack");
+  n_BtnSultansWelBack = GBase::GetChildByName<ui::Button*>(this, "Button_sultanWelBack");
   // self.textWelBack = SoraDGetChildByName(self.btnSultansWelBack, "Text_welBack")
-  n_TextWelBack = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(n_BtnSultansWelBack, "Text_welBack"));
+  n_TextWelBack = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnSultansWelBack, "Text_welBack"));
   // self.btnHero = SoraDGetChildByName(self, "Button_hero")
-  n_BtnHero = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_hero");
+  n_BtnHero = GBase::GetChildByName<ui::Button*>(this, "Button_hero");
   // self.iconBtnHero = SoraDGetChildByName(self.btnHero, "icon_hero")
-  n_IconBtnHero = GBase::GetChildByName<ui::ImageView *>(n_BtnHero, "icon_hero");
+  n_IconBtnHero = GBase::GetChildByName<ui::ImageView*>(n_BtnHero, "icon_hero");
   // self.btnItems = SoraDGetChildByName(self, "Button_items")
-  n_BtnItems = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_items");
+  n_BtnItems = GBase::GetChildByName<ui::Button*>(this, "Button_items");
   // self.iconBtnItems = SoraDGetChildByName(self.btnItems, "icon_items")
-  n_IconBtnItems = GBase::GetChildByName<ui::ImageView *>(n_BtnItems, "icon_items");
+  n_IconBtnItems = GBase::GetChildByName<ui::ImageView*>(n_BtnItems, "icon_items");
   // self.itemNewIcon = SoraDGetChildByName(self.btnItems, "icon_new")
-  n_ItemNewIcon = GBase::GetChildByName<Sprite *>(n_BtnItems, "icon_new");
+  n_ItemNewIcon = GBase::GetChildByName<Sprite*>(n_BtnItems, "icon_new");
   // self.Node_discountEffect = SoraDGetChildByName(self.btnItems, "Node_discountEffect")
-  n_NodeDiscountEffect = GBase::GetChildByName<Node *>(n_BtnItems, "Node_discountEffect");
+  n_NodeDiscountEffect = GBase::GetChildByName<Node*>(n_BtnItems, "Node_discountEffect");
   // self.btnMail = SoraDGetChildByName(self, "Button_mail")
-  n_BtnMail = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_mail");
+  n_BtnMail = GBase::GetChildByName<ui::Button*>(this, "Button_mail");
   // self.iconBtnMail = SoraDGetChildByName(self.btnMail, "icon_mail")
-  n_IconBtnMail = GBase::GetChildByName<ui::ImageView *>(n_BtnMail, "icon_mail");
+  n_IconBtnMail = GBase::GetChildByName<ui::ImageView*>(n_BtnMail, "icon_mail");
   // self.btnAlliance = SoraDGetChildByName(self, "Button_alliance")
-  n_BtnAlliance = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_alliance");
+  n_BtnAlliance = GBase::GetChildByName<ui::Button*>(this, "Button_alliance");
   // self.iconBtnAlliance = SoraDGetChildByName(self.btnAlliance, "icon_alliance")
-  n_IconBtnAlliance = GBase::GetChildByName<ui::ImageView *>(n_BtnAlliance, "icon_alliance");
+  n_IconBtnAlliance = GBase::GetChildByName<ui::ImageView*>(n_BtnAlliance, "icon_alliance");
   // self.btnWatchTower = SoraDGetChildByName(self, "Button_watchTower")
-  n_BtnWatchTower = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_watchTower");
+  n_BtnWatchTower = GBase::GetChildByName<ui::Button*>(this, "Button_watchTower");
   // self.iconAlarm = SoraDGetChildByName(self, "icon_building_alarm")
-  n_IconAlarm = GBase::GetChildByName<Sprite *>(m_Panel, "icon_building_alarm");
+  n_IconAlarm = GBase::GetChildByName<Sprite*>(this, "icon_building_alarm");
   // self.btnWallBurning = SoraDGetChildByName(self, "Button_wallBurnning")
-  n_BtnWallBurning = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_wallBurnning");
+  n_BtnWallBurning = GBase::GetChildByName<ui::Button*>(this, "Button_wallBurnning");
   // self.btnWallBurning:setVisible(false)
   n_BtnWallBurning->setVisible(INIT_FALSE);
   // self.btnKingdomManager = SoraDGetChildByName(self, "Button_kingdomManager")
-  n_BtnKingdomManager = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_kingdomManager");
+  n_BtnKingdomManager = GBase::GetChildByName<ui::Button*>(this, "Button_kingdomManager");
   // self.btnKingdomManagerSprite = SoraDGetChildByName(self.btnKingdomManager, "Sprite_crown")
-  n_BtnKingdomManagerSprite = GBase::GetChildByName<Sprite *>(n_BtnKingdomManager, "Sprite_crown");
+  n_BtnKingdomManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnKingdomManager, "Sprite_crown");
   // self.spKingdomManagerTimeBg = SoraDGetChildByName(self.btnKingdomManager, "Sprite_giftTimeBg")
-  n_SpKingdomManagerTimeBg = GBase::GetChildByName<Sprite *>(n_BtnKingdomManager, "Sprite_giftTimeBg");
+  n_SpKingdomManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnKingdomManager, "Sprite_giftTimeBg");
   // self.txtKingdomManagerTime = SoraDGetChildByName(self.btnKingdomManager, "Text_giftTime")
-  n_TxtKingdomManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(n_BtnKingdomManager, "Text_giftTime"));
+  n_TxtKingdomManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnKingdomManager, "Text_giftTime"));
   // self.btnLegendKingManager = SoraDGetChildByName(self, "Button_legendKingManager")
-  n_BtnLegendKingManager = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_legendKingManager");
+  n_BtnLegendKingManager = GBase::GetChildByName<ui::Button*>(this, "Button_legendKingManager");
   // self.btnLegendKingManagerSprite = SoraDGetChildByName(self.btnLegendKingManager, "Sprite_crown")
-  n_BtnLegendKingManagerSprite = GBase::GetChildByName<Sprite *>(n_BtnLegendKingManager, "Sprite_crown");
+  n_BtnLegendKingManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnLegendKingManager, "Sprite_crown");
   // self.spLegendKingManagerTimeBg = SoraDGetChildByName(self.btnLegendKingManager, "Sprite_giftTimeBg")
-  n_SpLegendKingManagerTimeBg = GBase::GetChildByName<Sprite *>(n_BtnLegendKingManager, "Sprite_giftTimeBg");
+  n_SpLegendKingManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnLegendKingManager, "Sprite_giftTimeBg");
   // self.txtLegendKingManagerTime = SoraDGetChildByName(self.btnLegendKingManager, "Text_giftTime")
-  n_TxtLegendKingManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(n_BtnLegendKingManager, "Text_giftTime"));
+  n_TxtLegendKingManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnLegendKingManager, "Text_giftTime"));
   // self.btnLegendInvite = SoraDGetChildByName(self, "Button_legendInvite")
-  n_BtnLegendInvite = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_legendInvite");
+  n_BtnLegendInvite = GBase::GetChildByName<ui::Button*>(this, "Button_legendInvite");
   // self.iconLegendInvite = SoraDGetChildByName(self.btnLegendInvite, "icon_legend_red")
-  n_IconLegendInvite = GBase::GetChildByName<Sprite *>(n_BtnLegendInvite, "icon_legend_red");
+  n_IconLegendInvite = GBase::GetChildByName<Sprite*>(n_BtnLegendInvite, "icon_legend_red");
   // self.iconLegendInvite:setVisible(false)
   n_IconLegendInvite->setVisible(INIT_FALSE);
   // self.txtLegendInviteNum = SoraDGetChildByName(self, "Text_legendInviteNum")
-  n_TxtLegendInviteNum = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_legendInviteNum"));
+  n_TxtLegendInviteNum = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_legendInviteNum"));
   // self.btnRadianceWar = SoraDGetChildByName(self, "Button_radiance")
-  n_BtnRadianceWar = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_radiance");
+  n_BtnRadianceWar = GBase::GetChildByName<ui::Button*>(this, "Button_radiance");
   // self.iconRadianceWar = SoraDGetChildByName(self.btnRadianceWar, "icon_radiance_red")
-  n_IconRadianceWar = GBase::GetChildByName<Sprite *>(n_BtnRadianceWar, "icon_radiance_red");
+  n_IconRadianceWar = GBase::GetChildByName<Sprite*>(n_BtnRadianceWar, "icon_radiance_red");
   // self.iconRadianceWar:setVisible(false)
   n_IconRadianceWar->setVisible(INIT_FALSE);
   // self.Sprite_effect = SoraDGetChildByName(self.btnRadianceWar, "Sprite_effect")
-  n_SpriteEffect = GBase::GetChildByName<Sprite *>(n_BtnRadianceWar, "Sprite_effect");
+  n_SpriteEffect = GBase::GetChildByName<Sprite*>(n_BtnRadianceWar, "Sprite_effect");
   // self.Sprite_effect:setVisible(false)
   n_SpriteEffect->setVisible(INIT_FALSE);
   // self.txtRadianceWarNum = SoraDGetChildByName(self, "Text_radianceNum")
-  n_TxtRadianceWarNum = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_radianceNum"));
+  n_TxtRadianceWarNum = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_radianceNum"));
   // self.btnHegemonManager = SoraDGetChildByName(self, "Button_hegemonManager")
-  n_BtnHegemonManager = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_hegemonManager");
+  n_BtnHegemonManager = GBase::GetChildByName<ui::Button*>(this, "Button_hegemonManager");
   // self.btnHegemonManagerSprite = SoraDGetChildByName(self.btnHegemonManager, "Sprite_crown")
-  n_BtnHegemonManagerSprite = GBase::GetChildByName<Sprite *>(n_BtnHegemonManager, "Sprite_crown");
+  n_BtnHegemonManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnHegemonManager, "Sprite_crown");
   // self.spHegemonManagerTimeBg = SoraDGetChildByName(self.btnHegemonManager, "Sprite_giftTimeBg")
-  n_SpHegemonManagerTimeBg = GBase::GetChildByName<Sprite *>(n_BtnHegemonManager, "Sprite_giftTimeBg");
+  n_SpHegemonManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnHegemonManager, "Sprite_giftTimeBg");
   // self.txtHegemonManagerTime = SoraDGetChildByName(self.btnHegemonManager, "Text_giftTime")
-  n_TxtHegemonManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(n_BtnHegemonManager, "Text_giftTime"));
+  n_TxtHegemonManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnHegemonManager, "Text_giftTime"));
   // self.btnHegemonBattle = SoraDGetChildByName(self, "Button_hegemonBattle")
-  n_BtnHegemonBattle = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_hegemonBattle");
+  n_BtnHegemonBattle = GBase::GetChildByName<ui::Button*>(this, "Button_hegemonBattle");
   // self.btnHegemonBattleSprite = SoraDGetChildByName(self.btnHegemonBattle, "icon_hegemon_playoff")
-  n_BtnHegemonBattleSprite = GBase::GetChildByName<Sprite *>(n_BtnHegemonBattle, "icon_hegemon_playoff");
+  n_BtnHegemonBattleSprite = GBase::GetChildByName<Sprite*>(n_BtnHegemonBattle, "icon_hegemon_playoff");
   // self.spHegemonBattleTimeBg = SoraDGetChildByName(self.btnHegemonBattle, "Sprite_playoffBg")
-  n_SpHegemonBattleTimeBg = GBase::GetChildByName<Sprite *>(n_BtnHegemonBattle, "Sprite_playoffBg");
+  n_SpHegemonBattleTimeBg = GBase::GetChildByName<Sprite*>(n_BtnHegemonBattle, "Sprite_playoffBg");
   // self.txtHegemonBattleTime = SoraDGetChildByName(self.btnHegemonBattle, "Text_playoffTime")
-  n_TxtHegemonBattleTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text *>(n_BtnHegemonBattle, "Text_playoffTime"));
+  n_TxtHegemonBattleTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnHegemonBattle, "Text_playoffTime"));
   // self.btnTrainPower = SoraDGetChildByName(self, "Button_trainPower")
-  n_BtnTrainPower = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_trainPower");
+  n_BtnTrainPower = GBase::GetChildByName<ui::Button*>(this, "Button_trainPower");
   // self.Text_trainPower = SoraDGetChildByName(self.btnTrainPower, "Text_trainPower")
-  n_TextTrainPower = GBase::GetChildByName<ui::Text *>(n_BtnTrainPower, "Text_trainPower");
+  n_TextTrainPower = GBase::GetChildByName<ui::Text*>(n_BtnTrainPower, "Text_trainPower");
   // self.Text_trainPower:setString(i18n("activity_name_9001300"))
   n_TextTrainPower->setString(Translate::i18n("activity_name_9001300"));
   // self.Red_trainPower = SoraDGetChildByName(self.btnTrainPower, "icon_red")
-  n_RedTrainPower = GBase::GetChildByName<Sprite *>(n_BtnTrainPower, "icon_red");
+  n_RedTrainPower = GBase::GetChildByName<Sprite*>(n_BtnTrainPower, "icon_red");
   // self.Num_trainPower = SoraDGetChildByName(self.Red_trainPower, "Text_btnNum")
-  n_NumTrainPower = GBase::GetChildByName<ui::Text *>(n_RedTrainPower, "Text_btnNum");
+  n_NumTrainPower = GBase::GetChildByName<ui::Text*>(n_RedTrainPower, "Text_btnNum");
   // self.Red_trainPower:setVisible(false)
   n_RedTrainPower->setVisible(INIT_FALSE);
   // self.Text_trainPower:setFontSize(16)
   n_TextTrainPower->setFontSize(16);
   // self.btnNeckLaceRank = SoraDGetChildByName(self, "Button_necklaceRank")
-  n_BtnNeckLaceRank = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_necklaceRank");
+  n_BtnNeckLaceRank = GBase::GetChildByName<ui::Button*>(this, "Button_necklaceRank");
   // self.btnNeckLaceRankSprite = SoraDGetChildByName(self.btnNeckLaceRank, "icon_hegemon_playoff")
-  n_BtnNeckLaceRankSprite = GBase::GetChildByName<Sprite *>(n_BtnNeckLaceRank, "icon_hegemon_playoff");
+  n_BtnNeckLaceRankSprite = GBase::GetChildByName<Sprite*>(n_BtnNeckLaceRank, "icon_hegemon_playoff");
   // self.btnNeckLaceRankBg = SoraDGetChildByName(self.btnNeckLaceRank, "Sprite_playoffBg")
-  n_BtnNeckLaceRankBg = GBase::GetChildByName<Sprite *>(n_BtnNeckLaceRank, "Sprite_playoffBg");
+  n_BtnNeckLaceRankBg = GBase::GetChildByName<Sprite*>(n_BtnNeckLaceRank, "Sprite_playoffBg");
   // self.btnNeckLaceRankText = SoraDGetChildByName(self.btnNeckLaceRank, "Text_playoffTime")
-  n_BtnNeckLaceRankText = GBase::GetChildByName<ui::Text *>(n_BtnNeckLaceRank, "Text_playoffTime");
+  n_BtnNeckLaceRankText = GBase::GetChildByName<ui::Text*>(n_BtnNeckLaceRank, "Text_playoffTime");
   // self.btnRomanSoul = SoraDGetChildByName(self, "Button_romanSoul")
-  n_BtnRomanSoul = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_romanSoul");
+  n_BtnRomanSoul = GBase::GetChildByName<ui::Button*>(this, "Button_romanSoul");
   // self.labelAllianceName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_allianceName"), 25)
-  n_LabelAllianceName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_allianceName"), 25);
+  n_LabelAllianceName = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_allianceName"), 25);
   // self.labelAllianceName:setGroupID(mainUIDef.newGroupID.text)
   // self.labelHeroName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_heroName"), 25)
-  n_LabelHeroName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_heroName"), 25);
+  n_LabelHeroName = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_heroName"), 25);
   // self.labelHeroName:setGroupID(mainUIDef.newGroupID.text)
   // self.labelBagName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_bagName"), 25)
-  n_LabelBagName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_bagName"), 25);
+  n_LabelBagName = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_bagName"), 25);
   // self.labelBagName:setGroupID(mainUIDef.newGroupID.text)
   // self.labelMailName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_mailName"), 25)
-  n_LabelMailName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(m_Panel, "Text_mailName"), 25);
+  n_LabelMailName = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_mailName"), 25);
   // self.labelMailName:setGroupID(mainUIDef.newGroupID.text)
   // self.labelAllianceName:setString(i18n("common_text_069"))
   n_LabelAllianceName->setString(Translate::i18n("common_text_069"));
@@ -233,29 +235,26 @@ void UIMainBottom::Ctor(){
   // self.labelMailName:setString(i18n("mail_text_25"))
   n_LabelMailName->setString(Translate::i18n("mail_text_25"));
   // self.btnSkill = SoraDGetChildByName(self, "Button_skill")
-  n_BtnSkill = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_skill");
+  n_BtnSkill = GBase::GetChildByName<ui::Button*>(this, "Button_skill");
   // self.btnSkill:addTouchEventListener(handler(self, self.OnSkillClick))
   n_BtnSkill->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnSkillClick, this));
   // self.btnReplay = SoraDGetChildByName(self, "Button_replay")
-  n_BtnReplay = GBase::GetChildByName<ui::Button *>(m_Panel, "Button_replay");
+  n_BtnReplay = GBase::GetChildByName<ui::Button*>(this, "Button_replay");
   // self.bgTextVideo = SoraDGetChildByName(self, "bg_text_video")
-  n_BgTextVideo = GBase::GetChildByName<Sprite *>(m_Panel, "bg_text_video");
+  n_BgTextVideo = GBase::GetChildByName<Sprite*>(this, "bg_text_video");
   // self.btnReplay:addTouchEventListener(handler(self, self.OnReplayClick))
   n_BtnReplay->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnReplayClick, this));
-  if(SDKManager::Get()->IsRecording())
-  {
+  if (SDKManager::Get()->IsRecording()) {
     n_BtnReplay->setVisible(true);
     m_Timer = GBase::DCreateTimer(this, CC_CALLBACK_1(UIMainBottom::RecordTimeTick, this));
-  }
-  else
-  {
+  } else {
     n_BtnReplay->setVisible(INIT_FALSE);
     m_Timer = nullptr;
   }
   // self.textVideo = SoraDGetChildByName(self, "text_video")
-  n_TextVideo = GBase::GetChildByName<ui::Text *>(m_Panel, "text_video");
+  n_TextVideo = GBase::GetChildByName<ui::Text*>(this, "text_video");
   // self.frame_main_guide = SoraDGetChildByName(self, "frame_main_guide")
-  n_FrameMainGuide = GBase::GetChildByName<Sprite *>(m_Panel, "frame_main_guide");
+  n_FrameMainGuide = GBase::GetChildByName<Sprite*>(this, "frame_main_guide");
   // self.btnHero:addTouchEventListener(handler(self, self.OnBottomClick))
   n_BtnHero->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnBottomClick, this));
   // self.btnItems:addTouchEventListener(handler(self, self.OnBottomClick))
@@ -307,30 +306,30 @@ void UIMainBottom::Ctor(){
   // self:showAllianceInWarEffect()
   ShowAllianceInWarEffect();
   // self.nodePreDownload = SoraDGetExtendChildFromCCSByName(self, "CCS_preDownloadMainWidget_pre")
-  n_NodePreDownload = GBase::DGetExtendChildFromCCSByName<UIPreDownloadMainWidget>(m_Panel, "CCS_preDownloadMainWidget_pre");
+  n_NodePreDownload = GBase::DGetExtendChildFromCCSByName<UIPreDownloadMainWidget>(this, "CCS_preDownloadMainWidget_pre");
   // self.nodeBottomBtn = SoraDGetChildByName(self, "Bottom_Node_btn")
-  n_NodeBottomBtn = GBase::GetChildByName<Node *>(m_Panel, "Bottom_Node_btn");
+  n_NodeBottomBtn = GBase::GetChildByName<Node*>(this, "Bottom_Node_btn");
   // self.btnManager = SoraDGetChildByName(self, "Bottom_Image_btnBG")
-  n_BtnManager = GBase::GetChildByName<ui::ImageView *>(m_Panel, "Bottom_Image_btnBG");
+  n_BtnManager = GBase::GetChildByName<ui::ImageView*>(this, "Bottom_Image_btnBG");
   // self.btnManager:setTouchEnabled(true)
   n_BtnManager->setTouchEnabled(true);
   // self.scroll_btn = SoraDGetChildByName(self, "Bottom_Size_ScrollView_btn")
-  n_ScrollBtn = GBase::GetChildByName<ui::ScrollView *>(m_Panel, "Bottom_Size_ScrollView_btn");
+  n_ScrollBtn = GBase::GetChildByName<ui::ScrollView*>(this, "Bottom_Size_ScrollView_btn");
   // self.scroll_btn:setTouchEnabled(false)
   n_ScrollBtn->setTouchEnabled(false);
   // local img_btnRound = SoraDGetChildByName(self.btnManager, "Image_btn_round")
-  auto l_ImgBtnRound = GBase::GetChildByName<ui::ImageView *>(n_BtnManager, "Image_btn_round");
+  auto l_ImgBtnRound = GBase::GetChildByName<ui::ImageView*>(n_BtnManager, "Image_btn_round");
   // self.btnSwitch = SoraDGetChildByName(self.btnManager, "Button_switch")
-  n_BtnSwitch = GBase::GetChildByName<ui::Button *>(n_BtnManager, "Button_switch");
+  n_BtnSwitch = GBase::GetChildByName<ui::Button*>(n_BtnManager, "Button_switch");
   // self.node_arrow = SoraDGetChildByName(self.btnManager, "Node_arrow")
-  n_NodeArrow = GBase::GetChildByName<Node *>(n_BtnManager, "Node_arrow");
+  n_NodeArrow = GBase::GetChildByName<Node*>(n_BtnManager, "Node_arrow");
   // self.node_arrow:setGroupAuto(true)
   // self.iconRed = SoraDGetChildByName(self.btnSwitch, "icon_red")
-  n_IconRed = GBase::GetChildByName<Sprite *>(n_BtnSwitch, "icon_red");
+  n_IconRed = GBase::GetChildByName<Sprite*>(n_BtnSwitch, "icon_red");
   // self.iconRed:setVisible(false)
   n_IconRed->setVisible(INIT_FALSE);
   // self.labBtnNum = SoraDGetChildByName(self.btnSwitch, "Text_btnNum")
-  n_LabBtnNum = GBase::GetChildByName<ui::Text *>(n_BtnSwitch, "Text_btnNum");
+  n_LabBtnNum = GBase::GetChildByName<ui::Text*>(n_BtnSwitch, "Text_btnNum");
   // self.btnSwitch:addTouchEventListener(handler(self, self.btnSwitchClick))
   n_BtnSwitch->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnSwitchClick, this));
   // self.btnSwitchType = 1
@@ -397,20 +396,24 @@ void UIMainBottom::Ctor(){
   // raidersLostArkCtrl:initKeyNums()
 }
 
-void UIMainBottom::CreateExpostulationTimer(){
-  // self:deleteExpostulationTimer()
+void UIMainBottom::CreateExpostulationTimer() {
+  this->DeleteExpostulationTimer();
   // self.expostulationTimer = SoradCreateTimer(self, handler(self, self.updateExpostulation))
-  // self:updateExpostulation(self, {isInit = true})
+  m_ExpostulationTimer = GBase::DCreateTimer(this, [this](float p_DeltaTime) { UpdateExpostulation(nullptr); });
+  auto l_IsInit = std::make_unique<bool>(true);
+  EventCustom* l_Event = new EventCustom("updateExpostulation");
+  l_Event->setUserData(l_IsInit.get());
+  UpdateExpostulation(l_Event);
 }
 
-void UIMainBottom::DeleteExpostulationTimer(){
-  // if self.expostulationTimer then
-  //   SoraDManagerRemoveTimer(self, self.expostulationTimer)
-  //   self.expostulationTimer = nil
-  // end
+void UIMainBottom::DeleteExpostulationTimer() {
+  if (m_ExpostulationTimer) {
+    GBase::DManagerRemoveTimer(m_ExpostulationTimer);
+    m_ExpostulationTimer = nullptr;
+  }
 }
 
-void UIMainBottom::InitHalloweenShineEffect(){
+void UIMainBottom::InitHalloweenShineEffect() {
   // local effectShine = SoraDCreatAnimation("Node_Effect_wsj02", nil, true)
   // self.effectShine = effectShine
   // effectShine:setPosition(cc.p(0, 65))
@@ -425,7 +428,7 @@ void UIMainBottom::InitHalloweenShineEffect(){
   // particle2:setVisible(false)
 }
 
-void UIMainBottom::InitStyle(){
+void UIMainBottom::InitStyle() {
   // local param = {
   //   [gMainUIStype.EASTER] = {
   //     top = "mainUI_style_easter",
@@ -476,7 +479,7 @@ void UIMainBottom::InitStyle(){
   // end
 }
 
-void UIMainBottom::InitGroup(){
+void UIMainBottom::InitGroup() {
   // local function createGroupNode(groupID, zOrder, nodeName)
   //   local node = display.newNode()
   //   node:setGroupID(groupID, true)
@@ -487,7 +490,7 @@ void UIMainBottom::InitGroup(){
   // createGroupNode(mainUIDef.newGroupID.text, 5, "Node_group_text")
 }
 
-ui::Text *UIMainBottom::ExchangeGroupText(ui::Text *p_Text, float p_Height){
+ui::Text* UIMainBottom::ExchangeGroupText(ui::Text* p_Text, float p_Height) {
   // local text = SoraDCreateLabel({
   //   UILabelType = 2,
   //   text = "",
@@ -506,38 +509,44 @@ ui::Text *UIMainBottom::ExchangeGroupText(ui::Text *p_Text, float p_Height){
   return nullptr;
 }
 
-void UIMainBottom::InitAccountBind(EventCustom *p_Event){
-  // local isBind = userSDKManager.returnAccountBindType(gSDKDef.platformType.email)
-  // local isPhoneBind = userSDKManager.returnAccountBindType(gSDKDef.platformType.mobile)
-  // local lordInfoCtrl = gametop.playertop_:getModule("lordInfoCtrl")
-  // local lordBase = lordInfoCtrl:getBaseInfo()
-  // local isReward = lordBase.hasBindAccountReward or false
-  // local isBindPhone = not lordBase.receiveBindPhone and false
-  // local ret = false
-  // if IsArClient then
-  //   if self.viewChangeType == VIEW_TYPE_CITY and (SoraDGetCastleLv() >= CASTLE_LV6_LIMITED and (not isBind or isBind and not isReward) or SoraDGetCastleLv() >= CASTLE_LV10_LIMITED and (not isPhoneBind or isPhoneBind and not isBindPhone)) then
-  //     ret = true
-  //   else
-  //     ret = false
-  //   end
-  // elseif self.viewChangeType == VIEW_TYPE_CITY and SoraDGetCastleLv() >= CASTLE_LV6_LIMITED and (not isBind or isBind and not isReward) then
-  //   ret = true
-  // else
-  //   ret = false
-  // end
-  // local isSettingHide = SoraDConfigGet("Game:GameOptionsView:bindPhoneShow~bool", {byUID = true}) or false
-  // self.btnAccount:setVisible(ret and not isSettingHide and not worldMapDefine.isInWar())
-  // if IsArClient then
-  //   self.iconAccount:setSpriteFrame(SoraDGetCastleLv() >= CASTLE_LV10_LIMITED and isBind and isReward and "icon_bind_phone.png" or "icon_main_set_account_new.png")
-  //   self.redPointAccount:setVisible(isBind and not isReward or isPhoneBind and not isBindPhone)
-  // else
-  //   self.iconAccount:setSpriteFrame("icon_main_set_account_new.png")
-  //   self.redPointAccount:setVisible(isBind and not isReward)
-  // end
-  // self:sortBottomQuestBtns()
+void UIMainBottom::InitAccountBind(EventCustom* p_Event) {
+  auto l_IsBind = SDKManager::Get()->ReturnAccountBindType(ESdkPlatformType::Email);
+  auto l_IsPhoneBind = SDKManager::Get()->ReturnAccountBindType(ESdkPlatformType::Mobile);
+
+  auto l_LordBase = LordInfoCtrl::Get()->GetBaseInfo();
+  auto l_IsReward = l_LordBase.bHasBindAccountReward;
+  auto l_IsBindPhone = !l_LordBase.bReceiveBindPhone;
+  auto l_Ret = false;
+  auto l_CastleLv = GBase::DGetCastleLv();
+  if (GBase::Const::Get()->IsArClient) {
+    if (m_ViewChangeType == EScene::City && (l_CastleLv >= GBase::Const::Get()->CastleLvl6 && (!l_IsBind || l_IsBind && !l_IsReward) ||
+                                             l_CastleLv >= GBase::Const::Get()->CastleLvl10 && (!l_IsPhoneBind || l_IsPhoneBind && !l_IsBindPhone))) {
+      l_Ret = true;
+    } else {
+      l_Ret = false;
+    }
+  } else if (m_ViewChangeType == EScene::City && l_CastleLv >= GBase::Const::Get()->CastleLvl6 && (!l_IsBind || l_IsBind && !l_IsReward)) {
+    l_Ret = true;
+  } else {
+    l_Ret = false;
+  }
+
+  auto l_IsSettingHide = GBase::DConfigGet<bool>("Game:GameOptionsView:bindPhoneShow~bool", true);
+  n_BtnAccount->setVisible(l_Ret && !l_IsSettingHide && !WorldMapDefine::Get()->IsInWar());
+  if (GBase::Const::Get()->IsArClient) {
+    auto l_IconSpriteName =
+            l_CastleLv >= GBase::Const::Get()->CastleLvl10 && l_IsBind && l_IsReward ? "icon_bind_phone.png" : "icon_main_set_account_new.png";
+    n_IconAccount->setSpriteFrame(l_IconSpriteName);
+    n_RedPointAccount->setVisible(l_IsBind && !l_IsReward || l_IsPhoneBind && !l_IsBindPhone);
+  } else {
+    n_IconAccount->setSpriteFrame("icon_main_set_account_new.png");
+    n_RedPointAccount->setVisible(l_IsBind && !l_IsReward);
+  }
+
+  SortBottomQuestBtns(nullptr);
 }
 
-void UIMainBottom::InitGreenPoint(){
+void UIMainBottom::InitGreenPoint() {
   // local allianceHelp = gametop.playertop_:getModule("allianceHelp")
   // local allianceRelationCtrl = gametop.playertop_:getModule("allianceRelationCtrl")
   // local allianceDesRead = include("allianceDesRead")
@@ -586,7 +595,7 @@ void UIMainBottom::InitGreenPoint(){
   // end
 }
 
-void UIMainBottom::OnMessageListener(){
+void UIMainBottom::OnMessageListener() {
   using namespace std::placeholders;
   // SoraDAddMessage(self, "MESSAGE_MAINSCEN_LOGINFINSH", handler(self, self.reLoginFinish))
   GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINFINSH", std::bind(&UIMainBottom::ReLoginFinish, this, _1));
@@ -749,9 +758,9 @@ void UIMainBottom::OnMessageListener(){
   //     self.btnHarvestSeason.redIcon:setVisible(false)
   //   end
   // end)
-  GBase::DAddMessage(this, "MESSAGE_HARVEST_SEASON_REDPOINT", [this](EventCustom *) {
+  GBase::DAddMessage(this, "MESSAGE_HARVEST_SEASON_REDPOINT", [this](EventCustom*) {
     if (n_BtnHarvestSeason) {
-       //self.btnHarvestSeason.redIcon:setVisible(false)
+      // self.btnHarvestSeason.redIcon:setVisible(false)
     }
   });
   // SoraDAddMessage(self, "MESSAGE_PRE_DOWNLOAD_REFRESH", handler(self, self.checkPreDownloadStatus))
@@ -764,7 +773,7 @@ void UIMainBottom::OnMessageListener(){
   GBase::DAddMessage(this, "MESSAGE_PAYBACK_NOTICE", std::bind(&UIMainBottom::BtnPayBackCheck, this, _1));
 }
 
-void UIMainBottom::ShowOrHideGuideView(EventCustom *p_Event){
+void UIMainBottom::ShowOrHideGuideView(EventCustom* p_Event) {
   // local guideCtrl = gametop.playertop_:getModule("guideCtrl")
   // local guideStep = guideCtrl:getCurForceGuideStep()
   // self.nodeQuestGuide:setVisible(false)
@@ -781,15 +790,15 @@ void UIMainBottom::ShowOrHideGuideView(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::ShowPrinceGiftGuideView(EventCustom *p_Event){
-  //cityBuildFunction:checkPopUnlockPrinceGift()
+void UIMainBottom::ShowPrinceGiftGuideView(EventCustom* p_Event) {
+  // cityBuildFunction:checkPopUnlockPrinceGift()
 }
 
-void UIMainBottom::ShowSinbadPopWindow(EventCustom *p_Event){
-  //cityBuildFunction:checkPopUpSinbadTreasure()
+void UIMainBottom::ShowSinbadPopWindow(EventCustom* p_Event) {
+  // cityBuildFunction:checkPopUpSinbadTreasure()
 }
 
-void UIMainBottom::ReLoginFinish(EventCustom *p_Event){
+void UIMainBottom::ReLoginFinish(EventCustom* p_Event) {
   // print("\230\150\173\231\186\191\233\135\141\232\191\158\229\149\166\239\188\129")
   // self.chatMainUIView:initWithData()
   // self:initGreenPoint()
@@ -824,11 +833,9 @@ void UIMainBottom::ReLoginFinish(EventCustom *p_Event){
   // cityBuildFunction:checkPopUpWindow()
 }
 
-void UIMainBottom::UpdateEventcenter(EventCustom *p_Event){
-  ShowLuckyBless(p_Event);
-}
+void UIMainBottom::UpdateEventcenter(EventCustom* p_Event) { ShowLuckyBless(p_Event); }
 
-void UIMainBottom::ServerMessageGetLordInfo(EventCustom *p_Event){
+void UIMainBottom::ServerMessageGetLordInfo(EventCustom* p_Event) {
   // if data.clientData and data.lord then
   //   local targetName = data.clientData.targetName
   //   if targetName == "AllianceInvitePop" or targetName == "atlantisMemberSingle" then
@@ -839,7 +846,7 @@ void UIMainBottom::ServerMessageGetLordInfo(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::UpdateExpostulation(EventCustom *p_Event){
+void UIMainBottom::UpdateExpostulation(EventCustom* p_Event) {
   // if data and data.isInit then
   //   GLOBAL_EXPOSTULATION_TIME = 0
   // end
@@ -855,14 +862,14 @@ void UIMainBottom::UpdateExpostulation(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::RecevieGuideMsg(EventCustom *p_Event){
+void UIMainBottom::RecevieGuideMsg(EventCustom* p_Event) {
   // local allianceInvitePop = self:getChildByName("Panel_AllianceInvitePop")
   // if allianceInvitePop then
   //   allianceInvitePop:removeFromParent()
   // end
 }
 
-void UIMainBottom::ServerMessageGetAllianceInfo(EventCustom *p_Event){
+void UIMainBottom::ServerMessageGetAllianceInfo(EventCustom* p_Event) {
   // local alliance = data.alliance
   // if data.clientData then
   //   local from = data.clientData.from
@@ -875,12 +882,12 @@ void UIMainBottom::ServerMessageGetAllianceInfo(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::Req4AllianceInviteData(){
+void UIMainBottom::Req4AllianceInviteData() {
   // local allianceCtrl = gametop.playertop_:getModule("allianceCtrl")
   // allianceCtrl:req4AllianceInviteData()
 }
 
-void UIMainBottom::InitAllianceInvitePop(EventCustom *p_Event){
+void UIMainBottom::InitAllianceInvitePop(EventCustom* p_Event) {
   // local allianceMgr = gametop.playertop_:getModule("allianceMgr")
   // local allianceCtrl = gametop.playertop_:getModule("allianceCtrl")
   // local function createBoard(...)
@@ -962,7 +969,7 @@ void UIMainBottom::InitAllianceInvitePop(EventCustom *p_Event){
   // end
 }
 
-GVector<bool> UIMainBottom::GetMonthlyCard(){
+GVector<bool> UIMainBottom::GetMonthlyCard() {
   // local gametop = gModuleMgr.getObject("gametop")
   // local rechargeActivityCtrl = gametop.playertop_:getModule("rechargeActivityCtrl")
   // local monthData = rechargeActivityCtrl:getMonthActivityList()
@@ -1006,7 +1013,7 @@ GVector<bool> UIMainBottom::GetMonthlyCard(){
   return GVector<bool>();
 }
 
-void UIMainBottom::AddQuestionnaireButton(int32 p_Num){
+void UIMainBottom::AddQuestionnaireButton(int32 p_Num) {
   // local effectMainUITop = include("effectMainUITop")
   // self.btnQuestionnaire = effectMainUITop.questionnaire(num)
   // self.btnQuestionnaire:addTo(self.scroll_btn)
@@ -1015,7 +1022,7 @@ void UIMainBottom::AddQuestionnaireButton(int32 p_Num){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::UpdateQuestionnaireButton(EventCustom *p_Event){
+void UIMainBottom::UpdateQuestionnaireButton(EventCustom* p_Event) {
   // if self.btnQuestionnaire then
   //   self.btnQuestionnaire:removeFromParent()
   //   self.btnQuestionnaire = nil
@@ -1033,7 +1040,7 @@ void UIMainBottom::UpdateQuestionnaireButton(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::AddLostRuinsButton(EventCustom *p_Event){
+void UIMainBottom::AddLostRuinsButton(EventCustom* p_Event) {
   // if self.btnLostRuins then
   //   self.btnLostRuins:removeFromParent()
   //   self.btnLostRuins = nil
@@ -1051,7 +1058,7 @@ void UIMainBottom::AddLostRuinsButton(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::AddWindTowerButton(EventCustom *p_Event){
+void UIMainBottom::AddWindTowerButton(EventCustom* p_Event) {
   // if self.btnWindTower then
   //   self.btnWindTower:removeFromParent()
   //   self.btnWindTower = nil
@@ -1072,8 +1079,7 @@ void UIMainBottom::AddWindTowerButton(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-
-void UIMainBottom::AddSnowWolfLostButton(EventCustom *p_Event){
+void UIMainBottom::AddSnowWolfLostButton(EventCustom* p_Event) {
   // if self.btnSnowWolfLost then
   //   self.btnSnowWolfLost:removeFromParent()
   //   self.btnSnowWolfLost = nil
@@ -1098,7 +1104,7 @@ void UIMainBottom::AddSnowWolfLostButton(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::UpdateCrazyTrioButton(EventCustom *p_Event){
+void UIMainBottom::UpdateCrazyTrioButton(EventCustom* p_Event) {
   // if data and data.msg == "MESSAGE_CUMUACTIVITY_CRAZYTRIO_SHOWDOWN" then
   //   if self.btnSwitchType == -1 then
   //     self.btnSwitchType = 1
@@ -1116,7 +1122,7 @@ void UIMainBottom::UpdateCrazyTrioButton(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::AddCrazyTrioButton(EventCustom *p_Event){
+void UIMainBottom::AddCrazyTrioButton(EventCustom* p_Event) {
   // if self.btnCrazyTrio then
   //   self.btnCrazyTrio:removeFromParent()
   //   self.btnCrazyTrio = nil
@@ -1141,7 +1147,7 @@ void UIMainBottom::AddCrazyTrioButton(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::AddCommunityButton(void *p_Info){
+void UIMainBottom::AddCommunityButton(void* p_Info) {
   // local effectMainUITop = include("effectMainUITop")
   // self.btnCommunity = effectMainUITop.communityCenter(info)
   // self.btnCommunity:addTo(self.scroll_btn)
@@ -1149,7 +1155,7 @@ void UIMainBottom::AddCommunityButton(void *p_Info){
   // self.btnCommunity:addTouchEventListener(handlerEx(self, self.OnCommunityClick, info.param))
 }
 
-void UIMainBottom::UpdateCommunityButton(EventCustom *p_Event){
+void UIMainBottom::UpdateCommunityButton(EventCustom* p_Event) {
   // if self.btnCommunity then
   //   self.btnCommunity:removeFromParent()
   //   self.btnCommunity = nil
@@ -1168,7 +1174,7 @@ void UIMainBottom::UpdateCommunityButton(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::AddMonthCardButton(){
+void UIMainBottom::AddMonthCardButton() {
   // local effectMainUITop = include("effectMainUITop")
   // self.btnMonthCard = effectMainUITop.monthOrWeeklyCard()
   // self.btnMonthCard:addTo(self.scroll_btn)
@@ -1177,7 +1183,7 @@ void UIMainBottom::AddMonthCardButton(){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::UpdateMonthCardButton(EventCustom *p_Event){
+void UIMainBottom::UpdateMonthCardButton(EventCustom* p_Event) {
   // local hasGift, hasBuy, hasGot = self:getMonthlyCard()
   // if not self.btnMonthCard and hasGift and not hasBuy and not IsArClient then
   //   self:addMonthCardButton()
@@ -1198,7 +1204,7 @@ void UIMainBottom::UpdateMonthCardButton(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::OnMonthCardClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnMonthCardClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("rechargeMonthlyFrame")
@@ -1206,7 +1212,7 @@ void UIMainBottom::OnMonthCardClick(Ref *p_Sender, Widget::TouchEventType p_Type
   // end
 }
 
-void UIMainBottom::OnCommunityClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnCommunityClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local localUrl = {
@@ -1228,7 +1234,7 @@ void UIMainBottom::OnCommunityClick(Ref *p_Sender, Widget::TouchEventType p_Type
   // end
 }
 
-void UIMainBottom::OnLostRuinsClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnLostRuinsClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if eventType == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local tag = target:getTag()
@@ -1243,7 +1249,7 @@ void UIMainBottom::OnLostRuinsClick(Ref *p_Sender, Widget::TouchEventType p_Type
   // end
 }
 
-void UIMainBottom::OnWindTowerClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnWindTowerClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if eventType == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   if target.fingerNode then
@@ -1257,8 +1263,7 @@ void UIMainBottom::OnWindTowerClick(Ref *p_Sender, Widget::TouchEventType p_Type
   // end
 }
 
-
-void UIMainBottom::OnSnowWolfLostClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnSnowWolfLostClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if eventType == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   if target.fingerNode then
@@ -1271,7 +1276,7 @@ void UIMainBottom::OnSnowWolfLostClick(Ref *p_Sender, Widget::TouchEventType p_T
   // end
 }
 
-void UIMainBottom::OnCrazyTrioClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnCrazyTrioClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if eventType == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local tag = target:getTag()
@@ -1290,7 +1295,7 @@ void UIMainBottom::OnCrazyTrioClick(Ref *p_Sender, Widget::TouchEventType p_Type
   // end
 }
 
-void UIMainBottom::OnQuestionnaireClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnQuestionnaireClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("questionnaireView")
@@ -1298,7 +1303,7 @@ void UIMainBottom::OnQuestionnaireClick(Ref *p_Sender, Widget::TouchEventType p_
   // end
 }
 
-void UIMainBottom::UpdateEnjoyLotteryButton(){
+void UIMainBottom::UpdateEnjoyLotteryButton() {
   // if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.ENJOY_LOTTERY, false) and not worldMapDefine.isInRemains() then
   //   if not self.btnEnjoyLottery then
   //     local effectMainUITop = include("effectMainUITop")
@@ -1317,7 +1322,7 @@ void UIMainBottom::UpdateEnjoyLotteryButton(){
   // end
 }
 
-void UIMainBottom::OnEnjoyLotteryClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnEnjoyLotteryClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.ENJOY_LOTTERY, true) then
@@ -1326,7 +1331,7 @@ void UIMainBottom::OnEnjoyLotteryClick(Ref *p_Sender, Widget::TouchEventType p_T
   // end
 }
 
-void UIMainBottom::OnSultansBackWelClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnSultansBackWelClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.SULTAN_BACK_WELCOME_ACTIVITY, true) then
@@ -1335,17 +1340,18 @@ void UIMainBottom::OnSultansBackWelClick(Ref *p_Sender, Widget::TouchEventType p
   // end
 }
 
-void UIMainBottom::OnGoldPackageClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnGoldPackageClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   SoraDCreatePanel("eventGoldPackageView"):show()
   // end
 }
 
-void UIMainBottom::ShowLuckyBless(EventCustom *p_Event){
+void UIMainBottom::ShowLuckyBless(EventCustom* p_Event) {
   // local luckyBlessCtrl = gametop.playertop_:getModule("luckyBlessCtrl")
   // local activityShowCtrl = gametop.playertop_:getModule("activityShowCtrl")
-  // if (luckyBlessCtrl:getLeftActivateCount() > 0 or luckyBlessCtrl:getLuckyBlessStatus() == 2) and activityShowCtrl:isActivityOpen(gActivityTimeActivityID.LUCKY_BLESSING_ACTIVITY) then
+  // if (luckyBlessCtrl:getLeftActivateCount() > 0 or luckyBlessCtrl:getLuckyBlessStatus() == 2) and
+  // activityShowCtrl:isActivityOpen(gActivityTimeActivityID.LUCKY_BLESSING_ACTIVITY) then
   //   if self.luckyBlessNode then
   //     self.luckyBlessNode:removeFromParent()
   //     self.luckyBlessNode = nil
@@ -1368,7 +1374,7 @@ void UIMainBottom::ShowLuckyBless(EventCustom *p_Event){
   // self:sortBottomQuestBtns()
 }
 
-void UIMainBottom::AddGoldPackageButton(){
+void UIMainBottom::AddGoldPackageButton() {
   // local effectMainUITop = include("effectMainUITop")
   // self.btnGoldPackage = effectMainUITop.goldPackage()
   // self.btnGoldPackage:addTo(self.scroll_btn)
@@ -1382,7 +1388,7 @@ void UIMainBottom::AddGoldPackageButton(){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::UpdateGoldPackageButton(EventCustom *p_Event){
+void UIMainBottom::UpdateGoldPackageButton(EventCustom* p_Event) {
   // if not clientEventMgr.judgeIsOpen(gActivityTimeActivityID.GOLD_PACKAGE, false) then
   //   if self.btnGoldPackage then
   //     self.btnGoldPackage:setVisible(false)
@@ -1400,7 +1406,7 @@ void UIMainBottom::UpdateGoldPackageButton(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::OnWorldCityClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type){
+void UIMainBottom::OnWorldCityClick(Ref* p_Sender, ui::Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   if self.viewChangeType == VIEW_TYPE_CITY then
@@ -1423,7 +1429,7 @@ void UIMainBottom::OnWorldCityClick(Ref *p_Sender, ui::Widget::TouchEventType p_
   // end
 }
 
-void UIMainBottom::OnBottomClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+void UIMainBottom::OnBottomClick(Ref* p_Sender, ui::Widget::TouchEventType p_Touch) {
   // if type == ccui.TouchEventType.ended then
   //   if button == self.btnHero then
   //     local mainCityFunctions = include("mainCityFunctions")
@@ -1458,7 +1464,7 @@ void UIMainBottom::OnBottomClick(Ref *p_Sender, ui::Widget::TouchEventType p_Tou
   // end
 }
 
-void UIMainBottom::InitAllianceView(){
+void UIMainBottom::InitAllianceView() {
   // if worldMapDefine.isInRemains() then
   //   SoraDCreatePanel("allianceWarView"):show()
   // elseif worldMapDefine.isInLegendLord() then
@@ -1477,7 +1483,7 @@ void UIMainBottom::InitAllianceView(){
   // end
 }
 
-void UIMainBottom::UpdateGreenTip(RGreenTipsCount *p_BtnState){
+void UIMainBottom::UpdateGreenTip(RGreenTipsCount* p_BtnState) {
   // if btnState.alliance then
   //   self.tipAllianceCount:setString(btnState.alliance)
   //   self.tipAlliance:setVisible(btnState.alliance > 0)
@@ -1503,7 +1509,7 @@ void UIMainBottom::UpdateGreenTip(RGreenTipsCount *p_BtnState){
   // end
 }
 
-void UIMainBottom::UpdateShopNewTag(EventCustom *p_Event){
+void UIMainBottom::UpdateShopNewTag(EventCustom* p_Event) {
   // local shopltCtrl = gModuleMgr.sharedMgr("shopltCtrl")
   // local isNew = shopltCtrl:getShopNewTag("all")
   // print("updateShopNewTag", isNew)
@@ -1514,7 +1520,7 @@ void UIMainBottom::UpdateShopNewTag(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::InitTipJump(Node *p_Node){
+void UIMainBottom::InitTipJump(Node* p_Node) {
   // if not tipName then
   //   return
   // end
@@ -1539,7 +1545,7 @@ void UIMainBottom::InitTipJump(Node *p_Node){
   // tipName:runAction(cca.repeatForever(self.moveAct))
 }
 
-void UIMainBottom::OnSkillClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+void UIMainBottom::OnSkillClick(Ref* p_Sender, ui::Widget::TouchEventType p_Touch) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound("uicontrol", 13)
   //   SoraDSendMessage({
@@ -1550,7 +1556,7 @@ void UIMainBottom::OnSkillClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touc
   // end
 }
 
-void UIMainBottom::OnReplayClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+void UIMainBottom::OnReplayClick(Ref* p_Sender, ui::Widget::TouchEventType p_Touch) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   SoraDSendMessage({
@@ -1559,7 +1565,7 @@ void UIMainBottom::OnReplayClick(Ref *p_Sender, ui::Widget::TouchEventType p_Tou
   // end
 }
 
-void UIMainBottom::UpdateBtnLuckyRecharge(EventCustom *p_Event){
+void UIMainBottom::UpdateBtnLuckyRecharge(EventCustom* p_Event) {
   // if not clientEventMgr.judgeIsOpen(gActivityTimeActivityID.LUCKY_RECHARGE_TASK_ACTIVIYT) then
   //   self.btnLuckyRecharge:setVisible(false)
   //   self:updateBtnContainer()
@@ -1607,14 +1613,14 @@ void UIMainBottom::UpdateBtnLuckyRecharge(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::OnLuckyReachergeClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+void UIMainBottom::OnLuckyReachergeClick(Ref* p_Sender, ui::Widget::TouchEventType p_Touch) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   SoraDCreatePanel("eventLuckyRechargeView"):show()
   // end
 }
 
-void UIMainBottom::StopRecording(EventCustom *p_Event){
+void UIMainBottom::StopRecording(EventCustom* p_Event) {
   // userSDKManager.logEvent(gSDKDef.TDonEvent.screen_recording_log, {
   //   type = 2,
   //   times = gSDKDef.GAME_RECORD_TIME
@@ -1637,34 +1643,33 @@ void UIMainBottom::StopRecording(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::OpenUIAlliance(EventCustom *p_Event){
-  InitAllianceView();
+void UIMainBottom::OpenUIAlliance(EventCustom* p_Event) { InitAllianceView(); }
+
+void UIMainBottom::CurrentShowViewType(EventCustom* p_Event) {
+  EScene l_ViewType = EScene::None;
+  if (p_Event && p_Event->getUserData() != nullptr) l_ViewType = *static_cast<EScene*>(p_Event->getUserData());
+  m_ViewChangeType = l_ViewType;
+  if (m_ViewChangeType == EScene::City) {
+    n_ImgWorldCity->loadTexture("btn_main_world.png", TextureResType::PLIST);
+    if (n_NodeQuestGuide) n_NodeQuestGuide->setVisible(true);
+    CreateExpostulationTimer();
+    InitAccountBind(nullptr);
+    UpdateBtnContainer(nullptr);
+    ShowOrHideGuideView(nullptr);
+  } else {
+    n_ImgWorldCity->loadTexture("btn_main_city.png", TextureResType::PLIST);
+    if (n_NodeQuestGuide) n_NodeQuestGuide->setVisible(false);
+    DeleteExpostulationTimer();
+    if (n_BtnAccount) n_BtnAccount->setVisible(false);
+  }
+  BtnNeckLaceRankCheck(nullptr);
+  UpdateEventcenter(nullptr);
+  CheckWallDefend(nullptr);
+  InitHelpAllBtn(nullptr);
+  SortBottomQuestBtns(nullptr);
 }
 
-void UIMainBottom::CurrentShowViewType(EventCustom *p_Event){
-  // local viewType = data.viewType
-  // self.viewChangeType = viewType
-  // if self.viewChangeType == VIEW_TYPE_CITY then
-  //   self.imgWorldCity:loadTexture("btn_main_world.png", ccui.TextureResType.plistType)
-  //   self.nodeQuestGuide:setVisible(true)
-  //   self:createExpostulationTimer()
-  //   self:initAccountBind()
-  //   self:updateBtnContainer()
-  //   self:showOrHideGuideView()
-  // else
-  //   self.imgWorldCity:loadTexture("btn_main_city.png", ccui.TextureResType.plistType)
-  //   self.nodeQuestGuide:setVisible(false)
-  //   self:deleteExpostulationTimer()
-  //   self.btnAccount:setVisible(false)
-  // end
-  // self:btnNeckLaceRankCheck()
-  // self:updateEventcenter()
-  // self:checkWallDefend()
-  // self:initHelpAllBtn()
-  // self:sortBottomQuestBtns()
-}
-
-void UIMainBottom::MsgUpdateMailIconNumber(EventCustom *p_Event){
+void UIMainBottom::MsgUpdateMailIconNumber(EventCustom* p_Event) {
   // local numberNewMailTotal = mailMgr:getNewMailNum()
   // if numberNewMailTotal == 0 then
   //   self.tipMail:setVisible(false)
@@ -1674,11 +1679,9 @@ void UIMainBottom::MsgUpdateMailIconNumber(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::sMsgUpdateNumberNewMail(EventCustom *p_Event){
-  MsgUpdateMailIconNumber(p_Event);
-}
+void UIMainBottom::sMsgUpdateNumberNewMail(EventCustom* p_Event) { MsgUpdateMailIconNumber(p_Event); }
 
-void UIMainBottom::CheckWatchTower(EventCustom *p_Event){
+void UIMainBottom::CheckWatchTower(EventCustom* p_Event) {
   // local kingdomMapCtrl = gametop.playertop_:getModule("kingdomMapCtrl")
   // local red, blue, frm, roman = kingdomMapCtrl:getWatchTowerLightInfo()
   // local isIgnoreRomanSoul = kingdomMapCtrl:getWatchTowerQueue():isIgnoreRomanSoul()
@@ -1699,7 +1702,7 @@ void UIMainBottom::CheckWatchTower(EventCustom *p_Event){
   // self:sortBottomQuestBtns()
 }
 
-void UIMainBottom::CheckRomanSoul(EventCustom *p_Event){
+void UIMainBottom::CheckRomanSoul(EventCustom* p_Event) {
   // print("MainUIBottom:checkRomanSoul")
   // local romeActivityCtrl = gametop.playertop_:getModule("romeActivityCtrl")
   // local isRomanEvent = false
@@ -1716,7 +1719,7 @@ void UIMainBottom::CheckRomanSoul(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::CheckWallDefend(EventCustom *p_Event){
+void UIMainBottom::CheckWallDefend(EventCustom* p_Event) {
   // local wallsCtrl = gametop.playertop_:getModule("wallsCtrl")
   // local burnningTime = wallsCtrl:getBurningTime()
   // if self.viewChangeType == VIEW_TYPE_CITY then
@@ -1734,7 +1737,7 @@ void UIMainBottom::CheckWallDefend(EventCustom *p_Event){
   // self:sortBottomQuestBtns()
 }
 
-void UIMainBottom::BtnPyramidBattleCheck(EventCustom *p_Event){
+void UIMainBottom::BtnPyramidBattleCheck(EventCustom* p_Event) {
   // local pyramidWarCtrl = gametop.playertop_:getModule("pyramidWarCtrl")
   // local canShow, leftTime = pyramidWarCtrl:isShowEnterPyramidWar()
   // print("btnPyramidBattleCheck", canShow, leftTime)
@@ -1745,17 +1748,17 @@ void UIMainBottom::BtnPyramidBattleCheck(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::BtnNeckLaceRankCheck(EventCustom *p_Event){
+void UIMainBottom::BtnNeckLaceRankCheck(EventCustom* p_Event) {
   // self.btnNeckLaceRank:setVisible(false)
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::MsgHegemonClean(EventCustom *p_Event){
+void UIMainBottom::MsgHegemonClean(EventCustom* p_Event) {
   // self:btnHegemonManagerCheck()
   // self:btnHegemonBattleCheck()
 }
 
-void UIMainBottom::BtnCityUnlockCheck(EventCustom *p_Event){
+void UIMainBottom::BtnCityUnlockCheck(EventCustom* p_Event) {
   // local maincityDesRead = include("maincityDesRead")
   // local lv = SoraDGetCastleLv()
   // local data = maincityDesRead.getUnlockInfoByLv(lv, false)
@@ -1771,8 +1774,7 @@ void UIMainBottom::BtnCityUnlockCheck(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-
-void UIMainBottom::BtnPayBackCheck(EventCustom *p_Event){
+void UIMainBottom::BtnPayBackCheck(EventCustom* p_Event) {
   // local payBackCtrl = SoraDGetCtrl("payBackCtrl")
   // local price = payBackCtrl:getPrice()
   // if price > 0 then
@@ -1792,7 +1794,7 @@ void UIMainBottom::BtnPayBackCheck(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::AddPrinceGiftNewBuffButton(EventCustom *p_Event){
+void UIMainBottom::AddPrinceGiftNewBuffButton(EventCustom* p_Event) {
   //  local gametop = gModuleMgr.getObject("gametop")
   // local princeGiftNewCtrl = gametop.playertop_:getModule("princeGiftNewCtrl")
   // if data and data.isRelogin then
@@ -1813,27 +1815,27 @@ void UIMainBottom::AddPrinceGiftNewBuffButton(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::AddPrinceGiftBuffButton(EventCustom *p_Event){
-//     local gametop = gModuleMgr.getObject("gametop")
-//   local princeGiftCtrl = gametop.playertop_:getModule("princeGiftCtrl")
-//   if data and data.isRelogin then
-//     princeGiftCtrl:reqInitInfo()
-//   end
-//   local remainTime = princeGiftCtrl:getBuffEndTime() - serviceFunctions.systemTime()
-//   if remainTime > 0 then
-//     self.btnPrinceGiftBuff:setVisible(true)
-//     self.textPrinceGift:setTimeEndListener(function()
-//       self.btnPrinceGiftBuff:setVisible(false)
-//       self:updateBtnContainer()
-//     end)
-//     self.textPrinceGift:beginTime(remainTime)
-//   else
-//     self.btnPrinceGiftBuff:setVisible(false)
-//   end
-//   self:updateBtnContainer()
+void UIMainBottom::AddPrinceGiftBuffButton(EventCustom* p_Event) {
+  //     local gametop = gModuleMgr.getObject("gametop")
+  //   local princeGiftCtrl = gametop.playertop_:getModule("princeGiftCtrl")
+  //   if data and data.isRelogin then
+  //     princeGiftCtrl:reqInitInfo()
+  //   end
+  //   local remainTime = princeGiftCtrl:getBuffEndTime() - serviceFunctions.systemTime()
+  //   if remainTime > 0 then
+  //     self.btnPrinceGiftBuff:setVisible(true)
+  //     self.textPrinceGift:setTimeEndListener(function()
+  //       self.btnPrinceGiftBuff:setVisible(false)
+  //       self:updateBtnContainer()
+  //     end)
+  //     self.textPrinceGift:beginTime(remainTime)
+  //   else
+  //     self.btnPrinceGiftBuff:setVisible(false)
+  //   end
+  //   self:updateBtnContainer()
 }
 
-void UIMainBottom::BtnNewPlayerBuffCheck(EventCustom *p_Event){
+void UIMainBottom::BtnNewPlayerBuffCheck(EventCustom* p_Event) {
   // local gametop = gModuleMgr.getObject("gametop")
   // local buffCtrl = gametop.playertop_:getModule("buffCtrl")
   // local isNewPlayer = buffCtrl:isNewPlayerBuffOpen()
@@ -1854,7 +1856,7 @@ void UIMainBottom::BtnNewPlayerBuffCheck(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::BtnSultansBackWelCheck(EventCustom *p_Event){
+void UIMainBottom::BtnSultansBackWelCheck(EventCustom* p_Event) {
   // if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.SULTAN_BACK_WELCOME_ACTIVITY, false) then
   //   self.btnSultansWelBack:setVisible(true)
   //   local activityShowCtrl = gametop.playertop_:getModule("activityShowCtrl")
@@ -1869,7 +1871,7 @@ void UIMainBottom::BtnSultansBackWelCheck(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::BtnHegemonBattleCheck(EventCustom *p_Event){
+void UIMainBottom::BtnHegemonBattleCheck(EventCustom* p_Event) {
   // local worldMapDefine = include("worldMapDefine")
   // local isShow = false
   // local hegemonCtrl = gametop.playertop_:getModule("hegemonCtrl")
@@ -1919,7 +1921,7 @@ void UIMainBottom::BtnHegemonBattleCheck(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::BtnKingdomManagerCheck(EventCustom *p_Event){
+void UIMainBottom::BtnKingdomManagerCheck(EventCustom* p_Event) {
   // local kingdomMapCtrl = gametop.playertop_:getModule("kingdomMapCtrl")
   // local myRank = kingdomMapCtrl:getKingWarRank()
   // local isShow = false
@@ -1976,7 +1978,7 @@ void UIMainBottom::BtnKingdomManagerCheck(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::BtnLegendKingManagerCheck(EventCustom *p_Event){
+void UIMainBottom::BtnLegendKingManagerCheck(EventCustom* p_Event) {
   // local isShow = false
   // local legendLordCtrl = gametop.playertop_:getModule("legendLordCtrl")
   // local nodesArray = {
@@ -1992,7 +1994,7 @@ void UIMainBottom::BtnLegendKingManagerCheck(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::BtnHegemonManagerCheck(EventCustom *p_Event){
+void UIMainBottom::BtnHegemonManagerCheck(EventCustom* p_Event) {
   // local isShow = false
   // local hegemonCtrl = gametop.playertop_:getModule("hegemonCtrl")
   // local nodesArray = {
@@ -2009,7 +2011,7 @@ void UIMainBottom::BtnHegemonManagerCheck(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::BtnTrainPowerManagerCheck(){
+void UIMainBottom::BtnTrainPowerManagerCheck() {
   // local isShow = false
   // local trainPowerCtrl = gametop.playertop_:getModule("trainPowerCtrl")
   // isShow = clientEventMgr.judgeIsOpen(gActivityTimeActivityID.TRAIN_POWER_ACTIVITY)
@@ -2024,7 +2026,7 @@ void UIMainBottom::BtnTrainPowerManagerCheck(){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::RefreshTrainPower(EventCustom *p_Event){
+void UIMainBottom::RefreshTrainPower(EventCustom* p_Event) {
   // if not data then
   //   return
   // end
@@ -2033,7 +2035,7 @@ void UIMainBottom::RefreshTrainPower(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::BtnWatchTowerClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnWatchTowerClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("watchTowerView")
@@ -2044,7 +2046,7 @@ void UIMainBottom::BtnWatchTowerClick(Ref *p_Sender, Widget::TouchEventType p_Ty
   // end
 }
 
-void UIMainBottom::BtnWallBurningClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnWallBurningClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   SoraDCreatePanel("defendView"):show()
@@ -2054,7 +2056,7 @@ void UIMainBottom::BtnWallBurningClick(Ref *p_Sender, Widget::TouchEventType p_T
   // end
 }
 
-void UIMainBottom::BtnKingdomManagerClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnKingdomManagerClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   if 1 == self.btnKingdomManagerState then
@@ -2068,7 +2070,7 @@ void UIMainBottom::BtnKingdomManagerClick(Ref *p_Sender, Widget::TouchEventType 
   // end
 }
 
-void UIMainBottom::BtnLegendKingManagerClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnLegendKingManagerClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local legendaryKingView = SoraDCreatePanel("legendaryKingView")
@@ -2077,7 +2079,7 @@ void UIMainBottom::BtnLegendKingManagerClick(Ref *p_Sender, Widget::TouchEventTy
   // end
 }
 
-void UIMainBottom::BtnLegendInviteClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnLegendInviteClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   if not SoraDSearchPanelFromManagerByName("legendTeamInvitedView") then
@@ -2088,7 +2090,7 @@ void UIMainBottom::BtnLegendInviteClick(Ref *p_Sender, Widget::TouchEventType p_
   // end
 }
 
-void UIMainBottom::BtnRadianceWarClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnRadianceWarClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local radianceWarUtil = include("radianceWarUtil")
@@ -2096,7 +2098,7 @@ void UIMainBottom::BtnRadianceWarClick(Ref *p_Sender, Widget::TouchEventType p_T
   // end
 }
 
-void UIMainBottom::BtnHegemonManagerClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnHegemonManagerClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local legendaryKingView = SoraDCreatePanel("hegemonView")
@@ -2108,14 +2110,14 @@ void UIMainBottom::BtnHegemonManagerClick(Ref *p_Sender, Widget::TouchEventType 
   // end
 }
 
-void UIMainBottom::BtnHegemonBattleClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnHegemonBattleClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   SoraDCreatePanel("hegemonActivity"):show()
   // end
 }
 
-void UIMainBottom::BtnTrainPowerClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnTrainPowerClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound("uicontrol", 49)
   //   local panel = SoraDCreatePanel("trainPowerView")
@@ -2123,7 +2125,7 @@ void UIMainBottom::BtnTrainPowerClick(Ref *p_Sender, Widget::TouchEventType p_Ty
   // end
 }
 
-void UIMainBottom::BtnRomanSoulClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnRomanSoulClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("watchTowerSoulView")
@@ -2134,14 +2136,14 @@ void UIMainBottom::BtnRomanSoulClick(Ref *p_Sender, Widget::TouchEventType p_Typ
   // end
 }
 
-void UIMainBottom::BtnPyramidPlayoffsClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnPyramidPlayoffsClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   SoraDCreatePanel("pyramidAllianceGiftView"):show()
   // end
 }
 
-void UIMainBottom::BtnPyramidBattleClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnPyramidBattleClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   SoraDCreatePanel("pyramidBattleView"):show()
@@ -2151,7 +2153,7 @@ void UIMainBottom::BtnPyramidBattleClick(Ref *p_Sender, Widget::TouchEventType p
   // end
 }
 
-void UIMainBottom::BtnAccountClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnAccountClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound("uicontrol", 48)
   //   local panel = SoraDCreatePanel("commonAccountBonusBox")
@@ -2159,7 +2161,7 @@ void UIMainBottom::BtnAccountClick(Ref *p_Sender, Widget::TouchEventType p_Type)
   // end
 }
 
-void UIMainBottom::BtnNeckLaceRankClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnNeckLaceRankClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("ringRankView")
@@ -2167,7 +2169,7 @@ void UIMainBottom::BtnNeckLaceRankClick(Ref *p_Sender, Widget::TouchEventType p_
   // end
 }
 
-void UIMainBottom::BtnCityUnlockClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnCityUnlockClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("cityUpgradeUnlockView")
@@ -2176,7 +2178,7 @@ void UIMainBottom::BtnCityUnlockClick(Ref *p_Sender, Widget::TouchEventType p_Ty
   // end
 }
 
-void UIMainBottom::BtnNewPlayerBuffClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnNewPlayerBuffClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("citybuffView")
@@ -2185,7 +2187,7 @@ void UIMainBottom::BtnNewPlayerBuffClick(Ref *p_Sender, Widget::TouchEventType p
   // end
 }
 
-void UIMainBottom::BtnPrinceGiftNewBuffClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnPrinceGiftNewBuffClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("princeGiftNewBuffPreviewPopView")
@@ -2195,7 +2197,7 @@ void UIMainBottom::BtnPrinceGiftNewBuffClick(Ref *p_Sender, Widget::TouchEventTy
   // end
 }
 
-void UIMainBottom::BtnPrinceGiftBuffClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnPrinceGiftBuffClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("princeGiftBuffStrengthenView")
@@ -2203,7 +2205,7 @@ void UIMainBottom::BtnPrinceGiftBuffClick(Ref *p_Sender, Widget::TouchEventType 
   // end
 }
 
-void UIMainBottom::BtnSwitchClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnSwitchClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   self.btnSwitchType = -self.btnSwitchType
@@ -2212,7 +2214,7 @@ void UIMainBottom::BtnSwitchClick(Ref *p_Sender, Widget::TouchEventType p_Type){
   // end
 }
 
-void UIMainBottom::SwitchBottonBtn(){
+void UIMainBottom::SwitchBottonBtn() {
   // local actFrame = 20
   // self.node_arrow:stopAllActions()
   // local rBy = 180
@@ -2271,7 +2273,7 @@ void UIMainBottom::SwitchBottonBtn(){
   // self.node_arrow:runAction(seq)
 }
 
-void UIMainBottom::UpdateBtnContainer(EventCustom *p_Event){
+void UIMainBottom::UpdateBtnContainer(EventCustom* p_Event) {
   // local btnTableName = {
   //   "btnCityUnlock",
   //   "btnNewPlayerBuff",
@@ -2375,7 +2377,7 @@ void UIMainBottom::UpdateBtnContainer(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::AddKOChoiceButton(EventCustom *p_Event){
+void UIMainBottom::AddKOChoiceButton(EventCustom* p_Event) {
   // print("addKOChoiceButton")
   // if userSDKManager.isKO() then
   //   local bPopBefore = SoraDConfigGet("Game:MainCityView:ROSKOChoice~bool", {byUID = true})
@@ -2394,7 +2396,7 @@ void UIMainBottom::AddKOChoiceButton(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::OnKOChoiceClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::OnKOChoiceClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if eventType == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local panel = SoraDCreatePanel("koUserNotifyView")
@@ -2402,7 +2404,7 @@ void UIMainBottom::OnKOChoiceClick(Ref *p_Sender, Widget::TouchEventType p_Type)
   // end
 }
 
-void UIMainBottom::AddSixYearActivityButton(){
+void UIMainBottom::AddSixYearActivityButton() {
   // local activityID = gActivityTimeActivityID.SIX_YEAR_ACTIVITY
   // if clientEventMgr.judgeIsOpen(activityID) then
   //   if not self.btnSixYearActivity then
@@ -2434,7 +2436,7 @@ void UIMainBottom::AddSixYearActivityButton(){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::AddHarvestSeasonButton(EventCustom *p_Event){
+void UIMainBottom::AddHarvestSeasonButton(EventCustom* p_Event) {
   // if not IsArClient then
   //   return
   // end
@@ -2500,7 +2502,7 @@ void UIMainBottom::AddHarvestSeasonButton(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::RecevieItemChangeMsg(EventCustom *p_Event){
+void UIMainBottom::RecevieItemChangeMsg(EventCustom* p_Event) {
   // if redata and redata.itemType and gItemType.HERO_CHIP == redata.itemType then
   //   SoraDSendMessage({
   //     msg = "MESSAGE_GREEN_POINT_UPDATE",
@@ -2509,8 +2511,7 @@ void UIMainBottom::RecevieItemChangeMsg(EventCustom *p_Event){
   // end
 }
 
-
-void UIMainBottom::GreenPointUpdate(EventCustom *p_Event){
+void UIMainBottom::GreenPointUpdate(EventCustom* p_Event) {
   // local questCtrl = gametop.playertop_:getModule("questCtrl")
   // local backpackCtrl = gametop.playertop_:getModule("backpackCtrl")
   // if data.type == GREEN_POINT_NOTICE_TYPE.QUEST then
@@ -2539,13 +2540,13 @@ void UIMainBottom::GreenPointUpdate(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::GreenPointUpdateByType(EventCustom *p_Event){
+void UIMainBottom::GreenPointUpdateByType(EventCustom* p_Event) {
   // if GREEN_POINT_NOTICE_TYPE.ALLIANCE == data.type then
   //   self:updateGreenPointAlliance()
   // end
 }
 
-void UIMainBottom::UpdateGreenPointAlliance(){
+void UIMainBottom::UpdateGreenPointAlliance() {
   // local kingdomMapCtrl = gametop.playertop_:getModule("kingdomMapCtrl")
   // local allianceTreasureCtrl = gametop.playertop_:getModule("allianceTreasureCtrl")
   // local allianceActiveCtrl = gametop.playertop_:getModule("allianceActiveCtrl")
@@ -2594,7 +2595,7 @@ void UIMainBottom::UpdateGreenPointAlliance(){
   // self:updateGreenTip({alliance = allianceCount})
 }
 
-void UIMainBottom::UpdateGreenPointRadianceWar(EventCustom *p_Event){
+void UIMainBottom::UpdateGreenPointRadianceWar(EventCustom* p_Event) {
   // local kingdomMapCtrl = gametop.playertop_:getModule("kingdomMapCtrl")
   // local num = kingdomMapCtrl:getHallWarCount(true)
   // local isRed = num > 0
@@ -2630,11 +2631,11 @@ void UIMainBottom::UpdateGreenPointRadianceWar(EventCustom *p_Event){
   // self:sortBottomQuestBtns()
 }
 
-void UIMainBottom::ShowLongTimeUnlogin(EventCustom *p_Event){
-  //SoraDShowMsgBox(i18n("brightWar_text_155"), i18n("common_text_054"), nil, nil, {canNotClose = true})
+void UIMainBottom::ShowLongTimeUnlogin(EventCustom* p_Event) {
+  // SoraDShowMsgBox(i18n("brightWar_text_155"), i18n("common_text_054"), nil, nil, {canNotClose = true})
 }
 
-void UIMainBottom::OpenRadianceWarning(bool p_IsOpen){
+void UIMainBottom::OpenRadianceWarning(bool p_IsOpen) {
   // if self.imgWarning:isVisible() then
   //   return
   // end
@@ -2664,7 +2665,7 @@ void UIMainBottom::OpenRadianceWarning(bool p_IsOpen){
   // end
 }
 
-void UIMainBottom::OpenWarning(bool p_IsOpen){
+void UIMainBottom::OpenWarning(bool p_IsOpen) {
   // if self.imgWarning:isVisible() == bool then
   //   return
   // end
@@ -2693,7 +2694,7 @@ void UIMainBottom::OpenWarning(bool p_IsOpen){
   // end
 }
 
-void UIMainBottom::StartRecordScreen(EventCustom *p_Event){
+void UIMainBottom::StartRecordScreen(EventCustom* p_Event) {
   // self.btnReplay:setVisible(true)
   // self.timer = SoradCreateTimer(self, handler(self, self.recordTimeTick))
   // if device.platform == "ios" then
@@ -2708,12 +2709,12 @@ void UIMainBottom::StartRecordScreen(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::RecordTimeTick(float p_Delta){
+void UIMainBottom::RecordTimeTick(float p_Delta) {
   // gSDKDef.GAME_RECORD_TIME = gSDKDef.GAME_RECORD_TIME + 1
   // self.textVideo:setString(SoraDConvertSecondToString(gSDKDef.GAME_RECORD_TIME))
 }
 
-void UIMainBottom::OnExitOther(){
+void UIMainBottom::OnExitOther() {
   // gChatMgrs:clean()
   // userSDKManager:setAudioTarget(nil)
   // local cityBuildFunction = include("cityBuildFunction")
@@ -2726,7 +2727,7 @@ void UIMainBottom::OnExitOther(){
   // end
 }
 
-void UIMainBottom::ShowWallFireEffect(){
+void UIMainBottom::ShowWallFireEffect() {
   // local worldMapDefine = include("worldMapDefine")
   // local isInWar = worldMapDefine.isInPyramid()
   // local nodeWallTip = self.btnWallBurning:getChildByName("Node_wallTip")
@@ -2759,14 +2760,14 @@ void UIMainBottom::ShowWallFireEffect(){
   // end
 }
 
-void UIMainBottom::HideWallFireEffect(){
+void UIMainBottom::HideWallFireEffect() {
   // local node_pyramid_effect = self.btnWallBurning:getChildByName("Node_pyramid_effect")
   // local node_normal_effect = self.btnWallBurning:getChildByName("Node_normal_effect")
   // node_pyramid_effect:setVisible(false)
   // node_normal_effect:setVisible(false)
 }
 
-void UIMainBottom::AddFirstJoinAllianceAnimation(){
+void UIMainBottom::AddFirstJoinAllianceAnimation() {
   // local joinSprite = display.newSprite("#et_alliance_newjoin_01.png")
   // joinSprite:setPosition(cc.p(self.btnAlliance:getContentSize().width / 2, self.btnAlliance:getContentSize().height - 15))
   // joinSprite:setName("Sprite_join")
@@ -2793,7 +2794,7 @@ void UIMainBottom::AddFirstJoinAllianceAnimation(){
   // joinSprite:runAction(cc.RepeatForever:create(seq))
 }
 
-void UIMainBottom::RemovefirstJoinAllianceAnimation(EventCustom *p_Event){
+void UIMainBottom::RemovefirstJoinAllianceAnimation(EventCustom* p_Event) {
   // display.removeAnimationCache("firstJoinAllianceGold")
   // if self.btnAlliance and self.btnAlliance:getChildByName("Sprite_join") then
   //   self.btnAlliance:removeChildByName("Sprite_join")
@@ -2804,7 +2805,7 @@ void UIMainBottom::RemovefirstJoinAllianceAnimation(EventCustom *p_Event){
   // userSDKManager.report2firebase("jointAlliance")
 }
 
-void UIMainBottom::ShowAllianceInWarEffect(){
+void UIMainBottom::ShowAllianceInWarEffect() {
   // local kingdomMapCtrl = gametop.playertop_:getModule("kingdomMapCtrl")
   // local hallWarCount = kingdomMapCtrl:getHallWarCount()
   // local fNode = self.btnAlliance:getParent():getChildByName("alliance_fightNode")
@@ -2833,7 +2834,7 @@ void UIMainBottom::ShowAllianceInWarEffect(){
   // end
 }
 
-void UIMainBottom::GetEventCenterReturn(EventCustom *p_Event){
+void UIMainBottom::GetEventCenterReturn(EventCustom* p_Event) {
   // self:updateEventcenter()
   // if type(redata.activityID) == "table" then
   //   for _, v in pairs(redata.activityID) do
@@ -2844,12 +2845,13 @@ void UIMainBottom::GetEventCenterReturn(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::GetEventCenterReturn_Imp(EventCustom *p_Event){
+void UIMainBottom::GetEventCenterReturn_Imp(EventCustom* p_Event) {
   // local activityID = data.activityID
   // local eventID = data.eventID
   // if gActivityTimeActivityID.LIMITED_DISCOUNT_ACTIVITY == activityID then
   //   self:updateItemsBtn()
-  // elseif gActivityTimeActivityID.ALLIANCE_MOBILIZATION_ACTIVITY == activityID or gActivityTimeActivityID.ALLIANCE_MOBILIZATION_ACTIVITY == eventID then
+  // elseif gActivityTimeActivityID.ALLIANCE_MOBILIZATION_ACTIVITY == activityID or gActivityTimeActivityID.ALLIANCE_MOBILIZATION_ACTIVITY == eventID
+  // then
   //   self:updateGreenPointAlliance()
   // elseif gActivityTimeActivityID.COMMUNITY_CENTER_MAIN_UI == activityID then
   //   self:updateCommunityButton()
@@ -2865,7 +2867,7 @@ void UIMainBottom::GetEventCenterReturn_Imp(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::UpdateItemsBtn(){
+void UIMainBottom::UpdateItemsBtn() {
   // local allianceDesRead = include("allianceDesRead")
   // local limitTimeDiscountShopAPI = include("limitTimeDiscountShopAPI")
   // local status, remainTime = limitTimeDiscountShopAPI:getActivityInfo()
@@ -2876,7 +2878,7 @@ void UIMainBottom::UpdateItemsBtn(){
   // end
 }
 
-void UIMainBottom::UpdateBtnStatues(EventCustom *p_Event){
+void UIMainBottom::UpdateBtnStatues(EventCustom* p_Event) {
   // local lordLevel = lordInfoCtrl:getLordLevel()
   // self.btnSkill:getParent():setVisible(lordLevel >= 4)
   // if self.btnSkill:getParent():isVisible() then
@@ -2886,7 +2888,7 @@ void UIMainBottom::UpdateBtnStatues(EventCustom *p_Event){
   // end
 }
 
-void UIMainBottom::ShowFireBorder(bool p_IsRemove){
+void UIMainBottom::ShowFireBorder(bool p_IsRemove) {
   // if isRemove then
   //   self.Node_discountEffect:setVisible(false)
   //   return
@@ -2896,74 +2898,70 @@ void UIMainBottom::ShowFireBorder(bool p_IsRemove){
   // SoraDFadeINOUT(Image_dh)
 }
 
-void UIMainBottom::SortBottomQuestBtns(EventCustom *p_Event){
-  // if self.viewChangeType ~= VIEW_TYPE_CITY then
-  //   local posy = 240
-  //   if worldMapDefine.isInLegendLord() then
-  //     posy = 420
-  //   elseif worldMapDefine.isInRemains() then
-  //     posy = 620
-  //   elseif worldMapDefine.isInRadiance() then
-  //     posy = 520
-  //   elseif worldMapDefine.isInAtlantis() then
-  //     local worldMap = SoraDCurrentSceneShowView("worldMapView")
-  //     if worldMap and worldMap.getBottomQuestBtnsOffsetY then
-  //       posy = worldMap:getBottomQuestBtnsOffsetY()
-  //     else
-  //       posy = 600
-  //     end
-  //   end
-  //   local btnTableName = {
-  //     "btnWatchTower",
-  //     "luckyEffectNode",
-  //     "luckyBlessNode",
-  //     "btnLegendInvite",
-  //     "btnRadianceWar"
-  //   }
-  //   for _, v in ipairs(btnTableName) do
-  //     if self[v] and self[v]:isVisible() then
-  //       self[v]:setPosition(SoraDFPoint(585, posy, 640))
-  //       posy = posy + 80
-  //     end
-  //   end
-  // else
-  //   local basePosy = 170
-  //   if self.nodeQuestGuide:isVisible() then
-  //     basePosy = 250
-  //   end
-  //   local basePosx = 585
-  //   local posy = basePosy
-  //   local posx = basePosx
-  //   local btnTableName = {
-  //     "btnWallBurning",
-  //     "btnWatchTower",
-  //     "btnHelpAll",
-  //     "btnAccount",
-  //     "luckyEffectNode",
-  //     "luckyBlessNode",
-  //     "btnLegendInvite",
-  //     "btnRadianceWar"
-  //   }
-  //   local hCount = 3
-  //   if display.height < 960 then
-  //     hCount = 2
-  //   elseif display.height >= 1136 then
-  //     hCount = 4
-  //   end
-  //   local index = 1
-  //   for i, v in ipairs(btnTableName) do
-  //     if self[v] and self[v]:isVisible() then
-  //       local _h = index % hCount == 0 and hCount or index % hCount
-  //       local _l = math.ceil(index / hCount)
-  //       local realPosy = posy + (_h - 1) * 80
-  //       self[v]:setPosition(SoraDFPoint(posx - (_l - 1) * 90, realPosy, 640))
-  //       index = index + 1
-  //     end
-  //   end
-  // end
+void UIMainBottom::SortBottomQuestBtns(EventCustom* p_Event) {
+  if (m_ViewChangeType != EScene::City) {
+    auto l_PosY = 240;
+    if (WorldMapDefine::Get()->IsInLegendLord()) {
+      l_PosY = 420;
+    } else if (WorldMapDefine::Get()->IsInRemains()) {
+      l_PosY = 620;
+    } else if (WorldMapDefine::Get()->IsInRadiance()) {
+      l_PosY = 520;
+    } else if (WorldMapDefine::Get()->IsInAtlantis()) {
+      auto l_WorldMap = dynamic_cast<WorldMapView*>(GBase::DCurrentSceneShowView("worldMapView"));
+      if (l_WorldMap && l_WorldMap->GetBottomQuestBtnsOffsetY())
+        l_PosY = l_WorldMap->GetBottomQuestBtnsOffsetY();
+      else
+        l_PosY = 600;
+    }
+    GVector<Node*> l_BtnTableName = {n_BtnWatchTower,
+                                     // n_LuckyEffectNode,
+                                    n_LuckyBlessNode, n_BtnLegendInvite, n_BtnRadianceWar};
+    for (auto l_Node : l_BtnTableName) {
+      if (l_Node && l_Node->isVisible()) {
+        l_Node->setPosition(GBase::DFPoint(585, l_PosY, 640));
+        l_PosY += 80;
+      }
+    }
+
+  } else {
+    auto l_BasePosy = 170;
+    if (n_NodeQuestGuide && n_NodeQuestGuide->isVisible()) {
+      l_BasePosy = 250;
+    }
+
+    auto l_BasePosx = 585;
+    auto l_Posy = l_BasePosy;
+    auto l_Posx = l_BasePosx;
+    GVector<Node*> l_BtnTableName = 
+    {
+      n_BtnWallBurning, n_BtnWatchTower, 
+      n_BtnHelpAll, n_BtnAccount, // n_LuckyEffectNode,
+      n_LuckyBlessNode, n_BtnLegendInvite,
+      n_BtnRadianceWar
+    };
+
+    auto l_HCount = 3;
+    if (GDisplay::Get()->height < 960) {
+      l_HCount = 2;
+    } else if (GDisplay::Get()->height >= 1136) {
+      l_HCount = 4;
+    }
+
+    auto l_Index = 1;
+    for (auto l_Node : l_BtnTableName) {
+      if (l_Node && l_Node->isVisible()) {
+        auto l_H = l_Index % l_HCount == 0 ? l_HCount : l_Index % l_HCount;
+        auto l_L = std::ceil(l_Index / l_HCount);
+        auto l_RealPosy = l_Posy + (l_H - 1) * 80;
+        l_Node->setPosition(GBase::DFPoint(l_Posx - (l_L - 1) * 90, l_RealPosy, 640));
+        l_Index++;
+      }
+    }
+  }
 }
 
-void UIMainBottom::InitHelpAllBtn(EventCustom *p_Event){
+void UIMainBottom::InitHelpAllBtn(EventCustom* p_Event) {
   // if not self.btnHelpAll then
   //   local effect = SoraDCreateCSBNode("alliancehelpEffect")
   //   effect:addTo(self.Node_area_lb)
@@ -2990,7 +2988,7 @@ void UIMainBottom::InitHelpAllBtn(EventCustom *p_Event){
   // self:sortBottomQuestBtns()
 }
 
-void UIMainBottom::BtnHelpAllClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnHelpAllClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local allianceHelp = SoraDGetCtrl("allianceHelp", gametop)
@@ -2998,7 +2996,7 @@ void UIMainBottom::BtnHelpAllClick(Ref *p_Sender, Widget::TouchEventType p_Type)
   // end
 }
 
-void UIMainBottom::InitBattleOpenBtn(){
+void UIMainBottom::InitBattleOpenBtn() {
   // if not self.btnBattleOpen then
   //   self.btnBattleOpen = self.btnHegemonBattle:clone()
   //   self.btnBattleOpen:addTo(self.scroll_btn)
@@ -3051,7 +3049,7 @@ void UIMainBottom::InitBattleOpenBtn(){
 //   end
 // }
 
-void UIMainBottom::RefreshBattleOpenBtn(float p_Delta){
+void UIMainBottom::RefreshBattleOpenBtn(float p_Delta) {
   // local openList = {}
   // if worldMapDefine.isInWar() then
   //   if self.btnBattleOpen:isVisible() then
@@ -3086,7 +3084,8 @@ void UIMainBottom::RefreshBattleOpenBtn(float p_Delta){
   //     table.insert(openList, {ctype = 2, leftTime = leftTime})
   //   end
   // end
-  // if remainsTeamCtrl:isActiveOpen() and (remainsTeamCtrl:isWarMatchBegin() or remainsTeamCtrl:isTeamCanInWar() and remainsTeamCtrl:isHasTeam()) then
+  // if remainsTeamCtrl:isActiveOpen() and (remainsTeamCtrl:isWarMatchBegin() or remainsTeamCtrl:isTeamCanInWar() and remainsTeamCtrl:isHasTeam())
+  // then
   //   local castle_limited = _G.CASTLE_LV27_LIMITED
   //   if castle_limited <= SoraDGetCastleLv() then
   //     local leftTime = remainsTeamCtrl:getWarStatusTime()
@@ -3159,8 +3158,7 @@ void UIMainBottom::RefreshBattleOpenBtn(float p_Delta){
   // end
 }
 
-void UIMainBottom::BtnBattleOpenClick(Ref *p_Sender, Widget::TouchEventType p_Type)
-{
+void UIMainBottom::BtnBattleOpenClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   local tag = button:getTag()
@@ -3172,14 +3170,14 @@ void UIMainBottom::BtnBattleOpenClick(Ref *p_Sender, Widget::TouchEventType p_Ty
   // end
 }
 
-void UIMainBottom::BtnPayBackClick(Ref *p_Sender, Widget::TouchEventType p_Type){
+void UIMainBottom::BtnPayBackClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   uiManager:show("BackMoneyPopView")
   // end
 }
 
-ui::Button *UIMainBottom::GetBtnTarget(const GString &p_Name){
+ui::Button* UIMainBottom::GetBtnTarget(const GString& p_Name) {
   // print("    function MainUIBottom:getBtnTarget(id)")
   // if id == "mail" then
   //   return self.btnMail
@@ -3193,7 +3191,7 @@ ui::Button *UIMainBottom::GetBtnTarget(const GString &p_Name){
   return nullptr;
 }
 
-void UIMainBottom::CheckRemainsWar(){
+void UIMainBottom::CheckRemainsWar() {
   // if worldMapDefine.isInRemains() then
   //   self.labelAllianceName:setString(i18n("common_text_047"))
   // elseif worldMapDefine.isInLegendLord() then
@@ -3205,7 +3203,7 @@ void UIMainBottom::CheckRemainsWar(){
   // end
 }
 
-void UIMainBottom::MsgInvitedInfoLegend(EventCustom *p_Event){
+void UIMainBottom::MsgInvitedInfoLegend(EventCustom* p_Event) {
   // local legendTeamCtrl = gametop.playertop_:getModule("legendTeamCtrl")
   // local hasInvite = legendTeamCtrl:isHasInvitedInfo()
   // self.btnLegendInvite:setVisible(hasInvite)
@@ -3219,7 +3217,7 @@ void UIMainBottom::MsgInvitedInfoLegend(EventCustom *p_Event){
   // self:sortBottomQuestBtns()
 }
 
-void UIMainBottom::OpenReportMail(EventCustom *p_Event){
+void UIMainBottom::OpenReportMail(EventCustom* p_Event) {
   // dump(data, "openReportMail")
   // SoraDCloseLoading()
   // if data.mail == nil then
@@ -3233,7 +3231,7 @@ void UIMainBottom::OpenReportMail(EventCustom *p_Event){
   // panel:initWithData(data.mail, "key", data.senderId)
 }
 
-void UIMainBottom::CheckPreDownloadStatus(EventCustom *p_Event){
+void UIMainBottom::CheckPreDownloadStatus(EventCustom* p_Event) {
   // local preDownloadUtil = include("preDownloadUtil")
   // local isShow = preDownloadUtil:isShowPreDownloadWidget()
   // if isShow then
@@ -3245,12 +3243,12 @@ void UIMainBottom::CheckPreDownloadStatus(EventCustom *p_Event){
   // self:updateBtnContainer()
 }
 
-void UIMainBottom::CheckPreDownload(EventCustom *p_Event){
+void UIMainBottom::CheckPreDownload(EventCustom* p_Event) {
   // local preDownloadUtil = include("preDownloadUtil")
   // preDownloadUtil.checkPreDownloadAutoStart()
 }
 
-void UIMainBottom::OnPreDownloadSuc(EventCustom *p_Event){
+void UIMainBottom::OnPreDownloadSuc(EventCustom* p_Event) {
   // local preDownloadUtil = include("preDownloadUtil")
   // preDownloadUtil.checkSendPredownloadOk()
 }

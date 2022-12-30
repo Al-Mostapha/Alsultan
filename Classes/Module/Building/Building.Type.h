@@ -128,13 +128,13 @@ struct RBuildingSpecs {
   int32 openStar = 0;
   int32 maxStarLv = 0;
   bool isCanBuild = true;
-  GString BuildingName = "";
-  GString BuildingIcon = "";
-  GString BuildingBrief = "";
-  GString UpgradeBrief = "";
-  GString Describe = "";
-  GString WarDescribe = "";
-  GString StarDescribe = "";
+  const char *BuildingName = "";
+  const char *BuildingIcon = "";
+  const char *BuildingBrief = "";
+  const char *UpgradeBrief = "";
+  const char *Describe = "";
+  const char *WarDescribe = "";
+  const char *StarDescribe = "";
   GHashMap<uint32, RBuildingLvlSpecs> Lvls;
 
   static RBuildingSpecs fromJson(GJson* json) ;

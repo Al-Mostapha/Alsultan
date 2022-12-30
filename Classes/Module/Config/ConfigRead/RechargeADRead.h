@@ -8,15 +8,9 @@ struct RRechargeAD{
   RRechargeAD(){}
   RRechargeAD(std::pair<GString, int32> p_Init)
     : ClassName(p_Init.first), MenuID(p_Init.second){}
-  RRechargeAD &operator=(std::pair<GString, int32> p_Init){
+  RRechargeAD &operator=(const std::pair<GString, int32> &p_Init){
     ClassName = p_Init.first;
     MenuID = p_Init.second;
-    return *this;
-  }
-  RRechargeAD &operator=(RRechargeAD &p_Init){
-    ClassName = p_Init.ClassName;
-    MenuID = p_Init.MenuID;
-    ADType = p_Init.ADType;
     return *this;
   }
 

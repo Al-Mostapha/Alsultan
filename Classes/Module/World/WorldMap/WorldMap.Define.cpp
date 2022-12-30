@@ -7,3 +7,23 @@ WorldMapDefine * WorldMapDefine::Get(){
   }
   return _WorldMapDefine;
 }
+
+bool WorldMapDefine::IsInWar(){
+  return false;
+}
+
+bool WorldMapDefine::IsInLegendLord(){
+  return false;
+}
+
+bool WorldMapDefine::IsInRemains(){
+  return false;
+}
+
+bool WorldMapDefine::IsInRadiance(){
+  return false;
+}
+
+bool WorldMapDefine::IsInAtlantis(){
+  return false;
+}

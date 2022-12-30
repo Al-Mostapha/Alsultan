@@ -5,7 +5,10 @@
 #include "BaseTypeDef.h"
 #include "Include/IncludeEngine.h"
 #include "Common/Timer.Mgr.h"
-#include "Type/EventArg/Lord.EventArg.h"
+#include "Type/EventArg/Lord.EvtArg.h"
+#include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "Global/Global.Enum.h"
+#include "Base/DateTime.h"
 
 #undef PlaySound
 
@@ -16,6 +19,7 @@ enum class EFactionType;
 enum class EMsgBoxCallBack;
 class UICommonPromptBox;
 struct RViewOtherData; 
+class UIBaseView;
 
 namespace GBase {
 
@@ -112,13 +116,23 @@ void DRemoveMessageFromTargetByName(Node* p_Node, const char* p_EventId);
 
 void DCloseLoading(Node* p_Parent, const char* p_Mark = "", bool p_All = false);
 
-bool DPostCheckMaintain(int32 p_KingdomId = 0);
+bool DPostCheckMaintain(int32 p_KingdomId = 0, GTime p_Time = GDateTime::Now());
 GString DFValueSuit(const GString& p_Value, const GString& p_Sign = "+");
 GString GetCCSPath(const char* p_CCSName);
 
 void DClearItemAwards();
 void DShowSwitcherView(RViewOtherData p_Data);
-void DShowPowerChange(RUpdatePowerEventArg p_Arg, bool p_IsOnlyGet = false);
+void DShowPowerChange(RUpdatePowerEvtArg p_Arg, bool p_IsOnlyGet = false);
 void DShowEXPChange(int32 p_Exp);
 void DDelayCallOnce(GString p_UniqueKey, ccSchedulerFunc p_Func, float p_Time = 0.001, bool p_CheckHandle = true);
+UIBaseView *DSearchPanelFromManagerByName(const char* p_Name);
+void DStartLoginServerAndCheckVersion();
+void DShowLoginView(EScene p_Scene = EScene::City, EKingdomClassType p_KingdomClassType = EKingdomClassType::Normal);
+UICommonPromptBox *DShowLoginFailBox(const char *p_FailType, GString p_ShowMsg, bool p_HaveCancelBtn, std::function<void()> p_CallBack);
+bool DCheckIsOpenBuildStar();
+bool SoraDIsBraveOpen();
+
+void DShowLordUPView();
+UIBaseView *DCurrentSceneShowView(const char *p_NameView = "");
+Node *DCreateCSBNode(const char *p_CSBName);
 };  // namespace GBase

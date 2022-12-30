@@ -58,7 +58,8 @@
     "unordered_set": "cpp",
     "sstream": "cpp",
     "queue": "cpp",
-    "deque": "cpp"
+    "deque": "cpp",
+    "optional": "cpp"
   },
   "intelephense.environment.includePaths": [
     "${workspaceRoot}"

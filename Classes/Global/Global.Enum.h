@@ -76,3 +76,13 @@ enum class ELoginRangeTbl {
   ObbUpdate = 4,
   ObbValidate = 5
 };
+
+enum class ELoginFailType {
+  None = 0,
+  Client = 1,
+  Server = 2,
+  Version = 3,
+  StartLogin = 4,
+  GetUserInfo = 5,
+  SdkTokenError = 6
+};

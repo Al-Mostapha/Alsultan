@@ -99,8 +99,8 @@ struct RCityBtnAction : GStruct
 
 		if (JsonObject.HasMember("offset") && JsonObject["offset"].IsObject())
 		{
-			offset.x = (float) JsonObject["offset"].HasMember("x") ? JsonObject["offset"]["x"].GetInt() : 0;
-			offset.x = (float) JsonObject["offset"].HasMember("y") ? JsonObject["offset"]["y"].GetInt() : 0;
+			offset.x = (float) JsonObject["offset"].HasMember("x") ? (float) JsonObject["offset"]["x"].GetInt() : 0.0f;
+			offset.x = (float) JsonObject["offset"].HasMember("y") ? (float) JsonObject["offset"]["y"].GetInt() : 0.0f;
 		}
 	}
 

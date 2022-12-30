@@ -15,7 +15,7 @@
 #include "Module/World/WorldMap/View/UIWorldResourceMap.h"
 #include "Scene/City/CityScene.View.h"
 #include "Game/Guide/Guide.Ctrl.h"
-#include "Base/Type/EventArg/Lord.EventArg.h"
+#include "Base/Type/EventArg/Lord.EvtArg.h"
 
 
 
@@ -36,7 +36,7 @@ private:
   UIBaseView *n_SystemNoticeView = nullptr;
   UIPanelBase *n_ShareBtn = nullptr;
   UIBasePanel *n_VoiceBtn = nullptr;
-  UIPanelBase *n_MainUIView = nullptr;
+  UIBaseView *n_MainUIView = nullptr;
   bool m_CommonTipRA = false;
   UIBaseView *n_CurrentShowView = nullptr;
   UIWorldResourceMap *n_WorldResourceMap = nullptr;
@@ -94,6 +94,5 @@ public:
   void LoginSettingRun(){}
   UIBaseView *CurrentMainUI();
   GVector<UIBaseView *> GetCheckViewList();
-  bool RemoveLoginView();
   void ListenerKeyPad();
 };

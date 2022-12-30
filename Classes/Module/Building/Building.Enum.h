@@ -66,6 +66,7 @@ enum class EBuildingIndex {
 enum class EBuildingPos { CBPlace_None = 0, CBPlace_Fixed = 1, CBPlace_Inner = 2, CBPlace_Outer = 3 };
 
 enum class EBuildingViewModel {
+  None = 0,
   ViewModel_1 = 1,
   ViewModel_2 = 2,
   ViewModel_3 = 3,

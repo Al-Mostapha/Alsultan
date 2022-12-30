@@ -49,7 +49,7 @@ void BuildingOHosptial::ShowNormalParticle()
 {
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_yiyuan_01.plist");
-	Part1->setPosition(-4.5, 14);
+	Part1->setPosition(-4.5f, 14);
 	Part1->setScaleX(1.77);
 	Part1->setScaleY(3.36);
 	Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
@@ -57,15 +57,15 @@ void BuildingOHosptial::ShowNormalParticle()
 
 	auto Part2 = ParticleSystemQuad::create("Particle/et_yiyuan_02.plist");
 	Part2->setPosition(-7, 43);
-	Part2->setScaleX(0.67);
-	Part2->setScaleY(2.1);
+	Part2->setScaleX(0.67f);
+	Part2->setScaleY(2.1f);
 	Part2->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part2, 10);
 
 	auto Part3 = ParticleSystemQuad::create("Particle/et_yiyuan_03.plist");
 	Part3->setPosition(0, 0);
 	Part3->setScaleX(2.4);
-	Part3->setScaleY(1.22);
+	Part3->setScaleY(1.22f);
 	Part3->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part3, 10);
 
@@ -77,8 +77,8 @@ void BuildingOHosptial::ShowNormalParticle()
 
 	auto Part5 = ParticleSystemQuad::create("Particle/et_gongfang_complete_02.plist");
 	Part5->setPosition(0, 0);
-	Part5->setScaleX(1.16);
-	Part5->setScaleY(1.2);
+	Part5->setScaleX(1.16f);
+	Part5->setScaleY(1.2f);
 	Part5->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part5, 10);
 }

@@ -67,7 +67,7 @@ void BuildingAChariotPlant::setBuildingIconMiracle()
 	auto SleepSprite2 = Sprite::createWithSpriteFrameName(BuildingIconMiracle);
 	SleepSprite2->setPosition(45, 0);
 	SleepSprite2->setLocalZOrder(10);
-	SleepSprite2->setScale(0.3);
+	SleepSprite2->setScale(0.3f);
 	addChild(SleepSprite2);
 }
 

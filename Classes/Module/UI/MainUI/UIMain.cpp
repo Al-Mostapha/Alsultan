@@ -51,7 +51,6 @@ void UIMain::InitPanel()
   m_PandectView->setPosition(Vec2(GDisplay::Get()->rcx - 139, getContentSize().height / 2));
   addChild(m_PandectView, 20);
   m_BottomArea = UIMainBottom::Create();
-  m_BottomArea->InitPanel();
   m_BottomArea->setAnchorPoint(Vec2(0, 0));
   m_BottomArea->setPosition(Vec2(0, 0));
   addChild(m_BottomArea, 10);

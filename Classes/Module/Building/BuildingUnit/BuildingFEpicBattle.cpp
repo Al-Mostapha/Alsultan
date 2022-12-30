@@ -101,13 +101,13 @@ void BuildingFEpicBattle::Clicked(Touch *p_Touch, Event *p_Event){
         EBuildingActionTag::TagPlayClickBuildSound
       );
     }),
-    DelayTime::create(0.3),
+    DelayTime::create(0.3f),
     CallFunc::create([](){
       auto l_Panel = UIEpicWarView::Create();
       l_Panel->InitPanel();
       l_Panel->Show();
     }),
-    DelayTime::create(0.3),
+    DelayTime::create(0.3f),
     CallFunc::create([](){
       if(!CityScene::Get())
         return;

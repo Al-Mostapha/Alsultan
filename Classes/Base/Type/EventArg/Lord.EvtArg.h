@@ -1,7 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
 
-struct RUpdatePowerEventArg
+struct RUpdatePowerEvtArg
 {
   int32 OriPower;
   int32 CurPower;

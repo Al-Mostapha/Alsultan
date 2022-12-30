@@ -37,8 +37,8 @@ void BuildingFElitePalace::showWorkingEffect()
 {
   auto Part1 = ParticleSystemQuad::create("Particle/et_jingyingxl_01.plist");
   Part1->setPosition(38, 112);
-  Part1->setScaleX(0.6);
-  Part1->setScaleY(-0.6);
+  Part1->setScaleX(0.6f);
+  Part1->setScaleY(-0.6f);
   Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
   addChild(Part1, 10);
 

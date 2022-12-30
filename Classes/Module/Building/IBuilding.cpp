@@ -229,7 +229,7 @@ void IBuilding::ShowBuildLvl(){
 void IBuilding::UpdateLvl(){
   auto l_BuildingLvl = GetBuildingLvl();
   auto l_StarLvl     = GetStarLvl();
-  bool l_IsWarLvl    = BuildingLogic::Get()->IsWarLvl(l_BuildingLvl);
+  auto l_IsWarLvl    = BuildingLogic::Get()->IsWarLvl(l_BuildingLvl);
   auto l_WarLvlText = GBase::DGetBuildWarLv(l_BuildingLvl);
   UpdateTextLvl();
   UpdateIsCanUpgrade();
@@ -542,7 +542,7 @@ void IBuilding::UpdateTimer(float p_Delta){
     }
     SetHarvestState(EHarvestState::Some, true);
   }
-  if(IsHarvestMuch(l_CurrentHarvest, l_MaxHarvest) && l_HarvestState == EHarvestState::Some){
+  if(IsHarvestMuch((float)l_CurrentHarvest, (float)l_MaxHarvest) && l_HarvestState == EHarvestState::Some){
     SetHarvestState(EHarvestState::Much, true);
     SetBlockState(EBuildingState::Harvesting);
     ChangeState();
@@ -957,32 +957,32 @@ bool IBuilding::IsLocked(){
   auto l_CastleLv = l_BuildingCell->Info.buildingLvl;
 
   if(l_BuildingId == EBuilding::ArrowTower){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl7)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
       l_IsLocked = false;
     else
       l_IsLocked = true;
   } else if(l_BuildingId == EBuilding::Blacksmith){
-     if(l_CastleLv >= GBase::Const::Get()->CastleLvl10)
+     if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl10)
       l_IsLocked = false;
     else
       l_IsLocked = true;
   } else if(l_BuildingId == EBuilding::MaterialWorkShop){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl10)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl10)
       l_IsLocked = false;
     else
       l_IsLocked = true;
   } else if(l_BuildingId == EBuilding::PetHouse){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl4)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl4)
       l_IsLocked = false;
     else
       l_IsLocked = true;
   }else if(l_BuildingId == EBuilding::ElitePalace){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl16)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl16)
       l_IsLocked = false;
     else
       l_IsLocked = true;
   } else if(l_BuildingId == EBuilding::TrainHall){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl7)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
       l_IsLocked = false;
     else
       l_IsLocked = true;
@@ -1002,22 +1002,22 @@ bool IBuilding::IsLocked(){
   //   end
   //   print("\231\186\170\229\191\181\231\162\145\239\188\140\233\156\128\232\166\129\229\159\142\229\160\16119\231\186\167\232\167\163\233\148\129===", castleLv, CASTLE_LV19_LIMITED, isLocked)
   else if(l_BuildingId == EBuilding::Prison){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl16)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl16)
       l_IsLocked = false;
     else
       l_IsLocked = true;
   } else if( l_BuildingId == EBuilding::EpicBattle){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl7)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
       l_IsLocked = false;
     else
       l_IsLocked = true;
   } else if(l_BuildingId == EBuilding::Monument){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl6)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl6)
       l_IsLocked = false;
     else
       l_IsLocked = true;
   } else if(l_BuildingId == EBuilding::ResurrectionHall){
-    if(l_CastleLv >= GBase::Const::Get()->CastleLvl6)
+    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl6)
       l_IsLocked = false;
     else
       l_IsLocked = true;
@@ -1254,40 +1254,40 @@ void IBuilding::setBuildingLvlText() {
 }
 
 void IBuilding::setBuildingSleepSprite() {
-  int32 offsetX = 50;
-  int32 offsetY = 40;
-  int32 oriX = 44;
-  int32 oriY = 97;
+  float offsetX = 50;
+  float offsetY = 40;
+  float oriX = 44;
+  float oriY = 97;
 
   auto actionMoveTo = MoveTo::create(0, Vec2(oriX, oriY));
   auto actionFadeTo = FadeTo::create(0, 1);
   auto actionRotateTo = RotateTo::create(0, 0);
-  auto actionMoveBy = MoveBy::create(1.6, Vec2(offsetX, offsetY));
-  auto actionFadeTo2 = FadeTo::create(1.6, 0.5);
-  auto actionRotateBy = RotateBy::create(1.6, 30);
+  auto actionMoveBy = MoveBy::create(1.6f, Vec2(offsetX, offsetY));
+  auto actionFadeTo2 = FadeTo::create(1.6f, 0.5f);
+  auto actionRotateBy = RotateBy::create(1.6f, 30);
 
   Spawn* actionSpawn = Spawn::create(actionMoveBy, actionFadeTo2, actionRotateBy, NULL);
   Sequence* sequenceAction = Sequence::create(actionMoveTo, actionFadeTo, actionRotateTo, actionSpawn, NULL);
 
-  DelayTime* actionDelay1 = DelayTime::create(0.2);
+  DelayTime* actionDelay1 = DelayTime::create(0.2f);
 
   Sequence* actionSeq2 =
           Sequence::create(MoveTo::create(0, Vec2(oriX, oriY)),
                            FadeTo::create(0, 1),
                            RotateTo::create(0, 0),
-                           Spawn::create(MoveBy::create(1.6, Vec2(offsetX, offsetY)), FadeTo::create(1.6, 0.5), RotateBy::create(1.6, -30), NULL),
+                           Spawn::create(MoveBy::create(1.6f, Vec2(offsetX, offsetY)), FadeTo::create(1.6f, 0.5f), RotateBy::create(1.6f, -30), NULL),
                            NULL);
 
-  DelayTime* actionDelay2 = DelayTime::create(0.2);
+  DelayTime* actionDelay2 = DelayTime::create(0.2f);
 
   Sequence* actionSeq3 =
           Sequence::create(MoveTo::create(0, Vec2(oriX, oriY)),
                            FadeTo::create(0, 1),
                            RotateTo::create(0, 0),
-                           Spawn::create(MoveBy::create(1.6, Vec2(offsetX, offsetY)), FadeTo::create(1.6, 0), RotateBy::create(1.6, 30), NULL),
+                           Spawn::create(MoveBy::create(1.6f, Vec2(offsetX, offsetY)), FadeTo::create(1.6f, 0), RotateBy::create(1.6f, 30), NULL),
                            NULL);
 
-  DelayTime* actionDelay3 = DelayTime::create(3.8);
+  DelayTime* actionDelay3 = DelayTime::create(3.8f);
 
   Sequence* actionSeq4 = Sequence::create(actionDelay1, actionSeq2, actionDelay2, actionSeq3, actionDelay3, NULL);
 

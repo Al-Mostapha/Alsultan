@@ -16,6 +16,7 @@ namespace GBase {
       return l_Point;
     if(l_Point.x)
       return Vec2(l_SizeW - l_Point.x, l_Point.y);
+    return l_Point;
   }
 
 

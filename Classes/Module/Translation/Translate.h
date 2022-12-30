@@ -8,6 +8,6 @@ private:
 public:
   Translate(/* args */);
   ~Translate();
-  static GString i18n(const char *key, const GMap<GString, GString> p_Replace = GMap<GString, GString>());
+  static GString i18n(const char *key, GMap<GString, GString> p_Replace = GMap<GString, GString>());
 };
 

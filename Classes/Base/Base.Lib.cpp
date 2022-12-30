@@ -166,7 +166,7 @@ namespace GBase{
     auto l_Width = GDisplay::Get()->size().width;
     auto l_Height= GDisplay::Get()->size().height;
     //TODO: 35056
-    auto l_RenderTexture = RenderTexture::create(l_Width, l_Height, PixelFormat::RGBA8888/*,35056*/);
+    auto l_RenderTexture = RenderTexture::create((int32)l_Width, (int32)l_Height, PixelFormat::RGBA8888/*,35056*/);
     // renderTexture:setKeepMatrix(true)
     l_RenderTexture->begin();
     l_RenderTexture->setKeepMatrix(true);
@@ -250,7 +250,7 @@ namespace GBase{
     }
   }
 
-  bool DPostCheckMaintain(int32 p_KingdomId){ return false; }
+  bool DPostCheckMaintain(int32 p_KingdomId, GTime p_Time){ return false; }
   GString DFValueSuit(const GString &p_Value, const GString &p_Sign){
     return p_Value + p_Sign;
   }
@@ -292,7 +292,7 @@ void DDelayCallOnce(GString p_UniqueKey, ccSchedulerFunc p_Func, float p_Time, b
   DManagerAddTimer(p_UniqueKey);
 }
 
-void DShowPowerChange(RUpdatePowerEventArg p_Arg, bool isOnlyGet = false){
+void DShowPowerChange(RUpdatePowerEvtArg p_Arg, bool p_IsOnlyGet){
   
 }
 
@@ -313,6 +313,43 @@ void DShowEXPChange(int32 p_Exp){
   //   end
   // end
   // return expUpNode
+}
+
+UIBaseView *DSearchPanelFromManagerByName(const char* p_Name){
+  return nullptr;
+}
+
+void DStartLoginServerAndCheckVersion(){
+
+}
+
+void DShowLoginView(EScene p_Scene, EKingdomClassType p_KingdomClassType){
+
+}
+
+UICommonPromptBox *DShowLoginFailBox(
+  const char *p_FailType, GString p_ShowMsg, 
+  bool p_HaveCancelBtn, std::function<void()> p_CallBack){
+return nullptr;
+}
+
+bool DCheckIsOpenBuildStar(){
+  return false;
+}
+bool SoraDIsBraveOpen(){
+  return false;
+}
+
+void DShowLordUPView(){
+  
+}
+
+UIBaseView *DCurrentSceneShowView(const char *p_ViewName){
+  return nullptr;
+}
+
+Node *DCreateCSBNode(const char *p_CSBName){
+  return CSLoader::createNode(p_CSBName);
 }
 
 } // namespace

@@ -36,11 +36,11 @@ void BuildingFMonument::ShowAnimWorking(bool p_ShowGlow)
 	auto sprite = Sprite::createWithSpriteFrame(frames.front());
 
 	sprite->setPosition(-25, 140);
-	sprite->setScale(1.475, 1.695);
-	sprite->setRotation(-28.15);
-	sprite->setOpacity(76.5);
+	sprite->setScale(1.475f, 1.695f);
+	sprite->setRotation(-28.15f);
+	sprite->setOpacity(76.5f);
 
-	auto animation = Animation::createWithSpriteFrames(frames, 0.1111111111111111);
+	auto animation = Animation::createWithSpriteFrames(frames, 0.1111111111111111f);
 
 	sprite->runAction(RepeatForever::create(Animate::create(animation)));
 

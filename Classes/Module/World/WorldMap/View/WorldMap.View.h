@@ -9,4 +9,5 @@ public:
   static WorldMapView *Create(){
     return Create("UiParts/Panel/World/WorldMap/worldMapView.csb");
   }
+  float GetBottomQuestBtnsOffsetY();
 };

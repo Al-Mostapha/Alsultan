@@ -6,6 +6,7 @@
 #include "cocos2d.h"
 #include "external/json/document.h"
 #include <time.h>
+#include <optional>
 
 typedef std::string GString;
 
@@ -36,3 +37,13 @@ using GMap = std::map<K, V>;
 
 template <class K>
 using GQueue = std::queue<K>;
+
+enum class ENullBool{
+  Null,
+  True,
+  False
+};
+
+
+// template <class K>
+// using GOptional = std::optional<K>;

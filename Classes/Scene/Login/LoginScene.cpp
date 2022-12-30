@@ -1,20 +1,31 @@
 #include "LoginScene.h"
 #include "Base/Common/Cach/InstanceCach.Mgr.h"
 #include "Base/Common/Fabric.h"
-#include "Base/Device/Shack.Module.h"
 #include "Base/Containers/Pair.h"
+#include "Base/Device/Shack.Module.h"
+#include "Base/Type/EventArg/Login.EvtArg.h"
+#include "Module/Army/Army.Read.h"
 #include "Module/Building/Building.Func.h"
+#include "Module/Building/Building.Read.h"
 #include "Module/City/City.Ctrl.h"
+#include "Module/CityResource/Resource.Read.h"
 #include "Module/Common/Military/MilitaryRank.Ctrl.h"
 #include "Module/Effect/Effect.Enum.h"
 #include "Module/Effect/Include.h"
+#include "Module/Equip/Equip.Read.h"
+#include "Module/Guild/Guild.Read.h"
 #include "Module/Item/Include.h"
+#include "Module/Item/Item.Read.h"
+#include "Module/Player/Chapter/PlayerTask.Ctrl.h"
+#include "Module/Player/LordInfo.Ctrl.h"
 #include "Module/Player/Player.Top.h"
+#include "Module/Science/Science.Read.h"
 #include "Module/UI/Common/Button/UICommonShareButton.h"
 #include "Module/UI/Common/UICommonDressPreview.h"
 #include "Module/UI/Common/UICommonItemShowBox.h"
 #include "Module/UI/EventCenter/EventTemplate/PrinceGift/UIPrinceGiftBuffPreview.h"
 #include "Module/UI/MainUI/UIMain.h"
+#include "Module/UI/Panel/Login/UICommonMaintainView.h"
 #include "Module/UI/Panel/Notice/SystemNotice/UISystemNotice.View.h"
 #include "Module/UI/UIManger.h"
 #include "Module/UI/View/UILogin.View.h"
@@ -23,7 +34,7 @@
 #include "Module/World/WorldMap/WorldMap.Define.h"
 #include "Module/World/WorldMap/WorldMap.Util.h"
 #include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
-#
+
 
 // on "init" you need to initialize your instance
 bool LoginScene::init() {
@@ -224,29 +235,30 @@ void LoginScene::UpdateShareButton(EventCustom* p_Event) {
 }
 
 void LoginScene::UpdatePower(EventCustom* p_Event) {
-  if(!p_Event) return;
-  if(!p_Event->getUserData()) return;
-  auto l_Power = static_cast<RUpdatePowerEventArg *>(p_Event->getUserData());
+  if (!p_Event) return;
+  if (!p_Event->getUserData()) return;
+  auto l_Power = static_cast<RUpdatePowerEvtArg*>(p_Event->getUserData());
   m_OriPower = l_Power->OriPower;
-  if(GuideCtrl::Get()->GetCurMainCityGuideStep() != nullptr && l_Power->CurPower - m_OriPower > 500) return;
-  GBase::DDelayCallOnce("mainUI_lordPowerChange", [=](float p_Delta) {
-    GBase::DSendMessage("MESSAGE_MAINUI_POWER_UPDATE");
-    GBase::DShowPowerChange(*l_Power, false);
-    auto l_ShowPush = std::make_unique<bool>(true);
-    //advertiseCollect.TriggerEvent(gSDKDef.TDonEvent.advertise_fight_point, l_Power->CurPower);
-    GBase::DSendMessage("MESSAGE_MAIN_AGREEMENT_BOX", l_ShowPush.get());
-    m_OriPower = 0;
-  }, 0.8f);
-
+  if (GuideCtrl::Get()->GetCurMainCityGuideStep() != nullptr && l_Power->CurPower - m_OriPower > 500) return;
+  GBase::DDelayCallOnce(
+          "mainUI_lordPowerChange",
+          [=](float p_Delta) {
+            GBase::DSendMessage("MESSAGE_MAINUI_POWER_UPDATE");
+            GBase::DShowPowerChange(*l_Power, false);
+            auto l_ShowPush = std::make_unique<bool>(true);
+            // advertiseCollect.TriggerEvent(gSDKDef.TDonEvent.advertise_fight_point, l_Power->CurPower);
+            GBase::DSendMessage("MESSAGE_MAIN_AGREEMENT_BOX", l_ShowPush.get());
+            m_OriPower = 0;
+          },
+          0.8f);
 }
 
-void LoginScene::UpdateEXP(EventCustom *p_Event){
-  if(!p_Event) return;
-  if(!p_Event->getUserData()) return;
-  
-  GBase::DDelayCallOnce("mainUI_lordEXPChange", [=](float p_Delta) {
-    GBase::DShowEXPChange(*static_cast<int32 *>(p_Event->getUserData()));
-  }, 0.5f);
+void LoginScene::UpdateEXP(EventCustom* p_Event) {
+  if (!p_Event) return;
+  if (!p_Event->getUserData()) return;
+
+  GBase::DDelayCallOnce(
+          "mainUI_lordEXPChange", [=](float p_Delta) { GBase::DShowEXPChange(*static_cast<int32*>(p_Event->getUserData())); }, 0.5f);
 }
 
 void LoginScene::UpdateCommonIconTip(EventCustom* p_Event) {
@@ -377,8 +389,8 @@ void LoginScene::ShowIphoneX(EventCustom* p_Event) {
   // end
 }
 
-UIWorldResourceMap *LoginScene::CreateWorldResourceMap() {
-  if(n_WorldResourceMap){
+UIWorldResourceMap* LoginScene::CreateWorldResourceMap() {
+  if (n_WorldResourceMap) {
     n_WorldResourceMap->removeFromParent();
     n_WorldResourceMap = nullptr;
   }
@@ -394,7 +406,6 @@ void LoginScene::CreatMainView(EventCustom* p_Event) {
   n_CurrentShowView = nullptr;
   // userSDKManager.timeInfo.t_mainui.tbegin = SoraDGetSocketTime()
   n_MainUIView = UIMain::Create();
-  n_MainUIView->InitPanel();
   n_MainUIView->setSwallowTouches(false);
   addChild(n_MainUIView, 2);
   // userSDKManager.timeInfo.t_mainui.tend = SoraDGetSocketTime()
@@ -541,6 +552,7 @@ UIBaseView* LoginScene::CurrentMainUI() {
 }
 
 void LoginScene::ShowView(EventCustom* p_Event) {
+  //Show View for MainScene
   if (!p_Event->getUserData()) return;
   auto l_Data = static_cast<RShowMainCityView*>(p_Event->getUserData());
   if (l_Data->isJudgeCurScene && l_Data->ViewType == m_CurrentViewType) return;
@@ -550,93 +562,85 @@ void LoginScene::ShowView(EventCustom* p_Event) {
 
   if (l_Data->isFromLogin) {
     SwitcherView(l_Data);
-    if (l_Data->ViewType == EScene::World) 
-      CityBuildFunction::Get()->SetIsFirstLogin(false);
+    if (l_Data->ViewType == EScene::World) CityBuildFunction::Get()->SetIsFirstLogin(false);
   } else if (!m_SwitcherViewIng) {
     m_SwitcherViewIng = true;
     GBase::DShowSwitcherView(l_Data->OtherData);
-    auto l_Seq = Sequence::create(
-      DelayTime::create(0.1f),
-      CallFunc::create([=]() { SwitcherView(l_Data); }),
-      nullptr
-    );
+    auto l_Seq = Sequence::create(DelayTime::create(0.1f), CallFunc::create([=]() { SwitcherView(l_Data); }), nullptr);
   } else {
     stopAllActions();
     SwitcherView(l_Data);
   }
 }
 
-void LoginScene::ServerSocketLoginFail(EventCustom *p_Event){
-  //   local failType = "loginFail"
-  // local haveCancelBtn = true
-  // local showMsg = i18n("common_text_1122")
+void LoginScene::ServerSocketLoginFail(EventCustom* p_Event) {
+  if (!p_Event->getUserData()) return;
+  auto l_FailType = "loginFail";
+  auto l_HaveCancelBtn = true;
+  auto l_ShowMsg = Translate::i18n("common_text_1122");
   // local eventFunc = _G.SoraDStartLoginServerAndCheckVersion
-  // local isShowDefaultMsgBox = true
-  // local isCheckHasMaintenance = false
-  // if data.type == gLoginFailTypeDef.loginFailType_client then
-  //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_client, {})
-  //   failType = "networkTimeout"
-  //   haveCancelBtn = false
-  //   showMsg = i18n("common_text_795")
-  //   isCheckHasMaintenance = true
-  // elseif data.type == gLoginFailTypeDef.loginFailType_server then
-  //   print("\229\164\177\232\180\165\228\186\134\232\191\155\232\191\153\233\135\140\229\144\167")
-  //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_server, {})
-  //   failType = "serverMaintenance"
-  //   haveCancelBtn = false
-  //   isShowDefaultMsgBox = false
-  //   showMsg = i18n("common_text_939")
-  //   if self.loginView then
-  //     if device.platform == "mac" then
-  //       isShowDefaultMsgBox = true
-  //     else
-  //       local prePanel = SoraDSearchPanelFromManagerByName("commonMaintainView")
-  //       if prePanel then
-  //         prePanel:initData(data.serverTime or os.time())
-  //       else
-  //         SoraDPostCheckMaintain(data.kid, data.serverTime)
-  //       end
-  //     end
-  //   end
-  // elseif data.type == gLoginFailTypeDef.loginFailType_version then
-  //   failType = "serverLimitVersion"
-  //   haveCancelBtn = false
-  //   showMsg = i18n("common_text_899")
-  // elseif data.type == gLoginFailTypeDef.loginFailType_startLogin then
-  //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_start_login, {})
-  //   failType = "loginTimeout"
-  //   haveCancelBtn = true
-  //   showMsg = i18n("common_text_1122")
-  //   isCheckHasMaintenance = true
-  // elseif data.type == gLoginFailTypeDef.loginFailType_getUserInfo then
-  //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_get_user_info, {})
-  //   failType = "getUserInfoFail"
-  //   haveCancelBtn = true
-  //   showMsg = i18n("common_text_1123")
-  // elseif data.type == gLoginFailTypeDef.loginFailType_sdkTokenError then
-  //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_sdk_token_error, {})
-  //   failType = "sdkTokenError"
-  //   haveCancelBtn = true
-  //   showMsg = i18n("common_text_3764")
-  //   function eventFunc(...)
-  //     SoraDShowLoginView()
-  //   end
-  // end
-  // if isCheckHasMaintenance and self.loginView and device.platform ~= "mac" then
-  //   local prePanel = SoraDSearchPanelFromManagerByName("commonMaintainView")
-  //   if prePanel then
-  //     return
-  //   end
-  // end
-  // if isShowDefaultMsgBox then
-  //   local panel = SoraDShowLoginFailBox(failType, showMsg, haveCancelBtn, function()
-  //     eventFunc()
-  //   end)
-  //   panel:setName("SocketFailedMsgBox")
-  // end
+  auto l_IsShowDefaultMsgBox = true;
+  auto l_IsCheckHasMaintenance = false;
+  auto l_Data = static_cast<RLoginFailEvtArg*>(p_Event->getUserData());
+  auto l_EventFunc = &GBase::DStartLoginServerAndCheckVersion;
+  if (l_Data->Type == ELoginFailType::Client) {
+    //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_client, {})
+    l_FailType = "networkTimeout";
+    l_HaveCancelBtn = false;
+    l_ShowMsg = Translate::i18n("common_text_795");
+    l_IsCheckHasMaintenance = true;
+  } else if (l_Data->Type == ELoginFailType::Server) {
+    //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_server, {})
+    l_FailType = "serverMaintenance";
+    l_HaveCancelBtn = false;
+    l_IsShowDefaultMsgBox = false;
+    l_ShowMsg = Translate::i18n("common_text_939");
+    if (n_LoginView) {
+      if (GDevice::Get()->IsForTest()) {
+        l_IsShowDefaultMsgBox = true;
+      } else {
+        auto l_Panel = GBase::DSearchPanelFromManagerByName("commonMaintainView");
+        auto l_PrePanel = dynamic_cast<UICommonMaintainView*>(l_Panel);
+        if (l_PrePanel)
+          l_PrePanel->InitData(l_Data->ServerTime || GOS::Get()->GetTime());
+        else
+          GBase::DPostCheckMaintain(l_Data->KingdomId, l_Data->ServerTime);
+      }
+    }
+  } else if (l_Data->Type == ELoginFailType::Version) {
+    l_FailType = "serverLimitVersion";
+    l_HaveCancelBtn = false;
+    l_ShowMsg = Translate::i18n("common_text_899");
+  } else if (l_Data->Type == ELoginFailType::StartLogin) {
+    //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_start_login, {})
+    l_FailType = "loginTimeout";
+    l_HaveCancelBtn = true;
+    l_ShowMsg = Translate::i18n("common_text_1122");
+    l_IsCheckHasMaintenance = true;
+  } else if (l_Data->Type == ELoginFailType::GetUserInfo) {
+    //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_get_user_info, {})
+    l_FailType = "getUserInfoFail";
+    l_HaveCancelBtn = true;
+    l_ShowMsg = Translate::i18n("common_text_1123");
+  } else if (l_Data->Type == ELoginFailType::SdkTokenError) {
+    //   userSDKManager.logEvent(gSDKDef.TDonEvent.login_fail_sdk_token_error, {})
+    l_FailType = "sdkTokenError";
+    l_HaveCancelBtn = true;
+    l_ShowMsg = Translate::i18n("common_text_3764");
+    l_EventFunc = []() { GBase::DShowLoginView(); };
+  }
+  if (l_IsCheckHasMaintenance && n_LoginView && !GDevice::Get()->IsForTest()) {
+    auto l_Panel = GBase::DSearchPanelFromManagerByName("commonMaintainView");
+    auto l_PrePanel = dynamic_cast<UICommonMaintainView*>(l_Panel);
+    if (l_PrePanel) return;
+  }
+  if (l_IsShowDefaultMsgBox) {
+    auto l_Panel = GBase::DShowLoginFailBox(l_FailType, l_ShowMsg, l_HaveCancelBtn, [=]() { l_EventFunc(); });
+    l_Panel->setName("SocketFailedMsgBox");
+  }
 }
 
-void LoginScene::ServerSocketLoginAgain_Quick(EventCustom *p_Event){
+void LoginScene::ServerSocketLoginAgain_Quick(EventCustom* p_Event) {
   // SoraDSendMessage({
   //   msg = "MESSAGE_SERVER_CLOSE_GUIDE"
   // })
@@ -650,7 +654,7 @@ void LoginScene::ServerSocketLoginAgain_Quick(EventCustom *p_Event){
   // SoraDStartGetLoginData()
 }
 
-void LoginScene::ServerSocketLoginAgain(EventCustom *p_Event){
+void LoginScene::ServerSocketLoginAgain(EventCustom* p_Event) {
   //   print("sldkfjksljflksdjf")
   // local loginAgainFunc = function()
   //   Global_isLoginNeedLoading = true
@@ -691,142 +695,103 @@ void LoginScene::ServerSocketLoginAgain(EventCustom *p_Event){
   // end
 }
 
+void LoginScene::HideCurrentSceneViewAndMainUI(EventCustom* p_Event) {
+  auto l_GuideCtrl = GuideCtrl::Get();
+  if (l_GuideCtrl->GetCurMainCityGuideStep() != nullptr) return;
+  if (p_Event->getUserData() == nullptr) return;
+  auto l_HideData = static_cast<RHideMainUIEvtArg*>(p_Event->getUserData());
+  if (l_HideData->isHideCurrentSceneView != ENullBool::Null) {
+    if (l_HideData->isHideCurrentSceneView == ENullBool::True) {
+      ++m_IsHideCurrentSceneViewCount;
+    } else {
+      m_IsHideCurrentSceneViewCount = std::max(0, m_IsHideCurrentSceneViewCount - 1);
+    }
+    if (n_CurrentShowView) {
+      n_CurrentShowView->setVisible(m_IsHideCurrentSceneViewCount == 0);
+      auto l_EventData = std::make_unique<RShowViewHidedEvtArg>();
+      l_EventData->View = n_CurrentShowView;
+      l_EventData->isVisible = m_IsHideCurrentSceneViewCount == 0;
+      GBase::DSendMessage("MESSAGE_MAINSCEN_CURRENT_SHOWVIEW_HIDED", l_EventData.get());
+    }
+  }
 
-void LoginScene::HideCurrentSceneViewAndMainUI(EventCustom *p_Event){
-  // local guideCtrl = SoraDGetCtrl("guideCtrl")
-  // if guideCtrl:getCurMainCityGuideStep() ~= nil then
-  //   return
-  // end
-  // local hideData = data.hideData
-  // if hideData.isHideCurrentSceneView ~= nil then
-  //   if hideData.isHideCurrentSceneView then
-  //     self.isHideCurrentSceneViewCount = self.isHideCurrentSceneViewCount + 1
-  //   else
-  //     self.isHideCurrentSceneViewCount = math.max(0, self.isHideCurrentSceneViewCount - 1)
-  //   end
-  //   if self.currentShowView then
-  //     self.currentShowView:setVisible(self.isHideCurrentSceneViewCount == 0)
-  //     SoraDSendMessage({
-  //       msg = "MESSAGE_MAINSCEN_CURRENT_SHOWVIEW_HIDED",
-  //       data = {
-  //         view = self.currentShowView,
-  //         isVisible = self.isHideCurrentSceneViewCount == 0
-  //       }
-  //     })
-  //   end
-  // end
-  // if self:currentMainUI() and hideData.isHideMainUI ~= nil then
-  //   if hideData.isHideMainUI then
-  //     self.isHideMainUICount = self.isHideMainUICount + 1
-  //   else
-  //     self.isHideMainUICount = math.max(0, self.isHideMainUICount - 1)
-  //   end
-  //   if self.mainUIView then
-  //     self.mainUIView:setVisible(self.isHideMainUICount == 0)
-  //   end
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAIN_UI_HIDDLE",
-  //     isHiddle = self.isHideMainUICount ~= 0
-  //   })
-  //   local gametop = gModuleMgr.getObject("gametop")
-  //   local guideCtrl = gametop.playertop_:getModule("guideCtrl")
-  //   local newPlayerTaskCtrl = gametop.playertop_:getModule("newPlayerTaskCtrl")
-  //   if self:currentMainUI():isVisible() and SoraDIsGameGuide() == nil and (newPlayerTaskCtrl:getCurChapterID() > 4103000 or newPlayerTaskCtrl:getCurChapterID() == 0) then
-  //     SoraDSendMessage({
-  //       msg = "MESSAGE_MAIN_AGREEMENT_BOX"
-  //     })
-  //   end
-  //   if self:currentMainUI():isVisible() then
-  //     print("\228\184\187UI\229\143\175\232\167\129\228\186\134\239\188\140\229\136\183\230\150\176\228\184\128\228\184\139\231\186\162\231\130\185========")
-  //     SoraDSendMessage({
-  //       msg = "MESSAGE_SERVER_EVENT_COMMON_RED_POINT_REFRESH"
-  //     })
-  //   end
-  // end
-  // print("self.isHideCurrentSceneViewCount: " .. self.isHideCurrentSceneViewCount)
-  // print("self.isHideMainUICount: " .. self.isHideMainUICount)
+  if (CurrentMainUI() && l_HideData->isHideMainUI != ENullBool::Null) {
+    if (l_HideData->isHideMainUI == ENullBool::True)
+      ++m_IsHideMainUICount;
+    else
+      m_IsHideMainUICount = std::max(0, m_IsHideMainUICount - 1);
+    if (n_MainUIView) n_MainUIView->setVisible(m_IsHideMainUICount == 0);
+    std::unique_ptr<bool> l_IsHiddle(new bool(m_IsHideMainUICount != 0));
+    GBase::DSendMessage("MESSAGE_MAIN_UI_HIDDLE", l_IsHiddle.get());
+    auto l_GuideCtrl = GuideCtrl::Get();
+    auto l_NewPlayerTaskCtrl = PlayerTaskCtrl::Get();
+    if (CurrentMainUI()->isVisible() && GBase::DIsGameGuide() &&
+        (l_NewPlayerTaskCtrl->GetCurChapterID() > 4103000 || l_NewPlayerTaskCtrl->GetCurChapterID() == 0))
+      GBase::DSendMessage("MESSAGE_MAIN_AGREEMENT_BOX");
+
+    if (CurrentMainUI()->isVisible()) GBase::DSendMessage("MESSAGE_SERVER_EVENT_COMMON_RED_POINT_REFRESH");
+  }
 }
 
-void LoginScene::ShowServerMessageInfo(EventCustom *p_Event){
+void LoginScene::ShowServerMessageInfo(EventCustom* p_Event) {
+  if (p_Event->getUserData() == nullptr) return;
+
+  auto l_EventData = static_cast<RServerMessageInfo*>(p_Event->getUserData());
   // local messageID = data.messageID
-  // local iconSprite
-  // local iconData = data.iconData
+  auto l_MessageID = l_EventData->messageID;
+  const char* l_IconSprite;
+  auto l_IconData = l_EventData->IconData;
+  auto l_TransParm = GMap<GString, GString>();
   // if iconData then
-  //   if iconData.iconType == gNoticeIconTypeDef.ICON_BUILD then
-  //     local buildDescribeRead = include("buildDescribeRead")
-  //     iconSprite = display.newSprite(buildDescribeRead.getIcon(iconData.iconID, true))
-  //   elseif iconData.iconType == gNoticeIconTypeDef.ICON_ITEM then
-  //     local itemDesRead = include("itemDesRead")
-  //     iconSprite = display.newSprite(itemDesRead.getIcon(iconData.iconID, true))
-  //   elseif iconData.iconType == gNoticeIconTypeDef.ICON_SOLIDER then
-  //     local armyDesRead = include("armyDesRead")
-  //     iconSprite = display.newSprite(armyDesRead.getIcon(iconData.iconID, true))
-  //   elseif iconData.iconType == gNoticeIconTypeDef.ICON_REOURCE then
-  //     local resDesRead = include("resDesRead")
-  //     iconSprite = display.newSprite(resDesRead.getIcon(iconData.iconID))
-  //   elseif iconData.iconType == gNoticeIconTypeDef.ICON_TECH then
-  //     local collegeDesRead = include("collegeDesRead")
-  //     iconSprite = display.newSprite(collegeDesRead.getIcon(iconData.iconID, true))
-  //   elseif iconData.iconType == gNoticeIconTypeDef.ICON_ARMY then
-  //     iconSprite = display.newSprite("#icon_fight_expedition.png")
-  //   elseif iconData.iconType == gNoticeIconTypeDef.ICON_REWARD then
-  //     iconSprite = display.newSprite("#icon_equip_box2.png")
-  //   elseif iconData.iconType == gNoticeIconTypeDef.ICON_NORMAL then
-  //     iconSprite = display.newSprite(iconData.iconID)
-  //   end
-  // end
-  // local param = data.param
-  // if param then
-  //   if param.buildID then
-  //     local buildDescribeRead = include("buildDescribeRead")
-  //     param.buildID = buildDescribeRead.getName(param.buildID)
-  //   end
-  //   if param.itemID then
-  //     local itemDesRead = include("itemDesRead")
-  //     param.itemID = itemDesRead.getName(param.itemID)
-  //   end
-  //   if param.soliderID then
-  //     local armyDesRead = include("armyDesRead")
-  //     param.soliderID = armyDesRead.getName(param.soliderID)
-  //   end
-  //   if param.resourceID then
-  //     local resDesRead = include("resDesRead")
-  //     param.resourceID = resDesRead.getName(param.resourceID)
-  //   end
-  //   if param.techID then
-  //     local collegeDesRead = include("collegeDesRead")
-  //     if collegeDesRead.getName(param.techID) then
-  //       param.techID = collegeDesRead.getName(param.techID)
-  //     end
-  //     local allianceDesRead = include("allianceDesRead")
-  //     if allianceDesRead.isScience(param.techID) then
-  //       param.techID = allianceDesRead.getScienceName(param.techID)
-  //     end
-  //   end
-  //   if param.equipID then
-  //     local equipDesRead = include("equipDesRead")
-  //     if equipDesRead.getName(param.equipID) then
-  //       param.equipID = equipDesRead.getName(param.equipID)
-  //     end
-  //   end
-  //   if param.languageID then
-  //     local allianceDesRead = include("allianceDesRead")
-  //     if allianceDesRead.getLanguageName(param.languageID) then
-  //       param.languageID = allianceDesRead.getLanguageName(param.languageID)
-  //     end
-  //   end
-  // end
-  // local languageString = i18n(tostring(messageID), param)
-  // SoraDShowMsgTip(languageString, iconSprite)
+  if (l_EventData->IconData.IconType == ENoticeIcon::Build) {
+    l_IconSprite = BuildingRead::Get()->GetIcon(static_cast<EBuilding>(l_IconData.iconID)).c_str();
+    l_TransParm["buildID"] = BuildingRead::Get()->GetName(l_EventData->Param.BuildID);
+
+  } else if (l_EventData->IconData.IconType == ENoticeIcon::Item) {
+    l_IconSprite = ItemRead::Get()->GetIcon(l_IconData.iconID).c_str();
+    l_TransParm["itemID"] = ItemRead::Get()->GetName(l_IconData.iconID);
+
+  } else if (l_EventData->IconData.IconType == ENoticeIcon::Solider) {
+    l_IconSprite = ArmyRead::Get()->GetIcon(static_cast<EArmy>(l_IconData.iconID));
+    l_TransParm["soliderID"] = ArmyRead::Get()->GetName(l_IconData.iconID);
+
+  } else if (l_EventData->IconData.IconType == ENoticeIcon::Resource) {
+    l_IconSprite = ResourceRead::Get()->GetIcon(static_cast<EResource>(l_IconData.iconID));
+    l_TransParm["resourceID"] = ResourceRead::Get()->GetName(l_IconData.iconID);
+
+  } else if (l_EventData->IconData.IconType == ENoticeIcon::Tech) {
+    ScienceRead::Get()->GetIcon(static_cast<EScience>(l_IconData.iconID));
+    if (ScienceRead::Get()->IsScience(l_EventData->Param.TechID)) l_TransParm["techID"] = ScienceRead::Get()->GetName(l_EventData->Param.TechID);
+    if (GuildRead::Get()->IsScience(l_EventData->Param.TechID)) l_TransParm["techID"] = GuildRead::Get()->GetScienceName(l_EventData->Param.TechID);
+
+  } else if (l_EventData->IconData.IconType == ENoticeIcon::Army) {
+    l_IconSprite = "icon_fight_expedition.png";
+  } else if (l_EventData->IconData.IconType == ENoticeIcon::Reward) {
+    l_IconSprite = "icon_equip_box2.png";
+  } else if (l_EventData->IconData.IconType == ENoticeIcon::Normal) {
+    l_IconSprite = l_EventData->IconData.iconName;
+  }
+
+  if (l_EventData->Param.equipID != 0) {
+    auto l_EquipName = EquipRead::Get()->GetName(l_EventData->Param.equipID);
+    if (l_EquipName != "") l_TransParm["equipID"] = l_EquipName;
+  }
+
+  if (l_EventData->Param.languageID != 0) {
+    if (GuildRead::Get()->GetLanguageName(l_EventData->Param.languageID) != "")
+      l_TransParm["languageID"] = GuildRead::Get()->GetLanguageName(l_EventData->Param.languageID);
+  }
+  auto l_LanguageString = Translate::i18n(std::to_string(l_MessageID).c_str(), l_TransParm);
+  GBase::DShowMsgTip(l_LanguageString, l_IconSprite);
 }
 
-void LoginScene::MsgLordLevelUpView(EventCustom *p_Event){
-  // if SoraDGetCtrl("lordInfoCtrl"):getLordUpgradePopStatus() then
-  //   SoraDShowLordUPView()
-  // end
+void LoginScene::MsgLordLevelUpView(EventCustom* p_Event) {
+  if (LordInfoCtrl::Get()->GetLordUpgradePopStatus()) {
+    GBase::DShowLordUPView();
+  }
 }
 
-void LoginScene::GotoForeBackGroud(EventCustom *p_Event){
+void LoginScene::GotoForeBackGroud(EventCustom* p_Event) {
   // local schedulerTime = require(cc.PACKAGE_NAME .. ".scheduler")
   // local function callFunc()
   //   self.isComeFromBackGroud = false
@@ -848,7 +813,7 @@ void LoginScene::GotoForeBackGroud(EventCustom *p_Event){
   // end
 }
 
-void LoginScene::ListenerKeyPad(){
+void LoginScene::ListenerKeyPad() {
   // if self.listenerLayer then
   //   return
   // end
@@ -932,23 +897,21 @@ void LoginScene::ListenerKeyPad(){
   // end)
 }
 
-GVector<UIBaseView *> LoginScene::GetCheckViewList(){
+GVector<UIBaseView*> LoginScene::GetCheckViewList() {
   // local viewList = {}
-  auto l_ViewList = GVector<UIBaseView *>();
-  if(CurrentMainUI()){
+  auto l_ViewList = GVector<UIBaseView*>();
+  if (CurrentMainUI()) {
     l_ViewList.push_back(CurrentMainUI());
-    auto l_MainUI = dynamic_cast<UIMain *>(CurrentMainUI());
+    auto l_MainUI = dynamic_cast<UIMain*>(CurrentMainUI());
     auto p_MainuiViewList = l_MainUI->GetCheckViewList();
-    for(auto p_View : p_MainuiViewList){
+    for (auto p_View : p_MainuiViewList) {
       l_ViewList.push_back(p_View);
     }
   }
   l_ViewList.push_back(n_SystemNoticeView);
-  if(n_CurrentShowView)
-    l_ViewList.push_back(n_CurrentShowView);
-  if(n_WorldResourceMap)
-    l_ViewList.push_back(n_WorldResourceMap);
-  
+  if (n_CurrentShowView) l_ViewList.push_back(n_CurrentShowView);
+  if (n_WorldResourceMap) l_ViewList.push_back(n_WorldResourceMap);
+
   return l_ViewList;
 }
 

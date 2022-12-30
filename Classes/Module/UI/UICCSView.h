@@ -17,6 +17,22 @@ static __TYPE__ *Create(GString p_CCSFile, Size p_ViewSize = Size::ZERO)\
   return l_BaseView;\
 }
 
+#define CreateUICCSViewFromNode(__TYPE__)\
+static __TYPE__ *Create(Node *p_CCSFile, Size p_ViewSize)\
+{\
+  if(!p_CCSFile)\
+    return nullptr;\
+  auto l_View =p_CCSFile;\
+  l_View->setPosition(Vec2(0, 0));\
+  l_View->setAnchorPoint(Vec2(0, 0));\
+  if(p_ViewSize.height  <=  0 || p_ViewSize.width <= 0)\
+    p_ViewSize = l_View->getContentSize();\
+  auto l_BaseView = __TYPE__::CreateBaseView(p_ViewSize, false);\
+  l_View->setName("ccsView");\
+  l_BaseView->addChild(l_View, 1);\
+  return l_BaseView;\
+}
+
 
 class UICCSView
 {

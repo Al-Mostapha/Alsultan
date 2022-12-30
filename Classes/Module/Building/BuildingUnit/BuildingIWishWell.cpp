@@ -37,43 +37,43 @@ void BuildingIWishWell::ShowNormalParticle() {
 
 	auto Part1 = ParticleSystemQuad::create("Particle/et_xyc_01.plist");
 	Part1->setPosition(5, 100);
-	Part1->setScaleX(0.4615);
-	Part1->setScaleY(0.4286);
+	Part1->setScaleX(0.4615f);
+	Part1->setScaleY(0.4286f);
 	Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part1, 10);
 	
 	auto Part2 = ParticleSystemQuad::create("Particle/et_xyc_03.plist");
 	Part2->setPosition(7.6, 60);
-	Part2->setScaleX(1.4936);
-	Part2->setScaleY(1.109);
+	Part2->setScaleX(1.4936f);
+	Part2->setScaleY(1.109f);
 	Part2->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part2, 10);
 	
 	auto Part3 = ParticleSystemQuad::create("Particle/et_xyc_03.plist");
-	Part3->setPosition(8.8, 100);
-	Part3->setScaleX(1.13);
-	Part3->setScaleY(1.13);
+	Part3->setPosition(8.8f, 100);
+	Part3->setScaleX(1.13f);
+	Part3->setScaleY(1.13f);
 	Part3->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part3, 10);
 	
 	auto Part4 = ParticleSystemQuad::create("Particle/et_xyc_05.plist");
-	Part4->setPosition(8.4, -6);
-	Part4->setScaleX(1.71);
-	Part4->setScaleY(1.7315);
+	Part4->setPosition(8.4f, -6);
+	Part4->setScaleX(1.71f);
+	Part4->setScaleY(1.7315f);
 	Part4->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part4, 10);
 
 	auto Part5 = ParticleSystemQuad::create("Particle/et_xyc_06.plist");
 	Part5->setPosition(6, 0);
-	Part5->setScaleX(0.4);
-	Part5->setScaleY(0.3726);
+	Part5->setScaleX(0.4f);
+	Part5->setScaleY(0.3726f);
 	Part5->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part5, 10);
 
 	auto Part6 = ParticleSystemQuad::create("Particle/et_xyc_01.plist");
 	Part6->setPosition(5, 100);
-	Part6->setScaleX(0.4615);
-	Part6->setScaleY(0.4286);
+	Part6->setScaleX(0.4615f);
+	Part6->setScaleY(0.4286f);
 	Part6->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part6, 10);
 
@@ -85,54 +85,54 @@ void BuildingIWishWell::ShowNormalParticle() {
 
 	auto Part8 = ParticleSystemQuad::create("Particle/et_xyc_03.plist");
 	Part8->setPosition(5, 62);
-	Part8->setScaleX(1.1282);
-	Part8->setScaleY(1.1282);
+	Part8->setScaleX(1.1282f);
+	Part8->setScaleY(1.1282f);
 	Part8->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part8, 10);
 
 	auto Part9 = ParticleSystemQuad::create("Particle/et_xyc_04.plist");
 	Part9->setPosition(57, -8);
-	Part9->setScaleX(0.47);
-	Part9->setScaleY(0.47);
-	Part9->setRotation(-4.3);
+	Part9->setScaleX(0.47f);
+	Part9->setScaleY(0.47f);
+	Part9->setRotation(-4.3f);
 	Part9->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part9, 10);
 
 	auto Part10 = ParticleSystemQuad::create("Particle/et_xyc_04.plist");
-	Part10->setPosition(54, 40.5);
-	Part10->setScaleX(0.35);
-	Part10->setScaleY(0.35);
-	Part10->setRotation(-14.96);
+	Part10->setPosition(54, 40.5f);
+	Part10->setScaleX(0.35f);
+	Part10->setScaleY(0.35f);
+	Part10->setRotation(-14.96f);
 	Part10->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part10, 10);
 
 	auto Part11 = ParticleSystemQuad::create("Particle/et_xyc_04.plist");
 	Part11->setPosition(-48, -8);
-	Part11->setScaleX(-0.47);
-	Part11->setScaleY(0.4712);
-	Part11->setRotation(4.3);
+	Part11->setScaleX(-0.47f);
+	Part11->setScaleY(0.4712f);
+	Part11->setRotation(4.3f);
 	Part11->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part11, 10);
 
 	auto Part12 = ParticleSystemQuad::create("Particle/et_xyc_04.plist");
 	Part12->setPosition(-46, 45);
-	Part12->setScaleX(-0.35);
-	Part12->setScaleY(0.35);
-	Part12->setRotation(14.96);
+	Part12->setScaleX(-0.35f);
+	Part12->setScaleY(0.35f);
+	Part12->setRotation(14.96f);
 	Part12->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part12, 10);
 
 	auto Part13 = ParticleSystemQuad::create("Particle/et_xyc_05.plist");
 	Part13->setPosition(6, -7);
-	Part13->setScaleX(3.2);
-	Part13->setScaleY(3.2);
+	Part13->setScaleX(3.2f);
+	Part13->setScaleY(3.2f);
 	Part13->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part13, 10);
 
 	auto Part14 = ParticleSystemQuad::create("Particle/et_xyc_06.plist");
 	Part14->setPosition(5, -2);
-	Part14->setScaleX(0.4675);
-	Part14->setScaleY(0.4354);
+	Part14->setScaleX(0.4675f);
+	Part14->setScaleY(0.4354f);
 	Part14->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part14, 10);
 

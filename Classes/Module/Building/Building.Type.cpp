@@ -33,13 +33,13 @@ RBuildingSpecs RBuildingSpecs::fromJson(GJson* json) {
   temp.openWl = json->GetInt("openWl");
   temp.openStar = json->GetInt("openStar");
   temp.maxStarLv = json->GetInt("maxStarLv");
-  temp.BuildingName = json->GetInt("BuildingName");
-  temp.BuildingIcon = json->GetInt("BuildingIcon");
-  temp.BuildingBrief = json->GetInt("BuildingBrief");
-  temp.UpgradeBrief = json->GetInt("UpgradeBrief");
-  temp.Describe = json->GetInt("Describe");
-  temp.WarDescribe = json->GetInt("WarDescribe");
-  temp.StarDescribe = json->GetInt("StarDescribe");
+  temp.BuildingName = json->GetString("BuildingName");
+  temp.BuildingIcon = json->GetString("BuildingIcon");
+  temp.BuildingBrief = json->GetString("BuildingBrief");
+  temp.UpgradeBrief = json->GetString("UpgradeBrief");
+  temp.Describe = json->GetString("Describe");
+  temp.WarDescribe = json->GetString("WarDescribe");
+  temp.StarDescribe = json->GetString("StarDescribe");
   return temp;
 }
 

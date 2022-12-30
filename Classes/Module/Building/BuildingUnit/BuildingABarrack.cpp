@@ -47,7 +47,7 @@ void BuildingABarrack::setBuildingBtn(){
 	BuildingBtn->setBackGroundColor(Color3B::BLACK);
 	BuildingBtn->setBackGroundColorType(Layout::BackGroundColorType::SOLID);
 	BuildingBtn->setContentSize(Size(100, 100));
-	BuildingBtn->setAnchorPoint(Vec2(0.5, 0.5));
+	BuildingBtn->setAnchorPoint(Vec2(0.5f, 0.5f));
 	auto closeItem = MenuItem::create([](Ref * sender){ cocos2d::log("Button 1 4555555555555555555555555"); });
 	closeItem->setColor(Color3B::BLUE);
 	closeItem->setContentSize(Size(100, 100));

@@ -23,7 +23,7 @@ void CitySceneEffect::showPyramidHonourBuildEffect()
   EffectNode->setPosition(4480, 2140);
 
   auto Part1 = BaseCreate::createParticle("Particle/et_diaoxiang_03.plist", Vec2(0.0f, 0.0f), Vec2(0.8f, 0.8f), 21.21f);
-  auto Part2 = BaseCreate::createParticle("Particle/et_diaoxiang_02.plist", Vec2(-16, -33), Vec2(0.514, 1.0f), 27.25f);
+  auto Part2 = BaseCreate::createParticle("Particle/et_diaoxiang_02.plist", Vec2(-16, -33), Vec2(0.514f, 1.0f), 27.25f);
   auto Part3 = BaseCreate::createParticle("Particle/et_diaoxiang_01.plist", Vec2(-15, -37), Vec2(1, 1), 0);
 
   EffectNode->addChild(Part1, 1);
@@ -288,7 +288,7 @@ void CitySceneEffect::showFinishEffect(Node *nodeFrom, Vec2 posTo, bool isColleg
   powerNode->setPosition(myPos);
   parent->addChild(powerNode, 9);
   auto powerSprite = Sprite::createWithSpriteFrameName(spriteName);
-  float rotation = (((atan((powerPos.y - myPos.y) / abs(powerPos.x - myPos.x))) * 180) / M_PI) - 180;
+  float rotation = (((atan((powerPos.y - myPos.y) / abs(powerPos.x - myPos.x))) * 180.0f) / M_PI) - 180.0f;
   if (myPos.x < Director::getInstance()->getVisibleOrigin().x)
     rotation = -180 - rotation;
   powerSprite->setRotation(rotation);
@@ -517,7 +517,7 @@ void CitySceneEffect::addConquerGateAnimation(){
     BtnConquer->addChild(shibing, index++);
     if(oneTab.isAct){
       auto Frames = BaseCreate::getAnimationFrames(oneTab.formate, oneTab.first, oneTab.last);
-      Animation *animation = Animation::createWithSpriteFrames(Frames, 0.8 / Frames.size());
+      Animation *animation = Animation::createWithSpriteFrames(Frames, 0.8f / (float)Frames.size());
       shibing->runAction(
         RepeatForever::create(
           Animate::create(animation)
@@ -659,7 +659,7 @@ void CitySceneEffect::addSoldierGuard(){
       sprite->setName("soldier_guard_2");
       scene->bufferNodeArray.insert("soldier_guard_2", sprite);
     }
-    sprite->setPosition(basePos + Vec2(i * 20, -i * 10));
+    sprite->setPosition(basePos + Vec2((float)i * 20, -(float)i * 10));
     sprite->setLocalZOrder(i);
     runGuardAnimation(sprite);
   }
@@ -717,7 +717,7 @@ void CitySceneEffect::showEagle(){
   eagleShadow->runAction(RepeatForever::create(Animate::create(animation2)));
   eagleShadow->setPosition(-70, -190);
   eagleShadow->setOpacity(102);
-  eagleShadow->setScale(0.8);
+  eagleShadow->setScale(0.8f);
   eagleEffect->addChild(eagleShadow, 1);
   CityScene *cityScene = CityScene::getCityScene();
   if(!cityScene)
@@ -757,10 +757,10 @@ void CitySceneEffect::addBuildAnimBoostBottom(const GString& BuildingPlace){
   if(etBoostNode != nullptr)
     return;
   Node *et_node = Node::create();
-  et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_04.plist", Vec2(), Vec2(3.5, 1.54), 0));
-  et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_01.plist", Vec2(3, 21), Vec2(3.12, 2.4), 0));
-  et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_02.plist", Vec2(1, 24), Vec2(1, 1), 20.3));
-  et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_03.plist", Vec2(3, 16), Vec2(1.7, 1.7), 0));
+  et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_04.plist", Vec2(), Vec2(3.5f, 1.54f), 0.0f));
+  et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_01.plist", Vec2(3, 21), Vec2(3.12f, 2.4f), 0.0f));
+  et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_02.plist", Vec2(1, 24), Vec2(1, 1), 20.3f));
+  et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_03.plist", Vec2(3, 16), Vec2(1.7, 1.7), 0.0f));
   et_node->setPosition(BuildingNode->getPosition() - Vec2(0, 12));
   et_node->setLocalZOrder(BuildingNode->getLocalZOrder() + 1);
   mainCity->containerView->addChild(et_node);
@@ -780,8 +780,8 @@ void CitySceneEffect::addHarvestEffect(){
     if(!Building)
       continue;
     Node *et_node = Node::create();
-    et_node->addChild(BaseCreate::createParticle("Particle/et_fs_01.plist", Vec2(0, 0), Vec2(1.71, 1.71), 0));
-    et_node->addChild(BaseCreate::createParticle("Particle/et_fs_02.plist", Vec2(0, 0), Vec2(1.71, 1.71), 0));
+    et_node->addChild(BaseCreate::createParticle("Particle/et_fs_01.plist", Vec2(0, 0), Vec2(1.71f, 1.71f), 0));
+    et_node->addChild(BaseCreate::createParticle("Particle/et_fs_02.plist", Vec2(0, 0), Vec2(1.71f, 1.71f), 0));
     et_node->setName(etBoostHarvestName);
     et_node->setPosition(Building->getPosition());
     mainCity->containerView->addChild(et_node);
@@ -812,7 +812,7 @@ void CitySceneEffect::addMatouEffect(){
     return;
   Node *et_node_matou = Node::create();
   auto Part_1 = BaseCreate::createParticle("Particle/et_lqlbjz_01.plist", Vec2(0, 0), Vec2(1, 1), 0);
-  auto Part_2 = BaseCreate::createParticle("Particle/et_lqlbjz_02.plist", Vec2(0, 0), Vec2(1.165, 1.165), 0);
+  auto Part_2 = BaseCreate::createParticle("Particle/et_lqlbjz_02.plist", Vec2(0, 0), Vec2(1.165f, 1.165f), 0);
   et_node_matou->addChild(Part_1);
   et_node_matou->addChild(Part_2);
   et_node_matou->setPosition(4145, 1857);
@@ -886,7 +886,7 @@ void CitySceneEffect::cloudRunEffect(){
     return; 
   static float beginY = mainCity->containerView->getContentSize().height + 200;
   static float endY = -200;
-  static float lean = 0.44;
+  static float lean = 0.44f;
   static float disX = 800;
   static float dt = cocos2d::random<float>(60.0f, 100.0f);
   static float dPosX = 0;
@@ -897,7 +897,7 @@ void CitySceneEffect::cloudRunEffect(){
   cloud1->setScale(2);
   mainCity->containerView->addChild(cloud1, 750);
   auto Frames = BaseCreate::getAnimationFrames("et_yunduo01_%.2d.png", 1, 10);
-  Animation *animation = Animation::createWithSpriteFrames(Frames, 0.1);
+  Animation *animation = Animation::createWithSpriteFrames(Frames, 0.1f);
   cloud1->runAction(RepeatForever::create(Animate::create(animation)));
   CallFunc *callFunc = CallFunc::create([mainCity, cloud1](){
     dPosX = cocos2d::random<float>(-1000, mainCity->containerView->getContentSize().width - 1000);
@@ -915,7 +915,7 @@ void CitySceneEffect::cloudRunEffect(){
   cloud2->setScale(2);
   mainCity->containerView->addChild(cloud2, 750);
   auto Frames2 = BaseCreate::getAnimationFrames("et_yunduo02_%.2d.png", 1, 10);
-  Animation *animation2 = Animation::createWithSpriteFrames(Frames2, 0.1);
+  Animation *animation2 = Animation::createWithSpriteFrames(Frames2, 0.1f);
   cloud2->runAction(RepeatForever::create(Animate::create(animation2)));
   Sequence *seq2 = Sequence::create(
     CallFunc::create([cloud2](){

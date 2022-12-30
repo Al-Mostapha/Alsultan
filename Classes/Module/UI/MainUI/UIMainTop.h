@@ -2,6 +2,7 @@
 #include "Include/IncludeEngine.h"
 #include "Module/UI/UIBasePanel.h"
 #include "Include/IncludeGlobal.h"
+#include "Module/UI/UICCSView.h"
 #include "Module/UI/Common/Label/UICommonScoreLabel.h"
 #include "Module/UI/Common/Timer/UITimerLabel.h"
 #include "Module/UI/Common/Label/UIHtmlRichText.h"
@@ -14,9 +15,12 @@
 #include "Base/Base.create.h"
 
 
-class UIMainTop : public UIBasePanel
+class UIMainTop : public UIBaseView
 {
 private: 
+  CREATE_FUNC(UIMainTop);
+  CreateUIPanel(UIMainTop);
+  CreateUICCSView(UIMainTop);
   bool m_IsUpdateHP = false;
   bool m_IsSetHPStyle = false;
   bool m_IsShowEXP = false;
@@ -107,7 +111,6 @@ private:
   Node *n_NodeStyleHead = nullptr;
   Node *n_EffectShine = nullptr;
   UICommonPromptBox *m_HasShowNewTrialBox = nullptr;
-  CREATE_FUNC(UIMainTop);
 public:
   UIMainTop(){};
   ~UIMainTop(){};

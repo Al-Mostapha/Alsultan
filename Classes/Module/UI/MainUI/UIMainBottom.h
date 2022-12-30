@@ -5,6 +5,8 @@
 #include "Module/UI/Panel/Chat/UIChatMainUiView.h"
 #include "Module/UI/Panel/UIPanelBase.h"
 #include "Module/UI/Common/UIPreDownloadMainWidget.h"
+#include "Module/UI/UICCSView.h"
+#include "Module/UI/Part/Quest/UIQuestGuideNode.h"
 
 struct RGreenTipsCount{
   int32 alliance;
@@ -13,9 +15,11 @@ struct RGreenTipsCount{
   int32 items;
 };
 
-class UIMainBottom : public UIPanelBase {
+class UIMainBottom : public UIBaseView {
   private:
   CREATE_FUNC(UIMainBottom);
+  CreateUIPanel(UIMainBottom);
+  CreateUICCSView(UIMainBottom);
   Node* n_NodeLOD = nullptr;
   Node* n_NodeAreaRb = nullptr;
   Node* n_NodeAreaLb = nullptr;
@@ -115,6 +119,7 @@ class UIMainBottom : public UIPanelBase {
   Scheduler* m_Timer = nullptr;
   ui::Text* n_TextVideo = nullptr;
   Sprite* n_FrameMainGuide = nullptr;
+  UIQuestGuideNode *n_NodeQuestGuide = nullptr;
   UIPreDownloadMainWidget* n_NodePreDownload = nullptr;
   Node* n_NodeBottomBtn = nullptr;
   ui::ImageView* n_BtnManager = nullptr;
@@ -126,14 +131,18 @@ class UIMainBottom : public UIPanelBase {
   int32 m_BtnSwitchType = 1;
   ui::Button* n_BtnLuckyRecharge = nullptr;
   ui::Button* n_BtnHarvestSeason = nullptr;
-
+  Node *n_LuckyBlessNode = nullptr;
+  Scheduler *m_ExpostulationTimer = nullptr;
+  Node *n_BtnHelpAll = nullptr;
   public:
   UIMainBottom(){};
   ~UIMainBottom(){};
-  void InitPanel() override{};
+  void InitPanel() {};
   void Ctor();
-  void Show() override{};
-  static UIMainBottom* Create() { return create(); };
+  void Show() {};
+  static UIMainBottom* Create() { 
+    return Create();
+  };
 
   void InitGroup();
   void InitStyle();

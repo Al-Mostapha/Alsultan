@@ -15,3 +15,8 @@ bool LordInfoCtrl::GetUserAgreementPop()
 {
   return false;
 }
+
+RLordBaseInfo LordInfoCtrl::GetBaseInfo()
+{
+  return RLordBaseInfo();
+}

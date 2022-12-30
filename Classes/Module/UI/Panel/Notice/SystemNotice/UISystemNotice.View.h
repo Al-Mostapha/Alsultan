@@ -1,15 +1,18 @@
 #pragma once
 #include "Include/IncludeEngine.h"
 #include "Include/IncludeGlobal.h"
-#include "Module/UI/UIBasePanel.h"
+#include "Module/UI/UICCSView.h"
 
-class UISystemNoticeView : public UIBasePanel
+class UISystemNoticeView : public UIBaseView
 {
   CREATE_FUNC(UISystemNoticeView);
+  CreateUIPanel(UISystemNoticeView);
+  CreateUICCSView(UISystemNoticeView);
+
 public:
   static UISystemNoticeView *Create();
-  void Ctor() override;
-  void AddSubViews() override;
+  void Ctor();
+  void AddSubViews();
 };
 
 

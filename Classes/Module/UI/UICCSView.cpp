@@ -36,7 +36,7 @@ UIBaseView *UICCSView::Create(Node *p_CCSFile, Size p_ViewSize)
 
   if(!p_CCSFile)
     return nullptr;
-  auto l_View =p_CCSFile;
+  auto l_View = p_CCSFile;
   l_View->setPosition(Vec2(0, 0));
   l_View->setAnchorPoint(Vec2(0, 0));
   if(p_ViewSize.height  <=  0 || p_ViewSize.width <= 0)

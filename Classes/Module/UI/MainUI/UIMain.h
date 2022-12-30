@@ -15,7 +15,6 @@ class UIMain : public UIBaseView
   UIBaseView *m_BottomArea;
   CREATE_FUNC(UIMain);
   CreateUIPanel(UIMain);
-  CreateUICCSView(UIMain);
 private:
 
 public:
@@ -54,7 +53,7 @@ public:
   UIMainBottom *GetMainUIBottom(){ return dynamic_cast<UIMainBottom *>(m_BottomArea); }
   Node *gameGuide_getTarget(const char *p_ItemName){return nullptr;}
   static UIMain *Create() {
-    return create();
+    return CreateBaseView(GDisplay::Get()->size());
   };
 };
 

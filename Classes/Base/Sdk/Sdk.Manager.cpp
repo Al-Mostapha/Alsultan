@@ -35,3 +35,7 @@ bool SDKManager::IsKo()
 {
   return true;
 }
+
+bool SDKManager::ReturnAccountBindType(ESdkPlatformType p_Platform){
+  return false;
+}

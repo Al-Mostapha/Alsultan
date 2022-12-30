@@ -63,6 +63,7 @@ EBuildingViewModel BuildingFArrowTower::getViewModel(int32 walLvl)
 		return EBuildingViewModel::ViewModel_4;
 	if (walLvl <= 130)
 		return EBuildingViewModel::ViewModel_5;
+	return EBuildingViewModel::None;
 }
 
 void BuildingFArrowTower::Clicked(Touch *p_Touch, Event *p_Event){

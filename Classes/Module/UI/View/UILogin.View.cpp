@@ -772,9 +772,9 @@ void UILoginView::SpineAction(){
     }
   }else{
     auto l_Display = GDisplay::Get();
-    auto l_CPosY = l_Display->rheight/2  - (1386 - l_Display->rheight) * 0.2;
+    float l_CPosY = l_Display->rheight/2  - (1386 - l_Display->rheight) * 0.2f;
     l_CenterNode->setPosition(Vec2(l_Display->cx, l_CPosY));
-    auto l_EtBg = GBase::DCreateAnimationEx("animationLoginBX", nullptr, true, 0.7);
+    auto l_EtBg = GBase::DCreateAnimationEx("animationLoginBX", nullptr, true, 0.7f);
       n_NodeEvent->addChild(l_EtBg.First, 1);
     l_EtBg.First->setPosition(Vec2(320, l_CPosY));
     auto l_EtLz = GBase::DCreateAnimation("animationLoginBXLZ");
@@ -869,10 +869,10 @@ void UILoginView::AddEffectLogin(){
   //   meshNode:addTo(self.loginInitBg2, 99)
   //   self.effectLogin = meshNode
       n_EtStar = ParticleSystemQuad::create("Particle/et_Particle_dljm_001.plist");
-      n_EtStar->setScaleX(1.4234);
+      n_EtStar->setScaleX(1.4234f);
       n_EtStar->setScaleY(4.5);
-      n_EtStar->setRotation(-109.33);
-      n_EtStar->setPosition(Vec2(501.17, GDisplay::Get()->rheight + 100));
+      n_EtStar->setRotation(-109.33f);
+      n_EtStar->setPosition(Vec2(501.17f, GDisplay::Get()->rheight + 100));
       m_Panel->addChild(n_EtStar, 1);
   // end
 

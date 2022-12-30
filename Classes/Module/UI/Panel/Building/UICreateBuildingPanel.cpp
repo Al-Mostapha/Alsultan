@@ -118,10 +118,10 @@ void UICreateBuildingPanel::SetBuildingTypeAndData(EBuilding p_BuildingType, int
 
 void UICreateBuildingPanel::UpdateView(){
 
-  m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief.c_str()));
+  m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief));
   m_LabelCount->setVisible(m_CurrentBuilding.bType == 1);
   m_LabelNeed->setVisible(!m_CurrentBuilding.isCanBuild);
-  m_LabelName->setString(Translate::i18n(m_CurrentBuilding.BuildingName.c_str()));
+  m_LabelName->setString(Translate::i18n(m_CurrentBuilding.BuildingName));
   m_BtnBuild->setTouchEnabled(m_CurrentBuilding.isCanBuild);
   m_BtnBuild->setBright(m_CurrentBuilding.isCanBuild);
 
