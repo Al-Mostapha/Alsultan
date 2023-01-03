@@ -16,4 +16,5 @@ public:
   void InitPanel() override{};
   void Show() override {};
   static UIMarchingTroops *Create() {return create();};
+  void InitData(bool p_IsOnWorld){}
 };

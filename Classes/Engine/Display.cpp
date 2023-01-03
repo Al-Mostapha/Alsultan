@@ -102,3 +102,7 @@ void GDisplay::Init() {
   // printInfo(string.format("# display.c_top                = %0.2f", display.c_top))
   // printInfo(string.format("# display.c_bottom             = %0.2f", display.c_bottom))
 }
+
+Sprite *GDisplay::NewSprite(const char *p_FileName){
+  return Sprite::createWithSpriteFrameName(p_FileName);
+}

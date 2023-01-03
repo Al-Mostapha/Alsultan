@@ -32,15 +32,15 @@ void BuildingFTrainHall::ShowNormalParticle()
 {
 	auto Part1 = ParticleSystemQuad::create("Particle/et_diaoxiang_02.plist");
 	Part1->setPosition(0, 0);
-	Part1->setScaleX(0.68);
-	Part1->setScaleY(0.68);
+	Part1->setScaleX(0.68f);
+	Part1->setScaleY(0.68f);
 	Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part1, 3);
 
 	auto Part2 = ParticleSystemQuad::create("Particle/et_mijinggezi_01.plist");
 	Part2->setPosition(0, 0);
-	Part2->setScaleX(1.1);
-	Part2->setScaleY(1.3);
+	Part2->setScaleX(1.1f);
+	Part2->setScaleY(1.3f);
 	Part2->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part2, 3);
 

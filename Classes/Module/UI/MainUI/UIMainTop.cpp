@@ -3,10 +3,13 @@
 #include "Module/UI/Panel/Lord/LordInfo/UILordPowerView.h"
 #include "Module/Activity/ClientEvent.Mgr.h"
 #include "Module/Activity/ActivityShow.Ctrl.h"
+#include "Module/Event/LostRuins/LostRuins.Ctrl.h"
 #include "spine/SkeletonAnimation.h"
 
 UIMainTop *UIMainTop::Create(){
-  return Create("UiParts/MainUi/mainUITop.csb");
+  auto l_Panel =  Create("UiParts/MainUi/mainUITop.csb");
+  l_Panel->setName("UIMainTop");
+  return l_Panel;
 }
 
 void UIMainTop::AddSubViews(){
@@ -142,7 +145,6 @@ void UIMainTop::Ctor(){
 }
 
 void UIMainTop::UpdateHeadPos(EventCustom *p_Event){
-  // if SoraDIsBrave8Level() then
   if(GBase::DIsBrave8Level()){
     n_NodeHead->setPositionX(12);
     m_OffestY = 45;
@@ -166,10 +168,10 @@ void UIMainTop::UpdateBuilderPos(float p_OffsetY){
 }
 
 void UIMainTop::UpdateLostRuinsNode(EventCustom *p_Event){
-  // local lostRuinsCtrl = SoraDGetCtrl("lostRuinsCtrl")
-  // local questInfo = lostRuinsCtrl:getRunningQuestInfo()
-  // print("updateLostRuinsNode", clientEventMgr.judgeIsOpen(gActivityTimeActivityID.LOST_RUINS_ACTIVITY), lostRuinsCtrl:isRunningQuest())
-  // if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.LOST_RUINS_ACTIVITY, false) and next(questInfo) then
+  
+  auto l_LostRuinsCtrl = LostRuinsCtrl::Get();
+  auto l_QuestInfo = l_LostRuinsCtrl->GetRunningQuestInfo();
+  if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::LostRuinsActivity, false)/*and next(questInfo) */){
   //   if self.teamMainUIWidget and self.teamMainUIWidget:isVisible() then
   //     self.teamMainUIWidget:setPositionY(-87)
   //     self.nodeLostRuins:setPositionY(-267)
@@ -209,9 +211,9 @@ void UIMainTop::UpdateLostRuinsNode(EventCustom *p_Event){
   //       member = {color = "#FE0101"}
   //     }))
   //   end
-  // else
-  //   self.nodeLostRuins:setVisible(false)
-  // end
+  }else{
+    n_NodeLostRuins->setVisible(false);
+  }
 }
 
 void UIMainTop::UpdateWindTowerNode(EventCustom *p_Event){
@@ -748,25 +750,27 @@ void UIMainTop::GetEquipSuccess(EventCustom *p_Event){
 }
 
 void UIMainTop::SetMarchingTroopsVisible(EventCustom *p_Event){
-  // if data.viewType == VIEW_TYPE_NONE or self.currentViewType == data.viewType then
-  //   return
-  // end
-  // self.showBuilder = data.viewType == VIEW_TYPE_CITY
-  // self.nodeTroops:initData(not self.showBuilder)
-  // for _, v in ipairs(self.tableBuilder) do
-  //   v:setVisible(self.showBuilder)
-  // end
-  // if self.newTrailTeamUI then
-  //   self.newTrailTeamUI:setVisible(self.showBuilder)
-  // end
-  // self:updateLostRuinsNode()
-  // self:updateWindTowerNode()
-  // self:updateSnowWolfLostNode()
-  // self.currentViewType = data.viewType
-  // if not SoraDConfigGet("Game:GameSettingView:gameExplainSwitch~bool") then
-  //   self.btnExplain:setVisible(self.showBuilder)
-  // end
-}
+  EScene l_ViewType = EScene::None;
+  if (p_Event && p_Event->getUserData() != nullptr) 
+    l_ViewType = *static_cast<EScene*>(p_Event->getUserData());
+  if(l_ViewType == EScene::None || m_CurrentViewType == l_ViewType)
+    return;
+    
+  bool l_ShowBuilder  = l_ViewType == EScene::City;
+  n_NodeTroops->InitData(!l_ShowBuilder);
+  for (auto l_Builder : m_TableBuilder)
+    l_Builder->setVisible(l_ShowBuilder);
+  
+  if(n_NewTrailTeamUI)
+    n_NewTrailTeamUI->setVisible(l_ShowBuilder);
+  UpdateLostRuinsNode(nullptr);
+  UpdateWindTowerNode(nullptr);
+  UpdateSnowWolfLostNode(nullptr);
+  m_CurrentViewType = l_ViewType;
+  if(GBase::DConfigGet<bool>("Game:GameSettingView:gameExplainSwitch~bool"))
+    n_BtnExplain->setVisible(l_ShowBuilder);
+  
+} 
 
 void UIMainTop::RegisterListener(){
   n_BtnVip->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
@@ -960,7 +964,7 @@ void UIMainTop::InitData(){
   m_IsUpdateHP = false;
   m_IsSetHPStyle = false;
   m_IsShowEXP = false;
-  m_HasShowNewTrialBox = nullptr;
+  n_HasShowNewTrialBox = nullptr;
 }
 
 void UIMainTop::InitTimer(){

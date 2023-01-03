@@ -13,7 +13,7 @@
 #include "Module/Effect/Effect.Enum.h"
 #include "Module/Effect/Include.h"
 #include "Module/Equip/Equip.Read.h"
-#include "Module/Guild/Guild.Read.h"
+#include "Module/Guild/Alliance.Read.h"
 #include "Module/Item/Include.h"
 #include "Module/Item/Item.Read.h"
 #include "Module/Player/Chapter/PlayerTask.Ctrl.h"
@@ -184,6 +184,7 @@ void LoginScene::CreateLoginView(EScene p_Type, EKingdomClassType p_Kingdom) {
 
   addChild(l_LoginView, 4);
   n_LoginView = l_LoginView;
+  
   GBase::DCloseSwitcherView();
   ShackModule::Get()->Unload();
   ReleaseMainView();
@@ -762,7 +763,7 @@ void LoginScene::ShowServerMessageInfo(EventCustom* p_Event) {
   } else if (l_EventData->IconData.IconType == ENoticeIcon::Tech) {
     ScienceRead::Get()->GetIcon(static_cast<EScience>(l_IconData.iconID));
     if (ScienceRead::Get()->IsScience(l_EventData->Param.TechID)) l_TransParm["techID"] = ScienceRead::Get()->GetName(l_EventData->Param.TechID);
-    if (GuildRead::Get()->IsScience(l_EventData->Param.TechID)) l_TransParm["techID"] = GuildRead::Get()->GetScienceName(l_EventData->Param.TechID);
+    if (AllianceRead::Get()->IsScience(l_EventData->Param.TechID)) l_TransParm["techID"] = AllianceRead::Get()->GetScienceName(l_EventData->Param.TechID);
 
   } else if (l_EventData->IconData.IconType == ENoticeIcon::Army) {
     l_IconSprite = "icon_fight_expedition.png";
@@ -778,8 +779,8 @@ void LoginScene::ShowServerMessageInfo(EventCustom* p_Event) {
   }
 
   if (l_EventData->Param.languageID != 0) {
-    if (GuildRead::Get()->GetLanguageName(l_EventData->Param.languageID) != "")
-      l_TransParm["languageID"] = GuildRead::Get()->GetLanguageName(l_EventData->Param.languageID);
+    if (AllianceRead::Get()->GetLanguageName(l_EventData->Param.languageID) != "")
+      l_TransParm["languageID"] = AllianceRead::Get()->GetLanguageName(l_EventData->Param.languageID);
   }
   auto l_LanguageString = Translate::i18n(std::to_string(l_MessageID).c_str(), l_TransParm);
   GBase::DShowMsgTip(l_LanguageString, l_IconSprite);

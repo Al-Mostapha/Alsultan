@@ -11,7 +11,7 @@ struct RBasePenelData{
   GString FutureName;
 };
 
-class UIBasePanel : public Node
+class UIBasePanel : public UIBaseView
 {
 public:
   RRechargeAD m_IsADShow;

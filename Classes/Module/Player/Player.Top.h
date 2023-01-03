@@ -5,4 +5,5 @@ class PlayerTop{
   public:
   static PlayerTop* Get();
   int32 GetMapID();
+  Guid GetPlayerID();
 };

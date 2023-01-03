@@ -9,3 +9,7 @@ LostRuinsCtrl* LostRuinsCtrl::Get()
   }
   return s_pInstance;
 }
+
+RLostRuinsQuest LostRuinsCtrl::GetRunningQuestInfo(){
+  return RLostRuinsQuest();
+}

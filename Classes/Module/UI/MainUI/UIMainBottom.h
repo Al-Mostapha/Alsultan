@@ -34,10 +34,10 @@ class UIMainBottom : public UIBaseView {
   ui::ImageView* n_TipAlliance = nullptr;
   ui::ImageView* n_TipMail = nullptr;
   ui::ImageView* n_TipHero = nullptr;
-  ui::Text* n_TipHeroCount = nullptr;
-  ui::Text* n_TipMailCount = nullptr;
-  ui::Text* n_TipAllianceCount = nullptr;
-  ui::Text* n_TipItemsCount = nullptr;
+  Label* n_TipHeroCount = nullptr;
+  Label* n_TipMailCount = nullptr;
+  Label* n_TipAllianceCount = nullptr;
+  Label* n_TipItemsCount = nullptr;
   UIChatMainUiView* n_ChatMainUIView = nullptr;
   Sprite* n_FrameWorldCity = nullptr;
   ui::Button* n_ButtonWorldCity = nullptr;
@@ -109,10 +109,10 @@ class UIMainBottom : public UIBaseView {
   Sprite* n_BtnNeckLaceRankBg = nullptr;
   ui::Text* n_BtnNeckLaceRankText = nullptr;
   ui::Button* n_BtnRomanSoul = nullptr;
-  ui::Text* n_LabelAllianceName = nullptr;
-  ui::Text* n_LabelHeroName = nullptr;
-  ui::Text* n_LabelBagName = nullptr;
-  ui::Text* n_LabelMailName = nullptr;
+  Label* n_LabelAllianceName = nullptr;
+  Label* n_LabelHeroName = nullptr;
+  Label* n_LabelBagName = nullptr;
+  Label* n_LabelMailName = nullptr;
   ui::Button* n_BtnSkill = nullptr;
   ui::Button* n_BtnReplay = nullptr;
   Sprite* n_BgTextVideo = nullptr;
@@ -134,6 +134,7 @@ class UIMainBottom : public UIBaseView {
   Node *n_LuckyBlessNode = nullptr;
   Scheduler *m_ExpostulationTimer = nullptr;
   Node *n_BtnHelpAll = nullptr;
+  Node *n_EffectShine = nullptr;
   public:
   UIMainBottom(){};
   ~UIMainBottom(){};
@@ -141,7 +142,7 @@ class UIMainBottom : public UIBaseView {
   void Ctor();
   void Show() {};
   static UIMainBottom* Create() { 
-    return Create();
+    return Create("UiParts/MainUi/mainUIBottom.csb");
   };
 
   void InitGroup();
@@ -157,7 +158,7 @@ class UIMainBottom : public UIBaseView {
   Node *GetNodeAreaRB(){ return n_NodeAreaRb; }
   Node *GetNodeAreaLB(){ return n_NodeAreaLb; }
 
-  ui::Text *ExchangeGroupText(ui::Text *p_Node, float p_Height = 0);
+  Label *ExchangeGroupText(ui::Text *p_Node, float p_Height = 0);
 
   void OnWorldCityClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void OnSkillClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
@@ -234,7 +235,6 @@ class UIMainBottom : public UIBaseView {
   void ReLoginFinish(EventCustom *p_Event);
   // SoraDAddMessage(self, "MESSAGE_CHAT_OPEN_UI_ALLIANCE", handler(self, self.openUIAlliance))
   void OpenUIAlliance(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_MAINSCEN_ONSHOW", handler(self, self.currentShowViewType))
   void CurrentShowViewType(EventCustom *p_Event);
   // SoraDAddMessage(self, "MESSAGE_SERVER_GUIDE_HIDE_AND_SHOW", handler(self, self.showOrHideGuideView))
   void ShowOrHideGuideView(EventCustom *p_Event);

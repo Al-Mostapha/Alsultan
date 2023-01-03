@@ -21,11 +21,25 @@ class UICommonPromptBox;
 struct RViewOtherData; 
 class UIBaseView;
 
+
+
 namespace GBase {
+
+struct RCreateLabelParm{
+  GString Txt;
+  GString FontName = "";
+  float fontSize;
+  Size Dimensions = Size::ZERO;
+  TextHAlignment hAlignment = TextHAlignment::LEFT;
+  TextVAlignment vAlignment = TextVAlignment::TOP;
+  Color4B Color = Color4B::WHITE;
+  float x = 0;
+  float y = 0;
+};
 
 template <typename T> T GetChildByName(Node* p_Node, const char* p_name) {
   if (!p_Node) return nullptr;
-  if (p_Node->getName() == (std::string)p_name) return static_cast<T>(p_Node);
+  if (p_Node->getName() == (std::string)p_name) return dynamic_cast<T>(p_Node);
 
   for (auto child : p_Node->getChildren()) {
     auto l_node = GetChildByName<T>(child, p_name);
@@ -135,4 +149,5 @@ bool SoraDIsBraveOpen();
 void DShowLordUPView();
 UIBaseView *DCurrentSceneShowView(const char *p_NameView = "");
 Node *DCreateCSBNode(const char *p_CSBName);
+Label *DCreateLabel(RCreateLabelParm p_Parm);
 };  // namespace GBase

@@ -14,6 +14,7 @@ static __TYPE__ *Create(GString p_CCSFile, Size p_ViewSize = Size::ZERO)\
   __TYPE__ *l_BaseView = __TYPE__::CreateBaseView(p_ViewSize, false);\
   l_View->setName("ccsView");\
   l_BaseView->addChild(l_View, 1);\
+  l_BaseView->Ctor();\
   return l_BaseView;\
 }
 

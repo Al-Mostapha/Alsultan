@@ -25,8 +25,9 @@ UIMain::~UIMain()
 {
 }
 
-void UIMain::InitPanel()
+void UIMain::Ctor()
 {
+  UIBaseView::Ctor();
   //UIPanelBase::InitPanel();
   // self.eventForegroundID = nil
   // self.eventBackgroundID = nil
@@ -406,8 +407,8 @@ void UIMain::UpdateStyle(EventCustom *p_Event){
 GVector<UIBaseView*> UIMain::GetCheckViewList(){
   auto l_ViewList = GVector<UIBaseView*>();
   //TODO: Add View
-  // if(m_TopArea)
-  //   l_ViewList.push_back(m_TopArea);
+  if(m_TopArea)
+    l_ViewList.push_back(m_TopArea);
   if(m_PandectView)
     l_ViewList.push_back(m_PandectView);
   if(m_BottomArea)  

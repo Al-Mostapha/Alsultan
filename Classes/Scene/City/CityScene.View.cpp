@@ -55,10 +55,8 @@ void MainCityView::PreLoadImages(){
 }
 
 void MainCityView::FinishLoadImages(){
-  // print("\229\134\133\229\159\142 \233\162\132\229\138\160\232\189\189\229\155\190\231\137\135\229\174\140\230\136\144---------------------")
   // self.isFinishInit = true
   m_IsFinishInit = true;
-  Ctor();
   OnMessageListener_FinishLoadImage();
   InitAfterCreate();
   GBase::DPushItemAward(GBase::DPopItemAward());

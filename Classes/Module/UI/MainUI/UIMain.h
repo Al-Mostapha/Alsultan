@@ -20,7 +20,7 @@ private:
 public:
   UIMain();
   ~UIMain();
-  void InitPanel();
+  void Ctor();
   void Show() {};
   void BindTest();
   void ButtonCheatSendClick(Ref *Sender,  ui::Widget::TouchEventType p_Type);
@@ -53,7 +53,9 @@ public:
   UIMainBottom *GetMainUIBottom(){ return dynamic_cast<UIMainBottom *>(m_BottomArea); }
   Node *gameGuide_getTarget(const char *p_ItemName){return nullptr;}
   static UIMain *Create() {
-    return CreateBaseView(GDisplay::Get()->size());
+    auto l_Panel = CreateBaseView(GDisplay::Get()->size());
+    l_Panel->Ctor();
+    return l_Panel;
   };
 };
 

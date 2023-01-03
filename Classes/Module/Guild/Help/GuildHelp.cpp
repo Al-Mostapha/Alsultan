@@ -20,3 +20,7 @@ void GuildHelp::ReqHelpAll()
 {
   
 }
+
+RGuildHelpList GuildHelp::GetHelpList(){
+  return RGuildHelpList();
+}

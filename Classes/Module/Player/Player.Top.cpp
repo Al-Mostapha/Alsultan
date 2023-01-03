@@ -11,3 +11,7 @@ PlayerTop* PlayerTop::Get(){
 int32 PlayerTop::GetMapID(){
   return 0;
 }
+
+Guid PlayerTop::GetPlayerID(){
+  return Guid();
+}

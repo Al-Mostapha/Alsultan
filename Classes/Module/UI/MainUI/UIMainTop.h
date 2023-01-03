@@ -11,11 +11,12 @@
 #include "Module/UI/MainUI/UICommonGoldTop.h"
 #include "Module/UI/MainUI/UICommonResourcesMenu.h"
 #include "Module/UI/Common/UICommonPromptBox.h"
+#include "Module/UI/EventCenter/EventTemplate/NewTrial/UINewTrialMainUI.h"
 #include "Module/Activity/Activity.Enum.h"
 #include "Base/Base.create.h"
 
 
-class UIMainTop : public UIBaseView
+class UIMainTop : public UIBasePanel
 {
 private: 
   CREATE_FUNC(UIMainTop);
@@ -110,7 +111,8 @@ private:
   Node *n_NodeStylePower = nullptr;
   Node *n_NodeStyleHead = nullptr;
   Node *n_EffectShine = nullptr;
-  UICommonPromptBox *m_HasShowNewTrialBox = nullptr;
+  UICommonPromptBox *n_HasShowNewTrialBox = nullptr;
+  UINewTrailMainUI *n_NewTrailTeamUI = nullptr;
 public:
   UIMainTop(){};
   ~UIMainTop(){};

@@ -5,5 +5,5 @@
 class LordScienceCtrl {
 public:
   static LordScienceCtrl *Get();
-  uint32 getSciencePower(ELordScience p_LordScience);
+  uint32 GetSciencePower(ELordScience p_LordScience);
 };

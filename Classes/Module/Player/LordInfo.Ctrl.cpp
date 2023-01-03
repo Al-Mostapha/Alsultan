@@ -20,3 +20,8 @@ RLordBaseInfo LordInfoCtrl::GetBaseInfo()
 {
   return RLordBaseInfo();
 }
+
+RLordInfo LordInfoCtrl::GetLordInfo()
+{
+  return RLordInfo();
+}

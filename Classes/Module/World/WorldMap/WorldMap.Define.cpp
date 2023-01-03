@@ -27,3 +27,7 @@ bool WorldMapDefine::IsInRadiance(){
 bool WorldMapDefine::IsInAtlantis(){
   return false;
 }
+
+bool WorldMapDefine::InInCrossWar(){
+  return false;
+}

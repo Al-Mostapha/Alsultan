@@ -594,30 +594,32 @@ void EffectMainUITop::ShowLordPowerChange(UIMainTop *p_UIMainTop){
 }
 
 ui::Button *EffectMainUITop::LuckyRecharge(){
-  //   local button = ccui.Button:create("bg_transparent.png", "bg_transparent.png", "bg_transparent.png", ccui.TextureResType.plistType)
-  // button:setContentSize(cc.size(60, 52))
-  // button:ignoreContentAdaptWithSize(false)
+
+  auto l_Button = ui::Button::create("bg_transparent.png", "bg_transparent.png", "bg_transparent.png", ui::Widget::TextureResType::PLIST);
+  l_Button->setContentSize(Size(60, 52));
+  l_Button->ignoreContentAdaptWithSize(false);
   // local btn_bg = display.newSprite("#icon_main_luckyrecharge.png")
-  // btn_bg:addTo(button, 1)
-  // btn_bg:setPosition(cc.p(button:getContentSize().width / 2, button:getContentSize().height / 2))
+  auto l_BtnBg = GDisplay::Get()->NewSprite("icon_main_luckyrecharge.png");
+  l_Button->addChild(l_BtnBg, 1);
+  l_BtnBg->setPosition(Vec2(l_Button->getContentSize().width / 2, l_Button->getContentSize().height / 2));
   // button.btn_bg = btn_bg
-  // local yes = display.newSprite("#icon_yes.png")
-  // yes:addTo(button, 30)
-  // yes:setPosition(cc.p(40, 10))
+  auto l_Yes = GDisplay::Get()->NewSprite("icon_yes.png");
+  l_Button->addChild(l_Yes, 30);
+  l_Yes->setPosition(Vec2(40, 10));
   // button.img_yes = yes
-  // local black = display.newSprite("#frame_sheer_black_01.png")
-  // black:addTo(button, 2)
-  // black:setPosition(cc.p(30, 10))
-  // black:setScale(0.14285714285714285, 0.5882352941176471)
+  auto l_Black = GDisplay::Get()->NewSprite("frame_sheer_black_01.png");
+  l_Button->addChild(l_Black, 2);
+  l_Black->setPosition(Vec2(30, 10));
+  l_Black->setScale(0.14285714285714285, 0.5882352941176471);
   // button.img_black = black
-  // local label = ccui.Text:create("$499.99", "", 20)
-  // label:setScale(0.8)
-  // label:addTo(button, 5)
-  // label:setColor(cc.c3b(0, 190, 30))
-  // label:setPosition(cc.p(30, 10))
+  auto l_Label = ui::Text::create("$499.99", "", 20);
+  l_Label->setScale(0.8);
+  l_Button->addChild(l_Label, 5);
+  l_Label->setColor(Color3B(0, 190, 30));
+  l_Label->setPosition(Vec2(30, 10));
   // button.lab_target = label
-  // return button
-  return nullptr;
+  return l_Button;
+  
 }
 
 ui::Button *EffectMainUITop::MonthOrWeeklyCard(){

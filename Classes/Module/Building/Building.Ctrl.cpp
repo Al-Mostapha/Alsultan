@@ -8,7 +8,7 @@
 #include "Module/Effect/Effect.Ctrl.h"
 #include "Module/Science/Science.Ctrl.h"
 #include "Module/Player/Science/LordScience.Ctrl.h"
-#include "Module/Guild/Science/GuildScience.Ctrl.h"
+#include "Module/Guild/Science/AllianceScience.Ctrl.h"
 
 BuildingCtrl *BuildingCtrl::Get(){
   static BuildingCtrl *l_Instance = new BuildingCtrl();
@@ -32,9 +32,9 @@ IBuilding *BuildingCtrl::getBuildingCell(EBuilding p_BUildingType){
 
 void BuildingCtrl::getReducedCostTime(RBuildingLvlSpecs& p_OriginalSpec) {
 
-  uint32  l_skill_add = LordScienceCtrl::Get()->getSciencePower(ELordScience::AccelerateConstruction);
-  uint32  l_technologyAdd = ScienceCtrl::Get()->getSciencePower(EScienceEffect::ConstructionSpeed);
-  uint32  l_allianceAdd = GuildScienceCtrl::Get()->getSciencePower(EGuildScience::BuildingUpgradeSpeed);
+  uint32  l_skill_add = LordScienceCtrl::Get()->GetSciencePower(ELordScience::AccelerateConstruction);
+  uint32  l_technologyAdd = ScienceCtrl::Get()->GetSciencePower(EScienceEffect::ConstructionSpeed);
+  uint32  l_allianceAdd = AllianceScienceCtrl::Get()->GetSciencePower(EGuildScience::BuildingUpgradeSpeed);
   uint32 l_Effect = EffectCtrl::Get()->getEffectVal(EEffect::BuildingSpeedBoost);
   if(p_OriginalSpec.lvl <= 30)
     l_Effect  += EffectCtrl::Get()->getEffectVal(EEffect::ConstructionSpeed30);
@@ -58,7 +58,7 @@ void BuildingCtrl::getReducedCostResource(RBuildingLvlSpecs& p_OriginalSpec) {
     l_CostReduced += EffectCtrl::Get()->getEffectVal(EEffect::UpgradeBuildingCostResReduceLess30);
   if (p_OriginalSpec.lvl <= 70)
     l_CostReduced += EffectCtrl::Get()->getEffectVal(EEffect::UpgradeBuildingCostResReduceLessZ4);
-  l_CostReduced = l_CostReduced /1000 + ScienceCtrl::Get()->getSciencePower(EScienceEffect::BuildingCostReduce);
+  l_CostReduced = l_CostReduced /1000 + ScienceCtrl::Get()->GetSciencePower(EScienceEffect::BuildingCostReduce);
 
   p_OriginalSpec.CostRes.Coin    = std::ceil(p_OriginalSpec.CostRes.Coin    * (1 - l_CostReduced));
   p_OriginalSpec.CostRes.Crystal = std::ceil(p_OriginalSpec.CostRes.Crystal * (1 - l_CostReduced));

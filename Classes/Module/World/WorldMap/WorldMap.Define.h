@@ -10,4 +10,5 @@ public:
   bool IsInRemains();
   bool IsInRadiance();
   bool IsInAtlantis();
+  bool InInCrossWar();
 };

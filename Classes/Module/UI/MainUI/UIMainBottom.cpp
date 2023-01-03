@@ -1,14 +1,33 @@
 #include "UIMainBottom.h"
 #include "Module/Player/LordInfo.Ctrl.h"
+#include "spine/SkeletonAnimation.h"
 #include "Module/UI/Animations/UIAnimationCollectItems.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
+#include "Module/Guild/Help/GuildHelp.h"
+#include "Module/Effect/EffectMainUITop.h"
+#include "Module/Player/LordInfo.Ctrl.h"
+#include "Module/UI/EventCenter/EventTemplate/Questionnaire/UIQuestionnaire.View.h"
+#include "Module/UI/EventCenter/EventTemplate/RaidersLostArk/UIRaidersLostArk.View.h"
+#include "Module/World/Kingdom/KingdomMap.Ctrl.h"
+#include "module/UI/Panel/Alliance/AllianceCounterSys/AllianceCounterSys.Ctrl.h"
+#include "Module/Guild/Alliance.Read.h"
+#include "Module/Guild/Relation/AllianceRelation.Ctrl.h"
+#include "Module/Guild/AllianceTreasure.Ctrl.h"
+#include "Module/UI/Panel/Alliance/AllianceMobilization/PlayerMobilization.Ctrl.h"
+#include "Module/UI/Panel/Alliance/AllianceActive/AllianceActive.Ctrl.h"
+#include "Module/UI/Panel/Alliance/AllianceHunt/AllianceHunt.Ctrl.h"
+#include "Module/Guild/Alliance.Mgr.h"
+#include "Module/Guild/Science/AllianceScience.h"
+#include "Module/Guild/AllianceGuide.Ctrl.h"
+#include "Module/Mail/Mail.Mgr.h"
+#include "Module/Hero/Hero.Ctrl.h"
+#include "Module/Guild/AllianceMember.Mgr.h"
 
 void UIMainBottom::Ctor() {
   // cityBuildData:removeMessageListener()
   // cityBuildData:registerMessageListener()
   // userSDKManager.setAudioTarget(chatAudioMgr)
-  // self.Node_LOD = SoraDGetChildByName(self, "Node_LOD")
   n_NodeLOD = GBase::GetChildByName<Node*>(this, "Node_LOD");
   n_NodeAreaRb = GBase::GetChildByName<Node*>(n_NodeLOD, "Node_area_rb");
   n_NodeAreaLb = GBase::GetChildByName<Node*>(n_NodeLOD, "Node_area_lb");
@@ -18,40 +37,29 @@ void UIMainBottom::Ctor() {
   l_AnimationCollectItems->setName("animationCollectItems");
   m_ViewChangeType = EScene::City;
   InitGroup();
-  // self.uiBg = SoraDGetChildByName(self, "UI_Label_BG")
   n_UiBg = GBase::GetChildByName<Sprite*>(this, "UI_Label_BG");
-  // self.uiBgLeft = SoraDGetChildByName(self, "Image_decor_left")
   n_UiBgLeft = GBase::GetChildByName<ui::ImageView*>(this, "Image_decor_left");
-  // self.uiBgLeft:setVisible(IsArClient)
   n_UiBgLeft->setVisible(GBase::Const::Get()->IsArClient);
-  // self.uiBgRight = SoraDGetChildByName(self, "Image_decor_right")
   n_UiBgRight = GBase::GetChildByName<ui::ImageView*>(this, "Image_decor_right");
-  // self.uiBgRight:setVisible(IsArClient)
   n_UiBgRight->setVisible(GBase::Const::Get()->IsArClient);
-  // self.Node_style_bg = SoraDGetChildByName(self, "Node_style_bg")
   n_NodeStyleBg = GBase::GetChildByName<Node*>(this, "Node_style_bg");
-  // self.Node_style_top = SoraDGetChildByName(self, "Node_style_top")
   n_NodeStyleTop = GBase::GetChildByName<Node*>(this, "Node_style_top");
-  // self:initStyle()
+  
   InitStyle();
-  // self.tipItems = SoraDGetChildByName(self, "Sprite_items")
   n_TipItems = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_items");
-  // self.tipAlliance = SoraDGetChildByName(self, "Sprite_alliance")
   n_TipAlliance = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_alliance");
-
-  // self.tipMail = SoraDGetChildByName(self, "Sprite_mail")
   n_TipMail = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_mail");
-  // self.tipHero = SoraDGetChildByName(self, "Sprite_hero")
   n_TipHero = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_hero");
-  // self.tipHero:setVisible(false)
   n_TipHero->setVisible(false);
-  n_TipHeroCount = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_hero"));
+  auto l_TestText = GBase::GetChildByName<ui::Text*>(this, "Text_hero");
+  auto l_TestLabel = GBase::GetChildByName<Label*>(this, "Text_hero");
+  n_TipHeroCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_hero"));
   // self.tipHeroCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipMailCount = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_mail"));
+  n_TipMailCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_mail"));
   // self.tipMailCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipAllianceCount = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_alliance"));
+  n_TipAllianceCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_alliance"));
   // self.tipAllianceCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipItemsCount = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_items"));
+  n_TipItemsCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_items"));
   // self.tipItemsCount:setGroupID(mainUIDef.newGroupID.text)
   // self.imgWarning = SoraDGetRedWarnning()
   n_ChatMainUIView = GBase::DGetExtendChildFromCCSByName<UIChatMainUiView>(this, "CCS_chatMainUIView_Node");
@@ -61,188 +69,108 @@ void UIMainBottom::Ctor() {
   n_ImgWorldCity = GBase::GetChildByName<ui::ImageView*>(this, "img_worldCity");
   if (n_ImgWorldCity) n_ButtonWorldCity->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnWorldCityClick, this));
   // self.nodeQuestGuide = SoraDGetExtendChildFromCCSByName(self, "CCS_questGuideNode_quest")
-  // self.btnAccount = SoraDGetChildByName(self, "Button_account")
   n_BtnAccount = GBase::GetChildByName<ui::Button*>(this, "Button_account");
-  // self.btnAccount:setVisible(false)
   n_BtnAccount->setVisible(false);
-  // self.iconAccount = SoraDGetChildByName(self.btnAccount, "icon_set_account")
   n_IconAccount = GBase::GetChildByName<Sprite*>(n_BtnAccount, "icon_set_account");
-  // self.redPointAccount = SoraDGetChildByName(self.btnAccount, "Sprite_redPoint")
   n_RedPointAccount = GBase::GetChildByName<Sprite*>(this, "Sprite_redPoint");
-  // self.btnPyramidBattle = SoraDGetChildByName(self, "Button_pyramidBattle")
   n_BtnPyramidBattle = GBase::GetChildByName<ui::Button*>(this, "Button_pyramidBattle");
-  // self.spriteBattleTimeBg = SoraDGetChildByName(self, "Sprite_battleTimeBg")
   n_SpriteBattleTimeBg = GBase::GetChildByName<Sprite*>(this, "Sprite_battleTimeBg");
   n_TxtPyramidBattleTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_battleTime"));
-  // self.btnPyramidPlayoffs = SoraDGetChildByName(self, "Button_pyramidPlayoffs")
   n_BtnPyramidPlayoffs = GBase::GetChildByName<ui::Button*>(this, "Button_pyramidPlayoffs");
-  // self.imgPyramidPlayoffsBg = SoraDGetChildByName(self.btnPyramidPlayoffs, "Sprite_playoffBg")
   n_ImgPyramidPlayoffsBg = GBase::GetChildByName<Sprite*>(n_BtnPyramidPlayoffs, "Sprite_playoffBg");
-  // self.txtPyramidPlayoffsTime = SoraDGetChildByName(self, "Text_playoffTime")
   n_TxtPyramidPlayoffsTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_playoffTime"));
-  // self.btnCityUnlock = SoraDGetChildByName(self, "Button_cityUnlockBuild")
   n_BtnCityUnlock = GBase::GetChildByName<ui::Button*>(this, "Button_cityUnlockBuild");
-  // self.spriteCityUnlock = SoraDGetChildByName(self.btnCityUnlock, "Sprite_unlock")
   n_SpriteCityUnlock = GBase::GetChildByName<Sprite*>(n_BtnCityUnlock, "Sprite_unlock");
-  // self.txtCityUnlock = SoraDGetChildByName(self.btnCityUnlock, "Text_unlock")
   n_TxtCityUnlock = GBase::GetChildByName<ui::Text*>(n_BtnCityUnlock, "Text_unlock");
-  // self.btnNewPlayerBuff = SoraDGetChildByName(self, "Button_newPlayerBuff")
   n_BtnNewPlayerBuff = GBase::GetChildByName<ui::Button*>(this, "Button_newPlayerBuff");
-  // self.textNewPlayer = SoraDGetChildByName(self.btnNewPlayerBuff, "Text_newPlayer")
   n_TextNewPlayer = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnNewPlayerBuff, "Text_newPlayer"));
-  // self.btnPrinceGiftNewBuff = SoraDGetChildByName(self, "Button_princeGiftNewBuff")
   n_BtnPrinceGiftNewBuff = GBase::GetChildByName<ui::Button*>(this, "Button_princeGiftNewBuff");
   // self.textPrinceGiftNew = SoraDGetChildByName(self.btnPrinceGiftNewBuff, "Text_princeGiftNewBuff")
   n_TextPrinceGiftNew = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnPrinceGiftNewBuff, "Text_princeGiftNewBuff"));
   // self.Sprite_princeGiftNewBuff = SoraDGetChildByName(self.btnPrinceGiftNewBuff, "Sprite_princeGiftNewBuff")
   n_SpritePrinceGiftNewBuff = GBase::GetChildByName<Sprite*>(n_BtnPrinceGiftNewBuff, "Sprite_princeGiftNewBuff");
-  // self.Sprite_princeGiftNewBuff:setScale(0.5)
   n_SpritePrinceGiftNewBuff->setScale(0.5);
-  // self.btnPrinceGiftBuff = SoraDGetChildByName(self, "Button_princeGiftBuff")
   n_BtnPrinceGiftBuff = GBase::GetChildByName<ui::Button*>(this, "Button_princeGiftBuff");
   // self.textPrinceGift = SoraDGetChildByName(self.btnPrinceGiftBuff, "Text_princeGiftBuff")
   n_TextPrinceGift = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnPrinceGiftBuff, "Text_princeGiftBuff"));
-  // self.Sprite_princeGiftBuff = SoraDGetChildByName(self.btnPrinceGiftBuff, "Sprite_princeGiftBuff")
   n_SpritePrinceGiftBuff = GBase::GetChildByName<Sprite*>(n_BtnPrinceGiftBuff, "Sprite_princeGiftBuff");
-  // self.Sprite_princeGiftBuff:setScale(0.5)
   n_SpritePrinceGiftBuff->setScale(0.5);
-  // self.btnSultansWelBack = SoraDGetChildByName(self, "Button_sultanWelBack")
   n_BtnSultansWelBack = GBase::GetChildByName<ui::Button*>(this, "Button_sultanWelBack");
-  // self.textWelBack = SoraDGetChildByName(self.btnSultansWelBack, "Text_welBack")
   n_TextWelBack = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnSultansWelBack, "Text_welBack"));
-  // self.btnHero = SoraDGetChildByName(self, "Button_hero")
   n_BtnHero = GBase::GetChildByName<ui::Button*>(this, "Button_hero");
-  // self.iconBtnHero = SoraDGetChildByName(self.btnHero, "icon_hero")
   n_IconBtnHero = GBase::GetChildByName<ui::ImageView*>(n_BtnHero, "icon_hero");
-  // self.btnItems = SoraDGetChildByName(self, "Button_items")
   n_BtnItems = GBase::GetChildByName<ui::Button*>(this, "Button_items");
-  // self.iconBtnItems = SoraDGetChildByName(self.btnItems, "icon_items")
   n_IconBtnItems = GBase::GetChildByName<ui::ImageView*>(n_BtnItems, "icon_items");
-  // self.itemNewIcon = SoraDGetChildByName(self.btnItems, "icon_new")
   n_ItemNewIcon = GBase::GetChildByName<Sprite*>(n_BtnItems, "icon_new");
-  // self.Node_discountEffect = SoraDGetChildByName(self.btnItems, "Node_discountEffect")
   n_NodeDiscountEffect = GBase::GetChildByName<Node*>(n_BtnItems, "Node_discountEffect");
-  // self.btnMail = SoraDGetChildByName(self, "Button_mail")
   n_BtnMail = GBase::GetChildByName<ui::Button*>(this, "Button_mail");
-  // self.iconBtnMail = SoraDGetChildByName(self.btnMail, "icon_mail")
   n_IconBtnMail = GBase::GetChildByName<ui::ImageView*>(n_BtnMail, "icon_mail");
-  // self.btnAlliance = SoraDGetChildByName(self, "Button_alliance")
   n_BtnAlliance = GBase::GetChildByName<ui::Button*>(this, "Button_alliance");
-  // self.iconBtnAlliance = SoraDGetChildByName(self.btnAlliance, "icon_alliance")
   n_IconBtnAlliance = GBase::GetChildByName<ui::ImageView*>(n_BtnAlliance, "icon_alliance");
-  // self.btnWatchTower = SoraDGetChildByName(self, "Button_watchTower")
   n_BtnWatchTower = GBase::GetChildByName<ui::Button*>(this, "Button_watchTower");
-  // self.iconAlarm = SoraDGetChildByName(self, "icon_building_alarm")
   n_IconAlarm = GBase::GetChildByName<Sprite*>(this, "icon_building_alarm");
-  // self.btnWallBurning = SoraDGetChildByName(self, "Button_wallBurnning")
   n_BtnWallBurning = GBase::GetChildByName<ui::Button*>(this, "Button_wallBurnning");
-  // self.btnWallBurning:setVisible(false)
   n_BtnWallBurning->setVisible(INIT_FALSE);
-  // self.btnKingdomManager = SoraDGetChildByName(self, "Button_kingdomManager")
   n_BtnKingdomManager = GBase::GetChildByName<ui::Button*>(this, "Button_kingdomManager");
-  // self.btnKingdomManagerSprite = SoraDGetChildByName(self.btnKingdomManager, "Sprite_crown")
   n_BtnKingdomManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnKingdomManager, "Sprite_crown");
-  // self.spKingdomManagerTimeBg = SoraDGetChildByName(self.btnKingdomManager, "Sprite_giftTimeBg")
   n_SpKingdomManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnKingdomManager, "Sprite_giftTimeBg");
   // self.txtKingdomManagerTime = SoraDGetChildByName(self.btnKingdomManager, "Text_giftTime")
   n_TxtKingdomManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnKingdomManager, "Text_giftTime"));
-  // self.btnLegendKingManager = SoraDGetChildByName(self, "Button_legendKingManager")
   n_BtnLegendKingManager = GBase::GetChildByName<ui::Button*>(this, "Button_legendKingManager");
-  // self.btnLegendKingManagerSprite = SoraDGetChildByName(self.btnLegendKingManager, "Sprite_crown")
   n_BtnLegendKingManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnLegendKingManager, "Sprite_crown");
-  // self.spLegendKingManagerTimeBg = SoraDGetChildByName(self.btnLegendKingManager, "Sprite_giftTimeBg")
   n_SpLegendKingManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnLegendKingManager, "Sprite_giftTimeBg");
   // self.txtLegendKingManagerTime = SoraDGetChildByName(self.btnLegendKingManager, "Text_giftTime")
   n_TxtLegendKingManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnLegendKingManager, "Text_giftTime"));
-  // self.btnLegendInvite = SoraDGetChildByName(self, "Button_legendInvite")
   n_BtnLegendInvite = GBase::GetChildByName<ui::Button*>(this, "Button_legendInvite");
-  // self.iconLegendInvite = SoraDGetChildByName(self.btnLegendInvite, "icon_legend_red")
   n_IconLegendInvite = GBase::GetChildByName<Sprite*>(n_BtnLegendInvite, "icon_legend_red");
-  // self.iconLegendInvite:setVisible(false)
   n_IconLegendInvite->setVisible(INIT_FALSE);
   // self.txtLegendInviteNum = SoraDGetChildByName(self, "Text_legendInviteNum")
   n_TxtLegendInviteNum = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_legendInviteNum"));
-  // self.btnRadianceWar = SoraDGetChildByName(self, "Button_radiance")
   n_BtnRadianceWar = GBase::GetChildByName<ui::Button*>(this, "Button_radiance");
-  // self.iconRadianceWar = SoraDGetChildByName(self.btnRadianceWar, "icon_radiance_red")
   n_IconRadianceWar = GBase::GetChildByName<Sprite*>(n_BtnRadianceWar, "icon_radiance_red");
-  // self.iconRadianceWar:setVisible(false)
   n_IconRadianceWar->setVisible(INIT_FALSE);
-  // self.Sprite_effect = SoraDGetChildByName(self.btnRadianceWar, "Sprite_effect")
   n_SpriteEffect = GBase::GetChildByName<Sprite*>(n_BtnRadianceWar, "Sprite_effect");
-  // self.Sprite_effect:setVisible(false)
   n_SpriteEffect->setVisible(INIT_FALSE);
-  // self.txtRadianceWarNum = SoraDGetChildByName(self, "Text_radianceNum")
   n_TxtRadianceWarNum = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_radianceNum"));
-  // self.btnHegemonManager = SoraDGetChildByName(self, "Button_hegemonManager")
   n_BtnHegemonManager = GBase::GetChildByName<ui::Button*>(this, "Button_hegemonManager");
-  // self.btnHegemonManagerSprite = SoraDGetChildByName(self.btnHegemonManager, "Sprite_crown")
   n_BtnHegemonManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnHegemonManager, "Sprite_crown");
-  // self.spHegemonManagerTimeBg = SoraDGetChildByName(self.btnHegemonManager, "Sprite_giftTimeBg")
   n_SpHegemonManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnHegemonManager, "Sprite_giftTimeBg");
-  // self.txtHegemonManagerTime = SoraDGetChildByName(self.btnHegemonManager, "Text_giftTime")
   n_TxtHegemonManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnHegemonManager, "Text_giftTime"));
-  // self.btnHegemonBattle = SoraDGetChildByName(self, "Button_hegemonBattle")
   n_BtnHegemonBattle = GBase::GetChildByName<ui::Button*>(this, "Button_hegemonBattle");
-  // self.btnHegemonBattleSprite = SoraDGetChildByName(self.btnHegemonBattle, "icon_hegemon_playoff")
   n_BtnHegemonBattleSprite = GBase::GetChildByName<Sprite*>(n_BtnHegemonBattle, "icon_hegemon_playoff");
-  // self.spHegemonBattleTimeBg = SoraDGetChildByName(self.btnHegemonBattle, "Sprite_playoffBg")
   n_SpHegemonBattleTimeBg = GBase::GetChildByName<Sprite*>(n_BtnHegemonBattle, "Sprite_playoffBg");
   // self.txtHegemonBattleTime = SoraDGetChildByName(self.btnHegemonBattle, "Text_playoffTime")
   n_TxtHegemonBattleTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnHegemonBattle, "Text_playoffTime"));
-  // self.btnTrainPower = SoraDGetChildByName(self, "Button_trainPower")
   n_BtnTrainPower = GBase::GetChildByName<ui::Button*>(this, "Button_trainPower");
-  // self.Text_trainPower = SoraDGetChildByName(self.btnTrainPower, "Text_trainPower")
   n_TextTrainPower = GBase::GetChildByName<ui::Text*>(n_BtnTrainPower, "Text_trainPower");
-  // self.Text_trainPower:setString(i18n("activity_name_9001300"))
   n_TextTrainPower->setString(Translate::i18n("activity_name_9001300"));
-  // self.Red_trainPower = SoraDGetChildByName(self.btnTrainPower, "icon_red")
   n_RedTrainPower = GBase::GetChildByName<Sprite*>(n_BtnTrainPower, "icon_red");
-  // self.Num_trainPower = SoraDGetChildByName(self.Red_trainPower, "Text_btnNum")
   n_NumTrainPower = GBase::GetChildByName<ui::Text*>(n_RedTrainPower, "Text_btnNum");
-  // self.Red_trainPower:setVisible(false)
   n_RedTrainPower->setVisible(INIT_FALSE);
-  // self.Text_trainPower:setFontSize(16)
   n_TextTrainPower->setFontSize(16);
-  // self.btnNeckLaceRank = SoraDGetChildByName(self, "Button_necklaceRank")
   n_BtnNeckLaceRank = GBase::GetChildByName<ui::Button*>(this, "Button_necklaceRank");
-  // self.btnNeckLaceRankSprite = SoraDGetChildByName(self.btnNeckLaceRank, "icon_hegemon_playoff")
   n_BtnNeckLaceRankSprite = GBase::GetChildByName<Sprite*>(n_BtnNeckLaceRank, "icon_hegemon_playoff");
-  // self.btnNeckLaceRankBg = SoraDGetChildByName(self.btnNeckLaceRank, "Sprite_playoffBg")
   n_BtnNeckLaceRankBg = GBase::GetChildByName<Sprite*>(n_BtnNeckLaceRank, "Sprite_playoffBg");
-  // self.btnNeckLaceRankText = SoraDGetChildByName(self.btnNeckLaceRank, "Text_playoffTime")
   n_BtnNeckLaceRankText = GBase::GetChildByName<ui::Text*>(n_BtnNeckLaceRank, "Text_playoffTime");
   // self.btnRomanSoul = SoraDGetChildByName(self, "Button_romanSoul")
   n_BtnRomanSoul = GBase::GetChildByName<ui::Button*>(this, "Button_romanSoul");
   // self.labelAllianceName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_allianceName"), 25)
-  n_LabelAllianceName = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_allianceName"), 25);
+  n_LabelAllianceName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_allianceName"), 25);
   // self.labelAllianceName:setGroupID(mainUIDef.newGroupID.text)
-  // self.labelHeroName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_heroName"), 25)
-  n_LabelHeroName = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_heroName"), 25);
+  n_LabelHeroName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_heroName"), 25);
   // self.labelHeroName:setGroupID(mainUIDef.newGroupID.text)
-  // self.labelBagName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_bagName"), 25)
-  n_LabelBagName = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_bagName"), 25);
+  n_LabelBagName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_bagName"), 25);
   // self.labelBagName:setGroupID(mainUIDef.newGroupID.text)
-  // self.labelMailName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_mailName"), 25)
-  n_LabelMailName = ExchangeGroupText(GBase::GetChildByName<ui::Text*>(this, "Text_mailName"), 25);
+  n_LabelMailName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_mailName"), 25);
   // self.labelMailName:setGroupID(mainUIDef.newGroupID.text)
-  // self.labelAllianceName:setString(i18n("common_text_069"))
   n_LabelAllianceName->setString(Translate::i18n("common_text_069"));
-  // self.labelHeroName:setString(i18n("common_name_01"))
-  n_LabBtnNum->setString(Translate::i18n("common_name_01"));
-  // self.labelBagName:setString(i18n("common_text_308"))
+  n_LabelHeroName->setString(Translate::i18n("common_name_01"));
   n_LabelBagName->setString(Translate::i18n("common_text_308"));
-  // self.labelMailName:setString(i18n("mail_text_25"))
   n_LabelMailName->setString(Translate::i18n("mail_text_25"));
-  // self.btnSkill = SoraDGetChildByName(self, "Button_skill")
   n_BtnSkill = GBase::GetChildByName<ui::Button*>(this, "Button_skill");
-  // self.btnSkill:addTouchEventListener(handler(self, self.OnSkillClick))
   n_BtnSkill->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnSkillClick, this));
-  // self.btnReplay = SoraDGetChildByName(self, "Button_replay")
   n_BtnReplay = GBase::GetChildByName<ui::Button*>(this, "Button_replay");
-  // self.bgTextVideo = SoraDGetChildByName(self, "bg_text_video")
   n_BgTextVideo = GBase::GetChildByName<Sprite*>(this, "bg_text_video");
-  // self.btnReplay:addTouchEventListener(handler(self, self.OnReplayClick))
   n_BtnReplay->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnReplayClick, this));
   if (SDKManager::Get()->IsRecording()) {
     n_BtnReplay->setVisible(true);
@@ -251,149 +179,107 @@ void UIMainBottom::Ctor() {
     n_BtnReplay->setVisible(INIT_FALSE);
     m_Timer = nullptr;
   }
-  // self.textVideo = SoraDGetChildByName(self, "text_video")
   n_TextVideo = GBase::GetChildByName<ui::Text*>(this, "text_video");
-  // self.frame_main_guide = SoraDGetChildByName(self, "frame_main_guide")
   n_FrameMainGuide = GBase::GetChildByName<Sprite*>(this, "frame_main_guide");
-  // self.btnHero:addTouchEventListener(handler(self, self.OnBottomClick))
   n_BtnHero->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnBottomClick, this));
-  // self.btnItems:addTouchEventListener(handler(self, self.OnBottomClick))
   n_BtnItems->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnBottomClick, this));
-  // self.btnMail:addTouchEventListener(handler(self, self.OnBottomClick))
   n_BtnMail->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnBottomClick, this));
-  // self.btnAlliance:addTouchEventListener(handler(self, self.OnBottomClick))
   n_BtnAlliance->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnBottomClick, this));
-  // self.btnWatchTower:addTouchEventListener(handler(self, self.btnWatchTowerClick))
   n_BtnWatchTower->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnWatchTowerClick, this));
-  // self.btnWallBurning:addTouchEventListener(handler(self, self.btnWallBurningClick))
   n_BtnWallBurning->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnWallBurningClick, this));
-  // self.btnKingdomManager:addTouchEventListener(handler(self, self.btnKingdomManagerClick))
   n_BtnKingdomManager->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnKingdomManagerClick, this));
-  // self.btnLegendKingManager:addTouchEventListener(handler(self, self.btnLegendKingManagerClick))
   n_BtnLegendKingManager->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnLegendKingManagerClick, this));
-  // self.btnLegendInvite:addTouchEventListener(handler(self, self.btnLegendInviteClick))
   n_BtnLegendInvite->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnLegendInviteClick, this));
-  // self.btnRadianceWar:addTouchEventListener(handler(self, self.btnRadianceWarClick))
   n_BtnRadianceWar->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnRadianceWarClick, this));
-  // self.btnHegemonManager:addTouchEventListener(handler(self, self.btnHegemonManagerClick))
   n_BtnHegemonManager->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnHegemonManagerClick, this));
-  // self.btnHegemonBattle:addTouchEventListener(handler(self, self.btnHegemonBattleClick))
   n_BtnHegemonBattle->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnHegemonBattleClick, this));
-  // self.btnTrainPower:addTouchEventListener(handler(self, self.btnTrainPowerClick))
   n_BtnTrainPower->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnTrainPowerClick, this));
-  // self.btnRomanSoul:addTouchEventListener(handler(self, self.btnRomanSoulClick))
   n_BtnRomanSoul->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnRomanSoulClick, this));
-  // self.btnPyramidBattle:addTouchEventListener(handler(self, self.btnPyramidBattleClick))
   n_BtnPyramidBattle->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnPyramidBattleClick, this));
-  // self.btnPyramidPlayoffs:addTouchEventListener(handler(self, self.btnPyramidPlayoffsClick))
   n_BtnPyramidPlayoffs->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnPyramidPlayoffsClick, this));
-  // self.btnCityUnlock:addTouchEventListener(handler(self, self.btnCityUnlockClick))
   n_BtnCityUnlock->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnCityUnlockClick, this));
-  // self.btnNewPlayerBuff:addTouchEventListener(handler(self, self.btnNewPlayerBuffClick))
   n_BtnNewPlayerBuff->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnNewPlayerBuffClick, this));
-  // self.btnSultansWelBack:addTouchEventListener(handler(self, self.OnSultansBackWelClick))
   n_BtnSultansWelBack->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnSultansBackWelClick, this));
-  // self.btnAccount:addTouchEventListener(handler(self, self.btnAccountClick))
   n_BtnAccount->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnAccountClick, this));
-  // self.btnNeckLaceRank:addTouchEventListener(handler(self, self.btnNeckLaceRankClick))
   n_BtnNeckLaceRank->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnNeckLaceRankClick, this));
-  // self.btnPrinceGiftNewBuff:addTouchEventListener(handler(self, self.btnPrinceGiftNewBuffClick))
   n_BtnPrinceGiftNewBuff->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnPrinceGiftNewBuffClick, this));
-  // self.btnPrinceGiftBuff:addTouchEventListener(handler(self, self.btnPrinceGiftBuffClick))
   n_BtnPrinceGiftBuff->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnPrinceGiftBuffClick, this));
-  // self:initGreenPoint()
   InitGreenPoint();
-  // self:showAllianceInWarEffect()
   ShowAllianceInWarEffect();
-  // self.nodePreDownload = SoraDGetExtendChildFromCCSByName(self, "CCS_preDownloadMainWidget_pre")
   n_NodePreDownload = GBase::DGetExtendChildFromCCSByName<UIPreDownloadMainWidget>(this, "CCS_preDownloadMainWidget_pre");
-  // self.nodeBottomBtn = SoraDGetChildByName(self, "Bottom_Node_btn")
   n_NodeBottomBtn = GBase::GetChildByName<Node*>(this, "Bottom_Node_btn");
-  // self.btnManager = SoraDGetChildByName(self, "Bottom_Image_btnBG")
   n_BtnManager = GBase::GetChildByName<ui::ImageView*>(this, "Bottom_Image_btnBG");
-  // self.btnManager:setTouchEnabled(true)
   n_BtnManager->setTouchEnabled(true);
-  // self.scroll_btn = SoraDGetChildByName(self, "Bottom_Size_ScrollView_btn")
   n_ScrollBtn = GBase::GetChildByName<ui::ScrollView*>(this, "Bottom_Size_ScrollView_btn");
-  // self.scroll_btn:setTouchEnabled(false)
   n_ScrollBtn->setTouchEnabled(false);
-  // local img_btnRound = SoraDGetChildByName(self.btnManager, "Image_btn_round")
   auto l_ImgBtnRound = GBase::GetChildByName<ui::ImageView*>(n_BtnManager, "Image_btn_round");
-  // self.btnSwitch = SoraDGetChildByName(self.btnManager, "Button_switch")
   n_BtnSwitch = GBase::GetChildByName<ui::Button*>(n_BtnManager, "Button_switch");
-  // self.node_arrow = SoraDGetChildByName(self.btnManager, "Node_arrow")
   n_NodeArrow = GBase::GetChildByName<Node*>(n_BtnManager, "Node_arrow");
   // self.node_arrow:setGroupAuto(true)
-  // self.iconRed = SoraDGetChildByName(self.btnSwitch, "icon_red")
   n_IconRed = GBase::GetChildByName<Sprite*>(n_BtnSwitch, "icon_red");
-  // self.iconRed:setVisible(false)
   n_IconRed->setVisible(INIT_FALSE);
-  // self.labBtnNum = SoraDGetChildByName(self.btnSwitch, "Text_btnNum")
   n_LabBtnNum = GBase::GetChildByName<ui::Text*>(n_BtnSwitch, "Text_btnNum");
-  // self.btnSwitch:addTouchEventListener(handler(self, self.btnSwitchClick))
   n_BtnSwitch->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnSwitchClick, this));
-  // self.btnSwitchType = 1
   m_BtnSwitchType = 1;
-  // local effectMainUITop = include("effectMainUITop")
-  // self.btnLuckyRecharge = effectMainUITop.luckyRecharge()
-  // self.btnLuckyRecharge:addTo(self.scroll_btn)
-  // self.btnLuckyRecharge:setPosition(cc.p(35, 395))
-  // self.btnLuckyRecharge:addTouchEventListener(handler(self, self.OnLuckyReachergeClick))
-  // self.btnLuckyRecharge:setVisible(false)
-  // self:updateBtnLuckyRecharge()
-  // local gametop = gModuleMgr.getObject("gametop")
-  // local lordInfoCtrl = gametop.playertop_:getModule("lordInfoCtrl")
-  // local sourceKid = lordInfoCtrl:getLordInfo().base.sourceKid
-  // if sourceKid and sourceKid == 0 then
-  //   self:addGoldPackageButton()
-  // end
-  // local hasGift, hasBuy, hasGot = self:getMonthlyCard()
-  // if hasGift and not hasBuy and not IsArClient then
-  //   self:addMonthCardButton()
-  // end
-  // self:addCrazyTrioButton()
-  // self:addLostRuinsButton()
-  // self:addWindTowerButton()
-  // self:addSnowWolfLostButton()
-  // self:updateCommunityButton()
-  // self:updateEnjoyLotteryButton()
-  // self:addKOChoiceButton()
-  // self:addSixYearActivityButton()
-  // self:addHarvestSeasonButton()
-  // self:addPrinceGiftNewBuffButton()
-  // self:addPrinceGiftBuffButton()
-  // self:msgUpdateMailIconNumber()
-  // self:checkWatchTower()
-  // self:checkRomanSoul()
-  // self:btnKingdomManagerCheck()
-  // self:btnLegendKingManagerCheck()
-  // self:btnHegemonManagerCheck()
-  // self:btnTrainPowerManagerCheck()
-  // self:btnPyramidBattleCheck()
-  // self:btnHegemonBattleCheck()
-  // self:btnCityUnlockCheck()
-  // self:btnNewPlayerBuffCheck()
-  // self:btnSultansBackWelCheck()
-  // self:showLuckyBless()
-  // self:initAccountBind()
-  // self:updateBtnContainer()
-  // self:updateItemsBtn()
-  // self:updateBtnStatues()
-  // self:req4AllianceInviteData()
+  
+  n_BtnLuckyRecharge = EffectMainUITop::Get()->LuckyRecharge();
+  n_ScrollBtn->addChild(n_BtnLuckyRecharge);
+  n_BtnLuckyRecharge->setPosition(Vec2(35, 395));
+  n_BtnLuckyRecharge->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnLuckyReachergeClick, this));
+  n_BtnLuckyRecharge->setVisible(INIT_FALSE);
+  UpdateBtnLuckyRecharge(nullptr);
+  auto l_SourceKid = LordInfoCtrl::Get()->GetLordInfo().Base.sourceKID;
+  if(l_SourceKid == 0)
+    AddGoldPackageButton();
+  
+  auto l_MonthGift = GetMonthlyCard();
+  bool l_HasGift = l_MonthGift[0];
+  bool l_HasBuy = l_MonthGift[0];
+  bool l_HasGot = l_MonthGift[0];
+  if(l_HasGift && !l_HasBuy && !GBase::Const::Get()->IsArClient)
+    AddMonthCardButton();
+  
+  AddCrazyTrioButton(nullptr);
+  AddLostRuinsButton(nullptr);
+  AddWindTowerButton(nullptr);
+  AddSnowWolfLostButton(nullptr);
+  UpdateCommunityButton(nullptr);
+  UpdateEnjoyLotteryButton();
+  AddKOChoiceButton(nullptr);
+  AddSixYearActivityButton();
+  AddHarvestSeasonButton(nullptr);
+  AddPrinceGiftNewBuffButton(nullptr);
+  AddPrinceGiftBuffButton(nullptr);
+  MsgUpdateMailIconNumber(nullptr);
+  CheckWatchTower(nullptr);
+  CheckRomanSoul(nullptr);
+  BtnKingdomManagerCheck(nullptr);
+  BtnLegendKingManagerCheck(nullptr);
+  BtnHegemonManagerCheck(nullptr);
+  BtnTrainPowerManagerCheck();
+  BtnPyramidBattleCheck(nullptr);
+  BtnHegemonBattleCheck(nullptr);
+  BtnCityUnlockCheck(nullptr);
+  BtnNewPlayerBuffCheck(nullptr);
+  BtnSultansBackWelCheck(nullptr);
+  ShowLuckyBless(nullptr);
+  InitAccountBind(nullptr);
+  UpdateBtnContainer(nullptr);
+  UpdateItemsBtn();
+  UpdateBtnStatues(nullptr);
+  Req4AllianceInviteData();
   // self:updateNewTrialUI()
   CreateExpostulationTimer();
-  // self:checkRemainsWar()
-  // self:msgInvitedInfo_legend()
-  // self:updateGreenPointRadianceWar()
-  // self:initHelpAllBtn()
-  // self:initBattleOpenBtn()
-  // self:checkPreDownload()
-  // self:checkPreDownloadStatus()
-  // self:btnPayBackCheck()
-  // local questionnaireCtrl = SoraDGetCtrl("questionnaireCtrl")
-  // questionnaireCtrl:reqGetQuestData()
-  // local raidersLostArkCtrl = SoraDGetCtrl("raidersLostArkCtrl")
-  // raidersLostArkCtrl:initKeyNums()
+  CheckRemainsWar();
+  MsgInvitedInfoLegend(nullptr);
+  UpdateGreenPointRadianceWar(nullptr);
+  InitHelpAllBtn(nullptr);
+  InitBattleOpenBtn();
+  CheckPreDownload(nullptr);
+  CheckPreDownloadStatus(nullptr);
+  BtnPayBackCheck(nullptr);
+  QuestionnaireCtrl::Get()->ReqGetQuestData();
+  RaidersLostArkCtrl::Get()->InitKeyNums();
 }
 
 void UIMainBottom::CreateExpostulationTimer() {
@@ -414,18 +300,19 @@ void UIMainBottom::DeleteExpostulationTimer() {
 }
 
 void UIMainBottom::InitHalloweenShineEffect() {
-  // local effectShine = SoraDCreatAnimation("Node_Effect_wsj02", nil, true)
-  // self.effectShine = effectShine
-  // effectShine:setPosition(cc.p(0, 65))
-  // self.Node_style_top:addChild(effectShine)
-  // local img1 = SoraDGetChildByName(effectShine, "G_dh_Tex_wsj_002_01")
-  // local img2 = SoraDGetChildByName(effectShine, "G_dh_Tex_wsj_001_04")
-  // local particle1 = SoraDGetChildByName(effectShine, "et_dixintanxian_02_01")
-  // local particle2 = SoraDGetChildByName(effectShine, "et_dixintanxian_02_02")
-  // img1:setVisible(false)
-  // img2:setVisible(false)
-  // particle1:setVisible(false)
-  // particle2:setVisible(false)
+  
+  auto l_EffectShine = GBase::DCreateAnimation("UiParts/MainUi/Node_Effect_wsj02.csb", nullptr, true);
+  n_EffectShine = l_EffectShine.First;
+  n_EffectShine->setPosition(Vec2(0, 65));
+  n_NodeStyleTop->addChild(n_EffectShine);
+  auto l_Img1 = GBase::GetChildByName<Sprite *>(n_EffectShine, "G_dh_Tex_wsj_002_01");
+  auto l_Img2 = GBase::GetChildByName<Sprite *>(n_EffectShine, "G_dh_Tex_wsj_001_04");
+  auto l_Particle1 = GBase::GetChildByName<ParticleSystemQuad *>(n_EffectShine, "et_dixintanxian_02_01");
+  auto l_Particle2 = GBase::GetChildByName<ParticleSystemQuad *>(n_EffectShine, "et_dixintanxian_02_02");
+  l_Img1->setVisible(false);
+  l_Img2->setVisible(false);
+  l_Particle1->setVisible(false);
+  l_Particle2->setVisible(false);
 }
 
 void UIMainBottom::InitStyle() {
@@ -477,6 +364,45 @@ void UIMainBottom::InitStyle() {
   //   actNode:addTo(self.Node_area_b, 999)
   //   actNode:setName("actNode_style")
   // end
+
+  auto l_Style = GGlobal::Get()->MainUIStyle;
+  if(l_Style == EMainUIStyle::None)
+    l_Style = EMainUIStyle::QuickSand;
+
+  if(l_Style == EMainUIStyle::Easter){
+
+    auto l_TopNode = GBase::DCreateAnimation("mainUI_style_easter", nullptr).First;
+    n_NodeStyleTop->addChild(l_TopNode);
+    auto l_Spine = spine::SkeletonAnimation::createWithBinaryFile("spine/yezi.skel", "spine/yezi.atlas");
+    l_Spine->setPosition(65, 35);
+    l_Spine->setAnimation(0, "animation", true);
+    auto l_NodeSpine = GBase::GetChildByName<Node *>(l_TopNode, "Node_spine");
+    l_NodeSpine->addChild(l_Spine);
+
+  }else if(l_Style == EMainUIStyle::Halloween){
+
+    auto l_TopNode = GBase::DCreateAnimation("mainUI_style_halloween", nullptr).First;
+    n_NodeStyleTop->addChild(l_TopNode);
+    InitHalloweenShineEffect();
+
+  }else if(l_Style == EMainUIStyle::Chritmas){
+
+    auto l_TopNode = GBase::DCreateAnimation("mainUI_style_chritmas", nullptr).First;
+    n_NodeStyleTop->addChild(l_TopNode);
+
+  }else if(l_Style == EMainUIStyle::QuickSand){
+
+    auto l_TopNode = GBase::DCreateAnimation("mainUI_style_ztsz_top", nullptr).First;
+    n_NodeStyleTop->addChild(l_TopNode);
+    auto l_BgNode = GBase::DCreateAnimation("mainUI_style_ztsz", nullptr).First;
+    n_NodeStyleBg->addChild(l_BgNode);
+    auto l_EffectNode = GBase::DCreateAnimation("Node_Effect_liusha2", nullptr).First;
+    l_EffectNode->setPosition(320, 30);
+    n_NodeAreaB->addChild(l_EffectNode, 999);
+    l_EffectNode->setName("actNode_style");
+
+  }
+
 }
 
 void UIMainBottom::InitGroup() {
@@ -490,23 +416,23 @@ void UIMainBottom::InitGroup() {
   // createGroupNode(mainUIDef.newGroupID.text, 5, "Node_group_text")
 }
 
-ui::Text* UIMainBottom::ExchangeGroupText(ui::Text* p_Text, float p_Height) {
-  // local text = SoraDCreateLabel({
-  //   UILabelType = 2,
-  //   text = "",
-  //   size = target:getFontSize(),
-  //   color = target:getTextColor(),
-  //   dimensions = cc.size(200, height or 30),
-  //   align = cc.TEXT_ALIGNMENT_CENTER,
-  //   valign = cc.VERTICAL_TEXT_ALIGNMENT_CENTER
-  // })
-  // text:setAnchorPoint(cc.p(target:getAnchorPoint().x, target:getAnchorPoint().y))
-  // text:setPosition(cc.p(target:getPositionX(), target:getPositionY()))
-  // text:addTo(target:getParent())
-  // target:removeFromParent()
-  // return text
+Label* UIMainBottom::ExchangeGroupText(ui::Text* p_Text, float p_Height) {
+  
+  auto l_CreateLabelParam = GBase::RCreateLabelParm();
+  //l_CreateLabelParam.UILabelType = 2;
+  l_CreateLabelParam.Txt = "";
+  l_CreateLabelParam.fontSize = p_Text->getFontSize();
+  l_CreateLabelParam.Color = Color4B(p_Text->getTextColor());
+  l_CreateLabelParam.Dimensions = Size(200, p_Height || 30);
+  l_CreateLabelParam.hAlignment = TextHAlignment::CENTER;
+  l_CreateLabelParam.vAlignment = TextVAlignment::CENTER;
 
-  return nullptr;
+  auto l_Text = GBase::DCreateLabel(l_CreateLabelParam);
+  l_Text->setAnchorPoint(p_Text->getAnchorPoint());
+  l_Text->setPosition(p_Text->getPosition());
+  p_Text->getParent()->addChild(l_Text);
+  p_Text->removeFromParent();
+  return l_Text;
 }
 
 void UIMainBottom::InitAccountBind(EventCustom* p_Event) {
@@ -520,7 +446,7 @@ void UIMainBottom::InitAccountBind(EventCustom* p_Event) {
   auto l_CastleLv = GBase::DGetCastleLv();
   if (GBase::Const::Get()->IsArClient) {
     if (m_ViewChangeType == EScene::City && (l_CastleLv >= GBase::Const::Get()->CastleLvl6 && (!l_IsBind || l_IsBind && !l_IsReward) ||
-                                             l_CastleLv >= GBase::Const::Get()->CastleLvl10 && (!l_IsPhoneBind || l_IsPhoneBind && !l_IsBindPhone))) {
+                                            l_CastleLv >= GBase::Const::Get()->CastleLvl10 && (!l_IsPhoneBind || l_IsPhoneBind && !l_IsBindPhone))) {
       l_Ret = true;
     } else {
       l_Ret = false;
@@ -558,218 +484,137 @@ void UIMainBottom::InitGreenPoint() {
   // local allianceActiveCtrl = gametop.playertop_:getModule("allianceActiveCtrl")
   // local allianceHuntCtrl = gametop.playertop_:getModule("allianceHuntCtrl")
   // local allianceCounterSysCtrl = gametop.playertop_:getModule("allianceCounterSysCtrl")
-  // local hasChallengeTimes = allianceHuntCtrl:getCheckChanllengeTimes()
-  // local allianceCount = kingdomMapCtrl:getHallWarCount()
-  // local counterSysCount = allianceCounterSysCtrl:getNewPoint()
-  // allianceCount = allianceCount + #allianceHelp:getHelpList().otherhelplist
-  // if allianceDesRead.checkRank(gAllianceRank.R4) then
-  //   allianceCount = allianceCount + allianceRelationCtrl:getAllyInviteNum()
-  // end
-  // local mineNum = allianceTreasureCtrl:getDigRewardCount()
-  // local helpNum = allianceTreasureCtrl:getHelpRewardCount()
-  // local playerMobilizationCtrl = gametop.playertop_:getModule("playerMobilizationCtrl")
-  // local hasActived = playerMobilizationCtrl:isHaveActived()
-  // local activeNum = allianceMgr:hasJoinAlliance() and allianceActiveCtrl:getCanReceiveTaskNum() or 0
+
+  auto l_HasChallangeTimes = AllianceHuntCtrl::Get()->GetCheckChanllengeTimes();
+  auto l_AllianceCount = KingdomMapCtrl::Get()->GetHallWarCount();
+  auto l_CounterSysCount = AllianceCounterSysCtrl::Get()->GetNewPoint();
+  l_AllianceCount += GuildHelp::Get()->GetHelpList().OtherHelpList.size();
+  if(AllianceRead::Get()->CheckRank(EAllianceRank::R4)) {
+    l_AllianceCount += AllianceRelationCtrl::Get()->GetAllyInviteNum();
+  }
+  auto l_MineNum = AllianceTreasureCtrl::Get()->GetDigRewardCount();
+  auto l_HelpNum = AllianceTreasureCtrl::Get()->GetHelpRewardCount();
+  auto l_HasActived = PlayerMobilizationCtrl::Get()->IsHaveActived();
+  auto l_ActiveNum =  0; 
+  if(AllianceManager::Get()->HasJoinAlliance()) 
+    AllianceActiveCtrl::Get()->GetCanReceiveTaskNum();
   // allianceCount = allianceCount + mineNum + helpNum + hasActived + hasChallengeTimes + counterSysCount + activeNum
+  l_AllianceCount += l_MineNum + l_HelpNum + l_HasActived + l_HasChallangeTimes + l_CounterSysCount + l_ActiveNum;
   // local rewardsCount = SoraDGetCtrl("allianceScience"):getProsperityRewardsCount()
-  // if rewardsCount > 0 then
-  //   allianceCount = allianceCount + 1
-  // end
-  // if allianceGuideCtrl:isShowEnterPoint() then
-  //   allianceCount = allianceCount + 1
-  // end
-  // if worldMapDefine.isInAtlantis() then
-  //   allianceCount = kingdomMapCtrl:getHallWarCount()
-  // end
-  // local mainCount = mailMgr:getNewMailNum()
-  // local itemsCount = 0
-  // local heroPointNum = heroltCtrl:getHeroBottomPointNum()
-  // self:updateGreenTip({
-  //   alliance = allianceCount,
-  //   items = itemsCount,
-  //   mail = mainCount,
-  //   hero = heroPointNum
-  // })
-  // if not worldMapDefine.inInCrossWar() and ownmember:getProperty("isfirstjoin") and not allianceMgr:hasJoinAlliance() then
-  //   self:addFirstJoinAllianceAnimation()
-  // end
+  auto l_RewardsCount = AllianceScience::Get()->GetProsperityRewardsCount();
+  l_AllianceCount += l_RewardsCount > 0 ? 1 : 0;
+  l_AllianceCount += AllianceGuideCtrl::Get()->IsShowEnterPoint() ? 1 : 0;
+  if(WorldMapDefine::Get()->IsInAtlantis()) {
+    l_AllianceCount = KingdomMapCtrl::Get()->GetHallWarCount();
+  }
+
+  auto l_MainCount = MailManger::Get()->GetNewMailNum();
+  auto l_ItemsCount = 0;
+  auto l_HeroPointNum = HeroCtrl::Get()->GetHeroBottomPointNum();
+
+  RGreenTipsCount l_GreenTipCount;
+  l_GreenTipCount.alliance = l_AllianceCount;
+  l_GreenTipCount.items = l_ItemsCount;
+  l_GreenTipCount.mail = l_MainCount;
+  l_GreenTipCount.hero = l_HeroPointNum;
+  UpdateGreenTip(&l_GreenTipCount);
+
+  if(
+    !WorldMapDefine::Get()->InInCrossWar() 
+    && AllianceMemberManager::Get()->GetOwnMember().bIsFirstJoin
+    && !AllianceManager::Get()->HasJoinAlliance()) {
+    AddFirstJoinAllianceAnimation();
+  }
 }
 
 void UIMainBottom::OnMessageListener() {
   using namespace std::placeholders;
-  // SoraDAddMessage(self, "MESSAGE_MAINSCEN_LOGINFINSH", handler(self, self.reLoginFinish))
   GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINFINSH", std::bind(&UIMainBottom::ReLoginFinish, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_CHAT_OPEN_UI_ALLIANCE", handler(self, self.openUIAlliance))
   GBase::DAddMessage(this, "MESSAGE_CHAT_OPEN_UI_ALLIANCE", std::bind(&UIMainBottom::OpenUIAlliance, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MAINSCEN_ONSHOW", handler(self, self.currentShowViewType))
   GBase::DAddMessage(this, "MESSAGE_MAINSCEN_ONSHOW", std::bind(&UIMainBottom::CurrentShowViewType, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_GUIDE_HIDE_AND_SHOW", handler(self, self.showOrHideGuideView))
   GBase::DAddMessage(this, "MESSAGE_SERVER_GUIDE_HIDE_AND_SHOW", std::bind(&UIMainBottom::ShowOrHideGuideView, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_REQ_NEW_PRINCE_GIFT_BUY_PACKAGE", handler(self, self.addPrinceGiftNewBuffButton))
   GBase::DAddMessage(this, "MESSAGE_REQ_NEW_PRINCE_GIFT_BUY_PACKAGE", std::bind(&UIMainBottom::AddPrinceGiftNewBuffButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_PRINCE_GIFT_GUIDE_BUFF_REFRESH", handler(self, self.showPrinceGiftGuideView))
   GBase::DAddMessage(this, "MESSAGE_PRINCE_GIFT_GUIDE_BUFF_REFRESH", std::bind(&UIMainBottom::ShowPrinceGiftGuideView, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_PRINCE_GIFT_GUIDE_REFRESH", handler(self, self.addPrinceGiftBuffButton))
   GBase::DAddMessage(this, "MESSAGE_PRINCE_GIFT_GUIDE_REFRESH", std::bind(&UIMainBottom::AddPrinceGiftBuffButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_PRINCE_GIFT_INIT", handler(self, self.addPrinceGiftBuffButton))
   GBase::DAddMessage(this, "MESSAGE_PRINCE_GIFT_INIT", std::bind(&UIMainBottom::AddPrinceGiftBuffButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SINBAD_TREASURE_UPDATE_LV_POP_WINDOW", handler(self, self.showSinbadPopWindow))
   GBase::DAddMessage(this, "MESSAGE_SINBAD_TREASURE_UPDATE_LV_POP_WINDOW", std::bind(&UIMainBottom::ShowSinbadPopWindow, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_WATCHTOWER_ADDINFO", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_SERVER_WATCHTOWER_ADDINFO", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_WATCHTOWER_REMOVEINFO", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_SERVER_WATCHTOWER_REMOVEINFO", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_WATCHTOWER_EDITINFO", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_SERVER_WATCHTOWER_EDITINFO", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_CLIENT_WATCHTOWER_INGORECONTROL", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_CLIENT_WATCHTOWER_INGORECONTROL", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_WATCHTOWER_REFRESHALL", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_SERVER_WATCHTOWER_REFRESHALL", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ALLIACNE_WAR_SETTING", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_ALLIACNE_WAR_SETTING", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_WATCHSOULTOWER_ADDINFO", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_SERVER_WATCHSOULTOWER_ADDINFO", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_WATCHSOULTOWER_EDITINFO", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_SERVER_WATCHSOULTOWER_EDITINFO", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_WATCHSOULTOWER_REMOVEINFO", handler(self, self.checkWatchTower))
   GBase::DAddMessage(this, "MESSAGE_SERVER_WATCHSOULTOWER_REMOVEINFO", std::bind(&UIMainBottom::CheckWatchTower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_EVENTCENTER_ROMANSOUL_ALLIANCEATTACK", handler(self, self.checkRomanSoul))
   GBase::DAddMessage(this, "MESSAGE_SERVER_EVENTCENTER_ROMANSOUL_ALLIANCEATTACK", std::bind(&UIMainBottom::CheckRomanSoul, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_PYRAMIDBATTLE_MAINUIICONCHECK", handler(self, self.btnPyramidBattleCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_PYRAMIDBATTLE_MAINUIICONCHECK", std::bind(&UIMainBottom::BtnPyramidBattleCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_PYRAMIDBATTLE_GROUP_UPDATE", handler(self, self.btnPyramidBattleCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_PYRAMIDBATTLE_GROUP_UPDATE", std::bind(&UIMainBottom::BtnPyramidBattleCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ALLIACNE_BE_KICKED", handler(self, self.btnPyramidBattleCheck))
   GBase::DAddMessage(this, "MESSAGE_ALLIACNE_BE_KICKED", std::bind(&UIMainBottom::BtnPyramidBattleCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ALLIANCE_QUIT_SUCCESS", handler(self, self.btnPyramidBattleCheck))
   GBase::DAddMessage(this, "MESSAGE_ALLIANCE_QUIT_SUCCESS", std::bind(&UIMainBottom::BtnPyramidBattleCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_GREEN_POINT_UPDATE", handler(self, self.greenPointUpdate))
   GBase::DAddMessage(this, "MESSAGE_GREEN_POINT_UPDATE", std::bind(&UIMainBottom::GreenPointUpdate, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_GREEN_POINT_UPDATE_BYTYPE", handler(self, self.greenPointUpdateByType))
   GBase::DAddMessage(this, "MESSAGE_GREEN_POINT_UPDATE_BYTYPE", std::bind(&UIMainBottom::GreenPointUpdateByType, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ALLIACNE_MEMBER_UPDATE", handler(self, self.greenPointUpdate))
   GBase::DAddMessage(this, "MESSAGE_ALLIACNE_MEMBER_UPDATE", std::bind(&UIMainBottom::GreenPointUpdate, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_WALLS_NOTIFY_SUCCESS", handler(self, self.checkWallDefend))
   GBase::DAddMessage(this, "MESSAGE_WALLS_NOTIFY_SUCCESS", std::bind(&UIMainBottom::CheckWallDefend, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ALLIANCE_JOIN_SUCCESS", handler(self, self.RemovefirstJoinAllianceAnimation))
   GBase::DAddMessage(this, "MESSAGE_ALLIANCE_JOIN_SUCCESS", std::bind(&UIMainBottom::RemovefirstJoinAllianceAnimation, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_KINGDOMWAR_KINGDOMUSR_CHANGED", handler(self, self.btnKingdomManagerCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_KINGDOMWAR_KINGDOMUSR_CHANGED", std::bind(&UIMainBottom::BtnKingdomManagerCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_KINGDOMWAR_KINGDOMALLIANCE_GIFT", handler(self, self.btnKingdomManagerCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_KINGDOMWAR_KINGDOMALLIANCE_GIFT", std::bind(&UIMainBottom::BtnKingdomManagerCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_LEGENDLORD_LORD_NOTIFY_CLEAN", handler(self, self.btnLegendKingManagerCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_LEGENDLORD_LORD_NOTIFY_CLEAN", std::bind(&UIMainBottom::BtnLegendKingManagerCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_LEGENDLORD_LORD_NOTIFY_AP_LT", handler(self, self.btnLegendKingManagerCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_LEGENDLORD_LORD_NOTIFY_AP_LT", std::bind(&UIMainBottom::BtnLegendKingManagerCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_LEGENDLORD_LORD_TITLE_INFO_BACK", handler(self, self.btnLegendKingManagerCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_LEGENDLORD_LORD_TITLE_INFO_BACK", std::bind(&UIMainBottom::BtnLegendKingManagerCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_HEGEMON_LORD_NOTIFY_CLEAN", handler(self, self.msgHegemonClean))
   GBase::DAddMessage(this, "MESSAGE_SERVER_HEGEMON_LORD_NOTIFY_CLEAN", std::bind(&UIMainBottom::MsgHegemonClean, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_HEGEMON_LORD_NOTIFY_AP_LT", handler(self, self.btnHegemonManagerCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_HEGEMON_LORD_NOTIFY_AP_LT", std::bind(&UIMainBottom::BtnHegemonManagerCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_HEGEMON_LORD_TITLE_INFO_BACK", handler(self, self.btnHegemonManagerCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_HEGEMON_LORD_TITLE_INFO_BACK", std::bind(&UIMainBottom::BtnHegemonManagerCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_HEGEMON_UPDATE_MAINUI_HEGEMON", handler(self, self.btnHegemonBattleCheck))
   GBase::DAddMessage(this, "MESSAGE_SERVER_HEGEMON_UPDATE_MAINUI_HEGEMON", std::bind(&UIMainBottom::BtnHegemonBattleCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_CASTLE_LEVELUP", handler(self, self.btnCityUnlockCheck))
   GBase::DAddMessage(this, "MESSAGE_MAINCITYVIEW_CASTLE_LEVELUP", std::bind(&UIMainBottom::BtnCityUnlockCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_NEWPLAYER_BUFF_END", handler(self, self.btnNewPlayerBuffCheck))
   GBase::DAddMessage(this, "MESSAGE_MAINCITYVIEW_NEWPLAYER_BUFF_END", std::bind(&UIMainBottom::BtnNewPlayerBuffCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SULTANSBACK_WELCOME_REFRESH", handler(self, self.btnSultansBackWelCheck))
   GBase::DAddMessage(this, "MESSAGE_SULTANSBACK_WELCOME_REFRESH", std::bind(&UIMainBottom::BtnSultansBackWelCheck, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MAIN_RECORD_SCREEN", handler(self, self.startRecordScreen))
   GBase::DAddMessage(this, "MESSAGE_MAIN_RECORD_SCREEN", std::bind(&UIMainBottom::StartRecordScreen, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MAIN_STOP_RECORD_SCREEN", handler(self, self.stopRecording))
   GBase::DAddMessage(this, "MESSAGE_MAIN_STOP_RECORD_SCREEN", std::bind(&UIMainBottom::StopRecording, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_LUCKY_DAY_UPDATE", handler(self, self.updateEventcenter))
   GBase::DAddMessage(this, "MESSAGE_SERVER_LUCKY_DAY_UPDATE", std::bind(&UIMainBottom::UpdateEventcenter, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_WALLS_DEFENCE_DESTROY", handler(self, self.defineWallDestroy))
   GBase::DAddMessage(this, "MESSAGE_WALLS_DEFENCE_DESTROY", std::bind(&UIMainBottom::DefineWallDestroy, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_WALLS_DEFENCE_DESTROY_RECOVER", handler(self, self.defineWallDestroyRecover))
   GBase::DAddMessage(this, "MESSAGE_WALLS_DEFENCE_DESTROY_RECOVER", std::bind(&UIMainBottom::DefineWallDestroyRecover, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_LORDINFO_BIND_AWARD", handler(self, self.initAccountBind))
   GBase::DAddMessage(this, "MESSAGE_LORDINFO_BIND_AWARD", std::bind(&UIMainBottom::InitAccountBind, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MAIN_BTN_UPDATE", handler(self, self.updateBtnContainer))
   GBase::DAddMessage(this, "MESSAGE_MAIN_BTN_UPDATE", std::bind(&UIMainBottom::UpdateBtnContainer, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MAIN_BTN_UPDATE_TEST", handler(self, self.updateBtnContainer))
   GBase::DAddMessage(this, "MESSAGE_MAIN_BTN_UPDATE_TEST", std::bind(&UIMainBottom::UpdateBtnContainer, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MONTHLY_CARD_REFRESH_BACK", handler(self, self.updateMonthCardButton))
   GBase::DAddMessage(this, "MESSAGE_MONTHLY_CARD_REFRESH_BACK", std::bind(&UIMainBottom::UpdateMonthCardButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_EVENTCENTER_COMMONEVENT_REFRESH", handler(self, self.getEventCenterReturn))
   GBase::DAddMessage(this, "MESSAGE_SERVER_EVENTCENTER_COMMONEVENT_REFRESH", std::bind(&UIMainBottom::GetEventCenterReturn, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ALLIANCE_MAINUIINVITE_REFRESH", handler(self, self.initAllianceInvitePop))
   GBase::DAddMessage(this, "MESSAGE_ALLIANCE_MAINUIINVITE_REFRESH", std::bind(&UIMainBottom::InitAllianceInvitePop, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_LORDINFO_BY_UID", handler(self, self.serverMessageGetLordInfo))
   GBase::DAddMessage(this, "MESSAGE_LORDINFO_BY_UID", std::bind(&UIMainBottom::ServerMessageGetLordInfo, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ALLIANCE_REQ_INFO_BACK", handler(self, self.serverMessageGetAllianceInfo))
   GBase::DAddMessage(this, "MESSAGE_ALLIANCE_REQ_INFO_BACK", std::bind(&UIMainBottom::ServerMessageGetAllianceInfo, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_GUIDE_START_BY_STEP", handler(self, self.recevieGuideMsg))
   GBase::DAddMessage(this, "MESSAGE_SERVER_GUIDE_START_BY_STEP", std::bind(&UIMainBottom::RecevieGuideMsg, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ITEM_CHANGE_TYPE", handler(self, self.recevieItemChangeMsg))
   GBase::DAddMessage(this, "MESSAGE_ITEM_CHANGE_TYPE", std::bind(&UIMainBottom::RecevieItemChangeMsg, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_UI_EXPOSTULATION_UPDATE", handler(self, self.updateExpostulation))
   GBase::DAddMessage(this, "MESSAGE_UI_EXPOSTULATION_UPDATE", std::bind(&UIMainBottom::UpdateExpostulation, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_LUCKYBLESS_UPDATE", handler(self, self.showLuckyBless))
   GBase::DAddMessage(this, "MESSAGE_SERVER_LUCKYBLESS_UPDATE", std::bind(&UIMainBottom::ShowLuckyBless, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_GOLD_PACKAGE_STATE", handler(self, self.updateGoldPackageButton))
   GBase::DAddMessage(this, "MESSAGE_GOLD_PACKAGE_STATE", std::bind(&UIMainBottom::UpdateGoldPackageButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_LUCKY_RECHARGE_REFRESH", handler(self, self.updateBtnLuckyRecharge))
   GBase::DAddMessage(this, "MESSAGE_LUCKY_RECHARGE_REFRESH", std::bind(&UIMainBottom::UpdateBtnLuckyRecharge, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ALLIACNE_GET_ALLIANCE_HELP_LIST_SUCCESS", handler(self, self.initHelpAllBtn))
   GBase::DAddMessage(this, "MESSAGE_ALLIACNE_GET_ALLIANCE_HELP_LIST_SUCCESS", std::bind(&UIMainBottom::InitHelpAllBtn, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_LEGEND_TEAM_INVITED_INFO", handler(self, self.msgInvitedInfo_legend))
   GBase::DAddMessage(this, "MESSAGE_SERVER_LEGEND_TEAM_INVITED_INFO", std::bind(&UIMainBottom::MsgInvitedInfoLegend, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_ITEM_LIMITITEM_TIMEOUT_BACK", handler(self, self.updateShopNewTag))
   GBase::DAddMessage(this, "MESSAGE_ITEM_LIMITITEM_TIMEOUT_BACK", std::bind(&UIMainBottom::UpdateShopNewTag, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_QUESTIONNAIRE_REFRESH", handler(self, self.updateQuestionnaireButton))
   GBase::DAddMessage(this, "MESSAGE_QUESTIONNAIRE_REFRESH", std::bind(&UIMainBottom::UpdateQuestionnaireButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_UI_EVENTCENTER_REFRESHISNEW", handler(self, self.updateCommunityButton))
   GBase::DAddMessage(this, "MESSAGE_UI_EVENTCENTER_REFRESHISNEW", std::bind(&UIMainBottom::UpdateCommunityButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_RADIANCE_WAR_WARNING", handler(self, self.updateGreenPointRadianceWar))
   GBase::DAddMessage(this, "MESSAGE_SERVER_RADIANCE_WAR_WARNING", std::bind(&UIMainBottom::UpdateGreenPointRadianceWar, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_RADIANCE_WAR_LONGTIMEUNLOGIN", handler(self, self.showLongTimeUnlogin))
   GBase::DAddMessage(this, "MESSAGE_SERVER_RADIANCE_WAR_LONGTIMEUNLOGIN", std::bind(&UIMainBottom::ShowLongTimeUnlogin, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_KOCHOICE_REFRESH", handler(self, self.addKOChoiceButton))
   GBase::DAddMessage(this, "MESSAGE_KOCHOICE_REFRESH", std::bind(&UIMainBottom::AddKOChoiceButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_EVENT_COMMON_RED_POINT_REFRESH", handler(self, self.refreshTrainPower))
   GBase::DAddMessage(this, "MESSAGE_SERVER_EVENT_COMMON_RED_POINT_REFRESH", std::bind(&UIMainBottom::RefreshTrainPower, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_LOST_RUINS_REFRESH", handler(self, self.addLostRuinsButton))
   GBase::DAddMessage(this, "MESSAGE_LOST_RUINS_REFRESH", std::bind(&UIMainBottom::AddLostRuinsButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_WIND_TOWER_REFRESH", handler(self, self.addWindTowerButton))
   GBase::DAddMessage(this, "MESSAGE_WIND_TOWER_REFRESH", std::bind(&UIMainBottom::AddWindTowerButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SNOWWOLF_LOST_REFRESH", handler(self, self.addSnowWolfLostButton))
   GBase::DAddMessage(this, "MESSAGE_SNOWWOLF_LOST_REFRESH", std::bind(&UIMainBottom::AddSnowWolfLostButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_CUMUACTIVITY_CRAZYTRIO_SHOWDOWN", handler(self, self.updateCrazyTrioButton))
   GBase::DAddMessage(this, "MESSAGE_CUMUACTIVITY_CRAZYTRIO_SHOWDOWN", std::bind(&UIMainBottom::UpdateCrazyTrioButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_CUMUACTIVITY_CRAZYTRIO_RELASH", handler(self, self.addCrazyTrioButton))
   GBase::DAddMessage(this, "MESSAGE_CUMUACTIVITY_CRAZYTRIO_RELASH", std::bind(&UIMainBottom::AddCrazyTrioButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_LORDINFO_UPGRADE_LEVEL", handler(self, self.updateBtnStatues))
   GBase::DAddMessage(this, "MESSAGE_LORDINFO_UPGRADE_LEVEL", std::bind(&UIMainBottom::UpdateBtnStatues, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_MAINUIBOTTOM_SORTBOTTOMQUESTBTNS", handler(self, self.sortBottomQuestBtns))
   GBase::DAddMessage(this, "MESSAGE_MAINUIBOTTOM_SORTBOTTOMQUESTBTNS", std::bind(&UIMainBottom::SortBottomQuestBtns, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_MAIL_REQ_BATTLE_REPORT_BACK", handler(self, self.openReportMail))
   GBase::DAddMessage(this, "MESSAGE_SERVER_MAIL_REQ_BATTLE_REPORT_BACK", std::bind(&UIMainBottom::OpenReportMail, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_MAIL_REQ_SINGLE_MAIL_BACK_REPORT", handler(self, self.openReportMail))
   GBase::DAddMessage(this, "MESSAGE_SERVER_MAIL_REQ_SINGLE_MAIL_BACK_REPORT", std::bind(&UIMainBottom::OpenReportMail, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_SERVER_EVENTCENTER_COMMONEVENT_REFRESH", handler(self, self.addHarvestSeasonButton))
   GBase::DAddMessage(this, "MESSAGE_SERVER_EVENTCENTER_COMMONEVENT_REFRESH", std::bind(&UIMainBottom::AddHarvestSeasonButton, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_HARVEST_SEASON_REDPOINT", function()
-  //   if self.btnHarvestSeason then
-  //     self.btnHarvestSeason.redIcon:setVisible(false)
-  //   end
-  // end)
   GBase::DAddMessage(this, "MESSAGE_HARVEST_SEASON_REDPOINT", [this](EventCustom*) {
     if (n_BtnHarvestSeason) {
       // self.btnHarvestSeason.redIcon:setVisible(false)
     }
   });
-  // SoraDAddMessage(self, "MESSAGE_PRE_DOWNLOAD_REFRESH", handler(self, self.checkPreDownloadStatus))
   GBase::DAddMessage(this, "MESSAGE_PRE_DOWNLOAD_REFRESH", std::bind(&UIMainBottom::CheckPreDownloadStatus, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_PRE_DOWNLOAD_REFRESH_DOWNLOAD", handler(self, self.checkPreDownload))
   GBase::DAddMessage(this, "MESSAGE_PRE_DOWNLOAD_REFRESH_DOWNLOAD", std::bind(&UIMainBottom::CheckPreDownload, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_PRE_DOWNLOAD_GAME_DOWNSUC", handler(self, self.OnPreDownloadSuc))
   GBase::DAddMessage(this, "MESSAGE_PRE_DOWNLOAD_GAME_DOWNSUC", std::bind(&UIMainBottom::OnPreDownloadSuc, this, _1));
-  // SoraDAddMessage(self, "MESSAGE_PAYBACK_NOTICE", handler(self, self.btnPayBackCheck))
   GBase::DAddMessage(this, "MESSAGE_PAYBACK_NOTICE", std::bind(&UIMainBottom::BtnPayBackCheck, this, _1));
 }
 
@@ -2962,30 +2807,35 @@ void UIMainBottom::SortBottomQuestBtns(EventCustom* p_Event) {
 }
 
 void UIMainBottom::InitHelpAllBtn(EventCustom* p_Event) {
-  // if not self.btnHelpAll then
-  //   local effect = SoraDCreateCSBNode("alliancehelpEffect")
-  //   effect:addTo(self.Node_area_lb)
-  //   effect:setVisible(false)
-  //   effect:setName("alliancehelpEffect")
-  //   local Image_btn = SoraDGetChildByName(effect, "Image_btn")
-  //   Image_btn:addTouchEventListener(handler(self, self.btnHelpAllClick))
-  //   effect.redNum = SoraDGetChildByName(effect, "Text_questNum")
-  //   self.btnHelpAll = effect
-  // end
-  // if self.viewChangeType ~= VIEW_TYPE_CITY then
-  //   self.btnHelpAll:setVisible(false)
-  //   self:sortBottomQuestBtns()
-  //   return
-  // end
-  // local allianceHelp = SoraDGetCtrl("allianceHelp")
-  // if allianceHelp:getIsCanHelp() then
-  //   self.btnHelpAll:setVisible(true)
-  //   local helpCount = #allianceHelp:getHelpList().otherhelplist
-  //   self.btnHelpAll.redNum:setString(helpCount)
-  // else
-  //   self.btnHelpAll:setVisible(false)
-  // end
-  // self:sortBottomQuestBtns()
+  
+  ui::Text *l_RedNum = nullptr;
+
+  if(!n_BtnHelpAll) {
+    auto l_Effect = GBase::DCreateCSBNode("UiParts/Parts/Building/Embassy/alliancehelpEffect.csb");
+    n_NodeAreaLb->addChild(l_Effect);
+    l_Effect->setVisible(false);
+    l_Effect->setName("alliancehelpEffect");
+    auto l_ImageBtn = GBase::GetChildByName<ui::ImageView *>(l_Effect, "Image_btn");
+    l_ImageBtn->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnHelpAllClick, this));
+    l_RedNum = GBase::GetChildByName<ui::Text *>(l_Effect, "Text_questNum");
+    n_BtnHelpAll = l_Effect;
+  }
+  
+  if(m_ViewChangeType != EScene::City){
+    n_BtnHelpAll->setVisible(false);
+    SortBottomQuestBtns(nullptr);
+    return;
+  }
+
+  if(GuildHelp::Get()->IsCanHelp()){
+    n_BtnHelpAll->setVisible(true);
+    auto l_HelpCount = GuildHelp::Get()->GetHelpList().OtherHelpList.size();
+    l_RedNum->setString(std::to_string(l_HelpCount));
+  }else{
+    n_BtnHelpAll->setVisible(false);
+  }
+
+  SortBottomQuestBtns(nullptr);
 }
 
 void UIMainBottom::BtnHelpAllClick(Ref* p_Sender, Widget::TouchEventType p_Type) {

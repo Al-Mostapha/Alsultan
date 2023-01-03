@@ -31,10 +31,10 @@ bool BuildingFPrison::init()
 void BuildingFPrison::ShowNormalParticle()
 {
 	auto Part1 = ParticleSystemQuad::create("Particle/et_jinzitaloading_01.plist");
-	Part1->setPosition(143.47, 27.63);
+	Part1->setPosition(143.47f, 27.63f);
 	Part1->setScaleX(0.09f);
 	Part1->setScaleY(0.135f);
-	Part1->setRotation(-131.65);
+	Part1->setRotation(-131.65f);
 	Part1->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part1, 1);
 
@@ -63,14 +63,14 @@ void BuildingFPrison::ShowNormalParticle()
 
 	auto Part5 = ParticleSystemQuad::create("Particle/et_jianyujz_01.plist");
 	Part5->setPosition(47.68f, 24.77f);
-	Part5->setScaleX(0.38);
-	Part5->setScaleY(0.569);
-	Part5->setRotation(-14.91);
+	Part5->setScaleX(0.38f);
+	Part5->setScaleY(0.569f);
+	Part5->setRotation(-14.91f);
 	Part5->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part5, 5);
 
 	auto Part6 = ParticleSystemQuad::create("Particle/et_jinzitaloading_01.plist");
-	Part6->setPosition(44.06, 25.74f);
+	Part6->setPosition(44.06f, 25.74f);
 	Part6->setScaleX(0.12f);
 	Part6->setScaleY(0.135f);
 	Part6->setRotation(130.31f);

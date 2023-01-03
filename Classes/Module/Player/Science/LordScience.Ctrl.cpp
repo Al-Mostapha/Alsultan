@@ -5,6 +5,6 @@ LordScienceCtrl *LordScienceCtrl::Get(){
   return l_Instance;
 }
 
-uint32 LordScienceCtrl::getSciencePower(ELordScience p_LordScience){
+uint32 LordScienceCtrl::GetSciencePower(ELordScience p_LordScience){
   return 0;
 }

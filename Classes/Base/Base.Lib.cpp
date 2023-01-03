@@ -352,6 +352,28 @@ Node *DCreateCSBNode(const char *p_CSBName){
   return CSLoader::createNode(p_CSBName);
 }
 
+Label *DCreateLabel(RCreateLabelParm p_Parm){
+  
+  auto l_Text = p_Parm.Txt;
+  auto l_Font = p_Parm.FontName.empty() ? p_Parm.FontName : GDisplay::Get()->DefaultTTFFont;
+  auto l_Size = p_Parm.fontSize = 0 ? p_Parm.fontSize : GDisplay::Get()->DefaultTTFFontSize;
+  auto l_Color = p_Parm.Color != Color4B::WHITE ? p_Parm.Color : Color4B::WHITE;
+  auto l_TextAlign = p_Parm.hAlignment != TextHAlignment::LEFT ? p_Parm.hAlignment : TextHAlignment::LEFT;
+  auto l_TextValign = p_Parm.vAlignment != TextVAlignment::TOP ? p_Parm.vAlignment : TextVAlignment::TOP;
+  auto l_X = p_Parm.x;
+  auto l_Y = p_Parm.y;
+
+  auto l_Label = Label::createWithSystemFont(l_Text, l_Font, l_Size, p_Parm.Dimensions, l_TextAlign, l_TextValign);
+  if(l_Label){
+    l_Label->setColor(Color3B(l_Color));
+    if(l_X && l_Y){
+      l_Label->setPosition(l_X, l_Y);
+    }
+  }
+  return l_Label;
+
+}
+
 } // namespace
 
 

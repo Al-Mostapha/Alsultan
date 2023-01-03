@@ -37,6 +37,8 @@ public:
     float contentScaleFactor = 0;
     Size realSize;
     Size sizeInPixels;
+    GString DefaultTTFFont = "Arial";
+    float DefaultTTFFontSize = 24;
     Size size(){
       return Size(realSize.width - iPadOffset, realSize.height - iPhoneXOffset);
     }
@@ -50,4 +52,6 @@ public:
       const GVector<Vec2> &p_Points,
       const RPolygonProps &p_Props = RPolygonProps(),
       DrawNode *p_DrawNode = nullptr);
+
+  Sprite *NewSprite(const char *p_FileName);
 };

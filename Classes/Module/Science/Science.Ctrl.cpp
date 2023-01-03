@@ -6,7 +6,7 @@ ScienceCtrl *ScienceCtrl::Get(){
   return l_Instance;
 }
 
-uint32 ScienceCtrl::getSciencePower(EScienceEffect p_ScienceEffect){
+uint32 ScienceCtrl::GetSciencePower(EScienceEffect p_ScienceEffect){
   return 0;
 }
 

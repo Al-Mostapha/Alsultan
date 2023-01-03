@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>MainCityBG_04_pre.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{1020,1020}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{1020,1020}}</string>
+                <key>sourceSize</key>
+                <string>{1020,1020}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>mainCityBGHall_4_pre.png</string>
+            <key>size</key>
+            <string>{1024,1024}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:3b4a3803ddf1d1dc72108a2493436f9a:1/1$</string>
+            <key>textureFileName</key>
+            <string>mainCityBGHall_4_pre.png</string>
+        </dict>
+    </dict>
+</plist>

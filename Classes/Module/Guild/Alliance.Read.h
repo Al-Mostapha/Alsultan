@@ -1,12 +1,14 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Science/GuildScience.Enum.h"
+#include "Alliance.Enum.h"
 
-class GuildRead{
+class AllianceRead{
 public:
-  static GuildRead *Get();
+  static AllianceRead *Get();
   bool IsScience(int32 p_Science);
   GString GetScienceName(EGuildScience p_GuildScience);
   GString GetScienceName(int32 p_GuildScience);
   GString GetLanguageName(int32  p_LangName);
+  bool CheckRank(EAllianceRank p_Rank, bool p_ShowTip = false, const GString &p_Tip = "");
 };

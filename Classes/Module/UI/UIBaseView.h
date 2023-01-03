@@ -30,7 +30,7 @@ public:
   bool m_FreeImagesOnExit = false;
   CREATE_FUNC(UIBaseView);
   static UIBaseView *Create(Size p_Size, bool p_IsColor = false, Node *p_Target = nullptr);
-  void Ctor();
+  virtual void Ctor();
   void SetBackGround(float p_Opacity, Color3B p_Color);
   float GetPanelOffsetHeight();
   typedef std::function<void()> CallBack;
