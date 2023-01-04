@@ -23,6 +23,7 @@
 #include "Module/Mail/Mail.Mgr.h"
 #include "Module/Hero/Hero.Ctrl.h"
 #include "Module/Guild/AllianceMember.Mgr.h"
+#include "Game/Guide/Guide.Ctrl.h"
 
 void UIMainBottom::Ctor() {
   // cityBuildData:removeMessageListener()
@@ -371,7 +372,7 @@ void UIMainBottom::InitStyle() {
 
   if(l_Style == EMainUIStyle::Easter){
 
-    auto l_TopNode = GBase::DCreateAnimation("mainUI_style_easter", nullptr).First;
+    auto l_TopNode = GBase::DCreateAnimation("UiParts/MainUi/Common/mainUI_style_easter.csb", nullptr).First;
     n_NodeStyleTop->addChild(l_TopNode);
     auto l_Spine = spine::SkeletonAnimation::createWithBinaryFile("spine/yezi.skel", "spine/yezi.atlas");
     l_Spine->setPosition(65, 35);
@@ -381,22 +382,22 @@ void UIMainBottom::InitStyle() {
 
   }else if(l_Style == EMainUIStyle::Halloween){
 
-    auto l_TopNode = GBase::DCreateAnimation("mainUI_style_halloween", nullptr).First;
+    auto l_TopNode = GBase::DCreateAnimation("UiParts/MainUi/Common/mainUI_style_halloween.csb", nullptr).First;
     n_NodeStyleTop->addChild(l_TopNode);
     InitHalloweenShineEffect();
 
   }else if(l_Style == EMainUIStyle::Chritmas){
 
-    auto l_TopNode = GBase::DCreateAnimation("mainUI_style_chritmas", nullptr).First;
+    auto l_TopNode = GBase::DCreateAnimation("UiParts/MainUi/Common/mainUI_style_chritmas.csb", nullptr).First;
     n_NodeStyleTop->addChild(l_TopNode);
 
   }else if(l_Style == EMainUIStyle::QuickSand){
 
-    auto l_TopNode = GBase::DCreateAnimation("mainUI_style_ztsz_top", nullptr).First;
+    auto l_TopNode = GBase::DCreateAnimation("UiParts/MainUi/Common/mainUI_style_ztsz_top.csb", nullptr).First;
     n_NodeStyleTop->addChild(l_TopNode);
-    auto l_BgNode = GBase::DCreateAnimation("mainUI_style_ztsz", nullptr).First;
+    auto l_BgNode = GBase::DCreateAnimation("UiParts/MainUi/Common/mainUI_style_ztsz.csb", nullptr).First;
     n_NodeStyleBg->addChild(l_BgNode);
-    auto l_EffectNode = GBase::DCreateAnimation("Node_Effect_liusha2", nullptr).First;
+    auto l_EffectNode = GBase::DCreateAnimation("UiParts/MainUi/Common/Node_Effect_liusha2.csb", nullptr).First;
     l_EffectNode->setPosition(320, 30);
     n_NodeAreaB->addChild(l_EffectNode, 999);
     l_EffectNode->setName("actNode_style");
@@ -406,14 +407,11 @@ void UIMainBottom::InitStyle() {
 }
 
 void UIMainBottom::InitGroup() {
-  // local function createGroupNode(groupID, zOrder, nodeName)
-  //   local node = display.newNode()
-  //   node:setGroupID(groupID, true)
-  //   node:addTo(self)
-  //   node:setLocalZOrder(zOrder)
-  //   node:setName(nodeName)
-  // end
-  // createGroupNode(mainUIDef.newGroupID.text, 5, "Node_group_text")
+  auto l_Node = GDisplay::NewNode();
+  this->addChild(l_Node);
+  l_Node->setLocalZOrder(5);
+  //   node:setGroupID(mainUIDef.newGroupID.text, true)
+  l_Node->setName("Node_group_text");
 }
 
 Label* UIMainBottom::ExchangeGroupText(ui::Text* p_Text, float p_Height) {
@@ -473,17 +471,6 @@ void UIMainBottom::InitAccountBind(EventCustom* p_Event) {
 }
 
 void UIMainBottom::InitGreenPoint() {
-  // local allianceHelp = gametop.playertop_:getModule("allianceHelp")
-  // local allianceRelationCtrl = gametop.playertop_:getModule("allianceRelationCtrl")
-  // local allianceDesRead = include("allianceDesRead")
-  // local allianceMgr = gametop.playertop_:getModule("allianceMgr")
-  // local memberMgr = gametop.playertop_:getModule("memberMgr")
-  // local ownmember = memberMgr:getOwnMember()
-  // local kingdomMapCtrl = gametop.playertop_:getModule("kingdomMapCtrl")
-  // local allianceTreasureCtrl = gametop.playertop_:getModule("allianceTreasureCtrl")
-  // local allianceActiveCtrl = gametop.playertop_:getModule("allianceActiveCtrl")
-  // local allianceHuntCtrl = gametop.playertop_:getModule("allianceHuntCtrl")
-  // local allianceCounterSysCtrl = gametop.playertop_:getModule("allianceCounterSysCtrl")
 
   auto l_HasChallangeTimes = AllianceHuntCtrl::Get()->GetCheckChanllengeTimes();
   auto l_AllianceCount = KingdomMapCtrl::Get()->GetHallWarCount();
@@ -492,15 +479,14 @@ void UIMainBottom::InitGreenPoint() {
   if(AllianceRead::Get()->CheckRank(EAllianceRank::R4)) {
     l_AllianceCount += AllianceRelationCtrl::Get()->GetAllyInviteNum();
   }
+
   auto l_MineNum = AllianceTreasureCtrl::Get()->GetDigRewardCount();
   auto l_HelpNum = AllianceTreasureCtrl::Get()->GetHelpRewardCount();
   auto l_HasActived = PlayerMobilizationCtrl::Get()->IsHaveActived();
   auto l_ActiveNum =  0; 
   if(AllianceManager::Get()->HasJoinAlliance()) 
     AllianceActiveCtrl::Get()->GetCanReceiveTaskNum();
-  // allianceCount = allianceCount + mineNum + helpNum + hasActived + hasChallengeTimes + counterSysCount + activeNum
   l_AllianceCount += l_MineNum + l_HelpNum + l_HasActived + l_HasChallangeTimes + l_CounterSysCount + l_ActiveNum;
-  // local rewardsCount = SoraDGetCtrl("allianceScience"):getProsperityRewardsCount()
   auto l_RewardsCount = AllianceScience::Get()->GetProsperityRewardsCount();
   l_AllianceCount += l_RewardsCount > 0 ? 1 : 0;
   l_AllianceCount += AllianceGuideCtrl::Get()->IsShowEnterPoint() ? 1 : 0;
@@ -644,20 +630,22 @@ void UIMainBottom::ShowSinbadPopWindow(EventCustom* p_Event) {
 }
 
 void UIMainBottom::ReLoginFinish(EventCustom* p_Event) {
-  // print("\230\150\173\231\186\191\233\135\141\232\191\158\229\149\166\239\188\129")
-  // self.chatMainUIView:initWithData()
-  // self:initGreenPoint()
-  // self:checkWatchTower()
-  // local kingdomMapCtrl = gametop.playertop_:getModule("kingdomMapCtrl")
-  // kingdomMapCtrl:reLoginFinish()
-  // self:btnNeckLaceRankCheck()
-  // self:checkWallDefend()
-  // self:checkRomanSoul()
-  // self:btnKingdomManagerCheck()
-  // self:btnPyramidBattleCheck()
+  
+  n_ChatMainUIView->InitWithData();
+  InitGreenPoint();
+  CheckWatchTower(nullptr);
+  KingdomMapCtrl::Get()->ReLoginFinish();
+  BtnNeckLaceRankCheck(nullptr);
+  CheckWallDefend(nullptr);
+  CheckRomanSoul(nullptr);
+  BtnKingdomManagerCheck(nullptr);
+  BtnPyramidBattleCheck(nullptr);
   // self:showLuckyBless()
+  ShowLuckyBless(nullptr);
   // self:initAccountBind()
+  InitAccountBind(nullptr);
   // self:req4AllianceInviteData()
+  Req4AllianceInviteData();
   // self.updateAllianceGreen = nil
   // self:createExpostulationTimer()
   // self:checkRemainsWar()

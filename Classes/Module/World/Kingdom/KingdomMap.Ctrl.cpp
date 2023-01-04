@@ -10,3 +10,7 @@ int32 KingdomMapCtrl::GetHallWarCount()
 {
   return 0;
 }
+
+void KingdomMapCtrl::ReLoginFinish()
+{
+}
