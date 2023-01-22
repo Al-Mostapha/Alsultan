@@ -2,6 +2,7 @@
 #include "Include/IncludeBase.h"
 #include "Include/IncludeGlobal.h"
 
+struct RActivityShowData;
 
 class EffectMainUITop{
   public: 
@@ -19,7 +20,7 @@ class EffectMainUITop{
     void ShowLordPowerChange(class UIMainTop *p_UIMainTop);
     ui::Button *LuckyRecharge();
     ui::Button *MonthOrWeeklyCard();
-    ui::Button *CommunityCenter(void *p_Info);
+    ui::Button *CommunityCenter(RActivityShowData p_Info);
     ui::Button *Questionnaire(int32 p_Num);
     ui::Button *CreateLostRuinsBtn(int32 p_Num);
     ui::Button *CreateWindTowerBtn(int32 p_Num);

@@ -76,3 +76,7 @@ GHashMap<EActivityTime, bool> ActivityShowCtrl::GetActivityGroup(EActivityCenter
     return {};
   return m_ActivityGroup[p_IdGroup];
 }
+
+RActivityShowData ActivityShowCtrl::GetCommunityInfo(EActivityTime p_IdEvent){
+  return RActivityShowData();
+}

@@ -7,6 +7,7 @@
 #include "Module/UI/Common/UIPreDownloadMainWidget.h"
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/Part/Quest/UIQuestGuideNode.h"
+#include "Module/Activity/Activity.Type.h"
 
 struct RGreenTipsCount{
   int32 alliance;
@@ -129,8 +130,17 @@ class UIMainBottom : public UIBaseView {
   Sprite* n_IconRed = nullptr;
   ui::Text* n_LabBtnNum = nullptr;
   int32 m_BtnSwitchType = 1;
-  ui::Button* n_BtnLuckyRecharge = nullptr;
-  ui::Button* n_BtnHarvestSeason = nullptr;
+  ui::Button *n_BtnLuckyRecharge = nullptr;
+  ui::Button *n_BtnHarvestSeason = nullptr;
+  ui::Button *n_BtnQuestionnaire = nullptr;
+  ui::Button *n_BtnLostRuins = nullptr;
+  ui::Button *n_BtnWindTower = nullptr;
+  ui::Button *n_BtnSnowWolfLost = nullptr;
+  ui::Button *n_BtnCrazyTrio = nullptr;
+  ui::Button *n_BtnCommunity = nullptr;
+  ui::Button *n_BtnMonthCard = nullptr;
+  ui::Button *n_BtnEnjoyLottery = nullptr;
+  ui::Button *n_BtnGoldPackage = nullptr;
   Node *n_LuckyBlessNode = nullptr;
   Scheduler *m_ExpostulationTimer = nullptr;
   Node *n_BtnHelpAll = nullptr;
@@ -185,7 +195,7 @@ class UIMainBottom : public UIBaseView {
   void BtnPrinceGiftBuffClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void BtnSwitchClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void OnMonthCardClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
-  void OnCommunityClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void OnCommunityClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type, RActivityShowData p_Info);
   void OnLostRuinsClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void OnWindTowerClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void OnSnowWolfLostClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
@@ -213,7 +223,7 @@ class UIMainBottom : public UIBaseView {
   void Req4AllianceInviteData();
   GVector<bool> GetMonthlyCard();
   void AddQuestionnaireButton(int32  p_Num);
-  void AddCommunityButton(void *p_Info);
+  void AddCommunityButton(RActivityShowData p_Info);
   void AddMonthCardButton();
   void UpdateEnjoyLotteryButton();
   void AddGoldPackageButton();
@@ -226,7 +236,7 @@ class UIMainBottom : public UIBaseView {
   void OpenRadianceWarning(bool p_IsOpen);
   void OpenWarning(bool p_IsOpen);
   void UpdateItemsBtn();
-  void ShowFireBorder(bool p_IsRemove);
+  void ShowFireBorder(bool p_IsRemove = false);
   void RefreshBattleOpenBtn(float p_Delta);
   ui::Button *GetBtnTarget(const GString &p_Name);
   void CheckRemainsWar();

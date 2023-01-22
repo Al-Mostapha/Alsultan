@@ -1,6 +1,7 @@
 #include "UIMainBottom.h"
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "spine/SkeletonAnimation.h"
+#include "Module/Activity/ClientEvent.Mgr.h"
 #include "Module/UI/Animations/UIAnimationCollectItems.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
@@ -17,13 +18,43 @@
 #include "Module/UI/Panel/Alliance/AllianceMobilization/PlayerMobilization.Ctrl.h"
 #include "Module/UI/Panel/Alliance/AllianceActive/AllianceActive.Ctrl.h"
 #include "Module/UI/Panel/Alliance/AllianceHunt/AllianceHunt.Ctrl.h"
+#include "Module/Guild/Alliance.Ctrl.h"
 #include "Module/Guild/Alliance.Mgr.h"
 #include "Module/Guild/Science/AllianceScience.h"
 #include "Module/Guild/AllianceGuide.Ctrl.h"
 #include "Module/Mail/Mail.Mgr.h"
 #include "Module/Hero/Hero.Ctrl.h"
+#include "Module/Item/Config/ShopLt.Ctrl.h"
+#include "Module/Item/Shop/LimitTimeDiscountShop.Api.h"
 #include "Module/Guild/AllianceMember.Mgr.h"
+#include "Module/Guild/LegendTeam/LegendTeam.Util.h"
 #include "Game/Guide/Guide.Ctrl.h"
+#include "Module/City/CityBuilding/CityBuilding.Func.h"
+#include "Base/Type/EventArg/Lord/ShowLordInfo.EvtArg.h"
+#include "Base/Type/EventArg/Alliance/AllianceInfo.EvtArg.h"
+#include "Module/UI/Panel/Lord/UILordView.h"
+#include "Module/UI/Panel/Lord/Skill/UISkillNewActive.View.h"
+#include "Module/UI/Panel/Alliance/AllianceInfo/UIAllianceInfo.View.h"
+#include "Module/UI/Panel/Alliance/AllianceInfo/UIAllianceJoin.View.h"
+#include "Module/City/Expostulation.Logic.h"
+#include "Module/UI/EventCenter/EventTemplate/LostRuins/LostRuins.Ctrl.h"
+#include "Module/UI/EventCenter/EventTemplate/WindTower/WindTower.Ctrl.h"
+#include "Module/UI/EventCenter/EventTemplate/SnowWolfLost/SnowWolfLost.Ctrl.h"
+#include "Module/UI/EventCenter/EventTemplate/LostRuins/UILostRuinsRecord.View.h"
+#include "Module/UI/EventCenter/EventTemplate/WindTower/UIWindTowerHistory.View.h"
+#include "Module/UI/EventCenter/EventTemplate/SnowWolfLost/UISnowWolfRecord.h"
+#include "Module/UI/EventCenter/EventTemplate/Questionnaire/UIQuestionnaire.View.h"
+#include "Module/UI/EventCenter/EventTemplate/EnjoyLottery/UIEnjoyLottery.View.h"
+#include "Module/UI/EventCenter/EventTemplate/SultanBack/UISultansBackWelBack.View.h"
+#include "Module/UI/EventCenter/EventTemplate/GoldPackage/UIEventGoldPackage.View.h"
+#include "Module/UI/Panel/Hero/HeroDetail/UIHeroList.View.h"
+#include "Module/UI/Panel/Item/BagView/UIBag.View.h"
+#include "Module/UI/Panel/Mail/UIMail.View.h"
+#include "Module/UI/Panel/Recharge/UIRechargeMonthlyFrame.h"
+#include "Module/UI/Panel/Alliance/AllianceWar/UIAllianceWar.View.h"
+#include "Module/UI/Panel/Alliance/AllianceMain/UIAllianceMain.View.h"
+#include "Module/UI/Panel/Alliance/AllianceWar/AtlantisWar/UIAtlantisWarTeamView.h"
+#include "Module/Activity/ActivityShow.Ctrl.h"
 
 void UIMainBottom::Ctor() {
   // cityBuildData:removeMessageListener()
@@ -622,11 +653,11 @@ void UIMainBottom::ShowOrHideGuideView(EventCustom* p_Event) {
 }
 
 void UIMainBottom::ShowPrinceGiftGuideView(EventCustom* p_Event) {
-  // cityBuildFunction:checkPopUnlockPrinceGift()
+  CityBuildingFunc::Get()->CheckPopUnlockPrinceGift();
 }
 
 void UIMainBottom::ShowSinbadPopWindow(EventCustom* p_Event) {
-  // cityBuildFunction:checkPopUpSinbadTreasure()
+  CityBuildingFunc::Get()->CheckPopUpSinbadTreasure();
 }
 
 void UIMainBottom::ReLoginFinish(EventCustom* p_Event) {
@@ -640,84 +671,86 @@ void UIMainBottom::ReLoginFinish(EventCustom* p_Event) {
   CheckRomanSoul(nullptr);
   BtnKingdomManagerCheck(nullptr);
   BtnPyramidBattleCheck(nullptr);
-  // self:showLuckyBless()
   ShowLuckyBless(nullptr);
-  // self:initAccountBind()
   InitAccountBind(nullptr);
-  // self:req4AllianceInviteData()
   Req4AllianceInviteData();
   // self.updateAllianceGreen = nil
-  // self:createExpostulationTimer()
-  // self:checkRemainsWar()
-  // self:msgInvitedInfo_legend()
-  // self:updateGreenPointRadianceWar()
-  // self:initHelpAllBtn()
-  // self:btnLegendKingManagerCheck()
-  // self:btnHegemonBattleCheck()
-  // self:btnHegemonManagerCheck()
-  // self:btnTrainPowerManagerCheck()
-  // self:initBattleOpenBtn()
-  // self:checkPreDownload()
-  // self:checkPreDownloadStatus()
-  // self:addPrinceGiftNewBuffButton()
-  // self:addPrinceGiftBuffButton()
-  // self:btnNewPlayerBuffCheck()
-  // self:addHarvestSeasonButton()
-  // cityBuildFunction:checkPopUpWindow()
+  CreateExpostulationTimer();
+  CheckRemainsWar();
+  MsgInvitedInfoLegend(nullptr);
+  UpdateGreenPointRadianceWar(nullptr);
+  InitHelpAllBtn(nullptr);
+  BtnLegendKingManagerCheck(nullptr);
+  BtnHegemonBattleCheck(nullptr);
+  BtnHegemonManagerCheck(nullptr);
+  BtnTrainPowerManagerCheck();
+  InitBattleOpenBtn();
+  CheckPreDownload(nullptr);
+  CheckPreDownloadStatus(nullptr);
+  AddPrinceGiftNewBuffButton(nullptr);
+  AddPrinceGiftBuffButton(nullptr);
+  BtnNewPlayerBuffCheck(nullptr);
+  AddHarvestSeasonButton(nullptr);
+  CityBuildingFunc::Get()->CheckPopUpWindow();
 }
 
-void UIMainBottom::UpdateEventcenter(EventCustom* p_Event) { ShowLuckyBless(p_Event); }
+void UIMainBottom::UpdateEventcenter(EventCustom* p_Event) { 
+  ShowLuckyBless(p_Event); 
+}
 
 void UIMainBottom::ServerMessageGetLordInfo(EventCustom* p_Event) {
-  // if data.clientData and data.lord then
-  //   local targetName = data.clientData.targetName
-  //   if targetName == "AllianceInvitePop" or targetName == "atlantisMemberSingle" then
-  //     local infoView = SoraDCreatePanel("lordView")
-  //     infoView:initData(data.lord)
-  //     infoView:show()
-  //   end
-  // end
+  if(!p_Event) return;
+  if(!p_Event->getUserData()) return;
+  auto l_Data = static_cast<RShowLordInfoEvtArg *>(p_Event->getUserData());
+  auto l_TargetName = l_Data->ClientData.TargetName;
+  if(l_TargetName == "AllianceInvitePop" || l_TargetName == "atlantisMemberSingle") {
+    auto l_InfoView = UILordView::Create();
+    l_InfoView->InitData(l_Data->Lord);
+    l_InfoView->Show();
+  }
 }
 
 void UIMainBottom::UpdateExpostulation(EventCustom* p_Event) {
-  // if data and data.isInit then
-  //   GLOBAL_EXPOSTULATION_TIME = 0
-  // end
-  // GLOBAL_EXPOSTULATION_TIME = GLOBAL_EXPOSTULATION_TIME + 1
-  // if GLOBAL_EXPOSTULATION_TIME == EXPOSTULATION_INTERVAL then
-  //   local expostulationData = expostulationLogic.getExpostulation()
-  //   GLOBAL_EXPOSTULATION_TIME = 0
-  //   if expostulationData then
-  //     self.nodeQuestGuide:changeToExpostulation(expostulationData)
-  //   elseif self.nodeQuestGuide.exData then
-  //     self.nodeQuestGuide:initData()
-  //   end
-  // end
+  static GTime GLOBAL_EXPOSTULATION_TIME =  0;
+  static GTime EXPOSTULATION_INTERVAL =  20;
+  if(p_Event != nullptr){
+    auto l_IsUnit = static_cast<bool *>(p_Event->getUserData());
+    if(l_IsUnit){
+      GLOBAL_EXPOSTULATION_TIME = 0;
+    }
+  }
+  GLOBAL_EXPOSTULATION_TIME += 1;
+  if(GLOBAL_EXPOSTULATION_TIME == EXPOSTULATION_INTERVAL) {
+    GLOBAL_EXPOSTULATION_TIME = 0;
+    auto l_ExpostulationData = ExpostulationLogic::Get()->GetExpostulation();
+    // if(l_ExpostulationData) {
+    //   m_NodeQuestGuide->ChangeToExpostulation(l_ExpostulationData);
+    // } else if(m_NodeQuestGuide->ExData) {
+    //   m_NodeQuestGuide->InitData();
+    // }
+  }
 }
 
 void UIMainBottom::RecevieGuideMsg(EventCustom* p_Event) {
-  // local allianceInvitePop = self:getChildByName("Panel_AllianceInvitePop")
-  // if allianceInvitePop then
-  //   allianceInvitePop:removeFromParent()
-  // end
+  auto l_AllianceInvitePop = this->getChildByName("Panel_AllianceInvitePop");
+  if(l_AllianceInvitePop) {
+    l_AllianceInvitePop->removeFromParent();
+  }
 }
 
 void UIMainBottom::ServerMessageGetAllianceInfo(EventCustom* p_Event) {
-  // local alliance = data.alliance
-  // if data.clientData then
-  //   local from = data.clientData.from
-  //   if from == "AllianceInvitePop" then
-  //     local kid = alliance:getProperty("sourceKid")
-  //     local panel = SoraDCreatePanel("allianceInfoView")
-  //     panel:initData(alliance, kid)
-  //     panel:show()
-  //   end
-  // end
+  if(!p_Event) return;
+  if(!p_Event->getUserData()) return;
+  auto l_Data = static_cast<RShowAllianceInfoEvtArg *>(p_Event->getUserData());
+  if(l_Data->ClientData.From == "AllianceInvitePop") {
+    auto l_InfoView = UIAllianceInfoView::Create();
+    l_InfoView->InitData(l_Data->Alliance, l_Data->Alliance.Property.SourceKID);
+    l_InfoView->Show();
+  }
 }
 
 void UIMainBottom::Req4AllianceInviteData() {
-  // local allianceCtrl = gametop.playertop_:getModule("allianceCtrl")
-  // allianceCtrl:req4AllianceInviteData()
+  AllianceCtrl::Get()->Req4AllianceInviteData();
 }
 
 void UIMainBottom::InitAllianceInvitePop(EventCustom* p_Event) {
@@ -847,119 +880,123 @@ GVector<bool> UIMainBottom::GetMonthlyCard() {
 }
 
 void UIMainBottom::AddQuestionnaireButton(int32 p_Num) {
-  // local effectMainUITop = include("effectMainUITop")
-  // self.btnQuestionnaire = effectMainUITop.questionnaire(num)
-  // self.btnQuestionnaire:addTo(self.scroll_btn)
-  // self.btnQuestionnaire:setPosition(cc.p(35, 395))
-  // self.btnQuestionnaire:addTouchEventListener(handlerEx(self, self.OnQuestionnaireClick, info))
-  // self:updateBtnContainer()
+  
+  n_BtnQuestionnaire = EffectMainUITop::Get()->Questionnaire(p_Num);
+  n_ScrollBtn->addChild(n_BtnQuestionnaire);
+  n_BtnQuestionnaire->setPosition(Vec2(35, 395));
+  n_BtnQuestionnaire->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnQuestionnaireClick, this));
+  UpdateBtnContainer(nullptr);
+
 }
 
 void UIMainBottom::UpdateQuestionnaireButton(EventCustom* p_Event) {
-  // if self.btnQuestionnaire then
-  //   self.btnQuestionnaire:removeFromParent()
-  //   self.btnQuestionnaire = nil
-  // end
-  // local questionnaireCtrl = SoraDGetCtrl("questionnaireCtrl")
-  // local num = questionnaireCtrl:getReceiveStatusAndNum()
-  // if num > 0 and not worldMapDefine.inInCrossWar() then
-  //   if not self.questionQuireHandle then
-  //     self.questionQuireHandle = SoraDCreateTimerEx(self, function(dt)
-  //       questionnaireCtrl:reqGetQuestData()
-  //     end, 1800)
-  //   end
-  //   self:addQuestionnaireButton(num)
-  // end
-  // self:updateBtnContainer()
+
+  if(n_BtnQuestionnaire) {
+    n_BtnQuestionnaire->removeFromParent();
+    n_BtnQuestionnaire = nullptr;
+  }
+
+  auto l_Num = QuestionnaireCtrl::Get()->GetReceiveStatusAndNum();
+  if(l_Num > 0 && !WorldMapDefine::Get()->InInCrossWar()) {
+    GBase::DCreateTimerEx(this, [](float p_Delta){
+      QuestionnaireCtrl::Get()->ReqGetQuestData();
+    }, 1800);
+    AddQuestionnaireButton(l_Num);
+  }
+  UpdateBtnContainer(nullptr);
 }
 
 void UIMainBottom::AddLostRuinsButton(EventCustom* p_Event) {
-  // if self.btnLostRuins then
-  //   self.btnLostRuins:removeFromParent()
-  //   self.btnLostRuins = nil
-  // end
-  // local lostRuinsCtrl = SoraDGetCtrl("lostRuinsCtrl")
+  if(n_BtnLostRuins) {
+    n_BtnLostRuins->removeFromParent();
+    n_BtnLostRuins = nullptr;
+  }
   // local recordList = lostRuinsCtrl:getRecordList()
-  // if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.LOST_RUINS_ACTIVITY, false) and next(recordList) then
-  //   local effectMainUITop = include("effectMainUITop")
-  //   local num = lostRuinsCtrl:getNewSurveyNum()
-  //   self.btnLostRuins = effectMainUITop.createLostRuinsBtn(num)
-  //   self.btnLostRuins:addTo(self.scroll_btn)
-  //   self.btnLostRuins:setPosition(cc.p(35, 395))
-  //   self.btnLostRuins:addTouchEventListener(handler(self, self.OnLostRuinsClick))
-  // end
-  // self:updateBtnContainer()
+  if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::LostRuinsActivity)/*and next(recordList) */)
+  {
+    auto l_Num = LostRuinsCtrl::Get()->GetNewSurveyNum();
+    n_BtnLostRuins = EffectMainUITop::Get()->CreateLostRuinsBtn(l_Num);
+    n_ScrollBtn->addChild(n_BtnLostRuins);
+    n_BtnLostRuins->setPosition(Vec2(35, 395));
+    n_BtnLostRuins->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnLostRuinsClick, this));
+  }
+  UpdateBtnContainer(nullptr);
 }
 
 void UIMainBottom::AddWindTowerButton(EventCustom* p_Event) {
-  // if self.btnWindTower then
-  //   self.btnWindTower:removeFromParent()
-  //   self.btnWindTower = nil
-  // end
-  // local isConWar = worldMapDefine.isInKingdomBattle()
-  // if not isConWar then
-  //   local windTowerCtrl = SoraDGetCtrl("windTowerCtrl")
-  //   local recordList = windTowerCtrl:getRecordList()
-  //   if _G.clientEventMgr.judgeIsOpen(gActivityTimeActivityID.WIND_TOWER_ACTIVITY, false) and #recordList > 0 then
-  //     local effectMainUITop = include("effectMainUITop")
-  //     local num = windTowerCtrl:getNewSurveyNum()
-  //     self.btnWindTower = effectMainUITop.createWindTowerBtn(num)
-  //     self.btnWindTower:addTo(self.scroll_btn)
-  //     self.btnWindTower:setPosition(cc.p(35, 395))
-  //     self.btnWindTower:addTouchEventListener(handler(self, self.OnWindTowerClick))
-  //   end
-  // end
-  // self:updateBtnContainer()
+
+  if(n_BtnWindTower){
+    n_BtnWindTower->removeFromParent();
+    n_BtnWindTower = nullptr;
+  }
+
+  auto l_IsConWar = WorldMapDefine::Get()->IsInKingdomBattle();
+  if(!l_IsConWar){
+    //   local recordList = windTowerCtrl:getRecordList()
+    if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::WindTowerActivity)/*and next(recordList) */){
+      auto l_Num = WindTowerCtrl::Get()->GetNewSurveyNum();
+      n_BtnWindTower = EffectMainUITop::Get()->CreateWindTowerBtn(l_Num);
+      n_ScrollBtn->addChild(n_BtnWindTower);
+      n_BtnWindTower->setPosition(Vec2(35, 395));
+      n_BtnWindTower->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnWindTowerClick, this));
+    }
+  }
+  UpdateBtnContainer(nullptr);
+
 }
 
 void UIMainBottom::AddSnowWolfLostButton(EventCustom* p_Event) {
-  // if self.btnSnowWolfLost then
-  //   self.btnSnowWolfLost:removeFromParent()
-  //   self.btnSnowWolfLost = nil
-  // end
-  // local isConWar = worldMapDefine.isInKingdomBattle()
-  // if not isConWar then
-  //   local snowWolfLostCtrl = SoraDGetCtrl("snowWolfLostCtrl")
-  //   local recordList = snowWolfLostCtrl:getRecordList()
-  //   dump({
-  //     #recordList,
-  //     clientEventMgr.judgeIsOpen(gActivityTimeActivityID.SNOWWOLF_LOST_ACTIVITY, false)
-  //   }, "clientEventMgr.judgeIsOpen(gActivityTimeActivityID.SNOWWOLF_LOST_ACTIVITY, false)")
-  //   if _G.clientEventMgr.judgeIsOpen(gActivityTimeActivityID.SNOWWOLF_LOST_ACTIVITY, false) and #recordList > 0 then
-  //     local effectMainUITop = include("effectMainUITop")
-  //     local num = snowWolfLostCtrl:getNewSurveyNum()
-  //     self.btnSnowWolfLost = effectMainUITop.createSnowWolfLostBtn(num)
-  //     self.btnSnowWolfLost:addTo(self.scroll_btn)
-  //     self.btnSnowWolfLost:setPosition(cc.p(35, 395))
-  //     self.btnSnowWolfLost:addTouchEventListener(handler(self, self.OnSnowWolfLostClick))
-  //   end
-  // end
-  // self:updateBtnContainer()
+
+  if(n_BtnSnowWolfLost){
+    n_BtnSnowWolfLost->removeFromParent();
+    n_BtnSnowWolfLost = nullptr;
+  }
+
+  auto l_IsConWar = WorldMapDefine::Get()->IsInKingdomBattle();
+  if(!l_IsConWar){
+    //   local recordList = snowWolfLostCtrl:getRecordList()
+    if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::SnowWolfLostActivity)/*and #recordList > 0 */)
+    {
+      auto l_Num = SnowWolfLostCtrl::Get()->GetNewSurveyNum();
+      n_BtnSnowWolfLost = EffectMainUITop::Get()->CreateSnowWolfLostBtn(l_Num);
+      n_ScrollBtn->addChild(n_BtnSnowWolfLost);
+      n_BtnSnowWolfLost->setPosition(Vec2(35, 395));
+      n_BtnSnowWolfLost->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnSnowWolfLostClick, this));
+    }
+  }
+
+  UpdateBtnContainer(nullptr);
 }
 
 void UIMainBottom::UpdateCrazyTrioButton(EventCustom* p_Event) {
-  // if data and data.msg == "MESSAGE_CUMUACTIVITY_CRAZYTRIO_SHOWDOWN" then
-  //   if self.btnSwitchType == -1 then
-  //     self.btnSwitchType = 1
-  //     self:switchBottonBtn()
-  //     local seq = cca.seq({
-  //       cca.delay(0.3333333333333333),
-  //       cca.callFunc(function()
-  //         self:addCrazyTrioButton()
-  //       end)
-  //     })
-  //     self:runAction(seq)
-  //   else
-  //     self:addCrazyTrioButton()
-  //   end
-  // end
+  if(!p_Event) 
+    return;
+  if(!p_Event->getUserData())
+    return;
+
+  auto l_DataMsg = *static_cast<GString *>(p_Event->getUserData());
+  if(l_DataMsg == "MESSAGE_CUMUACTIVITY_CRAZYTRIO_SHOWDOWN"){
+    if(m_BtnSwitchType == -1){
+      m_BtnSwitchType = 1;
+      SwitchBottonBtn();
+      auto l_Seq = Sequence::create(
+        DelayTime::create(0.33f), 
+        CallFunc::create([this](){
+          AddCrazyTrioButton(nullptr);
+        }), nullptr);
+      runAction(l_Seq);
+    }else{
+      AddCrazyTrioButton(nullptr);
+    }
+  }
 }
 
 void UIMainBottom::AddCrazyTrioButton(EventCustom* p_Event) {
-  // if self.btnCrazyTrio then
-  //   self.btnCrazyTrio:removeFromParent()
-  //   self.btnCrazyTrio = nil
-  // end
+
+  if(n_BtnCrazyTrio) {
+    n_BtnCrazyTrio->removeFromParent();
+    n_BtnCrazyTrio = nullptr;
+  }
   // local cumuActiveCtrl = gametop.playertop_:getModule("cumuActiveCtrl")
   // local rechargeltCtrl = include("rechargeltCtrl")
   // local crazyData = cumuActiveCtrl:getCrazyTrioData()
@@ -968,216 +1005,227 @@ void UIMainBottom::AddCrazyTrioButton(EventCustom* p_Event) {
   //   SoraDConfigSet("Game:eventCrazyTrioNew:isShowInDown~bool", true, {byUID = true})
   // end
   // if clientEventMgr.judgeIsOpen(cumuActiveCtrl:getActivityID(), false) then
-  //   if SoraDConfigGet("Game:eventCrazyTrioNew:isShowInDown~bool", {byUID = true}) and receiveNum < rechargeltCtrl.getRechargeTotalConfigNum() then
-  //     local effectMainUITop = include("effectMainUITop")
-  //     local _, num = cumuActiveCtrl:getInitialReceiveState()
-  //     self.btnCrazyTrio = effectMainUITop.createCrazyTrioBtn(num)
-  //     self.btnCrazyTrio:addTo(self.scroll_btn)
-  //     self.btnCrazyTrio:setPosition(cc.p(35, 395))
-  //     self.btnCrazyTrio:addTouchEventListener(handler(self, self.OnCrazyTrioClick))
-  //   end
+      auto l_IsShow = GBase::DConfigGet<bool>("Game:eventCrazyTrioNew:isShowInDown~bool", true);
+      if(l_IsShow /**and receiveNum < rechargeltCtrl.getRechargeTotalConfigNum()*/){
+        auto l_Num = 0;    //     local _, num = cumuActiveCtrl:getInitialReceiveState()
+        n_BtnCrazyTrio = EffectMainUITop::Get()->CreateCrazyTrioBtn(0);
+        n_ScrollBtn->addChild(n_BtnCrazyTrio);
+        n_BtnCrazyTrio->setPosition(Vec2(35, 395));
+        n_BtnCrazyTrio->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnCrazyTrioClick, this));
+      }
   // end
-  // self:updateBtnContainer()
+
+  UpdateBtnContainer(nullptr);
 }
 
-void UIMainBottom::AddCommunityButton(void* p_Info) {
-  // local effectMainUITop = include("effectMainUITop")
-  // self.btnCommunity = effectMainUITop.communityCenter(info)
-  // self.btnCommunity:addTo(self.scroll_btn)
-  // self.btnCommunity:setPosition(cc.p(35, 395))
-  // self.btnCommunity:addTouchEventListener(handlerEx(self, self.OnCommunityClick, info.param))
+void UIMainBottom::AddCommunityButton(RActivityShowData p_Info) {
+  
+  n_BtnCommunity = EffectMainUITop::Get()->CommunityCenter(p_Info);
+  n_ScrollBtn->addChild(n_BtnCommunity);
+  n_BtnCommunity->setPosition(Vec2(35, 395));
+  n_BtnCommunity->addTouchEventListener([this, p_Info](Ref* p_Sender, Widget::TouchEventType p_Type){
+    OnCommunityClick(p_Sender, p_Type, p_Info);
+  });
 }
 
 void UIMainBottom::UpdateCommunityButton(EventCustom* p_Event) {
-  // if self.btnCommunity then
-  //   self.btnCommunity:removeFromParent()
-  //   self.btnCommunity = nil
-  // end
-  // local activityShowCtrl = gametop.playertop_:getModule("activityShowCtrl")
-  // local activityCenterUICtrl = SoraDGetCtrl("activityCenterUICtrl")
-  // local commnutiInfo = activityShowCtrl:getCommunityInfo(gActivityTimeActivityID.COMMUNITY_CENTER_MAIN_UI)
-  // if commnutiInfo.param and commnutiInfo.param.show then
-  //   print("skldjfksljdflskdj", commnutiInfo.param.type)
-  //   if commnutiInfo.param.type == 1 then
-  //     self:addCommunityButton(commnutiInfo)
-  //   elseif commnutiInfo.param.type == 0 and activityCenterUICtrl:isHaveNewFlag(gActivityTimeActivityID.COMMUNITY_CENTER_MAIN_UI) then
-  //     self:addCommunityButton(commnutiInfo)
-  //   end
-  // end
-  // self:updateBtnContainer()
+  if(n_BtnCommunity){
+    n_BtnCommunity->removeFromParent();
+    n_BtnCommunity = nullptr;
+  }
+
+  auto l_CommunityInfo = ActivityShowCtrl::Get()->GetCommunityInfo(EActivityTime::CommunityCenterMainUI);
+  if(l_CommunityInfo.Param.Show != 0){
+    if(l_CommunityInfo.Param.Type == 1){
+      AddCommunityButton(l_CommunityInfo);
+    }else if(l_CommunityInfo.Param.Type == 0 /*&& ActivityCenterUICtrl::Get()->IsHaveNewFlag(EActivityTime::CommunityCenterMainUI)*/){
+      AddCommunityButton(l_CommunityInfo);
+    }
+  }
+  UpdateBtnContainer(nullptr);
 }
 
 void UIMainBottom::AddMonthCardButton() {
-  // local effectMainUITop = include("effectMainUITop")
-  // self.btnMonthCard = effectMainUITop.monthOrWeeklyCard()
-  // self.btnMonthCard:addTo(self.scroll_btn)
-  // self.btnMonthCard:setPosition(cc.p(35, 395))
-  // self.btnMonthCard:addTouchEventListener(handler(self, self.OnMonthCardClick))
-  // self:updateBtnContainer()
+  n_BtnMonthCard = EffectMainUITop::Get()->MonthOrWeeklyCard();
+  n_ScrollBtn->addChild(n_BtnMonthCard);
+  n_BtnMonthCard->setPosition(Vec2(35, 395));
+  n_BtnMonthCard->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnMonthCardClick, this));
+  UpdateBtnContainer(nullptr);
 }
 
 void UIMainBottom::UpdateMonthCardButton(EventCustom* p_Event) {
-  // local hasGift, hasBuy, hasGot = self:getMonthlyCard()
-  // if not self.btnMonthCard and hasGift and not hasBuy and not IsArClient then
-  //   self:addMonthCardButton()
-  // end
-  // if self.btnMonthCard then
-  //   if hasGift then
-  //     if hasBuy then
-  //       self.btnMonthCard:setVisible(false)
-  //       self:updateBtnContainer()
-  //     else
-  //       self.btnMonthCard:setVisible(true)
-  //       self:updateBtnContainer()
-  //     end
-  //   else
-  //     self.btnMonthCard:setVisible(false)
-  //     self:updateBtnContainer()
-  //   end
-  // end
+
+  auto l_Temp = GetMonthlyCard();
+  bool l_HasGift = l_Temp.size() > 0 ? l_Temp[0] : false;
+  bool l_HasBuy = l_Temp.size() > 1 ? l_Temp[1] : false;
+  bool l_HasGot = l_Temp.size() > 2 ? l_Temp[2] : false;
+  
+  if(!n_BtnMonthCard && l_HasGift && !l_HasBuy && !GBase::Const::Get()->IsArClient){
+    AddMonthCardButton();
+  }
+  if(n_BtnMonthCard){
+    if(l_HasGift){
+      if(l_HasBuy){
+        n_BtnMonthCard->setVisible(false);
+        UpdateBtnContainer(nullptr);
+      }else{
+        n_BtnMonthCard->setVisible(true);
+        UpdateBtnContainer(nullptr);
+      }
+    }else{
+      n_BtnMonthCard->setVisible(false);
+      UpdateBtnContainer(nullptr);
+    }
+  }
+
 }
 
 void UIMainBottom::OnMonthCardClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if type == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   local panel = SoraDCreatePanel("rechargeMonthlyFrame")
-  //   panel:show()
-  // end
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    auto l_Panel = UIRechargeMonthlyFrame::Create(); 
+    l_Panel->Show();
+  }
 }
 
-void UIMainBottom::OnCommunityClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if type == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   local localUrl = {
-  //     [gActivityCenterUIEnum.COMMUNITY_CENTER_1] = "https://www.facebook.com/slateen/",
-  //     [gActivityCenterUIEnum.COMMUNITY_CENTER_2] = "https://www.instagram.com/revengeofsultans/",
-  //     [gActivityCenterUIEnum.COMMUNITY_CENTER_3] = "https://twitter.com/EntkamElSlaten"
-  //   }
-  //   if info.url and info.url ~= "" then
-  //     print("MainUIBottom-community_url", info.url)
-  //     userSDKManager.openSDKLink(info.url)
-  //   elseif info.show == gActivityCenterUIEnum.COMMUNITY_CENTER_4 or info.show == gActivityCenterUIEnum.COMMUNITY_CENTER_5 then
-  //     print("\194\183\194\183\194\183\230\137\147\229\188\128\231\164\190\229\140\186")
-  //     userSDKManager.showSocial()
-  //   else
-  //     userSDKManager.openSDKLink(localUrl[info.show])
-  //   end
-  //   local activityCenterUICtrl = SoraDGetCtrl("activityCenterUICtrl")
-  //   activityCenterUICtrl:sendClearNewMsg(gActivityTimeActivityID.COMMUNITY_CENTER_MAIN_UI)
-  // end
+void UIMainBottom::OnCommunityClick(Ref* p_Sender, Widget::TouchEventType p_Type, RActivityShowData p_Info) {
+
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    GMap<EActivityCenter, GString> l_LocalUrl = {
+      {EActivityCenter::CommunityCenter_1, "https://www.facebook.com/slateen/"},
+      {EActivityCenter::CommunityCenter_2, "https://www.instagram.com/revengeofsultans/"},
+      {EActivityCenter::CommunityCenter_3, "https://twitter.com/EntkamElSlaten"}
+    };
+    
+    if(p_Info.Param.Url != ""){
+      //     userSDKManager.openSDKLink(info.url)
+    }else if(static_cast<EActivityCenter>(p_Info.Param.Show) == EActivityCenter::CommunityCenter_4 || static_cast<EActivityCenter>(p_Info.Param.Show) == EActivityCenter::CommunityCenter_5){
+      //     userSDKManager.showSocial()
+    }else{
+      //     userSDKManager.openSDKLink(localUrl[info.show])
+    }
+    //   local activityCenterUICtrl = SoraDGetCtrl("activityCenterUICtrl")
+    //   activityCenterUICtrl:sendClearNewMsg(gActivityTimeActivityID.COMMUNITY_CENTER_MAIN_UI)
+  }
 }
 
 void UIMainBottom::OnLostRuinsClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if eventType == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   local tag = target:getTag()
-  //   if target.fingerNode then
-  //     target.fingerNode:setVisible(false)
-  //     target.fingerNode:stopAllActions()
-  //     target.fingerNode:removeFromParent()
-  //     target.fingerNode = nil
-  //   end
-  //   local panel = SoraDCreatePanel("lostRuinsRecordView")
-  //   panel:show()
-  // end
+
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    auto l_Tag = dynamic_cast<Widget *>(p_Sender)->getTag();
+    auto l_FingerNode = dynamic_cast<Widget *>(p_Sender)->getChildByName("fingerNode");
+    if(l_FingerNode){
+      l_FingerNode->setVisible(false);
+      l_FingerNode->stopAllActions();
+      l_FingerNode->removeFromParent();
+    }
+    auto l_Panel = UILostRuinsRecordView::Create();
+    l_Panel->Show();
+  }
 }
 
 void UIMainBottom::OnWindTowerClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if eventType == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   if target.fingerNode then
-  //     target.fingerNode:setVisible(false)
-  //     target.fingerNode:stopAllActions()
-  //     target.fingerNode:removeFromParent()
-  //     target.fingerNode = nil
-  //   end
-  //   local panel = SoraDCreatePanel("windTowerHistoryView")
-  //   panel:show()
-  // end
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    auto l_FingerNode = dynamic_cast<Widget *>(p_Sender)->getChildByName("fingerNode");
+    if(l_FingerNode){
+      l_FingerNode->setVisible(false);
+      l_FingerNode->stopAllActions();
+      l_FingerNode->removeFromParent();
+    }
+    auto l_Panel = UIWindTowerHistoryView::Create();
+    l_Panel->Show();
+  }
 }
 
 void UIMainBottom::OnSnowWolfLostClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if eventType == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   if target.fingerNode then
-  //     target.fingerNode:setVisible(false)
-  //     target.fingerNode:stopAllActions()
-  //     target.fingerNode:removeFromParent()
-  //     target.fingerNode = nil
-  //   end
-  //   uiManager:show("SnowWolfRecord")
-  // end
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    auto l_FingerNode = dynamic_cast<Widget *>(p_Sender)->getChildByName("fingerNode");
+    if(l_FingerNode){
+      l_FingerNode->setVisible(false);
+      l_FingerNode->stopAllActions();
+      l_FingerNode->removeFromParent();
+    }
+    auto l_Panel = UISnowWolfRecord::Create();
+    l_Panel->Show();
+  }
 }
 
 void UIMainBottom::OnCrazyTrioClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if eventType == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   local tag = target:getTag()
-  //   if target.fingerNode then
-  //     target.fingerNode:setVisible(false)
-  //     target.fingerNode:stopAllActions()
-  //     target.fingerNode:removeFromParent()
-  //     target.fingerNode = nil
-  //   end
-  //   local cumuActiveCtrl = SoraDGetCtrl("cumuActiveCtrl")
-  //   local activityID = cumuActiveCtrl:getActivityID()
-  //   if clientEventMgr.judgeIsOpen(activityID, false) then
-  //     userSDKManager.logEvent(gSDKDef.TDonEvent.click_crazy_trio, {eventid = activityID, position = 2})
-  //     clientEventMgr.singleClickEvent(activityID, 3)
-  //   end
-  // end
+
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    auto l_FingerNode = dynamic_cast<Widget *>(p_Sender)->getChildByName("fingerNode");
+    if(l_FingerNode){
+      l_FingerNode->setVisible(false);
+      l_FingerNode->stopAllActions();
+      l_FingerNode->removeFromParent();
+    }
+    //   local cumuActiveCtrl = SoraDGetCtrl("cumuActiveCtrl")
+    //   local activityID = cumuActiveCtrl:getActivityID()
+    //   if clientEventMgr.judgeIsOpen(activityID, false) then
+    //     userSDKManager.logEvent(gSDKDef.TDonEvent.click_crazy_trio, {eventid = activityID, position = 2})
+    //     clientEventMgr.singleClickEvent(activityID, 3)
+    //   end
+  }
+
 }
 
 void UIMainBottom::OnQuestionnaireClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if type == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   local panel = SoraDCreatePanel("questionnaireView")
-  //   panel:show()
-  // end
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    auto l_Panel = UIQuestionnaireView::Create();
+    l_Panel->Show();
+  }
 }
 
 void UIMainBottom::UpdateEnjoyLotteryButton() {
-  // if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.ENJOY_LOTTERY, false) and not worldMapDefine.isInRemains() then
-  //   if not self.btnEnjoyLottery then
-  //     local effectMainUITop = include("effectMainUITop")
-  //     self.btnEnjoyLottery = effectMainUITop.enjoyLotteryBtn()
-  //     self.btnEnjoyLottery:addTo(self.scroll_btn)
-  //     self.btnEnjoyLottery:setPosition(cc.p(35, 395))
-  //     self.btnEnjoyLottery:addTouchEventListener(handler(self, self.OnEnjoyLotteryClick))
-  //     self:updateBtnContainer()
-  //   elseif not self.btnEnjoyLottery:isVisible() then
-  //     self.btnEnjoyLottery:setVisible(true)
-  //     self:updateBtnContainer()
-  //   end
-  // elseif self.btnEnjoyLottery and self.btnEnjoyLottery:isVisible() then
-  //   self.btnEnjoyLottery:setVisible(false)
-  //   self:updateBtnContainer()
-  // end
+  if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::EnjoyLottery) && !WorldMapDefine::Get()->IsInRemains()){
+    if(!n_BtnEnjoyLottery){
+      n_BtnEnjoyLottery = EffectMainUITop::Get()->EnjoyLotteryBtn();
+      n_ScrollBtn->addChild(n_BtnEnjoyLottery);
+      n_BtnEnjoyLottery->setPosition(Vec2(35, 395));
+      n_BtnEnjoyLottery->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnEnjoyLotteryClick, this));
+      UpdateBtnContainer(nullptr);
+    }else if(!n_BtnEnjoyLottery->isVisible()){
+      n_BtnEnjoyLottery->setVisible(true);
+      UpdateBtnContainer(nullptr);
+    }
+  }else if(n_BtnEnjoyLottery && n_BtnEnjoyLottery->isVisible()){
+    n_BtnEnjoyLottery->setVisible(false);
+    UpdateBtnContainer(nullptr);
+  }
 }
 
 void UIMainBottom::OnEnjoyLotteryClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if type == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.ENJOY_LOTTERY, true) then
-  //     SoraDCreatePanel("enjoyLotteryView"):show()
-  //   end
-  // end
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::EnjoyLottery, true)){
+      auto l_Panel = UIEnjoyLotteryView::Create();
+      l_Panel->Show();
+    }
+  }
 }
 
 void UIMainBottom::OnSultansBackWelClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if event == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.SULTAN_BACK_WELCOME_ACTIVITY, true) then
-  //     SoraDCreatePanel("sultansBackWelBackView"):show()
-  //   end
-  // end
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::SultanBackWelcomeActivity, true)){
+      auto l_Panel = UISultansBackWelBackView::Create();
+      l_Panel->Show();
+    }
+  }
 }
 
 void UIMainBottom::OnGoldPackageClick(Ref* p_Sender, Widget::TouchEventType p_Type) {
-  // if type == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   SoraDCreatePanel("eventGoldPackageView"):show()
-  // end
+  if(p_Type == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    auto l_Panel = UIEventGoldPackageView::Create();
+    l_Panel->Show();
+  }
 }
 
 void UIMainBottom::ShowLuckyBless(EventCustom* p_Event) {
@@ -1208,209 +1256,182 @@ void UIMainBottom::ShowLuckyBless(EventCustom* p_Event) {
 }
 
 void UIMainBottom::AddGoldPackageButton() {
-  // local effectMainUITop = include("effectMainUITop")
-  // self.btnGoldPackage = effectMainUITop.goldPackage()
-  // self.btnGoldPackage:addTo(self.scroll_btn)
-  // self.btnGoldPackage:setPosition(cc.p(35, 395))
-  // self.btnGoldPackage:addTouchEventListener(handler(self, self.OnGoldPackageClick))
-  // if worldMapDefine.isInRemains() or not clientEventMgr.judgeIsOpen(gActivityTimeActivityID.GOLD_PACKAGE, false) then
-  //   self.btnGoldPackage:setVisible(false)
-  // else
-  //   self.btnGoldPackage:setVisible(true)
-  // end
-  // self:updateBtnContainer()
+
+  n_BtnGoldPackage = EffectMainUITop::Get()->GoldPackage();
+  n_ScrollBtn->addChild(n_BtnGoldPackage);
+  n_BtnGoldPackage->setPosition(Vec2(35, 395));
+  n_BtnGoldPackage->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnGoldPackageClick, this));
+  if(WorldMapDefine::Get()->IsInRemains() || !ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::GoldPackage, false))
+    n_BtnGoldPackage->setVisible(false);
+  else 
+    n_BtnGoldPackage->setVisible(true);
+  UpdateBtnContainer(nullptr);
+
 }
 
 void UIMainBottom::UpdateGoldPackageButton(EventCustom* p_Event) {
-  // if not clientEventMgr.judgeIsOpen(gActivityTimeActivityID.GOLD_PACKAGE, false) then
-  //   if self.btnGoldPackage then
-  //     self.btnGoldPackage:setVisible(false)
-  //     self:updateBtnContainer()
-  //   end
-  // elseif self.btnGoldPackage then
-  //   self.btnGoldPackage:setVisible(true)
-  //   local gametop = gModuleMgr.getObject("gametop")
-  //   local lordInfoCtrl = gametop.playertop_:getModule("lordInfoCtrl")
-  //   local sourceKid = lordInfoCtrl:getLordInfo().base.sourceKid
-  //   if sourceKid and sourceKid == 0 then
-  //     self.btnGoldPackage:setVisible(true)
-  //   end
-  //   self:updateBtnContainer()
-  // end
+  if(ClientEventMgr::Get()-> JudgeIsOpen(EActivityTime::GoldPackage, false)){
+    if(n_BtnGoldPackage){
+      n_BtnGoldPackage->setVisible(true);
+      UpdateBtnContainer(nullptr);
+    }
+  }else if(n_BtnGoldPackage){
+    n_BtnGoldPackage->setVisible(true);
+    auto l_SourceKID = LordInfoCtrl::Get()->GetLordInfo().Base.sourceKID;
+    if(l_SourceKID == 0){
+      n_BtnGoldPackage->setVisible(true);
+    }
+    UpdateBtnContainer(nullptr);
+  }
 }
 
 void UIMainBottom::OnWorldCityClick(Ref* p_Sender, ui::Widget::TouchEventType p_Type) {
-  // if type == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   if self.viewChangeType == VIEW_TYPE_CITY then
-  //     local guideCtrl = gametop.playertop_:getModule("guideCtrl")
-  //     self.viewChangeType = VIEW_TYPE_MAP
-  //     SoraDSendMessage({
-  //       msg = "MESSAGE_MAINCITYVIEW_SAVE_MAIN_CITY_POS"
-  //     })
-  //     SoraDSendMessage({
-  //       msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-  //     })
-  //     gReGetWorldMapTroopDataCount = 0
-  //   else
-  //     self.viewChangeType = VIEW_TYPE_CITY
-  //   end
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAINSCEN_ONSHOW",
-  //     viewType = self.viewChangeType
-  //   })
-  // end
+  if(p_Type == ui::Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    if(m_ViewChangeType == EScene::City){
+      m_ViewChangeType = EScene::World;
+      GBase::DSendMessage("MESSAGE_MAINCITYVIEW_SAVE_MAIN_CITY_POS");
+      GBase::DSendMessage("MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE");
+      //     gReGetWorldMapTroopDataCount = 0
+    }else{
+      m_ViewChangeType = EScene::City;
+    }
+    GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &m_ViewChangeType);
+  }
 }
 
 void UIMainBottom::OnBottomClick(Ref* p_Sender, ui::Widget::TouchEventType p_Touch) {
-  // if type == ccui.TouchEventType.ended then
-  //   if button == self.btnHero then
-  //     local mainCityFunctions = include("mainCityFunctions")
-  //     local castleLv = mainCityFunctions:getCastleLv()
-  //     if castleLv >= CASTLE_LV7_LIMITED then
-  //       SoraDPlaySound("buildopsound", "OpWish")
-  //       if include("pyramidWarltCtrl").checkPwXianXiaSai() then
-  //         SoraDCreatePanel("heroListView"):show()
-  //       end
-  //     else
-  //       SoraDPlaySound("uicontrol", 20)
-  //       SoraDShowMsgTip(i18n("common_text_2122", {
-  //         name = i18n("common_name_01"),
-  //         lv = CASTLE_LV7_LIMITED
-  //       }))
-  //     end
-  //   elseif button == self.btnItems then
-  //     SoraDPlaySound("uicontrol", 14)
-  //     SoraDCreatePanel("bagView"):show()
-  //   elseif button == self.btnMail then
-  //     SoraDPlaySound("uicontrol", 30)
-  //     local mailView = SoraDCreatePanel("mailView")
-  //     mailView:show()
-  //     mailView:initWithData(nil)
-  //   elseif button == self.btnAlliance then
-  //     SoraDPlaySound("uicontrol", 29)
-  //     self:initAllianceView()
-  //   end
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-  //   })
-  // end
+  if(p_Touch == Widget::TouchEventType::ENDED){
+    if(p_Sender == n_BtnHero){
+      auto l_CastleLvl = GBase::DGetCastleLv();
+      if(l_CastleLvl >= GBase::Const::Get()->CastleLvl7){
+        //GBase::PlaySound("buildopsound", "OpWish");
+        UIHeroListView::Create()->Show();
+      }else{
+        GBase::PlaySound("uicontrol", 20);
+        GBase::DShowMsgTip(Translate::i18n("common_text_2122",{
+          {"name", Translate::i18n("common_name_01")},
+          {"lv", std::to_string(GBase::Const::Get()->CastleLvl7)}
+        }));
+      }
+    }else if(p_Sender == n_BtnItems){
+      GBase::PlaySound("uicontrol", 14);
+      UIBagView::Create()->Show();
+    }else if(p_Sender == n_BtnMail){
+      GBase::PlaySound("uicontrol", 30);
+      auto l_MailView = UIMailView::Create();
+      l_MailView->Show();
+      l_MailView->InitWithData();
+    }else if(p_Sender == n_BtnAlliance){
+      GBase::PlaySound("uicontrol", 29);
+      InitAllianceView();
+    }
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE");
+  }
 }
 
 void UIMainBottom::InitAllianceView() {
-  // if worldMapDefine.isInRemains() then
-  //   SoraDCreatePanel("allianceWarView"):show()
-  // elseif worldMapDefine.isInLegendLord() then
-  //   local legendTeamUtil = include("legendTeamUtil")
-  //   legendTeamUtil.openTeamView()
-  // elseif worldMapDefine.isInAtlantis() then
-  //   SoraDCreatePanel("atlantisWarTeamView"):show()
-  // else
-  //   local allianceMgr = gametop.playertop_:getModule("allianceMgr")
-  //   if allianceMgr:hasJoinAlliance() then
-  //     local panel = SoraDCreatePanel("allianceMainView")
-  //     panel:show()
-  //   else
-  //     SoraDCreatePanel("allianceJoinView"):show()
-  //   end
-  // end
+  if(WorldMapDefine::Get()->IsInRemains()){
+    UIAllianceWarView::Create()->Show();
+  }else if(WorldMapDefine::Get()->IsInLegendLord()){
+    LegendTeamUtil::Get()->OpenTeamView();
+  }else if(WorldMapDefine::Get()->IsInAtlantis()){
+    UIAtlantisWarTeamView::Create()->Show();
+  }else{
+    if(AllianceManager::Get()->HasJoinAlliance())
+      UIAllianceMainView::Create()->Show();
+    else 
+      UIAllianceJoinView::Create()->Show();
+  }
 }
 
 void UIMainBottom::UpdateGreenTip(RGreenTipsCount* p_BtnState) {
-  // if btnState.alliance then
-  //   self.tipAllianceCount:setString(btnState.alliance)
-  //   self.tipAlliance:setVisible(btnState.alliance > 0)
-  //   self.tipAllianceCount:setVisible(btnState.alliance > 0)
-  // end
-  // if btnState.mail then
-  //   self.tipMailCount:setString(btnState.mail)
-  //   self.tipMail:setVisible(0 < btnState.mail)
-  //   self.tipMailCount:setVisible(0 < btnState.mail)
-  // end
-  // if btnState.hero then
-  //   self.tipHeroCount:setString(btnState.hero)
-  //   self.tipHero:setVisible(0 < btnState.hero)
-  //   self.tipHeroCount:setVisible(0 < btnState.hero)
-  // end
-  // if btnState.items then
-  //   local shopltCtrl = gModuleMgr.sharedMgr("shopltCtrl")
-  //   local isNew = shopltCtrl:getShopNewTag("all")
-  //   self.tipItemsCount:setString(btnState.items)
-  //   self.tipItems:setVisible(0 < btnState.items and not isNew)
-  //   self.tipItemsCount:setVisible(0 < btnState.items and not isNew)
-  //   self.itemNewIcon:setVisible(isNew)
-  // end
+
+  n_TipAllianceCount->setString(std::to_string(p_BtnState->alliance));
+  n_TipAlliance->setVisible(p_BtnState->alliance > 0);
+  n_TipAllianceCount->setVisible(p_BtnState->alliance > 0);
+
+  n_TipMailCount->setString(std::to_string(p_BtnState->mail));
+  n_TipMail->setVisible(p_BtnState->mail > 0);
+  n_TipMailCount->setVisible(p_BtnState->mail > 0);
+  
+  n_TipHeroCount->setString(std::to_string(p_BtnState->hero));
+  n_TipHero->setVisible(p_BtnState->hero > 0);
+  n_TipHeroCount->setVisible(p_BtnState->hero > 0);
+  
+  auto l_IsNew = ShopLtCtrl::Get()->GetShopNewTag("all");
+  n_TipItemsCount->setString(std::to_string(p_BtnState->items));
+  n_TipItems->setVisible(p_BtnState->items > 0 && l_IsNew);
+  n_ItemNewIcon->setVisible(l_IsNew);
+
 }
 
 void UIMainBottom::UpdateShopNewTag(EventCustom* p_Event) {
-  // local shopltCtrl = gModuleMgr.sharedMgr("shopltCtrl")
-  // local isNew = shopltCtrl:getShopNewTag("all")
-  // print("updateShopNewTag", isNew)
-  // self.itemNewIcon:setVisible(isNew)
-  // if isNew then
-  //   self.tipItems:setVisible(false)
-  //   self.tipItemsCount:setVisible(false)
-  // end
+  auto l_IsNew = ShopLtCtrl::Get()->GetShopNewTag("all");
+  n_ItemNewIcon->setVisible(l_IsNew);
+  if(l_IsNew){
+    n_TipItems->setVisible(false);
+    n_TipItemsCount->setVisible(false);
+  }
 }
 
-void UIMainBottom::InitTipJump(Node* p_Node) {
-  // if not tipName then
-  //   return
-  // end
-  // tipName:stopAllActions()
-  // tipName:setPosition(cc.p(70, 60))
-  // if SoraDFIsRA() then
-  //   tipName:setPosition(cc.p(20, 60))
-  // end
-  // self.moveUp = cca.moveTo(0.5, tipName:getPositionX(), tipName:getPositionY() + 8)
-  // self.moveDown = cca.moveTo(0.2, tipName:getPositionX(), tipName:getPositionY() - 5)
-  // self.move = cca.moveTo(0.1, tipName:getPositionX(), tipName:getPositionY())
-  // self.moveAct = cca.seq({
-  //   cca.delay(5),
-  //   self.moveUp,
-  //   self.moveDown,
-  //   self.moveUp,
-  //   self.moveDown,
-  //   self.moveUp,
-  //   self.moveDown,
-  //   self.move
-  // })
-  // tipName:runAction(cca.repeatForever(self.moveAct))
+void UIMainBottom::InitTipJump(Node* p_TipName) {
+
+  if(!p_TipName)
+    return;
+  p_TipName->stopAllActions();
+  p_TipName->setPosition(70, 60);
+  if(GBase::DFIsRA()){
+    p_TipName->setPosition(20, 60);
+  }
+  static auto l_MoveUp = MoveTo::create(0.5, Vec2(p_TipName->getPositionX(), p_TipName->getPositionY() + 8));
+  static auto l_MoveDown = MoveTo::create(0.2, Vec2(p_TipName->getPositionX(), p_TipName->getPositionY() - 5));
+  static auto l_Move = MoveTo::create(0.1, p_TipName->getPosition());
+  static auto l_MoveAct = Sequence::create(
+    DelayTime::create(5),
+    l_MoveUp, 
+    l_MoveDown,
+    l_MoveUp, 
+    l_MoveDown,
+    l_MoveUp, 
+    l_MoveDown,
+    l_Move,
+    nullptr
+  );
+  p_TipName->runAction(RepeatForever::create(l_MoveAct));
 }
 
 void UIMainBottom::OnSkillClick(Ref* p_Sender, ui::Widget::TouchEventType p_Touch) {
-  // if type == ccui.TouchEventType.ended then
-  //   SoraDPlaySound("uicontrol", 13)
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-  //   })
-  //   local panel = SoraDCreatePanel("skillNewActiveView")
-  //   panel:show()
-  // end
+  if(p_Touch == Widget::TouchEventType::ENDED){
+    GBase::PlaySound("uicontrol", 13);
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE");
+    auto l_Panel = UISkillNewActiveView::Create();
+    l_Panel->Show();
+  }
 }
 
 void UIMainBottom::OnReplayClick(Ref* p_Sender, ui::Widget::TouchEventType p_Touch) {
-  // if type == ccui.TouchEventType.ended then
-  //   SoraDPlaySound()
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAIN_STOP_RECORD_SCREEN"
-  //   })
-  // end
+  if(p_Touch == Widget::TouchEventType::ENDED){
+    GBase::PlaySound();
+    GBase::DSendMessage("MESSAGE_MAIN_STOP_RECORD_SCREEN");
+  }
 }
 
 void UIMainBottom::UpdateBtnLuckyRecharge(EventCustom* p_Event) {
-  // if not clientEventMgr.judgeIsOpen(gActivityTimeActivityID.LUCKY_RECHARGE_TASK_ACTIVIYT) then
-  //   self.btnLuckyRecharge:setVisible(false)
-  //   self:updateBtnContainer()
-  //   return
-  // end
-  // if worldMapDefine.inInCrossWar() then
-  //   self.btnLuckyRecharge:setVisible(false)
-  //   self:updateBtnContainer()
-  //   return
-  // end
+
+  if(!ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::LuckyRechargeTaskActivity)){
+    n_BtnLuckyRecharge->setVisible(false);
+    UpdateBtnContainer(nullptr);
+    return;
+  }
+  if(WorldMapDefine::Get()->InInCrossWar()){
+    n_BtnLuckyRecharge->setVisible(false);
+    UpdateBtnContainer(nullptr);
+    return;
+  }
   // local eventLuckyRechargeCtrl = gametop.playertop_:getModule("eventLuckyRechargeCtrl")
   // local luckyRechargeData = eventLuckyRechargeCtrl:getLuckyRechargeData()
+
   // local state = luckyRechargeData.rechargeStatus
   // if state then
   //   if state == gLuckyRechargeStatus.CAN_NOT_RECEIVE then
@@ -1503,16 +1524,18 @@ void UIMainBottom::CurrentShowViewType(EventCustom* p_Event) {
 }
 
 void UIMainBottom::MsgUpdateMailIconNumber(EventCustom* p_Event) {
-  // local numberNewMailTotal = mailMgr:getNewMailNum()
-  // if numberNewMailTotal == 0 then
-  //   self.tipMail:setVisible(false)
-  // else
-  //   self.tipMail:setVisible(true)
-  //   self.tipMailCount:setString(tostring(numberNewMailTotal))
-  // end
+  auto l_NumberNewMailTotal = MailManger::Get()->GetNewMailNum();
+  if(l_NumberNewMailTotal == 0){
+    n_TipMail->setVisible(false);
+  }else{
+    n_TipMail->setVisible(true);
+    n_TipMailCount->setString(std::to_string(l_NumberNewMailTotal));
+  }
 }
 
-void UIMainBottom::sMsgUpdateNumberNewMail(EventCustom* p_Event) { MsgUpdateMailIconNumber(p_Event); }
+void UIMainBottom::sMsgUpdateNumberNewMail(EventCustom* p_Event) {
+  MsgUpdateMailIconNumber(p_Event); 
+}
 
 void UIMainBottom::CheckWatchTower(EventCustom* p_Event) {
   // local kingdomMapCtrl = gametop.playertop_:getModule("kingdomMapCtrl")
@@ -2701,34 +2724,36 @@ void UIMainBottom::GetEventCenterReturn_Imp(EventCustom* p_Event) {
 }
 
 void UIMainBottom::UpdateItemsBtn() {
-  // local allianceDesRead = include("allianceDesRead")
-  // local limitTimeDiscountShopAPI = include("limitTimeDiscountShopAPI")
-  // local status, remainTime = limitTimeDiscountShopAPI:getActivityInfo()
-  // if status and not allianceDesRead.getPlayerConquestWarMigration(false) and not allianceDesRead.getPlayerBattleGroundMigration(false) then
-  //   self:showFireBorder()
-  // else
-  //   self:showFireBorder(true)
-  // end
+  
+  bool l_ConquestWar = AllianceRead::Get()->GetPlayerConquestWarMigration(false);
+  bool l_BattleGround = AllianceRead::Get()->GetPlayerBattleGroundMigration(false);
+  auto l_Status = LimitTimeDiscountShopApi::Get()->GetActivityStatus();
+  if(l_Status && !l_ConquestWar && !l_BattleGround) {
+    ShowFireBorder();
+  } else {
+    ShowFireBorder(true);
+  }
+  
 }
 
 void UIMainBottom::UpdateBtnStatues(EventCustom* p_Event) {
-  // local lordLevel = lordInfoCtrl:getLordLevel()
-  // self.btnSkill:getParent():setVisible(lordLevel >= 4)
-  // if self.btnSkill:getParent():isVisible() then
-  //   self.btnManager:getParent():setPositionY(204)
-  // else
-  //   self.btnManager:getParent():setPositionY(122)
-  // end
+  auto l_LordLevel = LordInfoCtrl::Get()->GetLordLevel();
+  n_BtnSkill->getParent()->setVisible(l_LordLevel >= 4);
+  if(n_BtnSkill->getParent()->isVisible()) {
+    n_BtnManager->getParent()->setPositionY(204);
+  } else {
+    n_BtnManager->getParent()->setPositionY(122);
+  }
 }
 
 void UIMainBottom::ShowFireBorder(bool p_IsRemove) {
-  // if isRemove then
-  //   self.Node_discountEffect:setVisible(false)
-  //   return
-  // end
-  // self.Node_discountEffect:setVisible(true)
-  // local Image_dh = self.Node_discountEffect:getChildByName("Image_dh")
-  // SoraDFadeINOUT(Image_dh)
+  if(p_IsRemove) {
+    n_NodeDiscountEffect->setVisible(false);
+    return;
+  }
+  n_NodeDiscountEffect->setVisible(true);
+  auto l_ImageDh = n_NodeDiscountEffect->getChildByName("Image_dh");
+  GBase::DFadeInOut(l_ImageDh);
 }
 
 void UIMainBottom::SortBottomQuestBtns(EventCustom* p_Event) {
@@ -3016,29 +3041,27 @@ void UIMainBottom::BtnPayBackClick(Ref* p_Sender, Widget::TouchEventType p_Type)
 }
 
 ui::Button* UIMainBottom::GetBtnTarget(const GString& p_Name) {
-  // print("    function MainUIBottom:getBtnTarget(id)")
-  // if id == "mail" then
-  //   return self.btnMail
-  // elseif id == "alliance" then
-  //   return self.btnAlliance
-  // elseif id == "items" then
-  //   return self.btnItems
-  // elseif id == "hero" then
-  //   return self.btnHero
-  // end
+  if(p_Name == "mail") 
+    return n_BtnMail;
+  else if(p_Name == "alliance")
+    return n_BtnAlliance;
+  else if(p_Name == "items")
+    return n_BtnItems;
+  else if(p_Name == "hero")
+    return n_BtnHero;
   return nullptr;
 }
 
 void UIMainBottom::CheckRemainsWar() {
-  // if worldMapDefine.isInRemains() then
-  //   self.labelAllianceName:setString(i18n("common_text_047"))
-  // elseif worldMapDefine.isInLegendLord() then
-  //   self.labelAllianceName:setString(i18n("free_team_text_41"))
-  // elseif worldMapDefine.isInAtlantis() then
-  //   self.labelAllianceName:setString(i18n("atlantiswar_text_0139"))
-  // else
-  //   self.labelAllianceName:setString(i18n("common_text_069"))
-  // end
+  if(WorldMapDefine::Get()->IsInRemains()) {
+    n_LabelAllianceName->setString(Translate::i18n("common_text_047"));
+  } else if(WorldMapDefine::Get()->IsInLegendLord()) {
+    n_LabelAllianceName->setString(Translate::i18n("free_team_text_41"));
+  } else if(WorldMapDefine::Get()->IsInAtlantis()) {
+    n_LabelAllianceName->setString(Translate::i18n("atlantiswar_text_0139"));
+  } else {
+    n_LabelAllianceName->setString(Translate::i18n("common_text_069"));
+  }
 }
 
 void UIMainBottom::MsgInvitedInfoLegend(EventCustom* p_Event) {

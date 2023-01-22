@@ -11,4 +11,5 @@ public:
   bool IsInRadiance();
   bool IsInAtlantis();
   bool InInCrossWar();
+  bool IsInKingdomBattle();
 };

@@ -25,3 +25,8 @@ RLordInfo LordInfoCtrl::GetLordInfo()
 {
   return RLordInfo();
 }
+
+uint32 LordInfoCtrl::GetLordLevel()
+{
+  return 0;
+}

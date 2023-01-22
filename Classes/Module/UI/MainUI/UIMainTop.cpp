@@ -1,9 +1,8 @@
 #include "UIMainTop.h"
-#include "Module/Event/LostRuins/LostRuins.Ctrl.h"
+#include "Module/UI/EventCenter/EventTemplate/LostRuins/LostRuins.Ctrl.h"
 #include "Module/UI/Panel/Lord/LordInfo/UILordPowerView.h"
 #include "Module/Activity/ClientEvent.Mgr.h"
 #include "Module/Activity/ActivityShow.Ctrl.h"
-#include "Module/Event/LostRuins/LostRuins.Ctrl.h"
 #include "spine/SkeletonAnimation.h"
 
 UIMainTop *UIMainTop::Create(){

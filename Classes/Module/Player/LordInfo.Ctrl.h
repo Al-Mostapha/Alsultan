@@ -9,4 +9,5 @@ public:
   bool GetUserAgreementPop();
   RLordBaseInfo GetBaseInfo();
   RLordInfo GetLordInfo();
+  uint32 GetLordLevel();
 };

@@ -2,7 +2,7 @@
 
 
 #include "BuildingIHallOfWar.h"
-#include "Module/UI/Panel/Alliance/AllianceWar/UIAllianceWarView.h"
+#include "Module/UI/Panel/Alliance/AllianceWar/UIAllianceWar.View.h"
 
 
 BuildingIHallOfWar::BuildingIHallOfWar() {

@@ -14,6 +14,9 @@ GHashMap<Node*, GHashMap<GString, bool>> _tMsgObjListionerList;
 
 namespace GBase{
 
+  void PlaySound(){
+    
+  }
   void PlaySound(const char* p_SoundName, bool p_IsLoop, float p_delay)
   {
     Sequence::create(
@@ -134,7 +137,15 @@ namespace GBase{
 
   }
   bool DIsGameGuide(){return false;}
-  Scheduler *DCreateTimer(Node *p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_Priority){ return nullptr; }
+  Scheduler *DCreateTimer(
+    Node *p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_Priority){ 
+      return nullptr; 
+  }
+
+  Scheduler* DCreateTimerEx(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, uint32 p_Time){
+    return nullptr;
+  }
+
   EFactionType DGetFactionType(){ return EFactionType::Normal; }
   
 
@@ -373,6 +384,8 @@ Label *DCreateLabel(RCreateLabelParm p_Parm){
   return l_Label;
 
 }
+
+void FadeIn(Node *p_Node){
 
 } // namespace
 

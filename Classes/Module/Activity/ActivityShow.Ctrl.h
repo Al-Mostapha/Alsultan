@@ -1,6 +1,7 @@
 #pragma once
-#include "Activity.Enum.h"
 #include "Include/IncludeBase.h"
+#include "Activity.Enum.h"
+#include "Activity.Type.h"
 
 class ActivityShowCtrl {
   GHashMap<EActivityCenter, GHashMap<EActivityTime, bool>> m_ActivityGroup;
@@ -9,4 +10,5 @@ public:
   ActivityShowCtrl();
   EActivityState SetStateByID(EActivityTime p_IdEvent);
   GHashMap<EActivityTime, bool> GetActivityGroup(EActivityCenter p_IdGroup);
+  RActivityShowData GetCommunityInfo(EActivityTime p_IdEvent);
 };

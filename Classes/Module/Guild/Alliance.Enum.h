@@ -9,3 +9,16 @@ enum class EAllianceRank{
   R5 = 5,
   Official = 6
 };
+
+enum class EARecruit{
+  None = 0,
+  Public = 1,
+  Private = 2
+};
+
+enum class EEscortAddState {
+  None = 0,
+  Close = 1,
+  Opening = 2,
+  Opened = 3
+};

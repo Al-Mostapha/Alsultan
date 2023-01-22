@@ -31,3 +31,19 @@ void QuestionnaireCtrl::ReqGetQuestData()
   // print(url, tostring(uid))
   // SoraDHttpRequest(handler(self, self.reqGetQuestDataRsp), url, "POST", {p = uid}, handler(self, self.reqGetQuestDataRsp), nil)
 }
+
+int32 QuestionnaireCtrl::GetReceiveStatusAndNum()
+{
+  // for i, v in ipairs(self.questInfo) do
+  //   local currentTime = serviceFunctions.systemTime()
+  //   if currentTime > tonumber(v.endTime) then
+  //     self.questInfo[i] = nil
+  //   end
+  // end
+  // table.sort(self.questInfo, function(l, r)
+  //   return l.weight > r.weight
+  // end)
+  // dump(self.questInfo, "questionnaireCtrl:getReceiveStatusAndNum", 10)
+  // return table.nums(self.questInfo)
+  return 0;
+}

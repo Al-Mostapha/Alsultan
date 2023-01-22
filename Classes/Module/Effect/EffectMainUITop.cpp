@@ -1,5 +1,6 @@
 #include "EffectMainUITop.h"
 #include "Module/UI/MainUI/UIMainTop.h"
+#include "Module/Activity/Activity.Type.h"
 
 EffectMainUITop *EffectMainUITop::Get(){
   static EffectMainUITop *l_Instance = new EffectMainUITop();
@@ -643,7 +644,7 @@ ui::Button *EffectMainUITop::MonthOrWeeklyCard(){
   return nullptr;
 }
 
-ui::Button *EffectMainUITop::CommunityCenter(void *p_Info){
+ui::Button *EffectMainUITop::CommunityCenter(RActivityShowData p_Info){
   // local id = info.param.show
   // local uiEnumBg = {
   //   [gActivityCenterUIEnum.COMMUNITY_CENTER_1] = "#btn_scommunity_center_facebook.png",

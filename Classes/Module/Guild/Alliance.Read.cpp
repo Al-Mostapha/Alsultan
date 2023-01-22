@@ -24,3 +24,11 @@ GString AllianceRead::GetLanguageName(int32 p_LangName){
 bool AllianceRead::CheckRank(EAllianceRank p_Rank, bool p_ShowTip, const GString &p_Tip){
   return false;
 }
+
+bool AllianceRead::GetPlayerConquestWarMigration(bool p_ShowMsg){
+  return false;
+}
+
+bool AllianceRead::GetPlayerBattleGroundMigration(bool p_ShowMsg){
+  return false;
+}

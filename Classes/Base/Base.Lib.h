@@ -68,7 +68,7 @@ template <class T> T* DGetExtendChildFromCCSByName(Node* p_Parent, const char* p
   }
   return nullptr;
 }
-
+void PlaySound();
 void PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
 void PlaySound(const char* p_SoundName, int32 p_index, float p_delay = 0.0f, bool p_Tag3d = false);
 const char* getSoundPath(const char* p_SoundName);
@@ -85,6 +85,7 @@ GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
 GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building);
 
 Scheduler* DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_Priority = false);
+Scheduler* DCreateTimerEx(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, uint32 p_Time = 0);
 bool DRemoveTimer(Node* p_Target, Scheduler* p_Scheduler);
 // this calld when player click on a building black smith
 void DGetEquip();
@@ -150,4 +151,6 @@ void DShowLordUPView();
 UIBaseView *DCurrentSceneShowView(const char *p_NameView = "");
 Node *DCreateCSBNode(const char *p_CSBName);
 Label *DCreateLabel(RCreateLabelParm p_Parm);
+
+void DFadeInOut(Node *p_Node/**Fade paramters*/);
 };  // namespace GBase

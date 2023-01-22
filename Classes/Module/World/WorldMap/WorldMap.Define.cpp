@@ -31,3 +31,7 @@ bool WorldMapDefine::IsInAtlantis(){
 bool WorldMapDefine::InInCrossWar(){
   return false;
 }
+
+bool WorldMapDefine::IsInKingdomBattle(){
+  return false;
+}
