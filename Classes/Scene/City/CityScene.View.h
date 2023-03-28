@@ -6,6 +6,7 @@
 #include "Module/UI/UIBaseView.h"
 #include "Module/UI/UICCSView.h"
 #include "Module/Building/Building.Enum.h"
+#include "CityScene.Create.h"
 
 
 struct RShowMainCityView{
@@ -16,7 +17,7 @@ struct RShowMainCityView{
   RViewOtherData OtherData;
 };
 
-class MainCityView : public UIBaseView
+class MainCityView : public UIBaseView, public MainCityCreate
 {
   GHashMap<GString, Node *> n_BufferNodeArray;
   CREATE_FUNC(MainCityView);
@@ -40,6 +41,8 @@ public:
       return;
     n_BufferNodeArray[p_Name] = p_Node;
   }
+
+  void DelBufferNodeByName(const char *p_Name){}
   void FinishLoadImages();
   void OnMessageListener_FinishLoadImage();
   virtual void InitAfterCreate(){};
@@ -51,8 +54,9 @@ public:
   }
   void AddBuild(EBuildingIndex p_Index, EBuilding p_BuildingId){
     //mainCityFunctions.addBuild(self, buildBtnId, buildCfgId)
+    
   }
-
+  void UpdatePeriod();
   void LoadFixedBuilds();
   void SetMainCityEnabled(bool p_Enabled);
   void UpdateBuildTiles();
@@ -62,8 +66,11 @@ public:
   void UpdateTime(float p_Time);
   void UpdateTimePerFrame(float p_Time);
   void RefreshCastleSkin(bool p_IsInit = false);
-
+  Vec2 GetDefaultMainCityPos();
 
   void InitVisibleArea();
   void EnableShack();
+  void DelBuildTile(Node *p_BuildingBtn);
+  ui::Layout *GetBufferNodeByName(const char *p_NodeName);
+  
 };

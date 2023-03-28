@@ -82,3 +82,10 @@ void BuildingOHosptial::ShowNormalParticle()
 	Part5->setPositionType(ParticleSystem::PositionType::RELATIVE);
 	addChild(Part5, 10);
 }
+
+
+void BuildingOHosptial::InitWithUIType(){
+  auto l_BatchNodeOuterBuilds = GDisplay::Get()->NewNode();
+  addChild(l_BatchNodeOuterBuilds, 0);
+  m_ViewNodes.n_MainCityOuter = l_BatchNodeOuterBuilds;
+}

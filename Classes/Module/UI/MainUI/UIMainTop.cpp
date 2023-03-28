@@ -1,123 +1,122 @@
 #include "UIMainTop.h"
+#include "Module/Activity/ActivityShow.Ctrl.h"
+#include "Module/Activity/ClientEvent.Mgr.h"
 #include "Module/UI/EventCenter/EventTemplate/LostRuins/LostRuins.Ctrl.h"
 #include "Module/UI/Panel/Lord/LordInfo/UILordPowerView.h"
-#include "Module/Activity/ClientEvent.Mgr.h"
-#include "Module/Activity/ActivityShow.Ctrl.h"
+#include "Module/Vip/ExaltedPrivilege.Ctrl.h"
 #include "spine/SkeletonAnimation.h"
 
-UIMainTop *UIMainTop::Create(){
-  auto l_Panel =  Create("UiParts/MainUi/mainUITop.csb");
+UIMainTop* UIMainTop::Create() {
+  auto l_Panel = Create("UiParts/MainUi/mainUITop.csb");
   l_Panel->setName("UIMainTop");
   return l_Panel;
 }
 
-void UIMainTop::AddSubViews(){
+void UIMainTop::AddSubViews() {}
 
-}
-
-void UIMainTop::Ctor(){
+void UIMainTop::Ctor() {
   //   self.playerInfo = {}
   UIBaseView::Ctor();
   AddSubViews();
-  n_NodeLOD = GBase::GetChildByName<Node *>(this, "Node_LOD");
-  n_NodeAreaRt = GBase::GetChildByName<Node *>(n_NodeLOD, "Node_area_rt");
-  n_NodeAreaLt = GBase::GetChildByName<Node *>(n_NodeLOD, "Node_area_lt");
-  n_NodeAreaT = GBase::GetChildByName<Node *>(this, "Node_area_t");
+  n_NodeLOD = GBase::GetChildByName<Node*>(this, "Node_LOD");
+  n_NodeAreaRt = GBase::GetChildByName<Node*>(n_NodeLOD, "Node_area_rt");
+  n_NodeAreaLt = GBase::GetChildByName<Node*>(n_NodeLOD, "Node_area_lt");
+  n_NodeAreaT = GBase::GetChildByName<Node*>(this, "Node_area_t");
   n_NodeGold = GBase::DGetExtendChildFromCCSByName<UICommonGoldTop>(this, "CCS_commonGoldTop_gold");
   n_NodeGold->SetMainUIStyle();
   n_NodeGold->ShowAnimation();
   n_ResMenu = GBase::DGetExtendChildFromCCSByName<UICommonResourcesMenu>(this, "CCS_commonResourcesMenu_menu");
   n_ResMenu->RunAnimation();
   n_ResMenu->HiddleMainUI(false);
-  n_BtnVip = GBase::GetChildByName<ui::Button *>(this, "Button_vip");
+  n_BtnVip = GBase::GetChildByName<ui::Button*>(this, "Button_vip");
   n_BtnVip->setPressedActionEnabled(false);
-  n_ImgVip = GBase::GetChildByName<ui::ImageView *>(this, "Image_vip");
-  n_SpriteActiveVip = GBase::GetChildByName<Sprite *>(this, "Sprite_active");
+  n_ImgVip = GBase::GetChildByName<ui::ImageView*>(this, "Image_vip");
+  n_SpriteActiveVip = GBase::GetChildByName<Sprite*>(this, "Sprite_active");
   n_SpriteActiveVip->setVisible(false);
-  n_LabelVip = GBase::GetChildByName<ui::TextBMFont *>(this, "BitmapFontLabel_vip_en");
-  n_SpVipPointFrm = GBase::GetChildByName<Sprite *>(this, "Sprite_vipNumFrm");
-  n_ImgLvBg = GBase::GetChildByName<ui::ImageView *>(this, "Image_levelBg");
-  n_LabelLv = GBase::GetChildByName<ui::Text *>(this, "BitmapFontLabel_leve");
-  n_SpriteHead = GBase::GetChildByName<Sprite *>(this, "Sprite_head");
-  n_BarEXPBg = GBase::GetChildByName<Sprite *>(this, "progressbar_main_exp");
-  n_BarEXP = GBase::GetChildByName<ui::LoadingBar *>(this, "LoadingBar_exp");
-  //n_BarEXP->setClipEnabled(false);
-  n_BarHPBg = GBase::GetChildByName<Sprite *>(this, "progressbar_main_stamina");
-  n_BarStamina = GBase::GetChildByName<ui::LoadingBar *>(this, "LoadingBar_stamina");
+  n_LabelVip = GBase::GetChildByName<ui::TextBMFont*>(this, "BitmapFontLabel_vip_en");
+  n_SpVipPointFrm = GBase::GetChildByName<Sprite*>(this, "Sprite_vipNumFrm");
+  n_ImgLvBg = GBase::GetChildByName<ui::ImageView*>(this, "Image_levelBg");
+  n_LabelLv = GBase::GetChildByName<ui::Text*>(this, "BitmapFontLabel_leve");
+  n_SpriteHead = GBase::GetChildByName<Sprite*>(this, "Sprite_head");
+  n_BarEXPBg = GBase::GetChildByName<Sprite*>(this, "progressbar_main_exp");
+  n_BarEXP = GBase::GetChildByName<ui::LoadingBar*>(this, "LoadingBar_exp");
+  // n_BarEXP->setClipEnabled(false);
+  n_BarHPBg = GBase::GetChildByName<Sprite*>(this, "progressbar_main_stamina");
+  n_BarStamina = GBase::GetChildByName<ui::LoadingBar*>(this, "LoadingBar_stamina");
   //   self.barStamina:setClipEnabled(false)
-  n_NodeHead = GBase::GetChildByName<ui::Layout *>(this, "Panel_headFrame");
-  n_NodeWeakPoint = GBase::GetChildByName<Node *>(this, "Node_headWeakPoint");
-  n_SpriteLordHead = GBase::GetChildByName<Sprite *>(this, "sprite_lord_head");
-  n_BtnHead = GBase::GetChildByName<ui::Button *>(this, "Button_head");
-  n_SpriteHeadRedPoint = GBase::GetChildByName<Sprite *>(this, "Sprite_headRedPoint");
+  n_NodeHead = GBase::GetChildByName<ui::Layout*>(this, "Panel_headFrame");
+  n_NodeWeakPoint = GBase::GetChildByName<Node*>(this, "Node_headWeakPoint");
+  n_SpriteLordHead = GBase::GetChildByName<Sprite*>(this, "sprite_lord_head");
+  n_BtnHead = GBase::GetChildByName<ui::Button*>(this, "Button_head");
+  n_SpriteHeadRedPoint = GBase::GetChildByName<Sprite*>(this, "Sprite_headRedPoint");
   n_SpriteHeadRedPoint->setVisible(false);
-  n_IconVipNew = GBase::GetChildByName<Sprite *>(this, "iconVipNew");
+  n_IconVipNew = GBase::GetChildByName<Sprite*>(this, "iconVipNew");
   n_IconVipNew->setVisible(false);
-  n_ImgPower = GBase::GetChildByName<Sprite *>(this, "sprite_power");
-  n_LabelPower = GBase::GetChildByName<ui::Text *>(this, "Text_powerValue");
+  n_ImgPower = GBase::GetChildByName<Sprite*>(this, "sprite_power");
+  n_LabelPower = GBase::GetChildByName<ui::Text*>(this, "Text_powerValue");
   n_ScoreLabelPower = UICommonScoreLabel::DCreateScoreLabel(n_LabelPower, true);
-  n_BtnPower = GBase::GetChildByName<ui::Button *>(this, "Button_power");
-  n_IconGem = GBase::GetChildByName<Sprite *>(this, "icon_main_powegem");
+  n_BtnPower = GBase::GetChildByName<ui::Button*>(this, "Button_power");
+  n_IconGem = GBase::GetChildByName<Sprite*>(this, "icon_main_powegem");
   n_IconGem->setVisible(GBase::Const::Get()->IsArClient);
-  n_LabelRechargeTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(this, "Text_rechargeTime"));
-  n_BtnRechargeActivity = GBase::GetChildByName<ui::Button *>(this, "Button_recharge");
-  n_NodeRecharge = GBase::GetChildByName<Node *>(this, "Node_recharge");
+  n_LabelRechargeTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node*>(this, "Text_rechargeTime"));
+  n_BtnRechargeActivity = GBase::GetChildByName<ui::Button*>(this, "Button_recharge");
+  n_NodeRecharge = GBase::GetChildByName<Node*>(this, "Node_recharge");
   n_NodeRechargeIcon = n_NodeRecharge->getChildByName("Node_icon");
-  n_NodeEvent = GBase::GetChildByName<Node *>(this, "Node_event");
-  n_NodeEventIcon = n_NodeEvent->getChildByName<Node *>("Node_icon");
-  n_ImageEvent = n_NodeEventIcon->getChildByName<ui::ImageView *>("Image_event");
-  n_NodeNew = GBase::GetChildByName<Node *>(this, "Node_new");
+  n_NodeEvent = GBase::GetChildByName<Node*>(this, "Node_event");
+  n_NodeEventIcon = n_NodeEvent->getChildByName<Node*>("Node_icon");
+  n_ImageEvent = n_NodeEventIcon->getChildByName<ui::ImageView*>("Image_event");
+  n_NodeNew = GBase::GetChildByName<Node*>(this, "Node_new");
   auto l_NodeNewJump = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationNewJump.csb").First;
   l_NodeNewJump->setPosition(38, -60);
   n_NodeNew->addChild(l_NodeNewJump);
-  n_BtnEvent = GBase::GetChildByName<ui::Button *>(this, "Button_event");
-  n_LabelEventTime = GBase::GetChildByName<ui::Text *>(this, "Text_eventTime");
+  n_BtnEvent = GBase::GetChildByName<ui::Button*>(this, "Button_event");
+  n_LabelEventTime = GBase::GetChildByName<ui::Text*>(this, "Text_eventTime");
   n_LabelEventTime->setString(Translate::i18n("buildDes_name_106"));
-  n_SpriteEventRedPoint = GBase::GetChildByName<Sprite *>(n_NodeEvent, "Sprite_numBg");
-  n_LabelEventRedNum = GBase::GetChildByName<ui::Text *>(n_NodeEvent, "Text_num");
+  n_SpriteEventRedPoint = GBase::GetChildByName<Sprite*>(n_NodeEvent, "Sprite_numBg");
+  n_LabelEventRedNum = GBase::GetChildByName<ui::Text*>(n_NodeEvent, "Text_num");
   n_SpriteEventRedPoint->setVisible(false);
-  n_PanelTips = GBase::GetChildByName<ui::Layout *>(n_NodeEvent, "Panel_tips");
-  GBase::GetChildByName<ui::Text *>(n_PanelTips, "Text_tips")->setString(Translate::i18n("activity_text_03"));
+  n_PanelTips = GBase::GetChildByName<ui::Layout*>(n_NodeEvent, "Panel_tips");
+  GBase::GetChildByName<ui::Text*>(n_PanelTips, "Text_tips")->setString(Translate::i18n("activity_text_03"));
   n_PanelTips->setVisible(false);
   n_ImageEvent->loadTexture("btn_main_new_activity.png", ui::Widget::TextureResType::PLIST);
   n_ImageEvent->ignoreContentAdaptWithSize(true);
-  n_NodeNewJourney = GBase::GetChildByName<Node *>(this, "Node_newJourney");
+  n_NodeNewJourney = GBase::GetChildByName<Node*>(this, "Node_newJourney");
   n_NodeNewJourney->setVisible(false);
-  n_NodeEtNew = GBase::GetChildByName<Node *>(n_NodeNewJourney, "Node_etNew");
-  //TODO: FullPath
+  n_NodeEtNew = GBase::GetChildByName<Node*>(n_NodeNewJourney, "Node_etNew");
+  // TODO: FullPath
   auto l_NodeNewJump_2 = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationNewJump.csb").First;
   l_NodeNewJump_2->setPosition(38, -60);
   n_NodeEtNew->addChild(l_NodeNewJump_2);
-  n_NodeIconJourney = GBase::GetChildByName<Node *>(n_NodeNewJourney, "Node_iconJourney");
+  n_NodeIconJourney = GBase::GetChildByName<Node*>(n_NodeNewJourney, "Node_iconJourney");
   auto l_NodeNewJump_3 = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationJourney.csb").First;
   n_NodeIconJourney->addChild(l_NodeNewJump_3);
-  n_TextNewJourney = GBase::GetChildByName<ui::Text *>(n_NodeNewJourney, "Text_newJourney");
+  n_TextNewJourney = GBase::GetChildByName<ui::Text*>(n_NodeNewJourney, "Text_newJourney");
   n_TextNewJourney->setString(Translate::i18n("journey_art_1001"));
-  n_ButtonNewJourney = GBase::GetChildByName<ui::Button *>(n_NodeNewJourney, "Button_newJourney");
+  n_ButtonNewJourney = GBase::GetChildByName<ui::Button*>(n_NodeNewJourney, "Button_newJourney");
   n_ButtonNewJourney->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnJourneyClick, this));
-  n_NodeLucky = GBase::GetChildByName<Node *>(this, "Node_rechargeLucky");
-  n_LuckyNumFrm = GBase::GetChildByName<Sprite *>(this, "Sprite_numFrm");
-  n_LuckyNumTxt = GBase::GetChildByName<ui::Text *>(this, "Text_pointNum");
-  n_BtnLucky = GBase::GetChildByName<ui::Button *>(this, "Button_rechargeLucky");
+  n_NodeLucky = GBase::GetChildByName<Node*>(this, "Node_rechargeLucky");
+  n_LuckyNumFrm = GBase::GetChildByName<Sprite*>(this, "Sprite_numFrm");
+  n_LuckyNumTxt = GBase::GetChildByName<ui::Text*>(this, "Text_pointNum");
+  n_BtnLucky = GBase::GetChildByName<ui::Button*>(this, "Button_rechargeLucky");
   n_NodeLuckyIcon = n_NodeLucky->getChildByName("Node_icon");
-  n_TxtLuckyTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(this, "Text_luckyTime"));
-  n_NodeCrazy = GBase::GetChildByName<Node *>(this, "Node_crazy");
+  n_TxtLuckyTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node*>(this, "Text_luckyTime"));
+  n_NodeCrazy = GBase::GetChildByName<Node*>(this, "Node_crazy");
   n_NodeCrazyIcon = n_NodeCrazy->getChildByName("Node_icon");
-  n_BtnCrazy = GBase::GetChildByName<ui::Button *>(this, "Button_crazy");
-  n_TxtCrazyTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(this, "Text_crazyTime"));
+  n_BtnCrazy = GBase::GetChildByName<ui::Button*>(this, "Button_crazy");
+  n_TxtCrazyTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node*>(this, "Text_crazyTime"));
   n_TxtCrazyTime->setVisible(false);
-  n_RedPointCrazy = GBase::GetChildByName<Sprite *>(this, "Sprite_crazyRedPoint");
+  n_RedPointCrazy = GBase::GetChildByName<Sprite*>(this, "Sprite_crazyRedPoint");
   n_NodeCrazy->getChildByName("Sprite_redBg")->setVisible(false);
-  n_NodeHeroGift = GBase::GetChildByName<Node *>(this, "Node_choiceLucky");
-  GBase::GetChildByName<Node *>(n_NodeHeroGift, "Sprite_numFrmChoice")->setVisible(false);
-  n_TxtHeroGiftTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(this, "Text_choiceLuckyTime"));
-  n_BtnHeroGift = GBase::GetChildByName<ui::Button *>(this, "Button_choiceLucky");
+  n_NodeHeroGift = GBase::GetChildByName<Node*>(this, "Node_choiceLucky");
+  GBase::GetChildByName<Node*>(n_NodeHeroGift, "Sprite_numFrmChoice")->setVisible(false);
+  n_TxtHeroGiftTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node*>(this, "Text_choiceLuckyTime"));
+  n_BtnHeroGift = GBase::GetChildByName<ui::Button*>(this, "Button_choiceLucky");
   n_BtnHeroGift->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnHeroRechargeClick, this));
-  auto l_NodeLucky = dynamic_cast<ui::Widget *>(n_NodeLucky);
+  auto l_NodeLucky = dynamic_cast<ui::Widget*>(n_NodeLucky);
   InitKingNode(nullptr);
   InitSultansBackNode(nullptr);
 
-  n_BtnExplain = GBase::GetChildByName<ui::Button *>(this, "Button_gameExplain");
+  n_BtnExplain = GBase::GetChildByName<ui::Button*>(this, "Button_gameExplain");
   n_BtnExplain->setPosition(Vec2(GBase::DFIsRA() ? 490.0f : 150.0f, -100.0f));
   m_TableBuilder.clear();
   m_TableBuilder.push_back(GBase::DGetExtendChildFromCCSByName<UIBuilderIcon>(this, "CCS_builderIcon_iron"));
@@ -125,29 +124,29 @@ void UIMainTop::Ctor(){
   AddBuildStarButton();
   n_NodeTroops = GBase::DGetExtendChildFromCCSByName<UIMarchingTroops>(this, "CCS_marchingTroops_troop");
   n_NodeTroops->setVisible(false);
-  n_NodeLostRuins = GBase::GetChildByName<Node *>(this, "Node_LostRuins");
-  n_LostRuinsTaskIcon = GBase::GetChildByName<ui::ImageView *>(n_NodeLostRuins, "Image_TaskIcon");
-  n_LostRuinsProgress = UIHtmlRichText::DChangeTextToHtml(GBase::GetChildByName<ui::Text *>(n_NodeLostRuins, "Text_Progress"));
-  n_LostRuinsTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(n_NodeLostRuins, "Text_LeftTime"));
-  n_LostRuinsGetAwardBtn = GBase::GetChildByName<ui::Button *>(n_NodeLostRuins, "Button_LostGetAward");
+  n_NodeLostRuins = GBase::GetChildByName<Node*>(this, "Node_LostRuins");
+  n_LostRuinsTaskIcon = GBase::GetChildByName<ui::ImageView*>(n_NodeLostRuins, "Image_TaskIcon");
+  n_LostRuinsProgress = UIHtmlRichText::DChangeTextToHtml(GBase::GetChildByName<ui::Text*>(n_NodeLostRuins, "Text_Progress"));
+  n_LostRuinsTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node*>(n_NodeLostRuins, "Text_LeftTime"));
+  n_LostRuinsGetAwardBtn = GBase::GetChildByName<ui::Button*>(n_NodeLostRuins, "Button_LostGetAward");
   n_LostRuinsGetAwardBtn->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnLostRuinsGetAward, this));
   n_LostRuinsGetAwardBtn->setTitleText(Translate::i18n("common_text_1146"));
-  n_TextLostTaskStatus = GBase::GetChildByName<ui::Text *>(n_LostRuinsGetAwardBtn, "Text_LostTaskStatus");
+  n_TextLostTaskStatus = GBase::GetChildByName<ui::Text*>(n_LostRuinsGetAwardBtn, "Text_LostTaskStatus");
   n_TextLostTaskStatus->setString(Translate::i18n("common_text_2601"));
   RegisterListener();
   InitView();
   InitTimer();
   InitData();
-  n_NodeStylePower = GBase::GetChildByName<Node *>(this, "Node_style_power");
-  n_NodeStyleHead = GBase::GetChildByName<Node *>(this, "Node_style_head");
+  n_NodeStylePower = GBase::GetChildByName<Node*>(this, "Node_style_power");
+  n_NodeStyleHead = GBase::GetChildByName<Node*>(this, "Node_style_head");
   InitStyle();
 }
 
-void UIMainTop::UpdateHeadPos(EventCustom *p_Event){
-  if(GBase::DIsBrave8Level()){
+void UIMainTop::UpdateHeadPos(EventCustom* p_Event) {
+  if (GBase::DIsBrave8Level()) {
     n_NodeHead->setPositionX(12);
     m_OffestY = 45;
-  }else{
+  } else {
     n_NodeHead->setPositionX(57);
     m_OffestY = 0;
   }
@@ -156,66 +155,65 @@ void UIMainTop::UpdateHeadPos(EventCustom *p_Event){
   UpdateBuilderPos(-100 - m_OffestY);
 }
 
-void UIMainTop::UpdateBuilderPos(float p_OffsetY){
-  for(int32 i = 0; i < (int32)m_TableBuilder.size(); i++){
+void UIMainTop::UpdateBuilderPos(float p_OffsetY) {
+  for (int32 i = 0; i < (int32)m_TableBuilder.size(); i++) {
     m_TableBuilder.at(i)->setPositionY(p_OffsetY - 80 * (i - 1));
-    if(std::floor(GDisplay::Get()->height == 853/**and v:getBuilderType() == gQueueTypeDef.build_star_queue_privilege */)){
+    if (std::floor(GDisplay::Get()->height == 853 /**and v:getBuilderType() == gQueueTypeDef.build_star_queue_privilege */)) {
       auto l_IsHide = GBase::DConfigGet<bool>("Game:GameSettingView:gameExplainSwitch~bool");
       m_TableBuilder.at(i)->setPosition(Vec2(GBase::DFIsRA() ? 490 : 150, l_IsHide ? -100 : -180));
     }
   }
 }
 
-void UIMainTop::UpdateLostRuinsNode(EventCustom *p_Event){
-  
+void UIMainTop::UpdateLostRuinsNode(EventCustom* p_Event) {
   auto l_LostRuinsCtrl = LostRuinsCtrl::Get();
   auto l_QuestInfo = l_LostRuinsCtrl->GetRunningQuestInfo();
-  if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::LostRuinsActivity, false)/*and next(questInfo) */){
-  //   if self.teamMainUIWidget and self.teamMainUIWidget:isVisible() then
-  //     self.teamMainUIWidget:setPositionY(-87)
-  //     self.nodeLostRuins:setPositionY(-267)
-  //   elseif self.newTrailTeamUI and self.newTrailTeamUI:isVisible() then
-  //     self.newTrailTeamUI:setPositionY(-30)
-  //     self.nodeLostRuins:setPositionY(-255)
-  //   else
-  //     self.nodeLostRuins:setPositionY(-67)
-  //   end
-  //   self.nodeLostRuins:setVisible(true)
-  //   if questInfo.isFinish then
-  //     self.lostRuinsProgress:setVisible(false)
-  //     self.textLostTaskStatus:setVisible(true)
-  //     self.lostRuinsGetAwardBtn:setVisible(true)
-  //     self.lostRuinsTime:getParent():setVisible(false)
-  //   else
-  //     self.lostRuinsProgress:setVisible(true)
-  //     self.textLostTaskStatus:setVisible(false)
-  //     self.lostRuinsGetAwardBtn:setVisible(false)
-  //     self.lostRuinsTime:getParent():setVisible(true)
-  //     local lostRuinsRead = include("lostRuinsRead")
-  //     local totalTime = lostRuinsRead.getTaskTimeByQuestId(questInfo.questId)
-  //     local leftTime = math.max(0, totalTime - (serviceFunctions.systemTime() - lostRuinsCtrl:getRunningQuestInfo(questInfo.questId).startTime))
-  //     self.lostRuinsTime:setTimeUpdateListener(function(leftTime)
-  //       if leftTime <= 300 then
-  //         self.lostRuinsTime:setColor(cc.c3b(254, 1, 1))
-  //       else
-  //         self.lostRuinsTime:setColor(display.COLOR_WHITE)
-  //       end
-  //     end)
-  //     self.lostRuinsTime:beginTime(leftTime)
-  //     local eventQuestRead = include("eventQuestRead")
-  //     local progress = lostRuinsCtrl:getQuestProgress(questInfo.questId)
-  //     local aim = eventQuestRead.getAim(questInfo.questId)
-  //     print("updateLostRuinsNode", questInfo.questId, progress, leftTime)
-  //     self.lostRuinsProgress:setString(i18n_html("common_text_155", {member = progress, total = aim}, {
-  //       member = {color = "#FE0101"}
-  //     }))
-  //   end
-  }else{
+  if (ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::LostRuinsActivity, false) /*and next(questInfo) */) {
+    //   if self.teamMainUIWidget and self.teamMainUIWidget:isVisible() then
+    //     self.teamMainUIWidget:setPositionY(-87)
+    //     self.nodeLostRuins:setPositionY(-267)
+    //   elseif self.newTrailTeamUI and self.newTrailTeamUI:isVisible() then
+    //     self.newTrailTeamUI:setPositionY(-30)
+    //     self.nodeLostRuins:setPositionY(-255)
+    //   else
+    //     self.nodeLostRuins:setPositionY(-67)
+    //   end
+    //   self.nodeLostRuins:setVisible(true)
+    //   if questInfo.isFinish then
+    //     self.lostRuinsProgress:setVisible(false)
+    //     self.textLostTaskStatus:setVisible(true)
+    //     self.lostRuinsGetAwardBtn:setVisible(true)
+    //     self.lostRuinsTime:getParent():setVisible(false)
+    //   else
+    //     self.lostRuinsProgress:setVisible(true)
+    //     self.textLostTaskStatus:setVisible(false)
+    //     self.lostRuinsGetAwardBtn:setVisible(false)
+    //     self.lostRuinsTime:getParent():setVisible(true)
+    //     local lostRuinsRead = include("lostRuinsRead")
+    //     local totalTime = lostRuinsRead.getTaskTimeByQuestId(questInfo.questId)
+    //     local leftTime = math.max(0, totalTime - (serviceFunctions.systemTime() - lostRuinsCtrl:getRunningQuestInfo(questInfo.questId).startTime))
+    //     self.lostRuinsTime:setTimeUpdateListener(function(leftTime)
+    //       if leftTime <= 300 then
+    //         self.lostRuinsTime:setColor(cc.c3b(254, 1, 1))
+    //       else
+    //         self.lostRuinsTime:setColor(display.COLOR_WHITE)
+    //       end
+    //     end)
+    //     self.lostRuinsTime:beginTime(leftTime)
+    //     local eventQuestRead = include("eventQuestRead")
+    //     local progress = lostRuinsCtrl:getQuestProgress(questInfo.questId)
+    //     local aim = eventQuestRead.getAim(questInfo.questId)
+    //     print("updateLostRuinsNode", questInfo.questId, progress, leftTime)
+    //     self.lostRuinsProgress:setString(i18n_html("common_text_155", {member = progress, total = aim}, {
+    //       member = {color = "#FE0101"}
+    //     }))
+    //   end
+  } else {
     n_NodeLostRuins->setVisible(false);
   }
 }
 
-void UIMainTop::UpdateWindTowerNode(EventCustom *p_Event){
+void UIMainTop::UpdateWindTowerNode(EventCustom* p_Event) {
   // local windTowerCtrl = SoraDGetCtrl("windTowerCtrl")
   // local questInfo = windTowerCtrl:getRunningQuestInfo()
   // print("updateWindTowerNode", _G.clientEventMgr.judgeIsOpen(gActivityTimeActivityID.WIND_TOWER_ACTIVITY), windTowerCtrl:isRunningQuest())
@@ -244,7 +242,7 @@ void UIMainTop::UpdateWindTowerNode(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::UpdateSnowWolfLostNode(EventCustom *p_Event){
+void UIMainTop::UpdateSnowWolfLostNode(EventCustom* p_Event) {
   // local snowWolfLostCtrl = SoraDGetCtrl("snowWolfLostCtrl")
   // local questInfo = snowWolfLostCtrl:getRunningQuestInfo()
   // print("updateLostRuinsNode", clientEventMgr.judgeIsOpen(gActivityTimeActivityID.SNOWWOLF_LOST_ACTIVITY), snowWolfLostCtrl:isRunningQuest())
@@ -304,29 +302,29 @@ void UIMainTop::UpdateSnowWolfLostNode(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::InitHalloweenShineEffect(){
+void UIMainTop::InitHalloweenShineEffect() {
   auto l_effectShine = GBase::DCreateAnimation("Node_Effect_wsj01", nullptr, true).First;
   n_EffectShine = l_effectShine;
   n_EffectShine->setPosition(195, 15);
   n_ImgPower->addChild(n_EffectShine);
 }
 
-void UIMainTop::InitStyle(){
+void UIMainTop::InitStyle() {
   auto l_Style = GGlobal::Get()->MainUIStyle;
-  if(l_Style == EMainUIStyle::QuickSand ){
+  if (l_Style == EMainUIStyle::QuickSand) {
     auto l_TopNode = GBase::DCreateAnimation("mainUITop_style_ztsz", nullptr).First;
     n_NodeStylePower->addChild(l_TopNode);
     auto l_ActNode = GBase::DCreateAnimation("Node_Effect_liusha1", nullptr, true).First;
     l_ActNode->setPosition(320, 15);
     n_NodeAreaT->addChild(l_ActNode, 999);
     l_ActNode->setName("actNode_style");
-  }else if (l_Style == EMainUIStyle::Chritmas){
+  } else if (l_Style == EMainUIStyle::Chritmas) {
     auto l_TopNode = GBase::DCreateAnimation("mainUITop_style_chritmas", nullptr).First;
     n_NodeStyleHead->addChild(l_TopNode);
     n_ImgPower->setSpriteFrame("farmer_sdzjm_zdl.png");
     n_LabelPower->setPositionX(128.5);
     n_BtnPower->setPosition(Vec2(128.5, 61.5));
-  }else if(l_Style == EMainUIStyle::Easter){
+  } else if (l_Style == EMainUIStyle::Easter) {
     auto l_Spine = spine::SkeletonAnimation::createWithBinaryFile("spine/zhandouli.skel", "spine/zhandouli.atlas");
     l_Spine->setPosition(65, 35);
     l_Spine->setAnimation(0, "animation", true);
@@ -335,7 +333,7 @@ void UIMainTop::InitStyle(){
     l_Spine2->setPosition(250, 35);
     l_Spine2->setAnimation(0, "animation", true);
     n_ImgPower->addChild(l_Spine2);
-  }else if(l_Style == EMainUIStyle::Halloween){
+  } else if (l_Style == EMainUIStyle::Halloween) {
     n_ImgPower->setPositionY(-20);
     n_ImgPower->setLocalZOrder(10);
     n_ImgPower->setSpriteFrame("frame_main_halloween_power01.png");
@@ -347,24 +345,23 @@ void UIMainTop::InitStyle(){
   }
 }
 
-void UIMainTop::InitKingNode(EventCustom *p_Event){
-    if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::NEW_SERVER_RANK_MATCH))
-  {
+void UIMainTop::InitKingNode(EventCustom* p_Event) {
+  if (ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::NEW_SERVER_RANK_MATCH)) {
     n_NodeKingCom = n_NodeLucky;
     n_NodeKingCom->setVisible(true);
     n_NodeKingCom->setName("nodeKingCom");
     n_NodeKingCom->setPositionX(n_NodeCrazy->getPositionX());
-    n_BtnKing = GBase::GetChildByName<ui::Button *>(n_NodeKingCom, "Button_rechargeLucky");
-    n_KingRed = GBase::GetChildByName<Sprite *>(n_NodeKingCom, "Sprite_numFrm");
-    n_TxtKingTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(n_NodeKingCom, "Text_luckyTime"));
+    n_BtnKing = GBase::GetChildByName<ui::Button*>(n_NodeKingCom, "Button_rechargeLucky");
+    n_KingRed = GBase::GetChildByName<Sprite*>(n_NodeKingCom, "Sprite_numFrm");
+    n_TxtKingTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node*>(n_NodeKingCom, "Text_luckyTime"));
     n_NodeKingIcon = n_NodeKingCom->getChildByName("Node_icon");
     auto l_Node = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/kingCompetitionEnterEffect.csb").First;
     n_NodeKingIcon->addChild(l_Node);
     l_Node->setPosition(Vec2(8, 40));
     l_Node->setScale(1.2f);
-    GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "Sprite_9"));
-    GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "Sprite_9_0"));
-    GBase::DMixtureGLONE(GBase::GetChildByName<Node *>(l_Node, "dh_zhounianjm_01_3"));
+    GBase::DMixtureGLONE(GBase::GetChildByName<Node*>(l_Node, "Sprite_9"));
+    GBase::DMixtureGLONE(GBase::GetChildByName<Node*>(l_Node, "Sprite_9_0"));
+    GBase::DMixtureGLONE(GBase::GetChildByName<Node*>(l_Node, "dh_zhounianjm_01_3"));
     n_BtnKing->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
   }
   // local kingCompetitionltCtrl = include("kingCompetitionltCtrl")
@@ -411,17 +408,17 @@ void UIMainTop::InitKingNode(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::InitSultansBackNode(EventCustom *p_Event){
+void UIMainTop::InitSultansBackNode(EventCustom* p_Event) {
   auto l_NeedShow = GBase::DConfigGet<bool>("Game:sultansBackView:showInMainUITop~bool", true);
   auto l_ActivityIdList = ActivityShowCtrl::Get()->GetActivityGroup(EActivityCenter::SultanBack);
   auto l_IsOpen = false;
-  for(auto l_ActivityId : l_ActivityIdList){
-    if(ClientEventMgr::Get()->JudgeIsOpen(l_ActivityId.first)){
+  for (auto l_ActivityId : l_ActivityIdList) {
+    if (ClientEventMgr::Get()->JudgeIsOpen(l_ActivityId.first)) {
       l_IsOpen = true;
       break;
     }
   }
-  if(!l_IsOpen){
+  if (!l_IsOpen) {
     RangeLeft2Nodes();
     return;
   }
@@ -435,10 +432,10 @@ void UIMainTop::InitSultansBackNode(EventCustom *p_Event){
   auto l_EtSultan = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationSultansBack.csb").First;
   l_EtSultan->setPosition(0, 36);
   n_NodeSultansBack->getChildByName("Node_icon")->addChild(l_EtSultan);
-  n_BtnSultansBack = GBase::GetChildByName<ui::Button *>(n_NodeSultansBack, "Button_rechargeLucky");
+  n_BtnSultansBack = GBase::GetChildByName<ui::Button*>(n_NodeSultansBack, "Button_rechargeLucky");
   n_BtnSultansBack->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_SultansBackRed = GBase::GetChildByName<Sprite *>(n_NodeSultansBack, "Sprite_numFrm");
-  n_TxtSultansBackTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node *>(n_NodeSultansBack, "Text_luckyTime"));
+  n_SultansBackRed = GBase::GetChildByName<Sprite*>(n_NodeSultansBack, "Sprite_numFrm");
+  n_TxtSultansBackTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<Node*>(n_NodeSultansBack, "Text_luckyTime"));
 
   // if not isOpen or not needShow or worldMapDefine.isInNewTrial() then
   //   self.nodeSultansBack:setVisible(false)
@@ -460,7 +457,7 @@ void UIMainTop::InitSultansBackNode(EventCustom *p_Event){
   // end
 }
 
-Label *UIMainTop::ExchangeGroupText(Label *p_Label, float p_Height){
+Label* UIMainTop::ExchangeGroupText(Label* p_Label, float p_Height) {
   // local text = SoraDCreateLabel({
   //   UILabelType = 2,
   //   text = "",
@@ -478,7 +475,7 @@ Label *UIMainTop::ExchangeGroupText(Label *p_Label, float p_Height){
   return nullptr;
 }
 
-void UIMainTop:: TradeBoardMsgShowTip(EventCustom *p_Event){
+void UIMainTop::TradeBoardMsgShowTip(EventCustom* p_Event) {
   // if redata and redata.info then
   //   local publicRead = include("publicRead")
   //   if redata.showType and redata.showType == "newTradeBoard" then
@@ -496,7 +493,7 @@ void UIMainTop:: TradeBoardMsgShowTip(EventCustom *p_Event){
   // end
 }
 
-bool UIMainTop::IsRedPoint(){
+bool UIMainTop::IsRedPoint() {
   // local achievementctrl = gametop.playertop_:getModule("achievementctrl")
   // local honourNum = achievementctrl:getTipNum()
   // if honourNum == nil then
@@ -543,25 +540,25 @@ bool UIMainTop::IsRedPoint(){
   return false;
 }
 
-void UIMainTop::UpdateRedPoint(EventCustom *p_Event){
-  //self.spriteHeadRedPoint:setVisible(not not isRedPoint())
+void UIMainTop::UpdateRedPoint(EventCustom* p_Event) {
+  // self.spriteHeadRedPoint:setVisible(not not isRedPoint())
 }
 
-void UIMainTop::BtnPowerClickCallBack(Ref* p_Button, ui::Widget::TouchEventType p_Type){
-  if(p_Type == ui::Widget::TouchEventType::ENDED){
+void UIMainTop::BtnPowerClickCallBack(Ref* p_Button, ui::Widget::TouchEventType p_Type) {
+  if (p_Type == ui::Widget::TouchEventType::ENDED) {
     GBase::PlaySound("uicontrol", 19);
     n_ImgPower->setScale(1);
     auto l_LordPowerView = UILordPowerView::Create();
     l_LordPowerView->InitPanel();
     l_LordPowerView->Show();
-  }else if(p_Type == ui::Widget::TouchEventType::BEGAN){
-      n_ImgPower->setScale(1.1f);
-  }else if(p_Type == ui::Widget::TouchEventType::CANCELED){
+  } else if (p_Type == ui::Widget::TouchEventType::BEGAN) {
+    n_ImgPower->setScale(1.1f);
+  } else if (p_Type == ui::Widget::TouchEventType::CANCELED) {
     n_ImgPower->setScale(1);
   }
 }
 
-void UIMainTop::BtnLostRuinsGetAward(Ref* p_Button, ui::Widget::TouchEventType p_Type){
+void UIMainTop::BtnLostRuinsGetAward(Ref* p_Button, ui::Widget::TouchEventType p_Type) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound("uicontrol", 19)
   //   local lostRuinsCtrl = SoraDGetCtrl("lostRuinsCtrl")
@@ -569,16 +566,14 @@ void UIMainTop::BtnLostRuinsGetAward(Ref* p_Button, ui::Widget::TouchEventType p
   // end
 }
 
-Node *UIMainTop::GetResTarget(EResource p_ResType){
-  return n_ResMenu->GetResTarget(p_ResType);
-}
+Node* UIMainTop::GetResTarget(EResource p_ResType) { return n_ResMenu->GetResTarget(p_ResType); }
 
-void UIMainTop::onEnter(){
+void UIMainTop::onEnter() {
   UIBaseView::onEnter();
   OnMessageListener();
 }
 
-void UIMainTop::onExit(){
+void UIMainTop::onExit() {
   UIBaseView::onExit();
   // print("main scene  exit ")
   // if self.upgradePowerHandle ~= nil then
@@ -588,7 +583,7 @@ void UIMainTop::onExit(){
   // SoraDRemoveMessageByTarget(self)
 }
 
-void UIMainTop::OnMessageListener(){
+void UIMainTop::OnMessageListener() {
   GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINFINSH", CC_CALLBACK_1(UIMainTop::ReLoginFinish, this));
   GBase::DAddMessage(this, "MESSAGE_MAINSCEN_ONSHOW", CC_CALLBACK_1(UIMainTop::SetMarchingTroopsVisible, this));
   GBase::DAddMessage(this, "MESSAGE_LORDINFO_UPDATE_BASE", CC_CALLBACK_1(UIMainTop::UpdateLordInfo, this));
@@ -602,7 +597,7 @@ void UIMainTop::OnMessageListener(){
   GBase::DAddMessage(this, "MESSAGE_SERVER_RECHARGECENTER_DAILYSPECIALGIFTBUY_REFRESH", CC_CALLBACK_1(UIMainTop::UpdateRechargeRedPoint, this));
   GBase::DAddMessage(this, "MESSAGE_SERVER_RECHARGECENTER_DAILYSPECIALGIFT_REFRESH", CC_CALLBACK_1(UIMainTop::UpdateRechargeRedPoint, this));
   GBase::DAddMessage(this, "MESSAGE_SERVER_EVENTCENTER_COMMONEVENT_REFRESH", CC_CALLBACK_1(UIMainTop::GetEventCenterReturn, this));
-  GBase::DAddMessage(this, "MESSAGE_SERVER_RECHARGECENTER_ACTIVETIMEOUT", [](EventCustom *p_Event){
+  GBase::DAddMessage(this, "MESSAGE_SERVER_RECHARGECENTER_ACTIVETIMEOUT", [](EventCustom* p_Event) {
     //   if redata and redata.redata and redata.redata.rid then
     //     local rechargeRead = include("rechargeRead")
     //     local info = rechargeRead.getPageViewData(redata.redata.rid)
@@ -615,7 +610,7 @@ void UIMainTop::OnMessageListener(){
     //         self:updateRechargeRedPoint()
     //       end
     //     end
-    //   end  
+    //   end
   });
   GBase::DAddMessage(this, "MESSAGE_SERVER_RECHARGECENTER_WEEKLY_REFRESH", CC_CALLBACK_1(UIMainTop::UpdateRechargeRedPoint, this));
   GBase::DAddMessage(this, "MESSAGE_SERVER_RECHARGECENTER_MONTHLY_REFRESH", CC_CALLBACK_1(UIMainTop::UpdateRechargeRedPoint, this));
@@ -684,8 +679,7 @@ void UIMainTop::OnMessageListener(){
   GBase::DAddMessage(this, "MESSAGE_EXCLUSIVE_VIP_INIT", CC_CALLBACK_1(UIMainTop::CheckSecondBuildStarButton, this));
 }
 
-void UIMainTop::ShowOrHideGuideView(EventCustom* p_Event)
-{
+void UIMainTop::ShowOrHideGuideView(EventCustom* p_Event) {
   // local guideCtrl = gametop.playertop_:getModule("guideCtrl")
   // local guideStep = guideCtrl:getCurForceGuideStep()
   // self.Node_area_rt:setVisible(false)
@@ -697,8 +691,7 @@ void UIMainTop::ShowOrHideGuideView(EventCustom* p_Event)
   // end
 }
 
-void UIMainTop::ReLoginFinish(EventCustom* p_Event)
-{
+void UIMainTop::ReLoginFinish(EventCustom* p_Event) {
   InitView();
   InitData();
   InitTimer();
@@ -707,7 +700,7 @@ void UIMainTop::ReLoginFinish(EventCustom* p_Event)
   // paymentManager.reconsumePayWhenRelogin()
 }
 
-void UIMainTop::HandlEscort(EventCustom *p_Event){
+void UIMainTop::HandlEscort(EventCustom* p_Event) {
   // local retData = data.data
   // SoraDCloseLoading()
   // if retData.closestBuild == nil then
@@ -724,7 +717,7 @@ void UIMainTop::HandlEscort(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::GetEquipSuccess(EventCustom *p_Event){
+void UIMainTop::GetEquipSuccess(EventCustom* p_Event) {
   // local lightSprite = self.nodeHead:getChildByName("Sprite_light")
   // if guideCtrl:isGuideOpen(gGuideModule.WEAR_EQUIPMENT) then
   //   if lightSprite == nil then
@@ -748,30 +741,24 @@ void UIMainTop::GetEquipSuccess(EventCustom *p_Event){
   // self:updateRedPoint()
 }
 
-void UIMainTop::SetMarchingTroopsVisible(EventCustom *p_Event){
+void UIMainTop::SetMarchingTroopsVisible(EventCustom* p_Event) {
   EScene l_ViewType = EScene::None;
-  if (p_Event && p_Event->getUserData() != nullptr) 
-    l_ViewType = *static_cast<EScene*>(p_Event->getUserData());
-  if(l_ViewType == EScene::None || m_CurrentViewType == l_ViewType)
-    return;
-    
-  bool l_ShowBuilder  = l_ViewType == EScene::City;
+  if (p_Event && p_Event->getUserData() != nullptr) l_ViewType = *static_cast<EScene*>(p_Event->getUserData());
+  if (l_ViewType == EScene::None || m_CurrentViewType == l_ViewType) return;
+
+  bool l_ShowBuilder = l_ViewType == EScene::City;
   n_NodeTroops->InitData(!l_ShowBuilder);
-  for (auto l_Builder : m_TableBuilder)
-    l_Builder->setVisible(l_ShowBuilder);
-  
-  if(n_NewTrailTeamUI)
-    n_NewTrailTeamUI->setVisible(l_ShowBuilder);
+  for (auto l_Builder : m_TableBuilder) l_Builder->setVisible(l_ShowBuilder);
+
+  if (n_NewTrailTeamUI) n_NewTrailTeamUI->setVisible(l_ShowBuilder);
   UpdateLostRuinsNode(nullptr);
   UpdateWindTowerNode(nullptr);
   UpdateSnowWolfLostNode(nullptr);
   m_CurrentViewType = l_ViewType;
-  if(GBase::DConfigGet<bool>("Game:GameSettingView:gameExplainSwitch~bool"))
-    n_BtnExplain->setVisible(l_ShowBuilder);
-  
-} 
+  if (GBase::DConfigGet<bool>("Game:GameSettingView:gameExplainSwitch~bool")) n_BtnExplain->setVisible(l_ShowBuilder);
+}
 
-void UIMainTop::RegisterListener(){
+void UIMainTop::RegisterListener() {
   n_BtnVip->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
   n_BtnHead->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
   n_BtnRechargeActivity->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
@@ -781,12 +768,12 @@ void UIMainTop::RegisterListener(){
   n_BtnCrazy->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
 }
 
-void UIMainTop::UpdateLordInfo(EventCustom *p_Event){
+void UIMainTop::UpdateLordInfo(EventCustom* p_Event) {
   // self.playerInfo.player = lordInfoCtrl:getBaseInfo()
   // self:updatePlayer()
 }
 
-void UIMainTop::ShowLordHPChange(EventCustom *p_Event){
+void UIMainTop::ShowLordHPChange(EventCustom* p_Event) {
   // self.hpReduceValue = data.hp
   // self.isUpdateHP = true
   // if self.isSetHPStyle and self.isUpdateHP then
@@ -794,7 +781,7 @@ void UIMainTop::ShowLordHPChange(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::ShowLordEXPChange(EventCustom *p_Event){
+void UIMainTop::ShowLordEXPChange(EventCustom* p_Event) {
   // self:initKingNode()
   // local isReachFullExp = self.playerInfo.player.isReachFullExp
   // if not isReachFullExp then
@@ -802,7 +789,7 @@ void UIMainTop::ShowLordEXPChange(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::ShowLordPowerEXPChange(EventCustom *p_Event){
+void UIMainTop::ShowLordPowerEXPChange(EventCustom* p_Event) {
   // self:initKingNode()
   // local isReachFullExp = self.playerInfo.player.isReachFullExp
   // if not isReachFullExp then
@@ -814,7 +801,7 @@ void UIMainTop::ShowLordPowerEXPChange(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::LordPowerChange(EventCustom *p_Event){
+void UIMainTop::LordPowerChange(EventCustom* p_Event) {
   // self:initKingNode()
   // if self.isShowEXP then
   //   return
@@ -827,12 +814,12 @@ void UIMainTop::LordPowerChange(EventCustom *p_Event){
   // end, 0.5)
 }
 
-void UIMainTop::UpdateLordPower(){
+void UIMainTop::UpdateLordPower() {
   // effectMainUITop.showLordPowerChange(self)
   // self.oriPower = self.curPower
 }
 
-void UIMainTop::OnBtnJourneyClick(Ref*, ui::Widget::TouchEventType){
+void UIMainTop::OnBtnJourneyClick(Ref*, ui::Widget::TouchEventType) {
   // if event == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   print("\230\150\176\230\156\141\229\190\129\233\128\148========")
@@ -847,79 +834,79 @@ void UIMainTop::OnBtnJourneyClick(Ref*, ui::Widget::TouchEventType){
   // end
 }
 
-void UIMainTop::OnBtnClick(Ref* p_Button, ui::Widget::TouchEventType p_Type){
-//   if type == ccui.TouchEventType.ended then
-//     if button == self.btnGold then
-//       SoraDPlaySound("uicontrol", 25)
-//       local panel = SoraDCreatePanel("rechargeView")
-//       panel:show()
-//       SoraDSendMessage({
-//         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-//       })
-//     elseif button == self.btnVip then
-//       SoraDPlaySound("uicontrol", 22)
-//       local panel = SoraDCreatePanel("vipCenterView")
-//       panel:show()
-//       SoraDSendMessage({
-//         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-//       })
-//     elseif button == self.btnHead then
-//       if self.playerInfo.player.avatar and self.playerInfo.player.avatar ~= "" then
-//         SoraDPlaySound()
-//       else
-//         SoraDPlaySound("headClick", self.playerInfo.player.imageId)
-//       end
-//       local head = SoraDCreatePanel("lordView")
-//       head:initData(lordInfoCtrl:getLordInfo())
-//       head:show()
-//       SoraDSendMessage({
-//         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-//       })
-//     elseif button == self.btnRechargeActivity then
-//       SoraDPlaySound()
-//       self:popEventFrame()
-//       SoraDSendMessage({
-//         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-//       })
-//     elseif button == self.btnEvent then
-//       SoraDPlaySound("uicontrol", 12)
-//       self:popEventFromEventCenter()
-//       SoraDSendMessage({
-//         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-//       })
-//     elseif button == self.btnLucky then
-//       SoraDPlaySound("uicontrol", 18)
-//       advertiseCollect.TriggerEvent(gSDKDef.TDonEvent.advertise_lucky_gift)
-//       self:popLuckyFrame()
-//       SoraDSendMessage({
-//         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-//       })
-//     elseif button == self.btnCrazy then
-//       SoraDPlaySound()
-//       local cumuActiveCtrl = SoraDGetCtrl("cumuActiveCtrl")
-//       local activityID = cumuActiveCtrl:getActivityID()
-//       if clientEventMgr.judgeIsOpen(activityID, false) then
-//         userSDKManager.logEvent(gSDKDef.TDonEvent.click_crazy_trio, {eventid = activityID, position = 2})
-//         clientEventMgr.singleClickEvent(activityID, 3)
-//       end
-//     elseif button == self.btnKing then
-//       SoraDPlaySound("uicontrol", 18)
-//       if SoraDGetCtrl("cityCtrl"):getBuildMaxLv(BUILDID.CASTLE) >= CASTLE_LV5_LIMITED then
-//         SoraDCreatePanel("kingCompetitionView"):show()
-//       else
-//         SoraDShowMsgTip(i18n("common_text_1795", {num = CASTLE_LV5_LIMITED}))
-//       end
-//       SoraDSendMessage({
-//         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
-//       })
-//     elseif button == self.btnSultansBack then
-//       SoraDPlaySound()
-//       SoraDCreatePanel("sultansBackView"):show()
-//     end
-//   end
+void UIMainTop::OnBtnClick(Ref* p_Button, ui::Widget::TouchEventType p_Type) {
+  //   if type == ccui.TouchEventType.ended then
+  //     if button == self.btnGold then
+  //       SoraDPlaySound("uicontrol", 25)
+  //       local panel = SoraDCreatePanel("rechargeView")
+  //       panel:show()
+  //       SoraDSendMessage({
+  //         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
+  //       })
+  //     elseif button == self.btnVip then
+  //       SoraDPlaySound("uicontrol", 22)
+  //       local panel = SoraDCreatePanel("vipCenterView")
+  //       panel:show()
+  //       SoraDSendMessage({
+  //         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
+  //       })
+  //     elseif button == self.btnHead then
+  //       if self.playerInfo.player.avatar and self.playerInfo.player.avatar ~= "" then
+  //         SoraDPlaySound()
+  //       else
+  //         SoraDPlaySound("headClick", self.playerInfo.player.imageId)
+  //       end
+  //       local head = SoraDCreatePanel("lordView")
+  //       head:initData(lordInfoCtrl:getLordInfo())
+  //       head:show()
+  //       SoraDSendMessage({
+  //         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
+  //       })
+  //     elseif button == self.btnRechargeActivity then
+  //       SoraDPlaySound()
+  //       self:popEventFrame()
+  //       SoraDSendMessage({
+  //         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
+  //       })
+  //     elseif button == self.btnEvent then
+  //       SoraDPlaySound("uicontrol", 12)
+  //       self:popEventFromEventCenter()
+  //       SoraDSendMessage({
+  //         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
+  //       })
+  //     elseif button == self.btnLucky then
+  //       SoraDPlaySound("uicontrol", 18)
+  //       advertiseCollect.TriggerEvent(gSDKDef.TDonEvent.advertise_lucky_gift)
+  //       self:popLuckyFrame()
+  //       SoraDSendMessage({
+  //         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
+  //       })
+  //     elseif button == self.btnCrazy then
+  //       SoraDPlaySound()
+  //       local cumuActiveCtrl = SoraDGetCtrl("cumuActiveCtrl")
+  //       local activityID = cumuActiveCtrl:getActivityID()
+  //       if clientEventMgr.judgeIsOpen(activityID, false) then
+  //         userSDKManager.logEvent(gSDKDef.TDonEvent.click_crazy_trio, {eventid = activityID, position = 2})
+  //         clientEventMgr.singleClickEvent(activityID, 3)
+  //       end
+  //     elseif button == self.btnKing then
+  //       SoraDPlaySound("uicontrol", 18)
+  //       if SoraDGetCtrl("cityCtrl"):getBuildMaxLv(BUILDID.CASTLE) >= CASTLE_LV5_LIMITED then
+  //         SoraDCreatePanel("kingCompetitionView"):show()
+  //       else
+  //         SoraDShowMsgTip(i18n("common_text_1795", {num = CASTLE_LV5_LIMITED}))
+  //       end
+  //       SoraDSendMessage({
+  //         msg = "MESSAGE_MAINCITYVIEW_LEAVE_MOVE_MODE"
+  //       })
+  //     elseif button == self.btnSultansBack then
+  //       SoraDPlaySound()
+  //       SoraDCreatePanel("sultansBackView"):show()
+  //     end
+  //   end
 }
 
-void UIMainTop::BtnHeroRechargeClick(Ref*, ui::Widget::TouchEventType){
+void UIMainTop::BtnHeroRechargeClick(Ref*, ui::Widget::TouchEventType) {
   // if type == ccui.TouchEventType.ended then
   //   SoraDPlaySound("uicontrol", 50)
   //   local heroGiftCtrl = SoraDGetCtrl("heroGiftCtrl")
@@ -932,16 +919,16 @@ void UIMainTop::BtnHeroRechargeClick(Ref*, ui::Widget::TouchEventType){
   // end
 }
 
-void UIMainTop::InitView(){
+void UIMainTop::InitView() {
   InitRechargeBtn(nullptr);
   InitCrazyBtn(nullptr);
   InitExplainBtn();
   InitLuckyBtn(nullptr);
   InitNewJourney();
-  n_NodeGold->UpdateGold() ;
+  n_NodeGold->UpdateGold();
   UpdateRechargeRedPoint(nullptr);
   InitEventNode(nullptr);
-  //TODO: self:lbsWeakPoint()
+  // TODO: self:lbsWeakPoint()
   UpdateTeamMainUIWidget(nullptr);
   RefreshNewTrialUI(nullptr);
   InitHeroGiftBtn(nullptr);
@@ -954,8 +941,8 @@ void UIMainTop::InitView(){
   UpdateHeadPos(nullptr);
 }
 
-void UIMainTop::InitData(){
-  //TODO: self.playerInfo.player = lordInfoCtrl:getBaseInfo()
+void UIMainTop::InitData() {
+  // TODO: self.playerInfo.player = lordInfoCtrl:getBaseInfo()
   UpdatePlayer(true);
   UpdateVip(nullptr);
   UpdateRedPoint(nullptr);
@@ -966,7 +953,7 @@ void UIMainTop::InitData(){
   n_HasShowNewTrialBox = nullptr;
 }
 
-void UIMainTop::InitTimer(){
+void UIMainTop::InitTimer() {
   // local queueTypeList = {
   //   gQueueTypeDef.free_build_queue,
   //   gQueueTypeDef.charge_build_queue,
@@ -978,7 +965,7 @@ void UIMainTop::InitTimer(){
   // end
 }
 
-void UIMainTop::UpdatePlayer(bool p_IsFirst){
+void UIMainTop::UpdatePlayer(bool p_IsFirst) {
   // self.labelLv:setString(tostring(self.playerInfo.player.leve))
   // SoraDGetHeadFromManager(self.spriteHead, self.playerInfo.player.imageId, self.playerInfo.player.avatar)
   // if self.playerInfo.player.isReachFullExp then
@@ -1009,7 +996,7 @@ void UIMainTop::UpdatePlayer(bool p_IsFirst){
   // end
 }
 
-void UIMainTop::UpdateVip(EventCustom *p_Event){
+void UIMainTop::UpdateVip(EventCustom* p_Event) {
   // self.playerInfo.vip = lordInfoCtrl:getVip()
   // local vipLocalData = include("vipLocalData")
   // local vipLv = self.playerInfo.vip[1]
@@ -1036,11 +1023,11 @@ void UIMainTop::UpdateVip(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::MsgGuideEnd(EventCustom *p_Event){
-  //self:lbsWeakPoint()
+void UIMainTop::MsgGuideEnd(EventCustom* p_Event) {
+  // self:lbsWeakPoint()
 }
 
-void UIMainTop::MsgInvitedInfo(EventCustom *p_Event){
+void UIMainTop::MsgInvitedInfo(EventCustom* p_Event) {
   // local remainsTeamCtrl = gametop.playertop_:getModule("remainsTeamCtrl")
   // if remainsTeamCtrl:isHasInvitedInfo() and not SoraDSearchPanelFromManagerByName("teamInvitedView") and SoraDIsGameGuide() == nil then
   //   local panel = SoraDCreatePanel("teamInvitedView")
@@ -1048,7 +1035,7 @@ void UIMainTop::MsgInvitedInfo(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::BtnExplainClick(Ref* p_Button, ui::Widget::TouchEventType p_Type){
+void UIMainTop::BtnExplainClick(Ref* p_Button, ui::Widget::TouchEventType p_Type) {
   // if btnType == ccui.TouchEventType.ended then
   //   SoraDPlaySound()
   //   self.btnExplain:setTouchEnabled(false)
@@ -1068,7 +1055,7 @@ void UIMainTop::BtnExplainClick(Ref* p_Button, ui::Widget::TouchEventType p_Type
   // end
 }
 
-void UIMainTop::InitExplainBtn(){
+void UIMainTop::InitExplainBtn() {
   // if SoraDConfigGet("Game:GameSettingView:gameExplainSwitch~bool") then
   //   self.btnExplain:setVisible(false)
   // else
@@ -1076,7 +1063,7 @@ void UIMainTop::InitExplainBtn(){
   // end
 }
 
-void UIMainTop::RangeLeftNodes(){
+void UIMainTop::RangeLeftNodes() {
   // local btnTableName = {
   //   "nodeLucky",
   //   "nodeRecharge",
@@ -1090,7 +1077,7 @@ void UIMainTop::RangeLeftNodes(){
   // })
 }
 
-void UIMainTop::RangeLeft2Nodes(){
+void UIMainTop::RangeLeft2Nodes() {
   // local btnTableName = {
   //   "nodeSultansBack",
   //   "nodeKingCom",
@@ -1100,7 +1087,7 @@ void UIMainTop::RangeLeft2Nodes(){
   // self:rangeNodes(btnTableName)
 }
 
-void UIMainTop:: RangeNodes(GVector<GString> p_TableBtnName, float p_PosY){
+void UIMainTop::RangeNodes(GVector<GString> p_TableBtnName, float p_PosY) {
   // local visiableNodes = {}
   // for i, v in ipairs(btnTableName) do
   //   if self[v] and self[v]:isVisible() then
@@ -1120,7 +1107,7 @@ void UIMainTop:: RangeNodes(GVector<GString> p_TableBtnName, float p_PosY){
   // end
 }
 
-void UIMainTop::PopLuckyFrame(){
+void UIMainTop::PopLuckyFrame() {
   // local gametop = gModuleMgr.getObject("gametop")
   // local luckyGiftCtrl = gametop.playertop_:getModule("luckyGiftCtrl")
   // local newLuckyGift = luckyGiftCtrl:getNewLuckyGiftData()
@@ -1131,7 +1118,7 @@ void UIMainTop::PopLuckyFrame(){
   // end
 }
 
-void UIMainTop::InitEventNode(EventCustom *p_Event){
+void UIMainTop::InitEventNode(EventCustom* p_Event) {
   // local newTB = clientEventMgr.getNewInfo()
   // local redTB = clientEventMgr.getRedPointInfo()
   // if next(newTB) then
@@ -1165,8 +1152,7 @@ void UIMainTop::InitEventNode(EventCustom *p_Event){
   // self:updateSultansBackRed()
 }
 
-
-void UIMainTop::UpdateSultansBackRed(){
+void UIMainTop::UpdateSultansBackRed() {
   // if self.nodeSultansBack:isVisible() then
   //   local sultansBackCtrl = SoraDGetCtrl("sultansBackCtrl")
   //   local showRed, redNum = sultansBackCtrl:getReceiveStatusAndNum()
@@ -1175,7 +1161,7 @@ void UIMainTop::UpdateSultansBackRed(){
   // end
 }
 
-void UIMainTop::InitNewJourney(){
+void UIMainTop::InitNewJourney() {
   // local isOpen = _G.clientEventMgr.judgeIsOpen(gActivityTimeActivityID.NEW_SERVER_JOURNEY_ACTIVITY, false)
   // print("initNewJourney isOpen=", isOpen)
   // self.Node_newJourney:setVisible(isOpen)
@@ -1204,7 +1190,7 @@ void UIMainTop::InitNewJourney(){
   // end
 }
 
-void UIMainTop::InitLuckyBtn(EventCustom *p_Event){
+void UIMainTop::InitLuckyBtn(EventCustom* p_Event) {
   // local gametop = gModuleMgr.getObject("gametop")
   // local luckyGiftCtrl = gametop.playertop_:getModule("luckyGiftCtrl")
   // local newLuckyGift = luckyGiftCtrl:getNewLuckyGiftData()
@@ -1251,7 +1237,7 @@ void UIMainTop::InitLuckyBtn(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::InitHeroGiftBtn(EventCustom *p_Event){
+void UIMainTop::InitHeroGiftBtn(EventCustom* p_Event) {
   // local heroGiftIcon = display.newSprite("#icon_main_heroGift.png")
   // heroGiftIcon:addTo(self.nodeHeroGift:getChildByName("Node_iconChoice"))
   // heroGiftIcon:setPositionY(40)
@@ -1284,11 +1270,11 @@ void UIMainTop::InitHeroGiftBtn(EventCustom *p_Event){
   // self:rangeLeft2Nodes()
 }
 
-void UIMainTop::LuckyBtnPoint(EventCustom *p_Event){
-  //self.luckyNumFrm:setVisible(false)
+void UIMainTop::LuckyBtnPoint(EventCustom* p_Event) {
+  // self.luckyNumFrm:setVisible(false)
 }
 
-void UIMainTop::PopEventFrame(bool p_IsAdd){
+void UIMainTop::PopEventFrame(bool p_IsAdd) {
   // print("self.eventIndex", self.eventIndex, isAdd)
   // if isAdd then
   //   local function funcQeueueRecharge()
@@ -1306,7 +1292,7 @@ void UIMainTop::PopEventFrame(bool p_IsAdd){
   // end
 }
 
-void UIMainTop::InitRechargeBtn(EventCustom *p_Event){
+void UIMainTop::InitRechargeBtn(EventCustom* p_Event) {
   // local function popShowActiveID(...)
   //   local reID = 0
   //   local recommendList = {}
@@ -1345,7 +1331,7 @@ void UIMainTop::InitRechargeBtn(EventCustom *p_Event){
   // self:rangeLeftNodes()
 }
 
-void UIMainTop::InitCrazyBtn(EventCustom *p_Event){
+void UIMainTop::InitCrazyBtn(EventCustom* p_Event) {
   // if redata and redata.showInDown then
   //   if self.nodeCrazy:isVisible() then
   //     self.nodeCrazy:setScale(1)
@@ -1389,7 +1375,7 @@ void UIMainTop::InitCrazyBtn(EventCustom *p_Event){
   // self:rangeLeft2Nodes()
 }
 
-void UIMainTop::UpdateRechargeRedPoint(EventCustom *p_Event){
+void UIMainTop::UpdateRechargeRedPoint(EventCustom* p_Event) {
   // local tableFun = {
   //   handler(self, self.updateMonthRedPoint),
   //   handler(self, self.updateGoldRedPoint)
@@ -1403,7 +1389,7 @@ void UIMainTop::UpdateRechargeRedPoint(EventCustom *p_Event){
   // self.nodeGold:setRedPoint(false)
 }
 
-void UIMainTop::UpdateGoldRedPoint(){
+void UIMainTop::UpdateGoldRedPoint() {
   //   local getTabLength = function(_table)
   //   local leng = 0
   //   if _table == nil then
@@ -1429,7 +1415,7 @@ void UIMainTop::UpdateGoldRedPoint(){
   // end
 }
 
-void UIMainTop::UpdateMonthRedPoint(){
+void UIMainTop::UpdateMonthRedPoint() {
   // local rechargeActivityCtrl = gametop.playertop_:getModule("rechargeActivityCtrl")
   // local weeklyData = rechargeActivityCtrl:getWeekActivityList()
   // if weeklyData and next(weeklyData) then
@@ -1454,7 +1440,7 @@ void UIMainTop::UpdateMonthRedPoint(){
   // return false
 }
 
-void UIMainTop::PopEventFromEventCenter(){
+void UIMainTop::PopEventFromEventCenter() {
   // if worldMapDefine.isInNewTrial() then
   //   SoraDShowMsgTip(i18n("devilvalley_tips_08"))
   // else
@@ -1468,13 +1454,13 @@ void UIMainTop::PopEventFromEventCenter(){
   // end
 }
 
-void UIMainTop::AddEffectOrAnimationByEventIndex(int p_EventIndex){
+void UIMainTop::AddEffectOrAnimationByEventIndex(int p_EventIndex) {
   // self.nodeRechargeIcon:removeAllChildren()
   // local giftNode = effectEventGift.getGiftNode(eType)
   // giftNode:addTo(self.nodeRechargeIcon)
 }
 
-void UIMainTop::GetLuckyGiftEffect(){
+void UIMainTop::GetLuckyGiftEffect() {
   // local img = "#btn_rechareactivity_07_base.png"
   // local gift = display.newSprite(img)
   // gift:setPosition(cc.p(self:getContentSize().width / 2, -self:getPositionY() / 3))
@@ -1523,7 +1509,7 @@ void UIMainTop::GetLuckyGiftEffect(){
   // gift:runAction(seq)
 }
 
-void UIMainTop::DefineWallDestroy(EventCustom *p_Event){
+void UIMainTop::DefineWallDestroy(EventCustom* p_Event) {
   // if worldMapDefine.isInNewTrial() then
   // else
   //   SoraDShowMsgBox(i18n("common_text_797"), i18n("common_text_798"), nil, function(eventType)
@@ -1549,7 +1535,7 @@ void UIMainTop::DefineWallDestroy(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::SetLordHPUpdate(EventCustom *p_Event){
+void UIMainTop::SetLordHPUpdate(EventCustom* p_Event) {
   // self.hpReduceStyle = data.style
   // self.hpReduceValue = data.hp
   // self.isSetHPStyle = true
@@ -1558,7 +1544,7 @@ void UIMainTop::SetLordHPUpdate(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::KingBattleFun(EventCustom *p_Event){
+void UIMainTop::KingBattleFun(EventCustom* p_Event) {
   // if redata and redata.mid then
   //   local gametop = gModuleMgr.getObject("gametop")
   //   local cityCtrl = gametop.playertop_:getModule("cityCtrl")
@@ -1571,7 +1557,7 @@ void UIMainTop::KingBattleFun(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::LegendLordBattleVectoryFun(EventCustom *p_Event){
+void UIMainTop::LegendLordBattleVectoryFun(EventCustom* p_Event) {
   // local panel = SoraDCreatePanel("pyramidBattleWinPopView")
   // panel:setStyle(3)
   // panel:initLegendData(redata.data)
@@ -1579,20 +1565,19 @@ void UIMainTop::LegendLordBattleVectoryFun(EventCustom *p_Event){
   // panel:setLocalZOrder(5)
 }
 
-
-void UIMainTop::PyramidBattleStartFun(EventCustom *p_Event){
-  //TODO:
-  //effectMainUITop.warStartVSEffect()
+void UIMainTop::PyramidBattleStartFun(EventCustom* p_Event) {
+  // TODO:
+  // effectMainUITop.warStartVSEffect()
 }
 
-void UIMainTop::CheckServerIsOK4SDKCallBack(EventCustom *p_Event){
+void UIMainTop::CheckServerIsOK4SDKCallBack(EventCustom* p_Event) {
   // if redata and redata.otherData and redata.otherData.checkServerIsOK4SDKCallBack then
   //   print("checkServerIsOK4SDKCallBack = \230\136\144\229\138\159\232\167\166\229\143\145\239\188\154userSDKManager.reportReline()")
   //   userSDKManager.reportReline()
   // end
 }
 
-void UIMainTop::GetEventCenterReturn_imp(EActivityTime p_Activity){
+void UIMainTop::GetEventCenterReturn_imp(EActivityTime p_Activity) {
   // if v == gActivityTimeActivityID.DAILY_DISCOUNT_GIFT_ACTIVITY then
   //   self:updateRechargeRedPoint()
   // elseif v == cumuActiveCtrl:getActivityID() then
@@ -1611,7 +1596,7 @@ void UIMainTop::GetEventCenterReturn_imp(EActivityTime p_Activity){
   // self:rangeLeftNodes()
 }
 
-void UIMainTop::GetEventCenterReturn(EventCustom *p_Event){
+void UIMainTop::GetEventCenterReturn(EventCustom* p_Event) {
   // if type(redata.activityID) == "table" then
   //   for _, v in pairs(redata.activityID) do
   //     self:getEventCenterReturn_imp(v)
@@ -1621,7 +1606,7 @@ void UIMainTop::GetEventCenterReturn(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::RechargeCloseLoading(EventCustom *p_Event){
+void UIMainTop::RechargeCloseLoading(EventCustom* p_Event) {
   // dump(redata, "rechargeCloseLoading")
   // SoraDCloseLoading()
   // paymentManager.isInRecharging = false
@@ -1672,7 +1657,8 @@ void UIMainTop::RechargeCloseLoading(EventCustom *p_Event){
   //       local rechargeRead = include("rechargeRead")
   //       local rechargeInfo = rechargeRead.getPageViewData(_rid)
   //       if rechargeInfo then
-  //         if gRechargeActiveModelType.NORMAL == rechargeInfo.activeModelType or rechargeInfo.activeModelType == gRechargeActiveModelType.PETRA_GIFT then
+  //         if gRechargeActiveModelType.NORMAL == rechargeInfo.activeModelType or rechargeInfo.activeModelType == gRechargeActiveModelType.PETRA_GIFT
+  //         then
   //           SoraDSendMessage({
   //             msg = "MESSAGE_CLIENT_RECHARGECENTER_POPVIEWCLOSE"
   //           })
@@ -1698,8 +1684,9 @@ void UIMainTop::RechargeCloseLoading(EventCustom *p_Event){
   //           local rechargeActivityCtrl = gametop.playertop_:getModule("rechargeActivityCtrl")
   //           local monthGiftSpecialRid = 11485
   //           if rechargeActivityCtrl.monthAward and rechargeActivityCtrl.monthAward[tostring(monthGiftSpecialRid)] then
-  //             local _day = rechargeActivityCtrl.monthAward[tostring(monthGiftSpecialRid)].curTotalday or rechargeActivityCtrl.monthAward[tostring(monthGiftSpecialRid)].totalday or 0
-  //             SoraDShowMsgBox(i18n("common_text_1127", {num = _day}), i18n("common_text_204"), nil, nil)
+  //             local _day = rechargeActivityCtrl.monthAward[tostring(monthGiftSpecialRid)].curTotalday or
+  //             rechargeActivityCtrl.monthAward[tostring(monthGiftSpecialRid)].totalday or 0 SoraDShowMsgBox(i18n("common_text_1127", {num = _day}),
+  //             i18n("common_text_204"), nil, nil)
   //           end
   //         elseif gRechargeActiveModelType.WEEKLY_GIFT == rechargeInfo.activeModelType then
   //           SoraDSendMessage({
@@ -1723,8 +1710,8 @@ void UIMainTop::RechargeCloseLoading(EventCustom *p_Event){
   //               end
   //             end
   //             if rechargeActivityCtrl.monthAward and rechargeActivityCtrl.monthAward[tostring(_rid)] then
-  //               local _day = rechargeActivityCtrl.monthAward[tostring(_rid)].curTotalday or rechargeActivityCtrl.monthAward[tostring(_rid)].totalday or 0
-  //               if _day > 7 then
+  //               local _day = rechargeActivityCtrl.monthAward[tostring(_rid)].curTotalday or
+  //               rechargeActivityCtrl.monthAward[tostring(_rid)].totalday or 0 if _day > 7 then
   //                 local weekInfo = rechargeRead.getPageViewData(_rid)
   //                 local leftTime = rechargeActivityCtrl:getRechargeLeftTime(_rid)
   //                 if weekInfo and weekInfo.activeName and leftTime then
@@ -1883,7 +1870,8 @@ void UIMainTop::RechargeCloseLoading(EventCustom *p_Event){
   //         rechargePopFail()
   //       end
   //     end
-  //     if paymentManager.bullets[_rid] and (paymentManager.bullets[_rid].isActive == gBuyType.RECHARGE or paymentManager.bullets[_rid].isActive == gBuyType.EARTH_TREASURE) and not SoraDSearchPanelFromManagerByName("commonPromptBoxTitle") then
+  //     if paymentManager.bullets[_rid] and (paymentManager.bullets[_rid].isActive == gBuyType.RECHARGE or paymentManager.bullets[_rid].isActive ==
+  //     gBuyType.EARTH_TREASURE) and not SoraDSearchPanelFromManagerByName("commonPromptBoxTitle") then
   //       rechargePopFail()
   //     end
   //     if _rid == 14261 then
@@ -1895,7 +1883,7 @@ void UIMainTop::RechargeCloseLoading(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::EndLegendLordWar(EventCustom *p_Event){
+void UIMainTop::EndLegendLordWar(EventCustom* p_Event) {
   // if data.data then
   //   SoraDSendMessage({
   //     msg = "MESSAGE_SERVER_LEGENDLORD_WAR_END",
@@ -1904,7 +1892,7 @@ void UIMainTop::EndLegendLordWar(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::EndPyramid(EventCustom *p_Event){
+void UIMainTop::EndPyramid(EventCustom* p_Event) {
   // if data.data then
   //   SoraDManagerRemoveAllTimer()
   //   local cityCtrl = gametop.playertop_:getModule("cityCtrl")
@@ -1921,7 +1909,7 @@ void UIMainTop::EndPyramid(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::UpdateTeamMainUIWidget(EventCustom *p_Event){
+void UIMainTop::UpdateTeamMainUIWidget(EventCustom* p_Event) {
   // if worldMapDefine.inInCrossWar() then
   //   if self.teamMainUIWidget then
   //     self.teamMainUIWidget:removeFromParent()
@@ -1950,13 +1938,13 @@ void UIMainTop::UpdateTeamMainUIWidget(EventCustom *p_Event){
   // self:updateSnowWolfLostNode()
 }
 
-void UIMainTop::OnTeamMatchSuc(EventCustom *p_Event){
+void UIMainTop::OnTeamMatchSuc(EventCustom* p_Event) {
   // local panel = SoraDCreatePanel("teamMatchView")
   // panel:show()
   // panel:initView(data)
 }
 
-void UIMainTop::OnRadianceWarEnd(EventCustom *p_Event){
+void UIMainTop::OnRadianceWarEnd(EventCustom* p_Event) {
   // local resultInfo = data.resultInfo
   // if resultInfo then
   //   if not resultInfo.ruinsWarSettleData then
@@ -1971,12 +1959,12 @@ void UIMainTop::OnRadianceWarEnd(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::OnRemainsWarEnd(EventCustom *p_Event){
+void UIMainTop::OnRemainsWarEnd(EventCustom* p_Event) {
   // local panel = SoraDCreatePanel("radianceWarResultView")
   // panel:show()
 }
 
-void UIMainTop::OnRemainsWarTeamJoin(EventCustom *p_Event){
+void UIMainTop::OnRemainsWarTeamJoin(EventCustom* p_Event) {
   // local remainsWarUtil = include("remainsWarUtil")
   // if data.err == gErrDef.Err_None then
   //   remainsWarUtil.doAllianceInvite(data.extraData)
@@ -1985,7 +1973,7 @@ void UIMainTop::OnRemainsWarTeamJoin(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::UpdateAttackInfo(EventCustom *p_Event){
+void UIMainTop::UpdateAttackInfo(EventCustom* p_Event) {
   // if not self.remainsWarwAttackWidget then
   //   local remainsWarwAttackWidget = include("remainsWarAttackWidget").new()
   //   remainsWarwAttackWidget:setPosition(cc.p(320, 0))
@@ -1997,7 +1985,7 @@ void UIMainTop::UpdateAttackInfo(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::RefreshNewTrialUI(EventCustom *p_Event){
+void UIMainTop::RefreshNewTrialUI(EventCustom* p_Event) {
   // local devilValleyCtrl = gametop.playertop_:getModule("devilValleyCtrl")
   // if devilValleyCtrl:hasTeams() and not worldMapDefine.isInNewTrial() then
   //   self.newTrailTeamUI = SoraDGetChildByName(self, "newTrialMainUI")
@@ -2022,14 +2010,14 @@ void UIMainTop::RefreshNewTrialUI(EventCustom *p_Event){
   // self:updateSnowWolfLostNode()
 }
 
-void UIMainTop::RefreshNewTrialTeam(EventCustom *p_Event){
+void UIMainTop::RefreshNewTrialTeam(EventCustom* p_Event) {
   // local devilValleyCtrl = SoraDGetCtrl("devilValleyCtrl")
   // if devilValleyCtrl:hasTeams() then
   //   SoraDCreatePanel("newTrialMyTeamView"):show()
   // end
 }
 
-void UIMainTop::RefreshBeginNewTrial(EventCustom *p_Event){
+void UIMainTop::RefreshBeginNewTrial(EventCustom* p_Event) {
   // local devilValleyCtrl = SoraDGetCtrl("devilValleyCtrl")
   // local teams = devilValleyCtrl:getMyTeams()
   // if teams.start and not devilValleyCtrl:getSelfIsStart() and (not self.hasShowNewTrialBox or not not tolua.isnull(self.hasShowNewTrialBox)) then
@@ -2053,7 +2041,7 @@ void UIMainTop::RefreshBeginNewTrial(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::RefreshNodeEvent(){
+void UIMainTop::RefreshNodeEvent() {
   // if worldMapDefine.isInNewTrial() then
   //   self.nodeEvent:setVisible(false)
   //   self.nodeCrazy:setVisible(false)
@@ -2073,7 +2061,7 @@ void UIMainTop::RefreshNodeEvent(){
   // self:rangeLeftNodes()
 }
 
-void UIMainTop::NewTrialEndRefresh(EventCustom *p_Event){
+void UIMainTop::NewTrialEndRefresh(EventCustom* p_Event) {
   // print("newTrialEndRefresh")
   // SoraDCloseLoading(self)
   // local panel = SoraDCreatePanel("newTrialResultView")
@@ -2081,7 +2069,7 @@ void UIMainTop::NewTrialEndRefresh(EventCustom *p_Event){
   // panel:show()
 }
 
-void UIMainTop::RoyalSummonsGold(EventCustom *p_Event){
+void UIMainTop::RoyalSummonsGold(EventCustom* p_Event) {
   // print("royalSummonsGold")
   // local royalSummonsCtrl = gametop.playertop_:getModule("royalSummonsCtrl")
   // if royalSummonsCtrl:isActiveGold() then
@@ -2094,7 +2082,7 @@ void UIMainTop::RoyalSummonsGold(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::AncientReelGold(EventCustom *p_Event){
+void UIMainTop::AncientReelGold(EventCustom* p_Event) {
   // local ancientReelCtrl = gametop.playertop_:getModule("ancientReelCtrl")
   // if ancientReelCtrl:isActiveGold() then
   //   local panelName = "ancientReelActivity"
@@ -2103,7 +2091,7 @@ void UIMainTop::AncientReelGold(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::CastleLevelUp(EventCustom *p_Event){
+void UIMainTop::CastleLevelUp(EventCustom* p_Event) {
   // if SoraDGetCastleLv() == CASTLE_LV90_LIMITED then
   //   self:checkBuildStarButton()
   // end
@@ -2112,7 +2100,7 @@ void UIMainTop::CastleLevelUp(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::KingdomLevelUp(EventCustom *p_Event){
+void UIMainTop::KingdomLevelUp(EventCustom* p_Event) {
   // local cityltCtrl = include("cityltCtrl")
   // local unlockLv = cityltCtrl.buildStarLvInfo(BUILDID.CASTLE, 1, BUILD_LVINFO.KINGDOMLV)
   // local kingdomLevelDataModuleAPI = include("kingdomLevelDataModuleAPI")
@@ -2122,63 +2110,56 @@ void UIMainTop::KingdomLevelUp(EventCustom *p_Event){
   // end
 }
 
-void UIMainTop::CheckBuildStarButton(){
-  // local isFind = false
-  // for i, v in ipairs(self.tableBuilder) do
-  //   if v:getBuilderType() == gQueueTypeDef.build_star_queue then
-  //     isFind = true
-  //     break
-  //   end
-  // end
-  // if not isFind then
-  //   self:addBuildStarButton()
-  // end
+void UIMainTop::CheckBuildStarButton() {
+  auto l_IsFound = false;
+  for(auto l_BuilderIcon : m_TableBuilder){
+    if(l_BuilderIcon->GetBuilderType() == ETask::BuildStarQueue){
+      l_IsFound = true;
+      break;
+    }
+  }
+  if(!l_IsFound)
+    AddBuildStarButton();
 }
 
-void UIMainTop::CheckSecondBuildStarButton(EventCustom *p_Event){
-  // local isFind = false
-  // for i, v in ipairs(self.tableBuilder) do
-  //   if v:getBuilderType() == gQueueTypeDef.build_star_queue_privilege then
-  //     isFind = true
-  //     break
-  //   end
-  // end
-  // if not isFind and SoraDCheckIsOpenBuildStar() and _G.SoraDGetCtrl("exaltedPrivilegeCtrl"):checkPrivilege(_G.gExaltedPrivilegeType.EXTRA_STAR_UPGRADE_QUEUENUM) then
-  //   local btnSecond = include("builderIcon").new()
-  //   btnSecond:setScale(0.8)
-  //   btnSecond:setPosition(SoraDFIsRA() and 590 or 50, -340)
-  //   btnSecond:initData(gQueueTypeDef.build_star_queue_privilege)
-  //   btnSecond:setVisible(self.currentViewType == VIEW_TYPE_CITY)
-  //   table.insert(self.tableBuilder, btnSecond)
-  //   btnSecond:addTo(self.Node_area_lt)
-  //   self:updateHeadPos()
-  // end
+void UIMainTop::CheckSecondBuildStarButton(EventCustom* p_Event) {
+  bool l_IsFound = false;
+  for (auto it : m_TableBuilder) {
+    if (it->GetBuilderType() == ETask::BuildStarQueuePrivilege) {
+      l_IsFound = true;
+      break;
+    }
+  }
+  if (l_IsFound) return;
+  if (!GBase::DCheckIsOpenBuildStar()) return;
+  if (!ExaltedPrivilegeCtrl::Get()->CheckPrivilege(EExaltedPrivilege::ExtraStarUpgradeQueueNun)) return;
+  auto l_BtnSecond = UIBuilderIcon::Create();
+  l_BtnSecond->setScale(0.8f);
+  l_BtnSecond->setPosition(Vec2(GBase::DFIsRA() ? 590 : 50, -340));
+  l_BtnSecond->InitData(ETask::BuildStarQueuePrivilege);
+  l_BtnSecond->setVisible(m_CurrentViewType == EScene::City);
+  m_TableBuilder.push_back(l_BtnSecond);
+  n_NodeAreaLt->addChild(l_BtnSecond);
+  UpdateHeadPos(nullptr);
 }
 
-void UIMainTop::AddBuildStarButton(){
-  // if SoraDCheckIsOpenBuildStar() then
-  //   local btn = include("builderIcon").new()
-  //   btn:setPosition(SoraDFIsRA() and 590 or 50, -260)
-  //   btn:setScale(0.8)
-  //   btn:initData(gQueueTypeDef.build_star_queue)
-  //   btn:setVisible(self.currentViewType == VIEW_TYPE_CITY)
-  //   table.insert(self.tableBuilder, btn)
-  //   btn:addTo(self.Node_area_lt)
-  //   if _G.SoraDGetCtrl("exaltedPrivilegeCtrl"):checkPrivilege(_G.gExaltedPrivilegeType.EXTRA_STAR_UPGRADE_QUEUENUM) then
-  //     local btnSecond = include("builderIcon").new()
-  //     btnSecond:setScale(0.8)
-  //     btnSecond:setPosition(SoraDFIsRA() and 590 or 50, -340)
-  //     btnSecond:initData(gQueueTypeDef.build_star_queue_privilege)
-  //     btnSecond:setVisible(self.currentViewType == VIEW_TYPE_CITY)
-  //     table.insert(self.tableBuilder, btnSecond)
-  //     btnSecond:addTo(self.Node_area_lt)
-  //   end
-  // end
+void UIMainTop::AddBuildStarButton() {
+  if (GBase::DCheckIsOpenBuildStar()) {
+    auto l_Btn = UIBuilderIcon::Create();
+    l_Btn->setPosition(Vec2(GBase::DFIsRA() ? 590 : 50, -260));
+    l_Btn->setScale(0.8f);
+    l_Btn->InitData(ETask::BuildStarQueue);
+    l_Btn->setVisible(m_CurrentViewType == EScene::City);
+    m_TableBuilder.push_back(l_Btn);
+    n_NodeAreaLt->addChild(l_Btn);
+    if (ExaltedPrivilegeCtrl::Get()->CheckPrivilege(EExaltedPrivilege::ExtraStarUpgradeQueueNun)) {
+      auto l_BtnSecond = UIBuilderIcon::Create();
+      l_BtnSecond->setScale(0.8f);
+      l_BtnSecond->setPosition(Vec2(GBase::DFIsRA() ? 590 : 50, -340));
+      l_BtnSecond->InitData(ETask::BuildStarQueuePrivilege);
+      l_BtnSecond->setVisible(m_CurrentViewType == EScene::City);
+      m_TableBuilder.push_back(l_BtnSecond);
+      n_NodeAreaLt->addChild(l_BtnSecond);
+    }
+  }
 }
-
-
-
-
-
-
-

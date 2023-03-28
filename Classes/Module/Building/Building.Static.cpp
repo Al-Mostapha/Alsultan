@@ -1,6 +1,8 @@
 #include "Building.Static.h"
 #include "Building.Enum.h"
 
+GHashMap<EBuilding, RBuildingSpecs> BuildingStatic::BuildingInfo;
+
 BuildingStatic *BuildingStatic::Get() {
   static BuildingStatic* l_Instance = new BuildingStatic();
   return l_Instance;
@@ -31,7 +33,7 @@ bool BuildingStatic::isValidBuildingLvl(EBuilding p_BuildingType, uint32 p_Lvl) 
   return false;
 }
 
-GHashMap<EBuilding, RBuildingSpecs> BuildingStatic::BuildingInfo;
+
 
 RBuildingSpecs& BuildingStatic::getBuildingSpecs(EBuilding p_BuildingType) {
   auto l_Instance = Get();

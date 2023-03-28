@@ -59,7 +59,10 @@
     "sstream": "cpp",
     "queue": "cpp",
     "deque": "cpp",
-    "optional": "cpp"
+    "optional": "cpp",
+    "ranges": "cpp",
+    "span": "cpp",
+    "array": "cpp"
   },
   "intelephense.environment.includePaths": [
     "${workspaceRoot}"

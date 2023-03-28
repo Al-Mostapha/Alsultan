@@ -18,6 +18,7 @@ public:
 	void setBuildingSprite();
 	void ShowAnimWorking();
   void ShowWorkDone() override;
+  void InitWithUIType() override;
 	CREATE_FUNC(BuildingOFarm);
 
 	/**

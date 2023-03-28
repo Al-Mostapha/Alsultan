@@ -55,3 +55,9 @@ void BuildingOIronMine::ShowWorkDone(){
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());
   ShowTopTip();
 }
+
+void BuildingOIronMine::InitWithUIType(){
+  auto l_BatchNodeOuterBuilds = GDisplay::Get()->NewNode();
+  addChild(l_BatchNodeOuterBuilds, 0);
+  m_ViewNodes.n_MainCityOuter = l_BatchNodeOuterBuilds;
+}

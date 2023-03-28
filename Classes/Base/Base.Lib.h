@@ -153,4 +153,6 @@ Node *DCreateCSBNode(const char *p_CSBName);
 Label *DCreateLabel(RCreateLabelParm p_Parm);
 
 void DFadeInOut(Node *p_Node/**Fade paramters*/);
+
+
 };  // namespace GBase

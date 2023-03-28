@@ -21,13 +21,13 @@
 #ifndef __CITYSCENE_H_
 #define __CITYSCENE_H_
 
-#include "cocos2d.h"
-
-#include "ui/CocosGUI.h"
+#include "Include/IncludeBase.h"
+#include "Include/IncludeEngine.h"
 USING_NS_CC;
 class CityScene : public cocos2d::Scene {
 public:
   static CityScene* Get();
+  Node *_ContainerView;
   Node* CityFloorLayer;
   Node* CityBuildingLayer;
   Node* containerView;
@@ -49,7 +49,7 @@ public:
     return nullptr;
   };
 
-  cocos2d::ui::ScrollView* BaseScrollLayer;
+  Ext::ScrollView *BaseScrollLayer;
 
   virtual bool init();
   void initDraggingEvent();

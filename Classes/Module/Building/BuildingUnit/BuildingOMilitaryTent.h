@@ -18,6 +18,7 @@ public:
 	void setBuildingSprite();
 	void ShowAnimWorking();
 	static void initBuilingData();
+  void InitWithUIType() override;
 	CREATE_FUNC(BuildingOMilitaryTent);
 
 	/**

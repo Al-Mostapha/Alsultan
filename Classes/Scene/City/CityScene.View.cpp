@@ -1,6 +1,7 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "CityScene.View.h"
+#include "CityScene.Create.h"
 
 MainCityView *MainCityView::Create(RViewOtherData p_Data){
   auto l_Panel =  Create("UiParts/Panel/MainCity/mainCityView.csb");
@@ -13,6 +14,28 @@ void MainCityView::Ctor(){
   //print("\229\188\128\229\167\139\229\136\155\229\187\186\229\134\133\229\159\142------")
   //self.param = param
   PreLoadImages();
+}
+
+void MainCityView::UpdatePeriod(){
+  //   local isDealed = false
+  // if not isDealed and not self.isCfgNightOn then
+  //   self.currentDayPeriod = gDay.DAY_TIME
+  //   self:enterDayPeriod(self.currentDayPeriod)
+  //   isDealed = true
+  // end
+  // if not isDealed then
+  //   local currentDayPeriod = SoraDGetDayPeriod()
+  //   if self.currentDayPeriod ~= currentDayPeriod then
+  //     self.currentDayPeriod = currentDayPeriod
+  //     self:enterDayPeriod(self.currentDayPeriod)
+  //   end
+  // end
+  // if self.timerHandlerPeriod then
+  //   SoraDManagerRemoveTimer(self, self.timerHandlerPeriod)
+  //   self.timerHandlerPeriod = nil
+  // end
+  // local delay = mainCityFunctions:getNextPeroidDelay()
+  // self.timerHandlerPeriod = SoraDCreateDelayTimer(self, handler(self, self.updatePeriod), delay)
 }
 
 void MainCityView::PreLoadImages(){
@@ -58,7 +81,8 @@ void MainCityView::FinishLoadImages(){
   // self.isFinishInit = true
   m_IsFinishInit = true;
   OnMessageListener_FinishLoadImage();
-  InitAfterCreate();
+  auto l_MainCityCreate = MainCityCreate::Create(this);
+  l_MainCityCreate->InitAfterCreate();
   GBase::DPushItemAward(GBase::DPopItemAward());
   if(GBase::DCloseLoginView()){
       //   userSDKManager.logEvent(gSDKDef.TDonEvent.enter_city, {})
@@ -117,6 +141,25 @@ void MainCityView::AutoUpdateViewScrollViewPos(float p_Delay){
   // local actionMoveTo = cca.moveTo(0, display.width / 2, targetY)
   // self.viewScrollView:runAction(actionScaleToV)
   // self.viewScrollView:runAction(actionMoveTo)
+}
+
+Vec2 MainCityView::GetDefaultMainCityPos(){
+  // local Button_Chengbao = self:getBufferNodeByName("build_1050")
+  auto l_BtnChengBao = n_MainCityView->GetBufferNodeByName("build_1050");
+  // local posX = Button_Chengbao:getPositionX()
+  const auto l_PosX = l_BtnChengBao->getPositionX();
+  // local posY = Button_Chengbao:getPositionY() + 500
+  const auto l_Posy = l_BtnChengBao->getPositionY() + 500;
+  
+  // local retPos = self:getContainerOffsetWhenPosPoint(cc.p(posX, posY),
+  // cc.p(display.width / 2, display.height / 2), false, true)
+
+  
+  // local zoomScale = self:getZoomScale(true)
+  // retPos.x = retPos.x - 200 * zoomScale
+  // retPos.y = retPos.y
+  // return retPos
+  return {l_PosX, l_Posy};
 }
 
 void MainCityView::SetZoomScale(
@@ -308,3 +351,27 @@ void MainCityView::EnableShack(){
   //   SoraDShackON(self, handler(self, self.onShackCallBack))
   // end
 }
+
+
+void MainCityView::DelBuildTile(Node *p_BuildingBtn){
+  //TODO: uncomment this line when start production
+  // if(!p_BuildingBtn)
+  //   return;
+  auto l_BuildingIndex = p_BuildingBtn->getTag();
+  if(p_BuildingBtn){
+    auto l_TileName = StringUtils::format("res_tile%d", l_BuildingIndex);
+    auto l_Sprite = n_BatchNodeOuterTiles->getChildByName(l_TileName.c_str());
+    if(l_Sprite)
+      l_Sprite->removeFromParent();
+  }
+}
+
+ui::Layout *MainCityView::GetBufferNodeByName(const char *p_NodeName){
+  if(!p_NodeName)
+    return nullptr;
+  if(p_NodeName == "")
+    return nullptr;
+  if(n_BufferNodeArray.Contains(p_NodeName))
+    return nullptr;
+  return dynamic_cast<ui::Layout *>(n_BufferNodeArray[GString(p_NodeName)]);
+};

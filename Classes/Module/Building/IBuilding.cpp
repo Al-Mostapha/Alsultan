@@ -1,11 +1,12 @@
 #include "IBuilding.h"
-#include "Scene/CityScene.h"
 #include "Building.Event.h"
-#include "Module/Building/Building.Logic.h"
-#include "Module/Science/Science.Ctrl.h"
-#include "Module/Equip/Equip.Ctrl.h"
-#include "Module/Building/BuildingLib/StuffWorkshop.Ctrl.h"
 #include "Module/Army/Army.Ctrl.h"
+#include "Module/Building/Building.Logic.h"
+#include "Module/Building/BuildingLib/StuffWorkshop.Ctrl.h"
+#include "Module/Equip/Equip.Ctrl.h"
+#include "Module/Science/Science.Ctrl.h"
+#include "Scene/CityScene.h"
+
 USING_NS_CC;
 
 bool IBuilding::init() {
@@ -23,52 +24,42 @@ void IBuilding::RemoveBuildingTip() {}
 
 bool IBuilding::IgnoreClickEvent(Touch* p_Touch, Event* p_Event) const {
   auto l_TPoint = p_Touch->getLocation();
-  if(!CityScene::Get()){
+  if (!CityScene::Get()) {
     Logger::Log("Current Scene is not CityScene", ELogLvl::Error, true);
     CCASSERT(CityScene::Get(), "Current Scene is not CityScene");
     return false;
   }
 
-  if(m_BuildingIndex == EBuildingIndex::WallGate){
+  if (m_BuildingIndex == EBuildingIndex::WallGate) {
     auto l_BuildingLayer = CityScene::Get()->CityBuildingLayer;
-    auto l_TipBoxWall    = CityScene::Get()->GetNode<Node *>("wallTipBox");
-    auto l_JiantaBaseL   = CityScene::Get()->GetNode<Node *>("Button_Jiantachengduo_L");
-    auto l_JiantaBaseR   = CityScene::Get()->GetNode<Node *>("Button_Jiantachengduo_R");
-    auto l_ArrowTowerR   = CityScene::Get()->GetNode<Node *>("build_1052");
-    auto l_ArrowTowerL   = CityScene::Get()->GetNode<Node *>("build_1054");
-    auto l_BehindArrowTower = CityScene::Get()->GetNode<Node *>("build_1066");
-    
-    auto l_JiantaBaseLBtn = GBase::GetChildByName<Node *>(l_JiantaBaseL, "buildBtn");
-    auto l_JiantaBaseRBtn = GBase::GetChildByName<Node *>(l_JiantaBaseR, "buildBtn");
+    auto l_TipBoxWall = CityScene::Get()->GetNode<Node*>("wallTipBox");
+    auto l_JiantaBaseL = CityScene::Get()->GetNode<Node*>("Button_Jiantachengduo_L");
+    auto l_JiantaBaseR = CityScene::Get()->GetNode<Node*>("Button_Jiantachengduo_R");
+    auto l_ArrowTowerR = CityScene::Get()->GetNode<Node*>("build_1052");
+    auto l_ArrowTowerL = CityScene::Get()->GetNode<Node*>("build_1054");
+    auto l_BehindArrowTower = CityScene::Get()->GetNode<Node*>("build_1066");
+
+    auto l_JiantaBaseLBtn = GBase::GetChildByName<Node*>(l_JiantaBaseL, "buildBtn");
+    auto l_JiantaBaseRBtn = GBase::GetChildByName<Node*>(l_JiantaBaseR, "buildBtn");
     auto l_TipBoxGuardSoldier = CityScene::Get()->TipBoxGuardSoldier;
-    GVector<Node *> l_BlockingNode = {
-      l_BuildingLayer, l_TipBoxWall, l_JiantaBaseL, l_JiantaBaseR, 
-      l_ArrowTowerL, l_ArrowTowerR, l_TipBoxGuardSoldier, l_JiantaBaseLBtn,
-      l_JiantaBaseRBtn , l_BehindArrowTower
-    };
-    for(auto l_OneNode : l_BlockingNode){
-      if(!l_OneNode)
-        continue;
-      if(!l_OneNode->isVisible())
-        continue;
-      if(GBase::IsTouchOnNode(p_Touch->getLocation(), l_OneNode))
-        return true;
+    GVector<Node*> l_BlockingNode = {l_BuildingLayer, l_TipBoxWall,         l_JiantaBaseL,    l_JiantaBaseR,    l_ArrowTowerL,
+                                     l_ArrowTowerR,   l_TipBoxGuardSoldier, l_JiantaBaseLBtn, l_JiantaBaseRBtn, l_BehindArrowTower};
+    for (auto l_OneNode : l_BlockingNode) {
+      if (!l_OneNode) continue;
+      if (!l_OneNode->isVisible()) continue;
+      if (GBase::IsTouchOnNode(p_Touch->getLocation(), l_OneNode)) return true;
     }
   }
-  
-  if(m_BuildingIndex == EBuildingIndex::BehindArrowTowerR){
+
+  if (m_BuildingIndex == EBuildingIndex::BehindArrowTowerR) {
     CCASSERT(CityScene::Get()->ButtonMerchante, "Current Scene is not CityScene");
-    if(!CityScene::Get()->ButtonMerchante)
-      return false;
-    if(!CityScene::Get()->ButtonMerchante->isVisible())
-      return false;
-    if(GBase::IsTouchOnNode(l_TPoint, CityScene::Get()->ButtonMerchante))
-      return true;
+    if (!CityScene::Get()->ButtonMerchante) return false;
+    if (!CityScene::Get()->ButtonMerchante->isVisible()) return false;
+    if (GBase::IsTouchOnNode(l_TPoint, CityScene::Get()->ButtonMerchante)) return true;
   }
-  
-  if(CityScene::Get()->IsMoving())
-    return true;
-    
+
+  if (CityScene::Get()->IsMoving()) return true;
+
   return false;
 }
 
@@ -78,56 +69,40 @@ void IBuilding::InitEvents() {
 
   l_MouseListiner->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
     m_TouchIsMoveOnBuild = false;
-    return true; 
+    return true;
   };
 
   l_MouseListiner->onTouchMoved = [=](Touch* p_T, Event* p_E) {
-
     auto l_BegainPoint = p_T->getPreviousLocation();
-    auto l_MovePoint   = p_T->getLocation();
-    auto l_Distance    =  l_BegainPoint.getDistance(l_MovePoint);
-    if(l_Distance > TOUCH_MOVED_ERROR_VALUE)
-      m_TouchIsMoveOnBuild = true;
+    auto l_MovePoint = p_T->getLocation();
+    auto l_Distance = l_BegainPoint.getDistance(l_MovePoint);
+    if (l_Distance > TOUCH_MOVED_ERROR_VALUE) m_TouchIsMoveOnBuild = true;
   };
 
-  l_MouseListiner->onTouchCancelled = [this](Touch* p_T, Event* p_E){
-    m_TouchIsMoveOnBuild = false;
-  };
+  l_MouseListiner->onTouchCancelled = [this](Touch* p_T, Event* p_E) { m_TouchIsMoveOnBuild = false; };
 
   l_MouseListiner->onTouchEnded = [=](Touch* p_Touch, Event* p_E) {
     cocos2d::log("Test is Here");
-    if(m_CurrentSelectTip)
-      RemoveBuildingTip();
+    if (m_CurrentSelectTip) RemoveBuildingTip();
     CancelTint();
-    if(m_TouchIsMoveOnBuild)
-      return;
-    if(!m_IsBuildBtnEnabled)
-      return;
+    if (m_TouchIsMoveOnBuild) return;
+    if (!m_IsBuildBtnEnabled) return;
     GBase::PlaySound("normalcontrol");
-    if(IgnoreClickEvent(p_Touch, p_E))
-      return;
-    if(IsCanSpeedUpStrongFree() && SpeedUpStrongFree())
-      return;
-    if(GetState() == EBuildingState::Building && IsCanSpeedUpFree() && SpeedUpFree())
-      return;
-    if(GetState() == EBuildingState::Demolishing && IsCanSpeedUpFree() && SpeedUpFree())
-      return;
-    if(GetState() == EBuildingState::Training && IsCanHarvest() && HarvestAll())
-      return;
-    if(GetState() == EBuildingState::TrapBuilding && IsCanHarvest() && HarvestAll())
-      return;
-    if(GetState() == EBuildingState::Studying && IsCanSpeedUpResearchFree() && SpeedUpResearchFree())
-      return;
-    if(IsNeedRequestHelp() && RequestHelp())
-      return;
-    if(GetState() == EBuildingState::None && HasAnyAllianceHelpList() && AllianceHelpAll())
-      return;
+    if (IgnoreClickEvent(p_Touch, p_E)) return;
+    if (IsCanSpeedUpStrongFree() && SpeedUpStrongFree()) return;
+    if (GetState() == EBuildingState::Building && IsCanSpeedUpFree() && SpeedUpFree()) return;
+    if (GetState() == EBuildingState::Demolishing && IsCanSpeedUpFree() && SpeedUpFree()) return;
+    if (GetState() == EBuildingState::Training && IsCanHarvest() && HarvestAll()) return;
+    if (GetState() == EBuildingState::TrapBuilding && IsCanHarvest() && HarvestAll()) return;
+    if (GetState() == EBuildingState::Studying && IsCanSpeedUpResearchFree() && SpeedUpResearchFree()) return;
+    if (IsNeedRequestHelp() && RequestHelp()) return;
+    if (GetState() == EBuildingState::None && HasAnyAllianceHelpList() && AllianceHelpAll()) return;
     Clicked(p_Touch, p_E);
   };
   _eventDispatcher->addEventListenerWithSceneGraphPriority(l_MouseListiner, this);
 }
 
-void IBuilding::onEnter() { 
+void IBuilding::onEnter() {
   Node::onEnter();
   EndTimer();
   UpdateLvl();
@@ -135,7 +110,7 @@ void IBuilding::onEnter() {
   StartTimer();
   UpdateTimer(0.0f);
   m_HarvestState = EHarvestState::None;
-  if(IsOpening()){
+  if (IsOpening()) {
     ShowAnimBuildWorker();
     ShowBuildLock();
   }
@@ -143,101 +118,94 @@ void IBuilding::onEnter() {
   OnAfterInitWithBuildCell();
 }
 
-void IBuilding::OnMessageListener(){
-  _eventDispatcher->addCustomEventListener("MESSAGE_MAINCITYVIEW_CITYBUFF_DISAPPEAR",
-    std::bind(&IBuilding::SMsgRemoveBuff, this, std::placeholders::_1));
+void IBuilding::OnMessageListener() {
+  getEventDispatcher()->addCustomEventListener("MESSAGE_MAINCITYVIEW_CITYBUFF_DISAPPEAR",
+                                           std::bind(&IBuilding::SMsgRemoveBuff, this, std::placeholders::_1));
 
-  _eventDispatcher->addCustomEventListener("MESSAGE_SERVER_UPDATE_BUILD_CAN_UPGRADE", 
-    [this](EventCustom *p_Event){SMsgUpdateBuildCanUpgrade(p_Event);});
-    
-  _eventDispatcher->addCustomEventListener("MESSAGE_MAINCITYVIEW_TRAIN_ARMY_IMMDIATELY_BACK", 
-    std::bind(&IBuilding::SMsgTrainArmyImmediatelyBack, this, std::placeholders::_1));
+  getEventDispatcher()->addCustomEventListener("MESSAGE_SERVER_UPDATE_BUILD_CAN_UPGRADE",
+                                           [this](EventCustom* p_Event) { SMsgUpdateBuildCanUpgrade(p_Event); });
 
-  _eventDispatcher->addCustomEventListener("MESSAGE_MAINCITYVIEW_BUILD_TRAIN_FAILED", 
-    std::bind(&IBuilding::SMsgBuildTrainFailed, this, std::placeholders::_1));
+  getEventDispatcher()->addCustomEventListener("MESSAGE_MAINCITYVIEW_TRAIN_ARMY_IMMDIATELY_BACK",
+                                           std::bind(&IBuilding::SMsgTrainArmyImmediatelyBack, this, std::placeholders::_1));
 
-  _eventDispatcher->addCustomEventListener("MESSAGE_MAINCITYVIEW_BUILDSTAR_QUEQUE_CALLBACK", 
-    std::bind(static_cast<void(IBuilding::*)(EventCustom *)>(&IBuilding::UpdateStarLvl), this, std::placeholders::_1));
+  getEventDispatcher()->addCustomEventListener("MESSAGE_MAINCITYVIEW_BUILD_TRAIN_FAILED",
+                                           std::bind(&IBuilding::SMsgBuildTrainFailed, this, std::placeholders::_1));
 
-  _eventDispatcher->addCustomEventListener("MESSAGE_BUILD_STAR_UPGRADE", 
-    std::bind(static_cast<void(IBuilding::*)(EventCustom *)>(&IBuilding::UpdateStarLvl), this, std::placeholders::_1));
+  getEventDispatcher()->addCustomEventListener(
+          "MESSAGE_MAINCITYVIEW_BUILDSTAR_QUEQUE_CALLBACK",
+          std::bind(static_cast<void (IBuilding::*)(EventCustom*)>(&IBuilding::UpdateStarLvl), this, std::placeholders::_1));
+
+  getEventDispatcher()->addCustomEventListener(
+          "MESSAGE_BUILD_STAR_UPGRADE",
+          std::bind(static_cast<void (IBuilding::*)(EventCustom*)>(&IBuilding::UpdateStarLvl), this, std::placeholders::_1));
 };
 
-void IBuilding::SMsgRemoveBuff(EventCustom *p_Event){
+void IBuilding::SMsgRemoveBuff(EventCustom* p_Event) {}
 
-}
-
-void IBuilding::SMsgUpdateBuildCanUpgrade(EventCustom *p_Event){
+void IBuilding::SMsgUpdateBuildCanUpgrade(EventCustom* p_Event) {
   bool l_NeedUpdate = true;
-  if(m_UdpateIsCanUpGradeTime > 0 && GDateTime::Now() - m_UdpateIsCanUpGradeTime <= 1){
+  if (m_UdpateIsCanUpGradeTime > 0 && GDateTime::Now() - m_UdpateIsCanUpGradeTime <= 1) {
     l_NeedUpdate = false;
-    auto l_Sequence = Sequence::create(
-      DelayTime::create(0.5),
-      CallFunc::create([this](){
-        UpdateIsCanUpgrade();
-        UpdateStarLvl();
-      }),
-      nullptr
-    );
+    auto l_Sequence = Sequence::create(DelayTime::create(0.5),
+                                       CallFunc::create([this]() {
+                                         UpdateIsCanUpgrade();
+                                         UpdateStarLvl();
+                                       }),
+                                       nullptr);
   }
-  if(l_NeedUpdate){
+  if (l_NeedUpdate) {
     UpdateIsCanUpgrade();
     UpdateStarLvl();
   }
   m_UdpateIsCanUpGradeTime = GDateTime::Now();
 }
 
-void IBuilding::SMsgTrainArmyImmediatelyBack(EventCustom *p_Event){}
-void IBuilding::SMsgBuildTrainFailed(EventCustom *p_Event){}
+void IBuilding::SMsgTrainArmyImmediatelyBack(EventCustom* p_Event) {}
+void IBuilding::SMsgBuildTrainFailed(EventCustom* p_Event) {}
 
-
-void IBuilding::ShowTopTip(){
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg =  std::make_unique<ABuildingMsg>();
+void IBuilding::ShowTopTip() {
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
-  l_ABuildingMsg->BuildingNode  = this;
+  l_ABuildingMsg->BuildingNode = this;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_TOP_TIP", l_ABuildingMsg.get());
 }
 
-void IBuilding::HideTopTip(){
-  auto l_ABuildingMsg =  std::make_unique<ABuildingMsg>();
+void IBuilding::HideTopTip() {
+  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
-  l_ABuildingMsg->BuildingNode  = this;
-  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TOP_TIP", l_ABuildingMsg.get());  
+  l_ABuildingMsg->BuildingNode = this;
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TOP_TIP", l_ABuildingMsg.get());
 }
 
-void IBuilding::ShowWorkDone(){}
+void IBuilding::ShowWorkDone() {}
 
-void IBuilding::HideWorkDone(){
-  auto l_ABuildingMsg =  std::make_unique<ABuildingMsg>();
+void IBuilding::HideWorkDone() {
+  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
-  l_ABuildingMsg->BuildingNode  = this;
+  l_ABuildingMsg->BuildingNode = this;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_WORK_DONE_EFFECT", l_ABuildingMsg.get());
-  HideTopTip(); 
+  HideTopTip();
 }
 
-void IBuilding::ShowBuildLvl(){
-  if(IsLocked())
-    return;
-  if(IsOpening())
-    return;
-  if(this->n_BuildingLvText)
-    this->n_BuildingLvText->setVisible(true);
-  if(this->n_BuildingLvBg)
-    this->n_BuildingLvBg->setVisible(true);
+void IBuilding::ShowBuildLvl() {
+  if (IsLocked()) return;
+  if (IsOpening()) return;
+  if (this->n_BuildingLvText) this->n_BuildingLvText->setVisible(true);
+  if (this->n_BuildingLvBg) this->n_BuildingLvBg->setVisible(true);
 }
 
-void IBuilding::UpdateLvl(){
+void IBuilding::UpdateLvl() {
   auto l_BuildingLvl = GetBuildingLvl();
-  auto l_StarLvl     = GetStarLvl();
-  auto l_IsWarLvl    = BuildingLogic::Get()->IsWarLvl(l_BuildingLvl);
+  auto l_StarLvl = GetStarLvl();
+  auto l_IsWarLvl = BuildingLogic::Get()->IsWarLvl(l_BuildingLvl);
   auto l_WarLvlText = GBase::DGetBuildWarLv(l_BuildingLvl);
   UpdateTextLvl();
   UpdateIsCanUpgrade();
-  if(l_IsWarLvl <= 0 && n_BuildingLvBg){
+  if (l_IsWarLvl <= 0 && n_BuildingLvBg) {
     n_BuildingLvBg->setSpriteFrame("con_main_build_lv.png");
     m_IsSHowWarLv = false;
   }
-  if(l_IsWarLvl > 0 && n_BuildingLvBg){
+  if (l_IsWarLvl > 0 && n_BuildingLvBg) {
     n_BuildingLvBg->setSpriteFrame("icon_main_build_warlv.png");
     m_IsSHowWarLv = false;
   }
@@ -245,180 +213,150 @@ void IBuilding::UpdateLvl(){
   UpdateLvlPos();
 }
 
-void IBuilding::UpdateStarLvl(EventCustom *p_Event){
-  auto l_ABuildingMsg = static_cast<ABuildingMsg *>(p_Event->getUserData());
+void IBuilding::UpdateStarLvl(EventCustom* p_Event) {
+  auto l_ABuildingMsg = static_cast<ABuildingMsg*>(p_Event->getUserData());
   auto l_BuildingCell = GetBuildingCell();
   auto l_StarLvl = GetStarLvl();
 
-  if(!l_ABuildingMsg)
-    return;
-  if(l_ABuildingMsg->BuildingIndex != m_BuildingIndex)
-    return;
-  if(!l_BuildingCell) 
-    return;
-  if(l_StarLvl > 0)
-    UpdateStarLvlBgLight();
+  if (!l_ABuildingMsg) return;
+  if (l_ABuildingMsg->BuildingIndex != m_BuildingIndex) return;
+  if (!l_BuildingCell) return;
+  if (l_StarLvl > 0) UpdateStarLvlBgLight();
   UpdateIsCanUpgrade();
   UpdateStarLvlPos();
   RefreshBuildStarState(nullptr);
 }
 
-void IBuilding::RefreshBuildStarState(void *p_Temp){
+void IBuilding::RefreshBuildStarState(void* p_Temp) {
   std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
-  _eventDispatcher->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_UPDATE_BUILDSTAR_COOLING_PANEL",
-    l_ABuildingMsg.get()
-  );
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_BUILDSTAR_COOLING_PANEL", l_ABuildingMsg.get());
 }
 
-void IBuilding::InitStateMachine(){
-  
-}
+void IBuilding::InitStateMachine() {}
 
-void IBuilding::UpdateStarLvlBgLight(){
+void IBuilding::UpdateStarLvlBgLight() {
   auto l_StarLvl = GetStarLvl();
-  if(!n_BuildingLvBg)
-    return;
+  if (!n_BuildingLvBg) return;
   n_BuildingLvBg->setSpriteFrame("icon_main_buildstar_lv.png");
   UpdateTextLvl();
-  if(!n_SpStarLight){
+  if (!n_SpStarLight) {
     n_SpStarLight = Sprite::create();
     n_BuildingLvBg->addChild(n_SpStarLight);
     n_SpStarLight->setPosition(83, 35);
   }
   auto l_IconName = CityCtrl::Get()->GetBuildStarLight(l_StarLvl);
   n_SpStarLight->setSpriteFrame(l_IconName);
-  if(!n_BuildStarLight){
+  if (!n_BuildStarLight) {
     auto l_Action = GBase::DCreateAnimation(CsbUiFilePath::NodeBuildStarLight.c_str(), n_BuildStarLight).Second;
     n_BuildingLvBg->addChild(n_BuildStarLight);
     n_BuildingLvBg->setPosition(83, 35);
-    for(auto l_OneNode : n_BuildingLvBg->getChildren()){
+    for (auto l_OneNode : n_BuildingLvBg->getChildren()) {
       l_OneNode->setPosition(0, 0);
     }
   }
   auto l_Lvl = CityCtrl::Get()->GetBuildStarColor(l_StarLvl);
   auto l_NodeName = StringUtils::format("Node_%d", l_Lvl);
-  for(auto l_OneNode : n_BuildingLvBg->getChildren()){
+  for (auto l_OneNode : n_BuildingLvBg->getChildren()) {
     l_OneNode->setVisible(l_OneNode->getName() == l_NodeName);
   }
 }
 
-//TODO: This functio may Has Bug
-void IBuilding::ChangeState(){
+// TODO: This functio may Has Bug
+void IBuilding::ChangeState() {
   std::unique_ptr<IState::Event> l_StateEvent = std::make_unique<IState::Event>(this);
-  if(GetState() == EBuildingState::Idle && m_States.Contains(EBuildingState::Idle)) // Idle Is reset
+  if (GetState() == EBuildingState::Idle && m_States.Contains(EBuildingState::Idle))  // Idle Is reset
     m_States[EBuildingState::Idle]->Enter(l_StateEvent.get());
-  else if(GetState() == EBuildingState::Lock && m_States.Contains(EBuildingState::Lock))
+  else if (GetState() == EBuildingState::Lock && m_States.Contains(EBuildingState::Lock))
     m_States[EBuildingState::Lock]->Enter(l_StateEvent.get());
-  else if(GetState() == EBuildingState::Building && m_States.Contains(EBuildingState::Building))
+  else if (GetState() == EBuildingState::Building && m_States.Contains(EBuildingState::Building))
     m_States[EBuildingState::Building]->Enter(l_StateEvent.get());
-  else if(GetState() == EBuildingState::Working && m_States.Contains(EBuildingState::Working))
+  else if (GetState() == EBuildingState::Working && m_States.Contains(EBuildingState::Working))
     m_States[EBuildingState::Working]->Enter(l_StateEvent.get());
-  else if(GetState() == EBuildingState::Demolishing && m_States.Contains(EBuildingState::Demolishing))
+  else if (GetState() == EBuildingState::Demolishing && m_States.Contains(EBuildingState::Demolishing))
     m_States[EBuildingState::Demolishing]->Enter(l_StateEvent.get());
-  else if(GetState() == EBuildingState::Harvesting && m_States.Contains(EBuildingState::Harvesting))
+  else if (GetState() == EBuildingState::Harvesting && m_States.Contains(EBuildingState::Harvesting))
     m_States[EBuildingState::Harvesting]->Enter(l_StateEvent.get());
 }
 
-void IBuilding::ShowGlow(){
+void IBuilding::ShowGlow() {
   auto l_BuildingLvl = GetBuildingLvl();
   auto l_WarLvl = BuildingLogic::Get()->IsWarLvl(l_BuildingLvl);
-  if(l_WarLvl > GBase::Const::Get()->CastleMinWarLvl){
-    if(!n_BuildGlowWar){
-      //TODO: This Node Should Be Spacified for each Building
+  if (l_WarLvl > GBase::Const::Get()->CastleMinWarLvl) {
+    if (!n_BuildGlowWar) {
+      // TODO: This Node Should Be Spacified for each Building
     }
   }
 }
 
-void IBuilding::HideGlow(){
-  if(!n_BuildGlowWar)
-    return;
+void IBuilding::HideGlow() {
+  if (!n_BuildGlowWar) return;
   n_BuildGlowWar->stopAllActions();
   n_BuildGlowWar->removeFromParent();
   n_BuildGlowWar = nullptr;
 }
 
-void IBuilding::ShowCoolingPanel(){
+void IBuilding::ShowCoolingPanel() {
   std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
-  getEventDispatcher()->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_ADD_BUILD_COOLING_PANEL",
-    l_ABuildingMsg.get()
-  );
+  getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_COOLING_PANEL", l_ABuildingMsg.get());
 }
 
-void IBuilding::HideCoolingPanel(){
+void IBuilding::HideCoolingPanel() {
   std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
-  getEventDispatcher()->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_COOLING_PANEL",
-    l_ABuildingMsg.get()
-  );
+  getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_COOLING_PANEL", l_ABuildingMsg.get());
 }
-//TODO: ADD SHOW AND HIDE BUILDING Glow
-void IBuilding::ShowAnimWorking(bool p_ShowGlow){
-  
+// TODO: ADD SHOW AND HIDE BUILDING Glow
+void IBuilding::ShowAnimWorking(bool p_ShowGlow) {
   HideZAnimation();
-  if(p_ShowGlow)
+  if (p_ShowGlow)
     ShowGlow();
-  else 
+  else
     HideGlow();
   ShowWorkingEffect();
 }
 
-void IBuilding::HideAnimWorking(){
+void IBuilding::HideAnimWorking() {
   HideGlow();
   HideWorkingEffect();
   HideNormalParticle();
 }
 
-void IBuilding::ShowAnimBoost(){
+void IBuilding::ShowAnimBoost() {
   std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
-  getEventDispatcher()->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_ADD_BUILD_ANIM_BOOST",
-    l_ABuildingMsg.get()
-  );
+  getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_ANIM_BOOST", l_ABuildingMsg.get());
 }
 
-void IBuilding::HideAnimBoost(){
+void IBuilding::HideAnimBoost() {
   std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
-  getEventDispatcher()->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_ANIM_BOOST",
-    l_ABuildingMsg.get()
-  );
+  getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_ANIM_BOOST", l_ABuildingMsg.get());
 }
 
-void IBuilding::ShowAnimBuildWorker(bool p_HideHammer){
+void IBuilding::ShowAnimBuildWorker(bool p_HideHammer) {
   HideZAnimation();
   std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   l_ABuildingMsg->IsHideHammer = p_HideHammer;
-  getEventDispatcher()->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_ADD_BUILD_ANIM_WORKER",
-    l_ABuildingMsg.get()
-  );
+  getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_ANIM_WORKER", l_ABuildingMsg.get());
 }
 
-void IBuilding::HideAnimBuildWorker(){
+void IBuilding::HideAnimBuildWorker() {
   std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
-  getEventDispatcher()->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_ANIM_WORKER",
-    l_ABuildingMsg.get()
-  );
+  getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_ANIM_WORKER", l_ABuildingMsg.get());
 }
 
-//TODO: Should be added from Building Config
+// TODO: Should be added from Building Config
 void IBuilding::ShowNormalParticle() {
   // for i = 1, 10 do
   //   local nodeName = "buildParticleNormal_" .. i
@@ -453,7 +391,7 @@ void IBuilding::HideNormalParticle() {
   // end
 }
 
-void IBuilding::ShowBrightParticle(){
+void IBuilding::ShowBrightParticle() {
   // for i = 1, 10 do
   //   local nodeName = "buildParticleBright_" .. i
   //   local nodeCfgItem = self:getCfgItemByName(nodeName)
@@ -468,7 +406,7 @@ void IBuilding::ShowBrightParticle(){
   // self:loadNodeByName("buildCsdBright")
 }
 
-void IBuilding::HideBrightParticle(){
+void IBuilding::HideBrightParticle() {
   // for i = 1, 10 do
   //   local nodeName = "buildParticleBright_" .. i
   //   local node = self[nodeName]
@@ -487,42 +425,37 @@ void IBuilding::HideBrightParticle(){
   // end
 }
 
-void IBuilding::ShowEffectUpgrade(){
- std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+void IBuilding::ShowEffectUpgrade() {
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   l_ABuildingMsg->PosEtUpgradeOffset = m_PosEtUpgradeOffset;
-  getEventDispatcher()->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_ADD_BUILD_EFFECT_UPGRADE",
-    l_ABuildingMsg.get()
-  );
+  getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_EFFECT_UPGRADE", l_ABuildingMsg.get());
 }
 
-void IBuilding::HideEffectUpgrade(){}
+void IBuilding::HideEffectUpgrade() {}
 
-void IBuilding::StartTimer(){
-  if(m_TimeHandler != nullptr){
+void IBuilding::StartTimer() {
+  if (m_TimeHandler != nullptr) {
     GBase::DRemoveTimer(this, m_TimeHandler);
     m_TimeHandler = nullptr;
     return;
   }
-  
-  //m_TimeHandler = GBase::DCreateTimer(this, CC_CALLBACK_1(IBuilding::UpdateTimer, 0.0f));
+
+  // m_TimeHandler = GBase::DCreateTimer(this, CC_CALLBACK_1(IBuilding::UpdateTimer, 0.0f));
   UpdateTimer(0.0f);
 }
 
-void IBuilding::EndTimer(){
-  if(m_TimeHandler != nullptr){
+void IBuilding::EndTimer() {
+  if (m_TimeHandler != nullptr) {
     GBase::DRemoveTimer(this, m_TimeHandler);
     m_TimeHandler = nullptr;
   }
 }
 
-void IBuilding::UpdateTimer(float p_Delta){
-  if(GetState() == EBuildingState::Building 
-    || GetState() == EBuildingState::Upgrading 
-    || GetState() == EBuildingState::Demolishing 
-    || GetState() == EBuildingState::Lock){
+void IBuilding::UpdateTimer(float p_Delta) {
+  if (GetState() == EBuildingState::Building || GetState() == EBuildingState::Upgrading || GetState() == EBuildingState::Demolishing ||
+      GetState() == EBuildingState::Lock) {
     return;
   }
   auto l_BuildingType = GetBuildingId();
@@ -531,327 +464,289 @@ void IBuilding::UpdateTimer(float p_Delta){
   auto l_CurrentHarvest = GetCurrentHarvest();
   auto l_MaxHarvest = GetMaxHarvest();
   auto l_HarvestState = GetHarvestState();
-  if(l_CurrentHarvest == 0 && GetState() != EBuildingState::Working){
+  if (l_CurrentHarvest == 0 && GetState() != EBuildingState::Working) {
     SetBlockState(EBuildingState::Working);
     ChangeState();
   }
-  if(l_CurrentHarvest > 0 && l_HarvestState == EHarvestState::None){
-    if(GetState() != EBuildingState::Working){
+  if (l_CurrentHarvest > 0 && l_HarvestState == EHarvestState::None) {
+    if (GetState() != EBuildingState::Working) {
       SetBlockState(EBuildingState::Working);
       ChangeState();
     }
     SetHarvestState(EHarvestState::Some, true);
   }
-  if(IsHarvestMuch((float)l_CurrentHarvest, (float)l_MaxHarvest) && l_HarvestState == EHarvestState::Some){
+  if (IsHarvestMuch((float)l_CurrentHarvest, (float)l_MaxHarvest) && l_HarvestState == EHarvestState::Some) {
     SetHarvestState(EHarvestState::Much, true);
     SetBlockState(EBuildingState::Harvesting);
     ChangeState();
-  //   if self.turnToHarvestView then
-  //     self:turnToHarvestView(true)
-  //   end
+    //   if self.turnToHarvestView then
+    //     self:turnToHarvestView(true)
+    //   end
   }
 }
 
-EHarvestState IBuilding::GetHarvestState(){
-  return m_HarvestState;
-}
+EHarvestState IBuilding::GetHarvestState() { return m_HarvestState; }
 
-void IBuilding::SetHarvestState(EHarvestState p_HarvestState, bool p_IsAnim){
-  if(m_HarvestState == p_HarvestState)
-    return;
+void IBuilding::SetHarvestState(EHarvestState p_HarvestState, bool p_IsAnim) {
+  if (m_HarvestState == p_HarvestState) return;
   m_HarvestState = p_HarvestState;
 }
 
-bool IBuilding::IsNeedRequestHelp(){
-  return GetReqHelpQueueTypeList().size() > 0;
-}
+bool IBuilding::IsNeedRequestHelp() { return GetReqHelpQueueTypeList().size() > 0; }
 
-GVector<ETask> IBuilding::GetReqHelpQueueTypeList(){
+GVector<ETask> IBuilding::GetReqHelpQueueTypeList() {
   GVector<ETask> l_ReqHelpQueueTypeList;
   auto l_QueueType = GetQueueType();
   auto l_StarQueueType = GetBuildStarQueueType();
-  if(l_QueueType != ETask::None){
+  if (l_QueueType != ETask::None) {
     l_ReqHelpQueueTypeList.push_back(l_QueueType);
   }
-  if(l_StarQueueType != ETask::None){
+  if (l_StarQueueType != ETask::None) {
     l_ReqHelpQueueTypeList.push_back(l_StarQueueType);
   }
   return l_ReqHelpQueueTypeList;
 }
 
-void IBuilding::DoReqHelp(){
-  for(auto l_QueueType : GetReqHelpQueueTypeList()){
+void IBuilding::DoReqHelp() {
+  for (auto l_QueueType : GetReqHelpQueueTypeList()) {
     DoReqHelpByQueueType(l_QueueType);
   }
 }
 
-void IBuilding::DoReqHelpByQueueType(ETask p_Task){
-  struct {int Id; uint32 Lvl;} l_Data;
+void IBuilding::DoReqHelpByQueueType(ETask p_Task) {
+  struct {
+    int Id;
+    uint32 Lvl;
+  } l_Data;
   auto l_BuildingType = GetBuildingId();
-  if(p_Task == ETask::BuildStarQueue
-  ||p_Task == ETask::BuildStarQueuePrivilege
-  ||p_Task == ETask::GloriousUpgrade){
+  if (p_Task == ETask::BuildStarQueue || p_Task == ETask::BuildStarQueuePrivilege || p_Task == ETask::GloriousUpgrade) {
     l_Data.Id = static_cast<int>(GetBuildingId());
     l_Data.Lvl = GetStarLvl() + 1;
-  }else if(GetState() == EBuildingState::None){
-    if(l_BuildingType == EBuilding::FirstAidTent){
+  } else if (GetState() == EBuildingState::None) {
+    if (l_BuildingType == EBuilding::FirstAidTent) {
       //       data = nil
-    }else if(l_BuildingType == EBuilding::Institute){
-      l_Data.Id =  static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
-    }else if(l_BuildingType == EBuilding::Miracle){
-      l_Data.Id =  static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
-    }else if(l_BuildingType == EBuilding::Blacksmith){
+    } else if (l_BuildingType == EBuilding::Institute) {
+      l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+    } else if (l_BuildingType == EBuilding::Miracle) {
+      l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+    } else if (l_BuildingType == EBuilding::Blacksmith) {
       //  local eid, count = self:getTrainingAidAndCount()
       //  data = {equipid = eid}
-    }else if(l_BuildingType == EBuilding::StarBraveStatue){
-      l_Data.Id =  static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+    } else if (l_BuildingType == EBuilding::StarBraveStatue) {
+      l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
     }
-  }else if(GetState() == EBuildingState::Building || GetState() == EBuildingState::Upgrading){
+  } else if (GetState() == EBuildingState::Building || GetState() == EBuildingState::Upgrading) {
     l_Data.Id = static_cast<int>(GetBuildingId());
     l_Data.Lvl = GetBuildingLvl() + 1;
   }
-  
+
   GuildHelp::Get()->ReqAllianceHelp(p_Task, l_Data.Id, l_Data.Lvl);
 }
 
-bool IBuilding::SpeedUpFree(){
+bool IBuilding::SpeedUpFree() {
   TaskCtrl::Get()->SpeedUpQueueReq(GetQueueType(), ESpeedType::Free);
   return true;
 }
 
-bool IBuilding::SpeedUpStrongFree(){
+bool IBuilding::SpeedUpStrongFree() {
   TaskCtrl::Get()->SpeedUpQueueReq(GetBuildStarQueueType(), ESpeedType::Free);
   return true;
 }
 
-bool IBuilding::SpeedUpResearchFree(){
+bool IBuilding::SpeedUpResearchFree() {
   TaskCtrl::Get()->SpeedUpQueueReq(GetQueueType(), ESpeedType::Gold);
   return true;
 }
 
-bool IBuilding::IsCanHarvest(){
+bool IBuilding::IsCanHarvest() {
   bool l_IsCanHarvest = false;
   auto l_BuildingType = GetBuildingId();
-  if(l_BuildingType == EBuilding::Blacksmith){
+  if (l_BuildingType == EBuilding::Blacksmith) {
     return EquipCtrl::Get()->IsCanGetEquip();
-  }else if(l_BuildingType == EBuilding::MaterialWorkShop){
+  } else if (l_BuildingType == EBuilding::MaterialWorkShop) {
     return StuffWorkshopCtrl::Get()->GetDoneID() != 0;
   }
-  if(l_BuildingType == EBuilding::ElitePalace){
+  if (l_BuildingType == EBuilding::ElitePalace) {
     //   print("elite")
   }
   auto l_TrainedType = ArmyCtrl::Get()->GetTrainedArmy(l_BuildingType);
-  if(l_TrainedType != EArmy::None){
+  if (l_TrainedType != EArmy::None) {
     m_IsCanHarvestTrain = true;
     m_TrainedArmy = l_TrainedType;
   }
   return m_IsCanHarvestTrain;
 }
 
-bool IBuilding::IsTraining(){
+bool IBuilding::IsTraining() {
   bool l_IsTraining = false;
   auto l_BuildingType = GetBuildingId();
   auto l_QueueType = BuildingRead::Get()->GetQueueType(l_BuildingType);
   auto l_Queue = TaskCtrl::Get()->QueryQueue(l_QueueType);
-  if(l_Queue == nullptr)
-    return false;
+  if (l_Queue == nullptr) return false;
   l_IsTraining = false;
-  if(GetState() == EBuildingState::None){
+  if (GetState() == EBuildingState::None) {
     auto l_RemainTime = l_Queue->GetRemainTime();
-    if(l_RemainTime <= 0){
+    if (l_RemainTime <= 0) {
       l_IsTraining = false;
-    }else{
+    } else {
       l_IsTraining = true;
     }
   }
   return l_IsTraining;
 }
 
-ITask *IBuilding::GetPromotingQueue(){
-  return TaskCtrl::Get()->QueryQueue(ETask::PromptArmy);
-}
+ITask* IBuilding::GetPromotingQueue() { return TaskCtrl::Get()->QueryQueue(ETask::PromptArmy); }
 
-ITask *IBuilding::GetTrainingQueue(){
+ITask* IBuilding::GetTrainingQueue() {
   auto l_QueueType = BuildingRead::Get()->GetQueueType(GetBuildingId());
   return TaskCtrl::Get()->QueryQueue(l_QueueType);
 }
 
-void IBuilding::SetQueueDirty(bool p_IsDirty){
-  m_QueueDirty = p_IsDirty;
-}
+void IBuilding::SetQueueDirty(bool p_IsDirty) { m_QueueDirty = p_IsDirty; }
 
-ITask *IBuilding::GetQueue(){
-  if(m_Queue != nullptr && m_QueueDirty == true)
-    return m_Queue;
-  if(IsTraining())
+ITask* IBuilding::GetQueue() {
+  if (m_Queue != nullptr && m_QueueDirty == true) return m_Queue;
+  if (IsTraining())
     m_Queue = GetTrainingQueue();
   else
     m_Queue = GetBuildingQueue();
   return m_Queue;
 }
 
-ITask *IBuilding::GetBuildingQueue(){
+ITask* IBuilding::GetBuildingQueue() {
   auto l_QueueType = BuildingLogic::Get()->GetQueueType(GetBuildingIndex());
   return l_QueueType;
 }
 
-ETask IBuilding::GetQueueType(){
+ETask IBuilding::GetQueueType() {
   auto l_QueuType = ETask::None;
-  if(IsTraining()){
+  if (IsTraining()) {
     l_QueuType = GetTrainingQueueType();
-  }else{
+  } else {
     l_QueuType = GetBuildQueueType();
   }
   return l_QueuType;
 }
 
-ETask IBuilding::GetBuildQueueType(){
+ETask IBuilding::GetBuildQueueType() {
   auto l_QueueType = BuildingLogic::Get()->GetQueueType(GetBuildingIndex());
-  if(!l_QueueType)
-    return ETask::None;
+  if (!l_QueueType) return ETask::None;
   return l_QueueType->GetQueueType();
 }
 
-ETask IBuilding::GetTrainingQueueType(){
+ETask IBuilding::GetTrainingQueueType() {
   auto l_QueueType = BuildingRead::Get()->GetQueueType(GetBuildingId());
   return l_QueueType;
 }
 
-ETask IBuilding::GetBuildStarQueueType(){
+ETask IBuilding::GetBuildStarQueueType() {
   auto l_Queue = GetBuildStarQueue();
-  if(l_Queue == nullptr)
-    l_Queue = GetBuildStarSecondQueue();
-  if(l_Queue == nullptr)
-    l_Queue = GetBuildStatueBraveQueue();
-  if(l_Queue != nullptr)
-    return l_Queue->GetQueueType();
+  if (l_Queue == nullptr) l_Queue = GetBuildStarSecondQueue();
+  if (l_Queue == nullptr) l_Queue = GetBuildStatueBraveQueue();
+  if (l_Queue != nullptr) return l_Queue->GetQueueType();
   return ETask::None;
 }
 
-ITask *IBuilding::GetBuildStarQueue(){
+ITask* IBuilding::GetBuildStarQueue() {
   auto l_BuildingType = GetBuildingId();
   auto l_BuildingIndex = GetBuildingIndex();
-  ITask *l_Queue = TaskCtrl::Get()->QueryQueue(ETask::BuildStarQueue);
-  auto l_BuildingQueue = static_cast<RBuildingTask *>(l_Queue);
-  if(l_BuildingQueue == nullptr)
-    return nullptr;
-  if(l_BuildingQueue->GetBuildingType() != l_BuildingType)
-    return nullptr;
-  if(l_BuildingQueue->GetBuildingIndex() != l_BuildingIndex)
-    return nullptr;
+  ITask* l_Queue = TaskCtrl::Get()->QueryQueue(ETask::BuildStarQueue);
+  auto l_BuildingQueue = static_cast<RBuildingTask*>(l_Queue);
+  if (l_BuildingQueue == nullptr) return nullptr;
+  if (l_BuildingQueue->GetBuildingType() != l_BuildingType) return nullptr;
+  if (l_BuildingQueue->GetBuildingIndex() != l_BuildingIndex) return nullptr;
   return l_BuildingQueue;
 }
 
-ITask *IBuilding::GetBuildStarSecondQueue(){
+ITask* IBuilding::GetBuildStarSecondQueue() {
   auto l_BuildingType = GetBuildingId();
   auto l_BuildingIndex = GetBuildingIndex();
-  ITask *l_Queue = TaskCtrl::Get()->QueryQueue(ETask::BuildStarQueuePrivilege);
-  auto l_BuildingQueue = static_cast<RBuildingTask *>(l_Queue);
-  if(l_BuildingQueue == nullptr)
-    return nullptr;
-  if(l_BuildingQueue->GetBuildingType() != l_BuildingType)
-    return nullptr;
-  if(l_BuildingQueue->GetBuildingIndex() != l_BuildingIndex)
-    return nullptr;
+  ITask* l_Queue = TaskCtrl::Get()->QueryQueue(ETask::BuildStarQueuePrivilege);
+  auto l_BuildingQueue = static_cast<RBuildingTask*>(l_Queue);
+  if (l_BuildingQueue == nullptr) return nullptr;
+  if (l_BuildingQueue->GetBuildingType() != l_BuildingType) return nullptr;
+  if (l_BuildingQueue->GetBuildingIndex() != l_BuildingIndex) return nullptr;
   return l_BuildingQueue;
 }
 
-ITask *IBuilding::GetBuildStatueBraveQueue(){
+ITask* IBuilding::GetBuildStatueBraveQueue() {
   auto l_BuildingType = GetBuildingId();
   auto l_BuildingIndex = GetBuildingIndex();
-  ITask *l_Queue = TaskCtrl::Get()->QueryQueue(ETask::GloriousUpgrade);
-  auto l_BuildingQueue = static_cast<RBuildingTask *>(l_Queue);
-  if(l_BuildingQueue == nullptr)
-    return nullptr;
-  if(l_BuildingQueue->GetBuildingType() != l_BuildingType)
-    return nullptr;
+  ITask* l_Queue = TaskCtrl::Get()->QueryQueue(ETask::GloriousUpgrade);
+  auto l_BuildingQueue = static_cast<RBuildingTask*>(l_Queue);
+  if (l_BuildingQueue == nullptr) return nullptr;
+  if (l_BuildingQueue->GetBuildingType() != l_BuildingType) return nullptr;
   return l_BuildingQueue;
 }
 
-ITask *IBuilding::GetBuildDiggingQueue(){
+ITask* IBuilding::GetBuildDiggingQueue() {
   auto l_BuildingType = GetBuildingId();
-  ITask *l_Queue = TaskCtrl::Get()->QueryQueue(ETask::EndlessTreasureQueue);
-  if(!l_Queue)
-    return nullptr;
-  if(l_BuildingType != EBuilding::TreasurePool)
-    return nullptr;
+  ITask* l_Queue = TaskCtrl::Get()->QueryQueue(ETask::EndlessTreasureQueue);
+  if (!l_Queue) return nullptr;
+  if (l_BuildingType != EBuilding::TreasurePool) return nullptr;
   return l_Queue;
 }
 
-bool IBuilding::HasSpeedUpCooling(){
-  if(GetBuildingId() == EBuilding::FirstAidTent /*and worldMapDefine.isInPyramid()*/){
+bool IBuilding::HasSpeedUpCooling() {
+  if (GetBuildingId() == EBuilding::FirstAidTent /*and worldMapDefine.isInPyramid()*/) {
     auto l_CdQueue = ArmyCtrl::Get()->GetHostpitalPyramidWarCDQueueTime();
-    if(l_CdQueue > 0)
-      return true;
+    if (l_CdQueue > 0) return true;
   }
   return false;
 }
 
-GTime IBuilding::GetSpeedUpCoolingTime(){
-  if(GetBuildingId() == EBuilding::FirstAidTent){
+GTime IBuilding::GetSpeedUpCoolingTime() {
+  if (GetBuildingId() == EBuilding::FirstAidTent) {
     return ArmyCtrl::Get()->GetHostpitalPyramidWarCDQueueTime();
   }
   return 0;
 }
 
-void IBuilding::DoHarvesting(){
+void IBuilding::DoHarvesting() {
   auto l_BuildingPlace = GBase::DGetBuildingTypeByIndex(GetBuildingIndex());
   auto l_BuildingId = GetBuildingId();
-  if(l_BuildingPlace == EBuildingPlace::Inner){
-    if(l_BuildingId == EBuilding::Stable 
-    || l_BuildingId == EBuilding::TargetRange
-    || l_BuildingId == EBuilding::Barrack
-    || l_BuildingId == EBuilding::Fortress
-    || l_BuildingId == EBuilding::ChariotPlant
-    || l_BuildingId == EBuilding::MaterialWorkShop
-    || l_BuildingId == EBuilding::ElitePalace
-    ){
+  if (l_BuildingPlace == EBuildingPlace::Inner) {
+    if (l_BuildingId == EBuilding::Stable || l_BuildingId == EBuilding::TargetRange || l_BuildingId == EBuilding::Barrack ||
+        l_BuildingId == EBuilding::Fortress || l_BuildingId == EBuilding::ChariotPlant || l_BuildingId == EBuilding::MaterialWorkShop ||
+        l_BuildingId == EBuilding::ElitePalace) {
       HarvestTrainArmy();
-    }else{
+    } else {
       //     self.fsm_:doEvent("reset")
     }
-  }else{
+  } else {
     HarvestRes();
   }
 }
 
-void IBuilding::HarvestTrainArmy(){
- 
+void IBuilding::HarvestTrainArmy() {
   auto l_BuildingId = GetBuildingId();
-  GBase::PlaySound("trainsoilder"/**, l_BuildingId*/);
-  if(l_BuildingId == EBuilding::Blacksmith)
+  GBase::PlaySound("trainsoilder" /**, l_BuildingId*/);
+  if (l_BuildingId == EBuilding::Blacksmith)
     GBase::DGetEquip();
   else if (l_BuildingId == EBuilding::MaterialWorkShop)
     StuffWorkshopCtrl::Get()->SendGetStuff();
-  else{
-    if(l_BuildingId == EBuilding::Stable 
-    || l_BuildingId == EBuilding::TargetRange
-    || l_BuildingId == EBuilding::Barrack
-    || l_BuildingId == EBuilding::Fortress
-    || l_BuildingId == EBuilding::ChariotPlant
-    || l_BuildingId == EBuilding::ElitePalace /**and worldMapDefine.isInWarForbidSoldier() */)
+  else {
+    if (l_BuildingId == EBuilding::Stable || l_BuildingId == EBuilding::TargetRange || l_BuildingId == EBuilding::Barrack ||
+        l_BuildingId == EBuilding::Fortress || l_BuildingId == EBuilding::ChariotPlant ||
+        l_BuildingId == EBuilding::ElitePalace /**and worldMapDefine.isInWarForbidSoldier() */)
       return;
     ArmyCtrl::Get()->GetTrainArmyReq(l_BuildingId);
   }
 }
 
-void IBuilding::HarvestRes(){
-  
+void IBuilding::HarvestRes() {
   auto l_BuildingId = GetBuildingId();
   auto l_BuildingIndex = GetBuildingIndex();
   auto l_BuildingPlace = GBase::DGetBuildingTypeByIndex(l_BuildingIndex);
-  if(l_BuildingPlace != EBuildingPlace::Inner){
+  if (l_BuildingPlace != EBuildingPlace::Inner) {
     std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
     l_ABuildingMsg->BuildingIndex = l_BuildingIndex;
     l_ABuildingMsg->BuildingNode = this;
-    getEventDispatcher()->dispatchCustomEvent(
-      "MESSAGE_MAINCITYVIEW_ADD_HARVEST_FLOATING",
-      l_ABuildingMsg.get()
-    );
+    getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_HARVEST_FLOATING", l_ABuildingMsg.get());
     SetHarvestState(EHarvestState::None, false);
   }
 
-  GBase::PlaySound("trainsoilder"/*, l_BuildingId*/);
+  GBase::PlaySound("trainsoilder" /*, l_BuildingId*/);
   CityCtrl::Get()->CollectResReq(l_BuildingId, l_BuildingIndex);
   // self.fsm_:doEvent("reset")
   // if self.turnToNormalView then
@@ -859,130 +754,102 @@ void IBuilding::HarvestRes(){
   // end
 }
 
-void IBuilding::HarvestBatchRes(){
+void IBuilding::HarvestBatchRes() {
   std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
   l_ABuildingMsg->BuildingIndex = GetBuildingIndex();
   l_ABuildingMsg->BuildingNode = this;
-  getEventDispatcher()->dispatchCustomEvent(
-    "MESSAGE_MAINCITYVIEW_COLLECT_BATCH_RES",
-    l_ABuildingMsg.get()
-  );
+  getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_COLLECT_BATCH_RES", l_ABuildingMsg.get());
 }
 
-bool IBuilding::CanHarvestBatchRes(){
-  if(GetBuildingId() == EBuilding::Farm)
-    return true;
-  if(GetBuildingId() == EBuilding::LumberMill)
-    return true;
-  if(GetBuildingId() == EBuilding::IronMine)
-    return true;
-  if(GetBuildingId() == EBuilding::SilverMine)
-    return true;
-  if(GetBuildingId() == EBuilding::CrystalMine)
-    return true;
+bool IBuilding::CanHarvestBatchRes() {
+  if (GetBuildingId() == EBuilding::Farm) return true;
+  if (GetBuildingId() == EBuilding::LumberMill) return true;
+  if (GetBuildingId() == EBuilding::IronMine) return true;
+  if (GetBuildingId() == EBuilding::SilverMine) return true;
+  if (GetBuildingId() == EBuilding::CrystalMine) return true;
   return false;
 }
 
-void IBuilding::BuildButtonCallFun(Touch* p_Touch, Event* p_Event, ETouchEventType p_Type){
+void IBuilding::BuildButtonCallFun(Touch* p_Touch, Event* p_Event, ETouchEventType p_Type) {
   auto l_ABuildingMsg = std::make_unique<ABuildingTouchMsg>();
   l_ABuildingMsg->BuildingIndex = GetBuildingIndex();
   l_ABuildingMsg->BuildingNode = this;
   l_ABuildingMsg->TouchEvent = p_Event;
   l_ABuildingMsg->TouchEventType = p_Type;
-  if(p_Type == ETouchEventType::Begin){
-    getEventDispatcher()->dispatchCustomEvent(
-      "MESSAGE_MAINCITYVIEW_BUILDING_BUTTON_TOUCH_BEGIN",
-      l_ABuildingMsg.get()
-    );
-  }else if(p_Type == ETouchEventType::End){
-    if(m_SingleIsMoved){
+  if (p_Type == ETouchEventType::Begin) {
+    getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_BUILDING_BUTTON_TOUCH_BEGIN", l_ABuildingMsg.get());
+  } else if (p_Type == ETouchEventType::End) {
+    if (m_SingleIsMoved) {
       l_ABuildingMsg->TouchEventType = ETouchEventType::Cancel;
-      getEventDispatcher()->dispatchCustomEvent(
-        "MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT",
-        l_ABuildingMsg.get()
-      );
+      getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT", l_ABuildingMsg.get());
       return;
     }
     m_SingleIsMoved = false;
-    getEventDispatcher()->dispatchCustomEvent(
-      "MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT",
-      l_ABuildingMsg.get()
-    );
-  } else if(p_Type == ETouchEventType::Move){
+    getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT", l_ABuildingMsg.get());
+  } else if (p_Type == ETouchEventType::Move) {
     auto l_TouchBeganPoint = p_Touch->getStartLocation();
     auto l_TouchMovePoint = p_Touch->getLocation();
     auto l_Distance = l_TouchBeganPoint.getDistance(l_TouchMovePoint);
-    if(l_Distance > TOUCH_MOVED_ERROR_VALUE){
+    if (l_Distance > TOUCH_MOVED_ERROR_VALUE) {
       m_SingleIsMoved = true;
     }
-  }else if(p_Type == ETouchEventType::Cancel){
-    getEventDispatcher()->dispatchCustomEvent(
-      "MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT",
-      l_ABuildingMsg.get()
-    );
+  } else if (p_Type == ETouchEventType::Cancel) {
+    getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT", l_ABuildingMsg.get());
     m_SingleIsMoved = false;
   }
 }
 
-void IBuilding::ShowLock(){
-  if(!n_ImgLock)
-    return;
+void IBuilding::ShowLock() {
+  if (!n_ImgLock) return;
   n_ImgLock->setVisible(true);
 }
 
-void IBuilding::HideLock(){
-  if(!n_ImgLock)
-    return;
+void IBuilding::HideLock() {
+  if (!n_ImgLock) return;
   n_ImgLock->setVisible(false);
 }
 
-bool IBuilding::IsLockVisible(){
+bool IBuilding::IsLockVisible() {
   auto l_IsLockVisible = false;
-  if(GetBuildingId() != EBuilding::CrystalMine)
-    return l_IsLockVisible;
+  if (GetBuildingId() != EBuilding::CrystalMine) return l_IsLockVisible;
   auto l_BuildingCell = CityCtrl::Get()->GetBuildingCell(EBuilding::Castle, EBuildingIndex::None);
-  if(!l_BuildingCell)
-    return l_IsLockVisible;
-  if(l_BuildingCell->Info.buildingLvl < 30)
-    l_IsLockVisible = true;
+  if (l_BuildingCell->_Info.buildingLvl < 30) l_IsLockVisible = true;
   return l_IsLockVisible;
 }
 
-bool IBuilding::IsLocked(){
+bool IBuilding::IsLocked() {
   bool l_IsLocked = false;
   auto l_BuildingId = GetBuildingId();
   auto l_BuildingCell = CityCtrl::Get()->GetBuildingCell(EBuilding::Castle, EBuildingIndex::None);
-  if(!l_BuildingCell)
-    return l_IsLocked;
-  auto l_CastleLv = l_BuildingCell->Info.buildingLvl;
+  auto l_CastleLv = l_BuildingCell->_Info.buildingLvl;
 
-  if(l_BuildingId == EBuilding::ArrowTower){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
+  if (l_BuildingId == EBuilding::ArrowTower) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
       l_IsLocked = false;
     else
       l_IsLocked = true;
-  } else if(l_BuildingId == EBuilding::Blacksmith){
-     if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl10)
+  } else if (l_BuildingId == EBuilding::Blacksmith) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl10)
       l_IsLocked = false;
     else
       l_IsLocked = true;
-  } else if(l_BuildingId == EBuilding::MaterialWorkShop){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl10)
+  } else if (l_BuildingId == EBuilding::MaterialWorkShop) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl10)
       l_IsLocked = false;
     else
       l_IsLocked = true;
-  } else if(l_BuildingId == EBuilding::PetHouse){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl4)
+  } else if (l_BuildingId == EBuilding::PetHouse) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl4)
       l_IsLocked = false;
     else
       l_IsLocked = true;
-  }else if(l_BuildingId == EBuilding::ElitePalace){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl16)
+  } else if (l_BuildingId == EBuilding::ElitePalace) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl16)
       l_IsLocked = false;
     else
       l_IsLocked = true;
-  } else if(l_BuildingId == EBuilding::TrainHall){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
+  } else if (l_BuildingId == EBuilding::TrainHall) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
       l_IsLocked = false;
     else
       l_IsLocked = true;
@@ -1000,24 +867,25 @@ bool IBuilding::IsLocked(){
   //   else
   //     isLocked = true
   //   end
-  //   print("\231\186\170\229\191\181\231\162\145\239\188\140\233\156\128\232\166\129\229\159\142\229\160\16119\231\186\167\232\167\163\233\148\129===", castleLv, CASTLE_LV19_LIMITED, isLocked)
-  else if(l_BuildingId == EBuilding::Prison){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl16)
+  //   print("\231\186\170\229\191\181\231\162\145\239\188\140\233\156\128\232\166\129\229\159\142\229\160\16119\231\186\167\232\167\163\233\148\129===",
+  //   castleLv, CASTLE_LV19_LIMITED, isLocked)
+  else if (l_BuildingId == EBuilding::Prison) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl16)
       l_IsLocked = false;
     else
       l_IsLocked = true;
-  } else if( l_BuildingId == EBuilding::EpicBattle){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
+  } else if (l_BuildingId == EBuilding::EpicBattle) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl7)
       l_IsLocked = false;
     else
       l_IsLocked = true;
-  } else if(l_BuildingId == EBuilding::Monument){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl6)
+  } else if (l_BuildingId == EBuilding::Monument) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl6)
       l_IsLocked = false;
     else
       l_IsLocked = true;
-  } else if(l_BuildingId == EBuilding::ResurrectionHall){
-    if(l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl6)
+  } else if (l_BuildingId == EBuilding::ResurrectionHall) {
+    if (l_CastleLv >= (int32)GBase::Const::Get()->CastleLvl6)
       l_IsLocked = false;
     else
       l_IsLocked = true;
@@ -1029,7 +897,7 @@ bool IBuilding::IsLocked(){
     //       isLocked = true
     //     end
     //   end
-  } else if(l_BuildingId == EBuilding::CrystalMine){
+  } else if (l_BuildingId == EBuilding::CrystalMine) {
     //   local castleLv = tonumber(buildCell.info.lv)
     //   local isShowWarLv, textLv = SoraDGetBuildWarLv(castleLv)
     //   print("isShowWarLv = ", isShowWarLv, ", textLv = ", textLv)
@@ -1038,124 +906,118 @@ bool IBuilding::IsLocked(){
     //   else
     //     isLocked = false
     //   end
-  }  
+  }
   return l_IsLocked;
 }
 
-void IBuilding::UpdateIsLock(){
-//   function cityBuildBaseEntity:updateIsLock()
-//   local bid = self:getBuildBid()
-//   local checkLockVisible = {
-//     BUILDID.CRYSTAL_MINE
-//   }
-//   local isNeedCheckVisible = false
-//   for i = 1, #checkLockVisible do
-//     if checkLockVisible[i] == bid then
-//       isNeedCheckVisible = true
-//       break
-//     end
-//   end
-//   if isNeedCheckVisible then
-//     if self:getIsLockVisible() then
-//       self:setVisible(false)
-//       return
-//     else
-//       self:setVisible(true)
-//     end
-//   end
-//   if bid == BUILDID.TURRET then
-//     local isLocked = self:getIsLocked()
-//     if isLocked then
-//       if self.showLock then
-//         self:showLock()
-//       end
-//     else
-//       if self.hideLock then
-//         self:hideLock()
-//       end
-//       self:showBuildLv()
-//     end
-//   end
-//   local checkLockTb = {
-//     BUILDID.BLACK_SMITH,
-//     BUILDID.MATERIAL_WORKSHOP,
-//     cityBuildConstDef.fixedBuildDef.PetCenter,
-//     BUILDID.ELITE_PALACE,
-//     cityBuildConstDef.fixedBuildDef.ResurrectionHall,
-//     BUILDID.CRYSTAL_MINE,
-//     cityBuildConstDef.fixedBuildDef.EpicBattle,
-//     BUILDID.HERO_TRAIN_GROUND,
-//     BUILDID.HERO_PRISON,
-//     BUILDID.MONUMENT,
-//     cityBuildConstDef.fixedBuildDef.Mastery
-//   }
-//   local isNeedCheck = false
-//   for i = 1, #checkLockTb do
-//     if checkLockTb[i] == bid then
-//       isNeedCheck = true
-//       break
-//     end
-//   end
-//   if isNeedCheck then
-//     local isLocked = self:getIsLocked()
-//     if isLocked then
-//       if self.showBuildLock then
-//         self:showBuildLock()
-//       end
-//     else
-//       if self.hideBuildLock then
-//         self:hideBuildLock()
-//       end
-//       local isNeedRefreshHarvestEffect = false
-//       local checkHarvestTb = {
-//         BUILDID.CRYSTAL_MINE
-//       }
-//       for i, v in ipairs(checkHarvestTb) do
-//         if bid == v then
-//           isNeedRefreshHarvestEffect = true
-//           break
-//         end
-//       end
-//       if isNeedRefreshHarvestEffect then
-//         SoraDSendMessage({
-//           msg = "MESSAGE_MAINCITY_UPDATE_HARVEST_EFFECT"
-//         })
-//       end
-//     end
-//   end
-// end
+void IBuilding::UpdateIsLock() {
+  //   function cityBuildBaseEntity:updateIsLock()
+  //   local bid = self:getBuildBid()
+  //   local checkLockVisible = {
+  //     BUILDID.CRYSTAL_MINE
+  //   }
+  //   local isNeedCheckVisible = false
+  //   for i = 1, #checkLockVisible do
+  //     if checkLockVisible[i] == bid then
+  //       isNeedCheckVisible = true
+  //       break
+  //     end
+  //   end
+  //   if isNeedCheckVisible then
+  //     if self:getIsLockVisible() then
+  //       self:setVisible(false)
+  //       return
+  //     else
+  //       self:setVisible(true)
+  //     end
+  //   end
+  //   if bid == BUILDID.TURRET then
+  //     local isLocked = self:getIsLocked()
+  //     if isLocked then
+  //       if self.showLock then
+  //         self:showLock()
+  //       end
+  //     else
+  //       if self.hideLock then
+  //         self:hideLock()
+  //       end
+  //       self:showBuildLv()
+  //     end
+  //   end
+  //   local checkLockTb = {
+  //     BUILDID.BLACK_SMITH,
+  //     BUILDID.MATERIAL_WORKSHOP,
+  //     cityBuildConstDef.fixedBuildDef.PetCenter,
+  //     BUILDID.ELITE_PALACE,
+  //     cityBuildConstDef.fixedBuildDef.ResurrectionHall,
+  //     BUILDID.CRYSTAL_MINE,
+  //     cityBuildConstDef.fixedBuildDef.EpicBattle,
+  //     BUILDID.HERO_TRAIN_GROUND,
+  //     BUILDID.HERO_PRISON,
+  //     BUILDID.MONUMENT,
+  //     cityBuildConstDef.fixedBuildDef.Mastery
+  //   }
+  //   local isNeedCheck = false
+  //   for i = 1, #checkLockTb do
+  //     if checkLockTb[i] == bid then
+  //       isNeedCheck = true
+  //       break
+  //     end
+  //   end
+  //   if isNeedCheck then
+  //     local isLocked = self:getIsLocked()
+  //     if isLocked then
+  //       if self.showBuildLock then
+  //         self:showBuildLock()
+  //       end
+  //     else
+  //       if self.hideBuildLock then
+  //         self:hideBuildLock()
+  //       end
+  //       local isNeedRefreshHarvestEffect = false
+  //       local checkHarvestTb = {
+  //         BUILDID.CRYSTAL_MINE
+  //       }
+  //       for i, v in ipairs(checkHarvestTb) do
+  //         if bid == v then
+  //           isNeedRefreshHarvestEffect = true
+  //           break
+  //         end
+  //       end
+  //       if isNeedRefreshHarvestEffect then
+  //         SoraDSendMessage({
+  //           msg = "MESSAGE_MAINCITY_UPDATE_HARVEST_EFFECT"
+  //         })
+  //       end
+  //     end
+  //   end
+  // end
 }
 
-bool IBuilding::HasAnyAllianceHelpList(){
+bool IBuilding::HasAnyAllianceHelpList() {
   auto l_Has = false;
   auto l_BuildingId = GetBuildingId();
-  if(l_BuildingId != EBuilding::Embassy)
-    return l_Has;
+  if (l_BuildingId != EBuilding::Embassy) return l_Has;
   return GuildHelp::Get()->IsCanHelp();
 }
 
-void IBuilding::UpdateAllianceHelpList(){
-
-  if(GetBuildingId() != EBuilding::Embassy)
-    return;
+void IBuilding::UpdateAllianceHelpList() {
+  if (GetBuildingId() != EBuilding::Embassy) return;
   auto l_IsCanHelp = GuildHelp::Get()->IsCanHelp();
   auto l_BuildingState = GetState();
-  if(l_IsCanHelp){
-    if(l_BuildingState == EBuildingState::None)
-      ShowTopTip();
-  } else if (l_BuildingState == EBuildingState::None){
+  if (l_IsCanHelp) {
+    if (l_BuildingState == EBuildingState::None) ShowTopTip();
+  } else if (l_BuildingState == EBuildingState::None) {
     HideTopTip();
   }
 }
 
-bool IBuilding::AllianceHelpAll(){
+bool IBuilding::AllianceHelpAll() {
   GuildHelp::Get()->ReqHelpAll();
   return true;
 }
 
-
-
-void IBuilding::UpdateIsCanUpgradeStar(){
+void IBuilding::UpdateIsCanUpgradeStar() {
   /*local bid = self:getBuildBid()
   local iid = self:getIid()
   if bid == 0 then
@@ -1184,40 +1046,36 @@ void IBuilding::UpdateIsCanUpgradeStar(){
   SetIsCanUpgradeStar(true);
 }
 
-void IBuilding::HideBuildLvl(){}
+void IBuilding::HideBuildLvl() {}
 
-void IBuilding::UpdateTextLvl(){
+void IBuilding::UpdateTextLvl() {
   auto l_BuildingLvl = GetBuildingLvl();
-  if(GetState() == EBuildingState::Building && l_BuildingLvl == 1){
+  if (GetState() == EBuildingState::Building && l_BuildingLvl == 1) {
     SetTextLvl(std::to_string(0));
     return;
   }
   auto l_StarLvl = GetStarLvl();
   auto l_Textvl = GBase::DGetBuildWarLv(l_BuildingLvl);
-  if(l_StarLvl > 0){
+  if (l_StarLvl > 0) {
     SetTextLvl(StringUtils::format("%d-%d", l_Textvl.First, std::to_string(l_StarLvl)));
-  }else{
+  } else {
     SetTextLvl(l_Textvl.First);
   }
 }
 
-
-void IBuilding::UpdateIsCanUpgrade(){
-  if(IsOpening())
-    return;
+void IBuilding::UpdateIsCanUpgrade() {
+  if (IsOpening()) return;
   auto l_IsCanUpgrade = BuildingLogic::Get()->IsShowUpgrade(m_BuildingIndex);
   SetIsCanUpgrade(l_IsCanUpgrade);
 }
 
-void IBuilding::SetIsCanUpgrade(bool p_IsCan){
+void IBuilding::SetIsCanUpgrade(bool p_IsCan) {
   m_IsCanUpgrade = p_IsCan;
-  if(m_IsCanUpgradeStar)
-    return;
-  if(!n_UpgradeSprite)
-    return;
-  if(m_IsCanUpgrade)
+  if (m_IsCanUpgradeStar) return;
+  if (!n_UpgradeSprite) return;
+  if (m_IsCanUpgrade)
     n_UpgradeSprite->setVisible(true);
-  else 
+  else
     n_UpgradeSprite->setVisible(false);
 };
 
@@ -1329,3 +1187,24 @@ const GHashMap<EBuilding, uint32> IBuilding::m_SearchBoostToolTable = {
 void IBuilding::setBuildingUnitData(RCityBuildingUnit& _CBUD) { Info = _CBUD; }
 
 void IBuilding::setBuildingBtn() {}
+
+void IBuilding::InitWithUIType() {
+  auto l_DefaultNode  = GDisplay::Get()->NewNode();
+  addChild(l_DefaultNode);
+  m_ViewNodes.n_Default = l_DefaultNode;
+}
+
+void IBuilding::InitWithUIType(RBuildingViewNodes p_ViewNodes, Vec2 p_BasePos) {
+    m_ViewNodes = p_ViewNodes;
+    m_BasePos = p_BasePos;
+}
+
+void IBuilding::LoadView(){
+  LoadBaseView();
+}
+void IBuilding::LoadBaseView(){
+  LoadBaseViewByBid(m_BID);
+}
+void IBuilding::LoadBaseViewByBid(EBuilding p_Bid){
+  
+}

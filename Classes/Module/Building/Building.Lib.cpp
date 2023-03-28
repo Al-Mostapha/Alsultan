@@ -7,6 +7,11 @@
 
 void BuildingLib::buildCity() {}
 
+BuildingLib *BuildingLib::Get(){
+  static auto l_Inst = new BuildingLib();
+  return l_Inst;
+}
+
 void BuildingLib::buildAt(const char* BuildingPlace) { EBuilding buildingType; }
 
 RCityBuildingUnit& BuildingLib::getBuildingAt(const char* BuildingPlace) {
@@ -136,3 +141,16 @@ GVector<RBuildingSpecs> BuildingLib::getCanBuildList(EBuilding p_BuildingType) {
 }
 
 bool BuildingLib::isCanBuild(EBuilding p_BuildingType) { return true; }
+
+
+EBuildingPlace BuildingLib::DGetBuildTypeByIndex(EBuildingIndex p_Building){
+  int32 l_BuildingPlace  = static_cast<int32>(p_Building);
+  if(l_BuildingPlace < 1100)  
+    return EBuildingPlace::Inner;
+    //TODO: this is trivial condiction look to next condition
+  if(l_BuildingPlace > 30000)
+    return EBuildingPlace::Inner;
+  if(l_BuildingPlace > 1200) // this also greater the 30k
+    return EBuildingPlace::Inner;
+  return EBuildingPlace::Outer;
+}

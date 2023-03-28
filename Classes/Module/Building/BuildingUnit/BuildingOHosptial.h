@@ -19,6 +19,7 @@ public:
 	void ShowAnimWorking();
 	void ShowNormalParticle();
 	static void initBuilingData();
+  void InitWithUIType() override;
 	CREATE_FUNC(BuildingOHosptial);
 
 	/**

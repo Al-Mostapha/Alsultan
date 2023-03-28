@@ -147,15 +147,20 @@ void EffectMainUITop::LordSkillTransresEffect(){
 }
 
 ui::Button *EffectMainUITop::GoldPackage(){
-  // local button = ccui.Button:create("bg_transparent.png", "bg_transparent.png", "bg_transparent.png", ccui.TextureResType.plistType)
-  // button:setContentSize(cc.size(60, 52))
-  // button:ignoreContentAdaptWithSize(false)
-  // local btn_bg = display.newSprite("#icon_activity_gold_gift2.png")
-  // btn_bg:addTo(button, 1)
-  // btn_bg:setPosition(cc.p(button:getContentSize().width / 2, button:getContentSize().height / 2))
-  // button.btn_bg = btn_bg
-  // return button
-  return nullptr;
+  auto l_Button = ui::Button::create(
+    "bg_transparent.png", "bg_transparent.png",
+    "bg_transparent.png", ui::Widget::TextureResType::PLIST
+    );
+  l_Button->setContentSize(Size(60, 52));
+  l_Button->ignoreContentAdaptWithSize(false);
+  auto l_BtnBg = GDisplay::Get()->NewSprite("icon_activity_gold_gift2.png");
+  l_Button->addChild(l_BtnBg);
+  l_BtnBg->setPosition(Vec2(
+    l_Button->getContentSize().width/2,
+    l_Button->getContentSize().height/2
+  ));
+  l_BtnBg->setName("btn_bg");
+  return l_Button;
 }
 
 Node *EffectMainUITop::CombatantGift(){

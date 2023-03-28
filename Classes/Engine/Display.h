@@ -15,6 +15,17 @@ class GDisplay
 public:
     static GDisplay *Get(){
       static GDisplay *l_Instance = new GDisplay();
+
+      l_Instance->height = 960;
+      l_Instance->realSize = Director::getInstance()->getWinSize();
+      l_Instance->rheight = Director::getInstance()->getWinSize().height;
+      l_Instance->width = 640;
+      l_Instance->rwidth = Director::getInstance()->getWinSize().width;
+      l_Instance->cx = l_Instance->width/2;
+      l_Instance->cy = l_Instance->height/2;
+      l_Instance->rcx = l_Instance->rwidth/2;
+      l_Instance->rcy = l_Instance->rheight/2;
+
       return l_Instance;
     }
     static Node *NewNode(){
@@ -25,10 +36,10 @@ public:
     float cy;  //CenterY
     float rcy; //realCenterY
     float rcx; //realCenterY
-    float height;
-    float rheight;
-    float width;
-    float rwidth;
+    float height = 960;
+    float rheight = Director::getInstance()->getWinSize().width;
+    float width = 640;
+    float rwidth = Director::getInstance()->getWinSize().width;
     float ocy;
     float iPhoneXOffset = 0;
     float iPhoneXBottom = 0;

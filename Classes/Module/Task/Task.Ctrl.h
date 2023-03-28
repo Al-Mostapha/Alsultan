@@ -2,7 +2,7 @@
 #include "Include/IncludeBase.h"
 #include "Include/IncludeGlobal.h"
 #include "Task.Enum.h"
-#include "Task.Type.h"
+#include "ITask.h"
 
 
 class TaskCtrl{

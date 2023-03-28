@@ -349,7 +349,7 @@ struct RBuilding : public GStruct
 
 	bool bIsInnerBuilding;
 	bool bCanBuild;
-	GArray<RCityBtnAction> ActionBtnList;
+	GVector<RCityBtnAction> ActionBtnList;
 	struct
 	{
 		int32 x, y;

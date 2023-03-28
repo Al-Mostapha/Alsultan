@@ -4,6 +4,7 @@
 
 class BuildingLib {
   public:
+  static BuildingLib *Get();
   static GVector<EBuilding> getCityBuilding(int32 idCity);
   static void buildCity();
   static void buildAt(const char* p_BuildingPlace);
@@ -15,4 +16,5 @@ class BuildingLib {
   static GVector<RCityBuildingUnit> getBuildingResList();
   static GVector<RBuildingSpecs> getCanBuildList(EBuilding p_BuildingType);
   static bool isCanBuild(EBuilding p_BuildingType);
+  EBuildingPlace DGetBuildTypeByIndex(EBuildingIndex p_Building);
 };

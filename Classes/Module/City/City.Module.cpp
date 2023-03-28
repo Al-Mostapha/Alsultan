@@ -6,49 +6,49 @@
 
 void CityModule::showCityEffect()
 {
-  CitySceneEffect::showPyramidHonourBuildEffect();
-  CitySceneEffect::showPyramidBattleEffect();
+  EffectMainCityView::showPyramidHonourBuildEffect();
+  EffectMainCityView::showPyramidBattleEffect();
   Director::getInstance()->getRunningScene()->runAction(
       Sequence::create(
           DelayTime::create(3),
-          CallFunc::create([]() { CitySceneEffect::showFireWorks(500, 500); }),
+          CallFunc::create([]() { EffectMainCityView::showFireWorks(500, 500); }),
           nullptr));
   Director::getInstance()->getRunningScene()->runAction(
       Sequence::create(
           DelayTime::create(5),
           CallFunc::create([]()
-            { CitySceneEffect::showFinishEffect(
+            { EffectMainCityView::showFinishEffect(
               CityScene::getCityScene()->CityBuildingLayer->getChildByName("build_30006"),
               Vec2(5, 5));
             }),
           nullptr
       )
   );
-  CitySceneEffect::showWaterEffect();
-  CitySceneEffect::showXiyiAnimation();
-  CitySceneEffect::addActivityCentetNpc();
-  CitySceneEffect::addCastleGateNpc();
-  CitySceneEffect::addHarborWorker();
-  CitySceneEffect::addConquerGateAnimation();
-  CitySceneEffect::addSoldierGuard();
-  CitySceneEffect::showEagle();
+  EffectMainCityView::showWaterEffect();
+  EffectMainCityView::showXiyiAnimation();
+  EffectMainCityView::addActivityCentetNpc();
+  EffectMainCityView::addCastleGateNpc();
+  EffectMainCityView::addHarborWorker();
+  EffectMainCityView::addConquerGateAnimation();
+  EffectMainCityView::addSoldierGuard();
+  EffectMainCityView::showEagle();
   Director::getInstance()->getRunningScene()->runAction(
       Sequence::create(
           DelayTime::create(5),
           CallFunc::create([](){
-              CitySceneEffect::addBuildAnimBoostBottom(GString("build_1058"));
-              CitySceneEffect::addBuildAnimBoostBottom(GString("build_1059"));
-              CitySceneEffect::addHarvestEffect();
-              CitySceneEffect::addTouchParticle(Vec2(350, 350));
+              EffectMainCityView::addBuildAnimBoostBottom(GString("build_1058"));
+              EffectMainCityView::addBuildAnimBoostBottom(GString("build_1059"));
+              EffectMainCityView::addHarvestEffect();
+              EffectMainCityView::addTouchParticle(Vec2(350, 350));
             }),
           nullptr
       )
   );
-  CitySceneEffect::addHarvestEffect();
-  CitySceneEffect::addPortEffect();
-  CitySceneEffect::addMatouEffect();
-  CitySceneEffect::addWallEffect();
-  CitySceneEffect::cloudRunEffect();
+  EffectMainCityView::addHarvestEffect();
+  EffectMainCityView::addPortEffect();
+  EffectMainCityView::addMatouEffect();
+  EffectMainCityView::addWallEffect();
+  EffectMainCityView::cloudRunEffect();
 
   auto p = UICreateBuildingPanel::create();
   p->InitPanel();

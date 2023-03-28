@@ -1,0 +1,22 @@
+#pragma once
+
+enum class EExaltedPrivilege{
+  None = 0,
+  CONTACT_NUM_LIMIT = 1,
+  CONTACT_REMARKS = 2,
+  ARMY_COMPILE_LIMIT = 3,
+  TECHNOLOGY_QUEUE = 4,
+  SIGNATURE = 5,
+  HERO_TRIAL_SWEEP = 6,
+  EMOJI_STAMP = 7,
+  WAR_GEM_SET = 8,
+  EQUIPMENT_SET = 9,
+  LORD_SKILL_SET = 10,
+  ATTR_SET = 11,
+  WISH_RESOURCE = 12,
+  ANCHOR_ENTER_ROOM = 13,
+  ANCHOR_FREE_ITEM = 14,
+  HONOUR_PIIVILEGE = 15,
+  LORD_HEAD_PRIVILEGE = 16,
+  ExtraStarUpgradeQueueNun = 17
+};

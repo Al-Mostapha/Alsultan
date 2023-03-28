@@ -40,11 +40,12 @@ enum class EBuilding  {
   Monument = 303,
   StarBraveStatue = 304,
   LeisureHouse = 30001,
-  HIP = 30002,
+  HIP = 30002, // El tager El ageeb
   PetHouse = 30003,
   ResurrectionHall = 30004,
   ServiceCenter = 30005,
-  EpicBattle = 30006
+  EpicBattle = 30006,
+  Mastery = 30008
 };
 
 enum class EBuildingPlace { // inner / outter
@@ -53,14 +54,49 @@ enum class EBuildingPlace { // inner / outter
   None = 2
 };
 
+enum class ELockedArea{
+  AreaLock_1221 = 1221,
+  AreaLock_1222 = 1222,
+  AreaLock_1223 = 1223,
+  AreaLock_1224 = 1224
+};
+
 enum class EBuildingIndex { 
   None = 0,
+  Castle = 1050,
   ArrowTowerL = 1052,
   WallGate = 1053,
   ArrowTowerR = 1054,
   WatchTower = 1055,
   BehindArrowTowerR = 1065,
   BehindArrowTowerL = 1066,
+
+  MaterialWorkShop = 1151,
+  Crystal = 1152,
+  Gangkou = 2000,
+  Miracle = 1200,
+  ElitePalace = 1201,
+  MonumentRos = 1202,
+  Prison = 1203,
+  TrainHall = 1204,
+  StarBraveStatue = 1205,
+  NebulaHall = 1206,
+  Merchant = 20005,
+  TroopFlag = 20009,
+  LeisureCenter = 30001,
+  HuoChuang = 30002,
+  PetCenter = 30003,
+  ResurrectionHall = 30004,
+  ServiceCenter = 30005,
+  EpicBattle = 30006,
+  Monument = 30007,
+  Mastery = 30008,
+  CommandHall = 30009,
+  MagicLamp = 30010,
+  LockArea_1 = static_cast<int32>(ELockedArea::AreaLock_1221),
+  LockArea_2 = static_cast<int32>(ELockedArea::AreaLock_1222),
+  LockArea_3 = static_cast<int32>(ELockedArea::AreaLock_1223),
+  LockArea_4 = static_cast<int32>(ELockedArea::AreaLock_1224)
 };
 
 enum class EBuildingPos { CBPlace_None = 0, CBPlace_Fixed = 1, CBPlace_Inner = 2, CBPlace_Outer = 3 };
@@ -167,3 +203,11 @@ enum class EBuildingCastleModel{
   HOURGLASS = 53,
   ICEWOLF = 54
 };
+
+
+enum class EBuildingUIType{
+  None = 0,
+  UITypeAlone = 1,
+  UITypeRelyOn = 2
+};
+

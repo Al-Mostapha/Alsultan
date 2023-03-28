@@ -266,8 +266,8 @@ void UIMainBottom::Ctor() {
   
   auto l_MonthGift = GetMonthlyCard();
   bool l_HasGift = l_MonthGift[0];
-  bool l_HasBuy = l_MonthGift[0];
-  bool l_HasGot = l_MonthGift[0];
+  bool l_HasBuy = l_MonthGift[1];
+  bool l_HasGot = l_MonthGift[2];
   if(l_HasGift && !l_HasBuy && !GBase::Const::Get()->IsArClient)
     AddMonthCardButton();
   
@@ -348,55 +348,6 @@ void UIMainBottom::InitHalloweenShineEffect() {
 }
 
 void UIMainBottom::InitStyle() {
-  // local param = {
-  //   [gMainUIStype.EASTER] = {
-  //     top = "mainUI_style_easter",
-  //     spine = {
-  //       skel = "spine/yezi.skel",
-  //       atlas = "spine/yezi.atlas"
-  //     }
-  //   },
-  //   [gMainUIStype.HALLOWEEN] = {
-  //     top = "mainUI_style_halloween"
-  //   },
-  //   [gMainUIStype.CHRITMAS] = {
-  //     top = "mainUI_style_chritmas"
-  //   },
-  //   [gMainUIStype.QUICKSAND] = {
-  //     top = "mainUI_style_ztsz_top",
-  //     bg = "mainUI_style_ztsz",
-  //     act = "Node_Effect_liusha2",
-  //     actPos = cc.p(320, 30)
-  //   },
-  //   [gMainUIStype.ROSNORMAL] = {}
-  // }
-  // local cfg = param[GLOBAL_MAINUI_STYLE] or param[gMainUIStype.QUICKSAND]
-  // if cfg.top then
-  //   local topNode = SoraDCreatAnimation(cfg.top, nil, cfg.isLoop or false)
-  //   if GLOBAL_MAINUI_STYLE == gMainUIStype.HALLOWEEN then
-  //     topNode:addTo(self.Node_style_bg)
-  //     self:initHalloweenShineEffect()
-  //   else
-  //     topNode:addTo(self.Node_style_top)
-  //   end
-  //   if cfg.spine then
-  //     local Node_spine = SoraDGetChildByName(topNode, "Node_spine")
-  //     local spine = sp.SkeletonAnimation:create(cfg.spine.skel, cfg.spine.atlas, 1)
-  //     spine:setAnimation(0, "animation", true)
-  //     spine:addTo(Node_spine)
-  //   end
-  // end
-  // if cfg.bg then
-  //   local topNode = SoraDCreatAnimation(cfg.bg, nil, cfg.isLoop or false)
-  //   topNode:addTo(self.Node_style_bg)
-  // end
-  // if cfg.act then
-  //   local actNode = SoraDCreatAnimation(cfg.act, nil, true)
-  //   actNode:setPosition(cfg.actPos)
-  //   actNode:addTo(self.Node_area_b, 999)
-  //   actNode:setName("actNode_style")
-  // end
-
   auto l_Style = GGlobal::Get()->MainUIStyle;
   if(l_Style == EMainUIStyle::None)
     l_Style = EMainUIStyle::QuickSand;
@@ -876,7 +827,7 @@ GVector<bool> UIMainBottom::GetMonthlyCard() {
   //   end
   // end
   // return hasGift, hasBuy, hasGot
-  return GVector<bool>();
+  return {false, false, false};
 }
 
 void UIMainBottom::AddQuestionnaireButton(int32 p_Num) {

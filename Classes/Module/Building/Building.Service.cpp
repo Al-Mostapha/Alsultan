@@ -4,6 +4,7 @@
 #include "Module/Net/NetBase.Module.h"
 #include "Module/Player/Player.Static.h"
 #include "Scene/CityScene.h"
+#include "Module/City/CityBuilding/City.LtCtrl.h"
 
 void BuildingService::fetchCityBuilding(int32 idCity) {
   NetBaseModule::getJson("/api/CityBuilding/fetchCityBuilding", [](GJson* json) {
@@ -41,7 +42,10 @@ void BuildingService::fetchBuildingInfo() {
         jsonObject->CopyFrom(it->value, jsonObject->GetAllocator());
         BuildingStatic::BuildingInfo[l_BuildingType] = RBuildingSpecs::fromJson(jsonObject);
       }
+      CityLtCtrl::Get()->Init();
     } else
       cocos2d::log("Error Fetching fetchBuildingInfo From Server ....");
   });
 }
+
+

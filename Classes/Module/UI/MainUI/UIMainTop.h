@@ -6,7 +6,7 @@
 #include "Module/UI/Common/Label/UICommonScoreLabel.h"
 #include "Module/UI/Common/Timer/UITimerLabel.h"
 #include "Module/UI/Common/Label/UIHtmlRichText.h"
-#include "Module/UI/MainUI/UIBuilderIcon.h"
+#include "Module/UI/MainUI/City/UIBuilderIcon.h"
 #include "Module/UI/MainUI/UIMarchingTroops.h"
 #include "Module/UI/MainUI/UICommonGoldTop.h"
 #include "Module/UI/MainUI/UICommonResourcesMenu.h"

@@ -103,3 +103,10 @@ void BuildingOFarm::ShowWorkDone(){
   ShowTopTip();
 }
 
+
+
+void BuildingOFarm::InitWithUIType(){
+  auto l_BatchNodeOuterBuilds = GDisplay::Get()->NewNode();
+  addChild(l_BatchNodeOuterBuilds, 0);
+  m_ViewNodes.n_MainCityOuter = l_BatchNodeOuterBuilds;
+}

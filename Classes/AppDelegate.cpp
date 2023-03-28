@@ -116,9 +116,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     register_all_packages();
     GEngine::Get()->Init();
     // create a scene. it's an autorelease object
-    // auto scene = CityScene::createScene();
+    auto scene = CityScene::createScene();
     //auto scene = InitScene::createScene();
-    auto scene = LoginScene::Create();
+    //auto scene = LoginScene::Create();
     // run
     director->runWithScene(scene);
 

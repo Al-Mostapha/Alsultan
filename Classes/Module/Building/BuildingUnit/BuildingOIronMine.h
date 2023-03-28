@@ -19,6 +19,7 @@ public:
 	void ShowAnimWorking();
   void ShowWorkDone() override;
 	static void initBuilingData();
+  void InitWithUIType() override;
 	CREATE_FUNC(BuildingOIronMine);
 
 	/**

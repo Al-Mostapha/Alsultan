@@ -4,13 +4,13 @@
 #include "Base/Containers/HashMap.h"
 #include "Module/Building/Building.Enum.h"
 #include "CityScene.Enum.h"
-#include "CityScene.View.h"
 #include "CityScene.Const.h"
+#include "Module/City/CityBuilding/CityBuilding.Type.h"
 
-
-class MainCityCreate : public MainCityView{
+class MainCityCreate{
   GHashMap<ECityTargetGroupID, Vector<Node*>> m_CityGroupNode;
 public:
+  class MainCityView *n_MainCityView;
   //    self.isNeedFirstFight = mainCity:getIsNeedFirstFight()
   float m_MinScale = 0.6f;
   float m_MinLimitScale = 0.5f;
@@ -60,15 +60,15 @@ public:
   uint32 m_CurrentSelectMoveModeIndex = 0;
   uint32 m_AfterSelectMoveModeIndex = 0;
   uint32 m_CurrentSelectMoveModeType = 0;
-  GArray<ui::Button *> n_CurrentMoveBtnArray;
-  GArray<Node *> n_CurrentTopTipArray;
+  GVector<ui::Button *> n_CurrentMoveBtnArray;
+  GVector<Node *> n_CurrentTopTipArray;
   bool m_IsOnCollectMode = false;
   bool m_HasCommunityCenterMsg = false;
   bool m_HasConquerGateMsg = false;
   bool m_IsBuildBtnEnable = true;
   bool m_IsShowDark = false;
   uint32 m_CurrentDayPeriod = 0;
-  GArray<class IBuilding *> n_CollectBuilds;
+  GVector<class IBuilding *> n_CollectBuilds;
   bool m_IsCfgNightOn = false; //SoraDConfigGet("Game:GameOptionsView:nightSwitch~bool")
   // local factionCtrl = SoraDGetCtrl("factionCtrl")
   // local cfg = factionCtrl:getFactionMainCityCfg()
@@ -116,9 +116,10 @@ public:
   ui::Layout *n_ButtonServiceCenter = nullptr;
   ui::Layout *n_BtnHuoChuang    = nullptr;
   ui::Layout *n_BtnPetCenter    = nullptr;
-
-public: 
   void Ctor();
+public:
+  static MainCityCreate *Create(class MainCityView *p_MainCity); 
+  
   static Vec2 GetTotalPos(Node * p_Node);
   static Vec2 CaculateOffset(float p_Ratio, Vec2 p_OriPos);
   void ViewOnClick(Ref* p_Ref, ui::Widget::TouchEventType p_Type);
@@ -126,7 +127,6 @@ public:
   void CreateFightBatchNodes();
   void InitBufferNodeArray();
   void InitBuild();
-  void ReArrangeZorder();
   void InitMainCityPos();
   void AddWaterFallEffect();
   void AddPetFlyBird();
@@ -138,11 +138,10 @@ public:
   void KipchaksButtonCallFun(ui::Widget *p_Build, Ref * p_Ref, ui::Widget::TouchEventType p_Touch){}
   void KipchaksUpdate(){}
   void OtherBuildButtonCallFun(ui::Widget *p_Build, Ref * p_Ref, ui::Widget::TouchEventType p_Touch){}
-  ui::Layout *GetBufferNodeByName(const char *p_NodeName){ return nullptr; }
 private:
   void CreateGroupNode(ECityTargetGroupID p_GroupId, int32 p_ZOrder);
   void ShowFirstEnter();
-  void UpdatePeriod();
+
   void InitWithBuildData();
   void InitWithHuoChuangData();
   void InitMatouData();
@@ -157,4 +156,5 @@ private:
   void CheckEpicWar();
   void CheckPromoteArmy();
   void CheckMastery();
+  IBuilding *CreateBuildByCfgId(EBuilding p_Building, RBuildingCfgItem p_BuildingConf); 
 };

@@ -1,24 +1,27 @@
 #include "Module/City/CitySceneEffect.h"
-#include "Scene/CityScene.h"
-#include "Module/Building/IBuilding.h"
-#include "Module/City/City.Const.h"
-#include "Module/Building/Building.Module.h"
-#include "Module/Building/Building.Lib.h"
 #include <cmath>
+#include "Module/Building/Building.Lib.h"
+#include "Module/Building/Building.Module.h"
+#include "Module/Building/IBuilding.h"
+#include "Scene/City/CityScene.Enum.h"
+#include "Scene/CityScene.h"
+
 // Sould be moved to main city View
-cocos2d::Sprite *CitySceneEffect::eagle = nullptr;
-cocos2d::Sprite *CitySceneEffect::eagleShadow = nullptr;
-cocos2d::Node *CitySceneEffect::eagleEffect = nullptr;
+cocos2d::Sprite* EffectMainCityView::eagle = nullptr;
+cocos2d::Sprite* EffectMainCityView::eagleShadow = nullptr;
+cocos2d::Node* EffectMainCityView::eagleEffect = nullptr;
 
-void CitySceneEffect::showPyramidHonourBuildEffect()
-{
+EffectMainCityView *EffectMainCityView::Get(){
+  static auto l_Inst = new EffectMainCityView();
+  return l_Inst;
+}
+
+void EffectMainCityView::showPyramidHonourBuildEffect() {
   auto CitySen = CityScene::getCityScene();
-  if (!CitySen)
-    return;
-  if (CitySen->getChildByName("et_node_pyramid_lion"))
-    CitySen->removeChildByName("et_node_pyramid_lion");
+  if (!CitySen) return;
+  if (CitySen->getChildByName("et_node_pyramid_lion")) CitySen->removeChildByName("et_node_pyramid_lion");
 
-  Node *EffectNode = Node::create();
+  Node* EffectNode = Node::create();
   EffectNode->setName("et_node_pyramid_lion");
   EffectNode->setPosition(4480, 2140);
 
@@ -33,14 +36,11 @@ void CitySceneEffect::showPyramidHonourBuildEffect()
   CitySen->CityBuildingLayer->addChild(EffectNode, 1500);
 }
 
-void CitySceneEffect::showPyramidBattleEffect()
-{
+void EffectMainCityView::showPyramidBattleEffect() {
   auto CitySen = CityScene::getCityScene();
-  if (!CitySen)
-    return;
-  if (CitySen->getChildByName("et_node_pyramid_battle"))
-    CitySen->removeChildByName("et_node_pyramid_battle");
-  Node *EffectNode = Node::create();
+  if (!CitySen) return;
+  if (CitySen->getChildByName("et_node_pyramid_battle")) CitySen->removeChildByName("et_node_pyramid_battle");
+  Node* EffectNode = Node::create();
   EffectNode->setName("et_node_pyramid_battle");
   EffectNode->setPosition(4917.5, 2160.5);
 
@@ -53,8 +53,7 @@ void CitySceneEffect::showPyramidBattleEffect()
   CitySen->CityBuildingLayer->addChild(EffectNode, 1500);
 }
 
-void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
-{
+void EffectMainCityView::showFireWorks(float xCoord, float yCoord) {
   float frames = 60.0;
   auto parent = Director::getInstance()->getRunningScene();
   auto dh_firework1 = Sprite::createWithSpriteFrameName("dh_gift_fire_03.png");
@@ -72,19 +71,17 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
   dh_firework3->setPosition(xCoord + 66.29f + 30, yCoord - 62);
   parent->addChild(dh_firework3, 9);
 
-  auto firework1 = [dh_firework1, frames]()
-  {
+  auto firework1 = [dh_firework1, frames]() {
     auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_07.plist", Vec2(0.2f, -1.87f), Vec2(1, 1), 0);
     auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_08.plist", Vec2(0.2f, -1.87f), Vec2(2, 2), 0);
     auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_09.plist", Vec2(0.2f, -1.87f), Vec2(3, 3), 0);
-    Sequence *actionSeq4 = Sequence::create(
-        DelayTime::create(25 / frames),
-        CallFunc::create([Part1, Part2, Part3](){
-          Part1->resetSystem(); 
-          Part2->resetSystem();
-          Part3->resetSystem(); 
-        }),
-        NULL);
+    Sequence* actionSeq4 = Sequence::create(DelayTime::create(25 / frames),
+                                            CallFunc::create([Part1, Part2, Part3]() {
+                                              Part1->resetSystem();
+                                              Part2->resetSystem();
+                                              Part3->resetSystem();
+                                            }),
+                                            NULL);
     Part1->runAction(DelayTime::create(25 / frames));
     Part2->runAction(DelayTime::create(25 / frames));
     Part3->runAction(DelayTime::create(20 / frames));
@@ -92,33 +89,29 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
     dh_firework1->addChild(Part2, 2);
     dh_firework1->addChild(Part3, 2);
   };
-  auto action1 = Spawn::create(
-      MoveBy::create(20 / frames, Vec2(0, Director::getInstance()->getVisibleOrigin().y + 220)),
-      FadeOut::create(21 / frames),
-      CallFunc::create(firework1),
-      nullptr);
+  auto action1 = Spawn::create(MoveBy::create(20 / frames, Vec2(0, Director::getInstance()->getVisibleOrigin().y + 220)),
+                               FadeOut::create(21 / frames),
+                               CallFunc::create(firework1),
+                               nullptr);
 
   dh_firework1->runAction(
-      RepeatForever::create(Sequence::create(
-          DelayTime::create(0.1f),
-          action1,
-          DelayTime::create(0.5),
-          CallFunc::create([dh_firework1]() { dh_firework1->removeFromParentAndCleanup(true); }),
-          nullptr)));
+          RepeatForever::create(Sequence::create(DelayTime::create(0.1f),
+                                                 action1,
+                                                 DelayTime::create(0.5),
+                                                 CallFunc::create([dh_firework1]() { dh_firework1->removeFromParentAndCleanup(true); }),
+                                                 nullptr)));
 
-  auto firework2 = [frames, dh_firework2]()
-  {
+  auto firework2 = [frames, dh_firework2]() {
     auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_01.plist", Vec2(0.2f, -1.87f), Vec2(1, 1), 0);
     auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_02.plist", Vec2(0.2f, -1.87f), Vec2(2, 2), 0);
     auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_03.plist", Vec2(0.2f, -1.87f), Vec2(5, 5), 0);
-    Sequence *actionSeq4 = Sequence::create(
-        DelayTime::create(25 / frames),
-        CallFunc::create([Part1, Part2, Part3](){
-            Part1->resetSystem(); 
-            Part2->resetSystem();
-            Part3->resetSystem();
-          }),
-        NULL);
+    Sequence* actionSeq4 = Sequence::create(DelayTime::create(25 / frames),
+                                            CallFunc::create([Part1, Part2, Part3]() {
+                                              Part1->resetSystem();
+                                              Part2->resetSystem();
+                                              Part3->resetSystem();
+                                            }),
+                                            NULL);
     Part1->runAction(DelayTime::create(25 / frames));
     Part2->runAction(DelayTime::create(25 / frames));
     Part3->runAction(DelayTime::create(20 / frames));
@@ -127,34 +120,24 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
     dh_firework2->addChild(Part3, 2);
   };
 
-  auto action2 = Spawn::create(
-      MoveBy::create(20 / frames, Vec2(0, Director::getInstance()->getVisibleOrigin().y + 220)),
-      FadeOut::create(21 / frames),
-      CallFunc::create(firework2),
-      nullptr);
-  dh_firework2->runAction(
-      Sequence::create(
-          action2,
-          DelayTime::create(0.5),
-          CallFunc::create([dh_firework2](){ 
-              dh_firework2->removeFromParentAndCleanup(true);
-            }),
-          nullptr));
+  auto action2 = Spawn::create(MoveBy::create(20 / frames, Vec2(0, Director::getInstance()->getVisibleOrigin().y + 220)),
+                               FadeOut::create(21 / frames),
+                               CallFunc::create(firework2),
+                               nullptr);
+  dh_firework2->runAction(Sequence::create(
+          action2, DelayTime::create(0.5), CallFunc::create([dh_firework2]() { dh_firework2->removeFromParentAndCleanup(true); }), nullptr));
 
-  auto firework3 = [dh_firework3, frames]()
-  {
+  auto firework3 = [dh_firework3, frames]() {
     auto Part1 = BaseCreate::createParticle("Particle/et_gift_fire_04.plist", Vec2(0.2f, -1.87f), Vec2(1, 1), 0);
     auto Part2 = BaseCreate::createParticle("Particle/et_gift_fire_05.plist", Vec2(0.2f, -1.87f), Vec2(2, 2), 0);
     auto Part3 = BaseCreate::createParticle("Particle/et_gift_fire_06.plist", Vec2(0.2f, -1.87f), Vec2(3, 3), 0);
-    Sequence *actionSeq4 = Sequence::create(
-        DelayTime::create(25 / frames),
-        CallFunc::create([Part1, Part2, Part3]()
-          {
-            Part1->resetSystem(); 
-            Part2->resetSystem();
-            Part3->resetSystem(); 
-          }),
-        NULL);
+    Sequence* actionSeq4 = Sequence::create(DelayTime::create(25 / frames),
+                                            CallFunc::create([Part1, Part2, Part3]() {
+                                              Part1->resetSystem();
+                                              Part2->resetSystem();
+                                              Part3->resetSystem();
+                                            }),
+                                            NULL);
     Part1->runAction(DelayTime::create(25.0f / frames));
     Part2->runAction(DelayTime::create(25.0f / frames));
     Part3->runAction(DelayTime::create(20.0f / frames));
@@ -163,24 +146,19 @@ void CitySceneEffect::showFireWorks(float xCoord, float yCoord)
     dh_firework3->addChild(Part3, 2);
   };
 
-  auto action3 = Spawn::create(
-      MoveBy::create(20 / frames, Vec2(0, Director::getInstance()->getVisibleOrigin().y + 220)),
-      FadeOut::create(21 / frames),
-      CallFunc::create(firework3),
-      nullptr);
+  auto action3 = Spawn::create(MoveBy::create(20 / frames, Vec2(0, Director::getInstance()->getVisibleOrigin().y + 220)),
+                               FadeOut::create(21 / frames),
+                               CallFunc::create(firework3),
+                               nullptr);
 
-  dh_firework3->runAction(
-      Sequence::create(
-          DelayTime::create(0.2f),
-          action3,
-          DelayTime::create(0.5),
-          CallFunc::create([dh_firework3]()
-                           { dh_firework3->removeFromParentAndCleanup(true); }),
-          nullptr));
+  dh_firework3->runAction(Sequence::create(DelayTime::create(0.2f),
+                                           action3,
+                                           DelayTime::create(0.5),
+                                           CallFunc::create([dh_firework3]() { dh_firework3->removeFromParentAndCleanup(true); }),
+                                           nullptr));
 }
 
-void CitySceneEffect::showWaterEffect()
-{
+void EffectMainCityView::showWaterEffect() {
   // local _shader = require(cfg.shader)
   // local _meshData = require(cfg.meshData)
   // local _param = require(cfg.param)
@@ -205,10 +183,8 @@ void CitySceneEffect::showWaterEffect()
   // if cfg.showRect then
   //   local drawNode = cc.DrawNode:create()
   //   drawNode:setPosition(0, 0)
-  //   drawNode:drawRect(cc.p(_meshData.bounds.minPos[1], _meshData.bounds.minPos[2]), cc.p(_meshData.bounds.maxPos[1], _meshData.bounds.maxPos[2]), cc.c4f(1, 0, 1, 1))
-  //   drawNode:addTo(effectNode)
-  //   drawNode:setLocalZOrder(999999)
-  //   drawNode:setName("effectNodeSize")
+  //   drawNode:drawRect(cc.p(_meshData.bounds.minPos[1], _meshData.bounds.minPos[2]), cc.p(_meshData.bounds.maxPos[1], _meshData.bounds.maxPos[2]),
+  //   cc.c4f(1, 0, 1, 1)) drawNode:addTo(effectNode) drawNode:setLocalZOrder(999999) drawNode:setName("effectNodeSize")
   // end
   // if not cfg.sliderPos then
   //   return
@@ -266,20 +242,17 @@ void CitySceneEffect::showWaterEffect()
   // end)
 }
 
-void CitySceneEffect::showFinishEffect(Node *nodeFrom, Vec2 posTo, bool isCollege, bool isToBag)
-{
+void EffectMainCityView::showFinishEffect(Node* nodeFrom, Vec2 posTo, bool isCollege, bool isToBag) {
   auto myPos = nodeFrom->convertToWorldSpace(posTo);
   float mutiple = 0.5;
   auto parent = Director::getInstance()->getRunningScene();
   auto powerPos = Vec2(Director::getInstance()->getVisibleOrigin().x, Director::getInstance()->getWinSize().height - 105);
-  if (isToBag)
-    powerPos = Vec2(440, 100);
+  if (isToBag) powerPos = Vec2(440, 100);
 
   auto spriteName = "et_yellow_xlwctx_display_01.png";
   auto plistPath = "Particle/et_yellow_xlwctx_display.plist";
   auto frameFormat = "et_yellow_xlwctx_display_%.2d.png";
-  if (isCollege)
-  {
+  if (isCollege) {
     spriteName = "et_orange_zhandouli_display_01.png";
     plistPath = "Particle/et_orange_zhandouli_display.plist";
     frameFormat = "et_orange_zhandouli_display_%.2d.png";
@@ -289,8 +262,7 @@ void CitySceneEffect::showFinishEffect(Node *nodeFrom, Vec2 posTo, bool isColleg
   parent->addChild(powerNode, 9);
   auto powerSprite = Sprite::createWithSpriteFrameName(spriteName);
   float rotation = (((atan((powerPos.y - myPos.y) / abs(powerPos.x - myPos.x))) * 180.0f) / M_PI) - 180.0f;
-  if (myPos.x < Director::getInstance()->getVisibleOrigin().x)
-    rotation = -180 - rotation;
+  if (myPos.x < Director::getInstance()->getVisibleOrigin().x) rotation = -180 - rotation;
   powerSprite->setRotation(rotation);
   powerNode->addChild(powerSprite);
   auto particle_power = BaseCreate::createParticle(plistPath, Vec2(110, 38), Vec2(1, 1), 180);
@@ -300,58 +272,44 @@ void CitySceneEffect::showFinishEffect(Node *nodeFrom, Vec2 posTo, bool isColleg
   auto animation = Animation::createWithSpriteFrames(frames, mutiple * 1 / 9);
   powerSprite->runAction(Animate::create(animation));
   auto seq = Sequence::create(
-      MoveTo::create(1 * mutiple, powerPos),
-      CallFunc::create([powerNode]() { powerNode->removeFromParentAndCleanup(true); }),
-      nullptr);
+          MoveTo::create(1 * mutiple, powerPos), CallFunc::create([powerNode]() { powerNode->removeFromParentAndCleanup(true); }), nullptr);
   powerNode->runAction(seq);
 }
 
-void CitySceneEffect::showXiyiAnimation()
-{
+void EffectMainCityView::showXiyiAnimation() {
   int32 xiyiSpeed = 50;
-  auto runXiyiAnimation = [xiyiSpeed](Sprite *s, Vec2 PosFrom, Vec2 PosTo, float rot, bool isFlippedX)
-  {
+  auto runXiyiAnimation = [xiyiSpeed](Sprite* s, Vec2 PosFrom, Vec2 PosTo, float rot, bool isFlippedX) {
     float distance = PosFrom.getDistance(PosTo);
     float dt = distance / xiyiSpeed;
-    auto callFunc1 = CallFunc::create([s, isFlippedX]()
-      {
-        auto Frames = BaseCreate::getAnimationFrames("xiyi_0%d.png", 1, 8);
-        auto animation = Animation::createWithSpriteFrames(Frames, .05f);
-        s->setFlippedX(isFlippedX);
-        auto forEver = RepeatForever::create(Animate::create(animation));
-        forEver->setTag(10);
-        s->runAction(forEver); 
-      });
-    MoveBy *moveBy1 = MoveBy::create(dt, PosTo - PosFrom);
-    auto callFunc2 = CallFunc::create([s, PosFrom](){
+    auto callFunc1 = CallFunc::create([s, isFlippedX]() {
+      auto Frames = BaseCreate::getAnimationFrames("xiyi_0%d.png", 1, 8);
+      auto animation = Animation::createWithSpriteFrames(Frames, .05f);
+      s->setFlippedX(isFlippedX);
+      auto forEver = RepeatForever::create(Animate::create(animation));
+      forEver->setTag(10);
+      s->runAction(forEver);
+    });
+    MoveBy* moveBy1 = MoveBy::create(dt, PosTo - PosFrom);
+    auto callFunc2 = CallFunc::create([s, PosFrom]() {
       auto fadeTo = FadeTo::create(0.3f, 0);
-      s->runAction(fadeTo); 
+      s->runAction(fadeTo);
     });
 
-    auto callFunReset = CallFunc::create([s, PosFrom]()
-      {
-        s->setPosition(PosFrom);
-        s->setOpacity(255);
-        s->setVisible(true);
-        s->stopActionByTag(10); 
-      });
+    auto callFunReset = CallFunc::create([s, PosFrom]() {
+      s->setPosition(PosFrom);
+      s->setOpacity(255);
+      s->setVisible(true);
+      s->stopActionByTag(10);
+    });
 
     auto delay = DelayTime::create(rand() % 5 + 3.0f);
-    s->runAction(
-        RepeatForever::create(
-            Sequence::create(
-                callFunc1,
-                moveBy1,
-                callFunc2,
-                delay,
-                callFunReset, nullptr)));
+    s->runAction(RepeatForever::create(Sequence::create(callFunc1, moveBy1, callFunc2, delay, callFunReset, nullptr)));
   };
-  CityScene *scene = CityScene::getCityScene();
-  if (!scene)
-    return;
-  Sprite *sprite_1 = Sprite::createWithSpriteFrameName("xiyi_01.png");
-  Sprite *sprite_2 = Sprite::createWithSpriteFrameName("xiyi_01.png");
-  Sprite *sprite_3 = Sprite::createWithSpriteFrameName("xiyi_01.png");
+  CityScene* scene = CityScene::getCityScene();
+  if (!scene) return;
+  Sprite* sprite_1 = Sprite::createWithSpriteFrameName("xiyi_01.png");
+  Sprite* sprite_2 = Sprite::createWithSpriteFrameName("xiyi_01.png");
+  Sprite* sprite_3 = Sprite::createWithSpriteFrameName("xiyi_01.png");
   scene->batchNodeXiyiNpc->addChild(sprite_1);
   scene->batchNodeXiyiNpc->addChild(sprite_2);
   scene->batchNodeXiyiNpc->addChild(sprite_3);
@@ -366,14 +324,13 @@ void CitySceneEffect::showXiyiAnimation()
   runXiyiAnimation(sprite_3, Vec2(4525, 497), Vec2(4800, 637), 0, false);
 }
 
-void CitySceneEffect::addActivityCentetNpc(){
+void EffectMainCityView::addActivityCentetNpc() {
   auto sprite = Sprite::createWithSpriteFrameName("funvxiaohai_01.png");
   auto scene = CityScene::getCityScene();
-  if(!scene)
-    return;
-  scene->CityBuildingLayer->addChild(sprite, static_cast<int32>(ECityTargetZOrder::xunluo));
+  if (!scene) return;
+  scene->CityBuildingLayer->addChild(sprite, ECityTargetZOrder::Get()->xunluo);
   sprite->setPosition(1842, 1786);
-  CallFunc* callFunc1 = CallFunc::create([sprite](){
+  CallFunc* callFunc1 = CallFunc::create([sprite]() {
     auto frames = BaseCreate::getAnimationFrames("funvxiaohai_0%d.png", 1, 8);
     Animation* animation = Animation::createWithSpriteFrames(frames, 0.175f);
     sprite->setFlippedX(false);
@@ -382,185 +339,148 @@ void CitySceneEffect::addActivityCentetNpc(){
     sprite->runAction(repeatForever);
   });
 
-  CallFunc* callFunc2 = CallFunc::create([sprite](){
+  CallFunc* callFunc2 = CallFunc::create([sprite]() {
     sprite->stopAllActionsByTag(20);
     sprite->setSpriteFrame("funvxiaohai_01.png");
   });
-  Sequence *actSeq = Sequence::create(
-    callFunc1,
-    DelayTime::create(2.8f),
-    callFunc2,
-    DelayTime::create(rand() % 4 + 2.0f),
-    nullptr
-  );
+  Sequence* actSeq = Sequence::create(callFunc1, DelayTime::create(2.8f), callFunc2, DelayTime::create(rand() % 4 + 2.0f), nullptr);
   sprite->runAction(RepeatForever::create(actSeq));
 }
 
-void CitySceneEffect::addCastleGateNpc(){
-
+void EffectMainCityView::addCastleGateNpc() {
   Sprite* sprite = Sprite::createWithSpriteFrameName("shiming_01.png");
   sprite->setScale(0.5);
-  sprite->setLocalZOrder(static_cast<int32>(ECityTargetZOrder::juying));
-  CityScene *scene = CityScene::getCityScene();
-  if(!scene)
-    return;
+  sprite->setLocalZOrder(ECityTargetZOrder::Get()->juying);
+  CityScene* scene = CityScene::getCityScene();
+  if (!scene) return;
   scene->CityBuildingLayer->addChild(sprite);
   sprite->setPosition(2200, 1762);
   auto Frames = BaseCreate::getAnimationFrames("shiming_%02d.png", 1, 16);
-  Animation *animation = Animation::createWithSpriteFrames(Frames, 0.125);
+  Animation* animation = Animation::createWithSpriteFrames(Frames, 0.125);
   sprite->runAction(RepeatForever::create(Animate::create(animation)));
-  
 }
 
-void CitySceneEffect::addHarborWorker(){
+void EffectMainCityView::addHarborWorker() {
   Vec2 basePos = Vec2(4052, 1720);
   int32 guardSpeed = 20;
   Vec2 baseTarget = Vec2(3663, 1906);
   float distance = basePos.getDistance(baseTarget);
-  auto runHarborAnimation = [distance , guardSpeed, basePos, baseTarget](Sprite *sprite, bool rev){
+  auto runHarborAnimation = [distance, guardSpeed, basePos, baseTarget](Sprite* sprite, bool rev) {
     float dt = distance / guardSpeed;
-    CallFunc *callFunc1 = CallFunc::create([sprite](){
+    CallFunc* callFunc1 = CallFunc::create([sprite]() {
       auto Frames = BaseCreate::getAnimationFrames("banyungong_wn_0%d.png", 1, 8);
       Animation* animation = Animation::createWithSpriteFrames(Frames, 0.125);
-      Animate* animate  = Animate::create(animation);
+      Animate* animate = Animate::create(animation);
       sprite->setFlippedX(false);
-      RepeatForever *repeatForEver = RepeatForever::create(animate);
+      RepeatForever* repeatForEver = RepeatForever::create(animate);
       repeatForEver->setTag(10);
       sprite->runAction(repeatForEver);
       sprite->stopActionByTag(20);
-    }); 
-    MoveBy *moveBy1 = MoveBy::create(dt, baseTarget - basePos);
+    });
+    MoveBy* moveBy1 = MoveBy::create(dt, baseTarget - basePos);
 
-    CallFunc *callFunc2 = CallFunc::create([sprite](){
+    CallFunc* callFunc2 = CallFunc::create([sprite]() {
       auto Frames = BaseCreate::getAnimationFrames("banyungong_es_0%d.png", 1, 8);
       Animation* animation = Animation::createWithSpriteFrames(Frames, 0.125);
-      Animate* animate  = Animate::create(animation);
+      Animate* animate = Animate::create(animation);
       sprite->setFlippedX(false);
-      RepeatForever *repeatForEver = RepeatForever::create(animate);
+      RepeatForever* repeatForEver = RepeatForever::create(animate);
       repeatForEver->setTag(20);
       sprite->runAction(repeatForEver);
       sprite->stopActionByTag(10);
     });
 
-    MoveBy *moveBy2 = moveBy1->reverse();
-    if(!rev){
-      sprite->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            callFunc1,
-            moveBy1,
-            callFunc2,
-            moveBy2,
-            nullptr
-          )
-        )
-      );
+    MoveBy* moveBy2 = moveBy1->reverse();
+    if (!rev) {
+      sprite->runAction(RepeatForever::create(Sequence::create(callFunc1, moveBy1, callFunc2, moveBy2, nullptr)));
     } else {
-      sprite->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            callFunc2,
-            moveBy2,
-            callFunc1,
-            moveBy1,
-            nullptr
-          )
-        )
-      );
+      sprite->runAction(RepeatForever::create(Sequence::create(callFunc2, moveBy2, callFunc1, moveBy1, nullptr)));
     }
-    
   };
 
-  Sprite *sprite_1 = Sprite::createWithSpriteFrameName("banyungong_wn_01.png");
-  Sprite *sprite_2 = Sprite::createWithSpriteFrameName("banyungong_wn_01.png");
-  CityScene *cityScene = CityScene::getCityScene();
-  if(!cityScene)
-    return ;
+  Sprite* sprite_1 = Sprite::createWithSpriteFrameName("banyungong_wn_01.png");
+  Sprite* sprite_2 = Sprite::createWithSpriteFrameName("banyungong_wn_01.png");
+  CityScene* cityScene = CityScene::getCityScene();
+  if (!cityScene) return;
   cityScene->batchNodeNpc->addChild(sprite_1, 1);
   cityScene->batchNodeNpc->addChild(sprite_2, 2);
   sprite_1->setPosition(basePos);
   sprite_2->setPosition(basePos + Vec2(-15, -10));
   runHarborAnimation(sprite_1, false);
   runHarborAnimation(sprite_2, true);
-
 }
 
-void CitySceneEffect::addConquerGateAnimation(){
-  struct AnimationTab{
-    GString png; Vec2 pos;
-    GString formate;  int32 first;
-    int32 last; bool isAct;
+void EffectMainCityView::addConquerGateAnimation() {
+  struct AnimationTab {
+    GString png;
+    Vec2 pos;
+    GString formate;
+    int32 first;
+    int32 last;
+    bool isAct;
   };
-  AnimationTab animTab[10] = {
-    {"shibing1_02.png", Vec2(45, 75), "", 0, 0, false},
-    {"shibing1_02.png", Vec2(-45, 60), "", 0, 0, false},
-    {"shibing1_02.png", Vec2(-10, 45), "", 0, 0, false},
-    {"shibing1_02.png", Vec2(75, 60), "", 0, 0, false},
-    {"shibing1_02.png", Vec2(15, 90), "", 0, 0, false},
-    {"shibing1_02.png", Vec2(25, 30), "", 0, 0, false},
-    {"qibingqizhi_01.png", Vec2(90, 79), "qibingqizhi_%.2d.png", 1, 4, true},
-    {"qibingqizhi_01.png", Vec2(45, 51), "qibingqizhi_%.2d.png", 1, 4, true},
-    {"shibing1_02.png", Vec2(105, 46), "", 0, 0, false},
-    {"shibing1_02.png", Vec2(60, 18), "", 0, 0, false}
-  };
-  CityScene *scene = CityScene::getCityScene();
-  if(!scene)
-    return;
-  Node *BtnConquer = scene->CityBuildingLayer->getChildByName("Button_conquer");
-  if(!BtnConquer)
-    return;
+  AnimationTab animTab[10] = {{"shibing1_02.png", Vec2(45, 75), "", 0, 0, false},
+                              {"shibing1_02.png", Vec2(-45, 60), "", 0, 0, false},
+                              {"shibing1_02.png", Vec2(-10, 45), "", 0, 0, false},
+                              {"shibing1_02.png", Vec2(75, 60), "", 0, 0, false},
+                              {"shibing1_02.png", Vec2(15, 90), "", 0, 0, false},
+                              {"shibing1_02.png", Vec2(25, 30), "", 0, 0, false},
+                              {"qibingqizhi_01.png", Vec2(90, 79), "qibingqizhi_%.2d.png", 1, 4, true},
+                              {"qibingqizhi_01.png", Vec2(45, 51), "qibingqizhi_%.2d.png", 1, 4, true},
+                              {"shibing1_02.png", Vec2(105, 46), "", 0, 0, false},
+                              {"shibing1_02.png", Vec2(60, 18), "", 0, 0, false}};
+  CityScene* scene = CityScene::getCityScene();
+  if (!scene) return;
+  Node* BtnConquer = scene->CityBuildingLayer->getChildByName("Button_conquer");
+  if (!BtnConquer) return;
 
   int32 index = 0;
-  for(auto oneTab : animTab){
+  for (auto oneTab : animTab) {
     Sprite* shibing = Sprite::createWithSpriteFrameName(oneTab.png);
     shibing->setPosition(oneTab.pos);
     BtnConquer->addChild(shibing, index++);
-    if(oneTab.isAct){
+    if (oneTab.isAct) {
       auto Frames = BaseCreate::getAnimationFrames(oneTab.formate, oneTab.first, oneTab.last);
-      Animation *animation = Animation::createWithSpriteFrames(Frames, 0.8f / (float)Frames.size());
-      shibing->runAction(
-        RepeatForever::create(
-          Animate::create(animation)
-        )
-      );
+      Animation* animation = Animation::createWithSpriteFrames(Frames, 0.8f / (float)Frames.size());
+      shibing->runAction(RepeatForever::create(Animate::create(animation)));
     }
   }
 }
 
-void CitySceneEffect::addBuildTipBoxConquerGate(){
-//   local self = mainCity
-//   local tipBoxName = "ConquerGateTipBox"
-//   if self.tipBoxConquerGate == nil then
-//     local textContent = i18n("common_text_2112")
-//     local cityBuildTipBox = include("cityBuildTipBox")
-//     local cityBuildTipBoxNode = cityBuildTipBox.new()
-//     local data = {
-//       boxType = cityBuildConstDef.TipBoxType.TEXT_TYPE_1,
-//       content = textContent,
-//       handler = handler(self, self.onTipBoxCall),
-//       tag = cityBuildConstDef.OtherBuildDef.ConquerGate,
-//       autoDelete = true
-//     }
-//     cityBuildTipBoxNode:initWithData(data)
-//     cityBuildTipBoxNode:setName(tipBoxName)
-//     cityBuildTipBoxNode:setPosition(cc.p(2700, 1800))
-//     self.containerView:addChild(cityBuildTipBoxNode, mainCityDefine.CITY_TARGET_ZORDER.tips)
-//     self.tipBoxConquerGate = cityBuildTipBoxNode
-//   else
-//     self.tipBoxConquerGate:setVisible(true)
-//     local textContent = i18n("common_text_2112")
-//     local data = {
-//       boxType = cityBuildConstDef.TipBoxType.TEXT_TYPE_1,
-//       content = textContent,
-//       handler = handler(self, self.onTipBoxCall),
-//       tag = cityBuildConstDef.OtherBuildDef.ConquerGate,
-//       autoDelete = true
-//     }
-//     self.tipBoxConquerGate:initWithData(data)
-//   end
+void EffectMainCityView::addBuildTipBoxConquerGate() {
+  //   local self = mainCity
+  //   local tipBoxName = "ConquerGateTipBox"
+  //   if self.tipBoxConquerGate == nil then
+  //     local textContent = i18n("common_text_2112")
+  //     local cityBuildTipBox = include("cityBuildTipBox")
+  //     local cityBuildTipBoxNode = cityBuildTipBox.new()
+  //     local data = {
+  //       boxType = cityBuildConstDef.TipBoxType.TEXT_TYPE_1,
+  //       content = textContent,
+  //       handler = handler(self, self.onTipBoxCall),
+  //       tag = cityBuildConstDef.OtherBuildDef.ConquerGate,
+  //       autoDelete = true
+  //     }
+  //     cityBuildTipBoxNode:initWithData(data)
+  //     cityBuildTipBoxNode:setName(tipBoxName)
+  //     cityBuildTipBoxNode:setPosition(cc.p(2700, 1800))
+  //     self.containerView:addChild(cityBuildTipBoxNode, mainCityDefine.CITY_TARGET_ZORDER.tips)
+  //     self.tipBoxConquerGate = cityBuildTipBoxNode
+  //   else
+  //     self.tipBoxConquerGate:setVisible(true)
+  //     local textContent = i18n("common_text_2112")
+  //     local data = {
+  //       boxType = cityBuildConstDef.TipBoxType.TEXT_TYPE_1,
+  //       content = textContent,
+  //       handler = handler(self, self.onTipBoxCall),
+  //       tag = cityBuildConstDef.OtherBuildDef.ConquerGate,
+  //       autoDelete = true
+  //     }
+  //     self.tipBoxConquerGate:initWithData(data)
+  //   end
 }
 
-void CitySceneEffect::addWaveEffect(){
+void EffectMainCityView::addWaveEffect() {
   //  do return end
   // local self = mainCity
   // local uint = 30
@@ -608,54 +528,43 @@ void CitySceneEffect::addWaveEffect(){
   // end
 }
 
-void CitySceneEffect::addSoldierGuard(){
+void EffectMainCityView::addSoldierGuard() {
   Vec2 basePos = Vec2(3716, 977);
   float guardSpeed = 16;
   Vec2 baseTarget = Vec2(3564, 1075);
   float distance = basePos.getDistance(baseTarget);
-  std::function<void(Sprite *)> runGuardAnimation = [distance, guardSpeed, baseTarget, basePos](Sprite *sprite){
+  std::function<void(Sprite*)> runGuardAnimation = [distance, guardSpeed, baseTarget, basePos](Sprite* sprite) {
     float dt = distance / guardSpeed;
-    CallFunc *callFunc1 = CallFunc::create([sprite](){
+    CallFunc* callFunc1 = CallFunc::create([sprite]() {
       auto Frames = BaseCreate::getAnimationFrames("xunluo_wn_0%d.png", 1, 8);
-      Animation *animation = Animation::createWithSpriteFrames(Frames, 0.125);
-      Animate *animate = Animate::create(animation);
+      Animation* animation = Animation::createWithSpriteFrames(Frames, 0.125);
+      Animate* animate = Animate::create(animation);
       sprite->setFlippedX(false);
-      RepeatForever *repeatForEver = RepeatForever::create(animate);
+      RepeatForever* repeatForEver = RepeatForever::create(animate);
       repeatForEver->setTag(10);
       sprite->runAction(repeatForEver);
       sprite->stopActionByTag(20);
     });
-    MoveBy *moveBy1 = MoveBy::create(dt, baseTarget - basePos);
-    CallFunc *callFunc2 = CallFunc::create([sprite](){
+    MoveBy* moveBy1 = MoveBy::create(dt, baseTarget - basePos);
+    CallFunc* callFunc2 = CallFunc::create([sprite]() {
       auto Frames = BaseCreate::getAnimationFrames("xunluo_ws_0%d.png", 1, 8);
-      Animation *animation = Animation::createWithSpriteFrames(Frames, 0.125);
-      Animate *animate = Animate::create(animation);
+      Animation* animation = Animation::createWithSpriteFrames(Frames, 0.125);
+      Animate* animate = Animate::create(animation);
       sprite->setFlippedX(true);
-      RepeatForever *repeatForEver = RepeatForever::create(animate);
+      RepeatForever* repeatForEver = RepeatForever::create(animate);
       repeatForEver->setTag(20);
       sprite->runAction(repeatForEver);
       sprite->stopActionByTag(10);
     });
-    MoveBy *moveBy2 = moveBy1->reverse();
-    sprite->runAction(
-      RepeatForever::create(
-        Sequence::create(
-          callFunc1,
-          moveBy1,
-          callFunc2,
-          moveBy2,
-          nullptr
-        )
-      )
-    );
+    MoveBy* moveBy2 = moveBy1->reverse();
+    sprite->runAction(RepeatForever::create(Sequence::create(callFunc1, moveBy1, callFunc2, moveBy2, nullptr)));
   };
-  CityScene *scene  = CityScene::getCityScene();
-  if(!scene)
-    return;
-  for(int32 i = 1; i <= 4; i++){
-    Sprite *sprite = Sprite::createWithSpriteFrameName("xunluo_wn_01.png");
+  CityScene* scene = CityScene::getCityScene();
+  if (!scene) return;
+  for (int32 i = 1; i <= 4; i++) {
+    Sprite* sprite = Sprite::createWithSpriteFrameName("xunluo_wn_01.png");
     scene->batchNodeSoldierGuards->addChild(sprite);
-    if(i == 2){
+    if (i == 2) {
       sprite->setName("soldier_guard_2");
       scene->bufferNodeArray.insert("soldier_guard_2", sprite);
     }
@@ -665,98 +574,68 @@ void CitySceneEffect::addSoldierGuard(){
   }
 }
 
-void CitySceneEffect::showEagleGlide(){
+void EffectMainCityView::showEagleGlide() {
   eagle->stopAllActions();
   eagleShadow->stopAllActions();
   eagle->setSpriteFrame("juying_01.png");
   eagleShadow->setSpriteFrame("juying2_01.png");
-  DelayTime *delay = DelayTime::create(random(2.0f, 3.0f) + random(0.0f, 1.0f));
-  CallFunc * callFunc = CallFunc::create([](){
-    showEagleSpreadWinds();
-  });
-  eagle->runAction(
-    Sequence::create(
-      delay,
-      callFunc,
-      nullptr
-    )
-  );
+  DelayTime* delay = DelayTime::create(random(2.0f, 3.0f) + random(0.0f, 1.0f));
+  CallFunc* callFunc = CallFunc::create([]() { showEagleSpreadWinds(); });
+  eagle->runAction(Sequence::create(delay, callFunc, nullptr));
 }
 
-void CitySceneEffect::showEagleSpreadWinds(){
+void EffectMainCityView::showEagleSpreadWinds() {
   eagle->stopAllActions();
   auto Frames = BaseCreate::getAnimationFrames("juying_%02d.png", 1, 8);
-  Animation *animation = Animation::createWithSpriteFrames(Frames, 0.125);
+  Animation* animation = Animation::createWithSpriteFrames(Frames, 0.125);
   eagle->runAction(RepeatForever::create(Animate::create(animation)));
   eagleShadow->stopAllActions();
   auto Frames2 = BaseCreate::getAnimationFrames("juying2_%02d.png", 1, 8);
-  Animation *animaotion2 = Animation::createWithSpriteFrames(Frames2, 0.125);
+  Animation* animaotion2 = Animation::createWithSpriteFrames(Frames2, 0.125);
   eagleShadow->runAction(RepeatForever::create(Animate::create(animaotion2)));
-  DelayTime *delay = DelayTime::create(random(2.0f, 3.0f) + random(0.0f, 1.0f));
-  CallFunc *callFunc = CallFunc::create([](){
-    showEagleGlide();
-  });
-  eagle->runAction(
-    Sequence::create(
-      delay,
-      callFunc,
-      nullptr
-    )
-  );
+  DelayTime* delay = DelayTime::create(random(2.0f, 3.0f) + random(0.0f, 1.0f));
+  CallFunc* callFunc = CallFunc::create([]() { showEagleGlide(); });
+  eagle->runAction(Sequence::create(delay, callFunc, nullptr));
 }
 
-void CitySceneEffect::showEagle(){
-  if(eagle == nullptr && eagleEffect == nullptr)
-    eagleEffect = Node::create();
+void EffectMainCityView::showEagle() {
+  if (eagle == nullptr && eagleEffect == nullptr) eagleEffect = Node::create();
   eagle = Sprite::createWithSpriteFrameName("juying_01.png");
-  eagle->setPosition(0,0);
+  eagle->setPosition(0, 0);
   eagleEffect->addChild(eagle, 1);
   eagleShadow = Sprite::createWithSpriteFrameName("juying2_01.png");
   auto Frames2 = BaseCreate::getAnimationFrames("juying2_%02d.png", 1, 8);
-  Animation *animation2 = Animation::createWithSpriteFrames(Frames2, 0.125);
+  Animation* animation2 = Animation::createWithSpriteFrames(Frames2, 0.125);
   eagleShadow->runAction(RepeatForever::create(Animate::create(animation2)));
   eagleShadow->setPosition(-70, -190);
   eagleShadow->setOpacity(102);
   eagleShadow->setScale(0.8f);
   eagleEffect->addChild(eagleShadow, 1);
-  CityScene *cityScene = CityScene::getCityScene();
-  if(!cityScene)
-    return;
-  cityScene->containerView->addChild(eagleEffect, static_cast<int32>(ECityTargetZOrder::juying));
+  CityScene* cityScene = CityScene::getCityScene();
+  if (!cityScene) return;
+  cityScene->containerView->addChild(eagleEffect, ECityTargetZOrder::Get()->juying);
   showEagleSpreadWinds();
   Vec2 beginPos(190, 3300);
   Vec2 endPos(3133, -50);
-  float dt  = beginPos.distance(endPos) / 100.0f;
-  CallFunc *resetPos = CallFunc::create([beginPos](){
-    eagleEffect->setPosition(beginPos);
-  });
-  MoveTo *moveTo = MoveTo::create(dt, endPos);
-  DelayTime *delay = DelayTime::create(3);
-  Sequence *seq = Sequence::create(
-    resetPos,
-    moveTo,
-    delay,
-    nullptr
-  );
+  float dt = beginPos.distance(endPos) / 100.0f;
+  CallFunc* resetPos = CallFunc::create([beginPos]() { eagleEffect->setPosition(beginPos); });
+  MoveTo* moveTo = MoveTo::create(dt, endPos);
+  DelayTime* delay = DelayTime::create(3);
+  Sequence* seq = Sequence::create(resetPos, moveTo, delay, nullptr);
   eagleEffect->runAction(RepeatForever::create(seq));
 }
 
-void CitySceneEffect::addBuildAnimBoostBottom(const GString& BuildingPlace){
-
-  CityScene *mainCity = CityScene::getCityScene(); 
-  if(!mainCity)
-    return;
-  Node *buildBtn = mainCity->bufferNodeArray.at(BuildingPlace);
-  if(buildBtn != nullptr)
-    return;
-  Node *BuildingNode = mainCity->CityBuildingLayer->getChildByName(BuildingPlace);
-  if(!BuildingNode)
-    return;
+void EffectMainCityView::addBuildAnimBoostBottom(const GString& BuildingPlace) {
+  CityScene* mainCity = CityScene::getCityScene();
+  if (!mainCity) return;
+  Node* buildBtn = mainCity->bufferNodeArray.at(BuildingPlace);
+  if (buildBtn != nullptr) return;
+  Node* BuildingNode = mainCity->CityBuildingLayer->getChildByName(BuildingPlace);
+  if (!BuildingNode) return;
   GString etBoostBottomName = "et_boost_bottom_" + BuildingPlace;
-  Node *etBoostNode =  mainCity->bufferNodeArray.at(etBoostBottomName);
-  if(etBoostNode != nullptr)
-    return;
-  Node *et_node = Node::create();
+  Node* etBoostNode = mainCity->bufferNodeArray.at(etBoostBottomName);
+  if (etBoostNode != nullptr) return;
+  Node* et_node = Node::create();
   et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_04.plist", Vec2(), Vec2(3.5f, 1.54f), 0.0f));
   et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_01.plist", Vec2(3, 21), Vec2(3.12f, 2.4f), 0.0f));
   et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_02.plist", Vec2(1, 24), Vec2(1, 1), 20.3f));
@@ -767,19 +646,16 @@ void CitySceneEffect::addBuildAnimBoostBottom(const GString& BuildingPlace){
   mainCity->bufferNodeArray.insert(etBoostBottomName, et_node);
 }
 
-void CitySceneEffect::addHarvestEffect(){
+void EffectMainCityView::addHarvestEffect() {
   GVector<RCityBuildingUnit> BuildingList = BuildingLib::getBuildingResList();
-  CityScene *mainCity = CityScene::getCityScene();
-  if(!mainCity)
-    return;
-  for(RCityBuildingUnit& oneBuilding :  BuildingList){
-    Node *Building = mainCity->containerView->getChildByName(oneBuilding.NodeName);
-    GString  etBoostHarvestName = "et_boost_harvest_" + oneBuilding.NodeName;
-    if(mainCity->containerView->getChildByName(etBoostHarvestName))
-      continue;
-    if(!Building)
-      continue;
-    Node *et_node = Node::create();
+  CityScene* mainCity = CityScene::getCityScene();
+  if (!mainCity) return;
+  for (RCityBuildingUnit& oneBuilding : BuildingList) {
+    Node* Building = mainCity->containerView->getChildByName(oneBuilding.NodeName);
+    GString etBoostHarvestName = "et_boost_harvest_" + oneBuilding.NodeName;
+    if (mainCity->containerView->getChildByName(etBoostHarvestName)) continue;
+    if (!Building) continue;
+    Node* et_node = Node::create();
     et_node->addChild(BaseCreate::createParticle("Particle/et_fs_01.plist", Vec2(0, 0), Vec2(1.71f, 1.71f), 0));
     et_node->addChild(BaseCreate::createParticle("Particle/et_fs_02.plist", Vec2(0, 0), Vec2(1.71f, 1.71f), 0));
     et_node->setName(etBoostHarvestName);
@@ -788,29 +664,26 @@ void CitySceneEffect::addHarvestEffect(){
   }
 }
 
-void CitySceneEffect::addPortEffect(){
-  CityScene *mainCity = CityScene::getCityScene();
-  if(!mainCity)
-    return;
-  if(!mainCity->containerView->getChildByName("et_particle_chuang_1")){
+void EffectMainCityView::addPortEffect() {
+  CityScene* mainCity = CityScene::getCityScene();
+  if (!mainCity) return;
+  if (!mainCity->containerView->getChildByName("et_particle_chuang_1")) {
     auto Part_1 = BaseCreate::createParticle("Particle/et_chuang_02.plist", Vec2(3869, 1993), Vec2(1, 1), 0);
     Part_1->setName("et_particle_chuang_1");
     mainCity->containerView->addChild(Part_1, 1001);
   }
-  if(!mainCity->containerView->getChildByName("et_particle_chuang_2")){
+  if (!mainCity->containerView->getChildByName("et_particle_chuang_2")) {
     auto Part_2 = BaseCreate::createParticle("Particle/et_chuang_03.plist", Vec2(3883, 2030), Vec2(1, 1), 0);
     Part_2->setName("et_particle_chuang_2");
     mainCity->containerView->addChild(Part_2, 1001);
   }
 }
 
-void CitySceneEffect::addMatouEffect(){
-  CityScene *mainCity = CityScene::getCityScene();
-  if(!mainCity)
-    return;
-  if(mainCity->containerView->getChildByName("et_node_matou"))
-    return;
-  Node *et_node_matou = Node::create();
+void EffectMainCityView::addMatouEffect() {
+  CityScene* mainCity = CityScene::getCityScene();
+  if (!mainCity) return;
+  if (mainCity->containerView->getChildByName("et_node_matou")) return;
+  Node* et_node_matou = Node::create();
   auto Part_1 = BaseCreate::createParticle("Particle/et_lqlbjz_01.plist", Vec2(0, 0), Vec2(1, 1), 0);
   auto Part_2 = BaseCreate::createParticle("Particle/et_lqlbjz_02.plist", Vec2(0, 0), Vec2(1.165f, 1.165f), 0);
   et_node_matou->addChild(Part_1);
@@ -820,16 +693,14 @@ void CitySceneEffect::addMatouEffect(){
   mainCity->containerView->addChild(et_node_matou, 1001);
 }
 
-void CitySceneEffect::addWallEffect(){
-  CityScene *mainCity = CityScene::getCityScene();
-  if(!mainCity)
-    return;
+void EffectMainCityView::addWallEffect() {
+  CityScene* mainCity = CityScene::getCityScene();
+  if (!mainCity) return;
   GString etWallEffectName = "BG_wall_broken";
-  if(mainCity->containerView->getChildByName(etWallEffectName))
-    mainCity->containerView->getChildByName(etWallEffectName)->setVisible(true);
-  Sprite *spriteWallEffect = Sprite::createWithSpriteFrameName("BG_wall_broken.png");
+  if (mainCity->containerView->getChildByName(etWallEffectName)) mainCity->containerView->getChildByName(etWallEffectName)->setVisible(true);
+  Sprite* spriteWallEffect = Sprite::createWithSpriteFrameName("BG_wall_broken.png");
   spriteWallEffect->setName(etWallEffectName);
-  mainCity->containerView->addChild(spriteWallEffect, static_cast<int32>(ECityTargetZOrder::lower_wall));
+  mainCity->containerView->addChild(spriteWallEffect, ECityTargetZOrder::Get()->lower_wall);
   spriteWallEffect->setPosition(3424, 1051);
 
   // local tipBoxName = "wallTipBox"
@@ -860,12 +731,11 @@ void CitySceneEffect::addWallEffect(){
   // end
 }
 
-void CitySceneEffect::addTouchParticle(Vec2 TouchPos){
-  CityScene *mainCity = CityScene::getCityScene();
-  if(!mainCity)
-    return;
-  Node * TouchEtNode = mainCity->containerView->getChildByName("touch_et_node");
-  if(TouchEtNode){
+void EffectMainCityView::addTouchParticle(Vec2 TouchPos) {
+  CityScene* mainCity = CityScene::getCityScene();
+  if (!mainCity) return;
+  Node* TouchEtNode = mainCity->containerView->getChildByName("touch_et_node");
+  if (TouchEtNode) {
     TouchEtNode->setPosition(TouchPos);
     return;
   }
@@ -879,11 +749,9 @@ void CitySceneEffect::addTouchParticle(Vec2 TouchPos){
   mainCity->containerView->addChild(TouchEtNode, 1002);
 }
 
-void CitySceneEffect::cloudRunEffect(){
-  
-  CityScene *mainCity = CityScene::getCityScene();
-  if(!mainCity)
-    return; 
+void EffectMainCityView::cloudRunEffect() {
+  CityScene* mainCity = CityScene::getCityScene();
+  if (!mainCity) return;
   static float beginY = mainCity->containerView->getContentSize().height + 200;
   static float endY = -200;
   static float lean = 0.44f;
@@ -891,213 +759,300 @@ void CitySceneEffect::cloudRunEffect(){
   static float dt = cocos2d::random<float>(60.0f, 100.0f);
   static float dPosX = 0;
   int32 totalTime = 120;
-  Sprite *cloud1 = Sprite::createWithSpriteFrameName("et_yunduo01_01.png");
-  Sprite *cloud2 = Sprite::createWithSpriteFrameName("et_yunduo02_01.png");
+  Sprite* cloud1 = Sprite::createWithSpriteFrameName("et_yunduo01_01.png");
+  Sprite* cloud2 = Sprite::createWithSpriteFrameName("et_yunduo02_01.png");
   cloud1->setName("cloud1");
   cloud1->setScale(2);
   mainCity->containerView->addChild(cloud1, 750);
   auto Frames = BaseCreate::getAnimationFrames("et_yunduo01_%.2d.png", 1, 10);
-  Animation *animation = Animation::createWithSpriteFrames(Frames, 0.1f);
+  Animation* animation = Animation::createWithSpriteFrames(Frames, 0.1f);
   cloud1->runAction(RepeatForever::create(Animate::create(animation)));
-  CallFunc *callFunc = CallFunc::create([mainCity, cloud1](){
+  CallFunc* callFunc = CallFunc::create([mainCity, cloud1]() {
     dPosX = cocos2d::random<float>(-1000, mainCity->containerView->getContentSize().width - 1000);
     dt = cocos2d::random<float>(60, 100);
     cloud1->setPosition(dPosX, beginY);
   });
-  Sequence *seq1 = Sequence::create(
-    callFunc,
-    MoveTo::create(dt, Vec2(cloud1->getPositionX() + abs(endY - beginY) / lean, endY)),
-    DelayTime::create(totalTime - dt),
-    nullptr
-  );
+  Sequence* seq1 = Sequence::create(
+          callFunc, MoveTo::create(dt, Vec2(cloud1->getPositionX() + abs(endY - beginY) / lean, endY)), DelayTime::create(totalTime - dt), nullptr);
   cloud1->runAction(RepeatForever::create(seq1));
   cloud2->setName("cloud2");
   cloud2->setScale(2);
   mainCity->containerView->addChild(cloud2, 750);
   auto Frames2 = BaseCreate::getAnimationFrames("et_yunduo02_%.2d.png", 1, 10);
-  Animation *animation2 = Animation::createWithSpriteFrames(Frames2, 0.1f);
+  Animation* animation2 = Animation::createWithSpriteFrames(Frames2, 0.1f);
   cloud2->runAction(RepeatForever::create(Animate::create(animation2)));
-  Sequence *seq2 = Sequence::create(
-    CallFunc::create([cloud2](){
-      cloud2->setPosition(dPosX - disX, beginY);
-    }),
-    MoveTo::create(dt, Vec2(cloud2->getPositionX() + abs(endY - beginY) / lean - disX, endY)),
-    DelayTime::create(totalTime - dt),
-    nullptr
-  );
+  Sequence* seq2 = Sequence::create(CallFunc::create([cloud2]() { cloud2->setPosition(dPosX - disX, beginY); }),
+                                    MoveTo::create(dt, Vec2(cloud2->getPositionX() + abs(endY - beginY) / lean - disX, endY)),
+                                    DelayTime::create(totalTime - dt),
+                                    nullptr);
   cloud2->runAction(RepeatForever::create(seq2));
-
-
 }
 
-void CitySceneEffect::showSkillEffectBySkillID(){
-//   function effectMainCityView.showSkillEffectBySkillID(mainCity, skillID, trapType)
-//   local self = mainCity
-//   local skillTable = {
-//     [lordSkillIDDefine.trapAction] = {
-//       [1] = {
-//         plist = "et_jn_xj_01.plist",
-//         scale = {x = 1.3463, y = 0.9134}
-//       },
-//       [2] = {
-//         plist = "et_jn_xj_02.plist",
-//         scale = {x = 1.05, y = 1.05}
-//       }
-//     },
-//     [lordSkillIDDefine.harvest] = {
-//       [1] = {
-//         plist = "et_fs_01.plist"
-//       },
-//       [2] = {
-//         plist = "et_fs_02.plist",
-//         pos = {x = -2, y = -1.4}
-//       }
-//     }
-//   }
-//   local resourceAnimation = {
-//     [BUILDID.FARM] = {
-//       pattern = "et_fs_dc_%.2d.png",
-//       beginp = 1,
-//       endp = 8,
-//       sprite = "#et_fs_dc_01.png"
-//     },
-//     [BUILDID.SAWMILL] = {
-//       pattern = "et_fs_mc_%.2d.png",
-//       beginp = 1,
-//       endp = 8,
-//       sprite = "#et_fs_mc_01.png"
-//     },
-//     [BUILDID.IRON_MINE] = {
-//       pattern = "et_fs_tk_%.2d.png",
-//       beginp = 1,
-//       endp = 8,
-//       sprite = "#et_fs_tk_01.png"
-//     },
-//     [BUILDID.STEEL] = {
-//       pattern = "et_fs_my_%.2d.png",
-//       beginp = 1,
-//       endp = 8,
-//       sprite = "#et_fs_my_01.png"
-//     },
-//     [BUILDID.CRYSTAL_MINE] = {
-//       pattern = "et_fs_sj_%.2d.png",
-//       beginp = 1,
-//       endp = 8,
-//       sprite = "#et_fs_sj_01.png"
-//     }
-//   }
-//   if skillID == lordSkillIDDefine.trapAction and skillTable[lordSkillIDDefine.trapAction] then
-//     local buildIndex = self:getBuildIndexByBid(BUILDID.FORTRESS)
-//     if buildIndex then
-//       do
-//         local place = self:getBuildBtnByIndex(buildIndex)
-//         if place then
-//           SoraDSendMessage({
-//             msg = "MESSAGE_MAINCITYVIEW_GO_TO_BUILD",
-//             buildID = BUILDID.FORTRESS,
-//             delay = 0,
-//             needRecover = true
-//           })
-//           do
-//             local armyDesRead = include("armyDesRead")
-//             local seq = transition.sequence({
-//               cca.delay(0.5),
-//               cca.callFunc(function()
-//                 local parNode = SoraDCreateEffectNode(skillTable[lordSkillIDDefine.trapAction])
-//                 parNode:setPosition(cc.p(place:getContentSize().width / 2, place:getContentSize().height / 2))
-//                 parNode:addTo(place, 5)
-//               end),
-//               cca.delay(0.5),
-//               cca.callFunc(function()
-//                 local trapSprite = display.newSprite(armyDesRead.getIcon(trapType, true))
-//                 trapSprite:setAnchorPoint(cc.p(0.5, 0))
-//                 trapSprite:setName("trapSprite")
-//                 trapSprite:setPosition(cc.p(place:getContentSize().width / 2, place:getContentSize().height + 100))
-//                 trapSprite:addTo(place, 5)
-//                 trapSprite:runAction(cca.moveTo(0.3, cc.p(place:getContentSize().width / 2, 0)))
-//               end),
-//               cca.delay(0.3),
-//               cca.callFunc(function()
-//                 SoraDShowMsgTip(i18n("notice_0114"))
-//                 place:removeChildByName("trapSprite", true)
-//               end)
-//             })
-//             place:runAction(seq)
-//           end
-//         else
-//         end
-//       end
-//     end
-//   elseif skillID == lordSkillIDDefine.harvest and skillTable[lordSkillIDDefine.harvest] then
-//     local resourcePlaces = self:getAllResBuildBtn()
-//     if #resourcePlaces > 0 then
-//       self:gotoOuterCity(true)
-//       for i, v in ipairs(resourcePlaces) do
-//         do
-//           local rType = v[1]
-//           local place = v[2]
-//           local entity = v[3]
-//           if entity:getIsLocked() then
-//           else
-//             local seq = transition.sequence({
-//               cca.delay(1.5),
-//               cca.callFunc(function()
-//                 local parNode = SoraDCreateEffectNode(skillTable[lordSkillIDDefine.harvest])
-//                 parNode:setPosition(cc.p(place:getContentSize().width / 2, place:getContentSize().height / 2))
-//                 parNode:addTo(place, 5)
-//               end),
-//               cca.delay(0.2),
-//               cca.callFunc(function()
-//                 local sprite = display.newSprite(resourceAnimation[rType].sprite)
-//                 sprite:setName("getResourceAnimation")
-//                 sprite:setPosition(cc.p(place:getContentSize().width / 2, place:getContentSize().height))
-//                 sprite:addTo(place, 5)
-//                 local frames = display.newFrames(resourceAnimation[rType].pattern, resourceAnimation[rType].beginp, resourceAnimation[rType].endp)
-//                 local animation = display.newAnimation(frames, 0.125)
-//                 sprite:playAnimationOnce(animation)
-//               end),
-//               cca.callFunc(function()
-//                 local output = buildLogic.getResOutputHour(rType, entity:getBuildLv(), entity:getIid())
-//                 local totalOutput = output.total or 0
-//                 local floatingLabel = display.newTTFLabel({
-//                   text = "+" .. totalOutput,
-//                   color = display.COLOR_GREEN,
-//                   size = 26
-//                 })
-//                 floatingLabel:addTo(self.containerView, 500)
-//                 floatingLabel:setPosition(cc.p(place:getPositionX(), place:getPositionY()))
-//                 local moveBy = cca.moveBy(0.5, 0, 80)
-//                 local delay = cca.delay(0.5)
-//                 local callFunc = cca.callFunc(function()
-//                   floatingLabel:removeFromParent()
-//                 end)
-//                 local seq = cca.seq({
-//                   moveBy,
-//                   delay,
-//                   callFunc
-//                 })
-//                 floatingLabel:runAction(seq)
-//               end),
-//               cca.delay(1),
-//               cca.callFunc(function()
-//                 SoraDShowMsgTip(i18n("notice_0113"))
-//                 place:removeChildByName("getResourceAnimation", true)
-//               end)
-//             })
-//             place:runAction(seq)
-//           end
-//         end
-//       end
-//     end
-//   elseif skillID == lordSkillIDDefine.rescue or skillID == lordSkillIDDefine.collectprotect or skillID == lordSkillIDDefine.fastmarch then
-//     local panel = SoraDCreatePanel("commonUseSkill")
-//     panel:initData(skillID)
-//     panel:show()
-//   end
-// end
+void EffectMainCityView::showSkillEffectBySkillID() {
+  //   function effectMainCityView.showSkillEffectBySkillID(mainCity, skillID, trapType)
+  //   local self = mainCity
+  //   local skillTable = {
+  //     [lordSkillIDDefine.trapAction] = {
+  //       [1] = {
+  //         plist = "et_jn_xj_01.plist",
+  //         scale = {x = 1.3463, y = 0.9134}
+  //       },
+  //       [2] = {
+  //         plist = "et_jn_xj_02.plist",
+  //         scale = {x = 1.05, y = 1.05}
+  //       }
+  //     },
+  //     [lordSkillIDDefine.harvest] = {
+  //       [1] = {
+  //         plist = "et_fs_01.plist"
+  //       },
+  //       [2] = {
+  //         plist = "et_fs_02.plist",
+  //         pos = {x = -2, y = -1.4}
+  //       }
+  //     }
+  //   }
+  //   local resourceAnimation = {
+  //     [BUILDID.FARM] = {
+  //       pattern = "et_fs_dc_%.2d.png",
+  //       beginp = 1,
+  //       endp = 8,
+  //       sprite = "#et_fs_dc_01.png"
+  //     },
+  //     [BUILDID.SAWMILL] = {
+  //       pattern = "et_fs_mc_%.2d.png",
+  //       beginp = 1,
+  //       endp = 8,
+  //       sprite = "#et_fs_mc_01.png"
+  //     },
+  //     [BUILDID.IRON_MINE] = {
+  //       pattern = "et_fs_tk_%.2d.png",
+  //       beginp = 1,
+  //       endp = 8,
+  //       sprite = "#et_fs_tk_01.png"
+  //     },
+  //     [BUILDID.STEEL] = {
+  //       pattern = "et_fs_my_%.2d.png",
+  //       beginp = 1,
+  //       endp = 8,
+  //       sprite = "#et_fs_my_01.png"
+  //     },
+  //     [BUILDID.CRYSTAL_MINE] = {
+  //       pattern = "et_fs_sj_%.2d.png",
+  //       beginp = 1,
+  //       endp = 8,
+  //       sprite = "#et_fs_sj_01.png"
+  //     }
+  //   }
+  //   if skillID == lordSkillIDDefine.trapAction and skillTable[lordSkillIDDefine.trapAction] then
+  //     local buildIndex = self:getBuildIndexByBid(BUILDID.FORTRESS)
+  //     if buildIndex then
+  //       do
+  //         local place = self:getBuildBtnByIndex(buildIndex)
+  //         if place then
+  //           SoraDSendMessage({
+  //             msg = "MESSAGE_MAINCITYVIEW_GO_TO_BUILD",
+  //             buildID = BUILDID.FORTRESS,
+  //             delay = 0,
+  //             needRecover = true
+  //           })
+  //           do
+  //             local armyDesRead = include("armyDesRead")
+  //             local seq = transition.sequence({
+  //               cca.delay(0.5),
+  //               cca.callFunc(function()
+  //                 local parNode = SoraDCreateEffectNode(skillTable[lordSkillIDDefine.trapAction])
+  //                 parNode:setPosition(cc.p(place:getContentSize().width / 2, place:getContentSize().height / 2))
+  //                 parNode:addTo(place, 5)
+  //               end),
+  //               cca.delay(0.5),
+  //               cca.callFunc(function()
+  //                 local trapSprite = display.newSprite(armyDesRead.getIcon(trapType, true))
+  //                 trapSprite:setAnchorPoint(cc.p(0.5, 0))
+  //                 trapSprite:setName("trapSprite")
+  //                 trapSprite:setPosition(cc.p(place:getContentSize().width / 2, place:getContentSize().height + 100))
+  //                 trapSprite:addTo(place, 5)
+  //                 trapSprite:runAction(cca.moveTo(0.3, cc.p(place:getContentSize().width / 2, 0)))
+  //               end),
+  //               cca.delay(0.3),
+  //               cca.callFunc(function()
+  //                 SoraDShowMsgTip(i18n("notice_0114"))
+  //                 place:removeChildByName("trapSprite", true)
+  //               end)
+  //             })
+  //             place:runAction(seq)
+  //           end
+  //         else
+  //         end
+  //       end
+  //     end
+  //   elseif skillID == lordSkillIDDefine.harvest and skillTable[lordSkillIDDefine.harvest] then
+  //     local resourcePlaces = self:getAllResBuildBtn()
+  //     if #resourcePlaces > 0 then
+  //       self:gotoOuterCity(true)
+  //       for i, v in ipairs(resourcePlaces) do
+  //         do
+  //           local rType = v[1]
+  //           local place = v[2]
+  //           local entity = v[3]
+  //           if entity:getIsLocked() then
+  //           else
+  //             local seq = transition.sequence({
+  //               cca.delay(1.5),
+  //               cca.callFunc(function()
+  //                 local parNode = SoraDCreateEffectNode(skillTable[lordSkillIDDefine.harvest])
+  //                 parNode:setPosition(cc.p(place:getContentSize().width / 2, place:getContentSize().height / 2))
+  //                 parNode:addTo(place, 5)
+  //               end),
+  //               cca.delay(0.2),
+  //               cca.callFunc(function()
+  //                 local sprite = display.newSprite(resourceAnimation[rType].sprite)
+  //                 sprite:setName("getResourceAnimation")
+  //                 sprite:setPosition(cc.p(place:getContentSize().width / 2, place:getContentSize().height))
+  //                 sprite:addTo(place, 5)
+  //                 local frames = display.newFrames(resourceAnimation[rType].pattern, resourceAnimation[rType].beginp,
+  //                 resourceAnimation[rType].endp) local animation = display.newAnimation(frames, 0.125) sprite:playAnimationOnce(animation)
+  //               end),
+  //               cca.callFunc(function()
+  //                 local output = buildLogic.getResOutputHour(rType, entity:getBuildLv(), entity:getIid())
+  //                 local totalOutput = output.total or 0
+  //                 local floatingLabel = display.newTTFLabel({
+  //                   text = "+" .. totalOutput,
+  //                   color = display.COLOR_GREEN,
+  //                   size = 26
+  //                 })
+  //                 floatingLabel:addTo(self.containerView, 500)
+  //                 floatingLabel:setPosition(cc.p(place:getPositionX(), place:getPositionY()))
+  //                 local moveBy = cca.moveBy(0.5, 0, 80)
+  //                 local delay = cca.delay(0.5)
+  //                 local callFunc = cca.callFunc(function()
+  //                   floatingLabel:removeFromParent()
+  //                 end)
+  //                 local seq = cca.seq({
+  //                   moveBy,
+  //                   delay,
+  //                   callFunc
+  //                 })
+  //                 floatingLabel:runAction(seq)
+  //               end),
+  //               cca.delay(1),
+  //               cca.callFunc(function()
+  //                 SoraDShowMsgTip(i18n("notice_0113"))
+  //                 place:removeChildByName("getResourceAnimation", true)
+  //               end)
+  //             })
+  //             place:runAction(seq)
+  //           end
+  //         end
+  //       end
+  //     end
+  //   elseif skillID == lordSkillIDDefine.rescue or skillID == lordSkillIDDefine.collectprotect or skillID == lordSkillIDDefine.fastmarch then
+  //     local panel = SoraDCreatePanel("commonUseSkill")
+  //     panel:initData(skillID)
+  //     panel:show()
+  //   end
+  // end
+}
+
+void EffectMainCityView::showWaterfallCastle() {}
+
+void EffectMainCityView::UpdateCommunityView(MainCityView *p_MainCity, int32 p_CastleLvl){
+  // local self = mainCity
+  // local castleLv = 1
+  // local cityCtrl = gametop.playertop_:getModule("cityCtrl")
+  // castleBcell = cityCtrl:getBuildCell(BUILDID.CASTLE, 0)
+  // if castleBcell then
+  //   castleLv = tonumber(castleBcell.info.lv)
+  // end
+  // if data and data.castleLv then
+  //   castleLv = data.castleLv
+  // end
+  // SoraDSendMessage({
+  //   msg = "MESSAGE_MAINCITYVIEW_UPDATE_SERVICECENTER"
+  // })
+  // if castleLv >= CASTLE_LV25_LIMITED then
+  //   local btn_30005 = self:getBufferNodeByName("build_30005")
+  //   if nil ~= btn_30005 then
+  //     btn_30005:setPosition(cc.p(2640.93, 1559.21))
+  //     if SoraDGetFactionType() == FACTION_TYPE.FACTION_BYZANTINE then
+  //       btn_30005:setPosition(cc.p(2432.76, 1347.36))
+  //     end
+  //   end
+  //   local img_bg_miracle = self:getBufferNodeByName("BG_miracle")
+  //   if img_bg_miracle then
+  //     img_bg_miracle:setVisible(IsArClient)
+  //   end
+  //   local btn_1200 = self:getBufferNodeByName("build_1200")
+  //   if nil ~= btn_1200 then
+  //     btn_1200:setVisible(true)
+  //   end
+  // else
+  //   local btn_30005 = self:getBufferNodeByName("build_30005")
+  //   if nil ~= btn_30005 then
+  //     btn_30005:setPosition(cc.p(2946.4, 1610.56))
+  //     if SoraDGetFactionType() == FACTION_TYPE.FACTION_BYZANTINE then
+  //       btn_30005:setPosition(cc.p(2776.4, 1373.56))
+  //     end
+  //   end
+  //   local img_bg_miracle = self:getBufferNodeByName("BG_miracle")
+  //   if img_bg_miracle then
+  //     img_bg_miracle:setVisible(false)
+  //   end
+  //   local btn_1200 = self:getBufferNodeByName("build_1200")
+  //   if nil ~= btn_1200 then
+  //     btn_1200:setVisible(false)
+  //   end
+  // end
+  // local buttonCommunityCenter = self:getBufferNodeByName("build_30005")
+  // if not buttonCommunityCenter then
+  //   return
+  // end
+  // local btnCommunityPos = cc.p(buttonCommunityCenter:getPosition())
+  // if self.tipBoxCommunity ~= nil then
+  //   local deltaOffsetY = castleLv >= CASTLE_LV25_LIMITED and 73 or 83
+  //   local deltaOffsetX = castleLv >= CASTLE_LV25_LIMITED and 43 or 0
+  //   self.tipBoxCommunity:setPosition(cc.p(btnCommunityPos.x + deltaOffsetX, btnCommunityPos.y + deltaOffsetY))
+  // end
+  // if self.tipTopCommunity ~= nil then
+  //   local deltaOffsetY = castleLv >= CASTLE_LV25_LIMITED and 76 or 76
+  //   local deltaOffsetX = castleLv >= CASTLE_LV25_LIMITED and 43 or 0
+  //   local buildTopTipPosition = cc.p(btnCommunityPos.x + deltaOffsetX, btnCommunityPos.y + deltaOffsetY)
+  //   self.tipTopCommunity:setPosition(buildTopTipPosition)
+  //   self.tipTopCommunity:setBasePos(buildTopTipPosition)
+  //   self.tipTopCommunity:udpateViewWithBasePos()
+  // end
 }
 
 
-void CitySceneEffect::showWaterfallCastle(){
-  
+void EffectMainCityView::UpdateStarBraveStatueView(MainCityView *p_MainCity, int32 p_CastleLvl){
+  //   local self = mainCity
+  // local castleLv = 1
+  // local cityCtrl = gametop.playertop_:getModule("cityCtrl")
+  // castleBcell = cityCtrl:getBuildCell(BUILDID.CASTLE, 0)
+  // if castleBcell then
+  //   castleLv = tonumber(castleBcell.info.starLv)
+  // end
+  // dump(castleBcell.info, "effectMainCityView.updateStarBraveStatueView")
+  // if data and data.castleLv then
+  //   castleLv = data.castleLv
+  // end
+  // if SoraDIsBraveOpen() then
+  //   local dh_yzdxyz = self:getBufferNodeByName("dh_yzdxyz")
+  //   if dh_yzdxyz then
+  //     dh_yzdxyz:setVisible(true)
+  //   end
+  //   local btn_1205 = self:getBufferNodeByName("build_1205")
+  //   if btn_1205 then
+  //     btn_1205:setVisible(true)
+  //   end
+  // else
+  //   local dh_yzdxyz = self:getBufferNodeByName("dh_yzdxyz")
+  //   if dh_yzdxyz then
+  //     dh_yzdxyz:setVisible(false)
+  //   end
+  //   local btn_1205 = self:getBufferNodeByName("build_1205")
+  //   if btn_1205 then
+  //     btn_1205:setVisible(false)
+  //   end
+  // end
 }

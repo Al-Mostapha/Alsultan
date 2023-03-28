@@ -5,13 +5,16 @@
 
 USING_NS_CC;
 
-class CitySceneEffect
+class MainCityView;
+
+class EffectMainCityView
 {
 
 public:
   static Sprite *eagle;
   static Sprite *eagleShadow;
   static Node *eagleEffect;
+  static EffectMainCityView *Get();
   static void showPyramidHonourBuildEffect();
   static void showPyramidBattleEffect();
   static void showFireWorks(float xCoord, float yCoord);
@@ -39,6 +42,9 @@ public:
   static void cloudRunEffect();
   static void showSkillEffectBySkillID();
   static void showWaterfallCastle();
+
+  void UpdateCommunityView(MainCityView *p_MainCity, int32 p_CastleLvl = 0);
+  void UpdateStarBraveStatueView(MainCityView *p_MainCity, int32 p_CastleLvl = 0);
 
 private:
   static void showEagleSpreadWinds();

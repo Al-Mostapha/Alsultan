@@ -7,7 +7,7 @@
 #include "Module/CityResource/Resource.Module.h"
 #include "Module/Player/Player.Module.h"
 #include "Module/Building/Building.Module.h"
-#include "Module/City/City.Const.h"
+#include "Scene/City/CityScene.Enum.h"
 #include "Module/City/City.Type.h"
 #include "Module/Player/Player.Static.h"
 

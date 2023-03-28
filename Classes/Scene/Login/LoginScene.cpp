@@ -4,6 +4,7 @@
 #include "Base/Containers/Pair.h"
 #include "Base/Device/Shack.Module.h"
 #include "Base/Type/EventArg/Login.EvtArg.h"
+#include "Module/Module.Mgr.h"
 #include "Module/Army/Army.Read.h"
 #include "Module/Building/Building.Func.h"
 #include "Module/Building/Building.Read.h"
@@ -34,6 +35,7 @@
 #include "Module/World/WorldMap/WorldMap.Define.h"
 #include "Module/World/WorldMap/WorldMap.Util.h"
 #include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
+#include "Game/Init/Game.Top.h"
 
 
 // on "init" you need to initialize your instance
@@ -129,6 +131,8 @@ void LoginScene::ServerGuideEnd(EventCustom* p_Event) {
 void LoginScene::StartGame() { InitData(); }
 
 void LoginScene::InitData() {
+  GModuleMgr::Get()->Init();
+  GModuleMgr::Get()->GetGameTop()->StartGame();
   CreatePanelView();
   CreateLoginView();
 }

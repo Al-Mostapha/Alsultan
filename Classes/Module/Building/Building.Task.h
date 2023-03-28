@@ -1,6 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
-#include "Module/Task/Task.Type.h"
+#include "Module/Task/ITask.h"
 #include "Building.Enum.h"
 
 struct RBuildingTask : public ITask {

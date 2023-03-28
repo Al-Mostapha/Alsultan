@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <queue>
+#include <array>
 #include "cocos2d.h"
 #include "external/json/document.h"
 #include <time.h>
@@ -27,8 +28,8 @@ typedef unsigned long int uint64;
 typedef rapidjson::Document GJsonObject;
 typedef time_t GTime;
 
-template <class T>
-using GArray = cocos2d::Vector<T>;
+template <class T, int32 L>
+using GArray = std::array<T, L>;
 template <class T>
 using GVector = std::vector<T>;
 

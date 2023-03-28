@@ -63,17 +63,10 @@ bool CityScene::init()
     {
         return false;
     }
-
-    BaseScrollLayer = ui::ScrollView::create();
+  
+    BaseScrollLayer = Ext::ScrollView::create(Director::getInstance()->getWinSize());
 
     BaseScrollLayer->setPosition(Vec2(0, 0));
-    BaseScrollLayer->setDirection(ui::ScrollView::Direction::BOTH);
-    BaseScrollLayer->setBounceEnabled(true);
-    BaseScrollLayer->setContentSize(Director::getInstance()->getWinSize());
-    BaseScrollLayer->setScrollBarEnabled(false);
-    BaseScrollLayer->setBounceEnabled(false);
-    BaseScrollLayer->setPropagateTouchEvents(true);
-    addChild(BaseScrollLayer);
     return true;
 }
 
@@ -91,9 +84,9 @@ void CityScene::initCityLayers()
     CityBuildingLayer->addChild(batchNodeNpc);
     CityBuildingLayer->addChild(batchNodeSoldierGuards);
 
-    batchNodeXiyiNpc->setLocalZOrder(static_cast<int32>(ECityTargetZOrder::banyungong));
-    batchNodeNpc->setLocalZOrder(static_cast<int32>(ECityTargetZOrder::banyungong));
-    batchNodeSoldierGuards->setLocalZOrder(static_cast<int32>(ECityTargetZOrder::soldiers));
+    batchNodeXiyiNpc->setLocalZOrder(ECityTargetZOrder::Get()->banyungong);
+    batchNodeNpc->setLocalZOrder(ECityTargetZOrder::Get()->banyungong);
+    batchNodeSoldierGuards->setLocalZOrder(ECityTargetZOrder::Get()->soldiers);
     
     batchNodeXiyiNpc->setPosition(0, 0);
     batchNodeNpc->setPosition(0, 0);
@@ -113,12 +106,12 @@ void CityScene::initCityLayers()
     this->CityUiLayer->addChild(ResBox);
     this->CityUiLayer->addChild(TopUi, -1);
 
-    BaseScrollLayer->setInnerContainerSize(CityBuildingLayer->getContentSize());
+   // BaseScrollLayer->setContainer(CityBuildingLayer);
 
     if (this->CityFloorLayer)
-        BaseScrollLayer->addChild(this->CityFloorLayer);
+      BaseScrollLayer->addChild(this->CityFloorLayer);
     if (this->CityUiLayer)
-        addChild(this->CityUiLayer);
+      addChild(this->CityUiLayer);
 }
 
 void CityScene::initDraggingEvent()
