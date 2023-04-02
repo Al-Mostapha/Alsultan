@@ -1,6 +1,7 @@
 #pragma once
 #include "Module/UI/UICCSView.h"
 #include "Module/Building/BuildingTips/BuildingTips.Type.h"
+#include "Module/UI/Panel/Building/Common/UIBuildingInfoPanel.h"
 
 class IBuilding;
 
@@ -39,6 +40,7 @@ public:
   void UpdateTime(){}
   void UpdateCastleGift(){}
   void BtnClickCallBack(Ref* p_Ref, Widget::TouchEventType p_Touch){
-    CCLOG("OpButton Clicked !!!!");
+    auto l_Panel = UIBuildingInfoPanel::Create();
+    l_Panel->Show();
   }
 };

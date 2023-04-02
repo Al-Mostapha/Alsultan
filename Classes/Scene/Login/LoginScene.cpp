@@ -141,7 +141,7 @@ void LoginScene::LoginFinsh(EventCustom* p_Event) { GBase::DCloseLoading(nullptr
 
 void LoginScene::CleanPanelView() {
   UIManger::Get()->CloseAllUI();
-  for (auto l_OneChild : n_PanelView->getChildren()) {
+  for (auto l_OneChild : _PanelView->getChildren()) {
     if (l_OneChild->getName() != "commonSystemMsgBox") l_OneChild->removeFromParent();
   }
 }
@@ -161,9 +161,9 @@ void LoginScene::CreatePanelView() {
   // end
   // self.groot_normal = initGRoot(self.groot_normal, 5)
   // self.panelView = self.groot_normal:getContainer()
-  if (n_PanelView) n_PanelView->removeFromParent();
-  n_PanelView = ui::Layout::create();
-  Director::getInstance()->getRunningScene()->addChild(n_PanelView, 5);
+  if (_PanelView) _PanelView->removeFromParent();
+  _PanelView = ui::Layout::create();
+  Director::getInstance()->getRunningScene()->addChild(_PanelView, 5);
 }
 
 void LoginScene::CreateLoginView(EScene p_Type, EKingdomClassType p_Kingdom) {

@@ -23,6 +23,7 @@
 
 #include "Include/IncludeBase.h"
 #include "Include/IncludeEngine.h"
+#include "Main/MainScene.h"
 USING_NS_CC;
 
 class TestScrollViewDelegate : public Ext::ScrollViewDelegate {
@@ -44,7 +45,7 @@ class TestScrollViewDelegate : public Ext::ScrollViewDelegate {
   void scrollViewDidZoom(Ext::ScrollView* view) { CCLOG("**************"); };
 };
 
-class CityScene : public cocos2d::Scene {
+class CityScene : public MainScene {
   public:
   static CityScene* Get();
   Node* _ContainerView;

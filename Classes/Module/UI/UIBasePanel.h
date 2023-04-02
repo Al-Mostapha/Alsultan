@@ -6,6 +6,7 @@
 #include "View/Recharge/UIRechargeTinyPageNode.h"
 #include "Module/Translation/Translate.h"
 
+
 class UIRechargeTinyPageNode;
 struct RBasePenelData{
   GString FutureName;
@@ -26,10 +27,10 @@ public:
   bool m_IsCantCloseByReturn = false;
   ui::Button *m_CloseButton = nullptr;
   UIBaseView *m_Panel;
-  CREATE_FUNC(UIBasePanel);
 public: 
   UIBasePanel* InitPanel(GString p_CCsFile, RBasePenelData *p_Data = nullptr);
   UIBasePanel* InitPanel(Node *p_CCsFile, RBasePenelData *p_Data = nullptr);
+  static UIBasePanel* create(){return nullptr;}
   static UIBasePanel* Create(GString p_CCsFile, RBasePenelData *p_Data = nullptr);
   virtual void Ctor();
   void DeviceFitOffset();

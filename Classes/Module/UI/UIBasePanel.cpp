@@ -196,7 +196,7 @@ UIBasePanel *UIBasePanel::Show(Node *p_ParentNode, int32 p_ZOrder){
   if(!JudgeShowPanelPower())
     return nullptr;
   if(p_ParentNode){
-    p_ParentNode->addChild(m_Panel, p_ZOrder);
+    p_ParentNode->addChild(this, p_ZOrder);
     GPanelManger::Get()->DAddPanelToManager(this);
   }
   if(m_FadeInDelay)

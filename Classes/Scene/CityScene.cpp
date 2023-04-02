@@ -79,6 +79,9 @@ void CityScene::initCityLayers() {
   _ContainerView = _MainCityView->_ContainerView;
   containerView = _MainCityView->_ContainerView;
   addChild(_MainCityView);
+  _PanelView = ui::Layout::create();
+  _PanelView->setContentSize(_MainCityView->getContentSize());
+  addChild(_PanelView, 5);
   return;
   containerView = CityBuildingLayer;
   batchNodeXiyiNpc = Node::create();
