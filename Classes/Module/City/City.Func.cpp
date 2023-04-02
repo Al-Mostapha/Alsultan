@@ -457,3 +457,34 @@ void MainCityFunctions::ReArrangeZorder(MainCityView* p_City) {
   //   end
   // end
 }
+
+void MainCityFunctions::ShowNodeTint(Node *p_Node){
+  if(!p_Node)
+    return;
+  p_Node->stopActionByTag(77);
+  p_Node->setColor(Color3B(100, 100, 100));
+  auto l_ActionTintTo = TintBy::create(0.5, 0.5, 0.5, 0.5);
+  auto l_Delay = DelayTime::create(0.3);
+  auto l_ActionTintBack = TintBy::create(0.5, -0.5, -0.5, -0.5);
+  auto l_ActionRepeat = RepeatForever::create(
+    Sequence::create(
+      l_ActionTintTo,
+      l_Delay,
+      l_ActionTintBack,
+      nullptr
+    )
+  );
+  l_ActionRepeat->setTag(77);
+  p_Node->runAction(l_ActionRepeat);
+}
+
+void MainCityFunctions::ShowNodeTintOnce(Node *p_Node){
+  if(!p_Node)
+    return;
+  p_Node->stopActionByTag(77);
+  p_Node->setColor(Color3B(100, 100, 100));
+  auto l_ActionTint = TintBy::create(0.2,  0.6078431372549019*255, 0.6078431372549019*255, 0.6078431372549019*255);
+  l_ActionTint->setTag(77);
+  p_Node->runAction(l_ActionTint);
+}
+

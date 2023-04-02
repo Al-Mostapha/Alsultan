@@ -24,10 +24,30 @@
 #include "Include/IncludeBase.h"
 #include "Include/IncludeEngine.h"
 USING_NS_CC;
+
+class TestScrollViewDelegate : public Ext::ScrollViewDelegate {
+  public:
+  /**
+   * @js NA
+   * @lua NA
+   */
+  ~TestScrollViewDelegate() {}
+  /**
+   * @js NA
+   * @lua NA
+   */
+  void scrollViewDidScroll(Ext::ScrollView* view) { printf("Error -------------------------------------- loading: "); };
+  /**
+   * @js NA
+   * @lua NA
+   */
+  void scrollViewDidZoom(Ext::ScrollView* view) { CCLOG("**************"); };
+};
+
 class CityScene : public cocos2d::Scene {
-public:
+  public:
   static CityScene* Get();
-  Node *_ContainerView;
+  Node* _ContainerView;
   Node* CityFloorLayer;
   Node* CityBuildingLayer;
   Node* containerView;
@@ -37,25 +57,25 @@ public:
   Node* CityDecoreLayer;
   Node* CityUiLayer;
   Map<std::string, Node*> bufferNodeArray;
-  Node *TipBoxGuardSoldier;
-  Node *ButtonMerchante;
-  ui::Button *ButtonEpicBattle;
-  ui::Button *ButtonMonument;
+  Node* TipBoxGuardSoldier;
+  Node* ButtonMerchante;
+  ui::Button* ButtonEpicBattle;
+  ui::Button* ButtonMonument;
 
-  bool IsMoving(){ return false;}
+  bool IsMoving() { return false; }
   static cocos2d::Scene* createScene();
-  template<typename T>
-  T GetNode(const char *p_NodeName){
-    return nullptr;
-  };
+  template <typename T> T GetNode(const char* p_NodeName) { return nullptr; };
 
-  Ext::ScrollView *BaseScrollLayer;
+  Ext::ScrollView* BaseScrollLayer;
+  Ext::ScrollView* _ScrollLayer;
+  class MainCityView* _MainCityView;
 
   virtual bool init();
   void initDraggingEvent();
   void initCityLayers();
   void menuCloseCallback(cocos2d::Ref* pSender);
   void onEnter();
+  void LoadAsset();
   static CityScene* getCityScene();
 
   // implement the "static create()" method manually

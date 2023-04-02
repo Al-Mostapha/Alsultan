@@ -80,8 +80,8 @@ class IBuilding : public cocos2d::Node ,public BuildingCell{
   Vec2 m_PosEtUpgradeOffset = Vec2(0, 0);
   bool m_IsTraining = false;
   bool m_IsSHowWarLv = false;
-  bool m_IsCanUpgrade = false;
-  bool m_IsCanUpgradeStar = false;
+  bool _IsCanUpgrade = false;
+  bool _IsCanUpgradeStar = false;
   RBuildingTask* m_BuildingTask = nullptr;
   GHashMap<EBuildingState, IState*> m_States;
   virtual bool init() override;
@@ -201,6 +201,7 @@ class IBuilding : public cocos2d::Node ,public BuildingCell{
   virtual void UpdateViewModel() {}
 
   virtual void UpdateBuff() {}
+  virtual bool GetHasBuff() { return false; }
 
   virtual void ShowWorkDone();
   virtual void HideWorkDone();

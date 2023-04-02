@@ -59,6 +59,9 @@ public:
       SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_PlistName);
       p_CallBack();
     }
+    void AddSpriteFrames(const GString &p_PlistName){
+      SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_PlistName);
+    }
     DrawNode *NewPolygon(
       const GVector<Vec2> &p_Points,
       const RPolygonProps &p_Props = RPolygonProps(),

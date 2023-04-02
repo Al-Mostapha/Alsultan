@@ -62,3 +62,37 @@ BuildingCell &CityCell::GetBuilding(EBuildingIndex p_Index){
 bool CityCell::BuildingFound(EBuildingIndex p_Index){
   return BuildingList.find(p_Index) != BuildingList.end();
 }
+
+void CityCell::FromJson(GJson *p_Json){
+    // local _citycell = cityCell.new()
+  // local cityinfo = data.cinfo
+  // local buildlist = data.blist
+ // AddBuilding(EBuildingIndex::ArrowTowerL,{{EBuilding::ArrowTower, EBuildingIndex::ArrowTowerL, 1}});
+ // for k, v in ipairs(buildlist) do
+   //   local _buildcell = buildCell.new()
+  //   v.binfo.starLv = v.binfo.starLv or 0
+  //   _buildcell.info = v.binfo
+  //   _citycell:addBuild(v.binfo.index, _buildcell)
+  // end
+  // _citycell.info = cityinfo
+  // _citycell.demolishInfo = data.demolishInfo
+  // _citycell.resList = data.reslist
+  // _citycell.areaList = data.arealist
+  // _citycell.dayMaxRes = data.dayMaxRes
+  // _citycell.saferes = data.saferes
+  // _citycell.mastery = data.mastery
+  // _citycell:setDrawingData(data.drawingData)
+  // self.upgradePopLv = data.upgradePopLv
+  // local buildchargequeue = data.queue[tostring(gQueueTypeDef.charge_build_queue)]
+  // if buildchargequeue then
+  //   local starttime = buildchargequeue.starttime
+  //   local totaltime = buildchargequeue.totaltime
+  //   local nowtime = serviceFunctions.systemTime()
+  //   local lasttime = nowtime - starttime
+  //   local lefttime = totaltime - lasttime
+  //   if lefttime <= 0 then
+  //     lefttime = 0
+  //   end
+  //   _citycell:addBuildChargeQueue(gQueueTypeDef.charge_build_queue, starttime, totaltime, lefttime)
+  // end
+}

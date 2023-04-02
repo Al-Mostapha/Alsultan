@@ -7,6 +7,7 @@
 #include "CityScene.Const.h"
 #include "Module/City/CityBuilding/CityBuilding.Type.h"
 
+
 class MainCityCreate{
   GHashMap<ECityTargetGroupID, Vector<Node*>> m_CityGroupNode;
 public:

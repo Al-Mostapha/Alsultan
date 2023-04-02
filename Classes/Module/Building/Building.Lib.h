@@ -17,4 +17,5 @@ class BuildingLib {
   static GVector<RBuildingSpecs> getCanBuildList(EBuilding p_BuildingType);
   static bool isCanBuild(EBuilding p_BuildingType);
   EBuildingPlace DGetBuildTypeByIndex(EBuildingIndex p_Building);
+  EBuildingPlace DGetBuildTypeByBid(EBuilding p_Building);
 };

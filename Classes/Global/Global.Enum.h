@@ -18,7 +18,8 @@ enum class ETouchEventType{
 
 enum class EFactionType{
   None = 0,
-  Normal = 1
+  Normal = 1,
+  Byzantine = 2
 };
 
 enum class EScene{

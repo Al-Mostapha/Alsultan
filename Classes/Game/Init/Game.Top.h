@@ -4,8 +4,9 @@
 
 
 class GameTop : public IModule {
+  public:
   class ServerProxy* m_ServerProxy;
-  class PlayerTop* m_PlayerTop;
+  class PlayerTop* _PlayerTop;
 
   public:
   static GameTop* Get();

@@ -9,4 +9,6 @@ public:
   void UpdateLockArea(class MainCityView *p_View);
   void AddBuild(MainCityView *p_MainCity, EBuilding p_BuildingId, EBuildingIndex p_BuildingIndex);
   void ReArrangeZorder(MainCityView *p_MainCity);
+  void ShowNodeTint(Node *p_Node);
+  void ShowNodeTintOnce(Node *p_Node);
 };

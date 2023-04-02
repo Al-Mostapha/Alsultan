@@ -9,6 +9,7 @@
 #include "Module/Building/Building.Module.h"
 #include "Module/Building/Building.Type.h"
 #include "Include/IncludeReflection.h"
+#include "Module/Module.Mgr.h"
 
 USING_NS_CC;
 
@@ -99,8 +100,6 @@ bool InitScene::init()
 
     setName("My Name Is Init Scene");
     GConfigModule::init();
-    ArmyModule::init();
-    BuildingModule::init();
-    ResourceModule::init();
+    GModuleMgr::Get()->Init();
     return true;
 }

@@ -7,6 +7,7 @@
 #include "Module/UI/UICCSView.h"
 #include "Module/Building/Building.Enum.h"
 #include "CityScene.Create.h"
+#include "CityFloor.h"
 
 
 struct RShowMainCityView{
@@ -17,7 +18,7 @@ struct RShowMainCityView{
   RViewOtherData OtherData;
 };
 
-class MainCityView : public UIBaseView, public MainCityCreate
+class MainCityView : public UIBaseView, public MainCityCreate, public CityFloor
 {
   GHashMap<GString, Node *> n_BufferNodeArray;
   CREATE_FUNC(MainCityView);
@@ -36,16 +37,12 @@ public:
   void Ctor();
   void PreLoadImages();
   bool IsNeedFirstFight();
-  void AddToBufferNodeArrayByName(const char *p_Name, Node *p_Node){
-    if(!p_Node)
-      return;
-    n_BufferNodeArray[p_Name] = p_Node;
-  }
+  void AddToBufferNodeArrayByName(const char *p_Name, Node *p_Node) override;
 
   void DelBufferNodeByName(const char *p_Name){}
   void FinishLoadImages();
   void OnMessageListener_FinishLoadImage();
-  virtual void InitAfterCreate(){};
+  void InitAfterCreate();
   void InitCelebrateGift(){
     //effectMainCityView.initCelebrateGift(self, target, data)
   }
@@ -66,11 +63,11 @@ public:
   void UpdateTime(float p_Time);
   void UpdateTimePerFrame(float p_Time);
   void RefreshCastleSkin(bool p_IsInit = false);
-  Vec2 GetDefaultMainCityPos();
+  Vec2 GetDefaultMainCityPos() override;
 
   void InitVisibleArea();
   void EnableShack();
   void DelBuildTile(Node *p_BuildingBtn);
-  ui::Layout *GetBufferNodeByName(const char *p_NodeName);
+  Node *GetBufferNodeByName(const char *p_NodeName) override;
   
 };

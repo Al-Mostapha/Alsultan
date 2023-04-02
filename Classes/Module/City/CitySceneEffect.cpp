@@ -277,6 +277,7 @@ void EffectMainCityView::showFinishEffect(Node* nodeFrom, Vec2 posTo, bool isCol
 }
 
 void EffectMainCityView::showXiyiAnimation() {
+  GDisplay::Get()->AddSpriteFrames("FrameAnimation/NPCAnimation.plist");
   int32 xiyiSpeed = 50;
   auto runXiyiAnimation = [xiyiSpeed](Sprite* s, Vec2 PosFrom, Vec2 PosTo, float rot, bool isFlippedX) {
     float distance = PosFrom.getDistance(PosTo);
@@ -310,9 +311,9 @@ void EffectMainCityView::showXiyiAnimation() {
   Sprite* sprite_1 = Sprite::createWithSpriteFrameName("xiyi_01.png");
   Sprite* sprite_2 = Sprite::createWithSpriteFrameName("xiyi_01.png");
   Sprite* sprite_3 = Sprite::createWithSpriteFrameName("xiyi_01.png");
-  scene->batchNodeXiyiNpc->addChild(sprite_1);
-  scene->batchNodeXiyiNpc->addChild(sprite_2);
-  scene->batchNodeXiyiNpc->addChild(sprite_3);
+  scene->_MainCityView->_BatchNodeXiyiNpc->addChild(sprite_1);
+  scene->_MainCityView->_BatchNodeXiyiNpc->addChild(sprite_2);
+  scene->_MainCityView->_BatchNodeXiyiNpc->addChild(sprite_3);
   sprite_1->setPosition(3706, 789);
   sprite_2->setPosition(3704, 302);
   sprite_3->setPosition(4525, 497);
@@ -325,10 +326,11 @@ void EffectMainCityView::showXiyiAnimation() {
 }
 
 void EffectMainCityView::addActivityCentetNpc() {
+  GDisplay::Get()->AddSpriteFrames("FrameAnimation/mainCityNpc.plist");
   auto sprite = Sprite::createWithSpriteFrameName("funvxiaohai_01.png");
   auto scene = CityScene::getCityScene();
   if (!scene) return;
-  scene->CityBuildingLayer->addChild(sprite, ECityTargetZOrder::Get()->xunluo);
+  scene->_MainCityView->_ContainerView->addChild(sprite, ECityTargetZOrder::Get()->xunluo);
   sprite->setPosition(1842, 1786);
   CallFunc* callFunc1 = CallFunc::create([sprite]() {
     auto frames = BaseCreate::getAnimationFrames("funvxiaohai_0%d.png", 1, 8);
@@ -353,7 +355,7 @@ void EffectMainCityView::addCastleGateNpc() {
   sprite->setLocalZOrder(ECityTargetZOrder::Get()->juying);
   CityScene* scene = CityScene::getCityScene();
   if (!scene) return;
-  scene->CityBuildingLayer->addChild(sprite);
+  scene->_MainCityView->_ContainerView->addChild(sprite);
   sprite->setPosition(2200, 1762);
   auto Frames = BaseCreate::getAnimationFrames("shiming_%02d.png", 1, 16);
   Animation* animation = Animation::createWithSpriteFrames(Frames, 0.125);
@@ -402,8 +404,8 @@ void EffectMainCityView::addHarborWorker() {
   Sprite* sprite_2 = Sprite::createWithSpriteFrameName("banyungong_wn_01.png");
   CityScene* cityScene = CityScene::getCityScene();
   if (!cityScene) return;
-  cityScene->batchNodeNpc->addChild(sprite_1, 1);
-  cityScene->batchNodeNpc->addChild(sprite_2, 2);
+  cityScene->_MainCityView->_BatchNodeNpc->addChild(sprite_1, 1);
+  cityScene->_MainCityView->_BatchNodeNpc->addChild(sprite_2, 2);
   sprite_1->setPosition(basePos);
   sprite_2->setPosition(basePos + Vec2(-15, -10));
   runHarborAnimation(sprite_1, false);
@@ -411,6 +413,8 @@ void EffectMainCityView::addHarborWorker() {
 }
 
 void EffectMainCityView::addConquerGateAnimation() {
+  GDisplay::Get()->AddSpriteFrames("FrameAnimation/mainCityNpc.plist");
+  GDisplay::Get()->AddSpriteFrames("FrameAnimation/commonFAnimation_1.plist");
   struct AnimationTab {
     GString png;
     Vec2 pos;
@@ -431,7 +435,7 @@ void EffectMainCityView::addConquerGateAnimation() {
                               {"shibing1_02.png", Vec2(60, 18), "", 0, 0, false}};
   CityScene* scene = CityScene::getCityScene();
   if (!scene) return;
-  Node* BtnConquer = scene->CityBuildingLayer->getChildByName("Button_conquer");
+  Node* BtnConquer = scene->_MainCityView->_ContainerView->getChildByName("Button_conquer");
   if (!BtnConquer) return;
 
   int32 index = 0;
@@ -563,10 +567,10 @@ void EffectMainCityView::addSoldierGuard() {
   if (!scene) return;
   for (int32 i = 1; i <= 4; i++) {
     Sprite* sprite = Sprite::createWithSpriteFrameName("xunluo_wn_01.png");
-    scene->batchNodeSoldierGuards->addChild(sprite);
+    scene->_MainCityView->_BatchNodeSoldierGuards->addChild(sprite);
     if (i == 2) {
       sprite->setName("soldier_guard_2");
-      scene->bufferNodeArray.insert("soldier_guard_2", sprite);
+      scene->_MainCityView->AddToBufferNodeArrayByName("soldier_guard_2", sprite);
     }
     sprite->setPosition(basePos + Vec2((float)i * 20, -(float)i * 10));
     sprite->setLocalZOrder(i);
@@ -613,7 +617,7 @@ void EffectMainCityView::showEagle() {
   eagleEffect->addChild(eagleShadow, 1);
   CityScene* cityScene = CityScene::getCityScene();
   if (!cityScene) return;
-  cityScene->containerView->addChild(eagleEffect, ECityTargetZOrder::Get()->juying);
+  cityScene->_ContainerView->addChild(eagleEffect, ECityTargetZOrder::Get()->juying);
   showEagleSpreadWinds();
   Vec2 beginPos(190, 3300);
   Vec2 endPos(3133, -50);
@@ -642,7 +646,7 @@ void EffectMainCityView::addBuildAnimBoostBottom(const GString& BuildingPlace) {
   et_node->addChild(BaseCreate::createParticle("Particle/et_fanbei_display_03.plist", Vec2(3, 16), Vec2(1.7, 1.7), 0.0f));
   et_node->setPosition(BuildingNode->getPosition() - Vec2(0, 12));
   et_node->setLocalZOrder(BuildingNode->getLocalZOrder() + 1);
-  mainCity->containerView->addChild(et_node);
+  mainCity->_ContainerView->addChild(et_node);
   mainCity->bufferNodeArray.insert(etBoostBottomName, et_node);
 }
 
@@ -651,38 +655,38 @@ void EffectMainCityView::addHarvestEffect() {
   CityScene* mainCity = CityScene::getCityScene();
   if (!mainCity) return;
   for (RCityBuildingUnit& oneBuilding : BuildingList) {
-    Node* Building = mainCity->containerView->getChildByName(oneBuilding.NodeName);
+    Node* Building = mainCity->_ContainerView->getChildByName(oneBuilding.NodeName);
     GString etBoostHarvestName = "et_boost_harvest_" + oneBuilding.NodeName;
-    if (mainCity->containerView->getChildByName(etBoostHarvestName)) continue;
+    if (mainCity->_ContainerView->getChildByName(etBoostHarvestName)) continue;
     if (!Building) continue;
     Node* et_node = Node::create();
     et_node->addChild(BaseCreate::createParticle("Particle/et_fs_01.plist", Vec2(0, 0), Vec2(1.71f, 1.71f), 0));
     et_node->addChild(BaseCreate::createParticle("Particle/et_fs_02.plist", Vec2(0, 0), Vec2(1.71f, 1.71f), 0));
     et_node->setName(etBoostHarvestName);
     et_node->setPosition(Building->getPosition());
-    mainCity->containerView->addChild(et_node);
+    mainCity->_MainCityView->_ContainerView->addChild(et_node);
   }
 }
 
 void EffectMainCityView::addPortEffect() {
   CityScene* mainCity = CityScene::getCityScene();
   if (!mainCity) return;
-  if (!mainCity->containerView->getChildByName("et_particle_chuang_1")) {
+  if (!mainCity->_MainCityView->_ContainerView->getChildByName("et_particle_chuang_1")) {
     auto Part_1 = BaseCreate::createParticle("Particle/et_chuang_02.plist", Vec2(3869, 1993), Vec2(1, 1), 0);
     Part_1->setName("et_particle_chuang_1");
-    mainCity->containerView->addChild(Part_1, 1001);
+    mainCity->_MainCityView->_ContainerView->addChild(Part_1, 1001);
   }
-  if (!mainCity->containerView->getChildByName("et_particle_chuang_2")) {
+  if (!mainCity->_MainCityView->_ContainerView->getChildByName("et_particle_chuang_2")) {
     auto Part_2 = BaseCreate::createParticle("Particle/et_chuang_03.plist", Vec2(3883, 2030), Vec2(1, 1), 0);
     Part_2->setName("et_particle_chuang_2");
-    mainCity->containerView->addChild(Part_2, 1001);
+    mainCity->_MainCityView->_ContainerView->addChild(Part_2, 1001);
   }
 }
 
 void EffectMainCityView::addMatouEffect() {
   CityScene* mainCity = CityScene::getCityScene();
   if (!mainCity) return;
-  if (mainCity->containerView->getChildByName("et_node_matou")) return;
+  if (mainCity->_ContainerView->getChildByName("et_node_matou")) return;
   Node* et_node_matou = Node::create();
   auto Part_1 = BaseCreate::createParticle("Particle/et_lqlbjz_01.plist", Vec2(0, 0), Vec2(1, 1), 0);
   auto Part_2 = BaseCreate::createParticle("Particle/et_lqlbjz_02.plist", Vec2(0, 0), Vec2(1.165f, 1.165f), 0);
@@ -690,17 +694,17 @@ void EffectMainCityView::addMatouEffect() {
   et_node_matou->addChild(Part_2);
   et_node_matou->setPosition(4145, 1857);
   et_node_matou->setName("et_node_matou");
-  mainCity->containerView->addChild(et_node_matou, 1001);
+  mainCity->_ContainerView->addChild(et_node_matou, 1001);
 }
 
 void EffectMainCityView::addWallEffect() {
   CityScene* mainCity = CityScene::getCityScene();
   if (!mainCity) return;
   GString etWallEffectName = "BG_wall_broken";
-  if (mainCity->containerView->getChildByName(etWallEffectName)) mainCity->containerView->getChildByName(etWallEffectName)->setVisible(true);
+  if (mainCity->_ContainerView->getChildByName(etWallEffectName)) mainCity->_ContainerView->getChildByName(etWallEffectName)->setVisible(true);
   Sprite* spriteWallEffect = Sprite::createWithSpriteFrameName("BG_wall_broken.png");
   spriteWallEffect->setName(etWallEffectName);
-  mainCity->containerView->addChild(spriteWallEffect, ECityTargetZOrder::Get()->lower_wall);
+  mainCity->_ContainerView->addChild(spriteWallEffect, ECityTargetZOrder::Get()->lower_wall);
   spriteWallEffect->setPosition(3424, 1051);
 
   // local tipBoxName = "wallTipBox"
@@ -734,7 +738,7 @@ void EffectMainCityView::addWallEffect() {
 void EffectMainCityView::addTouchParticle(Vec2 TouchPos) {
   CityScene* mainCity = CityScene::getCityScene();
   if (!mainCity) return;
-  Node* TouchEtNode = mainCity->containerView->getChildByName("touch_et_node");
+  Node* TouchEtNode = mainCity->_MainCityView->_ContainerView->getChildByName("touch_et_node");
   if (TouchEtNode) {
     TouchEtNode->setPosition(TouchPos);
     return;
@@ -746,13 +750,13 @@ void EffectMainCityView::addTouchParticle(Vec2 TouchPos) {
   TouchEtNode->addChild(Part_2);
   TouchEtNode->setPosition(TouchPos);
   TouchEtNode->setName("touch_et_node");
-  mainCity->containerView->addChild(TouchEtNode, 1002);
+  mainCity->_MainCityView->_ContainerView->addChild(TouchEtNode, 1002);
 }
 
 void EffectMainCityView::cloudRunEffect() {
   CityScene* mainCity = CityScene::getCityScene();
   if (!mainCity) return;
-  static float beginY = mainCity->containerView->getContentSize().height + 200;
+  static float beginY = mainCity->_MainCityView->_ContainerView->getContentSize().height + 200;
   static float endY = -200;
   static float lean = 0.44f;
   static float disX = 800;
@@ -763,12 +767,12 @@ void EffectMainCityView::cloudRunEffect() {
   Sprite* cloud2 = Sprite::createWithSpriteFrameName("et_yunduo02_01.png");
   cloud1->setName("cloud1");
   cloud1->setScale(2);
-  mainCity->containerView->addChild(cloud1, 750);
+  mainCity->_ContainerView->addChild(cloud1, 750);
   auto Frames = BaseCreate::getAnimationFrames("et_yunduo01_%.2d.png", 1, 10);
   Animation* animation = Animation::createWithSpriteFrames(Frames, 0.1f);
   cloud1->runAction(RepeatForever::create(Animate::create(animation)));
   CallFunc* callFunc = CallFunc::create([mainCity, cloud1]() {
-    dPosX = cocos2d::random<float>(-1000, mainCity->containerView->getContentSize().width - 1000);
+    dPosX = cocos2d::random<float>(-1000, mainCity->_ContainerView->getContentSize().width - 1000);
     dt = cocos2d::random<float>(60, 100);
     cloud1->setPosition(dPosX, beginY);
   });
@@ -777,7 +781,7 @@ void EffectMainCityView::cloudRunEffect() {
   cloud1->runAction(RepeatForever::create(seq1));
   cloud2->setName("cloud2");
   cloud2->setScale(2);
-  mainCity->containerView->addChild(cloud2, 750);
+  mainCity->_ContainerView->addChild(cloud2, 750);
   auto Frames2 = BaseCreate::getAnimationFrames("et_yunduo02_%.2d.png", 1, 10);
   Animation* animation2 = Animation::createWithSpriteFrames(Frames2, 0.1f);
   cloud2->runAction(RepeatForever::create(Animate::create(animation2)));

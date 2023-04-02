@@ -10,3 +10,9 @@ RBuildingTipsBtnListData BuildingTipsStatic::GetBuildTipsBtnListData(EBuilding p
     return m_BuildTipsBtnListData[p_Building];
   return RBuildingTipsBtnListData();
 }
+
+RBuildingTipConfig BuildingTipsStatic::GetBuildTipButtonCfgById(EBuildingTips p_Tip){
+    if(_BuildTipsConfig.Contains(p_Tip))
+    return _BuildTipsConfig[p_Tip];
+  return RBuildingTipConfig();
+}

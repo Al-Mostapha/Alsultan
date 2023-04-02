@@ -84,7 +84,7 @@ struct RCityBtnAction : GStruct
 	GString BtnImage;
 	uint32 ActionSortIndex;
 	uint32 scale;
-	cocos2d::Vec2 offset;
+	Vec2 offset;
 
 	bool fromJsonObject(GJsonObject &JsonObject)
 	{

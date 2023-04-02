@@ -2,6 +2,8 @@
 #include "Include/IncludeBase.h"
 #include "CityScene.View.h"
 #include "CityScene.Create.h"
+#include "CityScene.ABMManager.h"
+#include "CityScene.Move.h"
 
 MainCityView *MainCityView::Create(RViewOtherData p_Data){
   auto l_Panel =  Create("UiParts/Panel/MainCity/mainCityView.csb");
@@ -9,11 +11,37 @@ MainCityView *MainCityView::Create(RViewOtherData p_Data){
   return l_Panel;
 }
 
+void MainCityView::AddToBufferNodeArrayByName(const char *p_Name, Node *p_Node){
+  if(!p_Node)
+    return;
+  n_BufferNodeArray[p_Name] = p_Node;
+}
+
 void MainCityView::Ctor(){
-  //userSDKManager.timeInfo.t_maincity.tbegin = SoraDGetSocketTime()
-  //print("\229\188\128\229\167\139\229\136\155\229\187\186\229\134\133\229\159\142------")
-  //self.param = param
+  setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->rcy));
+  setContentSize(GDisplay::Get()->realSize);
+  setAnchorPoint(Vec2(0.5, 0.5));
+  setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->rcy));
+  auto l_CSize = getContentSize();
+  auto l_BlindHeight = (_HUITop + _HUIBottom + GDisplay::Get()->iPhoneXOffset);
+  _ViewScrollSize = Size(l_CSize.width, l_CSize.height - l_BlindHeight);
+  _CityView = this;
+  // n_MainCityView->n_ViewScrollView->setDelegate(nullptr);
+  CityFloor::Ctor();
+  addChild(_ViewScrollView, 0);
   PreLoadImages();
+}
+
+void MainCityView::InitAfterCreate() {
+  UpdatePeriod();
+  CityFloor::InitWithBuildData();
+  CityFloor::InitWithHuoChuangData();
+  CityFloor::InitMatouData();
+  InitCelebrateGift();
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_PYRAMID_BATTLE_MSG");
+  n_MainCityView->MsgUpdateLion();
+  MainCityBuildingMove::Get()->Init(this);
+  MainCityABMManager::Get()->Init(this);
 }
 
 void MainCityView::UpdatePeriod(){
@@ -78,11 +106,9 @@ void MainCityView::PreLoadImages(){
 }
 
 void MainCityView::FinishLoadImages(){
-  // self.isFinishInit = true
   m_IsFinishInit = true;
   OnMessageListener_FinishLoadImage();
-  auto l_MainCityCreate = MainCityCreate::Create(this);
-  l_MainCityCreate->InitAfterCreate();
+  MainCityView::InitAfterCreate();
   GBase::DPushItemAward(GBase::DPopItemAward());
   if(GBase::DCloseLoginView()){
       //   userSDKManager.logEvent(gSDKDef.TDonEvent.enter_city, {})
@@ -118,8 +144,8 @@ void MainCityView::LoadFixedBuilds(){
 }
 
 void MainCityView::SetMainCityEnabled(bool p_Enabled){
-  if(n_ViewScrollView){
-    n_ViewScrollView->setTouchEnabled(p_Enabled);
+  if(_ViewScrollView){
+    _ViewScrollView->setTouchEnabled(p_Enabled);
     m_IsBuildBtnEnable = p_Enabled;
   }
 }
@@ -145,9 +171,9 @@ void MainCityView::AutoUpdateViewScrollViewPos(float p_Delay){
 
 Vec2 MainCityView::GetDefaultMainCityPos(){
   // local Button_Chengbao = self:getBufferNodeByName("build_1050")
-  auto l_BtnChengBao = n_MainCityView->GetBufferNodeByName("build_1050");
+  auto l_BtnChengBao = _ContainerView->getChildByName("build_1050");
   // local posX = Button_Chengbao:getPositionX()
-  const auto l_PosX = l_BtnChengBao->getPositionX();
+  const auto l_PosX = l_BtnChengBao->getPositionX() - 500;
   // local posY = Button_Chengbao:getPositionY() + 500
   const auto l_Posy = l_BtnChengBao->getPositionY() + 500;
   
@@ -359,19 +385,19 @@ void MainCityView::DelBuildTile(Node *p_BuildingBtn){
   //   return;
   auto l_BuildingIndex = p_BuildingBtn->getTag();
   if(p_BuildingBtn){
-    auto l_TileName = StringUtils::format("res_tile%d", l_BuildingIndex);
-    auto l_Sprite = n_BatchNodeOuterTiles->getChildByName(l_TileName.c_str());
+    auto l_TileName = GString("res_tile") + std::to_string(l_BuildingIndex);
+    auto l_Sprite = _BatchNodeOuterTiles->getChildByName(l_TileName.c_str());
     if(l_Sprite)
       l_Sprite->removeFromParent();
   }
 }
 
-ui::Layout *MainCityView::GetBufferNodeByName(const char *p_NodeName){
+Node *MainCityView::GetBufferNodeByName(const char *p_NodeName){
   if(!p_NodeName)
     return nullptr;
   if(p_NodeName == "")
     return nullptr;
-  if(n_BufferNodeArray.Contains(p_NodeName))
+  if(!n_BufferNodeArray.Contains(p_NodeName))
     return nullptr;
-  return dynamic_cast<ui::Layout *>(n_BufferNodeArray[GString(p_NodeName)]);
+  return n_BufferNodeArray[GString(p_NodeName)];
 };

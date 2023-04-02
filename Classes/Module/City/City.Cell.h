@@ -21,7 +21,7 @@ class CityCell {
   void UpgradeBuildingStar(EBuildingIndex p_Index);
   void ExchangeBuild(EBuildingIndex p_PreIndex, EBuildingIndex p_AftIndex);
   void OpenArea(ELockedArea p_Area);
-  
+  void FromJson(GJson *p_Json);
   private:
     BuildingCell &GetBuilding(EBuildingIndex p_Index);
     bool BuildingFound(EBuildingIndex p_Index);

@@ -26,8 +26,8 @@ void GameTop::StartGame(){
 }
 
 void GameTop::LogOut(){
-  if(m_PlayerTop)
-    m_PlayerTop->LogOut();
+  if(_PlayerTop)
+    _PlayerTop->LogOut();
 }
 
 void GameTop::OnGameLogIn(){
@@ -35,12 +35,12 @@ void GameTop::OnGameLogIn(){
 }
 
 void GameTop::OnGaming(Guid p_IdPlayer, int32 p_IdKingdom){
-  if(!m_PlayerTop)
-    m_PlayerTop = PlayerTop::Get();
-  m_PlayerTop->AddEventListener("HEARTBEAT_TIMEOUT_EVENT", CC_CALLBACK_1(GameTop::OnHeartbeatTimeOut, this));
-  m_PlayerTop->SetPlayerID(p_IdPlayer);
-  m_PlayerTop->SetKingdomID(p_IdKingdom);
-  m_PlayerTop->EnterGame();
+  if(!_PlayerTop)
+    _PlayerTop = PlayerTop::Get();
+  _PlayerTop->AddEventListener("HEARTBEAT_TIMEOUT_EVENT", CC_CALLBACK_1(GameTop::OnHeartbeatTimeOut, this));
+  _PlayerTop->SetPlayerID(p_IdPlayer);
+  _PlayerTop->SetKingdomID(p_IdKingdom);
+  _PlayerTop->EnterGame();
   RegisterServeStatus();
 }
 

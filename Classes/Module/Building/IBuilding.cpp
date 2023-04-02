@@ -104,6 +104,7 @@ void IBuilding::InitEvents() {
 
 void IBuilding::onEnter() {
   Node::onEnter();
+  CCLOG("Building Entered");
   EndTimer();
   UpdateLvl();
   UpdateStarLvl();
@@ -116,6 +117,7 @@ void IBuilding::onEnter() {
   }
   ShowBuildLvl();
   OnAfterInitWithBuildCell();
+  // InitEvents();
 }
 
 void IBuilding::OnMessageListener() {
@@ -202,7 +204,7 @@ void IBuilding::UpdateLvl() {
   UpdateTextLvl();
   UpdateIsCanUpgrade();
   if (l_IsWarLvl <= 0 && n_BuildingLvBg) {
-    n_BuildingLvBg->setSpriteFrame("con_main_build_lv.png");
+    n_BuildingLvBg->setSpriteFrame("icon_main_build_lv.png");
     m_IsSHowWarLv = false;
   }
   if (l_IsWarLvl > 0 && n_BuildingLvBg) {
@@ -1070,10 +1072,10 @@ void IBuilding::UpdateIsCanUpgrade() {
 }
 
 void IBuilding::SetIsCanUpgrade(bool p_IsCan) {
-  m_IsCanUpgrade = p_IsCan;
-  if (m_IsCanUpgradeStar) return;
+  _IsCanUpgrade = p_IsCan;
+  if (_IsCanUpgradeStar) return;
   if (!n_UpgradeSprite) return;
-  if (m_IsCanUpgrade)
+  if (_IsCanUpgrade)
     n_UpgradeSprite->setVisible(true);
   else
     n_UpgradeSprite->setVisible(false);

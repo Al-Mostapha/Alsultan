@@ -16,7 +16,7 @@ public:
   GString GetBuildStarLight(uint32 p_StarLvl) { return "" ;}
   uint32 GetBuildStarColor(uint32 p_StarLvl) { return 0 ;}
   void CollectResReq(EBuilding p_Building, EBuildingIndex p_BuildingIndex) {}
-  BuildingCell *GetBuildingCell(EBuilding p_Building, EBuildingIndex p_BuildingIndex) { return nullptr ;}
+  BuildingCell *GetBuildingCell(EBuilding p_Building, EBuildingIndex p_BuildingIndex) { return new BuildingCell() ;}
   BuildingCell *GetBuildingCellByIndex(EBuildingIndex p_BuildingIndex);
   GHashMap<EBuildingIndex, BuildingCell> GetBuildList();
   bool GetCastleUpgradePopStatus();

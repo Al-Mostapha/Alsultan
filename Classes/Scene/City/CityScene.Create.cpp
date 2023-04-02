@@ -220,192 +220,192 @@ void MainCityCreate::CreateFightBatchNodes() {
 }
 
 void MainCityCreate::InitOriginBuild() {
-  // Gate
-  auto l_BtnBuildChengmeng = n_MainCityView->GetBufferNodeByName("build_1053");
-  if (l_BtnBuildChengmeng) {
-    l_BtnBuildChengmeng->setSwallowTouches(false);
-    l_BtnBuildChengmeng->addTouchEventListener(
-            [this, l_BtnBuildChengmeng](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BtnBuildChengmeng, p_Ref, p_Touch); });
-  }
-  // LeftArrowTower
-  auto l_BtnBuildJiantaL = n_MainCityView->GetBufferNodeByName("build_1052");
-  if (l_BtnBuildJiantaL) {
-    l_BtnBuildJiantaL->addTouchEventListener(
-            [this, l_BtnBuildJiantaL](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BtnBuildJiantaL, p_Ref, p_Touch); });
-  }
+  // // Gate
+  // auto l_BtnBuildChengmeng = dynamic_cast<ui::Layout *>(n_MainCityView->GetBufferNodeByName("build_1053"));
+  // if (l_BtnBuildChengmeng) {
+  //   l_BtnBuildChengmeng->setSwallowTouches(false);
+  //   l_BtnBuildChengmeng->addTouchEventListener(
+  //           [this, l_BtnBuildChengmeng](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BtnBuildChengmeng, p_Ref, p_Touch); });
+  // }
+  // // LeftArrowTower
+  // auto l_BtnBuildJiantaL = n_MainCityView->GetBufferNodeByName("build_1052");
+  // if (l_BtnBuildJiantaL) {
+  //   l_BtnBuildJiantaL->addTouchEventListener(
+  //           [this, l_BtnBuildJiantaL](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BtnBuildJiantaL, p_Ref, p_Touch); });
+  // }
 
-  // RightArrowTower
-  auto l_BtnBuildJiantaR = n_MainCityView->GetBufferNodeByName("build_1054");
-  if (l_BtnBuildJiantaR) {
-    l_BtnBuildJiantaR->addTouchEventListener(
-            [this, l_BtnBuildJiantaR](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BtnBuildJiantaR, p_Ref, p_Touch); });
-  }
-  // watchtower
-  auto l_BtnBuildWatchtower = n_MainCityView->GetBufferNodeByName("build_1055");
-  if (l_BtnBuildWatchtower) {
-    l_BtnBuildWatchtower->setSwallowTouches(false);
-    l_BtnBuildWatchtower->addTouchEventListener([this, l_BtnBuildWatchtower](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) {
-      BuildButtonCallFun(l_BtnBuildWatchtower, p_Ref, p_Touch);
-    });
-  }
+  // // RightArrowTower
+  // auto l_BtnBuildJiantaR = n_MainCityView->GetBufferNodeByName("build_1054");
+  // if (l_BtnBuildJiantaR) {
+  //   l_BtnBuildJiantaR->addTouchEventListener(
+  //           [this, l_BtnBuildJiantaR](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BtnBuildJiantaR, p_Ref, p_Touch); });
+  // }
+  // // watchtower
+  // auto l_BtnBuildWatchtower = n_MainCityView->GetBufferNodeByName("build_1055");
+  // if (l_BtnBuildWatchtower) {
+  //   l_BtnBuildWatchtower->setSwallowTouches(false);
+  //   l_BtnBuildWatchtower->addTouchEventListener([this, l_BtnBuildWatchtower](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) {
+  //     BuildButtonCallFun(l_BtnBuildWatchtower, p_Ref, p_Touch);
+  //   });
+  // }
 }
 
 void MainCityCreate::InitBuild() {
-  InitOriginBuild();
-  for (auto ii = 1050; ii <= 1067; ii++) {
-    auto l_BuildName = "build_" + std::to_string(ii);
-    auto l_BuildBtn = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
-    if (l_BuildBtn) {
-      l_BuildBtn->setSwallowTouches(false);
-      l_BuildBtn->setTag(ii);
-      l_BuildBtn->addTouchEventListener([=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildBtn, p_Ref, p_Touch); });
-    }
-  }
-  auto l_BtnBuildChengmeng = n_MainCityView->GetBufferNodeByName("build_1053");
-  auto l_Build_cq_item = n_MainCityView->GetBufferNodeByName("Button_Cq");
-  if (l_Build_cq_item) {
-    l_Build_cq_item->setSwallowTouches(false);
-    l_Build_cq_item->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_Build_cq_item, p_Ref, p_Touch); });
-  }
-  for (auto iii = 1100; iii <= 1134; iii++) {
-    auto l_BuildName = "build_" + std::to_string(iii);
-    auto l_BuildBtn = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
-    if (l_BuildBtn) {
-      l_BuildBtn->setSwallowTouches(false);
-      l_BuildBtn->setTag(iii);
-      l_BuildBtn->addTouchEventListener([=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildBtn, p_Ref, p_Touch); });
-    }
-  }
-  for (auto iii = 1; iii <= 10; iii++) {
-    auto l_BuildName = "kipchaks_" + std::to_string(iii);
-    auto l_BuildBtn = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
-    if (l_BuildBtn) {
-      l_BuildBtn->setVisible(true);
-      l_BuildBtn->setSwallowTouches(false);
-      l_BuildBtn->setTag(iii);
-      l_BuildBtn->addTouchEventListener([=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { KipchaksButtonCallFun(l_BuildBtn, p_Ref, p_Touch); });
-    }
-  }
-  KipchaksUpdate();
-  // Army
-  auto l_ButtonMilitaryInfo = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_MilitaryInfo");
-  if (l_ButtonMilitaryInfo) {
-    l_ButtonMilitaryInfo->setSwallowTouches(false);
-    l_ButtonMilitaryInfo->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonMilitaryInfo, p_Ref, p_Touch); });
-    n_ButtonMilitaryInfo = l_ButtonMilitaryInfo;
-  }
-  auto l_ButtonMerchante = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_Merchante");
-  if (l_ButtonMerchante) {
-    l_ButtonMerchante->setSwallowTouches(false);
-    l_ButtonMerchante->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonMerchante, p_Ref, p_Touch); });
-    n_ButtonMerchante = l_ButtonMerchante;
-    GBase::DShowNameOnTouchEven(n_ButtonMerchante, GPair<GString, Vec2>::Make(Translate::i18n("common_text_441"), Vec2(80, 0)));
-  }
-  auto l_ButtonActivity = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_Activity");
-  if (l_ButtonActivity) {
-    l_ButtonActivity->setSwallowTouches(false);
-    l_ButtonActivity->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonActivity, p_Ref, p_Touch); });
-    n_ButtonActivity = l_ButtonActivity;
-  }
-  auto l_ButtonEpicBattle = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "build_30006");
-  if (l_ButtonEpicBattle) n_ButtonEpicBattle = l_ButtonEpicBattle;
-  auto l_ButtonMonument = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "build_30007");
-  if (l_ButtonMonument) n_ButtonMonument = l_ButtonMonument;
-  auto l_ButtonPyramidBattle = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "build_20008");
-  if (l_ButtonPyramidBattle) {
-    l_ButtonPyramidBattle->setTouchEnabled(true);
-    l_ButtonPyramidBattle->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonPyramidBattle, p_Ref, p_Touch); });
-    l_ButtonPyramidBattle->setSwallowTouches(false);
-    n_ButtonPyramidBattle = l_ButtonPyramidBattle;
-  }
-  auto l_ButtonLion = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_lion");
-  if (l_ButtonLion) {
-    l_ButtonLion->setSwallowTouches(false);
-    l_ButtonLion->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonLion, p_Ref, p_Touch); });
-    n_ButtonLion = l_ButtonLion;
-    auto l_BGLion = n_MainCityView->GetBufferNodeByName("BG_lion");
-    GBase::DShowNameOnTouchEven(l_BGLion, GPair<GString, Vec2>::Make(Translate::i18n("common_text_4068"), Vec2(60, 60)));
-    n_MainCityView->getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITY_LION_MSG");
-  }
-  auto l_ButtonMaTou = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_MaTou");
-  if (l_ButtonMaTou) {
-    l_ButtonMaTou->setTouchEnabled(true);
-    l_ButtonMaTou->setSwallowTouches(false);
-    l_ButtonMaTou->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonMaTou, p_Ref, p_Touch); });
-    n_ButtonMaTou = l_ButtonMaTou;
-    n_ButtonMaTou->setTag(GCity::Const::Get()->Gangkou);
-  }
-  auto l_ButtonConquer = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_conquer");
-  if (l_ButtonConquer) {
-    l_ButtonConquer->setTouchEnabled(true);
-    l_ButtonConquer->setSwallowTouches(false);
-    l_ButtonConquer->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonConquer, p_Ref, p_Touch); });
-    n_ButtonConquer = l_ButtonConquer;
-    n_ButtonConquer->setTag(GCity::Const::Get()->ConquerGate);
-  }
-  auto l_ButtonBulletInBoard = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_bulletin_board");
-  if (l_ButtonBulletInBoard) {
-    l_ButtonBulletInBoard->setTouchEnabled(false);
-    l_ButtonBulletInBoard->setSwallowTouches(false);
-    l_ButtonBulletInBoard->addTouchEventListener(
-            [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonBulletInBoard, p_Ref, p_Touch); });
-    n_ButtonBulletInBoard = l_ButtonBulletInBoard;
-    n_ButtonBulletInBoard->setTag(GCity::Const::Get()->BulletInBoard);
-  }
-  for (auto i = 30001; i <= 30008; i++) {
-    auto l_BuildName = StringUtils::format("build_%d", i);
-    auto l_BuildButton = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
-    if (l_BuildButton) {
-      l_BuildButton->setSwallowTouches(false);
-      l_BuildButton->setTag(i);
-      l_BuildButton->addTouchEventListener(
-              [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildButton, p_Ref, p_Touch); });
-    }
-    if (i == GCity::Const::Get()->LeisureCenter)
-      n_ButtonLeisureCenter = l_BuildButton;
-    else if (i == GCity::Const::Get()->HuoChuang)
-      n_ButtonHuoChuang = l_BuildButton;
-    else if (i == GCity::Const::Get()->index_PetCenter)
-      n_ButtonPetCenter = l_BuildButton;
-    else if (i == GCity::Const::Get()->index_ResurrectionHall)
-      n_ButtonResurrectionHall = l_BuildButton;
-    else if (i == GCity::Const::Get()->index_ServiceCenter)
-      n_ButtonServiceCenter = l_BuildButton;
-    else if (i == GCity::Const::Get()->index_EpicBattle)
-      n_ButtonEpicBattle = l_BuildButton;
-  }
-  for (auto i = 1200; i <= 1205; i++) {
-    auto l_BuildName = StringUtils::format("build_%d", i);
-    auto l_BuildButton = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
-    if (l_BuildButton) {
-      l_BuildButton->setSwallowTouches(false);
-      l_BuildButton->setTag(i);
-      l_BuildButton->addTouchEventListener(
-              [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildButton, p_Ref, p_Touch); });
-    }
-  }
-  for (auto i = 1151; i <= 1152; i++) {
-    auto l_BuildName = StringUtils::format("build_%d", i);
-    auto l_BuildButton = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
-    if (l_BuildButton) {
-      l_BuildButton->setSwallowTouches(false);
-      l_BuildButton->setTag(i);
-      l_BuildButton->addTouchEventListener(
-              [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildButton, p_Ref, p_Touch); });
-    }
-  }
-  auto l_BuildNameHuoChuang = StringUtils::format("build_%d", GCity::Const::Get()->index_HuoChuang);
-  n_BtnHuoChuang = n_MainCityView->GetBufferNodeByName(l_BuildNameHuoChuang.c_str());
-  auto l_BuildNamePetCenter = StringUtils::format("build_%d", GCity::Const::Get()->index_PetCenter);
-  n_BtnPetCenter = n_MainCityView->GetBufferNodeByName(l_BuildNamePetCenter.c_str());
+  // InitOriginBuild();
+  // for (auto ii = 1050; ii <= 1067; ii++) {
+  //   auto l_BuildName = "build_" + std::to_string(ii);
+  //   auto l_BuildBtn = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
+  //   if (l_BuildBtn) {
+  //     l_BuildBtn->setSwallowTouches(false);
+  //     l_BuildBtn->setTag(ii);
+  //     l_BuildBtn->addTouchEventListener([=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildBtn, p_Ref, p_Touch); });
+  //   }
+  // }
+  // auto l_BtnBuildChengmeng = n_MainCityView->GetBufferNodeByName("build_1053");
+  // auto l_Build_cq_item = n_MainCityView->GetBufferNodeByName("Button_Cq");
+  // if (l_Build_cq_item) {
+  //   l_Build_cq_item->setSwallowTouches(false);
+  //   l_Build_cq_item->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_Build_cq_item, p_Ref, p_Touch); });
+  // }
+  // for (auto iii = 1100; iii <= 1134; iii++) {
+  //   auto l_BuildName = "build_" + std::to_string(iii);
+  //   auto l_BuildBtn = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
+  //   if (l_BuildBtn) {
+  //     l_BuildBtn->setSwallowTouches(false);
+  //     l_BuildBtn->setTag(iii);
+  //     l_BuildBtn->addTouchEventListener([=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildBtn, p_Ref, p_Touch); });
+  //   }
+  // }
+  // for (auto iii = 1; iii <= 10; iii++) {
+  //   auto l_BuildName = "kipchaks_" + std::to_string(iii);
+  //   auto l_BuildBtn = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
+  //   if (l_BuildBtn) {
+  //     l_BuildBtn->setVisible(true);
+  //     l_BuildBtn->setSwallowTouches(false);
+  //     l_BuildBtn->setTag(iii);
+  //     l_BuildBtn->addTouchEventListener([=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { KipchaksButtonCallFun(l_BuildBtn, p_Ref, p_Touch); });
+  //   }
+  // }
+  // KipchaksUpdate();
+  // // Army
+  // auto l_ButtonMilitaryInfo = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_MilitaryInfo");
+  // if (l_ButtonMilitaryInfo) {
+  //   l_ButtonMilitaryInfo->setSwallowTouches(false);
+  //   l_ButtonMilitaryInfo->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonMilitaryInfo, p_Ref, p_Touch); });
+  //   n_ButtonMilitaryInfo = l_ButtonMilitaryInfo;
+  // }
+  // auto l_ButtonMerchante = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_Merchante");
+  // if (l_ButtonMerchante) {
+  //   l_ButtonMerchante->setSwallowTouches(false);
+  //   l_ButtonMerchante->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonMerchante, p_Ref, p_Touch); });
+  //   n_ButtonMerchante = l_ButtonMerchante;
+  //   GBase::DShowNameOnTouchEven(n_ButtonMerchante, GPair<GString, Vec2>::Make(Translate::i18n("common_text_441"), Vec2(80, 0)));
+  // }
+  // auto l_ButtonActivity = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_Activity");
+  // if (l_ButtonActivity) {
+  //   l_ButtonActivity->setSwallowTouches(false);
+  //   l_ButtonActivity->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonActivity, p_Ref, p_Touch); });
+  //   n_ButtonActivity = l_ButtonActivity;
+  // }
+  // auto l_ButtonEpicBattle = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "build_30006");
+  // if (l_ButtonEpicBattle) n_ButtonEpicBattle = l_ButtonEpicBattle;
+  // auto l_ButtonMonument = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "build_30007");
+  // if (l_ButtonMonument) n_ButtonMonument = l_ButtonMonument;
+  // auto l_ButtonPyramidBattle = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "build_20008");
+  // if (l_ButtonPyramidBattle) {
+  //   l_ButtonPyramidBattle->setTouchEnabled(true);
+  //   l_ButtonPyramidBattle->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonPyramidBattle, p_Ref, p_Touch); });
+  //   l_ButtonPyramidBattle->setSwallowTouches(false);
+  //   n_ButtonPyramidBattle = l_ButtonPyramidBattle;
+  // }
+  // auto l_ButtonLion = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_lion");
+  // if (l_ButtonLion) {
+  //   l_ButtonLion->setSwallowTouches(false);
+  //   l_ButtonLion->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonLion, p_Ref, p_Touch); });
+  //   n_ButtonLion = l_ButtonLion;
+  //   auto l_BGLion = n_MainCityView->GetBufferNodeByName("BG_lion");
+  //   GBase::DShowNameOnTouchEven(l_BGLion, GPair<GString, Vec2>::Make(Translate::i18n("common_text_4068"), Vec2(60, 60)));
+  //   n_MainCityView->getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITY_LION_MSG");
+  // }
+  // auto l_ButtonMaTou = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_MaTou");
+  // if (l_ButtonMaTou) {
+  //   l_ButtonMaTou->setTouchEnabled(true);
+  //   l_ButtonMaTou->setSwallowTouches(false);
+  //   l_ButtonMaTou->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonMaTou, p_Ref, p_Touch); });
+  //   n_ButtonMaTou = l_ButtonMaTou;
+  //   n_ButtonMaTou->setTag(GCity::Const::Get()->Gangkou);
+  // }
+  // auto l_ButtonConquer = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_conquer");
+  // if (l_ButtonConquer) {
+  //   l_ButtonConquer->setTouchEnabled(true);
+  //   l_ButtonConquer->setSwallowTouches(false);
+  //   l_ButtonConquer->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonConquer, p_Ref, p_Touch); });
+  //   n_ButtonConquer = l_ButtonConquer;
+  //   n_ButtonConquer->setTag(GCity::Const::Get()->ConquerGate);
+  // }
+  // auto l_ButtonBulletInBoard = GBase::GetChildByName<ui::Layout*>(n_ContainerView, "Button_bulletin_board");
+  // if (l_ButtonBulletInBoard) {
+  //   l_ButtonBulletInBoard->setTouchEnabled(false);
+  //   l_ButtonBulletInBoard->setSwallowTouches(false);
+  //   l_ButtonBulletInBoard->addTouchEventListener(
+  //           [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { OtherBuildButtonCallFun(l_ButtonBulletInBoard, p_Ref, p_Touch); });
+  //   n_ButtonBulletInBoard = l_ButtonBulletInBoard;
+  //   n_ButtonBulletInBoard->setTag(GCity::Const::Get()->BulletInBoard);
+  // }
+  // for (auto i = 30001; i <= 30008; i++) {
+  //   auto l_BuildName = StringUtils::format("build_%d", i);
+  //   auto l_BuildButton = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
+  //   if (l_BuildButton) {
+  //     l_BuildButton->setSwallowTouches(false);
+  //     l_BuildButton->setTag(i);
+  //     l_BuildButton->addTouchEventListener(
+  //             [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildButton, p_Ref, p_Touch); });
+  //   }
+  //   if (i == GCity::Const::Get()->LeisureCenter)
+  //     n_ButtonLeisureCenter = l_BuildButton;
+  //   else if (i == GCity::Const::Get()->HuoChuang)
+  //     n_ButtonHuoChuang = l_BuildButton;
+  //   else if (i == GCity::Const::Get()->index_PetCenter)
+  //     n_ButtonPetCenter = l_BuildButton;
+  //   else if (i == GCity::Const::Get()->index_ResurrectionHall)
+  //     n_ButtonResurrectionHall = l_BuildButton;
+  //   else if (i == GCity::Const::Get()->index_ServiceCenter)
+  //     n_ButtonServiceCenter = l_BuildButton;
+  //   else if (i == GCity::Const::Get()->index_EpicBattle)
+  //     n_ButtonEpicBattle = l_BuildButton;
+  // }
+  // for (auto i = 1200; i <= 1205; i++) {
+  //   auto l_BuildName = StringUtils::format("build_%d", i);
+  //   auto l_BuildButton = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
+  //   if (l_BuildButton) {
+  //     l_BuildButton->setSwallowTouches(false);
+  //     l_BuildButton->setTag(i);
+  //     l_BuildButton->addTouchEventListener(
+  //             [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildButton, p_Ref, p_Touch); });
+  //   }
+  // }
+  // for (auto i = 1151; i <= 1152; i++) {
+  //   auto l_BuildName = StringUtils::format("build_%d", i);
+  //   auto l_BuildButton = n_MainCityView->GetBufferNodeByName(l_BuildName.c_str());
+  //   if (l_BuildButton) {
+  //     l_BuildButton->setSwallowTouches(false);
+  //     l_BuildButton->setTag(i);
+  //     l_BuildButton->addTouchEventListener(
+  //             [=](Ref* p_Ref, ui::Widget::TouchEventType p_Touch) { BuildButtonCallFun(l_BuildButton, p_Ref, p_Touch); });
+  //   }
+  // }
+  // auto l_BuildNameHuoChuang = StringUtils::format("build_%d", GCity::Const::Get()->index_HuoChuang);
+  // n_BtnHuoChuang = n_MainCityView->GetBufferNodeByName(l_BuildNameHuoChuang.c_str());
+  // auto l_BuildNamePetCenter = StringUtils::format("build_%d", GCity::Const::Get()->index_PetCenter);
+  // n_BtnPetCenter = n_MainCityView->GetBufferNodeByName(l_BuildNamePetCenter.c_str());
 }
 
 void MainCityCreate::InitBufferNodeArray() {

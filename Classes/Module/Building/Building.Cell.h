@@ -5,10 +5,14 @@ struct RBuildingCellInfo {
   EBuilding IdBuilding;
   EBuildingIndex BuildingIndex;
   int32 buildingLvl;
+  RBuildingCellInfo(){
+    BuildingIndex = EBuildingIndex::Crystal;
+    IdBuilding = EBuilding::CrystalMine;
+    buildingLvl = 10;
+  }
 };
 
 class BuildingCell {
-  
   public:
   RBuildingCellInfo _Info;
   void Upgrade();

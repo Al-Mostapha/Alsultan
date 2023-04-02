@@ -154,3 +154,10 @@ EBuildingPlace BuildingLib::DGetBuildTypeByIndex(EBuildingIndex p_Building){
     return EBuildingPlace::Inner;
   return EBuildingPlace::Outer;
 }
+
+EBuildingPlace BuildingLib::DGetBuildTypeByBid(EBuilding p_Building){
+  auto l_IdBuilding = static_cast<int32>(p_Building);
+  if(l_IdBuilding < 200 || l_IdBuilding > 30000 || l_IdBuilding >= 300 )
+    return EBuildingPlace::Inner;
+  return EBuildingPlace::Outer;
+}

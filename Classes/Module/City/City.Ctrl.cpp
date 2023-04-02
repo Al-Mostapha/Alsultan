@@ -30,6 +30,7 @@ bool CityCtrl::GetCastleUpgradePopStatus(){
 }
 
 BuildingCell *CityCtrl::GetBuildingCellByIndex(EBuildingIndex p_BuildingIndex){
+  return new BuildingCell();
   auto l_BuildList = GetBuildList();
   if(!l_BuildList.size())
     return nullptr;
@@ -82,44 +83,8 @@ void CityCtrl::EnterGame(){
 }
 
 void CityCtrl::InitClientData(){
-  // local _citycell = cityCell.new()
-  // local cityinfo = data.cinfo
-  // local buildlist = data.blist
   CityCell *l_CityCell = new CityCell();
-  l_CityCell->AddBuilding(EBuildingIndex::ArrowTowerL, {{EBuilding::ArrowTower, EBuildingIndex::ArrowTowerL, 1}});
-  l_CityCell->AddBuilding(EBuildingIndex::ArrowTowerR, {{EBuilding::ArrowTower, EBuildingIndex::ArrowTowerR, 1}});
-  l_CityCell->AddBuilding(EBuildingIndex::WallGate, {{EBuilding::Wall, EBuildingIndex::WallGate, 1}});
-  l_CityCell->AddBuilding(EBuildingIndex::WatchTower, {{EBuilding::WatchTower, EBuildingIndex::WatchTower, 1}});
-
-  // for k, v in ipairs(buildlist) do
-   //   local _buildcell = buildCell.new()
-  //   v.binfo.starLv = v.binfo.starLv or 0
-  //   _buildcell.info = v.binfo
-  //   _citycell:addBuild(v.binfo.index, _buildcell)
-  // end
-  // _citycell.info = cityinfo
-  // _citycell.demolishInfo = data.demolishInfo
-  // _citycell.resList = data.reslist
-  // _citycell.areaList = data.arealist
-  // _citycell.dayMaxRes = data.dayMaxRes
-  // _citycell.saferes = data.saferes
-  // _citycell.mastery = data.mastery
-  // _citycell:setDrawingData(data.drawingData)
-  // self.upgradePopLv = data.upgradePopLv
-  // local buildchargequeue = data.queue[tostring(gQueueTypeDef.charge_build_queue)]
-  // if buildchargequeue then
-  //   local starttime = buildchargequeue.starttime
-  //   local totaltime = buildchargequeue.totaltime
-  //   local nowtime = serviceFunctions.systemTime()
-  //   local lasttime = nowtime - starttime
-  //   local lefttime = totaltime - lasttime
-  //   if lefttime <= 0 then
-  //     lefttime = 0
-  //   end
-  //   _citycell:addBuildChargeQueue(gQueueTypeDef.charge_build_queue, starttime, totaltime, lefttime)
-  // end
- 
-  // self:addCity(cityinfo.cid, _citycell)
+  l_CityCell->FromJson(nullptr);
   AddCity(1, l_CityCell);
   m_CID = 1;
   InitCrystalMine();
