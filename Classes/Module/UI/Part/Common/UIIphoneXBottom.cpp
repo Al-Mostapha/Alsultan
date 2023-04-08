@@ -11,7 +11,7 @@ UIIphoneXBottom *UIIphoneXBottom::Create()
 }
 
 void UIIphoneXBottom::AddSubViews(){
-  addChild(m_Panel);
+  addChild(_Panel);
 }
 
 void UIIphoneXBottom::Ctor()

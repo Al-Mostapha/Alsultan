@@ -11,4 +11,5 @@ public:
   void IsNeedReqHelp(ETask p_Task){}
   void SpeedUpQueueReq(ETask p_Task, ESpeedType p_SpeedType){}
   ITask *QueryQueue(ETask p_Task){return nullptr;}
+  bool IsHospitalQueue(ETask p_Task);
 };

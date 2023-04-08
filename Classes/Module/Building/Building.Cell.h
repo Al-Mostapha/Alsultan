@@ -5,6 +5,8 @@ struct RBuildingCellInfo {
   EBuilding IdBuilding;
   EBuildingIndex BuildingIndex;
   int32 buildingLvl;
+  int32 starLvl;
+  EBuildingState state;
   RBuildingCellInfo(){
     BuildingIndex = EBuildingIndex::Crystal;
     IdBuilding = EBuilding::CrystalMine;

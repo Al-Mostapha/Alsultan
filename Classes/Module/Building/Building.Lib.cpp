@@ -78,7 +78,7 @@ IBuilding* BuildingLib::getBuildingClassByType(EBuilding buildingType) {
       return BuildingIInstitute::create();
     case EBuilding::Market:
       return BuildingIMarket::create();
-    case EBuilding::Warehouse:
+    case EBuilding::Depot:
       return BuildingIWareHouse::create();
     case EBuilding::TreasurePool:
       return BuildingIWishWell::create();

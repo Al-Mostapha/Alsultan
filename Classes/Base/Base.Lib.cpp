@@ -47,6 +47,26 @@ float DGetAutoHeightLabel(ui::Text* p_Label, float p_Width) {
   return l_Height;
 }
 
+float DGetAutoHeightLabelNew(ui::Text* p_Label, float p_Width, bool l_IsHtml){
+  // if width == nil then
+  //   width = label:getContentSize().width
+  // end
+  if(p_Width == 0)
+    p_Width = p_Label->getContentSize().width;
+  // local txtContentInfo = {
+  //   fontName = "",
+  //   fontSize = label:getFontSize(),
+  //   fontAlignmentH = label:getTextHorizontalAlignment(),
+  //   fontAlignmentV = label:getTextVerticalAlignment(),
+  //   fontDimensions = cc.size(width, 0),
+  //   isHtml = isHtml
+  // }
+  // local measureSize = cc.Device:measureText(label:getString(), txtContentInfo)
+  return DGetAutoHeightLabel(p_Label, p_Width);
+  // label:setTextAreaSize(measureSize)
+  // return measureSize.height
+}
+
 void DSetTextWidthHeight(ui::Text* p_Text, Size p_Size) {
   if (!p_Text) p_Text->ignoreContentAdaptWithSize(false);
   p_Text->setTextAreaSize(p_Size);

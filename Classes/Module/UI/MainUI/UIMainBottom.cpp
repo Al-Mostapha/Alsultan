@@ -11,7 +11,7 @@
 #include "Module/UI/EventCenter/EventTemplate/Questionnaire/UIQuestionnaire.View.h"
 #include "Module/UI/EventCenter/EventTemplate/RaidersLostArk/UIRaidersLostArk.View.h"
 #include "Module/World/Kingdom/KingdomMap.Ctrl.h"
-#include "module/UI/Panel/Alliance/AllianceCounterSys/AllianceCounterSys.Ctrl.h"
+#include "module/UI/Panel/Alliance/CounterSys/AllianceCounterSys.Ctrl.h"
 #include "Module/Guild/Alliance.Read.h"
 #include "Module/Guild/Relation/AllianceRelation.Ctrl.h"
 #include "Module/Guild/AllianceTreasure.Ctrl.h"
@@ -35,7 +35,7 @@
 #include "Module/UI/Panel/Lord/UILordView.h"
 #include "Module/UI/Panel/Lord/Skill/UISkillNewActive.View.h"
 #include "Module/UI/Panel/Alliance/AllianceInfo/UIAllianceInfo.View.h"
-#include "Module/UI/Panel/Alliance/AllianceInfo/UIAllianceJoin.View.h"
+#include "Module/UI/Panel/Alliance/Create/UIAllianceJoin.View.h"
 #include "Module/City/Expostulation.Logic.h"
 #include "Module/UI/EventCenter/EventTemplate/LostRuins/LostRuins.Ctrl.h"
 #include "Module/UI/EventCenter/EventTemplate/WindTower/WindTower.Ctrl.h"
@@ -2775,7 +2775,7 @@ void UIMainBottom::InitHelpAllBtn(EventCustom* p_Event) {
   ui::Text *l_RedNum = nullptr;
 
   if(!n_BtnHelpAll) {
-    auto l_Effect = GBase::DCreateCSBNode("UiParts/Parts/Building/Embassy/alliancehelpEffect.csb");
+    auto l_Effect = GBase::DCreateCSBNode("UiParts/Panel/Building/View/Embassy/alliancehelpEffect.csb");
     n_NodeAreaLb->addChild(l_Effect);
     l_Effect->setVisible(false);
     l_Effect->setName("alliancehelpEffect");

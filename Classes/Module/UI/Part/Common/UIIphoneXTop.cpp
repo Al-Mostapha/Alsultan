@@ -11,7 +11,7 @@ UIIphoneXTop *UIIphoneXTop::Create()
 }
 
 void UIIphoneXTop::AddSubViews(){
-  addChild(m_Panel);
+  addChild(_Panel);
 }
 
 void UIIphoneXTop::Ctor()

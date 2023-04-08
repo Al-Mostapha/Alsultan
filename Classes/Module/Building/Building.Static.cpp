@@ -10,7 +10,7 @@ BuildingStatic *BuildingStatic::Get() {
 
 GVector<EBuilding> BuildingStatic::BuildableList = {
         EBuilding::None,         EBuilding::Castle,       EBuilding::Wall,        EBuilding::ArrowTower, EBuilding::WatchTower,
-        EBuilding::Warehouse,    EBuilding::Embassy,      EBuilding::Market,      EBuilding::Institute,  EBuilding::TreasurePool,
+        EBuilding::Depot,    EBuilding::Embassy,      EBuilding::Market,      EBuilding::Institute,  EBuilding::TreasurePool,
         EBuilding::Blacksmith,   EBuilding::Stable,       EBuilding::TargetRange, EBuilding::Barrack,    EBuilding::ChariotPlant,
         EBuilding::Fortress,     EBuilding::DrillGrounds, EBuilding::HallOfWar,   EBuilding::TrainHall,  EBuilding::Prison,
         EBuilding::Farm,         EBuilding::LumberMill,   EBuilding::IronMine,    EBuilding::SilverMine, EBuilding::MarchingTent,

@@ -68,4 +68,7 @@ public:
       DrawNode *p_DrawNode = nullptr);
 
   Sprite *NewSprite(const char *p_FileName);
+
+  ProgressTimer *NewProgressTimer(const char *p_Image, ProgressTimer::Type p_Type);
+
 };

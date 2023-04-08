@@ -2,7 +2,7 @@
 
 #include "BuildingFMonument.h"
 #include "Scene/CityScene.h"
-#include "Module/UI/Panel/Building/Monument/UILegendMView.h"
+#include "Module/UI/Panel/Legend/Monument/UILegendM.View.h"
 
 BuildingFMonument::BuildingFMonument()
 {
@@ -96,7 +96,6 @@ void BuildingFMonument::Clicked(Touch *p_Touch, Event *p_Event){
     DelayTime::create(0.3),
     CallFunc::create([](){
       auto l_Panel = UILegendMView::Create();
-      l_Panel->InitPanel();
       l_Panel->Show();
     }),
     DelayTime::create(0.3),

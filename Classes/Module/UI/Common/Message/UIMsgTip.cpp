@@ -15,20 +15,20 @@ void UIMsgTip::InitPanel(){
   m_ImageBgR = GBase::GetChildByName<ui::ImageView *>(panel, "Image_bg_1");
   if(m_ImageIconBg)
     m_ImageIconBg->setVisible(false);
-  m_Panel->addChild(panel, 1);
-  addChild(m_Panel);
-  //m_Panel = panel;
+  _Panel->addChild(panel, 1);
+  addChild(_Panel);
+  //_Panel = panel;
 }
 
 void UIMsgTip::ShowTip( GString p_Message, Node *p_Icon ){
 
-  CCAssert(m_Panel, "No Panel set");
-  if(!m_Panel){
+  CCAssert(_Panel, "No Panel set");
+  if(!_Panel){
     Logger::Log("UIMsgTip Panel Not Found", ELogLvl::Error, true);
     return;
   }
 
-  m_Panel->setScaleY(0.1f);
+  _Panel->setScaleY(0.1f);
   m_MaxHeight = 120;
 
   float l_ShowY = GDisplay::Get()->cy + 40.0f;
@@ -55,18 +55,18 @@ void UIMsgTip::ShowTip( GString p_Message, Node *p_Icon ){
     l_DeltaHeight = l_Height - 50;
     addHeight(l_DeltaHeight);
   }
-  m_Panel->runAction(
+  _Panel->runAction(
     Sequence::create(
       ScaleTo::create(0.3, 1, 1, 1),
       DelayTime::create(2.8),
       ScaleTo::create(0.2, 1, 0.1, 1),
       CallFunc::create([this](){
-        this->m_Panel->removeFromParentAndCleanup(true);
+        this->_Panel->removeFromParentAndCleanup(true);
       }),
       nullptr
     )
   );
-  m_Panel->setPositionY(l_ShowY);
+  _Panel->setPositionY(l_ShowY);
 }
 
 void UIMsgTip::addHeight(float p_DeltaHeight){
@@ -89,7 +89,7 @@ void UIMsgTip::Show(){
     auto l_PosY = l_PrePromptTip->getPositionY() + l_Height + 5;
     if(l_PosY > GDisplay::Get()->cy + 230)
       return;
-    m_Panel->setPositionY(l_PosY);
+    _Panel->setPositionY(l_PosY);
     l_PrePromptTip->setName(m_ViewName + "prefix");
   }else{
     l_PrePromptTip->removeAllChildrenWithCleanup(true);

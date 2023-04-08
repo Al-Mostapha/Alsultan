@@ -106,3 +106,10 @@ void GDisplay::Init() {
 Sprite *GDisplay::NewSprite(const char *p_FileName){
   return Sprite::createWithSpriteFrameName(p_FileName);
 }
+
+ProgressTimer *GDisplay::NewProgressTimer(const char *p_Image, ProgressTimer::Type p_Type){
+  auto l_Sprite = NewSprite(p_Image);
+  auto l_Progress = ProgressTimer::create(l_Sprite);
+  l_Progress->setType(p_Type);
+  return l_Progress;
+}

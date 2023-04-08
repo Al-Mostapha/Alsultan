@@ -42,7 +42,7 @@ void BuildingIHallOfWar::onEnter() {
 void BuildingIHallOfWar::Clicked(Touch *p_Touch, Event *p_Event){
   if(IsFignting()){
     auto l_Panel = UIAllianceWarView::Create();
-    l_Panel->InitPanel();
+    l_Panel->InitData();
     l_Panel->Show();
     return;
   }

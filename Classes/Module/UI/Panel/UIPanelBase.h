@@ -5,7 +5,7 @@
 class UIPanelBase : public UIElment
 {
 protected:
-  Node *m_Panel;
+  Node *_Panel;
   GString m_ViewName = "";
 public: 
   virtual void InitPanel() = 0;

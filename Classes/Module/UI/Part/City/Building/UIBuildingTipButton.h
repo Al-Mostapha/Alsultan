@@ -1,7 +1,9 @@
 #pragma once
 #include "Module/UI/UICCSView.h"
 #include "Module/Building/BuildingTips/BuildingTips.Type.h"
-#include "Module/UI/Panel/Building/Common/UIBuildingInfoPanel.h"
+#include "Module/Building/BuildingTips/BuildingTips.Handle.h"
+#include "Module/UI/Panel/Building/Common/Info/UIBuildingInfoPanel.h"
+
 
 class IBuilding;
 
@@ -40,7 +42,6 @@ public:
   void UpdateTime(){}
   void UpdateCastleGift(){}
   void BtnClickCallBack(Ref* p_Ref, Widget::TouchEventType p_Touch){
-    auto l_Panel = UIBuildingInfoPanel::Create();
-    l_Panel->Show();
+    BuildingTipsHandle::Get()->Handle(this, p_Touch, _OpType);
   }
 };

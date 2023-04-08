@@ -1,13 +1,18 @@
 #include "UIAllianceWar.View.h"
 
 UIAllianceWarView* UIAllianceWarView::Create(){
-  return Create("");
+  return Create("UiParts/MainUi/Alliance/War/allianceWarView.csb");
 }
 
-void UIAllianceWarView::Show(){
-  
+
+void UIAllianceWarView::Ctor(){
+
 }
 
-void UIAllianceWarView::InitPanel(){
-  
+void UIAllianceWarView::InitData(){
+
+}
+
+void UIAllianceWarView::InitWidget(){
+
 }

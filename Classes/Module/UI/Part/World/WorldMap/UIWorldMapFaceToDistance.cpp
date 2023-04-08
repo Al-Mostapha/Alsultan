@@ -11,7 +11,7 @@ UIWorldMapFaceToDistance *UIWorldMapFaceToDistance::Create()
 }
 
 void UIWorldMapFaceToDistance::AddSubViews(){
-  addChild(m_Panel);
+  addChild(_Panel);
 }
 
 void UIWorldMapFaceToDistance::Ctor()

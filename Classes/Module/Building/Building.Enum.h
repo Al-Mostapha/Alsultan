@@ -7,7 +7,7 @@ enum class EBuilding  {
   Wall = 102,
   ArrowTower = 103,
   WatchTower = 104,
-  Warehouse = 105,
+  Depot = 105,
   EventCenter = 106,
   Merchant = 107,
   Port = 108,
@@ -176,7 +176,7 @@ enum class EBuildingState {
   TREATING = 6,
   Studying = 7,
   Lock = 8,
-  ARMORFORG = 9,
+  ArmorForg = 9,
   Idle,
   Working, 
   Harvesting

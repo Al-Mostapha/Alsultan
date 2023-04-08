@@ -56,6 +56,7 @@ void CityScene::LoadAsset() {
   // GDisplay::Get()->AddSpriteFrames("MainCity/mainCityInner.plist");
   // GDisplay::Get()->AddSpriteFrames("MainCity/mainCityOuter.plist");
   // GDisplay::Get()->AddSpriteFrames("MainCity/mainCityEffect.plist");
+  GDisplay::Get()->AddSpriteFrames("NormalUI/NormalUI0.plist");
   GDisplay::Get()->AddSpriteFrames("NormalUI/NormalUI2.plist");
   GDisplay::Get()->AddSpriteFrames("NormalUI/NormalUI4.plist");
   GDisplay::Get()->AddSpriteFrames("CommonUI/CommonUI0.plist");

@@ -63,7 +63,8 @@
     "ranges": "cpp",
     "span": "cpp",
     "array": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "ratio": "cpp"
   },
   "intelephense.environment.includePaths": [
     "${workspaceRoot}"

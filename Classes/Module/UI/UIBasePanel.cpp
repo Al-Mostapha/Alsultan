@@ -4,54 +4,54 @@
 #include "Scene/Main/MainScene.h"
 
 UIBasePanel* UIBasePanel::InitPanel(GString p_CCsFile, RBasePenelData *p_Data){
-  m_Panel = UICCSView::Create(p_CCsFile);
+  _Panel = UICCSView::Create(p_CCsFile);
   if(p_Data){
-    m_Panel->setName(p_Data->FutureName);
+    _Panel->setName(p_Data->FutureName);
   }
-  m_Panel->Ctor();
+  _Panel->Ctor();
   Ctor();
   return this;
 }
 
 UIBasePanel* UIBasePanel::Create(GString p_CCsFile, RBasePenelData *p_Data){
   UIBasePanel *l_Panel = UIBasePanel::create();
-  l_Panel->m_Panel = UICCSView::Create(p_CCsFile);
+  l_Panel->_Panel = UICCSView::Create(p_CCsFile);
   if(p_Data){
-    l_Panel->m_Panel->setName(p_Data->FutureName);
+    l_Panel->_Panel->setName(p_Data->FutureName);
   }
-  l_Panel->m_Panel->Ctor();
+  l_Panel->_Panel->Ctor();
   l_Panel->Ctor();
   return l_Panel;
 }
 
 UIBasePanel* UIBasePanel::InitPanel(Node *p_CCsFile, RBasePenelData *p_Data){
-  m_Panel = UICCSView::Create(p_CCsFile);
+  _Panel = UICCSView::Create(p_CCsFile);
   if(p_Data){
-    m_Panel->setName(p_Data->FutureName);
+    _Panel->setName(p_Data->FutureName);
   }
-  m_Panel->Ctor();
+  _Panel->Ctor();
   Ctor();
   return this;
 }
 
 void UIBasePanel::Ctor(){
-  m_IsADShow = RechargeADRead::Get()->IsADOpen(m_Panel->getName());
-  m_IsHaveTextField = false;
-  m_IsHideCurrentSceneView = false;
-  m_IsHidePrePanel = true;
-  m_ShowPanelPowerValue = 1;
-  m_FadeInDelay = 0.0f;
-  m_ScaleActTarget = nullptr;
-  m_NeedCallBack2SDK = false;
-  m_IsAddToPopManager = false;
-  m_IsCantCloseByReturn = false;
+  _IsADShow = RechargeADRead::Get()->IsADOpen(_Panel->getName());
+  _IsHaveTextField = false;
+  _IsHideCurrentSceneView = false;
+  _IsHidePrePanel = true;
+  _ShowPanelPowerValue = 1;
+  _FadeInDelay = 0.0f;
+  _ScaleActTarget = nullptr;
+  _NeedCallBack2SDK = false;
+  _IsAddToPopManager = false;
+  _IsCantCloseByReturn = false;
   DeviceFitOffset();
 }
 
 void UIBasePanel::BindBtnClose(){
-  m_CloseButton = GBase::GetChildByName<ui::Button*>(m_Panel, "Button_close");
-  if(m_CloseButton){
-    m_CloseButton->addTouchEventListener([this](Ref *p_Ref, ui::Widget::TouchEventType p_Type){
+  _CloseButton = GBase::GetChildByName<ui::Button*>(this, "Button_close");
+  if(_CloseButton){
+    _CloseButton->addTouchEventListener([this](Ref *p_Ref, ui::Widget::TouchEventType p_Type){
       if(p_Type == ui::Widget::TouchEventType::ENDED){
         GBase::PlaySound("uicontrol", 1);
         if(this)
@@ -68,29 +68,29 @@ void UIBasePanel::CloseKeyBoard(){
 }
 
 void UIBasePanel::PanelFadeIn(){
-  auto l_CCSView = m_Panel->getChildByName("ccsView");
+  auto l_CCSView = getChildByName("ccsView");
   if(l_CCSView){
     l_CCSView->setOpacity(0);
-    l_CCSView->runAction(FadeIn::create(m_FadeInDelay));
+    l_CCSView->runAction(FadeIn::create(_FadeInDelay));
   }
 }
 
 void UIBasePanel::PanelScaleAct(){
-  if(m_ScaleActTarget){
-    m_ScaleActTarget->setScale(0.0f);
-    m_ScaleActTarget->runAction(EaseBackOut::create(ScaleTo::create(0.3f, 1.0f)));
+  if(_ScaleActTarget){
+    _ScaleActTarget->setScale(0.0f);
+    _ScaleActTarget->runAction(EaseBackOut::create(ScaleTo::create(0.3f, 1.0f)));
   }
 }
 
 void UIBasePanel::PanelScaleActBack(){
-  if(m_ScaleActTarget){
-    m_ScaleActTarget->setScale(1);
-    m_ScaleActTarget->runAction(
+  if(_ScaleActTarget){
+    _ScaleActTarget->setScale(1);
+    _ScaleActTarget->runAction(
       Sequence::create(
         EaseBackIn::create(ScaleTo::create(0.3f, 0.0f)),
         CallFunc::create([this](){
           if(this)
-            m_Panel->removeFromParent();
+            _Panel->removeFromParent();
         }), 
         nullptr
       )
@@ -99,17 +99,17 @@ void UIBasePanel::PanelScaleActBack(){
 }
 
 void UIBasePanel::DeviceFitOffset(){
-  auto l_PreViewHeight = m_Panel->getContentSize().height;
-  auto l_Scale = m_Panel->GetPanelOffsetHeight() / l_PreViewHeight;
+  auto l_PreViewHeight = getContentSize().height;
+  auto l_Scale = GetPanelOffsetHeight() / l_PreViewHeight;
   if(l_PreViewHeight != 960 && l_PreViewHeight != 1136){
-    m_Panel->setScale(l_Scale);
+    //_Panel->setScale(l_Scale);
     return;
   }
-  auto l_CCSView = m_Panel->getChildByName("ccsView");
+  auto l_CCSView = getChildByName("ccsView");
   if(!l_CCSView)
     return;
   l_CCSView->setContentSize(GDisplay::Get()->size());
-  m_Panel->setContentSize(GDisplay::Get()->size());
+  setContentSize(GDisplay::Get()->size());
   auto l_AllChild = l_CCSView->getChildren();
   for(auto l_Child : l_AllChild){
     auto l_ChildName = l_Child->getName();
@@ -122,12 +122,12 @@ void UIBasePanel::DeviceFitOffset(){
       if(l_Value =="Size"){
         auto l_SetSize = Size(
           l_Child->getContentSize().width,
-           l_Child->getContentSize().height + m_Panel->GetPanelOffsetHeight() - l_PreViewHeight);
+          l_Child->getContentSize().height + GetPanelOffsetHeight() - l_PreViewHeight);
         l_Child->setContentSize(l_SetSize);
       } else if(l_Value == "Tile"){
         //l_Child->setFillType(1);
       }else if(l_Value == "ySize"){
-        auto l_SetSize = Size(l_Child->getContentSize().width + m_Panel->GetPanelOffsetHeight() - l_PreViewHeight, l_Child->getContentSize().height);
+        auto l_SetSize = Size(l_Child->getContentSize().width + GetPanelOffsetHeight() - l_PreViewHeight, l_Child->getContentSize().height);
         l_Child->setContentSize(l_SetSize);
       }
     }
@@ -135,22 +135,22 @@ void UIBasePanel::DeviceFitOffset(){
       l_Child->setContentSize(GDisplay::Get()->size());
     }
     if(l_OffsetType == "Top"){
-      if(m_IsADShow.ADType == 1 && l_NameTabel.size() >= 4 && l_NameTabel[3] == "commonFramTitle"){
+      if(_IsADShow.ADType == 1 && l_NameTabel.size() >= 4 && l_NameTabel[3] == "commonFramTitle"){
         l_Child->setPositionY(GDisplay::Get()->height - (l_PreViewHeight - l_Child->getPositionY()));
         AddRechargeADNode(l_Child);
-        m_IsADShow.ADType = 2;
+        _IsADShow.ADType = 2;
       }else{
-        l_Child->setPositionY(m_Panel->GetPanelOffsetHeight() - (l_PreViewHeight - l_Child->getPositionY()));
+        l_Child->setPositionY(GetPanelOffsetHeight() - (l_PreViewHeight - l_Child->getPositionY()));
       }
-      if(m_IsADShow.ADType == 1){
+      if(_IsADShow.ADType == 1){
         auto l_TopNodeChild = l_Child->getChildren();
         for(auto l_TopChild : l_TopNodeChild){
           auto l_TopChildName = l_TopChild->getName();
           auto l_TopNameTabel = GStringUtils::Split(l_TopChildName, "_");
           if(l_TopNameTabel.size() >= 3 && l_TopNameTabel[2] == "commonFramTitle"){
-            l_TopChild->setPositionY(l_TopChild->getPositionY() + (GDisplay::Get()->height - m_Panel->GetPanelOffsetHeight()));
+            l_TopChild->setPositionY(l_TopChild->getPositionY() + (GDisplay::Get()->height - GetPanelOffsetHeight()));
             AddRechargeADNode(l_TopChild);
-            m_IsADShow.ADType = 2;
+            _IsADShow.ADType = 2;
             break;
           }
         }
@@ -178,12 +178,12 @@ bool UIBasePanel::JudgeShowPanelPower(){
   auto l_TopPanel = GPanelManger::Get()->DCurrentTopPanelFromManager();
   auto l_TopPanelPowerValue = 1;
   if(l_TopPanel)
-    l_TopPanelPowerValue = l_TopPanel->m_ShowPanelPowerValue;
-  if(l_TopPanelPowerValue == 1 && m_ShowPanelPowerValue == 1)
+    l_TopPanelPowerValue = l_TopPanel->_ShowPanelPowerValue;
+  if(l_TopPanelPowerValue == 1 && _ShowPanelPowerValue == 1)
     return l_ConfirmToPop;
-  if(l_TopPanelPowerValue < m_ShowPanelPowerValue){
+  if(l_TopPanelPowerValue < _ShowPanelPowerValue){
     GPanelManger::Get()->DRemoveAllPanelFromManager();
-  }else if(l_TopPanelPowerValue > m_ShowPanelPowerValue){
+  }else if(l_TopPanelPowerValue > _ShowPanelPowerValue){
     l_ConfirmToPop = false;
   }
   return l_ConfirmToPop;
@@ -199,23 +199,23 @@ UIBasePanel *UIBasePanel::Show(Node *p_ParentNode, int32 p_ZOrder){
     p_ParentNode->addChild(this, p_ZOrder);
     GPanelManger::Get()->DAddPanelToManager(this);
   }
-  if(m_FadeInDelay)
+  if(_FadeInDelay)
     PanelFadeIn();
   EndShow();
   return this;
 }
 
 Node *UIBasePanel::GameGuide_getTarget(GString p_Name){
-  return  GBase::GetChildByName<Node *>(m_Panel, p_Name.c_str());
+  return  GBase::GetChildByName<Node *>(this, p_Name.c_str());
 }
 
 void UIBasePanel::ClosePanel(){
-  m_Panel->removeFromParent();
+  removeFromParent();
 }
 
 void UIBasePanel::onExit(){
   Node::onExit();
-  if(m_IsHaveTextField)
+  if(_IsHaveTextField)
     CloseKeyBoard();
   OnExitPanel();
 
@@ -223,7 +223,7 @@ void UIBasePanel::onExit(){
   // if self.needCallBack2SDK then
   //   userSDKManager.needCallBack2SDK(self.__cname)
   // end
-  if(m_IsAddToPopManager)
+  if(_IsAddToPopManager)
     GPanelManger::Get()->DRemovePanelFromManager(this);
   // self:autoCheckTexMemary()
 }

@@ -15,18 +15,18 @@ struct RBasePenelData{
 class UIBasePanel : public UIBaseView
 {
 public:
-  RRechargeAD m_IsADShow;
-  bool m_IsHaveTextField = false;
-  bool m_IsHideCurrentSceneView = false;
-  bool m_IsHidePrePanel = true;
-  int32 m_ShowPanelPowerValue = 1;
-  float m_FadeInDelay = 0.0f;
-  Node *m_ScaleActTarget = nullptr;
-  bool m_NeedCallBack2SDK = false;
-  bool m_IsAddToPopManager = false;
-  bool m_IsCantCloseByReturn = false;
-  ui::Button *m_CloseButton = nullptr;
-  UIBaseView *m_Panel;
+  RRechargeAD _IsADShow;
+  bool _IsHaveTextField = false;
+  bool _IsHideCurrentSceneView = false;
+  bool _IsHidePrePanel = true;
+  int32 _ShowPanelPowerValue = 1;
+  float _FadeInDelay = 0.0f;
+  Node *_ScaleActTarget = nullptr;
+  bool _NeedCallBack2SDK = false;
+  bool _IsAddToPopManager = false;
+  bool _IsCantCloseByReturn = false;
+  ui::Button *_CloseButton = nullptr;
+  UIBaseView *_Panel;
 public: 
   UIBasePanel* InitPanel(GString p_CCsFile, RBasePenelData *p_Data = nullptr);
   UIBasePanel* InitPanel(Node *p_CCsFile, RBasePenelData *p_Data = nullptr);
@@ -52,5 +52,5 @@ public:
   virtual void OnExitPanel(){}
   virtual void OnEnterOther(){OnEnterPanel();}
   virtual void AddSubViews(){};
-  virtual GString GetViewName() {return m_Panel ?  m_Panel->getName() : "";}
+  virtual GString GetViewName() {return _Panel ?  _Panel->getName() : "";}
 };

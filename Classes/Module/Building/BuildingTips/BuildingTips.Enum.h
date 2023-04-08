@@ -34,7 +34,7 @@ enum class EBuildingTips
 	OpMilitaryPoint = 1030,
 	OpWar = 1031,
 	OpMonthGift = 1032,
-	OpDaylySign = 1033,
+	OpDailySign = 1033,
 	OpResuscitate = 1034,
 	OpDailyReward = 1035,
 	OpPet = 1036,
