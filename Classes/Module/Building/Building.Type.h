@@ -98,6 +98,15 @@ struct RBuildingLvlSpecs {
   static RBuildingLvlSpecs fromJson(GJson* json) {}
 };
 
+struct RBuildingMoreInfoData{
+  GString _Value;
+  //TODO:  should be enum
+  int32 _MoreInfoType;
+  int32 _InfoDesType;
+  GString _Title;
+  GString _PlusValue;
+};
+
 struct RCityBuildingUnit {
   int32 buildingLvl;
   GString NodeName;
@@ -366,3 +375,4 @@ struct RBuildingSlot{
     EBuilding BuildingId = EBuilding::None;
   } Info;
 };
+

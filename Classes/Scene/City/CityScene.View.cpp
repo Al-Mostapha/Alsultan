@@ -4,6 +4,7 @@
 #include "CityScene.Create.h"
 #include "CityScene.ABMManager.h"
 #include "CityScene.Move.h"
+#include "CityScene.Msg.h"
 
 MainCityView *MainCityView::Create(RViewOtherData p_Data){
   auto l_Panel =  Create("UiParts/Panel/MainCity/mainCityView.csb");
@@ -120,7 +121,7 @@ void MainCityView::FinishLoadImages(){
 }
 
 void MainCityView::OnMessageListener_FinishLoadImage(){
-
+  MainCityMsg::Get()->RegisterMessage(this);
 }
 
 bool MainCityView::IsNeedFirstFight(){
@@ -146,7 +147,7 @@ void MainCityView::LoadFixedBuilds(){
 void MainCityView::SetMainCityEnabled(bool p_Enabled){
   if(_ViewScrollView){
     _ViewScrollView->setTouchEnabled(p_Enabled);
-    m_IsBuildBtnEnable = p_Enabled;
+    _IsBuildBtnEnable = p_Enabled;
   }
 }
 
@@ -187,32 +188,6 @@ Vec2 MainCityView::GetDefaultMainCityPos(){
   // return retPos
   return {l_PosX, l_Posy};
 }
-
-void MainCityView::SetZoomScale(
-  float p_ZoomScale, bool p_Animated,
-  float p_duration, bool p_CustomAnim
-  ){
-  // self.zoomScale = zoomScale
-  // self.containerView:stopAllActionsByTag(cityBuildConstDef.ActionTag.Tag_ContainerViewScale)
-  // if customAnim ~= nil then
-  //   if duration == nil or duration == 0 then
-  //     self.containerView:setScale(zoomScale)
-  //   else
-  //     local actScaleTo = cca.scaleTo(duration, zoomScale)
-  //     local callFunc = cca.callFunc(handler(self, self.afterCustomAnim))
-  //     local seq = cca.seq({actScaleTo, callFunc})
-  //     seq:setTag(cityBuildConstDef.ActionTag.Tag_ContainerViewScale)
-  //     self.containerView:runAction(seq)
-  //   end
-  //   return
-  // end
-  // if duration == nil then
-  //   self.viewScrollView:setZoomScale(zoomScale, animated)
-  // elseif duration ~= nil then
-  //   self.viewScrollView:setZoomScaleInDuration(zoomScale, duration)
-  // end
-}
-
 
 void MainCityView::LoadSoldiers(){
 //  print("-------------------- device.platform = ", device.platform)
@@ -401,3 +376,84 @@ Node *MainCityView::GetBufferNodeByName(const char *p_NodeName){
     return nullptr;
   return n_BufferNodeArray[GString(p_NodeName)];
 };
+
+Vec2 MainCityView::GetContainerOffsetWhenPosPoint(Vec2 p_Center, Vec2 p_WinPos, bool p_IgnoreCheck, bool p_Force){
+  return GetContainerOffsetWhenPosPoint(p_Center, p_WinPos, p_IgnoreCheck, p_Force, GetZoomScale(p_Force));
+}
+
+Vec2 MainCityView::GetContainerOffsetWhenPosTarget(Node *p_Target, Vec2 p_WinPos, bool p_IgnoreCheck, bool p_Force){
+  CCASSERT(p_Target, "Target Node Cannot be Null");
+  auto l_TargetPos = p_Target->getPosition();
+  auto l_ContentSize = p_Target->getContentSize();
+  auto l_TargetAP = p_Target->getAnchorPoint();
+  auto l_CenterX = l_TargetPos.x + (0.5 - l_TargetAP.x) * l_ContentSize.width;
+  auto l_CenterY = l_TargetPos.y + (0.5 - l_TargetAP.y) * l_ContentSize.height;
+  return GetContainerOffsetWhenPosPoint(Vec2(l_CenterX, l_CenterY), p_WinPos, p_IgnoreCheck, p_Force);
+}
+
+Vec2 MainCityView::GetContainerOffsetWhenPosPoint(Vec2 p_Center, Vec2 p_WinPos, bool p_IgnoreCheck, bool p_Force, float p_Zoom){
+  p_WinPos.y = p_WinPos.y - _HUIBottom - GDisplay::Get()->iPhoneXBottom;
+  p_Center *= p_Zoom;
+  auto l_dOffestX = p_WinPos;
+  auto l_OffsetX = - (p_Center.x - l_dOffestX.x);
+  auto l_OffsetY = - (p_Center.y - l_dOffestX.y);
+  auto l_MinOffset = _ViewScrollView->minContainerOffset();
+  auto l_MaxOffset = _ViewScrollView->maxContainerOffset();
+  if(!p_IgnoreCheck){
+    l_OffsetX = std::max(l_MinOffset.x, std::min(l_MaxOffset.x, l_OffsetX));
+    l_OffsetY = std::max(l_MinOffset.y, std::min(l_MaxOffset.y, l_OffsetY));
+  }
+  return Vec2(l_OffsetX, l_OffsetY);
+}
+
+float MainCityView::GetZoomScale(bool p_Force){
+  if(p_Force)
+    _ZoomScale = _ViewScrollView->getZoomScale();
+  return _ZoomScale;
+}
+
+void MainCityView::SetZoomScale(float p_Zoom, bool p_Anim, float p_Duration, bool p_CustomAnim){
+  _ZoomScale = p_Zoom;
+  _ContainerView->stopAllActionsByTag(1002);
+  if(p_CustomAnim){
+    if(p_Duration == 0)
+      _ContainerView->setScale(p_Zoom);
+    else{
+      auto l_ActScaleTo = ScaleTo::create(p_Duration, p_Zoom);
+      l_ActScaleTo->setTag(1002);
+      _ContainerView->runAction(l_ActScaleTo);
+    }
+  }
+  if(p_Duration == 0)
+    _ViewScrollView->setZoomScale(p_Zoom, p_Anim);
+  else 
+    _ViewScrollView->setZoomScaleInDuration(p_Zoom, p_Duration);
+}
+
+void MainCityView::RunContainerViewMove(Vec2 p_MoveToPos, float p_Duration){
+  // self.containerView:stopAllActionsByTag(cityBuildConstDef.ActionTag.Tag_ContainerViewMove)
+  _ContainerView->stopAllActionsByTag(1001);
+  if(p_Duration == 0){
+    _ContainerView->setPosition(p_MoveToPos);
+  }else{
+    auto l_MoveTo = MoveTo::create(p_Duration, p_MoveToPos);
+    l_MoveTo->setTag(1001);
+    _ContainerView->runAction(l_MoveTo);
+  }
+}
+
+void MainCityView::DisableMoveForDuration(float p_Duration){
+  if(!_ViewScrollView)
+    return;
+  SetMainCityEnabled(false);
+  _ViewScrollView->stopAllActionsByTag(100);
+  auto l_Delay = DelayTime::create(p_Duration);
+  auto l_CallFunc = CallFunc::create([this](){
+    SetMainCityEnabled(true);
+    //     self.isVisibleAreaDirty = true
+    GBase::DSendMessage("MESSAGE_MAINCITY_FINISH_UPDATEPOS");
+  });
+  auto l_Seq = Sequence::create(l_Delay, l_CallFunc, nullptr);
+  l_Seq->setTag(100);
+  _ViewScrollView->runAction(l_Seq);
+}

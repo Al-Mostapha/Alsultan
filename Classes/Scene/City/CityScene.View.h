@@ -30,7 +30,7 @@ public:
   bool m_IsNeedFirstFight = false;
   bool m_IsFinishInit = false;
   Ext::ScrollView *n_ViewScrollView = nullptr;
-  bool m_IsBuildBtnEnable = false;
+  bool _IsBuildBtnEnable = false;
   Scheduler *m_TimeHandler = nullptr;
   Scheduler *m_TimeHandlerPerFrame = nullptr;
   bool m_IsLogin = false;
@@ -58,7 +58,6 @@ public:
   void SetMainCityEnabled(bool p_Enabled);
   void UpdateBuildTiles();
   void AutoUpdateViewScrollViewPos(float p_Delay = 0);
-  void SetZoomScale(float p_ZoomScale, bool p_Animated = false, float p_duration = 0.0f, bool p_CustomAnim = false);
   void LoadSoldiers();
   void UpdateTime(float p_Time);
   void UpdateTimePerFrame(float p_Time);
@@ -69,5 +68,12 @@ public:
   void EnableShack();
   void DelBuildTile(Node *p_BuildingBtn);
   Node *GetBufferNodeByName(const char *p_NodeName) override;
-  
+  Vec2 GetContainerOffsetWhenPosTarget(); 
+  float GetZoomScale(bool p_Force = false);
+  Vec2 GetContainerOffsetWhenPosTarget(Node *p_Target, Vec2 p_WinPos, bool p_IgnoreCheck, bool p_Force); 
+  Vec2 GetContainerOffsetWhenPosPoint(Vec2 p_Center, Vec2 p_WinPos, bool p_IgnoreCheck, bool p_Force); 
+  Vec2 GetContainerOffsetWhenPosPoint(Vec2 p_Center, Vec2 p_WinPos, bool p_IgnoreCheck, bool p_Force, float p_Zoom); 
+  void SetZoomScale(float p_Zoom, bool p_Anim = false, float p_Duration = 0.0f, bool p_CustomAnim = false);
+  void RunContainerViewMove(Vec2 p_MoveToPos, float p_Duration = 0);
+  void DisableMoveForDuration(float p_Duration = 0.5f);
 };

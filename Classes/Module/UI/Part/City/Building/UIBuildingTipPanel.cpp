@@ -493,3 +493,9 @@ void UIBuildingTipPanel::RearrangeBtnByCircle(GVector<UIBuildingTipButton *> p_B
     }
   }
 }
+
+void UIBuildingTipPanel::HideTip(){
+  stopAllActionsByTag(tag_act_tip_show_end);
+  setVisible(false);
+  RecycleAllBtns();
+}

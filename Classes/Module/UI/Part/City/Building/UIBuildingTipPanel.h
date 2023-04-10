@@ -41,6 +41,7 @@ public:
   void InitView();
   void RecycleAllBtns();
   void DelayInitView();
+  void HideTip();
   GHashMap<EBuildingTips , RBuildingTipConfig> FillBtnOpList(GVector<EBuildingTips> p_TipsList);
   GVector<UIBuildingTipButton *>GetButtonArrayByOpList(GVector<EBuildingTips> p_TipsList);
   UIBuildingTipButton *CreateButtonByOpType(EBuildingTips p_Tip);

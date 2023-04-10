@@ -66,4 +66,5 @@ private:
   Node *WarLvBarEffect();
   void InitWarView();
   void RefreshCancelStarBtn();
+  void InitScroll();
 };

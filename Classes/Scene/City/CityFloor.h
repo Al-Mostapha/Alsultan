@@ -3,6 +3,7 @@
 #include "CityBuildings.h"
 
 class CityFloor : public CityBuildings {
+  public:
   ui::Layout *_ButtonMilitaryInfo  = nullptr;
   ui::Layout *_ButtonMerchante     = nullptr;
   ui::Layout *_ButtonActivity      = nullptr;
@@ -17,9 +18,10 @@ class CityFloor : public CityBuildings {
   ui::Layout *_ButtonHuoChuang     = nullptr;
   ui::Layout *_ButtonPetCenter     = nullptr;
   ui::Layout *_ButtonResurrectionHall = nullptr;
-  ui::Layout *_ButtonServiceCenter = nullptr;
-  ui::Layout *_BtnHuoChuang    = nullptr;
-  ui::Layout *_BtnPetCenter    = nullptr;
+  ui::Layout *_ButtonServiceCenter    = nullptr;
+  ui::Layout *_BtnHuoChuang           = nullptr;
+  ui::Layout *_BtnPetCenter           = nullptr;
+  Vec2 _PreContainerOffset = Vec2::ZERO;
   public:
   void Ctor();
   void CreateBatchNodes();
@@ -55,4 +57,5 @@ class CityFloor : public CityBuildings {
   void CheckPromoteArmy();
   void CheckMastery();
   class IBuilding *AddBuilding(EBuildingIndex p_Index, EBuilding p_IdBuilding);
+  void StopScrollContainer(){}
 };

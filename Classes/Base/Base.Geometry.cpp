@@ -19,5 +19,22 @@ namespace GBase {
     return l_Point;
   }
 
+  float DFPosX(float p_X, float p_Target){
+  //     local sizeW = 0
+  auto l_SizeW = 0;
+  if(p_Target == 0)
+    l_SizeW = 640;
+  else  
+    l_SizeW = p_Target;
+  return p_X;
+  // if SoraDGetLayoutAlignment() == gLayoutAlignmentTypeDef.right then
+  //   return x
+  // elseif x then
+  //   return sizeW - x
+  // else
+  //   print("SoraDFPoint err p")
+  // end
+  }
+
 
 }

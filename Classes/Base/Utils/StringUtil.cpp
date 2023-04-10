@@ -1,4 +1,5 @@
 #include "String.Util.h"
+#include <stdexcept>
 
 
 GVector<GString> GStringUtils::Split(GString s, GString delimiter){

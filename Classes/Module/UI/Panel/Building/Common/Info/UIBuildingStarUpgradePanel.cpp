@@ -1,7 +1,7 @@
 #include "UIBuildingStarUpgradePanel.h"
 
 UIBuildingStarUpgradePanel *UIBuildingStarUpgradePanel::Create(){
-  auto l_Panel = UIBuildingStarUpgradePanel::Create("UiParts/Panel/Building/Common/buildStarUpgradePanel.csb");
+  auto l_Panel = Create("UiParts/Panel/Building/Common/buildStarUpgradePanel.csb");
   return l_Panel;
 }
 

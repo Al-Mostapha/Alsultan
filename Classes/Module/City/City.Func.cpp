@@ -458,14 +458,18 @@ void MainCityFunctions::ReArrangeZorder(MainCityView* p_City) {
   // end
 }
 
+void MainCityFunctions::CancelBuildTint(Node *p_Node){
+
+}
+
 void MainCityFunctions::ShowNodeTint(Node *p_Node){
   if(!p_Node)
     return;
   p_Node->stopActionByTag(77);
   p_Node->setColor(Color3B(100, 100, 100));
-  auto l_ActionTintTo = TintBy::create(0.5, 0.5, 0.5, 0.5);
-  auto l_Delay = DelayTime::create(0.3);
-  auto l_ActionTintBack = TintBy::create(0.5, -0.5, -0.5, -0.5);
+  auto l_ActionTintTo = TintBy::create(0.5f, 0.5f, 0.5f, 0.5f);
+  auto l_Delay = DelayTime::create(0.3f);
+  auto l_ActionTintBack = TintBy::create(0.5f, -0.5f, -0.5f, -0.5f);
   auto l_ActionRepeat = RepeatForever::create(
     Sequence::create(
       l_ActionTintTo,
@@ -483,8 +487,72 @@ void MainCityFunctions::ShowNodeTintOnce(Node *p_Node){
     return;
   p_Node->stopActionByTag(77);
   p_Node->setColor(Color3B(100, 100, 100));
-  auto l_ActionTint = TintBy::create(0.2,  0.6078431372549019*255, 0.6078431372549019*255, 0.6078431372549019*255);
+  auto l_ActionTint = TintBy::create(0.2,  0.607f*255, 0.607f*255, 0.607f*255);
   l_ActionTint->setTag(77);
   p_Node->runAction(l_ActionTint);
 }
 
+
+void MainCityFunctions::DoOffsetContainerWithSelectBuild(
+  MainCityView *p_MainCity, Node *p_Building, float p_Scale, RDoOffestMoveParam p_Other){
+
+  CCAssert(p_MainCity, "City View Cannot be Null");
+  CCAssert(p_Building, "Building Cannot be Null");
+
+  p_MainCity->StopScrollContainer();
+  p_MainCity->_PreContainerOffset = p_MainCity->_ViewScrollView->getContentOffset();
+  if(!p_Other._IgnorePreZoomScale)
+    p_MainCity->_PreZoomScale = p_MainCity->_ViewScrollView->getZoomScale();
+  if(p_Other._NoScaleDuration)
+    p_MainCity->SetZoomScale(p_Scale, false, 0, true);
+  else 
+    p_MainCity->SetZoomScale(p_Scale, true, p_MainCity->_ZoomScaleDuration, true);
+  auto l_ZoomScale = p_MainCity->GetZoomScale();
+  auto l_PosX = GBase::DFPosX(GDisplay::Get()->size().width - 165, GDisplay::Get()->size().width);
+  auto l_PosY = GDisplay::Get()->height * 0.5 + p_MainCity->_HUIBottom + GDisplay::Get()->iPhoneXBottom + 30;
+  auto l_OffsetX =  -185;
+  auto l_OffsetY = 70;
+  l_PosX = GBase::DFPosX(GDisplay::Get()->size().width + l_OffsetX, GDisplay::Get()->size().width);
+  l_PosY = GDisplay::Get()->rheight *0.5 + 70 + GDisplay::Get()->iPhoneXBottom;
+  auto l_BuildingIndex = static_cast<EBuildingIndex>(p_Building->getTag());
+  if(l_BuildingIndex == EBuildingIndex::MaterialWorkShop){
+    l_PosX = GDisplay::Get()->size().width * 0.5;
+    l_PosY = GDisplay::Get()->rheight * 0.5 + 20 + GDisplay::Get()->iPhoneXBottom;
+  }
+  if(p_Other._Offset != Vec2::ZERO){
+    l_PosX = p_Other._Offset.x;
+    l_PosY = p_Other._Offset.y;
+  }
+
+  auto l_ScrollOffset = p_MainCity->GetContainerOffsetWhenPosTarget(p_Building, Vec2(l_PosX, l_PosY), true, false);
+  if(p_Other._Skip){
+    //     local selfPos = cc.p(build:getPositionX(), build:getPositionY())
+    //     local offsetPoint = self.viewScrollView:getContentOffset()
+    //     local covertPoint = cc.p(display.cx - offsetPoint.x, display.cy - offsetPoint.y)
+    //     local subPoint = cc.pSub(covertPoint, selfPos)
+    //     local newOffsetPoint = cc.pAdd(offsetPoint, subPoint)
+    //     local zoomScale = self.viewScrollView:getZoomScale()
+    //     local moveX = 165
+    //     if not SoraDFIsRA() then
+    //       moveX = 0
+    //     end
+    //     scrollOffset = cc.p((newOffsetPoint.x + moveX) * self.defaultScale, newOffsetPoint.y * self.defaultScale)
+    //     if scrollOffset.x < display.width - self.containerView:getContentSize().width then
+    //       scrollOffset.x = display.width - self.containerView:getContentSize().width
+    //     elseif 0 < scrollOffset.x then
+    //       scrollOffset.x = 0
+    //     end
+    //     if scrollOffset.y < display.height - self.containerView:getContentSize().height then
+    //       scrollOffset.y = display.height - self.containerView:getContentSize().height
+    //     elseif 0 < scrollOffset.y then
+    //       scrollOffset.y = 0
+    //     end
+  }
+  if(p_Other._NoScaleDuration){
+    p_MainCity->RunContainerViewMove(l_ScrollOffset);
+    p_MainCity->DisableMoveForDuration(0.1);
+  }else{
+    p_MainCity->RunContainerViewMove(l_ScrollOffset, p_MainCity->_ZoomScaleDuration);
+    p_MainCity->DisableMoveForDuration(p_MainCity->_ZoomScaleDuration);
+  }
+}

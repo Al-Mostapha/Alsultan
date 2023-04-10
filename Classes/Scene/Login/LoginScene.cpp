@@ -169,7 +169,7 @@ void LoginScene::CreatePanelView() {
 void LoginScene::CreateLoginView(EScene p_Type, EKingdomClassType p_Kingdom) {
   if (p_Type == EScene::None) p_Type = EScene::City;
   stopAllActions();
-  runAction(Sequence::create(DelayTime::create(0.0167),
+  runAction(Sequence::create(DelayTime::create(0.0167f),
                             CallFunc::create([=]() {
                               GAudioEngine::Get()->Init();
                               LoginSettingRun();

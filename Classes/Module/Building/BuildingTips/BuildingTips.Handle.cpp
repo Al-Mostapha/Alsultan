@@ -1,6 +1,7 @@
 #include "BuildingTips.Handle.h"
 #include "Module/Building/IBuilding.h"
 #include "Module/Guild/Alliance.Mgr.h"
+#include "Module/City/City.Func.h"
 #include "Module/UI/Part/City/Building/UIBuildingTipButton.h"
 
 #include "Module/UI/Panel/Common/SpeedUp/UICommonSpeedUpBox.h"
@@ -8,6 +9,7 @@
 
 #include "Module/UI/Panel/Building/Common/Info/UIBuildingInfoPanel.h"
 #include "Module/UI/Panel/Building/Common/Info/UIBuildingStarUpgradePanel.h"
+#include "Module/UI/Panel/Building/Common/Info/UIBuildUpgradeStatueBrave.h"
 #include "Module/UI/Panel/Building/Common/Train/UISoldiersCampView.h"
 #include "Module/UI/Panel/Building/Market/UIMarketNoAlliance.h"
 #include "Module/UI/Panel/Building/Market/UITradeBoardView.h"
@@ -35,6 +37,10 @@
 #include "Module/UI/Panel/Building/PetCenter/UIPetExchange.View.h"
 #include "Module/UI/Panel/Building/War/WarGem/UIWarGem.View.h"
 #include "Module/UI/Panel/Building/War/WarTech/UIWarTech.View.h"
+#include "Module/UI/Panel/Building/WarHall/UIMilitaryFortressMain.View.h"
+#include "Module/UI/Panel/Building/StarBraveStatue/UIProcessStudy.View.h"
+#include "Module/UI/Panel/Building/StarBraveStatue/UIWarframeForg.View.h"
+#include "Module/UI/Panel/Building/StarBraveStatue/UIWarframeStoreroom.h"
 
 #include "Module/UI/Panel/Alliance/Member/UIAllianceMemberList.h"
 #include "Module/UI/Panel/Alliance/AllianceWar/UIAllianceWar.View.h"
@@ -63,7 +69,7 @@ BuildingTipsHandle *BuildingTipsHandle::Get(){
 void BuildingTipsHandle::Handle(
   UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch,
   EBuildingTips p_Op){
-    ButtonStarSpeedUpCall(p_Ref, p_Touch);
+    ButtonInfoCall(p_Ref, p_Touch);
     return;
   switch (p_Op)
   {
@@ -126,6 +132,12 @@ void BuildingTipsHandle::Handle(
     // case EBuildingTips::OpGodE: ButtonGodEquipmentCall(p_Ref, p_Touch); break;
     case EBuildingTips::OpArtifact: ButtonArtifactCall(p_Ref, p_Touch); break;
     case EBuildingTips::OpStarSpeedUp: ButtonStarSpeedUpCall(p_Ref, p_Touch); break;
+    case EBuildingTips::OpProcessStudy: ButtonProcessStudyCall(p_Ref, p_Touch); break;
+    case EBuildingTips::OpWarframeForg: ButtonWarframeForgCall(p_Ref, p_Touch); break;
+    case EBuildingTips::OpWarframeStoreroom: ButtonWarframeStoreroomCall(p_Ref, p_Touch); break;
+    case EBuildingTips::OpstatueBrave: ButtonUpStatueBraveCall(p_Ref, p_Touch); break;
+    case EBuildingTips::OpMilitaryFortress: ButtonMilitaryFortressCall(p_Ref, p_Touch); break;
+    case EBuildingTips::OpForeignPavilion: ButtonForeignPavilionCall(p_Ref, p_Touch); break;
     
     default:
     ButtonUnDefinedCall(p_Ref, p_Touch);
@@ -151,10 +163,9 @@ void BuildingTipsHandle::ButtonInfoCall(UIBuildingTipButton *p_Ref, ui::Widget::
     auto l_Panel = UIBuildingInfoPanel::Create();
     l_Panel->InitData(p_Ref->_BuildEntity->GetBuildingIndex(), p_Ref->_BuildEntity);
     l_Panel->Show();
-    //     SoraDSendMessage({
-    //       msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
-    //       offsetType = MAINCITYVIEW_OFFSET_TYPE_BUILD
-    //     })
+    auto Param = std::make_unique<RDoOffestMoveParam>();
+    Param->_OffsetType = EMainCityViewOffsetType::Building;
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_OFFSET_BUILD", Param.get());
   }
   GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
 }
@@ -992,7 +1003,88 @@ void BuildingTipsHandle::ButtonStarSpeedUpCall(UIBuildingTipButton *p_Ref, ui::W
 void BuildingTipsHandle::ButtonProcessStudyCall(UIBuildingTipButton *p_Ref, ui::Widget::TouchEventType p_Touch){
   if(p_Touch != Widget::TouchEventType::ENDED)
     return;
-    UICommonSpeedUpBox::Create()->Show();
+    UIProcessStudyView::Create()->Show();
+    // panel:setBuildEntity(self.relyBuildEntity)
+    // panel:initData()
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
+}
+
+void BuildingTipsHandle::ButtonWarframeForgCall(UIBuildingTipButton *p_Ref, ui::Widget::TouchEventType p_Touch){
+  if(p_Touch != Widget::TouchEventType::ENDED)
+    return;
+    UIWarframeForgView::Create()->Show();
+    // panel:setBuildEntity(self.relyBuildEntity)
+    // panel:initData()
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
+}
+
+
+void BuildingTipsHandle::ButtonWarframeStoreroomCall(UIBuildingTipButton *p_Ref, ui::Widget::TouchEventType p_Touch){
+  if(p_Touch != Widget::TouchEventType::ENDED)
+    return;
+    UIWarframeStoreroom::Create()->Show();
+    // panel:setBuildEntity(self.relyBuildEntity)
+    // panel:initData()
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
+}
+
+void BuildingTipsHandle::ButtonUpStatueBraveCall(UIBuildingTipButton *p_Ref, ui::Widget::TouchEventType p_Touch){
+  if(p_Touch != Widget::TouchEventType::ENDED)
+    return;
+  UIBuildUpgradeStatueBrave::Create()->Show();
+    //   panel:initUpgradeStarData({
+    //   bid = self.relyBuildCfgId,
+    //   iid = self.relyBuildIid,
+    //   index = self.relyBuildBtnId,
+    //   buildEntity = self:getBuildEntity()
+    // })
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
+}
+
+
+void BuildingTipsHandle::ButtonMilitaryFortressCall(UIBuildingTipButton *p_Ref, ui::Widget::TouchEventType p_Touch){
+  if(p_Touch != Widget::TouchEventType::ENDED)
+    return;
+  UIMilitaryFortressMainView::Create()->Show();
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
+}
+
+void BuildingTipsHandle::ButtonForeignPavilionCall(UIBuildingTipButton *p_Ref, ui::Widget::TouchEventType p_Touch){
+  if(p_Touch != Widget::TouchEventType::ENDED)
+    return;
+    // if SoraDGetCastleLv() < CASTLE_LV4_LIMITED then
+    //   SoraDShowMsgTip(i18n("common_text_1973", {lv = CASTLE_LV4_LIMITED}))
+    //   return
+    // end
+    // local cityCtrl = gametop.playertop_:getModule("cityCtrl")
+    // local castleBcell = cityCtrl:getBuildCell(BUILDID.CASTLE, 0)
+    // if not castleBcell then
+    //   SoraDSendMessage({
+    //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP"
+    //   })
+    //   return
+    // end
+    // if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.EXOTIC_PAVILION_ACTIVITY) then
+    //   local exoticPavilionCtrl = SoraDGetCtrl("exoticPavilionCtrl")
+    //   if exoticPavilionCtrl:getCurStage() == 1 and exoticPavilionCtrl:getCurStep() <= 3 then
+    //     local noticeData = {
+    //       {
+    //         img = "girl",
+    //         str = i18n("exitic_pavillion_text_0147")
+    //       },
+    //       {
+    //         callback = function()
+    //           uiManager:show("ForeignPavilionActivity")
+    //         end
+    //       }
+    //     }
+    //     gModuleMgr.sharedMgr("mildGuideManager"):createNoticeLine(noticeData)
+    //   else
+    //     uiManager:show("ForeignPavilionActivity")
+    //   end
+    // else
+    //   SoraDShowMsgTip(i18n("common_text_2486"))
+    // end
   GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
 }
 

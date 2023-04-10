@@ -66,6 +66,11 @@ class BuildingTipsHandle{
   void ButtonPetExchangeCall(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch);
   void ButtonStarSpeedUpCall(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch);
   void ButtonProcessStudyCall(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch);
+  void ButtonWarframeForgCall(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch);
+  void ButtonWarframeStoreroomCall(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch);
+  void ButtonUpStatueBraveCall(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch);
+  void ButtonMilitaryFortressCall(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch);
+  void ButtonForeignPavilionCall(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch);
   public:
     static BuildingTipsHandle *Get();
     void Handle(UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch, EBuildingTips p_Op);

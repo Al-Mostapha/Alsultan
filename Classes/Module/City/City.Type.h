@@ -23,3 +23,4 @@ struct RCity
         CityResource.fromJson(json->GetJsonObject("CityResource"));
     }
 };
+

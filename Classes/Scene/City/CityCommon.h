@@ -12,6 +12,7 @@ class CityCommon{
   float _DefaultScale = 0.9f;
   float _NormalScale = 0.5;
   float _ZoomScale = 0.5;
+  float _PreZoomScale = 0.5;
   float _MaxScale = 1.8f;
   float _MaxLimitScale = 2;
   float _Inertia = 1.4f;

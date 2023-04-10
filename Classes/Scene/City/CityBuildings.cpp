@@ -6,7 +6,6 @@ void CityBuildings::BuildingButtonCallFun(
   ui::Widget* p_Build, Ref* p_Ref, ui::Widget::TouchEventType p_Touch
 ) { 
   static bool l_IsMoveOnBuild = false; 
-  static UIBuildingTipPanel *l_CacheTip = nullptr;
 
   if(p_Touch == ui::Widget::TouchEventType::MOVED){
     auto l_TouchBeganPoint = p_Build->getTouchBeganPosition();
@@ -22,29 +21,28 @@ void CityBuildings::BuildingButtonCallFun(
       l_IsMoveOnBuild = false;
       return;
     }
-
+    _CurrentSelectBuild = p_Build;
     auto l_CityBuild = dynamic_cast<IBuilding *>(p_Build->getChildByName("buildName"));
     if(l_CityBuild){
-      if(!l_CacheTip){
-          l_CacheTip = UIBuildingTipPanel::Create();
-          _ContainerView->addChild(l_CacheTip, 1000000);
-          l_CacheTip->setLocalZOrder(10000);
-          l_CacheTip->setGlobalZOrder(10000);
+      if(!_CacheTip){
+        _CacheTip = UIBuildingTipPanel::Create();
+        _ContainerView->addChild(_CacheTip, 10000);
+        _CacheTip->setGlobalZOrder(10000);
       }
-        l_CacheTip->setVisible(true);
-        l_CacheTip->SetRelyBuildBtnId(p_Build->getTag());
-        l_CacheTip->SetRelyBuildUId(l_CityBuild->getTag());
-        _CurrentSelectTip = l_CacheTip;
-        l_CacheTip->SetRelyBuildCfgId(l_CityBuild->GetBuildingId());
-        l_CacheTip->SetRelyBuildIid(l_CityBuild->GetBuildingIndex());
-        l_CacheTip->SetRelyBuildEntity(l_CityBuild);
-        l_CacheTip->InitView();
+        _CacheTip->setVisible(true);
+        _CacheTip->SetRelyBuildBtnId(p_Build->getTag());
+        _CacheTip->SetRelyBuildUId(l_CityBuild->getTag());
+        _CurrentSelectTip = _CacheTip;
+        _CacheTip->SetRelyBuildCfgId(l_CityBuild->GetBuildingId());
+        _CacheTip->SetRelyBuildIid(l_CityBuild->GetBuildingIndex());
+        _CacheTip->SetRelyBuildEntity(l_CityBuild);
+        _CacheTip->InitView();
         // local x, y = build:getPosition()
         auto l_Vec = p_Build->getPosition();
         // local offset = cityBuildViewDef.getBuildTipOffset(bid)
         
         // panel:setPosition(cc.p(x + offset.x, y + offset.y))
-        l_CacheTip->setPosition(l_Vec);
+        _CacheTip->setPosition(l_Vec);
         // self:ShowBuildTint(build)
         MainCityFunctions::Get()->ShowNodeTint(p_Build);
         // cityBuild:runAction(cca.seq({

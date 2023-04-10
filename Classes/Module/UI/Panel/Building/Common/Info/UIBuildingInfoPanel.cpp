@@ -155,9 +155,11 @@ void UIBuildingInfoPanel::InitData(EBuildingIndex p_Index, IBuilding *p_Building
   //   self.labelInfo:setString(buildDescribeRead.getUpgradeDes(self.tableBuildInfo.bid))
   // else
   //   self.labelInfo:setVisible(false)
+  _LabelInfo->setVisible(false);
+  InitScroll();
   //   self:initScroll()
   // end
-  // self:refreshCancelStarBtn()
+  RefreshCancelStarBtn();
 }
 
 void UIBuildingInfoPanel::BtnMoreCallBack(Ref *p_Ref, ui::Widget::TouchEventType p_Touch){
@@ -258,6 +260,26 @@ void UIBuildingInfoPanel::UpdateState(){
     _BtnCancell->setTitleText(Translate::i18n("common_text_385")); 
   else if(l_ViewState == EBuildingState::Demolishing)
     _BtnCancell->setTitleText(Translate::i18n("common_text_727"));
+}
+
+void UIBuildingInfoPanel::InitScroll(){
+  // self.scrollInfo:removeAllChildren()
+  _ScrollInfo->removeAllChildren();
+  // local infoCount = #self.tableBuildInfo.buildInfo
+  auto l_InfoCount = 3;
+  auto l_ScrollSize = _ScrollInfo->getContentSize();
+  auto l_ScrollH = std::max(float(l_InfoCount * 40), l_ScrollSize.height);
+  _ScrollInfo->setInnerContainerSize(Size(l_ScrollSize.width, l_ScrollH));
+
+  for(auto iii = 0; iii < l_InfoCount; iii++){
+  //   local singleInfo = SoraDCreatePanel("buildInfoSingle")
+  //   singleInfo:setPosition(cc.p(280, scrollH - (i - 1) * 40))
+  //   singleInfo:initData(v, self.tableBuildInfo.bid)
+  //   singleInfo:addTo(self.scrollInfo)
+
+  }
+  if(l_ScrollH > l_ScrollSize.height)
+    _ScrollInfo->setBounceEnabled(true);
 }
 
 void UIBuildingInfoPanel::RefreshLabelDes(const GString &p_Label){
