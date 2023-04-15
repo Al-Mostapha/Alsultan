@@ -12,6 +12,7 @@
 #include "Module/Army/Army.Read.h"
 #include "UIBuildingCreateSingle.h"
 #include "Module/City/City.Func.h"
+#include "Module/Effect/Effect.Ctrl.h"
 
 float UIBuildingCreateInfoPanel::WELevelProMin = 25;
 float UIBuildingCreateInfoPanel::WELevelProMax = 100;
@@ -744,7 +745,7 @@ void UIBuildingCreateInfoPanel::InitScroll(){
     _SingleH = _SingleH - _SingleH *.3/5;
   auto _ScrollH = std::max(_InfoCount * _SingleH, _ScrollSize.height);
   _ScrollUp->setInnerContainerSize({_ScrollSize.width, _ScrollH});
-  for(auto iii = 0; iii < _TableBuildInfo._BuildData._CostResource.size(); iii++){
+  for(auto iii = 0; iii < (int32)_TableBuildInfo._BuildData._CostResource.size(); iii++){
     auto v = _TableBuildInfo._BuildData._CostResource[iii];
     bool l_LuckyIsReach = false;
     auto l_WiseTutorIsReach = false;
@@ -756,6 +757,7 @@ void UIBuildingCreateInfoPanel::InitScroll(){
     auto l_Param = UIBuildingCreateSingle::RBuildingCondData();
     l_Param._ResCount = v._ResCount;
     l_Param._Resid = v._ResId;
+    l_Param._CurCount = v._CurCount;
     l_Param._IsNormal = true;
     l_SingleInfo->InitData(
       UIBuildingCreateSingle::EBuildingCondType::Res,
@@ -879,7 +881,7 @@ void UIBuildingCreateInfoPanel::InitScroll(){
 //       self.isSpecialReach = false
 //     end
 //   end
-  for(auto iii = 0; iii < _TableBuildInfo._BuildData._CostBuilding.size(); iii++){
+  for(auto iii = 0; iii < (int32)_TableBuildInfo._BuildData._CostBuilding.size(); iii++){
     auto v  = _TableBuildInfo._BuildData._CostBuilding[iii];
     auto l_SingleInfo = UIBuildingCreateSingle::Create();
     auto l_Count = iii  + _QShowListCount - 1;
@@ -934,10 +936,7 @@ void UIBuildingCreateInfoPanel::LightBlink(int32 p_Index){
     GBase::DShowMsgTip(Translate::i18n("common_text_743"), "icon_hourglass.png", _BtnUp);
   }
   _ImgLight->stopAllActions();
-  // self.imgLight:stopAllActions()
-  // self.imgLight:setVisible(true)
   _ImgLight->setVisible(true);
-  // self.imgLight:setPositionY(self.scrollUp:getInnerContainerSize().height - (index - 0.5) * self.singleH)
   _ImgLight->setPositionY(_ScrollUp->getInnerContainerSize().height - (p_Index -.5) * _SingleH);
   _ImgLight->runAction(
     Sequence::create(
@@ -975,3 +974,157 @@ void UIBuildingCreateInfoPanel::BtnUnlockedCallBack(Ref *p_Sender, ui::Widget::T
     l_Panel->Show();
   }
 }
+
+void UIBuildingCreateInfoPanel::UpgradeFun(){
+  if(_BuildType == CANT_BY_RES || _BuildType == CANT_BY_TOOL){
+    if(_BuildType == CANT_BY_TOOL && !GBase::DEnoughWarBadge(_NeedWarBadgeBuy, _NeedWarBadgeID))
+      return;
+    else if(GBase::DIsGameGuide())
+      ResBuyCallBack();
+    else{
+      auto l_ResByType = EResBuyViewType::Upgrade;
+      if(_ViewType == EBuildingOperateType::Build)
+        l_ResByType = EResBuyViewType::Build;
+    struct RTableResNeedBuy
+    {
+      EResource _ResId;
+      int32 _ResCount;
+    };
+    GVector<RTableResNeedBuy> _TableResNeedBuy;
+    
+    for(auto iii = 0; iii < _TableBuildInfo._BuildData._CostResource.size(); iii++){
+      auto v = _TableBuildInfo._BuildData._CostResource[iii];
+      if(!v._IsReach){
+        auto l_NeedBuyRes = v._ResCount - v._CurCount;
+        auto l_CostResCount = v._ResCount;
+        if(_LuckyBlessIsOpen){
+          l_CostResCount = LuckyBlessCtrl::Get()->GetResult(v._ResCount);
+          l_NeedBuyRes = GMath::Max(0, l_CostResCount - v._CurCount);
+        }
+        
+        auto l_SubPercent = EffectCtrl::Get()->GetBuffEffect(EEffect::UPGRADE_CASTLE_COST_RES_REDUCE_FOR_POW);
+        l_CostResCount = std::ceil(float(l_CostResCount)*(1.f - l_SubPercent / 1000));
+        l_NeedBuyRes = GMath::Max(0.f, l_CostResCount - float(v._CurCount));
+        auto l_Need = RTableResNeedBuy();
+        l_Need._ResId = v._ResId;
+        l_Need._ResCount = l_CostResCount - v._CurCount;
+        if(l_NeedBuyRes > 0)
+          _TableResNeedBuy.push_back(l_Need);
+      }
+    }
+    
+    //         for i, v in ipairs(self.tableBuildInfo.buildData._retCostTools) do
+
+    //         end
+    for(size_t iii = 0; iii < _TableBuildInfo._BuildData._CostItem.size(); iii++){
+    //           if not v.isreach then
+    //             table.insert(tableResNeedBuy, {
+    //               resid = v.toolid,
+    //               rescount = v.toolcount - v.curcount
+    //             })
+    //           end
+    }
+    //         for i, v in ipairs(self.tableBuildInfo.buildData._retCostWEs) do
+    //           if not v.isreach then
+    //             table.insert(tableResNeedBuy, {
+    //               resid = v.toolid,
+    //               rescount = v.toolcount - v.curcount
+    //             })
+    //           end
+    //         end
+    
+
+    //         local proxy = uiManager:getOrCreateProxy("CommonQuicklyadd")
+    //         if proxy:checkNeedRes(tableResNeedBuy) then
+    //           uiManager:show("CommonQuicklyadd")
+    //         else
+    //           local panel = SoraDCreatePanel("buildCreateResBuy")
+    //           panel:initData({
+    //             resToGold = self.tableBuildInfo.buildData._resToGold + self.tableBuildInfo.buildData._toolToGold + self.tableBuildInfo.buildData._WEToGold,
+    //             retCostRes = tableResNeedBuy
+    //           }, resBuyType)
+    //           panel:setBuyResCallBack(handler(self, self.resBuyCallBack))
+    //           panel:show()
+    //         end
+    }
+  } else if(_BuildType == CANT_BY_BUILDER){
+    LightBlink(1);
+  } else if(_ViewType == EBuildingOperateType::Build){
+    Build();
+  } else if(_ViewType == EBuildingOperateType::Upgrade){
+    Upgrade();
+  } else if(_ViewType == EBuildingOperateType::Unlock) {
+    //       cityCtrl:openGroundReq(self.tableBuildInfo.areaid)
+    //       SoraDSendMessage({
+    //         msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
+    //         offsetType = MAINCITYVIEW_OFFSET_TYPE_RECOVER
+    //       })
+    //       SoraDSendMessage({
+    //         msg = "MESSAGE_MAINCITYVIEW_SHOW_LOCKAREA_REQ_LOADING",
+    //         areaid = self.tableBuildInfo.areaid
+    //       })
+    //       SoraDRemoveAllPrePanelFromManager(self)
+  }
+}
+
+void UIBuildingCreateInfoPanel::BtnUpCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+  if(p_Touch != Widget::TouchEventType::ENDED)
+    return;
+  GBase::PlaySound();
+
+    //   if self.viewType ~= BUILD_OPERATE_TYPE.UNLOCK then
+    //     local buildCell = cityCtrl:getBuildCell(self.tableBuildInfo.buildID.bid, self.tableBuildInfo.buildID.iid)
+    //     if buildCell and self.tableBuildInfo.buildID.bid == BUILDID.CASTLE then
+    //       if commonCheck.NEW_WEEK_CARD and tonumber(buildCell.info.lv) == CASTLE_LV15_LIMITED and rechargeActivityCtrl:checkHasbuyNewWeekcard() then
+    //         SoraDShowMsgBox(i18n("new_weeklycard_tips_01"), i18n("common_text_204"), nil, function(type)
+    //           if type == MSGBOX_CALLBACK_YES then
+    //           end
+    //         end)
+    //         return
+    //       end
+    //       if commonCheck.CASTLE_LVUP_TIPS and tonumber(buildCell.info.lv) == CASTLE_LV7_LIMITED then
+    //         SoraDShowMsgBox(i18n("common_text_928_ros"), i18n("common_text_204"), nil, function(type)
+    //           if type == MSGBOX_CALLBACK_YES then
+    //             upgradeFun()
+    //           end
+    //         end)
+    //         return
+    //       end
+    //       if self.wiseTutorIsOpen and tonumber(buildCell.info.lv) == include("wiseTutorRead").getMaxEffectCastleLv() then
+    //         SoraDShowMsgBox(i18n("Battle_Towers_37", {
+    //           lv = buildLogic.getBuildLvStr(include("wiseTutorRead").getMaxEffectCastleLv())
+    //         }), i18n("common_text_204"), nil, function(type)
+    //           if type == MSGBOX_CALLBACK_YES then
+    //             upgradeFun()
+    //           end
+    //         end)
+    //         return
+    //       elseif self.artisanHouseIsOpen and tonumber(buildCell.info.lv) == include("artisanHouseltCtrl").getMaxEffectCastleLv() then
+    //         SoraDShowMsgBox(i18n("Battle_Towers_37", {
+    //           lv = buildLogic.getBuildLvStr(include("artisanHouseltCtrl").getMaxEffectCastleLv())
+    //         }), i18n("common_text_204"), nil, function(type)
+    //           if type == MSGBOX_CALLBACK_YES then
+    //             upgradeFun()
+    //           end
+    //         end)
+    //         return
+    //       end
+    //       if tonumber(buildCell.info.lv) == CASTLE_LV5_LIMITED then
+    //         SoraDShowMsgBox(i18n("common_text_928"), i18n("common_text_204"), nil, function(type)
+    //           if type == MSGBOX_CALLBACK_YES then
+    //             upgradeFun()
+    //           end
+    //         end)
+    //       else
+    //         upgradeFun()
+    //       end
+    //     else
+    //       upgradeFun()
+    //     end
+    //   else
+    //     upgradeFun()
+    //   end
+}
+
+
+

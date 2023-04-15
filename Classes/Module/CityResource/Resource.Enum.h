@@ -13,3 +13,20 @@ enum class EResource {
   Crystal = 1027,
   MeteorCrystal = 1620
 };
+
+enum class EResBuyViewType {
+  None = 0,
+  Build = 1,
+  Upgrade = 2,
+  TRAIN_ARMY = 3,
+  TRAIN_TRAP = 4,
+  STUDY_SCIENCE = 5,
+  EQUIP_BAPTIZE = 6,
+  EQUIP_INTENSIFY = 7,
+  PROMOTE_ARMY = 8,
+  UPGRADE_STAR = 9,
+  WARFRAME_FORG = 10,
+  BUILD_STATUE_BRAVE = 11,
+  WAR_GEM_REPLACE = 12,
+  MGAGIC_LAMP_STRENGTH = 13
+};

@@ -118,6 +118,8 @@ class UIBuildingCreateInfoPanel : public UIBasePanel
   } _TableBuildInfo;
 
   GVector<UIBuildingCreateSingle *> _TableScrollSingles;
+private:
+  void UpgradeFun();
 public: 
   static UIBuildingCreateInfoPanel* Create();
   void Ctor() override;
@@ -133,7 +135,7 @@ public:
   void InitBuildView();
   void OnMessageListener();
   void OnWiseTutorClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
-  void BtnUpCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){}
+  void BtnUpCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
   void BtnUpNowCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){}
   void BtnUnlockedCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
   void BtnHelpCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
@@ -169,6 +171,6 @@ public:
   void LightBlink(int32 p_Index);
   void ResBuyCallBack();
 
-  void Build(EOPERATE_MODE p_Mode){}
-  void Upgrade(EOPERATE_MODE p_Mode){}
+  void Build(EOPERATE_MODE p_Mode = EOPERATE_MODE::NORMAL){}
+  void Upgrade(EOPERATE_MODE p_Mode = EOPERATE_MODE::NORMAL){}
 };

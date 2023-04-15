@@ -13,5 +13,5 @@ namespace GBase{
   void DCreateGraySprite(Node *p_Node);
   void DNormalSprite(Node *p_Node);
   bool DIsNodeVisibleOnScroll(ui::Widget *p_Node, ui::ScrollView *p_Scroll = nullptr, ui::Widget::TouchEventType p_Type = ui::Widget::TouchEventType::ENDED);
-  
+  bool DEnoughWarBadge(int32 p_NeedBadge, int32 p_BadgeID, bool p_NotShow = false);
 };

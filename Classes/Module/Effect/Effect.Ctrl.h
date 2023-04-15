@@ -8,5 +8,5 @@ class EffectCtrl {
   bool isEffectActive(EEffect p_EffectType);
   uint32 getEffectVal(EEffect p_EffectType);
   // Percent of 1000 not 100
-  uint32 GetBuffEffect(EEffect p_EffectType){return 0;}
+  float GetBuffEffect(EEffect p_EffectType){return 0;}
 };

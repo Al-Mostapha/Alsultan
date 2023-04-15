@@ -14,5 +14,6 @@ int32 Min(int32 p_First, int32 p_Second);
 float Min(float p_First, float p_Second);
 
 double Min(double p_First, double p_Second);
+float Max(float p_First, float p_Second);
 GString  DConvertNumberWithUnit(float p_Num);
 }  // namespace GMath

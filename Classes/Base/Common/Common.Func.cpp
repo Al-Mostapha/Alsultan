@@ -158,3 +158,24 @@ bool GBase::DIsNodeVisibleOnScroll(ui::Widget *p_Node, ui::ScrollView *p_Scroll,
   return l_ScrollRect.containsPoint(l_NodePoint);
 }
 
+bool GBase::DEnoughWarBadge(int32 p_NeedBadge, int32 p_BadgeID, bool p_NotShow){
+  //   local gametop = gModuleMgr.getObject("gametop")
+  // local badgeExchangeCtrl = gametop.playertop_:getModule("badgeExchangeCtrl")
+  // local badgeType = gBadgeExchangeType.COMMON_BADGE_TYPE
+  // local notShow = notShow or false
+  // if badgeID and badgeID == gBadgeItemID.ADVANCED_BADGE_ID then
+  //   badgeType = gBadgeExchangeType.ADVANCED_BADGE_TYPE
+  // end
+  // local canBuy = badgeExchangeCtrl:getLeftCanBuyNum(badgeType)
+  // if needBadge <= canBuy then
+  //   return true
+  // else
+  //   if not notShow then
+  //     SoraDShowMsgTip(i18n("common_text_1947", {
+  //       max = badgeExchangeCtrl:getMostLimit(badgeType)
+  //     }))
+  //   end
+  //   return false
+  // end
+  return false;
+}

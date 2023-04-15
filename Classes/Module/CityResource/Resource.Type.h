@@ -18,6 +18,7 @@ struct RCostResourceEnough
 {
   EResource _ResId;
   int32 _ResCount;
+  int32 _CurCount;
   bool _IsReach;
 };
 
