@@ -7,4 +7,6 @@ class EffectCtrl {
   TEffect getEffect(EEffect p_EffectType);
   bool isEffectActive(EEffect p_EffectType);
   uint32 getEffectVal(EEffect p_EffectType);
+  // Percent of 1000 not 100
+  uint32 GetBuffEffect(EEffect p_EffectType){return 0;}
 };

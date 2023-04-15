@@ -27,25 +27,29 @@ struct RCostBuildingEnough{
   uint32 lvlReq;
   uint32 lvlCurMax;
   int32 lvlLack;
-  bool isEnough;
+  int32 _StarLvl;
+  bool _IsReach;
 };
 
 struct RCostBuildingUpgrade{
-  GVector<RCostBuildingEnough> CostBuilding;
-  GVector<RCostItemEnough> CostItem;
-  GVector<RCostItemEnough> CostItemWEs;
-  RCostResourceEnough CostResource;
-  uint32 CostTime;
+  GVector<RCostBuildingEnough> _CostBuilding;
+  GVector<RCostItemEnough> _CostItem;
+  GVector<RCostItemEnough> _CostItemWEs;
+  GVector<bool> _PreCond;
+  GVector<RCostResourceEnough> _CostResource;
+  uint32 _CostTime;
   uint32 resToGold;
   uint32 itemToGold;
   uint32 totalGold;
   uint32 WEToGold;
   uint32 timeToGold;
+  int32 _ImmediatelyGold;
   struct {
     uint32 exp = 0;
     uint32 power = 0;
   } Reword;
-  GVector<RBuildingTask> BuildingTaskQueue;
+  GVector<RBuildingTask> _BuildingTaskQueue;
+  bool _IsValid;
 };
 
 struct RBuildingLvlSpecs {
@@ -57,7 +61,7 @@ struct RBuildingLvlSpecs {
     uint32 exp;
     uint32 power;
   } Reword;
-  uint32 CostTime = 0;
+  uint32 _CostTime = 0;
   uint32 lvl = 0;
   uint32 kingdomPoint = 0;
   uint32 atkAdd = 0;
@@ -99,12 +103,14 @@ struct RBuildingLvlSpecs {
 };
 
 struct RBuildingMoreInfoData{
-  GString _Value;
+
   //TODO:  should be enum
   int32 _MoreInfoType;
   int32 _InfoDesType;
   GString _Title;
+  GString _Value;
   GString _PlusValue;
+  EBuilding _Bid;
 };
 
 struct RCityBuildingUnit {
@@ -141,7 +147,7 @@ struct RBuildingSpecs {
   const char *BuildingIcon = "";
   const char *BuildingBrief = "";
   const char *UpgradeBrief = "";
-  const char *Describe = "";
+  const char *Describe = "Describe";
   const char *WarDescribe = "";
   const char *StarDescribe = "";
   GHashMap<uint32, RBuildingLvlSpecs> Lvls;

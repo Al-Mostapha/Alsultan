@@ -1,5 +1,6 @@
 #include "Common.Func.h"
 #include "Engine/Display.h"
+#include "Base/Base.create.h"
 
 Node *GBase::DCreateEffectNode(
   const GVector<RCreatEffctParam> &p_Parm, const char *p_Folder, bool p_IsAutoRemoveOnfinish
@@ -117,3 +118,43 @@ Node *GBase::DCreateEffectNode(
   }
   return l_ParticleNode;
 }
+
+void GBase::DSetGray(Node *p_Node, bool p_IsGray, bool p_Rec){}
+
+void GBase::DSetNodeGray(Node *p_Node, bool p_IsGray){
+  if(dynamic_cast<ui::Button *>(p_Node)){
+  //     node:getVirtualRenderer():setState(isGray and 1 or 0)
+  }else if(dynamic_cast<ui::ImageView *>(p_Node)){
+//   node:getVirtualRenderer():setState(isGray and 1 or 0)
+  }else if(dynamic_cast<Sprite *>(p_Node)){
+    if(p_IsGray)
+      DCreateGraySprite(p_Node);
+    else 
+      DNormalSprite(p_Node);
+  }
+}
+
+void GBase::DCreateGraySprite(Node *p_Node){}
+
+void GBase::DNormalSprite(Node *p_Node){}
+
+bool GBase::DIsNodeVisibleOnScroll(ui::Widget *p_Node, ui::ScrollView *p_Scroll,ui::Widget::TouchEventType p_Type ){
+  if(p_Type == ui::Widget::TouchEventType::CANCELED)
+    p_Type = ui::Widget::TouchEventType::ENDED;
+  if(GBase::DIsGameGuide())
+    return true;
+  if(!p_Scroll){
+    p_Scroll =  dynamic_cast<ui::ScrollView *>(p_Node->getParent());
+  }
+  auto l_ScrollRect = p_Scroll->getBoundingBox();
+  Vec2 l_NodePoint;
+  if(p_Type == ui::Widget::TouchEventType::BEGAN)
+    l_NodePoint = p_Node->getTouchBeganPosition();
+  else if(p_Type == ui::Widget::TouchEventType::MOVED)
+    l_NodePoint = p_Node->getTouchMovePosition();
+  else if(p_Type == ui::Widget::TouchEventType::ENDED)
+    l_NodePoint = p_Node->getTouchEndPosition();
+  l_NodePoint = p_Scroll->getParent()->convertToNodeSpace(l_NodePoint);
+  return l_ScrollRect.containsPoint(l_NodePoint);
+}
+

@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Resource.Enum.h"
 
 struct RResource
 {
@@ -15,27 +16,9 @@ struct RResource
 
 struct RCostResourceEnough
 {
-  bool Coin = false;
-  bool Grain = false;
-  bool Lumber = false;
-  bool Iron = false;
-  bool Silver = false;
-  bool Metal = false;
-  bool Crystal = false;
-  bool MeteorCrystal = false;
-
-  int32 CoinNeed = 0;
-  int32 GrainNeed = 0;
-  int32 LumberNeed = 0;
-  int32 IronNeed = 0;
-  int32 SilverNeed = 0;
-  int32 MetalNeed = 0;
-  int32 CrystalNeed = 0;
-  int32 MeteorCrystalNeed = 0;
-
-  bool IsEnough() const {
-    return Coin && Grain && Lumber && Iron && Silver && Metal && Crystal && MeteorCrystal ;
-  }
+  EResource _ResId;
+  int32 _ResCount;
+  bool _IsReach;
 };
 
 struct RCityResource : public RResource

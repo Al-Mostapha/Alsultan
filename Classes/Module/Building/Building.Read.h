@@ -1,8 +1,19 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Module/Task/Task.Enum.h"
+#include "Module/Building/Building.Enum.h"
+#include "Module/Science/Science.Enum.h"
+#include "Module/Army/Army.Enum.h"
 
+struct RBuildingMoreInfoData;
 class BuildingRead{
+  struct RNextUnlockedData{
+    EBuilding _Building = EBuilding::None;
+    EScience _Science = EScience::None;
+    EArmy _Army = EArmy::None;
+    int32 _unlockLvl = 0;
+    bool _IsValid;
+  };
 public:
   static BuildingRead* Get();
   GString GetName(EBuilding p_Building);
@@ -15,4 +26,7 @@ public:
   GString GetUpgradeStarDes(EBuilding p_Building);
   GString GetIcon(EBuilding p_Building);
   ETask GetQueueType(EBuilding p_Building);
+  GVector<RBuildingMoreInfoData> GetMoreInfoData(EBuildingIndex p_Building);
+  GVector<RBuildingMoreInfoData> GetUpgradeInfoData(EBuildingIndex p_Building, bool l_IsStar);
+  RNextUnlockedData GetNextUnlockedInfo(EBuilding p_Building, int32 p_Lvl){ return RNextUnlockedData();}
 };

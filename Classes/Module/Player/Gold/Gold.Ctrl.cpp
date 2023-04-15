@@ -29,16 +29,16 @@ uint32 GoldCtrl::resourceToGold(EResource p_Resource, uint32 p_Amount){
   return std::ceil((double) p_Amount / l_X * l_Compl * l_coefficient + 1);
 }
 
-uint32 GoldCtrl::resourceToGold(RCostResourceEnough p_CostResourceNeed){
+uint32 GoldCtrl::resourceToGold(GVector<RCostResourceEnough> p_CostResourceNeed){
   uint32 l_ResToGold = 0;
   using namespace GMath;
-  l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Food          ,Abs(Min(0, p_CostResourceNeed.GrainNeed)));
-  l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Wood          ,Abs(Min(0, p_CostResourceNeed.LumberNeed)));
-  l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Iron          ,Abs(Min(0, p_CostResourceNeed.IronNeed)));
-  l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Mithril       ,Abs(Min(0, p_CostResourceNeed.SilverNeed)));
-  l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Steel         ,Abs(Min(0, p_CostResourceNeed.MetalNeed)));
-  l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Crystal       ,Abs(Min(0, p_CostResourceNeed.CrystalNeed)));
-  l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::MeteorCrystal ,Abs(Min(0, p_CostResourceNeed.MeteorCrystalNeed)));
+  // l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Food          ,Abs(Min(0, p_CostResourceNeed.GrainNeed)));
+  // l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Wood          ,Abs(Min(0, p_CostResourceNeed.LumberNeed)));
+  // l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Iron          ,Abs(Min(0, p_CostResourceNeed.IronNeed)));
+  // l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Mithril       ,Abs(Min(0, p_CostResourceNeed.SilverNeed)));
+  // l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Steel         ,Abs(Min(0, p_CostResourceNeed.MetalNeed)));
+  // l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::Crystal       ,Abs(Min(0, p_CostResourceNeed.CrystalNeed)));
+  // l_ResToGold += GoldCtrl::Get()->resourceToGold(EResource::MeteorCrystal ,Abs(Min(0, p_CostResourceNeed.MeteorCrystalNeed)));
   return l_ResToGold;
 }
 

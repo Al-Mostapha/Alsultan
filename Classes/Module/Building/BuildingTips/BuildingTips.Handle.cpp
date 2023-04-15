@@ -69,7 +69,7 @@ BuildingTipsHandle *BuildingTipsHandle::Get(){
 void BuildingTipsHandle::Handle(
   UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch,
   EBuildingTips p_Op){
-    ButtonInfoCall(p_Ref, p_Touch);
+    ButtonUpgradeCall(p_Ref, p_Touch);
     return;
   switch (p_Op)
   {
@@ -174,12 +174,11 @@ void BuildingTipsHandle::ButtonUpgradeCall(UIBuildingTipButton *p_Ref, ui::Widge
   if(p_Touch != Widget::TouchEventType::ENDED)
     return;
   auto l_Panel = UIBuildingCreateInfoPanel::Create();
-  l_Panel->InitUpgradeData(p_Ref->_BuildEntity->GetBuildingIndex(), p_Ref->_BuildEntity);
+  l_Panel->InitUpgradeData(p_Ref->_BuildEntity);
   l_Panel->Show();
-  //   SoraDSendMessage({
-  //     msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
-  //     offsetType = MAINCITYVIEW_OFFSET_TYPE_BUILD
-  //   })
+  auto Param = RDoOffestMoveParam();
+  Param._OffsetType = EMainCityViewOffsetType::Building;
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_OFFSET_BUILD", &Param);
   GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
 }
 
@@ -739,7 +738,7 @@ void BuildingTipsHandle::ButtonWarCall(UIBuildingTipButton *p_Ref, ui::Widget::T
   if(p_Touch != Widget::TouchEventType::ENDED)
     return;
   auto l_Panel = UIBuildingCreateInfoPanel::Create();
-  l_Panel->InitUpgradeData(p_Ref->_BuildEntity->GetBuildingIndex(), p_Ref->_BuildEntity);
+  l_Panel->InitUpgradeData(p_Ref->_BuildEntity);
   l_Panel->Show();
   // SoraDSendMessage({
   //   msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",

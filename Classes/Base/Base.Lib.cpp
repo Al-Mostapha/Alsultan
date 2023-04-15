@@ -79,7 +79,7 @@ void DSetTextWidthHeight(Label* p_Label, Size p_Size) {
   p_Label->setDimensions(p_Size.width, p_Size.height);
 }
 
-void DShowMsgTip(const GString& p_Message, const GString& p_Icon) {
+void DShowMsgTip(const GString& p_Message, const GString& p_Icon, Node *p_Target) {
   if (!GBase::GLobalSettings::ShowMsgTip) return;
   Sprite* l_IconSprite = nullptr;
   if (p_Icon != "") {
@@ -196,6 +196,13 @@ void DSetDefaultLanguage(bool p_IsNeedUpdate, bool p_IsNeedRefresh) {}
 
 // RA is RightAlignment
 bool DFIsRA() { return true; }
+
+float DFSign(float p_Num){
+  if(DGetLayoutAlignment() == ELayoutAlignment::Right)
+    return p_Num;
+  else 
+    return -p_Num;
+}
 
 void DNewChapterOpen(bool p_IsFromLogin) {}
 

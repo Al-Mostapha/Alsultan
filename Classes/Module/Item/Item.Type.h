@@ -9,10 +9,10 @@ struct RCostItem {
 
 struct RCostItemEnough{
   uint32 idItem     = 0;
-  uint32 AmountCur  = 0;
-  uint32 AmountReq  = 0;
+  uint32 _CurCount  = 0;
+  uint32 _ItemCount  = 0;
   uint32 AmountLack = 0;
-  bool isEnough = false;
+  bool _IsReach = false;
 };
 struct RItemUseCondition{
   EItemUseCondType CType = EItemUseCondType::None;

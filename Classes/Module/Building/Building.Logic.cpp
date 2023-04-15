@@ -15,31 +15,32 @@ BuildingLogic* BuildingLogic::Get() {
 }
 
 bool BuildingLogic::IsBuildingCostAchieved(const RCostBuildingUpgrade& p_CostUpgrade) {
-  if (!p_CostUpgrade.CostResource.IsEnough()) return false;
-  for (auto l_OneCostItem : p_CostUpgrade.CostItem) {
-    if (!l_OneCostItem.isEnough) return false;
+
+  for (auto l_OneCostItem : p_CostUpgrade._CostItem) {
+    if (!l_OneCostItem._IsReach) return false;
   }
-  for (auto l_OneCostItem : p_CostUpgrade.CostItemWEs) {
-    if (!l_OneCostItem.isEnough) return false;
+  for (auto l_OneCostItem : p_CostUpgrade._CostItemWEs) {
+    if (!l_OneCostItem._IsReach) return false;
   }
-  for (auto l_OneCostBuilding : p_CostUpgrade.CostBuilding) {
-    if (!l_OneCostBuilding.isEnough) return false;
+  for (auto l_OneCostBuilding : p_CostUpgrade._CostBuilding) {
+    if (!l_OneCostBuilding._IsReach) return false;
   }
   return true;
 } 
 
-GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanUpgrade(EBuilding p_BuildingType, uint32 p_CurrentLvl) {
+GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanUpgrade(EBuildingIndex p_BuildingType, uint32 p_CurrentLvl) {
   auto l_CostUpgrade = GPair<bool, RCostBuildingUpgrade>::Make(true, RCostBuildingUpgrade());
-  RBuildingLvlSpecs l_lvlReq = BuildingCtrl::Get()->getReducedLvlSpec(p_BuildingType, p_CurrentLvl);
+  auto l_BuildingCell = CityCtrl::Get()->GetBuildingCellByIndex(p_BuildingType);
+  RBuildingLvlSpecs l_lvlReq = BuildingCtrl::Get()->getReducedLvlSpec(l_BuildingCell->GetBuildingId(), p_CurrentLvl);
 
-  l_CostUpgrade.Second.CostResource = ResourceCtrl::Get()->IsEnough(l_lvlReq.CostRes).Second;
-  l_CostUpgrade.Second.CostItem     = ItemCtrl::Get()->IsEnough(l_lvlReq.CostItems).Second;
-  l_CostUpgrade.Second.CostItemWEs  = ItemCtrl::Get()->IsEnough(l_lvlReq.CostWEs).Second;
-  l_CostUpgrade.Second.CostBuilding = BuildingCtrl::Get()->IsEnough(l_lvlReq.CostBuilding).Second;
-  l_CostUpgrade.Second.resToGold    = GoldCtrl::Get()->resourceToGold(l_CostUpgrade.Second.CostResource);
-  l_CostUpgrade.Second.itemToGold   = GoldCtrl::Get()->itemToGold(l_CostUpgrade.Second.CostItem);
-  l_CostUpgrade.Second.WEToGold     = GoldCtrl::Get()->itemToGold(l_CostUpgrade.Second.CostItemWEs);
-  l_CostUpgrade.Second.timeToGold   = GoldCtrl::Get()->timeToGold(l_lvlReq.CostTime);
+  //l_CostUpgrade.Second._CostResource = ResourceCtrl::Get()->IsEnough(l_lvlReq.CostRes).Second;
+  l_CostUpgrade.Second._CostItem     = ItemCtrl::Get()->IsEnough(l_lvlReq.CostItems).Second;
+  l_CostUpgrade.Second._CostItemWEs  = ItemCtrl::Get()->IsEnough(l_lvlReq.CostWEs).Second;
+  l_CostUpgrade.Second._CostBuilding = BuildingCtrl::Get()->IsEnough(l_lvlReq.CostBuilding).Second;
+  l_CostUpgrade.Second.resToGold    = GoldCtrl::Get()->resourceToGold(l_CostUpgrade.Second._CostResource);
+  l_CostUpgrade.Second.itemToGold   = GoldCtrl::Get()->itemToGold(l_CostUpgrade.Second._CostItem);
+  l_CostUpgrade.Second.WEToGold     = GoldCtrl::Get()->itemToGold(l_CostUpgrade.Second._CostItemWEs);
+  l_CostUpgrade.Second.timeToGold   = GoldCtrl::Get()->timeToGold(l_lvlReq._CostTime);
   l_CostUpgrade.Second.Reword.exp   = l_lvlReq.Reword.exp;
   l_CostUpgrade.Second.Reword.power = l_lvlReq.Reword.power;
 
@@ -53,10 +54,27 @@ GPair<bool, RCostBuildingUpgrade> BuildingLogic::IsCanBuild(EBuilding p_Building
   if(!l_BuildingSpecs.isBuild){
     return GPair<bool, RCostBuildingUpgrade>::Make(false, RCostBuildingUpgrade());
   }
-
-  return IsCanUpgrade(p_BuildingType, BuildingConst::Get()->FirstLvl);
+  return GPair<bool, RCostBuildingUpgrade>::Make(false, RCostBuildingUpgrade());
+  //return IsCanUpgrade(p_BuildingType, BuildingConst::Get()->FirstLvl);
 }
 
 ITask *BuildingLogic::GetQueueType(EBuildingIndex p_BuildingIndex) {
   return nullptr;
+}
+
+GPair<ETask, GTime> BuildingLogic::GetIdleBuildQueue() {
+  //   local freequeue = queueCtrl:queryQueue(gQueueTypeDef.free_build_queue)
+  // local chargequeue = queueCtrl:queryQueue(gQueueTypeDef.charge_build_queue)
+  // if not freequeue then
+  //   return gQueueTypeDef.free_build_queue, 0
+  // elseif not chargequeue then
+  //   local buildchargequeue = cityCtrl:getCurCity():queryQueue(gQueueTypeDef.charge_build_queue)
+  //   if buildchargequeue then
+  //     local timerNode = buildchargequeue.timerNode
+  //     if timerNode then
+  //       return gQueueTypeDef.charge_build_queue, timerNode.timer:getRemainTime()
+  //     end
+  //   end
+  // end
+  return GPair<ETask, GTime>(ETask::None, 0);
 }

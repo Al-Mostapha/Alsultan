@@ -9,4 +9,5 @@ class GStringUtils
     static bool Replace(std::string& str, const std::string& from, const std::string& to);
     static bool IsNumber(const GString &p_Str);
     static int32 ToNumber(const GString &p_Str);
+    static GString FormatK(int32  p_Num);
 };

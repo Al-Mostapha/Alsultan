@@ -2,6 +2,7 @@
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBasePanel.h"
 #include "Module/Building/Building.Enum.h"
+#include "Module/Building/Building.Type.h"
 
 class IBuilding;
 class UIBuildingInfoPanel : public UIBasePanel
@@ -50,6 +51,8 @@ class UIBuildingInfoPanel : public UIBasePanel
   static int32 WELevelProMin;
   static int32 WELevelProMax;
   static int32 maxDemolishNum;
+
+  GVector<RBuildingMoreInfoData> _BuildMoreInfoData;
   
 public: 
   static UIBuildingInfoPanel* Create();

@@ -255,6 +255,22 @@ enum class EBuildingCastleModel{
   ICEWOLF = 54
 };
 
+enum class EBuildingOperateType {
+  None = -1,
+  Build = 0,
+  Demolish = 1,
+  Upgrade = 2,
+  Exchange = 3,
+  Unlock = 4,
+  UpgradeStar = 5
+};
+
+enum class EOPERATE_MODE {
+  NORMAL = 0,
+  GOLD_REPLACE = 1,
+  IMMEDIATELY = 2,
+  FREE = 3
+};
 
 enum class EBuildingUIType{
   None = 0,

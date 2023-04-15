@@ -22,3 +22,17 @@ bool GStringUtils::Replace(GString& str, const GString& from, const GString& to)
   str.replace(start_pos, from.length(), to);
   return true;
 }
+
+bool GStringUtils::IsNumber(const GString &p_Str){
+  std::string::const_iterator it = p_Str.begin();
+  while (it != p_Str.end() && std::isdigit(*it)) ++it;
+  return !p_Str.empty() && it == p_Str.end();
+}
+
+int32 GStringUtils::ToNumber(const GString &p_Str){
+  return std::stoi(p_Str);
+}
+
+GString GStringUtils::FormatK(int32  p_Num){
+  return std::to_string(p_Num);
+}

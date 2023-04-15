@@ -32,4 +32,5 @@ namespace GBase{
   GPair<Node *, Action *> DCreateAnimation(const char *p_FilePath, Node *p_Node = nullptr, bool p_Loop = true);
   GPair<Node *, Action *> DCreateAnimationEx(const char *p_FilePath, Node *p_Node = nullptr, bool p_Loop = true, float p_Speed = 1.0f, int32 p_StartIndex = -1, int32 p_EndIndex = -1);
   Sprite *CreateSprite(const char *p_SpritePath);
+  Node *DFingerAction(bool p_IsHideEffect, bool p_IsStopAction, int32 p_ActionTimes = 0, bool p_IsHideFinger= false);
 };

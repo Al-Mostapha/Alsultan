@@ -1,27 +1,25 @@
 #pragma once 
-#include "Include/IncludeBase.h"
-
-#include "Include/IncludeEngine.h"
-#include "Module/UI/Panel/UIPanelBase.h"
+#include "Module/UI/UICCSView.h"
+#include "Module/UI/UIBasePanel.h"
 #include "Module/CityResource/Resource.Enum.h" 
 
 
-class UICommonResourcesMenu : public UIPanelBase
+class UICommonResourcesMenu : public UIBasePanel
 {
 
 private:
   CREATE_FUNC(UICommonResourcesMenu);
+  CreateUIPanel(UICommonResourcesMenu);
+  CreateUICCSView(UICommonResourcesMenu);
 public:
-  UICommonResourcesMenu(){};
-  ~UICommonResourcesMenu(){};
-  void InitPanel() override{};
-  void Show() override {};
-  static UICommonResourcesMenu *Create() {return create();};
+
+  static UICommonResourcesMenu *Create();
   void RunAnimation();
   void HiddleMainUI(bool p_IsHiddle = false);
   Node *GetResTarget(EResource p_ResType){
     return nullptr;
   }
+  void SetNeedScale(bool p_){}
 
   void UpdateResources(){
 

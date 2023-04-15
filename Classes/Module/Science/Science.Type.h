@@ -22,12 +22,12 @@ struct RScienceLvlSpecs {
   EScience         idScience;
   EScienceCategory Category;
   uint32           lvl;
-  RResource        CostResource;
+  RResource        _CostResource;
   uint32           buffType;
   uint32           powerNum;
   uint32           buffNumType;
   uint32           maxLvl;
-  uint32           CostTime;
+  uint32           _CostTime;
   RCostBuilding    CostBuilding;
   RCostBuilding    CostStarBuilding;
   GVector         <RCostScience> CostScience;

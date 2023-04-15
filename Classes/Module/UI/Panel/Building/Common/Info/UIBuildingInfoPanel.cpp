@@ -4,6 +4,7 @@
 #include "Module/Building/Building.Read.h"
 #include "Module/Building/Building.Logic.h"
 #include "Module/Building/IBuilding.h"
+#include "UIBuildingInfoSingle.h"
 
 int32 UIBuildingInfoPanel::WELevelProMin = 25;
 int32 UIBuildingInfoPanel::WELevelProMax = 100;
@@ -148,17 +149,16 @@ void UIBuildingInfoPanel::InitData(EBuildingIndex p_Index, IBuilding *p_Building
     _ScrollInfo->setPositionY(358.0f);
     _ScrollInfo->setContentSize({560, 225});
   }
-  // local buildInfo = buildMoreInfoRead.getInfoData(self.tableBuildInfo.bid, self.tableBuildInfo.iid)
-  // self.tableBuildInfo.buildInfo = buildInfo
-  // if #buildInfo == 0 then
-  //   self.labelInfo:setVisible(true)
-  //   self.labelInfo:setString(buildDescribeRead.getUpgradeDes(self.tableBuildInfo.bid))
-  // else
-  //   self.labelInfo:setVisible(false)
+  
+  _BuildMoreInfoData = BuildingRead::Get()->GetMoreInfoData(_Building->GetBuildingIndex());
+  if(_BuildMoreInfoData.size() == 0){
+    _LabelInfo->setVisible(true);
+    _LabelInfo->setString(BuildingRead::Get()->GetUpgradeDes(_Building->GetBuildingId()));
+  }else{
+    _LabelInfo->setVisible(false);
+  }
   _LabelInfo->setVisible(false);
   InitScroll();
-  //   self:initScroll()
-  // end
   RefreshCancelStarBtn();
 }
 
@@ -263,20 +263,17 @@ void UIBuildingInfoPanel::UpdateState(){
 }
 
 void UIBuildingInfoPanel::InitScroll(){
-  // self.scrollInfo:removeAllChildren()
   _ScrollInfo->removeAllChildren();
-  // local infoCount = #self.tableBuildInfo.buildInfo
-  auto l_InfoCount = 3;
+  auto l_InfoCount = _BuildMoreInfoData.size();
   auto l_ScrollSize = _ScrollInfo->getContentSize();
   auto l_ScrollH = std::max(float(l_InfoCount * 40), l_ScrollSize.height);
   _ScrollInfo->setInnerContainerSize(Size(l_ScrollSize.width, l_ScrollH));
 
   for(auto iii = 0; iii < l_InfoCount; iii++){
-  //   local singleInfo = SoraDCreatePanel("buildInfoSingle")
-  //   singleInfo:setPosition(cc.p(280, scrollH - (i - 1) * 40))
-  //   singleInfo:initData(v, self.tableBuildInfo.bid)
-  //   singleInfo:addTo(self.scrollInfo)
-
+    auto l_SingleInfo = UIBuildingInfoSingle::Create();
+    l_SingleInfo->setPosition({280, l_ScrollH - (iii)*40});
+    l_SingleInfo->InitData(_BuildMoreInfoData[iii]);
+    _ScrollInfo->addChild(l_SingleInfo);
   }
   if(l_ScrollH > l_ScrollSize.height)
     _ScrollInfo->setBounceEnabled(true);
@@ -297,4 +294,39 @@ void UIBuildingInfoPanel::RefreshLabelDes(const GString &p_Label){
     _ScrollDes->setInnerContainerSize({l_TextSize.width, l_TextH});
     _LabelDes->setPositionY(l_TextH);
   }
+}
+
+void UIBuildingInfoPanel::RefreshCancelStarBtn(){
+  // local buildEntity = self.tableBuildInfo.buildEntity
+  // local buildStarState = tonumber(buildEntity:getBuildStarState())
+  // if buildStarState == BUILD_STAR_STATE.UPGRADEING then
+  //   if not self.btnCancelStar then
+  //     local btn = self.btnCancel:clone()
+  //     btn:addTo(self.btnCancel:getParent())
+  //     btn:setPositionX(530)
+  //     if self.tableBuildInfo.bid == BUILDID.STAR_BRAVE_STATUE then
+  //       btn:setTitleText(i18n("Soldiers_armor_btn_02"))
+  //     else
+  //       btn:setTitleText(i18n("Glory_text_25"))
+  //     end
+  //     btn:addTouchEventListener(handler(self, self.btnCancelStarCallBack))
+  //     btn:loadTextures("btn_red_normal_01.png", "", "", ccui.TextureResType.plistType)
+  //     self.btnCancelStar = btn
+  //   end
+  //   self.btnCancelStar:setVisible(true)
+  //   local viewState = self.tableBuildInfo.bstate
+  //   if viewState == BUILD_STATE.NORMAL and self.tableBuildInfo.btype == 1 then
+  //     self.btnCancel:setVisible(false)
+  //   end
+  //   if self.btnCancel:isVisible() then
+  //     self.btnMore:setPositionX(SoraDFPosX(530, 640))
+  //     self.btnCancel:setPositionX(320)
+  //     self.btnCancelStar:setPositionX(SoraDFPosX(110, 640))
+  //   else
+  //     self.btnMore:setPositionX(SoraDFPosX(447, 640))
+  //     self.btnCancelStar:setPositionX(SoraDFPosX(193, 640))
+  //   end
+  // elseif self.btnCancelStar then
+  //   self.btnCancelStar:setVisible(false)
+  // end
 }

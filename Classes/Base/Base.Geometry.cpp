@@ -20,21 +20,159 @@ namespace GBase {
   }
 
   float DFPosX(float p_X, float p_Target){
-  //     local sizeW = 0
-  auto l_SizeW = 0;
-  if(p_Target == 0)
-    l_SizeW = 640;
-  else  
-    l_SizeW = p_Target;
-  return p_X;
-  // if SoraDGetLayoutAlignment() == gLayoutAlignmentTypeDef.right then
-  //   return x
-  // elseif x then
-  //   return sizeW - x
-  // else
-  //   print("SoraDFPoint err p")
-  // end
+    auto l_SizeW = 0;
+    if(p_Target == 0)
+      l_SizeW = 640;
+    else  
+      l_SizeW = p_Target;
+    if(GBase::DGetLayoutAlignment() == ELayoutAlignment::Right)
+      return p_X;
+    else if(p_X)
+      return l_SizeW - p_X;
+    return p_X;
+  }
+
+  float DFPosX(float p_X, Node *p_Target){
+    float l_SizeW = 0;
+    if(p_Target->getParent())
+      l_SizeW = p_Target->getParent()->getContentSize().width;
+    else 
+      l_SizeW = 640;
+    if(GBase::DGetLayoutAlignment() == ELayoutAlignment::Right)
+      return p_X;
+    else if(p_X)
+      return l_SizeW - p_X;
+    return p_X;
   }
 
 
+  float DAlignNodeArray(GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding){
+    CCAssert(p_Nodes.size(), "Nodes is empty");
+    auto l_BeginX = 0;
+    auto l_FNode  = p_Nodes[0];
+    if(p_IsRA){
+      l_BeginX = l_FNode->getPositionX() +
+         (1-l_FNode->getAnchorPoint().x) *l_FNode->getScaleX() * l_FNode->getContentSize().width;
+    }else{
+      l_BeginX = l_FNode->getPositionX() - 
+        l_FNode->getAnchorPoint().x * l_FNode->getScaleX() * l_FNode->getContentSize().width;
+    }
+    return DAlignNodeArrayOnBeginX(l_BeginX, p_Nodes, p_IsRA, p_padding);
+  }
+
+  void DAlignNodeArray(GVector<Node *> p_Nodes, bool p_IsRA, float p_padding){}
+
+  float DAlignNodeArrayOnBeginX(float p_Begin, GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding){
+    auto l_AccWidth = 0;
+    auto l_PosX = 0;
+    for(int32 ii = 0; ii < p_Nodes.size(); ii++){
+      auto l_V = p_Nodes[ii];
+      auto l_NodeWidth = l_V->getContentSize().width * l_V->getScaleX();
+      auto l_NodeX = 0;
+      if(p_IsRA)
+        l_NodeX = p_Begin - l_AccWidth - ( 1 - l_V->getAnchorPoint().x ) * l_NodeWidth;
+      else 
+        l_NodeX = p_Begin + l_AccWidth + l_V->getAnchorPoint().x * l_NodeWidth;
+      l_V->setPositionX(l_NodeX);
+      if(p_padding.size() > ii)
+        l_AccWidth += l_NodeWidth + p_padding[ii];
+      else 
+        l_AccWidth += l_NodeWidth;
+    }
+    return l_AccWidth;
+  }
+
+
+ float DAlignNodeArrayOnLimitX( GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding,
+    bool p_LimitR, float p_LimitX){
+
+    CCAssert(p_Nodes.size(), "Nodes is empty");
+    float l_BeginX = 0;
+    auto l_FN = p_Nodes[0];
+    if(p_IsRA)
+      l_BeginX = l_FN->getPositionX() + (1-l_FN->getAnchorPoint().x) *l_FN->getScaleX() * l_FN->getContentSize().width;
+    else 
+      l_BeginX = l_FN->getPositionX() - l_FN->getAnchorPoint().x * l_FN->getScaleX() * l_FN->getContentSize().width;
+    float l_AccuWidth = 0;
+    for(int32 iii = 0; iii < p_Nodes.size(); iii++){
+      auto l_NodeWidth = p_Nodes[iii]->getContentSize().width *  p_Nodes[iii]->getScaleX();
+      if(p_padding.size() > iii)
+        l_AccuWidth += l_NodeWidth + p_padding[iii];
+      else 
+        l_AccuWidth += l_NodeWidth;
+    }
+    if(p_LimitR){
+      if(p_IsRA){
+        l_BeginX = p_LimitX;
+      }else if(p_LimitX < l_BeginX + l_AccuWidth){
+        l_BeginX = p_LimitX - l_AccuWidth;
+      }
+    }else{
+      if(p_IsRA){
+        if(p_LimitX > l_BeginX - l_AccuWidth)
+          l_BeginX = p_LimitX + l_AccuWidth;
+      }else if(p_LimitX < l_BeginX){
+        l_BeginX = p_LimitX;
+      }
+    }
+    return DAlignNodeArrayOnBeginX(l_BeginX, p_Nodes, p_IsRA, p_padding);
+  }
+
+  void DToCenter(Node *p_Node){
+// function SoraDToCenter(node, interval, isReverse, isSize)
+//   local targets = node:getChildren()
+//   local totalLen = 0
+//   local interval = interval or 10
+//   local isReverse = isReverse or false
+//   local len = 0
+//   for k, v in pairs(targets) do
+//     local width = 0
+//     if not isSize and v.getVirtualRendererSize then
+//       width = math.min(v:getVirtualRendererSize().width, v:getContentSize().width)
+//       width = width * v:getScaleX()
+//     else
+//       width = v:getContentSize().width * v:getScaleX()
+//     end
+//     if v:isVisible() then
+//       totalLen = totalLen + width
+//       len = len + 1
+//     end
+//   end
+//   totalLen = totalLen + (len - 1) * interval
+//   local tempLen = 0
+//   if isReverse then
+//     for i = #targets, 1, -1 do
+//       local width = 0
+//       if not isSize and targets[i].getVirtualRendererSize then
+//         width = math.min(targets[i]:getVirtualRendererSize().width, targets[i]:getContentSize().width)
+//         width = width * targets[i]:getScaleX()
+//       else
+//         width = targets[i]:getContentSize().width * targets[i]:getScaleX()
+//       end
+//       if targets[i]:isVisible() then
+//         targets[i]:setAnchorPoint(cc.p(0.5, 0.5))
+//         targets[i]:setPositionX(-totalLen / 2 + width / 2 + tempLen)
+//         tempLen = tempLen + width + interval
+//       end
+//     end
+//   else
+//     for i = 1, #targets do
+//       local width = 0
+//       if not isSize and targets[i].getVirtualRendererSize then
+//         width = math.min(targets[i]:getVirtualRendererSize().width, targets[i]:getContentSize().width)
+//         width = width * targets[i]:getScaleX()
+//       else
+//         width = targets[i]:getContentSize().width * targets[i]:getScaleX()
+//       end
+//       if targets[i]:isVisible() then
+//         targets[i]:setAnchorPoint(cc.p(0.5, 0.5))
+//         targets[i]:setPositionX(-totalLen / 2 + width / 2 + tempLen)
+//         tempLen = tempLen + width + interval
+//       end
+//     end
+//   end
+//   return node, tempLen
+// end
+  }
 }
+

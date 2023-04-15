@@ -6,4 +6,5 @@ class ResourceCtrl{
 public:
   static ResourceCtrl *Get();
   GPair<bool, RCostResourceEnough> IsEnough(RResource& p_Resource);
+  int32 GetResCount(EResource p_Res);
 };

@@ -1,6 +1,12 @@
 #pragma once
 #include "Include/IncludeBase.h"
 
+enum class EBadgeItemID {
+  COMMON_BADGE_ID = 301101,
+  ADVANCED_BADGE_ID = 301901,
+  AMBER_ID = 311001
+};
+
 enum class EItemEffect {  //gItemEffectDef
   None = 0,
   BUFF = 1,

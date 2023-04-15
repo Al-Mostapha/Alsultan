@@ -55,3 +55,36 @@ GString BuildingRead::GetName(EBuilding p_Building){
 GString BuildingRead::GetName(int32 p_Building){
   return "BuildingName";
 }
+
+
+GVector<RBuildingMoreInfoData> BuildingRead::GetMoreInfoData(EBuildingIndex p_Building){
+  auto l_Data = GVector<RBuildingMoreInfoData>();
+  auto l_OneData = RBuildingMoreInfoData();
+  l_OneData._Value = "capacity";
+  l_OneData._PlusValue = "15%";
+  l_OneData._MoreInfoType = 4;
+  l_OneData._MoreInfoType = 1;
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  return l_Data;
+}
+
+GVector<RBuildingMoreInfoData> BuildingRead::GetUpgradeInfoData(EBuildingIndex p_Building, bool l_IsStar){
+  auto l_Data = GVector<RBuildingMoreInfoData>();
+  auto l_OneData = RBuildingMoreInfoData();
+  l_OneData._Value = "capacity";
+  l_OneData._PlusValue = "15%";
+  l_OneData._MoreInfoType = 4;
+  l_OneData._MoreInfoType = 1;
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  l_Data.emplace_back(l_OneData);
+  return l_Data;
+}

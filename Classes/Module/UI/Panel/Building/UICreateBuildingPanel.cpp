@@ -135,8 +135,8 @@ void UICreateBuildingPanel::UpdateView(){
 
   if(!m_CurrentBuilding.isCanBuild){
     m_LabelNeed->setString(Translate::i18n("common_text_763", {
-      {"name", BuildingStatic::getBuildingSpecs(m_CostBuildingUpgrade.CostBuilding[0].TypeReq).BuildingName},
-      {"lvl",  std::to_string(m_CostBuildingUpgrade.CostBuilding[0].lvlReq)},
+      {"name", BuildingStatic::getBuildingSpecs(m_CostBuildingUpgrade._CostBuilding[0].TypeReq).BuildingName},
+      {"lvl",  std::to_string(m_CostBuildingUpgrade._CostBuilding[0].lvlReq)},
     }));
   }
 

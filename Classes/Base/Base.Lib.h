@@ -50,7 +50,7 @@ template <typename T> T GetChildByName(Node* p_Node, const char* p_name) {
 }
 
 template <class T> T* DGetExtendChildFromCCSByName(Node* p_Parent, const char* p_Name, bool p_NodeFitOffset = false, float p_Height = 0.0f) {
-  auto l_child = GetChildByName<Node*>(p_Parent, p_Name);
+  auto l_child = GetChildByName<Node *>(p_Parent, p_Name);
   if (!l_child) return nullptr;
   auto l_NameTabel = GStringUtils::Split(GString(p_Name), GString("_"));
   for (auto i = 0; i < (int32)l_NameTabel.size(); i++) {
@@ -62,7 +62,6 @@ template <class T> T* DGetExtendChildFromCCSByName(Node* p_Parent, const char* p
       //  SoraDDeviceFitOffset(childView, {futureName = className}, height)
       // end
       T* l_Inst = T::Create();
-      l_Inst->InitPanel();
       return l_Inst;
     }
   }
@@ -80,7 +79,7 @@ float DGetAutoHeightLabel(ui::Text* p_Label, float p_Width = 0.0f);
 float DGetAutoHeightLabelNew(ui::Text* p_Label, float p_Width = 0.0f, bool l_IsHtml = false);
 void DSetTextWidthHeight(ui::Text* p_Label, Size p_Size);
 void DSetTextWidthHeight(Label* p_Label, Size p_Size);
-void DShowMsgTip(const GString& p_Message, const GString& p_Icon = "");
+void DShowMsgTip(const GString& p_Message, const GString& p_Icon = "",  Node *p_Target = nullptr);
 
 GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
 GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building);
@@ -111,6 +110,7 @@ void DSetDefaultLanguage(bool p_IsNeedUpdate = false, bool p_IsNeedRefresh = fal
 template <typename T> T DConfigGet(const char* p_Key, bool p_ByUid = false, bool p_ByLTID = false) { return T(); }
 template <typename T> void DConfigSet(const char* p_Key, T p_Val, bool p_ByUid = false, bool p_ByLTID = false) {}
 bool DFIsRA();
+float DFSign(float p_Num);
 void DNewChapterOpen(bool p_IsFromLogin = false);
 void DShowCastleUnlockView();
 uint32 DGetCastleLv();

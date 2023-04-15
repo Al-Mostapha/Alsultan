@@ -6,6 +6,7 @@
 struct RBuildingTask : public ITask {
   EBuilding BuildingType = EBuilding::None;
   EBuildingIndex BuildingIndex = EBuildingIndex::None;
+  int32 _BuildingLvl;
   EBuilding GetBuildingType() {
     return BuildingType;
   }

@@ -73,3 +73,28 @@ namespace GBase {
   }
 
 }  // namespace GBase
+
+
+
+Node *GBase::DFingerAction(
+  bool p_IsHideEffect, bool p_IsStopAction, 
+  int32 p_ActionTimes, bool p_IsHideFinger
+){
+  auto l_Node =  GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationFinger.csb", nullptr, !p_IsStopAction).First;
+  if(p_IsHideEffect)
+    l_Node->getChildByName("Node_effect")->setVisible(false);
+  if(p_IsHideFinger)
+    l_Node->getChildByName("shouzhi")->setVisible(false);
+  if(p_ActionTimes > 0){
+    auto l_Seq = Sequence::create(
+      DelayTime::create(p_ActionTimes * 95 / 60),
+      CallFunc::create([l_Node](){
+        l_Node->stopAllActions();
+        l_Node->setVisible(false);
+      }),
+      nullptr
+    );
+    l_Node->runAction(l_Seq);
+  }
+  return l_Node;
+}

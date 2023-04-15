@@ -17,7 +17,7 @@ private:
   bool IsBuildingCostAchieved(const RCostBuildingUpgrade &p_CostUpgrade);
 public:
   static BuildingLogic *Get();
-  GPair<bool, RCostBuildingUpgrade> IsCanUpgrade(EBuilding p_BuildingType, uint32 p_CurentLvl);
+  GPair<bool, RCostBuildingUpgrade> IsCanUpgrade(EBuildingIndex p_BuildingType, uint32 p_CurentLvl = 0);
   GPair<bool, RCostBuildingUpgrade> IsCanBuild(EBuilding p_BuildingType);
   int32 IsWarLvl(uint32 p_BuildingLvl) { return false; }
   RWarLvlRet IsBuildIDWarLv(EBuilding p_Building, int32 p_BuildingLvl) {return RWarLvlRet();}
@@ -25,4 +25,8 @@ public:
   bool BuildLvIsFull(EBuildingIndex p_BuildingIndex){ return false; }
   ITask *GetQueueType(EBuildingIndex p_BuildingIndex);
   int32 TransFormBuildLvToWarLv(int32 p_BLvl){ return p_BLvl; }
+  int32 GetFreeSpeedUpTime(int32 p_Lvl = 0){return 0;}
+  RWarLvlRet IsBuildWarLv(int32 p_Lvl){ return RWarLvlRet(); }
+  bool IsBuildingUnlock(EBuildingIndex p_BuildingIndex){ return false ;}
+  GPair<ETask, GTime> GetIdleBuildQueue();
 };

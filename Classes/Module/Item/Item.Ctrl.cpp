@@ -17,14 +17,14 @@ GPair<bool, GVector<RCostItemEnough>> ItemCtrl::IsEnough(GVector<RCostItem> &p_C
   GPair<bool, uint32> l_OneIsEnough = GPair<bool, uint32>::Make(false, 0);
   for(auto &l_OneCost : p_CostItem){
     l_OneIsEnough = IsEnough(l_OneCost.idItem, l_OneCost.amount);
-    l_OneCostItemEnough.AmountReq = l_OneCost.amount;
+    l_OneCostItemEnough._ItemCount = l_OneCost.amount;
     l_OneCostItemEnough.AmountLack = l_OneIsEnough.Second - l_OneCost.amount;
     //TODO
-    l_OneCostItemEnough.AmountCur  = l_OneIsEnough.Second;
+    l_OneCostItemEnough._CurCount  = l_OneIsEnough.Second;
     l_OneCostItemEnough.idItem  = l_OneCost.idItem;
-    l_OneCostItemEnough.isEnough  = l_OneIsEnough.First;
+    l_OneCostItemEnough._IsReach  = l_OneIsEnough.First;
     
-    if(!l_OneCostItemEnough.isEnough)
+    if(!l_OneCostItemEnough._IsReach)
       l_IsEnough = false;
     l_CostItemEnough.push_back(l_OneCostItemEnough);
   }

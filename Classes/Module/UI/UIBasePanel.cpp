@@ -35,7 +35,7 @@ UIBasePanel* UIBasePanel::InitPanel(Node *p_CCsFile, RBasePenelData *p_Data){
 }
 
 void UIBasePanel::Ctor(){
-  _IsADShow = RechargeADRead::Get()->IsADOpen(_Panel->getName());
+  _IsADShow = RechargeADRead::Get()->IsADOpen(getName());
   _IsHaveTextField = false;
   _IsHideCurrentSceneView = false;
   _IsHidePrePanel = true;

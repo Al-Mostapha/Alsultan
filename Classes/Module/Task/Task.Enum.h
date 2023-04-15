@@ -49,7 +49,7 @@ enum class ETask {
   skill_resource_up = 1248,
   skill_sneak_into = 1249,
   war_tech_research = 1250,
-  build_mastery = 1255,
+  BuildMastery = 1255,
   construction_drawing = 1256,
   BuildStarQueue = 1257,
   RadianceWarHostpitalQueue = 1261,

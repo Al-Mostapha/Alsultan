@@ -46,6 +46,12 @@ public:
     float iPadOffset = 0;
     float screenScale = 0;
     float contentScaleFactor = 0;
+    Color3B COLOR_WHITE = Color3B(255, 255, 255);
+    Color3B COLOR_BLACK = Color3B(0, 0, 0);
+    Color3B COLOR_RED = Color3B(255, 0, 0);
+    Color3B COLOR_GREEN = Color3B(0, 255, 0);
+    Color3B COLOR_BLUE = Color3B(0, 0, 255);
+    Color3B COLOR_YELLOW = Color3B(255, 255, 0);
     Size realSize;
     Size sizeInPixels;
     GString DefaultTTFFont = "Arial";
