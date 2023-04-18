@@ -250,7 +250,7 @@ void LoginScene::UpdatePower(EventCustom* p_Event) {
           [=](float p_Delta) {
             GBase::DSendMessage("MESSAGE_MAINUI_POWER_UPDATE");
             GBase::DShowPowerChange(*l_Power, false);
-            auto l_ShowPush = std::make_unique<bool>(true);
+            std::unique_ptr<bool> l_ShowPush(new bool(true));
             // advertiseCollect.TriggerEvent(gSDKDef.TDonEvent.advertise_fight_point, l_Power->CurPower);
             GBase::DSendMessage("MESSAGE_MAIN_AGREEMENT_BOX", l_ShowPush.get());
             m_OriPower = 0;
@@ -450,7 +450,7 @@ void LoginScene::CreatMainView(EventCustom* p_Event) {
   UpdateVoiceButton(nullptr);
   auto l_ShowViewType = EScene::City;
   if (p_Event->getUserData()) l_ShowViewType = *(EScene*)p_Event->getUserData();
-  auto l_Data = std::make_unique<RShowMainCityView>();
+  std::unique_ptr<RShowMainCityView> l_Data(new RShowMainCityView());
   l_Data->isFromLogin = true;
   l_Data->ViewType = l_ShowViewType;
   GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_Data.get());
@@ -713,7 +713,8 @@ void LoginScene::HideCurrentSceneViewAndMainUI(EventCustom* p_Event) {
     }
     if (n_CurrentShowView) {
       n_CurrentShowView->setVisible(m_IsHideCurrentSceneViewCount == 0);
-      auto l_EventData = std::make_unique<RShowViewHidedEvtArg>();
+      std::unique_ptr<RShowViewHidedEvtArg> l_EventData(new RShowViewHidedEvtArg());
+
       l_EventData->View = n_CurrentShowView;
       l_EventData->isVisible = m_IsHideCurrentSceneViewCount == 0;
       GBase::DSendMessage("MESSAGE_MAINSCEN_CURRENT_SHOWVIEW_HIDED", l_EventData.get());

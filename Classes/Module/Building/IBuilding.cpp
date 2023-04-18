@@ -1,4 +1,5 @@
 #include "IBuilding.h"
+#include <memory>
 #include "Building.Event.h"
 #include "Module/Army/Army.Ctrl.h"
 #include "Module/Building/Building.Logic.h"
@@ -166,14 +167,14 @@ void IBuilding::SMsgTrainArmyImmediatelyBack(EventCustom* p_Event) {}
 void IBuilding::SMsgBuildTrainFailed(EventCustom* p_Event) {}
 
 void IBuilding::ShowTopTip() {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_TOP_TIP", l_ABuildingMsg.get());
 }
 
 void IBuilding::HideTopTip() {
-  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TOP_TIP", l_ABuildingMsg.get());
@@ -182,7 +183,7 @@ void IBuilding::HideTopTip() {
 void IBuilding::ShowWorkDone() {}
 
 void IBuilding::HideWorkDone() {
-  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_WORK_DONE_EFFECT", l_ABuildingMsg.get());
@@ -230,7 +231,7 @@ void IBuilding::UpdateStarLvl(EventCustom* p_Event) {
 }
 
 void IBuilding::RefreshBuildStarState(void* p_Temp) {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_UPDATE_BUILDSTAR_COOLING_PANEL", l_ABuildingMsg.get());
@@ -267,7 +268,7 @@ void IBuilding::UpdateStarLvlBgLight() {
 
 // TODO: This functio may Has Bug
 void IBuilding::ChangeState() {
-  std::unique_ptr<IState::Event> l_StateEvent = std::make_unique<IState::Event>(this);
+  std::unique_ptr<IState::Event> l_StateEvent(new IState::Event(this));
   if (GetState() == EBuildingState::Idle && m_States.Contains(EBuildingState::Idle))  // Idle Is reset
     m_States[EBuildingState::Idle]->Enter(l_StateEvent.get());
   else if (GetState() == EBuildingState::Lock && m_States.Contains(EBuildingState::Lock))
@@ -300,14 +301,14 @@ void IBuilding::HideGlow() {
 }
 
 void IBuilding::ShowCoolingPanel() {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_COOLING_PANEL", l_ABuildingMsg.get());
 }
 
 void IBuilding::HideCoolingPanel() {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_COOLING_PANEL", l_ABuildingMsg.get());
@@ -329,14 +330,14 @@ void IBuilding::HideAnimWorking() {
 }
 
 void IBuilding::ShowAnimBoost() {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_BUILD_ANIM_BOOST", l_ABuildingMsg.get());
 }
 
 void IBuilding::HideAnimBoost() {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_ANIM_BOOST", l_ABuildingMsg.get());
@@ -344,7 +345,7 @@ void IBuilding::HideAnimBoost() {
 
 void IBuilding::ShowAnimBuildWorker(bool p_HideHammer) {
   HideZAnimation();
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   l_ABuildingMsg->IsHideHammer = p_HideHammer;
@@ -352,7 +353,7 @@ void IBuilding::ShowAnimBuildWorker(bool p_HideHammer) {
 }
 
 void IBuilding::HideAnimBuildWorker() {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_ANIM_WORKER", l_ABuildingMsg.get());
@@ -428,7 +429,7 @@ void IBuilding::HideBrightParticle() {
 }
 
 void IBuilding::ShowEffectUpgrade() {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = m_BuildingIndex;
   l_ABuildingMsg->BuildingNode = this;
   l_ABuildingMsg->PosEtUpgradeOffset = m_PosEtUpgradeOffset;
@@ -741,7 +742,7 @@ void IBuilding::HarvestRes() {
   auto l_BuildingIndex = GetBuildingIndex();
   auto l_BuildingPlace = GBase::DGetBuildingTypeByIndex(l_BuildingIndex);
   if (l_BuildingPlace != EBuildingPlace::Inner) {
-    std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+    std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
     l_ABuildingMsg->BuildingIndex = l_BuildingIndex;
     l_ABuildingMsg->BuildingNode = this;
     getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_ADD_HARVEST_FLOATING", l_ABuildingMsg.get());
@@ -757,7 +758,7 @@ void IBuilding::HarvestRes() {
 }
 
 void IBuilding::HarvestBatchRes() {
-  std::unique_ptr<ABuildingMsg> l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = GetBuildingIndex();
   l_ABuildingMsg->BuildingNode = this;
   getEventDispatcher()->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_COLLECT_BATCH_RES", l_ABuildingMsg.get());
@@ -773,7 +774,7 @@ bool IBuilding::CanHarvestBatchRes() {
 }
 
 void IBuilding::BuildButtonCallFun(Touch* p_Touch, Event* p_Event, ETouchEventType p_Type) {
-  auto l_ABuildingMsg = std::make_unique<ABuildingTouchMsg>();
+  std::unique_ptr<ABuildingTouchMsg> l_ABuildingMsg(new ABuildingTouchMsg());
   l_ABuildingMsg->BuildingIndex = GetBuildingIndex();
   l_ABuildingMsg->BuildingNode = this;
   l_ABuildingMsg->TouchEvent = p_Event;
@@ -1059,7 +1060,7 @@ void IBuilding::UpdateTextLvl() {
   auto l_StarLvl = GetStarLvl();
   auto l_Textvl = GBase::DGetBuildWarLv(l_BuildingLvl);
   if (l_StarLvl > 0) {
-    SetTextLvl(StringUtils::format("%d-%d", l_Textvl.First, std::to_string(l_StarLvl)));
+    SetTextLvl(l_Textvl.First+"-"+std::to_string(l_StarLvl));
   } else {
     SetTextLvl(l_Textvl.First);
   }

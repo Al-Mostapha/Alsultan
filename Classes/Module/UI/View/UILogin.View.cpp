@@ -2,7 +2,7 @@
 #include "Engine/Engine.h"
 #include "Scene/Login/LoginScene.h"
 #include "UILoginInput.h"
-#include "spine/SkeletonAnimation.h"
+// #include "spine/SkeletonAnimation.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #endif
@@ -524,8 +524,8 @@ void UILoginView::EnterGame(){
   // if worldMapDefine.isInWar() or worldMapDefine.isSwitchAnchorMode() then
   //   showViewType = VIEW_TYPE_MAP
   // end
-  auto l_Showtype = std::make_unique<EScene>(EScene::City);
-  GBase::DSendMessage("MESSAGE_MAINSCEN_LOGINSUCCESS", l_Showtype.get());
+//  auto l_Showtype = new EScene(static_cast<int32>(EScene::City));
+//  GBase::DSendMessage("MESSAGE_MAINSCEN_LOGINSUCCESS", l_Showtype);
 }
 
 void UILoginView::ResetIceHuntingRecord(){
@@ -780,21 +780,21 @@ void UILoginView::SpineAction(){
     auto l_EtLz = GBase::DCreateAnimation("animationLoginBXLZ");
     l_CenterNode->addChild(l_EtLz.First, 1);
     l_EtLz.First->setPosition(Vec2(0, 5));
-    static auto *l_SpineMan = spine::SkeletonAnimation::createWithFile("commonLogin/denglujiemian.skel", "commonLogin/denglujiemian.atlas", 1);
-    l_SpineMan->setPosition(Vec2(5, -l_Display->rheight / 2 - 215 * (1386 - l_Display->rheight) / 426));
-    l_SpineMan->setVisible(false);
-    l_CenterNode->addChild(l_SpineMan);
-    AddEffectLogin();
-    auto l_Seq = Sequence::create(
-      CallFunc::create([=](){
-        n_LoginInitBg2->setVisible(true);
-        n_LoginInitBg->setVisible(false);
-        l_SpineMan->setVisible(true);
-        l_SpineMan->setAnimation(0, "animation", true);
-      }),
-      nullptr
-    );
-    _Panel->runAction(l_Seq);
+    // static auto *l_SpineMan = spine::SkeletonAnimation::createWithFile("commonLogin/denglujiemian.skel", "commonLogin/denglujiemian.atlas", 1);
+    // l_SpineMan->setPosition(Vec2(5, -l_Display->rheight / 2 - 215 * (1386 - l_Display->rheight) / 426));
+    // l_SpineMan->setVisible(false);
+    // l_CenterNode->addChild(l_SpineMan);
+    // AddEffectLogin();
+    // auto l_Seq = Sequence::create(
+    //   CallFunc::create([=](){
+    //     n_LoginInitBg2->setVisible(true);
+    //     n_LoginInitBg->setVisible(false);
+    //     l_SpineMan->setVisible(true);
+    //     l_SpineMan->setAnimation(0, "animation", true);
+    //   }),
+    //   nullptr
+    // );
+    // _Panel->runAction(l_Seq);
   }
 }
 

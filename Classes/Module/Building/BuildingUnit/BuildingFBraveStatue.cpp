@@ -2,6 +2,7 @@
 
 #include "BuildingFBraveStatue.h"
 #include "Module/Building/Building.Event.h"
+#include <memory>
 
 BuildingFBraveStatue::BuildingFBraveStatue()
 {
@@ -50,10 +51,10 @@ void BuildingFBraveStatue::Clicked(Touch *p_Touch, Event *p_Event){
 }
 
 void BuildingFBraveStatue::ShowWorkDone(){
-  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+  auto l_ABuildingMsg = new ABuildingMsg();
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
   l_ABuildingMsg->BuildingNode  = this;
-  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());
+  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg);
 }
 
 void BuildingFBraveStatue::ShowBuildLvl(){

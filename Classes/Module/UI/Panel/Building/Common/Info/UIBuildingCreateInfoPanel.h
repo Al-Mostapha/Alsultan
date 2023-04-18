@@ -115,6 +115,7 @@ class UIBuildingCreateInfoPanel : public UIBasePanel
     struct {
       int32 _BuildIndex;
     } _BuildType;
+    ELockedArea _AreaId;
   } _TableBuildInfo;
 
   GVector<UIBuildingCreateSingle *> _TableScrollSingles;

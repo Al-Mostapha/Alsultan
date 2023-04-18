@@ -4,7 +4,7 @@
 #include "Module/UI/EventCenter/EventTemplate/LostRuins/LostRuins.Ctrl.h"
 #include "Module/UI/Panel/Lord/LordInfo/UILordPowerView.h"
 #include "Module/Vip/ExaltedPrivilege.Ctrl.h"
-#include "spine/SkeletonAnimation.h"
+// #include "spine/SkeletonAnimation.h"
 
 UIMainTop* UIMainTop::Create() {
   auto l_Panel = Create("UiParts/MainUi/mainUITop.csb");
@@ -325,14 +325,14 @@ void UIMainTop::InitStyle() {
     n_LabelPower->setPositionX(128.5);
     n_BtnPower->setPosition(Vec2(128.5, 61.5));
   } else if (l_Style == EMainUIStyle::Easter) {
-    auto l_Spine = spine::SkeletonAnimation::createWithBinaryFile("spine/zhandouli.skel", "spine/zhandouli.atlas");
-    l_Spine->setPosition(65, 35);
-    l_Spine->setAnimation(0, "animation", true);
-    n_ImgPower->addChild(l_Spine);
-    auto l_Spine2 = spine::SkeletonAnimation::createWithBinaryFile("spine/zhandouli.skel", "spine/zhandouli.atlas");
-    l_Spine2->setPosition(250, 35);
-    l_Spine2->setAnimation(0, "animation", true);
-    n_ImgPower->addChild(l_Spine2);
+    // auto l_Spine = spine::SkeletonAnimation::createWithBinaryFile("spine/zhandouli.skel", "spine/zhandouli.atlas");
+    // l_Spine->setPosition(65, 35);
+    // l_Spine->setAnimation(0, "animation", true);
+    // n_ImgPower->addChild(l_Spine);
+    // auto l_Spine2 = spine::SkeletonAnimation::createWithBinaryFile("spine/zhandouli.skel", "spine/zhandouli.atlas");
+    // l_Spine2->setPosition(250, 35);
+    // l_Spine2->setAnimation(0, "animation", true);
+    // n_ImgPower->addChild(l_Spine2);
   } else if (l_Style == EMainUIStyle::Halloween) {
     n_ImgPower->setPositionY(-20);
     n_ImgPower->setLocalZOrder(10);

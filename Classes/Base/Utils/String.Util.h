@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
+
 
 class GStringUtils
 {

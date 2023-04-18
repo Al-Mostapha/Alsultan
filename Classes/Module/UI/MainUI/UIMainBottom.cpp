@@ -318,7 +318,7 @@ void UIMainBottom::CreateExpostulationTimer() {
   this->DeleteExpostulationTimer();
   // self.expostulationTimer = SoradCreateTimer(self, handler(self, self.updateExpostulation))
   m_ExpostulationTimer = GBase::DCreateTimer(this, [this](float p_DeltaTime) { UpdateExpostulation(nullptr); });
-  auto l_IsInit = std::make_unique<bool>(true);
+  std::unique_ptr<bool> l_IsInit(new bool(true));
   EventCustom* l_Event = new EventCustom("updateExpostulation");
   l_Event->setUserData(l_IsInit.get());
   UpdateExpostulation(l_Event);
@@ -354,13 +354,13 @@ void UIMainBottom::InitStyle() {
 
   if(l_Style == EMainUIStyle::Easter){
 
-    auto l_TopNode = GBase::DCreateAnimation("UiParts/MainUi/Common/mainUI_style_easter.csb", nullptr).First;
-    n_NodeStyleTop->addChild(l_TopNode);
-    auto l_Spine = spine::SkeletonAnimation::createWithBinaryFile("spine/yezi.skel", "spine/yezi.atlas");
-    l_Spine->setPosition(65, 35);
-    l_Spine->setAnimation(0, "animation", true);
-    auto l_NodeSpine = GBase::GetChildByName<Node *>(l_TopNode, "Node_spine");
-    l_NodeSpine->addChild(l_Spine);
+    // auto l_TopNode = GBase::DCreateAnimation("UiParts/MainUi/Common/mainUI_style_easter.csb", nullptr).First;
+    // n_NodeStyleTop->addChild(l_TopNode);
+    // auto l_Spine = spine::SkeletonAnimation::createWithBinaryFile("spine/yezi.skel", "spine/yezi.atlas");
+    // l_Spine->setPosition(65, 35);
+    // l_Spine->setAnimation(0, "animation", true);
+    // auto l_NodeSpine = GBase::GetChildByName<Node *>(l_TopNode, "Node_spine");
+    // l_NodeSpine->addChild(l_Spine);
 
   }else if(l_Style == EMainUIStyle::Halloween){
 

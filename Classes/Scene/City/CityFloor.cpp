@@ -18,10 +18,10 @@
 
 
 void CityFloor::Ctor() {
-  auto l_MainCityBg = CSLoader::createNode("Scene/City/mainCityViewBG.csb");
-  _ContainerView = CSLoader::createNode("Scene/City/mainCityViewInfo.csb");
-  _MainCityFarCsb = CSLoader::createNode("Scene/City/mainCityView_info_far.csb");
-  _MainCityMiddleCsb = CSLoader::createNode("Scene/City/mainCityView_info_middle.csb");
+  auto l_MainCityBg = CSLoader::createNode("UiParts/Scene/City/mainCityViewBG.csb");
+  _ContainerView = CSLoader::createNode("UiParts/Scene/City/mainCityViewInfo.csb");
+  _MainCityFarCsb = CSLoader::createNode("UiParts/Scene/City/mainCityView_info_far.csb");
+  _MainCityMiddleCsb = CSLoader::createNode("UiParts/Scene/City/mainCityView_info_middle.csb");
   _BackPnode = ParallaxNode::create();
   _ViewScrollView = Ext::ScrollView::create(_ViewScrollSize);
   _FrontPnode = ParallaxNode::create();
@@ -911,7 +911,6 @@ IBuilding *CityFloor::AddBuilding(EBuildingIndex p_Index, EBuilding p_IdBuilding
     }
     return l_BuildContentNode;
   }else{
-    CCLOG("Cannot Fing Building Place of %s", StringUtils::format("build_%d", static_cast<int32>(p_Index)));
     CCLOG("Cannot Fing Building Place of %d", static_cast<int32>(p_Index));
   }
   return nullptr;

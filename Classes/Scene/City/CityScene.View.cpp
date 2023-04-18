@@ -114,7 +114,7 @@ void MainCityView::FinishLoadImages(){
   if(GBase::DCloseLoginView()){
       //   userSDKManager.logEvent(gSDKDef.TDonEvent.enter_city, {})
       if(m_IsNeedFirstFight){
-        std::unique_ptr<bool> l_IsShow = std::make_unique<bool>(true);
+        std::unique_ptr<bool> l_IsShow(new bool(true));
         GBase::DSendMessage("MESSAGE_MAIN_SCENE_IPHONEX", l_IsShow.get());
       }
   }

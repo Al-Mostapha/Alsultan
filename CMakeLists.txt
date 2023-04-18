@@ -26,15 +26,8 @@
 cmake_minimum_required(VERSION 3.6)
 
 set(APP_NAME Alsultan)
-set(BUILD_EDITOR_SPINE ON CACHE BOOL "Build editor support for spine" FORCE)
 
 project(${APP_NAME})
-
-string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
-string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
-string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}")
-string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
-
 
 if(XCODE)
     if(NOT DEFINED CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET)
@@ -62,28 +55,25 @@ if(APPLE OR WINDOWS)
 endif()
 
 file(GLOB_RECURSE SourceFileList
-     "Classes/**/*.cpp"
+    "Classes/**/*.cpp"
 )
 file(GLOB_RECURSE HeaderFileList
-     "Classes/**/*.h"
-)
-
+    "Classes/**/*.h"
+) 
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
-     ${SourceFileList}
-     #Classes/Module/UI/UI.Create.cpp
-	 Classes/AppDelegate.cpp
-     #Classes/HelloWorldScene.cpp
-     )
+    ${SourceFileList}
+    #Classes/Module/UI/UI.Create.cpp
+  Classes/AppDelegate.cpp
+    )
 list(APPEND GAME_HEADER
 	${HeaderFileList}
      Classes/AppDelegate.h
-     #Classes/HelloWorldScene.h
      )
 
 if(ANDROID)
     # change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml
-    set(APP_NAME AlSultan)
+    set(APP_NAME MyGame)
     list(APPEND GAME_SOURCE
          proj.android/app/jni/hellocpp/main.cpp
          )
@@ -151,23 +141,6 @@ target_include_directories(${APP_NAME}
         PRIVATE Classes
         PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
 )
-message(STATUS "COCOS2DX_ROOT_PATH: ${COCOS2DX_ROOT_PATH}")
-# add spine
-# set(BUILD_EDITOR_SPINE OFF CACHE BOOL "Build editor support for spine" FORCE)
-# add_subdirectory(${COCOS2DX_ROOT_PATH}/external/spine ${PROJECT_BINARY_DIR}/spine)
-# get_target_property(spine_INCLUDE_DIRS spine-static INTERFACE_INCLUDE_DIRECTORIES)
-# target_link_libraries(${APP_NAME} PRIVATE spine-static)
-# target_include_directories(${APP_NAME}
-# 	PRIVATE ${spine_INCLUDE_DIRS}
-# )
-
-# # spine cocos2d-x specific
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/spine-cocos2dx ${PROJECT_BINARY_DIR}/spine-cocos2dx)
-# get_target_property(spine_cocos2dx_INCLUDE_DIRS spine-cocos2dx-static INTERFACE_INCLUDE_DIRECTORIES)
-# target_link_libraries(${APP_NAME} PRIVATE spine-cocos2dx-static)
-# target_include_directories(${APP_NAME}
-# 	PRIVATE ${spine_cocos2dx_INCLUDE_DIRS}
-# )
 
 # mark app resources
 setup_cocos_app_config(${APP_NAME})
@@ -185,6 +158,11 @@ if(APPLE)
     #set_xcode_property(${APP_NAME} DEVELOPMENT_TEAM "GRLXXXX2K9")
 elseif(WINDOWS)
     cocos_copy_target_dll(${APP_NAME})
+    string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
+    string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
+    string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}")
+    string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
+
 endif()
 
 if(LINUX OR WINDOWS)

@@ -13,6 +13,7 @@
 #include "UIBuildingCreateSingle.h"
 #include "Module/City/City.Func.h"
 #include "Module/Effect/Effect.Ctrl.h"
+#include "Module/UI/Part/Common/Resource/UIBuildCreateResBuy.h"
 
 float UIBuildingCreateInfoPanel::WELevelProMin = 25;
 float UIBuildingCreateInfoPanel::WELevelProMax = 100;
@@ -982,70 +983,68 @@ void UIBuildingCreateInfoPanel::UpgradeFun(){
     else if(GBase::DIsGameGuide())
       ResBuyCallBack();
     else{
-      auto l_ResByType = EResBuyViewType::Upgrade;
+      auto l_ResBuyType = EResBuyViewType::Upgrade;
       if(_ViewType == EBuildingOperateType::Build)
-        l_ResByType = EResBuyViewType::Build;
-    struct RTableResNeedBuy
-    {
-      EResource _ResId;
-      int32 _ResCount;
-    };
-    GVector<RTableResNeedBuy> _TableResNeedBuy;
-    
-    for(auto iii = 0; iii < _TableBuildInfo._BuildData._CostResource.size(); iii++){
-      auto v = _TableBuildInfo._BuildData._CostResource[iii];
-      if(!v._IsReach){
-        auto l_NeedBuyRes = v._ResCount - v._CurCount;
-        auto l_CostResCount = v._ResCount;
-        if(_LuckyBlessIsOpen){
-          l_CostResCount = LuckyBlessCtrl::Get()->GetResult(v._ResCount);
-          l_NeedBuyRes = GMath::Max(0, l_CostResCount - v._CurCount);
+        l_ResBuyType = EResBuyViewType::Build;
+
+      GVector<RTableResNeedBuy> _TableResNeedBuy;
+      
+      for(auto iii = 0; iii < _TableBuildInfo._BuildData._CostResource.size(); iii++){
+        auto v = _TableBuildInfo._BuildData._CostResource[iii];
+        if(!v._IsReach){
+          auto l_NeedBuyRes = v._ResCount - v._CurCount;
+          auto l_CostResCount = v._ResCount;
+          if(_LuckyBlessIsOpen){
+            l_CostResCount = LuckyBlessCtrl::Get()->GetResult(v._ResCount);
+            l_NeedBuyRes = GMath::Max(0, l_CostResCount - v._CurCount);
+          }
+          
+          auto l_SubPercent = EffectCtrl::Get()->GetBuffEffect(EEffect::UPGRADE_CASTLE_COST_RES_REDUCE_FOR_POW);
+          l_CostResCount = std::ceil(float(l_CostResCount)*(1.f - l_SubPercent / 1000));
+          l_NeedBuyRes = GMath::Max(0.f, l_CostResCount - float(v._CurCount));
+          auto l_Need = RTableResNeedBuy();
+          l_Need._ResId = v._ResId;
+          l_Need._ResCount = l_CostResCount - v._CurCount;
+          if(l_NeedBuyRes > 0)
+            _TableResNeedBuy.push_back(l_Need);
         }
-        
-        auto l_SubPercent = EffectCtrl::Get()->GetBuffEffect(EEffect::UPGRADE_CASTLE_COST_RES_REDUCE_FOR_POW);
-        l_CostResCount = std::ceil(float(l_CostResCount)*(1.f - l_SubPercent / 1000));
-        l_NeedBuyRes = GMath::Max(0.f, l_CostResCount - float(v._CurCount));
-        auto l_Need = RTableResNeedBuy();
-        l_Need._ResId = v._ResId;
-        l_Need._ResCount = l_CostResCount - v._CurCount;
-        if(l_NeedBuyRes > 0)
-          _TableResNeedBuy.push_back(l_Need);
       }
-    }
-    
-    //         for i, v in ipairs(self.tableBuildInfo.buildData._retCostTools) do
-
-    //         end
-    for(size_t iii = 0; iii < _TableBuildInfo._BuildData._CostItem.size(); iii++){
-    //           if not v.isreach then
-    //             table.insert(tableResNeedBuy, {
-    //               resid = v.toolid,
-    //               rescount = v.toolcount - v.curcount
-    //             })
-    //           end
-    }
-    //         for i, v in ipairs(self.tableBuildInfo.buildData._retCostWEs) do
-    //           if not v.isreach then
-    //             table.insert(tableResNeedBuy, {
-    //               resid = v.toolid,
-    //               rescount = v.toolcount - v.curcount
-    //             })
-    //           end
-    //         end
-    
-
-    //         local proxy = uiManager:getOrCreateProxy("CommonQuicklyadd")
-    //         if proxy:checkNeedRes(tableResNeedBuy) then
-    //           uiManager:show("CommonQuicklyadd")
-    //         else
-    //           local panel = SoraDCreatePanel("buildCreateResBuy")
-    //           panel:initData({
-    //             resToGold = self.tableBuildInfo.buildData._resToGold + self.tableBuildInfo.buildData._toolToGold + self.tableBuildInfo.buildData._WEToGold,
-    //             retCostRes = tableResNeedBuy
-    //           }, resBuyType)
-    //           panel:setBuyResCallBack(handler(self, self.resBuyCallBack))
-    //           panel:show()
-    //         end
+      
+      for(size_t iii = 0; iii < _TableBuildInfo._BuildData._CostItem.size(); iii++){
+        auto v = _TableBuildInfo._BuildData._CostItem[iii];
+        auto l_Need = RTableResNeedBuy();
+        l_Need._ItemId = v.idItem;
+        l_Need._ResCount = v._ItemCount - v._CurCount;
+        if(!v._IsReach){
+          _TableResNeedBuy.push_back(l_Need);
+        }
+      }
+      
+      for(size_t iii = 0; iii < _TableBuildInfo._BuildData._CostItemWEs.size(); iii++){
+        auto v = _TableBuildInfo._BuildData._CostItemWEs[iii];
+        auto l_Need = RTableResNeedBuy();
+        l_Need._ItemId = v.idItem;
+        l_Need._ResCount = v._ItemCount - v._CurCount;
+        if(!v._IsReach){
+          _TableResNeedBuy.push_back(l_Need);
+        }
+      }
+      
+      //         local proxy = uiManager:getOrCreateProxy("CommonQuicklyadd")
+      if(false /*proxy:checkNeedRes(tableResNeedBuy)*/){
+       //           uiManager:show("CommonQuicklyadd")
+      }else{
+        auto l_Panel = UIBuildCreateResBuy::Create();
+        l_Panel->InitData(
+          _TableResNeedBuy,
+          _TableBuildInfo._BuildData.resToGold + 
+          _TableBuildInfo._BuildData.itemToGold +
+          _TableBuildInfo._BuildData.WEToGold,
+          l_ResBuyType
+        );
+        l_Panel->SetBuyResCallBack(CC_CALLBACK_0(UIBuildingCreateInfoPanel::ResBuyCallBack, this));
+        l_Panel->Show();
+      }
     }
   } else if(_BuildType == CANT_BY_BUILDER){
     LightBlink(1);
@@ -1055,10 +1054,10 @@ void UIBuildingCreateInfoPanel::UpgradeFun(){
     Upgrade();
   } else if(_ViewType == EBuildingOperateType::Unlock) {
     //       cityCtrl:openGroundReq(self.tableBuildInfo.areaid)
-    //       SoraDSendMessage({
-    //         msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
-    //         offsetType = MAINCITYVIEW_OFFSET_TYPE_RECOVER
-    //       })
+    CityCtrl::Get()->OpenGroundReq(_TableBuildInfo._AreaId);
+    RDoOffestMoveParam p_Parm = RDoOffestMoveParam();
+    p_Parm._OffsetType = EMainCityViewOffsetType::Recover;
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_OFFSET_BUILD", &p_Parm);
     //       SoraDSendMessage({
     //         msg = "MESSAGE_MAINCITYVIEW_SHOW_LOCKAREA_REQ_LOADING",
     //         areaid = self.tableBuildInfo.areaid

@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "Building.Read.h"
 #include "Include/IncludeBase.h"
 #include "Include/IncludeBuildingBase.h"

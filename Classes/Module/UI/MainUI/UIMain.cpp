@@ -304,20 +304,21 @@ void UIMain::LordSkillEffect(EventCustom *p_Event){
       if(GBase::IEquals(l_CurrentView->GetViewName(), GString("worldMapView"))){
 
       }else{
-        auto l_CurrentScene = std::make_unique<GPair<EScene, bool>>(EScene::World, true);
+        std::unique_ptr<GPair<EScene, bool>> l_CurrentScene(new GPair<EScene, bool>(EScene::World, true));
         GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_CurrentScene.get());
       }
     }
   }else if(l_LordSkill == ELordSkill::FullHP){
-    auto l_Style = std::make_unique<int32>(2);
+    std::unique_ptr<int32> l_Style(new int(2));
     GBase::DSendMessage("MESSAGE_WORLD_MAP_DISPATCH_ARMY", l_Style.get());
   }else if(l_LordSkill == ELordSkill::Harvest || l_LordSkill == ELordSkill::TrapAction){
   //   local currentView = currentScene:currentSceneShowView()
     if(l_Scene){
       auto l_CurrentView = l_Scene->CurrentSceneShowView();
       if(GBase::IEquals(l_CurrentView->GetViewName(), GString("worldMapView"))){
-        auto l_CurrentScene = std::make_unique<EScene>(EScene::City);
-        GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_CurrentScene.get());
+
+//        auto l_CurrentScene = std::make_unique<EScene>(EScene::City);
+//        GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_CurrentScene.get());
       }else{
         GBase::DSendMessage("MESSAGE_MAINCITYVIEW_LORD_SKILL_EFFECT"/*,data = data*/);
       }

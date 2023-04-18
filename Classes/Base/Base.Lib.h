@@ -76,6 +76,7 @@ EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building);
 bool IsTouchOnNode(Vec2 p_Point, Node* p_Node);
 
 float DGetAutoHeightLabel(ui::Text* p_Label, float p_Width = 0.0f);
+
 float DGetAutoHeightLabelNew(ui::Text* p_Label, float p_Width = 0.0f, bool l_IsHtml = false);
 void DSetTextWidthHeight(ui::Text* p_Label, Size p_Size);
 void DSetTextWidthHeight(Label* p_Label, Size p_Size);

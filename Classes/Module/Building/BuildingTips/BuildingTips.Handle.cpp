@@ -1,4 +1,5 @@
 #include "BuildingTips.Handle.h"
+#include <memory>
 #include "Module/Building/IBuilding.h"
 #include "Module/Guild/Alliance.Mgr.h"
 #include "Module/City/City.Func.h"
@@ -163,7 +164,7 @@ void BuildingTipsHandle::ButtonInfoCall(UIBuildingTipButton *p_Ref, ui::Widget::
     auto l_Panel = UIBuildingInfoPanel::Create();
     l_Panel->InitData(p_Ref->_BuildEntity->GetBuildingIndex(), p_Ref->_BuildEntity);
     l_Panel->Show();
-    auto Param = std::make_unique<RDoOffestMoveParam>();
+    std::unique_ptr<RDoOffestMoveParam> Param(new RDoOffestMoveParam());
     Param->_OffsetType = EMainCityViewOffsetType::Building;
     GBase::DSendMessage("MESSAGE_MAINCITYVIEW_OFFSET_BUILD", Param.get());
   }

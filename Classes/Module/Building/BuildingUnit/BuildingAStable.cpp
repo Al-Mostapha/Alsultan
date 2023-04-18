@@ -2,6 +2,7 @@
 
 #include "BuildingAStable.h"
 #include "Module/Building/Building.Event.h"
+#include <memory>
 
 BuildingAStable::BuildingAStable()
 {
@@ -73,7 +74,7 @@ void BuildingAStable::setBuildingIconMiracle()
 void BuildingAStable::ShowWorkDone(){
   ShowTopTip();
   ShowAnimWorking();
-  std::unique_ptr<ABuildingMsg> l_BuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_BuildingMsg(new ABuildingMsg());
   l_BuildingMsg->BuildingIndex = m_BuildingIndex;
   l_BuildingMsg->BuildingNode = nullptr;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());

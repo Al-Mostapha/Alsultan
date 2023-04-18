@@ -25,4 +25,6 @@ public:
   void InitClientData();
   void InitCrystalMine();
   void RegisterNotify(){}
+
+  void OpenGroundReq(ELockedArea p_Area){}
 };

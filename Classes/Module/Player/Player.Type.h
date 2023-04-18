@@ -2,12 +2,14 @@
 #include "Include/IncludeBase.h"
 #include "Base/Containers/HashMap.h"
 #include "Module/City/City.Type.h"
+#include "Module/Effect/Effect.Enum.h"
+
 struct RPlayer
 {
     int32 idCurrentCity;
     int32 idPlayer;
     RCity City;
-    GHashMap<enum class EEffect, struct TEffect> Effect;
+    GHashMap<EEffect, struct TEffect> Effect;
 };
 
 struct RLordBaseInfo {

@@ -73,7 +73,7 @@ void BuildingARange::setBuildingIconMiracle()
 void BuildingARange::ShowWorkDone(){
   ShowTopTip();
   ShowAnimWorking();
-  std::unique_ptr<ABuildingMsg> l_BuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_BuildingMsg(new ABuildingMsg());
   l_BuildingMsg->BuildingIndex = m_BuildingIndex;
   l_BuildingMsg->BuildingNode = nullptr;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());

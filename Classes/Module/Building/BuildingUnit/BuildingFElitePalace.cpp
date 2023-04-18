@@ -85,7 +85,7 @@ void BuildingFElitePalace::Clicked(Touch *p_Touch, Event *p_Event){
 void BuildingFElitePalace::ShowWorkDone(){
   ShowTopTip();
   ShowAnimWorking();
-  std::unique_ptr<ABuildingMsg> l_BuildingMsg = std::make_unique<ABuildingMsg>();
+  std::unique_ptr<ABuildingMsg> l_BuildingMsg(new ABuildingMsg());;
   l_BuildingMsg->BuildingIndex = m_BuildingIndex;
   l_BuildingMsg->BuildingNode = nullptr;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());

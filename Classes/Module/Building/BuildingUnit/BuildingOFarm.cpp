@@ -96,7 +96,7 @@ void BuildingOFarm::ShowAnimWorking() {
 }
 
 void BuildingOFarm::ShowWorkDone(){
-  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
+	std::unique_ptr<ABuildingMsg> l_ABuildingMsg(new ABuildingMsg());
   l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
   l_ABuildingMsg->BuildingNode  = this;
   _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());

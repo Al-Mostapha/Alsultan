@@ -83,9 +83,9 @@ void BuildingOCrystalMine::Clicked(Touch *p_Touch, Event *p_Event){
 }
 
 void BuildingOCrystalMine::ShowWorkDone(){
-  auto l_ABuildingMsg = std::make_unique<ABuildingMsg>();
-  l_ABuildingMsg->BuildingIndex = this->m_BuildingIndex;
-  l_ABuildingMsg->BuildingNode  = this;
-  _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_ABuildingMsg.get());
-  ShowTopTip();
+	std::unique_ptr<ABuildingMsg> l_BuildingMsg(new ABuildingMsg());
+	l_BuildingMsg->BuildingIndex = this->m_BuildingIndex;
+	l_BuildingMsg->BuildingNode  = this;
+    _eventDispatcher->dispatchCustomEvent("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", l_BuildingMsg.get());
+    ShowTopTip();
 }

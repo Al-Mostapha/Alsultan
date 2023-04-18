@@ -3,10 +3,13 @@
 namespace GBase{
   bool IEquals(const GString& a, const GString& b)
   {
-    return std::equal(a.begin(), a.end(),
-                      b.begin(), b.end(),
-        [](char a, char b) {
-            return tolower(a) == tolower(b);
-        });
+      if(a.length() != b.length())
+        return false;
+      if(!a.length())
+        return false;
+      for(auto iii = 0; iii < a.length(); iii++)
+        if(std::tolower(a[iii]) != std::tolower(a[iii]))
+            return false;
+      return true;
   }
 }
