@@ -277,6 +277,7 @@ class IBuilding : public cocos2d::Node ,public BuildingCell{
   virtual void LoadView();
   virtual void LoadBaseView();
   virtual void LoadBaseViewByBid(EBuilding p_Bid);
+  virtual bool CheckCanTrainOrUpgrade();
   private:
   virtual bool IgnoreClickEvent(Touch* p_T, Event* p_E) const;
 };

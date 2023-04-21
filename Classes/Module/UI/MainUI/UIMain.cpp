@@ -2,6 +2,7 @@
 #include "UIMainTop.h"
 #include "UIMainBottom.h"
 #include "UIPandectView.h"
+#include "Base/Common/Common.Enum.h"
 #include "Module/Activity/LoginGift.Ctrl.h"
 #include "Game/Interior/Interior.Ctrl.h"
 #include "Module/Activity/StarRhapsody/StarRhapsody.Ctrl.h"

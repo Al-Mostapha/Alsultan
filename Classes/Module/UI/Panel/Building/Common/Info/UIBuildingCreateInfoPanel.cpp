@@ -1,9 +1,12 @@
 #include "UIBuildingCreateInfoPanel.h"
+#include "Module/UI/Panel/Building/Common/Builder/UIBuilderActivePop.View.h"
+#include "Module/UI/Part/Common/Button/UICommonGoldNormalBtn.h"
+#include "Base/Common/Common.Box.h"
+#include "Game/Common/GamePanel.Mgr.h"
 #include "UIBuildUnlockedSingleInfo.View.h"
 #include "Module/Building/Building.Logic.h"
 #include "Module/Building/IBuilding.h"
 #include "Module/UI/MainUI/UICommonResourcesMenu.h"
-#include "Module/UI/Part/Common/Button/UICommonGoldNormalBtn.h"
 #include "Base/Common/Common.Func.h"
 #include "Module/Activity/LuckyBless/LuckyBless.Ctrl.h"
 #include "Module/Activity/WiseTutor/WiseTutor.Ctrl.h"
@@ -14,6 +17,9 @@
 #include "Module/City/City.Func.h"
 #include "Module/Effect/Effect.Ctrl.h"
 #include "Module/UI/Part/Common/Resource/UIBuildCreateResBuy.h"
+#include "Module/City/City.Cell.h"
+#include "Module/Item/Item.Ctrl.h"
+#include "Include/IncludeGlobal.h"
 
 float UIBuildingCreateInfoPanel::WELevelProMin = 25;
 float UIBuildingCreateInfoPanel::WELevelProMax = 100;
@@ -147,56 +153,6 @@ Node *UIBuildingCreateInfoPanel::AddRadiantDecreeBtn(){
   l_Node->setVisible(false);
   _RadiantBtn->addTouchEventListener(CC_CALLBACK_2(UIBuildingCreateInfoPanel::BtnShowRadiantBuff, this));
   return nullptr;
-}
-
-Node *UIBuildingCreateInfoPanel::WarLvBarEffect(Node *p_Target){
-
-  RCreatEffctParam l_Part_1;
-  RCreatEffctParam l_Part_2;
-  RCreatEffctParam l_Part_3;
-
-  l_Part_1._PList = "et_battlelv01_01.plist";
-  l_Part_1._Pos = {6.14f, 17.77f};
-  l_Part_1._Scale = {1.72f, 1.72f};
-  l_Part_1._Rotate = 20.77f;
-  l_Part_1._Name = "effect1";
-  l_Part_1._PosType = ParticleSystem::PositionType::FREE;
-  l_Part_1._TpScale = 1;
-
-  l_Part_2._PList = "et_battlelv01_02.plist";
-  l_Part_2._Pos = { 0.73f, 4.96f};
-  l_Part_2._Scale = {0.76f, 0.76f};
-  l_Part_2._Rotate = 30.27f;
-  l_Part_2._Name = "effect2";
-  l_Part_2._PosType = ParticleSystem::PositionType::FREE;
-  l_Part_2._TpScale = 1;
-
-  l_Part_3._PList = "et_battlelv01_03.plist";
-  l_Part_3._Pos = {0, 0};
-  l_Part_3._Scale = {0.675f, 0.675f};
-  l_Part_3._Rotate = 38.5f;
-
-  auto l_ENode = GBase::DCreateEffectNode({l_Part_1, l_Part_2, l_Part_3});
-  l_ENode->setPosition({0, 0});
-  if(p_Target)
-    p_Target->addChild(l_ENode);
-  return l_ENode;
-}
-
-void UIBuildingCreateInfoPanel::UpdateRadiantDecreeBuff(){
-  // local state, _ = radiantDecreeCtrl:getStateInfo()
-  // if state then
-  //   local param = {
-  //     title = i18n("activity_name_9001442"),
-  //     goHandle = function()
-  //       uiManager:show("RadiantDecreeMain")
-  //     end,
-  //     actltCtrl = include("radiantDecreeRead")
-  //   }
-  //   uiManager:show("RadiantDecreeBuffPop", param)
-  // else
-  //   SoraDShowMsgTip("common_text_2486")
-  // end
 }
 
 void UIBuildingCreateInfoPanel::OnMessageListener(){
@@ -705,10 +661,6 @@ void UIBuildingCreateInfoPanel::InitUnlockData(ELockedArea p_Area){
   // end
 }
 
-void UIBuildingCreateInfoPanel::OnWiseTutorClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
-
-}
-
 GPair<bool, int32> UIBuildingCreateInfoPanel::ScreenQueueList(){
   auto _QListCount = _TableBuildInfo._BuildData._BuildingTaskQueue.size();
   if(_QListCount == 0)
@@ -810,7 +762,6 @@ void UIBuildingCreateInfoPanel::InitScroll(){
       _BuildType == CANT_BY_TOOL;
     }
   }
-  
   for(auto iii = 0 ; iii < _TableBuildInfo._BuildData._CostItemWEs.size(); iii++){
     auto v  = _TableBuildInfo._BuildData._CostItemWEs[iii];
     auto l_SingleInfo = UIBuildingCreateSingle::Create();
@@ -1053,16 +1004,11 @@ void UIBuildingCreateInfoPanel::UpgradeFun(){
   } else if(_ViewType == EBuildingOperateType::Upgrade){
     Upgrade();
   } else if(_ViewType == EBuildingOperateType::Unlock) {
-    //       cityCtrl:openGroundReq(self.tableBuildInfo.areaid)
     CityCtrl::Get()->OpenGroundReq(_TableBuildInfo._AreaId);
     RDoOffestMoveParam p_Parm = RDoOffestMoveParam();
     p_Parm._OffsetType = EMainCityViewOffsetType::Recover;
     GBase::DSendMessage("MESSAGE_MAINCITYVIEW_OFFSET_BUILD", &p_Parm);
-    //       SoraDSendMessage({
-    //         msg = "MESSAGE_MAINCITYVIEW_SHOW_LOCKAREA_REQ_LOADING",
-    //         areaid = self.tableBuildInfo.areaid
-    //       })
-    //       SoraDRemoveAllPrePanelFromManager(self)
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_SHOW_LOCKAREA_REQ_LOADING", &_TableBuildInfo._AreaId);
   }
 }
 
@@ -1071,9 +1017,9 @@ void UIBuildingCreateInfoPanel::BtnUpCallBack(Ref *p_Sender, ui::Widget::TouchEv
     return;
   GBase::PlaySound();
 
-    //   if self.viewType ~= BUILD_OPERATE_TYPE.UNLOCK then
-    //     local buildCell = cityCtrl:getBuildCell(self.tableBuildInfo.buildID.bid, self.tableBuildInfo.buildID.iid)
-    //     if buildCell and self.tableBuildInfo.buildID.bid == BUILDID.CASTLE then
+  if(_ViewType != EBuildingOperateType::Unlock){
+    auto l_BuildingCell = CityCtrl::Get()->GetBuildingCellByIndex(_TableBuildInfo._BuildId._IID);
+    if(l_BuildingCell && _TableBuildInfo._BuildId._Bid == EBuilding::Castle){
     //       if commonCheck.NEW_WEEK_CARD and tonumber(buildCell.info.lv) == CASTLE_LV15_LIMITED and rechargeActivityCtrl:checkHasbuyNewWeekcard() then
     //         SoraDShowMsgBox(i18n("new_weeklycard_tips_01"), i18n("common_text_204"), nil, function(type)
     //           if type == MSGBOX_CALLBACK_YES then
@@ -1116,14 +1062,497 @@ void UIBuildingCreateInfoPanel::BtnUpCallBack(Ref *p_Sender, ui::Widget::TouchEv
     //         end)
     //       else
     //         upgradeFun()
+                UpgradeFun();
     //       end
-    //     else
-    //       upgradeFun()
-    //     end
-    //   else
-    //     upgradeFun()
-    //   end
+    } else {
+      UpgradeFun();
+    }
+  }else{
+    UpgradeFun();
+  }
+}
+
+void UIBuildingCreateInfoPanel::BtnUpNowCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+  if(p_Touch != Widget::TouchEventType::ENDED)
+    return;
+  GBase::PlaySound();
+  if(_ViewType == EBuildingOperateType::Build){
+    if(_IsFree && _IsEnough){
+      Build(EOPERATE_MODE::FREE);
+    }else{
+      GBase::DShowBuyBox(
+        RShowBuyBoxParam(
+          Translate::i18n("common_text_744", {{"name", BuildingRead::Get()->GetName(_TableBuildInfo._BuildId._Bid)}}),
+          _TableBuildInfo._BuildData._ImmediatelyGold, Translate::i18n("common_text_379")
+        ),
+        CC_CALLBACK_1(UIBuildingCreateInfoPanel::BuildNow, this)
+      );
+    }
+  }else if(_ViewType == EBuildingOperateType::Upgrade){
+    //     local buildCell = cityCtrl:getBuildCell(self.tableBuildInfo.buildID.bid, self.tableBuildInfo.buildID.iid)
+    auto l_BuildingCell = CityCtrl::Get()->GetBuildingCellByIndex(_TableBuildInfo._BuildId._IID);
+    if(l_BuildingCell && _TableBuildInfo._BuildId._Bid == EBuilding::Castle){
+      GString l_Des = "";
+      if(l_BuildingCell->_Info.buildingLvl == GBase::Const::Get()->CastleLvl5){
+        l_Des = Translate::i18n("common_text_928");
+      } else if(_WiseTutorIsOpen /*and tonumber(buildCell.info.lv) == include("wiseTutorRead").getMaxEffectCastleLv()*/ ){
+      //         des = i18n("Battle_Towers_37", {
+      //           lv = buildLogic.getBuildLvStr(include("wiseTutorRead").getMaxEffectCastleLv())
+      //         })
+      }else if(_ArtisanHouseIsOpen /*and tonumber(buildCell.info.lv) == include("artisanHouseltCtrl").getMaxEffectCastleLv() */){
+      //         des = i18n("Battle_Towers_37", {
+      //           lv = buildLogic.getBuildLvStr(include("artisanHouseltCtrl").getMaxEffectCastleLv())
+      //         })
+      }
+      if(l_Des != ""){
+        GBase::DShowMsgBox(
+          l_Des, Translate::i18n("common_text_204"), "", 
+          [this](EMsgBoxCallBack p_Type){
+              //           if type == MSGBOX_CALLBACK_YES then
+              if(p_Type != EMsgBoxCallBack::Yes)
+                return;
+              if(_IsFree && _IsEnough)
+                this->Upgrade(EOPERATE_MODE::FREE);
+              else if(GBase::Const::Get()->IS_FIRST_TIME_COST_GOLD_BUILDING)
+                GBase::DShowBuyBox(
+                  RShowBuyBoxParam(
+                    Translate::i18n("common_text_745", {{"name", BuildingRead::Get()->GetName(_TableBuildInfo._BuildId._Bid)}}),
+                    _TableBuildInfo._BuildData._ImmediatelyGold, Translate::i18n("common_text_378")
+                  ),
+                  CC_CALLBACK_1(UIBuildingCreateInfoPanel::UpgradeNow, this)
+                 // , nil, nil, nil, nil, nil, i18n("build_gold_lvup_tips_name"), IS_SELECT_LOGIN_NOTICE, true
+                );
+              else 
+                this->UpgradeNow(EMsgBoxCallBack::Yes);
+          }
+        );
+        return;
+      }
+    }
+    if(_IsFree && _IsEnough){
+      Upgrade(EOPERATE_MODE::FREE);
+    }else if(GBase::Const::Get()->IS_FIRST_TIME_COST_GOLD_BUILDING){
+      GBase::DShowBuyBox(
+        RShowBuyBoxParam(
+          Translate::i18n("common_text_745", {{"name", BuildingRead::Get()->GetName(_TableBuildInfo._BuildId._Bid)}}),
+          _TableBuildInfo._BuildData._ImmediatelyGold, Translate::i18n("common_text_378")
+        ),
+        CC_CALLBACK_1(UIBuildingCreateInfoPanel::UpgradeNow, this)
+      );
+    }else{
+      UpgradeNow(EMsgBoxCallBack::Yes);
+    }
+  }
+}
+
+void UIBuildingCreateInfoPanel::OnWiseTutorClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+  // if type == ccui.TouchEventType.ended then
+  //   SoraDPlaySound()
+  //   uiManager:show("wiseTutorBuffPop")
+  // end
+}
+
+void UIBuildingCreateInfoPanel::OnArtisanHouseClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+  // if type == ccui.TouchEventType.ended then
+  //   SoraDPlaySound()
+  //   local state, _ = artisanHouseCtrl:getStateInfo()
+  //   if state then
+  //     local param = {
+  //       title = i18n("activity_name_9001399"),
+  //       goHandle = function()
+  //         uiManager:show("ArtisanHouseMain")
+  //       end,
+  //       actltCtrl = include("artisanHouseltCtrl")
+  //     }
+  //     uiManager:show("ArisanHouseBuffPop", param)
+  //   else
+  //     SoraDShowMsgTip("common_text_2486")
+  //   end
+  // end
+}
+
+void UIBuildingCreateInfoPanel::Build(EOPERATE_MODE p_Mode){
+  
+  auto l_Bid = _TableBuildInfo._BuildId._Bid;
+  auto l_Index = _TableBuildInfo._BuildId._IID;
+  auto l_Data = _TableBuildInfo._BuildData;
+  auto l_Ret = BuildingLogic::Get()->Build(l_Index, p_Mode, l_Data, l_Bid);
+  if(l_Ret == EErrDef::Err_None){
+    static GPair<EBuilding, EBuildingIndex> l_NewBuild(l_Bid, l_Index);
+    l_NewBuild.First = l_Bid;
+    l_NewBuild.Second = l_Index;
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_CREATE_BUILD", &l_NewBuild);
+    CityCtrl::Get()->AddBuildingReq(l_Index, l_Bid, p_Mode);
+    if(l_Bid == EBuilding::MarchingTent && !GBase::DIsGameGuide() ){
+      //     local gametop = gModuleMgr.getObject("gametop")
+      //     local guideCtrl = gametop.playertop_:getModule("guideCtrl")
+      //     guideCtrl:CompleteGuideStep(12001)
+    }
+    GBase::DRemoveAllPrePanelFromManager(this);
+  } else if(l_Ret == EErrDef::Err_CHARGE_QUEUE_TIME_NOT_REACH || _BuildType == NEED_BUY_BUILDER){
+    auto l_Q = CityCtrl::Get()->GetCurCity()->QueryQueue(ETask::charge_build_queue);
+    //   local monthData = rechargeActivityCtrl:getMonthActivityList() or {}
+    uint32 l_ItemId = 500501;
+    auto l_ItemCount = ItemCtrl::Get()->GetItemCount(l_ItemId);
+    if(l_Q){
+      //     local remainTime = queue.timerNode.timer:getRemainTime()
+      //     if remainTime >= self.tableBuildInfo.buildData._costtime then
+      //       self:upgrade(_mode)
+      //     else
+      //       local buildchargequeue = cityCtrl:getCurCity():queryQueue(gQueueTypeDef.charge_build_queue)
+      //       local leftTime = buildchargequeue and buildchargequeue.timerNode.timer:getRemainTime() or 0
+      //       local needCount = math.ceil((remainTime - leftTime) / 172800)
+      //       if next(monthData) then
+      //         if itemCount > 0 then
+      //           local msg = i18n("building_worker_text_05")
+      //           local panel = SoraDCreatePanel("builderActivePopView")
+      //           panel:initData(1, msg, remainTime)
+      //           panel:show()
+      //         else
+      //           local msg = i18n("building_worker_text_06", {
+      //             var1 = gConstValue.OPEN_BUILD_CHARGE_QUEUE_GOLD * needCount,
+      //             var2 = BUILDER_WORK_TIME * needCount
+      //           })
+      //           local panel = SoraDCreatePanel("builderActivePopView")
+      //           panel:initData(2, msg, remainTime)
+      //           panel:show()
+      //         end
+      //       elseif itemCount > 0 then
+      //         local msg = i18n("building_worker_text_07")
+      //         local panel = SoraDCreatePanel("builderActivePopView")
+      //         panel:initData(3, msg, remainTime)
+      //         panel:show()
+      //       else
+      //         local msg = i18n("building_worker_text_08", {
+      //           var = gConstValue.OPEN_BUILD_CHARGE_QUEUE_GOLD * needCount
+      //         })
+      //         local panel = SoraDCreatePanel("builderActivePopView")
+      //         panel:initData(4, msg, remainTime)
+      //         panel:show()
+      //       end
+      //     end
+    } else if(false /*next(monthData)*/){
+      if(l_ItemCount > 0){
+        auto l_Msg = Translate::i18n("building_worker_text_01");
+        auto l_Panel = UIBuilderActivePopView::Create();
+        l_Panel->InitData(1, l_Msg);
+        l_Panel->Show();
+      }else{
+        auto l_Msg = Translate::i18n("building_worker_text_02", {
+          {"var1", std::to_string(GBase::ConstValue::Get()->OPEN_BUILD_CHARGE_QUEUE_GOLD)},
+          {"var2", std::to_string(GBase::Const::Get()->BUILDER_WORK_TIME)},
+        });
+        auto l_Panel = UIBuilderActivePopView::Create();
+        l_Panel->InitData(2, l_Msg);
+        l_Panel->Show();
+      }
+    } else if(l_ItemCount > 0){
+      auto l_Msg = Translate::i18n("building_worker_text_03");
+      auto l_Panel = UIBuilderActivePopView::Create();
+      l_Panel->InitData(3, l_Msg);
+      l_Panel->Show();
+    }else{
+      auto l_Msg = Translate::i18n("building_worker_text_02", {
+        {"var1", std::to_string(GBase::ConstValue::Get()->OPEN_BUILD_CHARGE_QUEUE_GOLD)},
+        {"var2", std::to_string(GBase::Const::Get()->BUILDER_WORK_TIME)},
+      });
+      auto l_Panel = UIBuilderActivePopView::Create();
+      l_Panel->InitData(4, l_Msg);
+      l_Panel->Show();
+    }
+  } else if(l_Ret == EErrDef::Err_QUEUE_BUSY){
+    LightBlink(1);
+  }
+}
+
+void UIBuildingCreateInfoPanel::BuildNow(EMsgBoxCallBack p_Call){
+  if(p_Call != EMsgBoxCallBack::Yes)
+    return;
+  if(!GBase::DEnoughGold(_TableBuildInfo._BuildData._ImmediatelyGold))
+    return;
+  if(!GBase::DEnoughWarBadge(_NeedWarBadgeBuy, _NeedWarBadgeID))
+    return;
+  Build(EOPERATE_MODE::IMMEDIATELY);
+}
+
+void UIBuildingCreateInfoPanel::Upgrade(EOPERATE_MODE p_Mode){
+  auto l_Bid = _TableBuildInfo._BuildId._Bid;
+  auto l_Iid = _TableBuildInfo._BuildId._IID;
+  auto l_Data = _TableBuildInfo._BuildData;
+  auto l_Index = _TableBuildInfo._BuildType._BuildIndex;
+  auto l_BuildingEntity = _TableBuildInfo._BuildId._BuildEntity;
+
+  if(l_BuildingEntity && !l_BuildingEntity->CheckCanTrainOrUpgrade())
+    return;
+  auto l_Ret = BuildingLogic::Get()->Upgrade(l_Iid, p_Mode, l_Data, false, l_Bid);
+  if(l_Ret == EErrDef::Err_None){
+    GBase::DShowLoading(_BtnUpNow)->setPosition({0, 0});
+    auto l_IsResBuild = BuildingLogic::Get()->GetOutBuildIsResBuild(l_Bid);
+    if(l_IsResBuild && (l_BuildingEntity->GetHarvestState() == EHarvestState::Much || l_BuildingEntity->GetHarvestState() == EHarvestState::Some))
+      l_BuildingEntity->HarvestRes();
+    static GPair<EBuilding, EBuildingIndex> l_MsgData (l_Bid, l_Iid);
+    l_MsgData.First = l_Bid;
+    l_MsgData.Second = l_Iid;
+    GBase::DSendMessage("MESSAGE_BUILD_UPGRADE", &l_MsgData);
+    CityCtrl::Get()->UpgradeBuildReq(l_Iid, l_Bid, p_Mode);
+    auto l_IsFullLv = BuildingLogic::Get()->BuildLvIsFull(l_Iid);
+    if((p_Mode == EOPERATE_MODE::IMMEDIATELY || p_Mode == EOPERATE_MODE::FREE) && !l_IsFullLv){
+    GBase::DRemoveAllPrePanelFromManager(this, true);
+      _FirstRunWar = true;
+      InitUpgradeData(_TableBuildInfo._BuildId._BuildEntity);
+      ReloadScroll(true);
+    }else{
+      GBase::DRemoveAllPrePanelFromManager(this);
+    }
+  } else if(l_Ret == EErrDef::Err_CHARGE_QUEUE_TIME_NOT_REACH || _BuildType == NEED_BUY_BUILDER){
+    auto l_Q = CityCtrl::Get()->GetCurCity()->QueryQueue(ETask::charge_build_queue);
+    //   local monthData = rechargeActivityCtrl:getMonthActivityList() or {}
+    auto l_ItemId = 500501;
+    auto l_ItemCount = ItemCtrl::Get()->GetItemCount(l_ItemId);
+    if(l_Q){
+      auto l_RemainTime = l_Q->GetRemainTime();
+      //     local remainTime = queue.timerNode.timer:getRemainTime()
+      if(l_RemainTime >= _TableBuildInfo._BuildData._CostTime){
+        Upgrade(p_Mode);
+      } else if(false /* next(monthData) */){
+        if(l_ItemCount > 0){
+          auto l_Msg = Translate::i18n("building_worker_text_05");
+          auto l_Panel = UIBuilderActivePopView::Create();
+          l_Panel->InitData(1, l_Msg, l_RemainTime);
+          l_Panel->Show();
+        }else{
+          auto l_Msg = Translate::i18n("building_worker_text_06", {
+            {"var1", std::to_string(GBase::ConstValue::Get()->OPEN_BUILD_CHARGE_QUEUE_GOLD)},
+            {"var2", std::to_string(GBase::Const::Get()->BUILDER_WORK_TIME)}
+          });
+          auto l_Panel = UIBuilderActivePopView::Create();
+          l_Panel->InitData(2, l_Msg, l_RemainTime);
+          l_Panel->Show();
+        }
+      }else if(l_ItemCount > 0){
+        auto l_Msg = Translate::i18n("building_worker_text_07");
+        auto l_Panel = UIBuilderActivePopView::Create();
+        l_Panel->InitData(3, l_Msg, l_RemainTime);
+        l_Panel->Show();
+      }else{
+        auto l_Msg = Translate::i18n("building_worker_text_08", {
+          {"var", std::to_string(GBase::ConstValue::Get()->OPEN_BUILD_CHARGE_QUEUE_GOLD)}
+        });
+        auto l_Panel = UIBuilderActivePopView::Create();
+        l_Panel->InitData(4, l_Msg, l_RemainTime);
+        l_Panel->Show();
+      }
+    } else if(false /*next(monthData) */){
+      if(l_ItemCount > 0){
+        auto l_Msg = Translate::i18n("building_worker_text_01");
+        auto l_Panel = UIBuilderActivePopView::Create();
+        l_Panel->InitData(1, l_Msg);
+        l_Panel->Show();
+      }else{
+        auto l_Msg = Translate::i18n("building_worker_text_02", {
+          {"var1", std::to_string(GBase::ConstValue::Get()->OPEN_BUILD_CHARGE_QUEUE_GOLD)},
+          {"var2", std::to_string(GBase::Const::Get()->BUILDER_WORK_TIME)}
+        });
+        auto l_Panel = UIBuilderActivePopView::Create();
+        l_Panel->InitData(2, l_Msg);
+        l_Panel->Show();
+      }
+    } else if(l_ItemCount > 0){
+      auto l_Msg = Translate::i18n("building_worker_text_03");
+      auto l_Panel = UIBuilderActivePopView::Create();
+      l_Panel->InitData(3, l_Msg);
+      l_Panel->Show();
+    }else{
+      auto l_Msg = Translate::i18n("building_worker_text_02", {
+        {"var1", std::to_string(GBase::ConstValue::Get()->OPEN_BUILD_CHARGE_QUEUE_GOLD)},
+        {"var2", std::to_string(GBase::Const::Get()->BUILDER_WORK_TIME)}
+      });
+      auto l_Panel = UIBuilderActivePopView::Create();
+      l_Panel->InitData(4, l_Msg);
+      l_Panel->Show();
+    }
+  } else if(l_Ret == EErrDef::Err_QUEUE_BUSY){
+    LightBlink(1);
+  }
 }
 
 
+void UIBuildingCreateInfoPanel::UpgradeNow(EMsgBoxCallBack p_Call){
+  if(p_Call != EMsgBoxCallBack::Yes)
+    return;
+  if(!GBase::DEnoughGold(_TableBuildInfo._BuildData._ImmediatelyGold))
+    return;
+  if(!GBase::DEnoughWarBadge(_NeedWarBadgeBuy, _NeedWarBadgeID))
+    return;
+  Upgrade(EOPERATE_MODE::IMMEDIATELY);
+}
 
+Node *UIBuildingCreateInfoPanel::WarLvBarEffect(Node *p_Target){
+
+  RCreatEffctParam l_Part_1;
+  RCreatEffctParam l_Part_2;
+  RCreatEffctParam l_Part_3;
+
+  l_Part_1._PList = "et_battlelv01_01.plist";
+  l_Part_1._Pos = {6.14f, 17.77f};
+  l_Part_1._Scale = {1.72f, 1.72f};
+  l_Part_1._Rotate = 20.77f;
+  l_Part_1._Name = "effect1";
+  l_Part_1._PosType = ParticleSystem::PositionType::FREE;
+  l_Part_1._TpScale = 1;
+
+  l_Part_2._PList = "et_battlelv01_02.plist";
+  l_Part_2._Pos = { 0.73f, 4.96f};
+  l_Part_2._Scale = {0.76f, 0.76f};
+  l_Part_2._Rotate = 30.27f;
+  l_Part_2._Name = "effect2";
+  l_Part_2._PosType = ParticleSystem::PositionType::FREE;
+  l_Part_2._TpScale = 1;
+
+  l_Part_3._PList = "et_battlelv01_03.plist";
+  l_Part_3._Pos = {0, 0};
+  l_Part_3._Scale = {0.675f, 0.675f};
+  l_Part_3._Rotate = 38.5f;
+
+  auto l_ENode = GBase::DCreateEffectNode({l_Part_1, l_Part_2, l_Part_3});
+  l_ENode->setPosition({0, 0});
+  if(p_Target)
+    p_Target->addChild(l_ENode);
+  return l_ENode;
+}
+
+void UIBuildingCreateInfoPanel::CloseLoading(EventCustom *p_Event){
+  GBase::DCloseLoading(_BtnUpNow);
+}
+
+void UIBuildingCreateInfoPanel::OnExitPanel(){
+  // if self.viewType == BUILD_OPERATE_TYPE.BUILD then
+  //   print("self.curBuildIndex", self.curBuildIndex)
+  //   local cityBuildConstDef = include("cityBuildConstDef")
+  //   if self.tableBuildInfo.buildType.buildIndex == cityBuildConstDef.buildIndexDef.index_Miracle then
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_PREVIEW",
+  //       index = self.tableBuildInfo.buildType.buildIndex
+  //     })
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
+  //       offsetType = MAINCITYVIEW_OFFSET_TYPE_RECOVER
+  //     })
+  //   elseif self.isFromCreate then
+  //   elseif self.curBuildIndex and self.curBuildIndex ~= 1050 then
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
+  //       offsetType = MAINCITYVIEW_OFFSET_TYPE_BUILD,
+  //       buildIndex = self.curBuildIndex,
+  //       scale = 0.9,
+  //       skip = true
+  //     })
+  //   else
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
+  //       offsetType = MAINCITYVIEW_OFFSET_TYPE_RECOVER
+  //     })
+  //   end
+  // else
+  //   print("self.isSkip===", self.isSkip, self.curBuildIndex)
+  //   if self.isSkip and self.curBuildIndex then
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
+  //       noScaleDuration = self.noScaleDuration,
+  //       noOffsetDuration = self.noOffsetDuration,
+  //       offsetType = MAINCITYVIEW_OFFSET_TYPE_BUILD,
+  //       buildIndex = self.curBuildIndex,
+  //       scale = 0.9,
+  //       skip = true
+  //     })
+  //   else
+  //     SoraDSendMessage({
+  //       msg = "MESSAGE_MAINCITYVIEW_OFFSET_BUILD",
+  //       offsetType = MAINCITYVIEW_OFFSET_TYPE_RECOVER
+  //     })
+  //   end
+  // end
+}
+
+void UIBuildingCreateInfoPanel::SetSpecail(){
+  // if self.tableBuildInfo.buildID and self.tableBuildInfo.buildID.bid == BUILDID.NEBULA_PALACE then
+  //   self:setBuildBtnTouchEnable(self.isSpecialReach)
+  //   self.labelFreeTip:setVisible(not self.isSpecialReach or self.isFree and self.isEnough)
+  //   self.labelFreeTip:setColor(not self.isSpecialReach and cc.c3b(255, 0, 0) or cc.c3b(255, 200, 100))
+  //   if not self.isSpecialReach then
+  //     self.labelFreeTip:setString(i18n("nebula_war_text_0176"))
+  //   end
+  //   self.labelDes:setVisible(true)
+  //   local buildMoreInfoRead = include("buildMoreInfoRead")
+  //   local tableUpData = buildMoreInfoRead.getUpgradeInfoData(self.tableBuildInfo.buildID.bid, self.tableBuildInfo.buildID.iid)
+  //   self.labelDes:setString(i18n("nebula_war_text_0162"))
+  // end
+}
+
+void UIBuildingCreateInfoPanel::BtnShowRadiantBuff(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){
+  // local state, _ = radiantDecreeCtrl:getStateInfo()
+  // if state then
+  //   local param = {
+  //     title = i18n("activity_name_9001442"),
+  //     goHandle = function()
+  //       uiManager:show("RadiantDecreeMain")
+  //     end,
+  //     actltCtrl = include("radiantDecreeRead")
+  //   }
+  //   uiManager:show("RadiantDecreeBuffPop", param)
+  // else
+  //   SoraDShowMsgTip("common_text_2486")
+  // end
+}
+
+void UIBuildingCreateInfoPanel::UpdateRadiantDecreeBuff(){
+  // local state, leftTime = radiantDecreeCtrl:getStateInfo()
+  // if state == gActivityState.OPEN then
+  //   self.radiantDecreeIsOpen = false and radiantDecreeCtrl:isBuffEffect()
+  //   self.radiantNode:setVisible(self.radiantDecreeIsOpen)
+  //   self.radiantTime:setVisible(self.radiantDecreeIsOpen)
+  //   local state = wiseTutorCtrl:getStateInfo()
+  //   local lang = SoraDGetDefaultLanguage()
+  //   if state == gActivityState.OPEN then
+  //     if lang == "ar" then
+  //       self.radiantNode:setPositionX(self.nodeWiseTutor:getPositionX() - 100)
+  //     else
+  //       self.radiantNode:setPositionX(self.nodeWiseTutor:getPositionX() + 100)
+  //     end
+  //   elseif lang == "ar" then
+  //     self.radiantNode:setPositionX(self.nodeWiseTutor:getPositionX() - 30)
+  //   else
+  //     self.radiantNode:setPositionX(self.nodeWiseTutor:getPositionX() + 30)
+  //   end
+  //   self.radiantNode:setPositionY(self.nodeWiseTutor:getPositionY())
+  //   if leftTime > 0 and self.radiantDecreeIsOpen then
+  //     self:openRadiantDecreeTime()
+  //     self.radiantDecreeTimer = SoradCreateTimer(self, handler(self, self.openRadiantDecreeTime))
+  //   end
+  //   SoraDSetGray(SoraDGetChildByName(self.radiantNode, "Image_radiant"), not self.radiantDecreeIsOpen)
+  // else
+  //   if not self.luckyBlessIsOpen then
+  //     for i, v in ipairs(self.tableScrollSingles) do
+  //       v:radiantBlessOpen(false)
+  //     end
+  //   end
+  //   self.radiantNode:setVisible(false)
+  //   self.radiantDecreeIsOpen = false
+  // end
+}
+
+void UIBuildingCreateInfoPanel::OpenRadiantDecreeTime(float dt){
+  // local state, leftTime = radiantDecreeCtrl:getStateInfo()
+  // if state == gActivityState.CLOSE or not self.radiantDecreeIsOpen then
+  //   SoraDManagerRemoveTimer(self, self.radiantDecreeTimer)
+  //   self.radiantDecreeTimer = nil
+  //   self.radiantNode:setVisible(false)
+  //   self:resUpdate()
+  // else
+  //   self.radiantTime:setString(SoraDConvertSecondToString(leftTime))
+  // end
+}
+
+void UIBuildingCreateInfoPanel::UpdateBuff(EventCustom *p_Event){
+  // self:updateRadiantDecreeBuff()
+}

@@ -31,6 +31,7 @@ THE SOFTWARE.
 #include "Module/City/CityBuildingUtils/CityBuildingTopTip.h"
 #include "cocostudio/CocoStudio.h"
 #include "external/json/document.h"
+#include "Engine/Engine.h"
 
 
 USING_NS_CC;
@@ -44,7 +45,9 @@ CityScene* CityScene::Get() {
   return dynamic_cast<CityScene*>(l_RunningScene);
 }
 
-Scene* CityScene::createScene() { return CityScene::create(); }
+Scene* CityScene::createScene() { 
+  return CityScene::create(); 
+}
 
 // Print useful error message instead of segfaulting when files are not there.
 static void problemLoading(const char* filename) {

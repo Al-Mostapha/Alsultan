@@ -7,6 +7,7 @@
 #include "Module/Equip/Equip.Ctrl.h"
 #include "Module/Science/Science.Ctrl.h"
 #include "Scene/CityScene.h"
+#include "Module/World/WorldMap/WorldMap.Define.h"
 
 USING_NS_CC;
 
@@ -729,9 +730,9 @@ void IBuilding::HarvestTrainArmy() {
   else if (l_BuildingId == EBuilding::MaterialWorkShop)
     StuffWorkshopCtrl::Get()->SendGetStuff();
   else {
-    if (l_BuildingId == EBuilding::Stable || l_BuildingId == EBuilding::TargetRange || l_BuildingId == EBuilding::Barrack ||
+    if ((l_BuildingId == EBuilding::Stable || l_BuildingId == EBuilding::TargetRange || l_BuildingId == EBuilding::Barrack ||
         l_BuildingId == EBuilding::Fortress || l_BuildingId == EBuilding::ChariotPlant ||
-        l_BuildingId == EBuilding::ElitePalace /**and worldMapDefine.isInWarForbidSoldier() */)
+        l_BuildingId == EBuilding::ElitePalace) && WorldMapDefine::Get()->IsInWarForbidSoldier())
       return;
     ArmyCtrl::Get()->GetTrainArmyReq(l_BuildingId);
   }
@@ -1205,9 +1206,45 @@ void IBuilding::InitWithUIType(RBuildingViewNodes p_ViewNodes, Vec2 p_BasePos) {
 void IBuilding::LoadView(){
   LoadBaseView();
 }
+
 void IBuilding::LoadBaseView(){
   LoadBaseViewByBid(m_BID);
 }
+
 void IBuilding::LoadBaseViewByBid(EBuilding p_Bid){
   
+}
+
+bool IBuilding::CheckCanTrainOrUpgrade(){
+  //   local canTrainOrUpgrade = true
+  // if self.isWaitTraining == true then
+  //   self:showIsTrainningTip()
+  //   canTrainOrUpgrade = false
+  //   return canTrainOrUpgrade
+  // end
+  // local bid = self:getBuildBid()
+  // if bid == BUILDID.STABLES or bid == BUILDID.RANGE or bid == BUILDID.BARRACKS or bid == BUILDID.FORTRESS or bid == BUILDID.CHARIOT_PLANT or bid == BUILDID.BLACK_SMITH or bid == BUILDID.HOSTPITAL then
+  //   if true == self:getIsTraining() then
+  //     self:showIsTrainningTip()
+  //     canTrainOrUpgrade = false
+  //     return canTrainOrUpgrade
+  //   end
+  //   if "working" == self:getState() then
+  //     self:showIsTrainningTip()
+  //     canTrainOrUpgrade = false
+  //     return canTrainOrUpgrade
+  //   end
+  //   if "harvesting" == self:getState() then
+  //     self:showIsTrainningTip()
+  //     canTrainOrUpgrade = false
+  //     return canTrainOrUpgrade
+  //   end
+  //   if "building" == self:getState() then
+  //     self:showIsBuildingTip()
+  //     canTrainOrUpgrade = false
+  //     return canTrainOrUpgrade
+  //   end
+  // end
+  // return canTrainOrUpgrade
+  return true;
 }

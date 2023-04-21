@@ -3,6 +3,7 @@
 #include "Module/UI/UIBasePanel.h"
 #include "Module/Building/Building.Enum.h"
 #include "Module/Building/Building.Type.h"
+#include "Base/Common/Common.Enum.h"
 #include "UIBuildingCreateSingle.h"
 
 class IBuilding;
@@ -17,7 +18,7 @@ class UIBuildingCreateInfoPanel : public UIBasePanel
   CreateUICCSView(UIBuildingCreateInfoPanel);
 
   float _FadeInDelay = 0.3f;
-  bool l_FirstRunWar = true;
+  bool _FirstRunWar = true;
   Scheduler *_LuckyBlessTimer;
   Scheduler *_WiseTutorTimer;
   bool _LuckyBlessIsOpen = false;
@@ -136,29 +137,31 @@ public:
   void InitBuildView();
   void OnMessageListener();
   void OnWiseTutorClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
+  void OnArtisanHouseClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
   void BtnUpCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
-  void BtnUpNowCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){}
+  void BtnUpNowCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
   void BtnUnlockedCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
   void BtnHelpCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
-  void BtnShowRadiantBuff(Ref *p_Sender, ui::Widget::TouchEventType p_Touch){}
+  void BtnShowRadiantBuff(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
   Node *WarLvBarEffect(Node *p_Target);
 
   void ResUpdate(EventCustom *p_Event){}
-  void CloseLoading(EventCustom *p_Event){}
+  void CloseLoading(EventCustom *p_Event);
   void UpdateLuckyBless(EventCustom *p_Event = nullptr);
   void JudgeClose(EventCustom *p_Event){}
   void CloseByBuildLock(EventCustom *p_Event){}
-  void UpdateBuff(EventCustom *p_Event){}
+  void UpdateBuff(EventCustom *p_Event);
 
   Node *AddRadiantDecreeBtn();
   void UpdateRadiantDecreeBuff();
+  void OpenRadiantDecreeTime(float dt);
   void OpenLuckyTime(float p_Dt);
   void AdjustWiseArtisanBuffPos(){}
   void OpenWiseTutorTime(float p_Dt){}
   void SetBtnUpNowState();
   void SetBuildBtnTouchEnable(bool p_Enable){}
   void InitScroll();
-  void SetSpecail(){}
+  void SetSpecail();
   void InitUnlockView();
   void RunActClose();
   void InitWarView();
@@ -172,6 +175,11 @@ public:
   void LightBlink(int32 p_Index);
   void ResBuyCallBack();
 
-  void Build(EOPERATE_MODE p_Mode = EOPERATE_MODE::NORMAL){}
-  void Upgrade(EOPERATE_MODE p_Mode = EOPERATE_MODE::NORMAL){}
+  void Build(EOPERATE_MODE p_Mode = EOPERATE_MODE::NORMAL);
+  void BuildNow(EMsgBoxCallBack p_Call);
+  void Upgrade(EOPERATE_MODE p_Mode = EOPERATE_MODE::NORMAL);
+  void UpgradeNow(EMsgBoxCallBack p_Call);
+  void ReloadScroll(bool p_Force){}
+
+  void OnExitPanel() override;
 };

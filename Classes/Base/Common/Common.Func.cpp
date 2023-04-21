@@ -179,3 +179,24 @@ bool GBase::DEnoughWarBadge(int32 p_NeedBadge, int32 p_BadgeID, bool p_NotShow){
   // end
   return false;
 }
+
+bool GBase::DEnoughGold(int32 p_GoldNeeded, bool p_NotShow){
+  // local gametop = gModuleMgr.getObject("gametop")
+  // local lordInfoCtrl = gametop.playertop_:getModule("lordInfoCtrl")
+  // local haveGold = lordInfoCtrl:getBaseInfo().gold
+  // if needGold <= haveGold then
+  //   return true
+  // else
+  //   if notShow ~= true then
+  //     SoraDPlaySound("normalcontrol", 2)
+  //     SoraDShowMsgBox(i18n("common_text_423"), i18n("common_text_424"), nil, function(type)
+  //       if type == MSGBOX_CALLBACK_YES then
+  //         SoraDCreatePanel("rechargeView"):show()
+  //         paymentManager.openRechargeView(gRechargeActiveFromEnum.ROAD09)
+  //       end
+  //     end)
+  //   end
+  //   return false
+  // end
+  return false;
+}

@@ -21,6 +21,7 @@ class CityCell {
   void UpgradeBuildingStar(EBuildingIndex p_Index);
   void ExchangeBuild(EBuildingIndex p_PreIndex, EBuildingIndex p_AftIndex);
   void OpenArea(ELockedArea p_Area);
+  ITask *QueryQueue(ETask p_Task){return nullptr;}
   void FromJson(GJson *p_Json);
   private:
     BuildingCell &GetBuilding(EBuildingIndex p_Index);

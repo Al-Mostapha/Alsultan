@@ -78,3 +78,17 @@ GPair<ETask, GTime> BuildingLogic::GetIdleBuildQueue() {
   // end
   return GPair<ETask, GTime>(ETask::None, 0);
 }
+
+bool BuildingLogic::GetOutBuildIsResBuild(EBuilding p_Bid){
+  if(p_Bid == EBuilding::Farm)
+    return true;
+  if(p_Bid == EBuilding::LumberMill)
+    return true;
+  if(p_Bid == EBuilding::IronMine)
+    return true;
+  if(p_Bid == EBuilding::SilverMine)
+    return true;
+  if(p_Bid == EBuilding::CrystalMine)
+    return true;
+  return false;
+}

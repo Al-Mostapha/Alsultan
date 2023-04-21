@@ -19,4 +19,5 @@ public:
   GVector<ItemGift> GetRandomGiftShowItems(uint32 p_IdItem);
   bool HasDesc(uint32 p_IdItem);
   bool IsSkinShow(uint32 p_IdItem);
+  uint32 GetItemCount(uint32 p_IdItem){ return 0; }
 };

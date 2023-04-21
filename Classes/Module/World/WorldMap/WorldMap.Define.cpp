@@ -35,3 +35,11 @@ bool WorldMapDefine::InInCrossWar(){
 bool WorldMapDefine::IsInKingdomBattle(){
   return false;
 }
+
+bool WorldMapDefine::IsInWarForbid(bool p_NoShowTips, bool p_Activity){
+  return false;
+}
+
+bool WorldMapDefine::IsInWarForbidSoldier(bool p_NoShowTips, bool p_Activity){
+  return false;
+}

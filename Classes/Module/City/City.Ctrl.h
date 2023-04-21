@@ -27,4 +27,6 @@ public:
   void RegisterNotify(){}
 
   void OpenGroundReq(ELockedArea p_Area){}
+  void AddBuildingReq(EBuildingIndex p_Index, EBuilding p_Bid, EOPERATE_MODE p_Mode){}
+  void UpgradeBuildReq(EBuildingIndex p_Index, EBuilding p_Bid, EOPERATE_MODE p_Mode){}
 };

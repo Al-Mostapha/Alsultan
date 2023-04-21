@@ -41,16 +41,6 @@ enum class ENoticeIcon{
   Normal = 7
 };
 
-enum class EMsgBoxCallBack{
-  None = 0,
-  Yes = 0,
-  No = 1,
-  Cancel = 2,
-  SpeedUp = 3,
-  Other = 4,
-  TimeEnd = 5,
-};
-
 enum class EMainUIStyle{
   None = 0,
   Easter = 1,

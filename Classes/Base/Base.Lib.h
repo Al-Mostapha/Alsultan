@@ -156,5 +156,4 @@ Label *DCreateLabel(RCreateLabelParm p_Parm);
 
 void DFadeInOut(Node *p_Node/**Fade paramters*/);
 
-
 };  // namespace GBase
