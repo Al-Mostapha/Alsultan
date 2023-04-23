@@ -9,7 +9,7 @@ GTime ArmyCtrl::GetHostpitalPyramidWarCDQueueTime() {
   return 0;
 }
 
-EArmy ArmyCtrl::GetTrainedArmy(EBuilding p_Building) {
+EArmy ArmyCtrl::GetTrainArmy(EBuilding p_Building) {
   return EArmy::None;
 }
 

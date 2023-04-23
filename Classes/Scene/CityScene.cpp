@@ -28,10 +28,12 @@ THE SOFTWARE.
 #include "Include/IncludeCityBuilding.h"
 #include "Module/Building/Building.Module.h"
 #include "Module/City/City.Module.h"
+#include "Module/UI/UIManger.h"
 #include "Module/City/CityBuildingUtils/CityBuildingTopTip.h"
 #include "cocostudio/CocoStudio.h"
 #include "external/json/document.h"
 #include "Engine/Engine.h"
+#include "FairyGUI.h"
 
 
 USING_NS_CC;
@@ -79,6 +81,11 @@ bool CityScene::init() {
 }
 
 void CityScene::initCityLayers() {
+
+  _GRootNormal = fairygui::GRoot::create(this, 5);
+  _GRootNormal->retain();
+  _GRootNormal->name = "GRoot";
+  _GRootNormal->setPosition(0, 0);
   _MainCityView = MainCityView::Create(RViewOtherData());
   _ContainerView = _MainCityView->_ContainerView;
   containerView = _MainCityView->_ContainerView;

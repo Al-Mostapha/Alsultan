@@ -1,6 +1,7 @@
 #pragma once
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBasePanel.h"
+#include "Module/Army/Army.Type.h"
 #include "Module/Building/Building.Enum.h"
 #include "Module/UI/MainUI/UICommonResourcesMenu.h"
 #include "Module/UI/Part/Common/Button/UICommonGoldNormalBtn.h"
@@ -19,6 +20,7 @@ class UISoldiersCampView : public UIBasePanel
   bool _IsRun = true;
   // self.selectWheel = nil
   // self.tableSoldierList = {}
+  GVector<RCanTrainArmy> _TableSoldierList;
   // self.tableCurSoldier = {
   //   bid = 0,
   //   armyData = {},
@@ -28,6 +30,16 @@ class UISoldiersCampView : public UIBasePanel
   //   type = 1,
   //   index = 0
   // }
+  struct {
+    EBuilding _Bid = EBuilding::None;
+    RArmyData _ArmyData;
+    int32 _ArmyCount = 1;
+    bool _NeedRes = false;
+    bool _NeedElite = false;
+    EArmy _Type = EArmy::None;
+    EBuildingIndex _Index = EBuildingIndex::None;
+  } _TableCurSoldier;
+  IBuilding *_BuildEntity = nullptr;
   // self.tableResSingle = {}
   // self.trianQueue = nil
   Scheduler *_Timer = nullptr;
@@ -121,7 +133,7 @@ class UISoldiersCampView : public UIBasePanel
 public: 
   static UISoldiersCampView* Create();
   void Ctor() override;
-  void InitData(EBuildingIndex p_Index, IBuilding *p_Building);
+  void InitData(EBuildingIndex p_Index, IBuilding *p_Building, EArmy p_ArmyType);
   void InitWidget();
 
   void BtnWearClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
@@ -140,4 +152,5 @@ public:
 
   void UpdateLuckyBless(){}
   void TrainSoldierSlider(float p_Value){}
+  void InitResSingle();
 };

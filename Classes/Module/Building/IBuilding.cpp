@@ -573,7 +573,7 @@ bool IBuilding::IsCanHarvest() {
   if (l_BuildingType == EBuilding::ElitePalace) {
     //   print("elite")
   }
-  auto l_TrainedType = ArmyCtrl::Get()->GetTrainedArmy(l_BuildingType);
+  auto l_TrainedType = ArmyCtrl::Get()->GetTrainArmy(l_BuildingType);
   if (l_TrainedType != EArmy::None) {
     m_IsCanHarvestTrain = true;
     m_TrainedArmy = l_TrainedType;

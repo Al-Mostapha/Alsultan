@@ -1,4 +1,7 @@
 #include "UISoldiersCampView.h"
+#include "Module/Building/IBuilding.h"
+#include "Module/Army/Army.Ctrl.h"
+#include "Module/Army/Army.Logic.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
 
 UISoldiersCampView *UISoldiersCampView::Create(){
@@ -170,8 +173,89 @@ void UISoldiersCampView::Ctor(){
   // end
 }
 
-void UISoldiersCampView::InitData(EBuildingIndex p_Index, IBuilding *p_Building){
-
+void UISoldiersCampView::InitData(EBuildingIndex p_Index, IBuilding *p_Building, EArmy p_ArmyType){
+  // self.tableCurSoldier.bid = bid
+  _TableCurSoldier._Bid = p_Building->GetBuildingId();
+  // self.tableCurSoldier.type = type
+  _TableCurSoldier._Type = p_ArmyType;
+  // self.tableCurSoldier.index = index
+  _TableCurSoldier._Index = p_Index;
+  // self.buildEntity = buildEntity
+  _BuildEntity = p_Building;
+  // self:iniResSingle()
+  InitResSingle();
+  // local trainedArmy = armyCtrl:getTrainArmy(self.tableCurSoldier.bid)
+  auto l_TrainedArmy = ArmyCtrl::Get()->GetTrainArmy(_TableCurSoldier._Bid);
+  // if trainedArmy ~= nil then
+  //   armyCtrl:getTrainArmyReq(self.tableCurSoldier.bid)
+  // end
+  if(l_TrainedArmy != EArmy::None)
+  {
+    ArmyCtrl::Get()->GetTrainArmyReq(_TableCurSoldier._Bid);
+  }
+  
+  auto l_CurIndex = 0;
+  auto l_TableSoldierList = ArmyLogic::Get()->GetCanTrainList(_TableCurSoldier._Bid);
+  _TableSoldierList = l_TableSoldierList.First;
+  l_CurIndex = l_TableSoldierList.Second;
+  if(l_CurIndex == -1){
+   //   local trainLog = self.trainSoldiersLog[tostring(bid)]
+    //   if not trainLog then
+    //     self.curIndex = curIndex
+    //     self.trainSoldiersLog[tostring(bid)] = {
+    //       maxArmyId = self.tableSoldierList[curIndex].armyid,
+    //       trainArmyId = self.tableSoldierList[curIndex].armyid
+    //     }
+    //   else
+    //     local newTrainArmyId = self.tableSoldierList[curIndex].armyid
+    //     if newTrainArmyId ~= trainLog.maxArmyId then
+    //       self.curIndex = curIndex
+    //       trainLog.maxArmyId = newTrainArmyId
+    //     else
+    //       local lastTrainArmyId = trainLog.trainArmyId
+    //       for i, v in ipairs(self.tableSoldierList) do
+    //         if v.armyid == lastTrainArmyId then
+    //           self.curIndex = i
+    //           break
+    //         end
+    //       end
+    //       if not self.curIndex then
+    //         self.curIndex = curIndex
+    //       end
+    //     end
+    //   end
+  }else{
+    //   local trainLog = self.trainSoldiersLog[tostring(bid)]
+    //   if not trainLog then
+    //     self.trainSoldiersLog[tostring(bid)] = {
+    //       maxArmyId = self.tableSoldierList[curIndex].armyid,
+    //       trainArmyId = self.tableSoldierList[curIndex].armyid
+    //     }
+    //   end
+  }
+  // self.trianQueue = queueCtrl:queryQueue(buildRead.getQueueType(self.tableCurSoldier.bid))
+  // if self.tableCurSoldier.type == TRAIN_TYPE.SOLDIERS then
+  //   self.btnTrain:setTitleText(i18n("common_text_061"))
+  //   self.btnTrainNow:setTitleStr(i18n("common_text_317"))
+  // else
+  //   self.btnTrain:setTitleText(i18n("common_text_042"))
+  //   self.btnTrainNow:setTitleStr(i18n("common_text_379"))
+  // end
+  // if self.trianQueue then
+  //   self:isTraining(true)
+  // else
+  //   self:isTraining(false)
+  // end
+  // if self.selectWheel == nil then
+  //   self:createWheelScrollView()
+  //   self.selectWheel:setVisible(false)
+  //   self:runAction(cca.seq({
+  //     cca.callFunc(function(...)
+  //       self.selectWheel:unfoldAction(0.3)
+  //       self.selectWheel:setVisible(true)
+  //     end)
+  //   }))
+  // end
 }
 
 void UISoldiersCampView::InitWidget(){

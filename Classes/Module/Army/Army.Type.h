@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Army.Enum.h"
 
 struct RCityArmy
 {
@@ -306,4 +307,10 @@ struct RCityArmy
         ArmyF.fromJson(json->GetJsonObject("ArmyF"));
         ArmyTrap.fromJson(json->GetJsonObject("ArmyTrap"));
     }
+};
+
+struct RArmyData{};
+
+struct RCanTrainArmy{
+
 };

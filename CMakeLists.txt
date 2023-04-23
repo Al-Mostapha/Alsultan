@@ -28,7 +28,7 @@ cmake_minimum_required(VERSION 3.6)
 set(APP_NAME Alsultan)
 
 project(${APP_NAME})
-
+include(D:/Mustapha/Tools/spine-runtimes/spine-cocos2dx/spine-cocos2dx.cmake)
 if(XCODE)
     if(NOT DEFINED CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET)
         SET (CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 8.0)
@@ -59,17 +59,17 @@ file(GLOB_RECURSE SourceFileList
 )
 file(GLOB_RECURSE HeaderFileList
     "Classes/**/*.h"
-) 
+)
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
-    ${SourceFileList}
-    #Classes/Module/UI/UI.Create.cpp
+  ${SourceFileList}
+  #Classes/Module/UI/UI.Create.cpp
   Classes/AppDelegate.cpp
-    )
+)
 list(APPEND GAME_HEADER
 	${HeaderFileList}
-     Classes/AppDelegate.h
-     )
+  Classes/AppDelegate.h
+)
 
 if(ANDROID)
     # change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml
@@ -136,7 +136,10 @@ else()
     target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
 endif()
 
+add_subdirectory(libfairygui)
+target_link_libraries(${APP_NAME} spine-cpp spine-cocos2dx)
 target_link_libraries(${APP_NAME} cocos2d)
+target_link_libraries(${APP_NAME} fairygui)
 target_include_directories(${APP_NAME}
         PRIVATE Classes
         PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
@@ -169,3 +172,5 @@ if(LINUX OR WINDOWS)
     cocos_get_resource_path(APP_RES_DIR ${APP_NAME})
     cocos_copy_target_res(${APP_NAME} LINK_TO ${APP_RES_DIR} FOLDERS ${GAME_RES_FOLDER})
 endif()
+
+

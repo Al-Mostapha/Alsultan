@@ -6,7 +6,7 @@
 class ArmyCtrl { 
 public: 
   static ArmyCtrl* Get(); 
-  EArmy GetTrainedArmy(EBuilding p_Building);
+  EArmy GetTrainArmy(EBuilding p_Building);
   GTime GetHostpitalPyramidWarCDQueueTime();
   void GetTrainArmyReq(EBuilding p_Building);
 };

@@ -58,6 +58,12 @@
     "xmemory": "cpp",
     "xstddef": "cpp",
     "xtr1common": "cpp",
-    "functional": "cpp"
+    "functional": "cpp",
+    "locale": "cpp",
+    "sstream": "cpp",
+    "xlocbuf": "cpp",
+    "xlocmes": "cpp",
+    "xlocmon": "cpp",
+    "xloctime": "cpp"
   }
 }
