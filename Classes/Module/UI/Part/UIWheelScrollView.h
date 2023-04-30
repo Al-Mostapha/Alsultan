@@ -1,48 +1,52 @@
 #include "Include/IncludeBase.h"
-#include "Include/IncludeUiBase.h"
+#include "Module/UI/UIBaseView.h"
 #include "Module/UI/Types/UIWheelScrollViewArgs.h"
 
-class UIWheelScrollView : public UIElment
+class UIWheelScrollView : public UIBaseView
 {
+  CREATE_FUNC(UIWheelScrollView);
+  CreateUIPanel(UIWheelScrollView);
 
   
 private:
-  using selectedItemListener = std::function<void(size_t index)>;
-  ui::ScrollView* m_ScrollView;
+  using selectedItemListener = std::function<void(size_t index, Node *)>;
+  ui::ScrollView* _ScrollView;
   GVector<ui::Widget*> m_WidgetArray;
-  float m_CellHeight;
-  float m_CircleRadius;
-  float m_OffsetPosX;
-  float m_TransparentOffset = 0;
-  bool m_SingleIsMoved = false;
-  bool m_IgnoreOpacity = false;
-  int m_IsScrollToIndex = 0;
-  bool m_IsScrollEnd = false;
-  bool m_IsBounceEnd = false;
-  bool m_IsSound = true;
-  int m_CurrentIndex  = -123456789;
-  selectedItemListener m_SelectedItemListener;
+  float _CellHeight = 0;
+  float _CircleRadius = 0;
+  float _OffsetPosX = 0;
+  GVector<Node *> _ItemArray;
+  selectedItemListener _ItemSelectedListener;
+  float _TransparentOffset = 0;
+    // self.curI = nil
+  bool _SingleIsMoved = false;
+  bool _IgnoreOpacity = false;
+  int _IsScrollToIndex = false;
+  bool _IsScrollEnd = false;
+  bool _IsBounceEnd = false;
+  bool _IsSound = true;
+  int _CurrentIndex  = -1;
+
+
 public:
-  UIWheelScrollView();
-  ~UIWheelScrollView();
+  static UIWheelScrollView *Create(Size p_Size);
+  void Ctor();
+
   void removeChildren();
   void setInertiaValue(bool p_Inertia);
-  void initData(const UIWheelScrollViewArgs& p_WheelScrollViewArgs);
-  void scrollEventCallBack(Ref* p_Ref, ui::ScrollView::EventType p_EventType);
-  void scrollTouchEventCallBack(Ref* p_Ref, ui::Widget::TouchEventType p_EventType);
-  void updateItems();
+  void initData(GVector<Node *> p_Array, float p_PosX, float p_CellHeight, float p_CircleRadius, bool p_IsSound, bool p_IsIgnoreOpacity = false);
+  void ScrollEventCallBack(Ref* p_Ref, ui::ScrollView::EventType p_EventType){}
+  void ScrollTouchEventCallBack(Ref* p_Ref, ui::Widget::TouchEventType p_EventType);
+  void UpdateItems();
   void selectedCellIndex(int p_CellIndex, float p_TimeInSec = 0, bool p_Attenuated = false, float p_AttenuatedY = 0);
 
   int pointCurSelectSingle(bool p_IsUpdateCurI);
 
-  void setTouchDetection(float delay);
+  void SetTouchDetection(float delay);
   void bounceSingle();
-  bool init();
-  void unfoldAction(float p_delay);
-  void setSelectedItemListener(const selectedItemListener& p_CallBack){
-    m_SelectedItemListener = p_CallBack;
+  void UnfoldAction(float p_delay);
+  void SetItemSelectedListener(const selectedItemListener& p_CallBack){
+    _ItemSelectedListener = p_CallBack;
   };
-
-  CREATE_FUNC(UIWheelScrollView);
 };
 

@@ -1,4 +1,5 @@
 #include "RechargeADRead.h"
+#include "Base/Containers/HashMap.h"
 
 GHashMap<int32, RRechargeAD> RechargeADRead::m_MapRechargeAD ;
 

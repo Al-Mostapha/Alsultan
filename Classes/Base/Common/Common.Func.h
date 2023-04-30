@@ -1,7 +1,7 @@
 #pragma once
 #include "Common.Type.h"
 #include "ui/CocosGUI.h"
-
+#include "Module/CityResource/Resource.Enum.h"
 
 namespace GBase{
   Node *DCreateEffectNode(
@@ -15,4 +15,7 @@ namespace GBase{
   bool DIsNodeVisibleOnScroll(ui::Widget *p_Node, ui::ScrollView *p_Scroll = nullptr, ui::Widget::TouchEventType p_Type = ui::Widget::TouchEventType::ENDED);
   bool DEnoughWarBadge(int32 p_NeedBadge, int32 p_BadgeID, bool p_NotShow = false);
   bool DEnoughGold(int32 p_GoldNeeded, bool p_NotShow = false);
+  bool DResIsLock(EResource p_ResId);
+  void DResetEffectNode(Node *p_Node);
+  void DStopEffectNode(Node *p_Node);
 };

@@ -12,7 +12,7 @@ enum class ETask {
   barracks_queue = 1206,
   FrotressQueue = 1207,
   elite_queue = 1208,
-  technology_upgrade_queue = 1212,
+  TechnologyUpgradeQ = 1212,
   skill_immediatelt_return = 1213,
   skill_help = 1214,
   skill_bumper = 1215,

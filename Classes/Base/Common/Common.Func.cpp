@@ -200,3 +200,39 @@ bool GBase::DEnoughGold(int32 p_GoldNeeded, bool p_NotShow){
   // end
   return false;
 }
+
+bool GBase::DResIsLock(EResource p_ResId){
+  //   local isUnlock = false
+  // local gametop = gModuleMgr.getObject("gametop")
+  // local cityCtrl = gametop.playertop_:getModule("cityCtrl")
+  // local castleLV = cityCtrl:getBuildMaxLv(BUILDID.CASTLE)
+  // local resDesRead = include("resDesRead")
+  // rid = tonumber(rid)
+  // isUnlock = castleLV >= resDesRead.getUnLockLevel(rid) and resDesRead.isStarBuildUnLock(rid)
+  // return isUnlock
+  return true;
+}
+
+void GBase::DResetEffectNode(Node *p_Node){
+  if(!p_Node)
+    return;
+  auto l_Children = p_Node->getChildren();
+  for(auto l_Child : l_Children){
+    auto l_ChildEffect = dynamic_cast<ParticleSystem *>(l_Child);
+    CCAssert(l_ChildEffect, "GBase::DResetEffectNode Not particle effect");
+    if(l_ChildEffect)
+      l_ChildEffect->resetSystem();
+  }
+}
+
+void GBase::DStopEffectNode(Node *p_Node){
+  if(!p_Node)
+    return;
+  auto l_Children = p_Node->getChildren();
+  for(auto l_Child : l_Children){
+    auto l_ChildEffect = dynamic_cast<ParticleSystem *>(l_Child);
+    CCAssert(l_ChildEffect, "GBase::DStopEffectNode Not particle effect");
+    if(l_ChildEffect)
+      l_ChildEffect->stopSystem();
+  }
+}

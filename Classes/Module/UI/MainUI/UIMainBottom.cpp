@@ -60,149 +60,149 @@ void UIMainBottom::Ctor() {
   // cityBuildData:removeMessageListener()
   // cityBuildData:registerMessageListener()
   // userSDKManager.setAudioTarget(chatAudioMgr)
-  n_NodeLOD = GBase::GetChildByName<Node*>(this, "Node_LOD");
-  n_NodeAreaRb = GBase::GetChildByName<Node*>(n_NodeLOD, "Node_area_rb");
-  n_NodeAreaLb = GBase::GetChildByName<Node*>(n_NodeLOD, "Node_area_lb");
-  n_NodeAreaB = GBase::GetChildByName<Node*>(this, "Node_area_b");
+  n_NodeLOD = GBase::DGetChildByName<Node*>(this, "Node_LOD");
+  n_NodeAreaRb = GBase::DGetChildByName<Node*>(n_NodeLOD, "Node_area_rb");
+  n_NodeAreaLb = GBase::DGetChildByName<Node*>(n_NodeLOD, "Node_area_lb");
+  n_NodeAreaB = GBase::DGetChildByName<Node*>(this, "Node_area_b");
   auto* l_AnimationCollectItems = UIAnimationCollectItems::Create();
   n_NodeAreaB->addChild(l_AnimationCollectItems, 10);
   l_AnimationCollectItems->setName("animationCollectItems");
   m_ViewChangeType = EScene::City;
   InitGroup();
-  n_UiBg = GBase::GetChildByName<Sprite*>(this, "UI_Label_BG");
-  n_UiBgLeft = GBase::GetChildByName<ui::ImageView*>(this, "Image_decor_left");
+  n_UiBg = GBase::DGetChildByName<Sprite*>(this, "UI_Label_BG");
+  n_UiBgLeft = GBase::DGetChildByName<ui::ImageView*>(this, "Image_decor_left");
   n_UiBgLeft->setVisible(GBase::Const::Get()->IsArClient);
-  n_UiBgRight = GBase::GetChildByName<ui::ImageView*>(this, "Image_decor_right");
+  n_UiBgRight = GBase::DGetChildByName<ui::ImageView*>(this, "Image_decor_right");
   n_UiBgRight->setVisible(GBase::Const::Get()->IsArClient);
-  n_NodeStyleBg = GBase::GetChildByName<Node*>(this, "Node_style_bg");
-  n_NodeStyleTop = GBase::GetChildByName<Node*>(this, "Node_style_top");
+  n_NodeStyleBg = GBase::DGetChildByName<Node*>(this, "Node_style_bg");
+  n_NodeStyleTop = GBase::DGetChildByName<Node*>(this, "Node_style_top");
   
   InitStyle();
-  n_TipItems = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_items");
-  n_TipAlliance = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_alliance");
-  n_TipMail = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_mail");
-  n_TipHero = GBase::GetChildByName<ui::ImageView*>(this, "Sprite_hero");
+  n_TipItems = GBase::DGetChildByName<ui::ImageView*>(this, "Sprite_items");
+  n_TipAlliance = GBase::DGetChildByName<ui::ImageView*>(this, "Sprite_alliance");
+  n_TipMail = GBase::DGetChildByName<ui::ImageView*>(this, "Sprite_mail");
+  n_TipHero = GBase::DGetChildByName<ui::ImageView*>(this, "Sprite_hero");
   n_TipHero->setVisible(false);
-  auto l_TestText = GBase::GetChildByName<ui::Text*>(this, "Text_hero");
-  auto l_TestLabel = GBase::GetChildByName<Label*>(this, "Text_hero");
-  n_TipHeroCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_hero"));
+  auto l_TestText = GBase::DGetChildByName<ui::Text*>(this, "Text_hero");
+  auto l_TestLabel = GBase::DGetChildByName<Label*>(this, "Text_hero");
+  n_TipHeroCount = ExchangeGroupText(GBase::DGetChildByName<ui::Text *>(this, "Text_hero"));
   // self.tipHeroCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipMailCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_mail"));
+  n_TipMailCount = ExchangeGroupText(GBase::DGetChildByName<ui::Text *>(this, "Text_mail"));
   // self.tipMailCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipAllianceCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_alliance"));
+  n_TipAllianceCount = ExchangeGroupText(GBase::DGetChildByName<ui::Text *>(this, "Text_alliance"));
   // self.tipAllianceCount:setGroupID(mainUIDef.newGroupID.text)
-  n_TipItemsCount = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_items"));
+  n_TipItemsCount = ExchangeGroupText(GBase::DGetChildByName<ui::Text *>(this, "Text_items"));
   // self.tipItemsCount:setGroupID(mainUIDef.newGroupID.text)
   // self.imgWarning = SoraDGetRedWarnning()
   n_ChatMainUIView = GBase::DGetExtendChildFromCCSByName<UIChatMainUiView>(this, "CCS_chatMainUIView_Node");
   n_ChatMainUIView->InitWithData();
-  n_FrameWorldCity = GBase::GetChildByName<Sprite*>(this, "frame_btn_worldCity");
-  n_ButtonWorldCity = GBase::GetChildByName<ui::Button*>(this, "Button_worldCity");
-  n_ImgWorldCity = GBase::GetChildByName<ui::ImageView*>(this, "img_worldCity");
+  n_FrameWorldCity = GBase::DGetChildByName<Sprite*>(this, "frame_btn_worldCity");
+  n_ButtonWorldCity = GBase::DGetChildByName<ui::Button*>(this, "Button_worldCity");
+  n_ImgWorldCity = GBase::DGetChildByName<ui::ImageView*>(this, "img_worldCity");
   if (n_ImgWorldCity) n_ButtonWorldCity->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnWorldCityClick, this));
   // self.nodeQuestGuide = SoraDGetExtendChildFromCCSByName(self, "CCS_questGuideNode_quest")
-  n_BtnAccount = GBase::GetChildByName<ui::Button*>(this, "Button_account");
+  n_BtnAccount = GBase::DGetChildByName<ui::Button*>(this, "Button_account");
   n_BtnAccount->setVisible(false);
-  n_IconAccount = GBase::GetChildByName<Sprite*>(n_BtnAccount, "icon_set_account");
-  n_RedPointAccount = GBase::GetChildByName<Sprite*>(this, "Sprite_redPoint");
-  n_BtnPyramidBattle = GBase::GetChildByName<ui::Button*>(this, "Button_pyramidBattle");
-  n_SpriteBattleTimeBg = GBase::GetChildByName<Sprite*>(this, "Sprite_battleTimeBg");
-  n_TxtPyramidBattleTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_battleTime"));
-  n_BtnPyramidPlayoffs = GBase::GetChildByName<ui::Button*>(this, "Button_pyramidPlayoffs");
-  n_ImgPyramidPlayoffsBg = GBase::GetChildByName<Sprite*>(n_BtnPyramidPlayoffs, "Sprite_playoffBg");
-  n_TxtPyramidPlayoffsTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_playoffTime"));
-  n_BtnCityUnlock = GBase::GetChildByName<ui::Button*>(this, "Button_cityUnlockBuild");
-  n_SpriteCityUnlock = GBase::GetChildByName<Sprite*>(n_BtnCityUnlock, "Sprite_unlock");
-  n_TxtCityUnlock = GBase::GetChildByName<ui::Text*>(n_BtnCityUnlock, "Text_unlock");
-  n_BtnNewPlayerBuff = GBase::GetChildByName<ui::Button*>(this, "Button_newPlayerBuff");
-  n_TextNewPlayer = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnNewPlayerBuff, "Text_newPlayer"));
-  n_BtnPrinceGiftNewBuff = GBase::GetChildByName<ui::Button*>(this, "Button_princeGiftNewBuff");
+  n_IconAccount = GBase::DGetChildByName<Sprite*>(n_BtnAccount, "icon_set_account");
+  n_RedPointAccount = GBase::DGetChildByName<Sprite*>(this, "Sprite_redPoint");
+  n_BtnPyramidBattle = GBase::DGetChildByName<ui::Button*>(this, "Button_pyramidBattle");
+  n_SpriteBattleTimeBg = GBase::DGetChildByName<Sprite*>(this, "Sprite_battleTimeBg");
+  n_TxtPyramidBattleTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(this, "Text_battleTime"));
+  n_BtnPyramidPlayoffs = GBase::DGetChildByName<ui::Button*>(this, "Button_pyramidPlayoffs");
+  n_ImgPyramidPlayoffsBg = GBase::DGetChildByName<Sprite*>(n_BtnPyramidPlayoffs, "Sprite_playoffBg");
+  n_TxtPyramidPlayoffsTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(this, "Text_playoffTime"));
+  n_BtnCityUnlock = GBase::DGetChildByName<ui::Button*>(this, "Button_cityUnlockBuild");
+  n_SpriteCityUnlock = GBase::DGetChildByName<Sprite*>(n_BtnCityUnlock, "Sprite_unlock");
+  n_TxtCityUnlock = GBase::DGetChildByName<ui::Text*>(n_BtnCityUnlock, "Text_unlock");
+  n_BtnNewPlayerBuff = GBase::DGetChildByName<ui::Button*>(this, "Button_newPlayerBuff");
+  n_TextNewPlayer = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(n_BtnNewPlayerBuff, "Text_newPlayer"));
+  n_BtnPrinceGiftNewBuff = GBase::DGetChildByName<ui::Button*>(this, "Button_princeGiftNewBuff");
   // self.textPrinceGiftNew = SoraDGetChildByName(self.btnPrinceGiftNewBuff, "Text_princeGiftNewBuff")
-  n_TextPrinceGiftNew = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnPrinceGiftNewBuff, "Text_princeGiftNewBuff"));
+  n_TextPrinceGiftNew = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(n_BtnPrinceGiftNewBuff, "Text_princeGiftNewBuff"));
   // self.Sprite_princeGiftNewBuff = SoraDGetChildByName(self.btnPrinceGiftNewBuff, "Sprite_princeGiftNewBuff")
-  n_SpritePrinceGiftNewBuff = GBase::GetChildByName<Sprite*>(n_BtnPrinceGiftNewBuff, "Sprite_princeGiftNewBuff");
+  n_SpritePrinceGiftNewBuff = GBase::DGetChildByName<Sprite*>(n_BtnPrinceGiftNewBuff, "Sprite_princeGiftNewBuff");
   n_SpritePrinceGiftNewBuff->setScale(0.5);
-  n_BtnPrinceGiftBuff = GBase::GetChildByName<ui::Button*>(this, "Button_princeGiftBuff");
+  n_BtnPrinceGiftBuff = GBase::DGetChildByName<ui::Button*>(this, "Button_princeGiftBuff");
   // self.textPrinceGift = SoraDGetChildByName(self.btnPrinceGiftBuff, "Text_princeGiftBuff")
-  n_TextPrinceGift = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnPrinceGiftBuff, "Text_princeGiftBuff"));
-  n_SpritePrinceGiftBuff = GBase::GetChildByName<Sprite*>(n_BtnPrinceGiftBuff, "Sprite_princeGiftBuff");
+  n_TextPrinceGift = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(n_BtnPrinceGiftBuff, "Text_princeGiftBuff"));
+  n_SpritePrinceGiftBuff = GBase::DGetChildByName<Sprite*>(n_BtnPrinceGiftBuff, "Sprite_princeGiftBuff");
   n_SpritePrinceGiftBuff->setScale(0.5);
-  n_BtnSultansWelBack = GBase::GetChildByName<ui::Button*>(this, "Button_sultanWelBack");
-  n_TextWelBack = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnSultansWelBack, "Text_welBack"));
-  n_BtnHero = GBase::GetChildByName<ui::Button*>(this, "Button_hero");
-  n_IconBtnHero = GBase::GetChildByName<ui::ImageView*>(n_BtnHero, "icon_hero");
-  n_BtnItems = GBase::GetChildByName<ui::Button*>(this, "Button_items");
-  n_IconBtnItems = GBase::GetChildByName<ui::ImageView*>(n_BtnItems, "icon_items");
-  n_ItemNewIcon = GBase::GetChildByName<Sprite*>(n_BtnItems, "icon_new");
-  n_NodeDiscountEffect = GBase::GetChildByName<Node*>(n_BtnItems, "Node_discountEffect");
-  n_BtnMail = GBase::GetChildByName<ui::Button*>(this, "Button_mail");
-  n_IconBtnMail = GBase::GetChildByName<ui::ImageView*>(n_BtnMail, "icon_mail");
-  n_BtnAlliance = GBase::GetChildByName<ui::Button*>(this, "Button_alliance");
-  n_IconBtnAlliance = GBase::GetChildByName<ui::ImageView*>(n_BtnAlliance, "icon_alliance");
-  n_BtnWatchTower = GBase::GetChildByName<ui::Button*>(this, "Button_watchTower");
-  n_IconAlarm = GBase::GetChildByName<Sprite*>(this, "icon_building_alarm");
-  n_BtnWallBurning = GBase::GetChildByName<ui::Button*>(this, "Button_wallBurnning");
+  n_BtnSultansWelBack = GBase::DGetChildByName<ui::Button*>(this, "Button_sultanWelBack");
+  n_TextWelBack = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(n_BtnSultansWelBack, "Text_welBack"));
+  n_BtnHero = GBase::DGetChildByName<ui::Button*>(this, "Button_hero");
+  n_IconBtnHero = GBase::DGetChildByName<ui::ImageView*>(n_BtnHero, "icon_hero");
+  n_BtnItems = GBase::DGetChildByName<ui::Button*>(this, "Button_items");
+  n_IconBtnItems = GBase::DGetChildByName<ui::ImageView*>(n_BtnItems, "icon_items");
+  n_ItemNewIcon = GBase::DGetChildByName<Sprite*>(n_BtnItems, "icon_new");
+  n_NodeDiscountEffect = GBase::DGetChildByName<Node*>(n_BtnItems, "Node_discountEffect");
+  n_BtnMail = GBase::DGetChildByName<ui::Button*>(this, "Button_mail");
+  n_IconBtnMail = GBase::DGetChildByName<ui::ImageView*>(n_BtnMail, "icon_mail");
+  n_BtnAlliance = GBase::DGetChildByName<ui::Button*>(this, "Button_alliance");
+  n_IconBtnAlliance = GBase::DGetChildByName<ui::ImageView*>(n_BtnAlliance, "icon_alliance");
+  n_BtnWatchTower = GBase::DGetChildByName<ui::Button*>(this, "Button_watchTower");
+  n_IconAlarm = GBase::DGetChildByName<Sprite*>(this, "icon_building_alarm");
+  n_BtnWallBurning = GBase::DGetChildByName<ui::Button*>(this, "Button_wallBurnning");
   n_BtnWallBurning->setVisible(INIT_FALSE);
-  n_BtnKingdomManager = GBase::GetChildByName<ui::Button*>(this, "Button_kingdomManager");
-  n_BtnKingdomManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnKingdomManager, "Sprite_crown");
-  n_SpKingdomManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnKingdomManager, "Sprite_giftTimeBg");
+  n_BtnKingdomManager = GBase::DGetChildByName<ui::Button*>(this, "Button_kingdomManager");
+  n_BtnKingdomManagerSprite = GBase::DGetChildByName<Sprite*>(n_BtnKingdomManager, "Sprite_crown");
+  n_SpKingdomManagerTimeBg = GBase::DGetChildByName<Sprite*>(n_BtnKingdomManager, "Sprite_giftTimeBg");
   // self.txtKingdomManagerTime = SoraDGetChildByName(self.btnKingdomManager, "Text_giftTime")
-  n_TxtKingdomManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnKingdomManager, "Text_giftTime"));
-  n_BtnLegendKingManager = GBase::GetChildByName<ui::Button*>(this, "Button_legendKingManager");
-  n_BtnLegendKingManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnLegendKingManager, "Sprite_crown");
-  n_SpLegendKingManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnLegendKingManager, "Sprite_giftTimeBg");
+  n_TxtKingdomManagerTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(n_BtnKingdomManager, "Text_giftTime"));
+  n_BtnLegendKingManager = GBase::DGetChildByName<ui::Button*>(this, "Button_legendKingManager");
+  n_BtnLegendKingManagerSprite = GBase::DGetChildByName<Sprite*>(n_BtnLegendKingManager, "Sprite_crown");
+  n_SpLegendKingManagerTimeBg = GBase::DGetChildByName<Sprite*>(n_BtnLegendKingManager, "Sprite_giftTimeBg");
   // self.txtLegendKingManagerTime = SoraDGetChildByName(self.btnLegendKingManager, "Text_giftTime")
-  n_TxtLegendKingManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnLegendKingManager, "Text_giftTime"));
-  n_BtnLegendInvite = GBase::GetChildByName<ui::Button*>(this, "Button_legendInvite");
-  n_IconLegendInvite = GBase::GetChildByName<Sprite*>(n_BtnLegendInvite, "icon_legend_red");
+  n_TxtLegendKingManagerTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(n_BtnLegendKingManager, "Text_giftTime"));
+  n_BtnLegendInvite = GBase::DGetChildByName<ui::Button*>(this, "Button_legendInvite");
+  n_IconLegendInvite = GBase::DGetChildByName<Sprite*>(n_BtnLegendInvite, "icon_legend_red");
   n_IconLegendInvite->setVisible(INIT_FALSE);
   // self.txtLegendInviteNum = SoraDGetChildByName(self, "Text_legendInviteNum")
-  n_TxtLegendInviteNum = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_legendInviteNum"));
-  n_BtnRadianceWar = GBase::GetChildByName<ui::Button*>(this, "Button_radiance");
-  n_IconRadianceWar = GBase::GetChildByName<Sprite*>(n_BtnRadianceWar, "icon_radiance_red");
+  n_TxtLegendInviteNum = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(this, "Text_legendInviteNum"));
+  n_BtnRadianceWar = GBase::DGetChildByName<ui::Button*>(this, "Button_radiance");
+  n_IconRadianceWar = GBase::DGetChildByName<Sprite*>(n_BtnRadianceWar, "icon_radiance_red");
   n_IconRadianceWar->setVisible(INIT_FALSE);
-  n_SpriteEffect = GBase::GetChildByName<Sprite*>(n_BtnRadianceWar, "Sprite_effect");
+  n_SpriteEffect = GBase::DGetChildByName<Sprite*>(n_BtnRadianceWar, "Sprite_effect");
   n_SpriteEffect->setVisible(INIT_FALSE);
-  n_TxtRadianceWarNum = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(this, "Text_radianceNum"));
-  n_BtnHegemonManager = GBase::GetChildByName<ui::Button*>(this, "Button_hegemonManager");
-  n_BtnHegemonManagerSprite = GBase::GetChildByName<Sprite*>(n_BtnHegemonManager, "Sprite_crown");
-  n_SpHegemonManagerTimeBg = GBase::GetChildByName<Sprite*>(n_BtnHegemonManager, "Sprite_giftTimeBg");
-  n_TxtHegemonManagerTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnHegemonManager, "Text_giftTime"));
-  n_BtnHegemonBattle = GBase::GetChildByName<ui::Button*>(this, "Button_hegemonBattle");
-  n_BtnHegemonBattleSprite = GBase::GetChildByName<Sprite*>(n_BtnHegemonBattle, "icon_hegemon_playoff");
-  n_SpHegemonBattleTimeBg = GBase::GetChildByName<Sprite*>(n_BtnHegemonBattle, "Sprite_playoffBg");
+  n_TxtRadianceWarNum = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(this, "Text_radianceNum"));
+  n_BtnHegemonManager = GBase::DGetChildByName<ui::Button*>(this, "Button_hegemonManager");
+  n_BtnHegemonManagerSprite = GBase::DGetChildByName<Sprite*>(n_BtnHegemonManager, "Sprite_crown");
+  n_SpHegemonManagerTimeBg = GBase::DGetChildByName<Sprite*>(n_BtnHegemonManager, "Sprite_giftTimeBg");
+  n_TxtHegemonManagerTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(n_BtnHegemonManager, "Text_giftTime"));
+  n_BtnHegemonBattle = GBase::DGetChildByName<ui::Button*>(this, "Button_hegemonBattle");
+  n_BtnHegemonBattleSprite = GBase::DGetChildByName<Sprite*>(n_BtnHegemonBattle, "icon_hegemon_playoff");
+  n_SpHegemonBattleTimeBg = GBase::DGetChildByName<Sprite*>(n_BtnHegemonBattle, "Sprite_playoffBg");
   // self.txtHegemonBattleTime = SoraDGetChildByName(self.btnHegemonBattle, "Text_playoffTime")
-  n_TxtHegemonBattleTime = UITimerLabel::DCreateTimerLabel(GBase::GetChildByName<ui::Text*>(n_BtnHegemonBattle, "Text_playoffTime"));
-  n_BtnTrainPower = GBase::GetChildByName<ui::Button*>(this, "Button_trainPower");
-  n_TextTrainPower = GBase::GetChildByName<ui::Text*>(n_BtnTrainPower, "Text_trainPower");
+  n_TxtHegemonBattleTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<ui::Text*>(n_BtnHegemonBattle, "Text_playoffTime"));
+  n_BtnTrainPower = GBase::DGetChildByName<ui::Button*>(this, "Button_trainPower");
+  n_TextTrainPower = GBase::DGetChildByName<ui::Text*>(n_BtnTrainPower, "Text_trainPower");
   n_TextTrainPower->setString(Translate::i18n("activity_name_9001300"));
-  n_RedTrainPower = GBase::GetChildByName<Sprite*>(n_BtnTrainPower, "icon_red");
-  n_NumTrainPower = GBase::GetChildByName<ui::Text*>(n_RedTrainPower, "Text_btnNum");
+  n_RedTrainPower = GBase::DGetChildByName<Sprite*>(n_BtnTrainPower, "icon_red");
+  n_NumTrainPower = GBase::DGetChildByName<ui::Text*>(n_RedTrainPower, "Text_btnNum");
   n_RedTrainPower->setVisible(INIT_FALSE);
   n_TextTrainPower->setFontSize(16);
-  n_BtnNeckLaceRank = GBase::GetChildByName<ui::Button*>(this, "Button_necklaceRank");
-  n_BtnNeckLaceRankSprite = GBase::GetChildByName<Sprite*>(n_BtnNeckLaceRank, "icon_hegemon_playoff");
-  n_BtnNeckLaceRankBg = GBase::GetChildByName<Sprite*>(n_BtnNeckLaceRank, "Sprite_playoffBg");
-  n_BtnNeckLaceRankText = GBase::GetChildByName<ui::Text*>(n_BtnNeckLaceRank, "Text_playoffTime");
+  n_BtnNeckLaceRank = GBase::DGetChildByName<ui::Button*>(this, "Button_necklaceRank");
+  n_BtnNeckLaceRankSprite = GBase::DGetChildByName<Sprite*>(n_BtnNeckLaceRank, "icon_hegemon_playoff");
+  n_BtnNeckLaceRankBg = GBase::DGetChildByName<Sprite*>(n_BtnNeckLaceRank, "Sprite_playoffBg");
+  n_BtnNeckLaceRankText = GBase::DGetChildByName<ui::Text*>(n_BtnNeckLaceRank, "Text_playoffTime");
   // self.btnRomanSoul = SoraDGetChildByName(self, "Button_romanSoul")
-  n_BtnRomanSoul = GBase::GetChildByName<ui::Button*>(this, "Button_romanSoul");
+  n_BtnRomanSoul = GBase::DGetChildByName<ui::Button*>(this, "Button_romanSoul");
   // self.labelAllianceName = self:exchangeGroupText(SoraDGetChildByName(self, "Text_allianceName"), 25)
-  n_LabelAllianceName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_allianceName"), 25);
+  n_LabelAllianceName = ExchangeGroupText(GBase::DGetChildByName<ui::Text *>(this, "Text_allianceName"), 25);
   // self.labelAllianceName:setGroupID(mainUIDef.newGroupID.text)
-  n_LabelHeroName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_heroName"), 25);
+  n_LabelHeroName = ExchangeGroupText(GBase::DGetChildByName<ui::Text *>(this, "Text_heroName"), 25);
   // self.labelHeroName:setGroupID(mainUIDef.newGroupID.text)
-  n_LabelBagName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_bagName"), 25);
+  n_LabelBagName = ExchangeGroupText(GBase::DGetChildByName<ui::Text *>(this, "Text_bagName"), 25);
   // self.labelBagName:setGroupID(mainUIDef.newGroupID.text)
-  n_LabelMailName = ExchangeGroupText(GBase::GetChildByName<ui::Text *>(this, "Text_mailName"), 25);
+  n_LabelMailName = ExchangeGroupText(GBase::DGetChildByName<ui::Text *>(this, "Text_mailName"), 25);
   // self.labelMailName:setGroupID(mainUIDef.newGroupID.text)
   n_LabelAllianceName->setString(Translate::i18n("common_text_069"));
   n_LabelHeroName->setString(Translate::i18n("common_name_01"));
   n_LabelBagName->setString(Translate::i18n("common_text_308"));
   n_LabelMailName->setString(Translate::i18n("mail_text_25"));
-  n_BtnSkill = GBase::GetChildByName<ui::Button*>(this, "Button_skill");
+  n_BtnSkill = GBase::DGetChildByName<ui::Button*>(this, "Button_skill");
   n_BtnSkill->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnSkillClick, this));
-  n_BtnReplay = GBase::GetChildByName<ui::Button*>(this, "Button_replay");
-  n_BgTextVideo = GBase::GetChildByName<Sprite*>(this, "bg_text_video");
+  n_BtnReplay = GBase::DGetChildByName<ui::Button*>(this, "Button_replay");
+  n_BgTextVideo = GBase::DGetChildByName<Sprite*>(this, "bg_text_video");
   n_BtnReplay->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnReplayClick, this));
   if (SDKManager::Get()->IsRecording()) {
     n_BtnReplay->setVisible(true);
@@ -211,8 +211,8 @@ void UIMainBottom::Ctor() {
     n_BtnReplay->setVisible(INIT_FALSE);
     m_Timer = nullptr;
   }
-  n_TextVideo = GBase::GetChildByName<ui::Text*>(this, "text_video");
-  n_FrameMainGuide = GBase::GetChildByName<Sprite*>(this, "frame_main_guide");
+  n_TextVideo = GBase::DGetChildByName<ui::Text*>(this, "text_video");
+  n_FrameMainGuide = GBase::DGetChildByName<Sprite*>(this, "frame_main_guide");
   n_BtnHero->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnBottomClick, this));
   n_BtnItems->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnBottomClick, this));
   n_BtnMail->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::OnBottomClick, this));
@@ -239,18 +239,18 @@ void UIMainBottom::Ctor() {
   InitGreenPoint();
   ShowAllianceInWarEffect();
   n_NodePreDownload = GBase::DGetExtendChildFromCCSByName<UIPreDownloadMainWidget>(this, "CCS_preDownloadMainWidget_pre");
-  n_NodeBottomBtn = GBase::GetChildByName<Node*>(this, "Bottom_Node_btn");
-  n_BtnManager = GBase::GetChildByName<ui::ImageView*>(this, "Bottom_Image_btnBG");
+  n_NodeBottomBtn = GBase::DGetChildByName<Node*>(this, "Bottom_Node_btn");
+  n_BtnManager = GBase::DGetChildByName<ui::ImageView*>(this, "Bottom_Image_btnBG");
   n_BtnManager->setTouchEnabled(true);
-  n_ScrollBtn = GBase::GetChildByName<ui::ScrollView*>(this, "Bottom_Size_ScrollView_btn");
+  n_ScrollBtn = GBase::DGetChildByName<ui::ScrollView*>(this, "Bottom_Size_ScrollView_btn");
   n_ScrollBtn->setTouchEnabled(false);
-  auto l_ImgBtnRound = GBase::GetChildByName<ui::ImageView*>(n_BtnManager, "Image_btn_round");
-  n_BtnSwitch = GBase::GetChildByName<ui::Button*>(n_BtnManager, "Button_switch");
-  n_NodeArrow = GBase::GetChildByName<Node*>(n_BtnManager, "Node_arrow");
+  auto l_ImgBtnRound = GBase::DGetChildByName<ui::ImageView*>(n_BtnManager, "Image_btn_round");
+  n_BtnSwitch = GBase::DGetChildByName<ui::Button*>(n_BtnManager, "Button_switch");
+  n_NodeArrow = GBase::DGetChildByName<Node*>(n_BtnManager, "Node_arrow");
   // self.node_arrow:setGroupAuto(true)
-  n_IconRed = GBase::GetChildByName<Sprite*>(n_BtnSwitch, "icon_red");
+  n_IconRed = GBase::DGetChildByName<Sprite*>(n_BtnSwitch, "icon_red");
   n_IconRed->setVisible(INIT_FALSE);
-  n_LabBtnNum = GBase::GetChildByName<ui::Text*>(n_BtnSwitch, "Text_btnNum");
+  n_LabBtnNum = GBase::DGetChildByName<ui::Text*>(n_BtnSwitch, "Text_btnNum");
   n_BtnSwitch->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnSwitchClick, this));
   m_BtnSwitchType = 1;
   
@@ -337,10 +337,10 @@ void UIMainBottom::InitHalloweenShineEffect() {
   n_EffectShine = l_EffectShine.First;
   n_EffectShine->setPosition(Vec2(0, 65));
   n_NodeStyleTop->addChild(n_EffectShine);
-  auto l_Img1 = GBase::GetChildByName<Sprite *>(n_EffectShine, "G_dh_Tex_wsj_002_01");
-  auto l_Img2 = GBase::GetChildByName<Sprite *>(n_EffectShine, "G_dh_Tex_wsj_001_04");
-  auto l_Particle1 = GBase::GetChildByName<ParticleSystemQuad *>(n_EffectShine, "et_dixintanxian_02_01");
-  auto l_Particle2 = GBase::GetChildByName<ParticleSystemQuad *>(n_EffectShine, "et_dixintanxian_02_02");
+  auto l_Img1 = GBase::DGetChildByName<Sprite *>(n_EffectShine, "G_dh_Tex_wsj_002_01");
+  auto l_Img2 = GBase::DGetChildByName<Sprite *>(n_EffectShine, "G_dh_Tex_wsj_001_04");
+  auto l_Particle1 = GBase::DGetChildByName<ParticleSystemQuad *>(n_EffectShine, "et_dixintanxian_02_01");
+  auto l_Particle2 = GBase::DGetChildByName<ParticleSystemQuad *>(n_EffectShine, "et_dixintanxian_02_02");
   l_Img1->setVisible(false);
   l_Img2->setVisible(false);
   l_Particle1->setVisible(false);
@@ -2779,9 +2779,9 @@ void UIMainBottom::InitHelpAllBtn(EventCustom* p_Event) {
     n_NodeAreaLb->addChild(l_Effect);
     l_Effect->setVisible(false);
     l_Effect->setName("alliancehelpEffect");
-    auto l_ImageBtn = GBase::GetChildByName<ui::ImageView *>(l_Effect, "Image_btn");
+    auto l_ImageBtn = GBase::DGetChildByName<ui::ImageView *>(l_Effect, "Image_btn");
     l_ImageBtn->addTouchEventListener(CC_CALLBACK_2(UIMainBottom::BtnHelpAllClick, this));
-    l_RedNum = GBase::GetChildByName<ui::Text *>(l_Effect, "Text_questNum");
+    l_RedNum = GBase::DGetChildByName<ui::Text *>(l_Effect, "Text_questNum");
     n_BtnHelpAll = l_Effect;
   }
   

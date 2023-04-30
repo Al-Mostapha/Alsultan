@@ -19,11 +19,11 @@ void UIBuildCreateScrollSingle::InitPanel(){
     return;
   }
 
-  m_LabelName = GBase::GetChildByName<Label *>(panel, "Text_name");
-  m_ImgLock = GBase::GetChildByName<ui::ImageView *>(panel, "Image_lock");
+  m_LabelName = GBase::DGetChildByName<Label *>(panel, "Text_name");
+  m_ImgLock = GBase::DGetChildByName<ui::ImageView *>(panel, "Image_lock");
   m_ImgLock->setLocalZOrder(1);
   m_ImgIcon = nullptr;
-  m_ShowPanel = GBase::GetChildByName<ui::Layout *>(panel, "Panel_transparent");
+  m_ShowPanel = GBase::DGetChildByName<ui::Layout *>(panel, "Panel_transparent");
   m_ShowPanel->setSwallowTouches(false);
   addChild(panel);
 }

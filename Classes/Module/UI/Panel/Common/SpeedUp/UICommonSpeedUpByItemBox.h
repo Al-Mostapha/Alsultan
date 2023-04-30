@@ -2,6 +2,7 @@
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBasePanel.h"
 
+enum class ETask;
 class UICommonSpeedUpByItemBox : public UIBasePanel
 {
 
@@ -12,6 +13,6 @@ class UICommonSpeedUpByItemBox : public UIBasePanel
 public: 
   static UICommonSpeedUpByItemBox* Create();
   void Ctor() override;
-  void InitData();
+  void InitData(ETask, GFunc<void(EMsgBoxCallBack)>){}
   void InitWidget();
 };

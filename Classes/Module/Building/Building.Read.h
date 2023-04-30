@@ -1,7 +1,7 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "Module/Task/Task.Enum.h"
-#include "Module/Building/Building.Enum.h"
+#include "Building.Enum.h"
 #include "Module/Science/Science.Enum.h"
 #include "Module/Army/Army.Enum.h"
 
@@ -9,7 +9,7 @@ struct RBuildingMoreInfoData;
 class BuildingRead{
   struct RNextUnlockedData{
     EBuilding _Building = EBuilding::None;
-    EScience _Science = EScience::None;
+    EScienceID _Science = EScienceID::None;
     EArmy _Army = EArmy::None;
     int32 _unlockLvl = 0;
     bool _IsValid;

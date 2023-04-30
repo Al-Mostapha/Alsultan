@@ -1,9 +1,8 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "UIBaseView.h"
 #include "UICCSView.h"
 #include "Module/Config/ConfigRead/RechargeADRead.h"
-#include "View/Recharge/UIRechargeTinyPageNode.h"
 #include "Module/Translation/Translate.h"
 
 

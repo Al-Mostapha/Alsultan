@@ -12,4 +12,10 @@ float Min(float p_First, float p_Second) { return std::min(p_First, p_Second); }
 double Min(double p_First, double p_Second) { return std::min(p_First, p_Second); }
 float Max(float p_First, float p_Second) { return std::max(p_First, p_Second); }
 GString DConvertNumberWithUnit(float p_Num){return "";}
+float Rad(float p_Degree) { return p_Degree * 3.1415926f / 180.0f; }
+
+
 }  // namespace GMath
+
+float GMath::Sin(float p_Rad) { return sin(p_Rad); }
+float GMath::Cos(float p_Rad) { return cos(p_Rad); }

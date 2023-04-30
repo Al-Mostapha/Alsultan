@@ -1,4 +1,6 @@
 #pragma once
+#include "Base/BaseTypeDef.h"
+
 enum class EScience{
   None = 0,
   SharpAxe = 21001,
@@ -103,7 +105,7 @@ enum class EScience{
   LeadershipIII
 };
 
-enum class EScienceCategory {
+enum class EScienceType {
   None = 0,
   Resource = 1,
   CityDevelop,
@@ -122,8 +124,9 @@ enum class EScienceCategory {
   Process
 };
 
-enum EScienceEffect{
-   WOOD_PRODUCTIVITY = 1,
+enum EScienceID{
+  None = 0,
+  WOOD_PRODUCTIVITY = 1,
   FOOD_PRODUCTIVITY = 2,
   IRON_PRODUCTIVITY = 3,
   MITHRIL_PRODUCTIVITY = 4,
@@ -351,3 +354,6 @@ enum EScienceEffect{
   SOLDIER_RUSH_SWITCH_BUILD_REDUCE_COST_RESOURCE = 801,
   COMMAND_HALL_MARCH_SPEED_UP = 810
 };
+
+
+extern GMap<EScienceType, GString> ETECHNOLOGY_ATTR;

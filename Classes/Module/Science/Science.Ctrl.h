@@ -4,11 +4,14 @@
 #include "Science.Type.h"
 #include "Base/Containers/Pair.h"
 
+
+
 class ScienceCtrl {
 public: 
   static ScienceCtrl *Get();
-  uint32 GetSciencePower(EScienceEffect p_ScienceEffect);
-  GPair<bool, uint32> IsEnough( EScience p_Science, uint32 p_Lvl);
+  uint32 GetSciencePower(EScienceID p_ScienceEffect);
+  GPair<bool, uint32> IsEnough( EScienceID p_Science, uint32 p_Lvl);
   GPair<bool, GVector<RCostScienceEnough>> IsEnough(GVector<RCostScience> &p_Science);
-  EScience StudyingTechnology();
+  GPair<RScienceDetail, EScienceType> StudyingTechnology();
+  GVector<RScienceLvlSpecs> GetRecommendTech();
 };

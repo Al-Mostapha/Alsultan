@@ -1,5 +1,7 @@
 #include "Common.Box.h"
 #include "Module/UI/Part/Common/Box/UICommonBuyBox.h"
+#include "Module/UI/Panel/Common/SpeedUp/UICommonSpeedUpBox.h"
+
 void GBase::DShowBuyBox(
   const RShowBuyBoxParam &p_Param, 
   const std::function<void(EMsgBoxCallBack)> &p_Handle,
@@ -38,3 +40,11 @@ Node *GBase::DShowLoading(Node *p_Parent, const Size &p_Size,
   return Node::create();
 }
 
+
+UICommonSpeedUpBox *GBase::DShowSpeedUpBox(ITask *p_QData, const GFunc<void(EMsgBoxCallBack)> &p_CallBack, 
+    GString p_Msg, GHashMap<GString, GString> p_Param){
+  auto l_Panel = UICommonSpeedUpBox::Create();
+  l_Panel->InitData(p_Msg, p_CallBack, p_QData, p_Param);
+  l_Panel->Show();
+  return l_Panel;
+}

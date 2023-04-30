@@ -4,11 +4,12 @@
 
 class UICommonSlider : public UIBasePanel
 {
+  public:
 
-  struct{
-    int32 maxValue = 1;
-    int32 minValue = 1;
-    int32 curValue = 1;
+  struct RInitDataParam{
+    int32 _MaxValue = 1;
+    int32 _MinValue = 1;
+    int32 _CurValue = 1;
   } _TableSliderData;
   // self.slider = SoraDGetChildByName(self, "Slider_slider")
   Node *_Slider = nullptr;
@@ -44,6 +45,8 @@ public:
 
   static UICommonSlider *Create();
   void Ctor() override;
+  void InitData(const RInitDataParam &p_Param){}
   void SetMask(Node *p_Parent, int32 p_ZOrder = 999){}
   void SetSliderCallBack(const std::function<void(float p_CurrentVal)> &p_CallBack){}
+  int32 GetSliderCurValue() const { return 0; }
 };

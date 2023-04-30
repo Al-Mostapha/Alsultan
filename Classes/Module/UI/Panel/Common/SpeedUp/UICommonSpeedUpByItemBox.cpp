@@ -9,9 +9,7 @@ void UICommonSpeedUpByItemBox::Ctor(){
 
 }
 
-void UICommonSpeedUpByItemBox::InitData(){
 
-}
 
 void UICommonSpeedUpByItemBox::InitWidget(){
 

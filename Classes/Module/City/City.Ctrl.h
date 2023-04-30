@@ -18,6 +18,7 @@ public:
   void CollectResReq(EBuilding p_Building, EBuildingIndex p_BuildingIndex) {}
   BuildingCell *GetBuildingCell(EBuilding p_Building, EBuildingIndex p_BuildingIndex) { return new BuildingCell() ;}
   BuildingCell *GetBuildingCellByIndex(EBuildingIndex p_BuildingIndex);
+  GVector<BuildingCell> GetBuildCellList(EBuilding p_Building);
   GHashMap<EBuildingIndex, BuildingCell> GetBuildList();
   bool GetCastleUpgradePopStatus();
   int32 GetBuildingMaxLv(EBuilding p_Building){ return 0;}
@@ -27,6 +28,6 @@ public:
   void RegisterNotify(){}
 
   void OpenGroundReq(ELockedArea p_Area){}
-  void AddBuildingReq(EBuildingIndex p_Index, EBuilding p_Bid, EOPERATE_MODE p_Mode){}
-  void UpgradeBuildReq(EBuildingIndex p_Index, EBuilding p_Bid, EOPERATE_MODE p_Mode){}
+  void AddBuildingReq(EBuildingIndex p_Index, EBuilding p_Bid, EOperateMode p_Mode){}
+  void UpgradeBuildReq(EBuildingIndex p_Index, EBuilding p_Bid, EOperateMode p_Mode){}
 };

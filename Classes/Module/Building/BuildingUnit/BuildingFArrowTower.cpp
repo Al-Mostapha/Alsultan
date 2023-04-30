@@ -71,7 +71,7 @@ void BuildingFArrowTower::Clicked(Touch *p_Touch, Event *p_Event){
     auto l_Notice = UIMsgNotice::Create();
     l_Notice->InitPanel();
     l_Notice->Notice("notice_0056");
-    CityLib::Get()->ShowTintOnce(GBase::GetChildByName<Node *>(this, "buildImg"));
+    CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
     return;
   }
 }

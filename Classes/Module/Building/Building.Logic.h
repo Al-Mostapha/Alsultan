@@ -31,12 +31,12 @@ public:
   bool IsBuildingUnlock(EBuildingIndex p_BuildingIndex){ return false ;}
   GPair<ETask, GTime> GetIdleBuildQueue();
   EErrDef Build(
-    EBuildingIndex p_Index, EOPERATE_MODE p_Mode, 
+    EBuildingIndex p_Index, EOperateMode p_Mode, 
     const RCostBuildingUpgrade &p_Data, EBuilding p_Building){
       return EErrDef::Err_None;
     }
   EErrDef Upgrade(
-    EBuildingIndex p_Index, EOPERATE_MODE p_Mode, 
+    EBuildingIndex p_Index, EOperateMode p_Mode, 
     const RCostBuildingUpgrade &p_Data, bool p_IsBuild, EBuilding p_Building){
       return EErrDef::Err_None;
     }

@@ -1,6 +1,8 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Army.Enum.h"
+#include "Module/Building/Building.Enum.h"
+#include "Module/CityResource/Resource.Enum.h"
 
 struct RCityArmy
 {
@@ -309,8 +311,43 @@ struct RCityArmy
     }
 };
 
-struct RArmyData{};
+struct RArmyInfo{
+    int32 index;
+    EArmy armyID;
+    EArmyType armyType;
+    int32 armorType; //THis should be bool 0, 1 
+    int32 battleUnitType;
+    EBuilding barrackID = EBuilding::None;
+    int32 barrackLevel;
+    int32 starchange;
+    int32 starlv;
+    GTime trainingTime;
+    GHashMap<EResource, int32> costRes;
+    int32 attack;
+    int32 defense;
+    int32 life;
+    float atkInterval;
+    int32 atkDistance;
+    int32 speed;
+    int32 priority1;
+    int32 supressNum;
+    int32 strike;
+    int32 freeWeight;
+    float costFood;
+    int32 power;
+    float trainPoint;
+    int32 triger;
+    GVector<EArmySkill> Speciality;
+    float build_Speed;
+    int32 position;
+    float kingWarScore;
+    int32 GetElitePoint;
+    int32 UseElitePoint;
+    float factor;
+};
 
 struct RCanTrainArmy{
-
+  EArmy _ArmyId;
+  bool _IsCanTrain;
+  bool _IsStarArmy;
 };

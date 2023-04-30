@@ -20,14 +20,14 @@ void UIBuildingInfoPanel::Ctor(){
   _FadeInDelay = 0.3f;
   _FirstRunWar = true;
   _NamePosY = 260;
-  _LabelInfo = GBase::GetChildByName<ui::Text *>(this, "Text_info");
-  _NodeTitle = GBase::GetChildByName<Node *>(this, "Node_title");
-  _LabelTitle = GBase::GetChildByName<ui::Text *>(this, "Text_title");
-  _LabelName = GBase::GetChildByName<ui::Text *>(this, "Text_name");
-  _BtnMore = GBase::GetChildByName<ui::Button *>(this, "Button_more");
-  _BtnCancell = GBase::GetChildByName<ui::Button *>(this, "Button_cancel");
-  _ScrollInfo = GBase::GetChildByName<ui::ScrollView *>(this, "ScrollView_info");
-  _NodeCenter = GBase::GetChildByName<Node *>(this, "Center_Node");
+  _LabelInfo = GBase::DGetChildByName<ui::Text *>(this, "Text_info");
+  _NodeTitle = GBase::DGetChildByName<Node *>(this, "Node_title");
+  _LabelTitle = GBase::DGetChildByName<ui::Text *>(this, "Text_title");
+  _LabelName = GBase::DGetChildByName<ui::Text *>(this, "Text_name");
+  _BtnMore = GBase::DGetChildByName<ui::Button *>(this, "Button_more");
+  _BtnCancell = GBase::DGetChildByName<ui::Button *>(this, "Button_cancel");
+  _ScrollInfo = GBase::DGetChildByName<ui::ScrollView *>(this, "ScrollView_info");
+  _NodeCenter = GBase::DGetChildByName<Node *>(this, "Center_Node");
   // self.tableBuildInfo = {
   //   buildInfo = {},
   //   bid = 0,
@@ -40,19 +40,19 @@ void UIBuildingInfoPanel::Ctor(){
   GBase::DAddMessage(this, "MESSAGE_SERVER_MAINCITYVIEW_BUILDINFO_QUEUE_END",CC_CALLBACK_1(UIBuildingInfoPanel::BuildQueueCallback, this));
   GBase::DAddMessage(this, "MESSAGE_BUILD_INFO_UPGRADE",CC_CALLBACK_1(UIBuildingInfoPanel::CloseByBuildLock, this));
   _BtnMore->setTitleText(Translate::i18n("common_text_376"));
-  _LabelWarCur = GBase::GetChildByName<ui::Text *>(this, "Text_warCur");
-  _NodeNameBg = GBase::GetChildByName<Node *>(this, "Node_nameBg");
+  _LabelWarCur = GBase::DGetChildByName<ui::Text *>(this, "Text_warCur");
+  _NodeNameBg = GBase::DGetChildByName<Node *>(this, "Node_nameBg");
   InitWidget();
 }
 
 void UIBuildingInfoPanel::InitWidget(){
-  _ScrollDes = GBase::GetChildByName<ui::ScrollView *>(this, "ScrollView_des");
-  _LabelDes  = GBase::GetChildByName<ui::Text *>(this, "Text_buildDes");
-  _NodeWar   = GBase::GetChildByName<Node *>(this, "Node_war");
-  _ImgWarBg  = GBase::GetChildByName<ui::ImageView *>(this, "Image_warProBg");
+  _ScrollDes = GBase::DGetChildByName<ui::ScrollView *>(this, "ScrollView_des");
+  _LabelDes  = GBase::DGetChildByName<ui::Text *>(this, "Text_buildDes");
+  _NodeWar   = GBase::DGetChildByName<Node *>(this, "Node_war");
+  _ImgWarBg  = GBase::DGetChildByName<ui::ImageView *>(this, "Image_warProBg");
   _ImgWarBg->setLocalZOrder(-1);
-  _NodeProgressBar = GBase::GetChildByName<Node *>(this, "Node_progressBar");
-  _NodeEffect = GBase::GetChildByName<Node *>(this, "Node_effect");
+  _NodeProgressBar = GBase::DGetChildByName<Node *>(this, "Node_progressBar");
+  _NodeEffect = GBase::DGetChildByName<Node *>(this, "Node_effect");
   _WarBarTo = GDisplay::Get()->NewProgressTimer("frame_jzjz_jdt2.png", ProgressTimer::Type::RADIAL);
   _WarBarTo->setScaleX(GBase::DFIsRA() ? -1 : 1);
   _WarBarTo->setColor({152, 85, 26});
@@ -67,18 +67,18 @@ void UIBuildingInfoPanel::InitWidget(){
   _EffectWar->setVisible(false);
   _NodeWar->setVisible(false);
 
-  auto l_Bg = GBase::GetChildByName<ui::ImageView *>(this, "Image_bbg");
+  auto l_Bg = GBase::DGetChildByName<ui::ImageView *>(this, "Image_bbg");
   // bg:setFillType(1)
   l_Bg->setScale9Enabled(false);
-  _IconWarCur = GBase::GetChildByName<Sprite *>(this, "icon_warCur");
-  _IconWarTo  = GBase::GetChildByName<Sprite *>(this, "icon_warTo");
-  _LabelWarPro = GBase::GetChildByName<ui::Text *>(this, "Text_warPro");
+  _IconWarCur = GBase::DGetChildByName<Sprite *>(this, "icon_warCur");
+  _IconWarTo  = GBase::DGetChildByName<Sprite *>(this, "icon_warTo");
+  _LabelWarPro = GBase::DGetChildByName<ui::Text *>(this, "Text_warPro");
   _LabelWarPro->setString("0%");
-  _NodeLeft = GBase::GetChildByName<Node *>(this, "Center_Panel_left");
-  _NodeTop = GBase::GetChildByName<Node *>(this, "Top_Panel");
+  _NodeLeft = GBase::DGetChildByName<Node *>(this, "Center_Panel_left");
+  _NodeTop = GBase::DGetChildByName<Node *>(this, "Top_Panel");
   float l_H = GDisplay::Get()->height - (_NodeLeft->getPositionY() + 0.5 * _NodeLeft->getContentSize().height);
   _NodeTop->setContentSize({640.0f, l_H });
-  _NodeBottom = GBase::GetChildByName<Node *>(this, "Bottom_Panel");
+  _NodeBottom = GBase::DGetChildByName<Node *>(this, "Bottom_Panel");
   float l_H_ = (_NodeLeft->getPositionY() - 0.5 * _NodeLeft->getContentSize().height);
   _NodeBottom->setContentSize({640.0f, l_H_});
   _NodeCenter->setPositionY(std::max(450.0f, GDisplay::Get()->height /2));

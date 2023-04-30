@@ -78,7 +78,7 @@ void BuildingFMonument::Clicked(Touch *p_Touch, Event *p_Event){
       {"name", Translate::i18n("history_name_11")},
       {"lv", std::to_string(GBase::Const::Get()->CastleLvl6)}
     }));
-    CityLib::Get()->ShowTintOnce(GBase::GetChildByName<Node *>(this, "buildImg"));
+    CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
     return;
   }
   auto l_Sequence = Sequence::create(
@@ -90,7 +90,7 @@ void BuildingFMonument::Clicked(Touch *p_Touch, Event *p_Event){
       auto l_Scene = CityScene::Get();
       if(l_Scene && l_Scene->ButtonMonument){
         l_Scene->ButtonMonument->setEnabled(false);
-        CityLib::Get()->ShowTintOnce(GBase::GetChildByName<Node *>(this, "buildImg"));
+        CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
       }
     }),
     DelayTime::create(0.3),

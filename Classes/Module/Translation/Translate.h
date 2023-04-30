@@ -1,6 +1,6 @@
 
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 class Translate
 {
 private:

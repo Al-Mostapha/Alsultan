@@ -9,46 +9,43 @@
 #include "Module/UI/Part/Common/Box/UICommonProgressBar.h"
 #include "UISoldierSkillSingle.h"
 
+
 class IBuilding;
+class ITask;
+class UIWheelScrollView;
+class UIBuildCreateResBuySingle;
+class UISoldiersTrainScrollSingle;
+
 class UISoldiersCampView : public UIBasePanel
 {
 
   CREATE_FUNC(UISoldiersCampView);
   CreateUIPanel(UISoldiersCampView);
   CreateUICCSView(UISoldiersCampView);
-
+public:
   bool _IsRun = true;
-  // self.selectWheel = nil
-  // self.tableSoldierList = {}
+  UIWheelScrollView *_SelectWheel = nullptr;
   GVector<RCanTrainArmy> _TableSoldierList;
-  // self.tableCurSoldier = {
-  //   bid = 0,
-  //   armyData = {},
-  //   armyCount = 1,
-  //   needRes = false,
-  //   needElite = false,
-  //   type = 1,
-  //   index = 0
-  // }
-  struct {
+  struct RCurrentSoldierData {
     EBuilding _Bid = EBuilding::None;
-    RArmyData _ArmyData;
+    RCanTrainArmy _ArmyData;
     int32 _ArmyCount = 1;
     bool _NeedRes = false;
     bool _NeedElite = false;
-    EArmy _Type = EArmy::None;
+    ETrainType _Type = ETrainType::None;
     EBuildingIndex _Index = EBuildingIndex::None;
   } _TableCurSoldier;
   IBuilding *_BuildEntity = nullptr;
-  // self.tableResSingle = {}
+  GVector<UIBuildCreateResBuySingle *> _TableResSingle;
   // self.trianQueue = nil
+  ITask *_TrainQueue= nullptr;
   Scheduler *_Timer = nullptr;
   Scheduler *_LuckyTimer = nullptr;
   Scheduler *_LuckyBlessTimer = nullptr;
   bool _LuckyBlessIsOpen = false;
   int32 _ResCostGold = 0;
-  int32 _TrainGold = 0;
-  // self.curIndex = nil
+  int32 _TrainGold = 0;  
+  int32 _CurIndex;
   bool _NeedHiddleMainScene = false;
   bool _IsOpen = true;
   // self.tableSkill = {
@@ -57,18 +54,21 @@ class UISoldiersCampView : public UIBasePanel
   // }
   struct {
     GVector<UISoldierSkillSingle *> _Node;
-      //   data = {},
+    GVector<EArmySkill> _Data;
   } _TableSkill;
-  // self.tableLabelTitle = {}
+
+  struct RTrainSoldiersLog {
+    EArmy _MaxArmyId = EArmy::None;
+    EArmy _TrainArmyId = EArmy::None;
+  };
+  GHashMap<EBuilding, RTrainSoldiersLog> _TrainSoldiersLog;
   GVector<Node *> _TableLabelTitle;
   GVector<Node *> _TableLabelValues;
-  // self.tableLabelValues = {}
   GVector<Node *> _TableLabelAddValues;
-  // self.tableLabeladdValues = {}
-  // self.tableLoadingBar = {}
   GVector<Node *> _TableLoadingBar;
   
   // self.needResList = {}
+  GVector<Node *> _SoldierArray;
   Vec2 _SoldierOriPos;
   Node *_NodeCenter;
   Node *_NodeArmyBase;
@@ -126,31 +126,83 @@ class UISoldiersCampView : public UIBasePanel
   ui::Text *_LabelTip1;
   ui::Text *_LabelTip2;
   ui::Button *_BtnWear;
+  Node *_NodeEffect;
   Node *_NodeSkill;
   Vec2 _TrapPos;
   Vec2 _TrapBasePos;
-  
+  int32 _SoundHandler = -1;
+
 public: 
   static UISoldiersCampView* Create();
   void Ctor() override;
-  void InitData(EBuildingIndex p_Index, IBuilding *p_Building, EArmy p_ArmyType);
+  void OnExitPanel() override;
+  void InitData(EBuildingIndex p_Index, IBuilding *p_Building, ETrainType p_TrainType);
   void InitWidget();
 
-  void BtnWearClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnEliteClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnTrainClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnTrainNowClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnSpeedUpClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnSpeedUpToolClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnInfoClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnDissolveClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnToolClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnTrapMsgClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnTipClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnPromoteClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
-  void BtnJumpClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
+  void BtnWearClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnEliteClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnTrainClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnTrainNowClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnSpeedUpClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnSpeedUpToolClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnInfoClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnDissolveClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnToolClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnTrapMsgClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnTipClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnPromoteClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void BtnJumpClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void Close(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
 
-  void UpdateLuckyBless(){}
-  void TrainSoldierSlider(float p_Value){}
+  void ShowInfoNode();
+
+  void SpeedUpCallBack(EMsgBoxCallBack p_CallBack);
+  void SpeedUpToolCallBack(EMsgBoxCallBack p_CallBack);
+  void CheckIsMaxSingleAdd(EOperateMode p_OperateMode);
+  void TrainArmySent(EOperateMode p_OperateMode);
+
+  void UpdateView( EventCustom *p_Event );
+  void InitSlider( EventCustom *p_Event );
+  void UpdateTrainNode( EventCustom *p_Event ){}
+  void TrainNow( EventCustom *p_Event ){}
+  void UpdateLuckyBless(EventCustom *p_Event = nullptr){}
+  void UpdateToolTrainInfo(EventCustom *p_Event = nullptr){}
+  void ResetWarframeSlider(EventCustom *p_Event = nullptr){}
+  void UpdateData(EventCustom *p_Event = nullptr){}
+  void UpdateArmyInfo(EventCustom *p_Event = nullptr){
+    UpdateLabelHave();
+    UpdatePromoteIcon();
+  }
+
+  void OnMsgSpeedUpBack(EventCustom *p_Event = nullptr){}
+  void BuildQueueCallback(EventCustom *p_Event = nullptr){}
+
+  void UpdateTip();
+  void UpdateLabelHave();
+  void InitSkill();
+  void SetBaseInfo(){}
+  void UpdatePromoteIcon();
+
+  void TrainSoldierSlider(float p_Value);
   void InitResSingle();
+  void IsTraining(bool p_IsTraining);
+  void CreateWheelScrollView();
+  void UpdateResSingleAlign(int32 l_ResCount);
+  void WheelScrollBack(RCanTrainArmy p_Soldier);
+  void SoldierEnterAct(Node *p_Target, float p_ToScale = 1,bool p_IsTrap = false);
+  void UpdateSoldiersView(){}
+  void UpdateTrapView(){}
+
+
+
+  int32 GetMaxCampCount();
+  void TrainImmediately();
+  void ResBuyCallBack();
+  void ShowResBuyView(){}
+  void RemoveSelf();
+  void AddTrapEffectByArmyType(EArmy p_ArmyId);
+  void ScrollToChoose(int32 p_Index){
+    _CurIndex = p_Index;
+  }
+
 };

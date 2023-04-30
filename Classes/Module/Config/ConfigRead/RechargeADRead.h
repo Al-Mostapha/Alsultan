@@ -1,6 +1,8 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 
+template <typename K, typename V>
+class GHashMap;
 struct RRechargeAD{
   GString ClassName = "";
   int32 ADType = 0;

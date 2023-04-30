@@ -1,5 +1,5 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "Resource.Enum.h"
 
 class ResourceRead{

@@ -1,6 +1,8 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "UIBaseView.h"
+#include "FairyGUI.h"
+#include "Scene/CityScene.h"
 
 class UIManger{
 public:

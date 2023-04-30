@@ -15,5 +15,11 @@ float Min(float p_First, float p_Second);
 
 double Min(double p_First, double p_Second);
 float Max(float p_First, float p_Second);
+
+float Rad(float p_Degree);
+
+float Sin(float p_Rad);
+float Cos(float p_Rad);
+
 GString  DConvertNumberWithUnit(float p_Num);
 }  // namespace GMath

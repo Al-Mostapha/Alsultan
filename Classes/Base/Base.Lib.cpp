@@ -16,16 +16,21 @@ GHashMap<Node*, GHashMap<GString, bool>> _tMsgObjListionerList;
 
 namespace GBase {
 
-void PlaySound() {}
-void PlaySound(const char* p_SoundName, bool p_IsLoop, float p_delay) {
+int32 PlaySound() {
+    return -1;
+}
+int32 PlaySound(const char* p_SoundName, bool p_IsLoop, float p_delay) {
   Sequence::create(DelayTime::create(p_delay), CallFunc::create([=]() { AudioEngine::play2d(p_SoundName, p_IsLoop); }), nullptr);
+    return -1;
 }
 
-void PlaySound(const char* p_SoundName, int32 p_index, float p_delay, bool p_Tag3d) {}
+int32 PlaySound(const char* p_SoundName, int32 p_index, float p_delay, bool p_Tag3d) {
+  return -1;
+}
 
 const char* getSoundPath(const char* p_SoundName) { return StringUtils::format("Music/%s", p_SoundName).c_str(); }
 
-void SoraDFTarget(Node* p_node) {}
+void DFTarget(Node* p_node) {}
 
 EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building) { return EBuildingPlace::Outer; }
 
@@ -216,19 +221,17 @@ class UIPanelBase* DCurrentTopPanelFromManager() {
   return nullptr;
 }
 
-UICommonPromptBox* DShowMsgBox(GString p_Msg,
-                               GString p_YesBtnTitle,
-                               GString p_NoBtnTitle,
-                               std::function<void(EMsgBoxCallBack)> p_CallBack,
-                               void* p_Data,
-                               int p_Align,
-                               bool p_NoSound) {
-  return nullptr;
-}
 
 bool DIsBrave8Level() { return false; }
 
-void DMixtureGLONE(Node* p_Node) {}
+void DMixtureGLONE(Sprite* p_Node) {
+  if(!p_Node) return;
+  if(p_Node->isOpacityModifyRGB()){
+    p_Node->setBlendFunc({backend::BlendFactor::ONE, backend::BlendFactor::ONE});
+  }else{
+    p_Node->setBlendFunc({backend::BlendFactor::SRC_ALPHA, backend::BlendFactor::ONE});
+  }
+}
 
 void DRemoveMessageByTarget(Node* p_Node) {}
 
@@ -240,7 +243,7 @@ void DCloseLoading(Node* p_Parent, const char* p_Mark, bool p_All) {
   if (l_PreLoading)
     l_PreLoading->removeFromParent();
   else if (p_All) {
-    l_PreLoading = GBase::GetChildByName<Node*>(p_Parent, "commonLoading");
+    l_PreLoading = GBase::DGetChildByName<Node*>(p_Parent, "commonLoading");
     if (l_PreLoading) l_PreLoading->removeFromParent();
   }
 }
@@ -310,10 +313,6 @@ UIBaseView* DSearchPanelFromManagerByName(const char* p_Name) { return nullptr; 
 void DStartLoginServerAndCheckVersion() {}
 
 void DShowLoginView(EScene p_Scene, EKingdomClassType p_KingdomClassType) {}
-
-UICommonPromptBox* DShowLoginFailBox(const char* p_FailType, GString p_ShowMsg, bool p_HaveCancelBtn, std::function<void()> p_CallBack) {
-  return nullptr;
-}
 
 bool DCheckIsOpenBuildStar() { return true; }
 bool SoraDIsBraveOpen() { return false; }

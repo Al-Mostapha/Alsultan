@@ -1,20 +1,20 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "Include/IncludeEngine.h"
-#include "Module/UI/UIElment.h"
-
 
 class UIWheelScrollView;
-class UIWheelScrollViewArgs;
+
 
 class UICreate
 {
 private:
-  /* data */
+
 public:
-  UICreate();
-  ~UICreate();
-  static UIWheelScrollView *wheelScrollView(UIWheelScrollViewArgs& p_WheelScrollViewArgs);
+  static UICreate *Get();
+  UIWheelScrollView *DCreateWheelScrollView(
+    GVector<Node *>p_ItemArray,  Size p_ViewSize, float p_CellHeight, 
+    float p_CircleRadius = 0, float p_PosX = 0, bool p_IsSound = true, bool p_IsIgnoreOpacity = false
+  );
 };
 
 

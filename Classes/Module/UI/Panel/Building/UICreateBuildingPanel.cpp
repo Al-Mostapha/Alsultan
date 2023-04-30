@@ -23,17 +23,17 @@ void UICreateBuildingPanel::InitPanel(){
     return;
   }
   
-  m_LabelDes   = GBase::GetChildByName<Label*>(panel, "Text_des");
-  m_LabelCount = GBase::GetChildByName<Label*>(panel,"Text_count");
-  m_LabelNeed  = GBase::GetChildByName<Label*>(panel,"Text_need");
-  m_LabelName  = GBase::GetChildByName<Label*>(panel,"Text_name");
-  m_BackGround = GBase::GetChildByName<ui::ImageView *>(panel,"Image_bbg");
-  m_BtnBuild   = GBase::GetChildByName<ui::Button *>(panel,"Button_build");
-  m_NodeLeft   = GBase::GetChildByName<ui::Layout *>(panel,"Center_Panel_left");
-  m_NodeRight  = GBase::GetChildByName<ui::Layout *>(panel,"Center_Panel_right");
-  m_NodeTop    = GBase::GetChildByName<ui::Layout *>(panel,"Top_Panel");
-  m_NodeBottom = GBase::GetChildByName<ui::Layout *>(panel,"Bottom_Panel");
-  m_NodeCenter = GBase::GetChildByName<Node *>(panel,"Center_Node");
+  m_LabelDes   = GBase::DGetChildByName<Label*>(panel, "Text_des");
+  m_LabelCount = GBase::DGetChildByName<Label*>(panel,"Text_count");
+  m_LabelNeed  = GBase::DGetChildByName<Label*>(panel,"Text_need");
+  m_LabelName  = GBase::DGetChildByName<Label*>(panel,"Text_name");
+  m_BackGround = GBase::DGetChildByName<ui::ImageView *>(panel,"Image_bbg");
+  m_BtnBuild   = GBase::DGetChildByName<ui::Button *>(panel,"Button_build");
+  m_NodeLeft   = GBase::DGetChildByName<ui::Layout *>(panel,"Center_Panel_left");
+  m_NodeRight  = GBase::DGetChildByName<ui::Layout *>(panel,"Center_Panel_right");
+  m_NodeTop    = GBase::DGetChildByName<ui::Layout *>(panel,"Top_Panel");
+  m_NodeBottom = GBase::DGetChildByName<ui::Layout *>(panel,"Bottom_Panel");
+  m_NodeCenter = GBase::DGetChildByName<Node *>(panel,"Center_Node");
   m_LabelCount->setVisible(false);  
   m_LabelNeed->setVisible(false); 
   
@@ -82,7 +82,7 @@ void UICreateBuildingPanel::SetBuildingTypeAndData(EBuilding p_BuildingType, int
         }),
         DelayTime::create(0.4),
         CallFunc::create([this](){
-          this->m_SelectWheel->unfoldAction(0.5);
+          this->m_SelectWheel->UnfoldAction(0.5);
           this->m_SelectWheel->setVisible(true);
         }),
         DelayTime::create(0.6),
@@ -198,12 +198,14 @@ void UICreateBuildingPanel::CreateWheelScrollView(){
   }
   UIWheelScrollViewArgs l_WheelScrollViewArgs;
   l_WheelScrollViewArgs.m_WidgetArray = *(GVector<ui::Widget *> *) &l_ScrollViews; 
-  l_WheelScrollViewArgs.m_Size = Size(500, std::max(600.0f, Director::getInstance()->getVisibleSize().height - 270));
+  auto l_Size = Size(500, std::max(600.0f, Director::getInstance()->getVisibleSize().height - 270));
   l_WheelScrollViewArgs.m_CellHeight = 130;
   l_WheelScrollViewArgs.m_CircleRadius = 450;
-  m_SelectWheel =  UICreate::wheelScrollView(l_WheelScrollViewArgs);
+  m_SelectWheel =  UICreate::Get()->DCreateWheelScrollView(
+    *(GVector<Node *> *) &l_ScrollViews, l_Size, 130.f, 450.f
+  );
   if(m_SelectWheel){
-    m_SelectWheel->setSelectedItemListener([this](size_t p_Index){
+    m_SelectWheel->SetItemSelectedListener([this](size_t p_Index, Node *p_Node){
       WheelScrollBack(m_BuildableList[p_Index], p_Index);
     });
 
@@ -211,7 +213,7 @@ void UICreateBuildingPanel::CreateWheelScrollView(){
     m_SelectWheel->setPosition(Vec2(0, std::min(-165.0f, 270.0f - m_NodeCenter->getPosition().y)));
     m_SelectWheel->selectedCellIndex(std::min(m_CurrentIndex, (int)l_ScrollViews.size()));
     m_SelectWheel->setInertiaValue(0.1);
-    GBase::SoraDFTarget(m_SelectWheel);
+    GBase::DFTarget(m_SelectWheel);
   }
   /*  This is Guide */
   // local curChapterID = newPlayerTaskCtrl:getCurChapterID()

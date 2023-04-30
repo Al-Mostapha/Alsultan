@@ -6,11 +6,11 @@ ScienceCtrl *ScienceCtrl::Get(){
   return l_Instance;
 }
 
-uint32 ScienceCtrl::GetSciencePower(EScienceEffect p_ScienceEffect){
+uint32 ScienceCtrl::GetSciencePower(EScienceID p_ScienceEffect){
   return 0;
 }
 
-GPair<bool, uint32> ScienceCtrl::IsEnough( EScience p_Science, uint32 p_Lvl){
+GPair<bool, uint32> ScienceCtrl::IsEnough( EScienceID p_Science, uint32 p_Lvl){
   return GPair<bool, uint32>::Make(true, 0);
 }
 GPair<bool, GVector<RCostScienceEnough>> ScienceCtrl::IsEnough(GVector<RCostScience> &p_Science){
@@ -18,6 +18,10 @@ GPair<bool, GVector<RCostScienceEnough>> ScienceCtrl::IsEnough(GVector<RCostScie
   return l_IsEnough;
 }
 
-EScience ScienceCtrl::StudyingTechnology(){
-  return EScience::None;
+GPair<RScienceDetail, EScienceType> ScienceCtrl::StudyingTechnology(){
+  return GPair<RScienceDetail, EScienceType>(RScienceDetail(), EScienceType::Resource);
+}
+
+GVector<RScienceLvlSpecs> ScienceCtrl::GetRecommendTech(){
+  return GVector<RScienceLvlSpecs>();
 }

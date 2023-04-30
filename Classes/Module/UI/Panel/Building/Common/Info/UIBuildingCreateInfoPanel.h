@@ -175,9 +175,9 @@ public:
   void LightBlink(int32 p_Index);
   void ResBuyCallBack();
 
-  void Build(EOPERATE_MODE p_Mode = EOPERATE_MODE::NORMAL);
+  void Build(EOperateMode p_Mode = EOperateMode::Normal);
   void BuildNow(EMsgBoxCallBack p_Call);
-  void Upgrade(EOPERATE_MODE p_Mode = EOPERATE_MODE::NORMAL);
+  void Upgrade(EOperateMode p_Mode = EOperateMode::Normal);
   void UpgradeNow(EMsgBoxCallBack p_Call);
   void ReloadScroll(bool p_Force){}
 

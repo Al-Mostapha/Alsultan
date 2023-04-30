@@ -1,6 +1,5 @@
 #pragma once
-#include "Include/IncludeBase.h"
-#include "Module/UI/UIBasePanel.h"
+#include "Base/BaseTypeDef.h"
 
 class UIRechargeTinyPageNode /**: public UIBasePanel */{
   public:

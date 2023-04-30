@@ -1,5 +1,5 @@
 #include "UIRechargeTinyPageNode.h"
-
+#include "Module/UI/UIBasePanel.h"
 UIRechargeTinyPageNode* UIRechargeTinyPageNode::Create(){
   RBasePenelData l_PanelData ;
   l_PanelData.FutureName = "rechargeTinyPageNode";

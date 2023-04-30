@@ -229,7 +229,7 @@ namespace GBase{
       return instance;
     }
     bool IS_DEBUG_SERVER = false;
-    int32 MAX_ARMY = 1000000000;
+    int32 MaxArmy = 1000000000;
     float BUILD_DEMOLISH_TIME_COEFFICIENT = 0.5f;
     float UNIT_ARMY_CURE_TIME = 0.05f;
     float UNIT_ARMY_CURE_COSTRES = 0.5f;
@@ -244,7 +244,7 @@ namespace GBase{
     int32 DEFAULT_EXP_ARMY_QUEUE = 1;
     int32 RES_MAX_EVERYDAY = 500000000;
     int32 RES_MAX_TOTAL = 1500000000;
-    int32 RES_MAX_TOTAL_IN_LEGEND = 5000000000;
+    int32 RES_MAX_TOTAL_IN_LEGEND = 5000000000ll;
     int32 MAX_GOLD_COUNT = 99999999;
     int32 BUILD_FREE_SPEEDUP_TIME = 300;
     int32 TIME_SYNC_INTERVAL = 60;

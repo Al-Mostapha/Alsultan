@@ -3,6 +3,7 @@
 #include "UIMainBottom.h"
 #include "UIPandectView.h"
 #include "Base/Common/Common.Enum.h"
+#include "Base/Common/Common.Msg.h"
 #include "Module/Activity/LoginGift.Ctrl.h"
 #include "Game/Interior/Interior.Ctrl.h"
 #include "Module/Activity/StarRhapsody/StarRhapsody.Ctrl.h"
@@ -61,8 +62,8 @@ void UIMain::Ctor()
 
 void UIMain::BindTest()
 {
-  auto l_ButtonCheat = GBase::GetChildByName<ui::Button *>(this, "Button_cheat");
-  auto l_ButtonTest = GBase::GetChildByName<ui::Button *>(this, "Button_test");
+  auto l_ButtonCheat = GBase::DGetChildByName<ui::Button *>(this, "Button_cheat");
+  auto l_ButtonTest = GBase::DGetChildByName<ui::Button *>(this, "Button_test");
 
   if(GDevice::Get()->Platform() == EPlatform::Mac || SDKManager::Get()->IsBeta() || SDKManager::Get()->IsGameDevelop())
   {

@@ -115,3 +115,13 @@ void CityCtrl::InitCrystalMine(){
   //   end
   // end
 }
+
+GVector<BuildingCell> CityCtrl::GetBuildCellList(EBuilding p_Building){
+  GVector<BuildingCell> l_BuildCellList;
+  for (auto l_BuildCell : GetBuildList()){
+    if (l_BuildCell.second._Info.IdBuilding == p_Building){
+      l_BuildCellList.push_back(l_BuildCell.second);
+    }
+  }
+  return l_BuildCellList;
+}

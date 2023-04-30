@@ -265,10 +265,10 @@ enum class EBuildingOperateType {
   UpgradeStar = 5
 };
 
-enum class EOPERATE_MODE {
-  NORMAL = 0,
-  GOLD_REPLACE = 1,
-  IMMEDIATELY = 2,
+enum class EOperateMode {
+  Normal = 0,
+  GoldReplace = 1,
+  Immediately = 2,
   FREE = 3
 };
 

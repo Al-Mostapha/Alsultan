@@ -33,7 +33,7 @@ IBuilding *BuildingCtrl::getBuildingCell(EBuilding p_BUildingType){
 void BuildingCtrl::getReducedCostTime(RBuildingLvlSpecs& p_OriginalSpec) {
 
   uint32  l_skill_add = LordScienceCtrl::Get()->GetSciencePower(ELordScience::AccelerateConstruction);
-  uint32  l_technologyAdd = ScienceCtrl::Get()->GetSciencePower(EScienceEffect::CONSTRUCTION_SPEED);
+  uint32  l_technologyAdd = ScienceCtrl::Get()->GetSciencePower(EScienceID::CONSTRUCTION_SPEED);
   uint32  l_allianceAdd = AllianceScienceCtrl::Get()->GetSciencePower(EGuildScience::BuildingUpgradeSpeed);
   uint32 l_Effect = EffectCtrl::Get()->getEffectVal(EEffect::BuildingSpeedBoost);
   if(p_OriginalSpec.lvl <= 30)
@@ -57,7 +57,7 @@ void BuildingCtrl::getReducedCostResource(RBuildingLvlSpecs& p_OriginalSpec) {
     l_CostReduced += EffectCtrl::Get()->getEffectVal(EEffect::UpgradeBuildingCostResReduceLess30);
   if (p_OriginalSpec.lvl <= 70)
     l_CostReduced += EffectCtrl::Get()->getEffectVal(EEffect::UpgradeBuildingCostResReduceLessZ4);
-  l_CostReduced = l_CostReduced /1000 + ScienceCtrl::Get()->GetSciencePower(EScienceEffect::BUILD_COST_REDUCE);
+  l_CostReduced = l_CostReduced /1000 + ScienceCtrl::Get()->GetSciencePower(EScienceID::BUILD_COST_REDUCE);
 
   p_OriginalSpec.CostRes.Coin    = std::ceil(p_OriginalSpec.CostRes.Coin    * (1 - l_CostReduced));
   p_OriginalSpec.CostRes.Crystal = std::ceil(p_OriginalSpec.CostRes.Crystal * (1 - l_CostReduced));

@@ -17,12 +17,12 @@ UIBuildingCreateSingle *UIBuildingCreateSingle::Create(){
 
 void UIBuildingCreateSingle::Ctor(){
   UIBasePanel::Ctor();
-  _ImgIcon = GBase::GetChildByName<ui::ImageView *>(this, "Image_icon");
-  _LabelDes = GBase::GetChildByName<ui::Text *>(this, "Text_des");
-  _BtnJump = GBase::GetChildByName<ui::Button *>(this, "Text_des");
-  _ImgState = GBase::GetChildByName<ui::ImageView *>(this, "Image_state");
-  _SpriteLuckLine = GBase::GetChildByName<Sprite *>(this, "Sprite_luckLine");
-  _LabelLuckValue = GBase::GetChildByName<ui::Text *>(this, "Text_luckValue");
+  _ImgIcon = GBase::DGetChildByName<ui::ImageView *>(this, "Image_icon");
+  _LabelDes = GBase::DGetChildByName<ui::Text *>(this, "Text_des");
+  _BtnJump = GBase::DGetChildByName<ui::Button *>(this, "Text_des");
+  _ImgState = GBase::DGetChildByName<ui::ImageView *>(this, "Image_state");
+  _SpriteLuckLine = GBase::DGetChildByName<Sprite *>(this, "Sprite_luckLine");
+  _LabelLuckValue = GBase::DGetChildByName<ui::Text *>(this, "Text_luckValue");
   if(_BtnJump)
     _BtnJump->addTouchEventListener(CC_CALLBACK_2(UIBuildingCreateSingle::BtnJumpCallBack, this));
   _IsMet = false;

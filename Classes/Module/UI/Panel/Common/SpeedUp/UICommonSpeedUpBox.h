@@ -2,6 +2,8 @@
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBasePanel.h"
 
+class ITask;
+
 class UICommonSpeedUpBox : public UIBasePanel
 {
 
@@ -12,6 +14,6 @@ class UICommonSpeedUpBox : public UIBasePanel
 public: 
   static UICommonSpeedUpBox* Create();
   void Ctor() override;
-  void InitData();
+  void InitData(GString p_Msg, const GFunc<void(EMsgBoxCallBack)> &p_CB, ITask *p_Q, const GHashMap<GString, GString> &p_ArgV){}
   void InitWidget();
 };

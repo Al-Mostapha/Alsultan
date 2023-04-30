@@ -15,7 +15,7 @@
 #include "Module/UI/Panel/Building/Market/UIMarketNoAlliance.h"
 #include "Module/UI/Panel/Building/Market/UITradeBoardView.h"
 #include "Module/UI/Panel/Building/Market/UINewTradeBoardView.h"
-#include "Module/UI/Panel/Building/Collage/UICollageView.h"
+#include "Module/UI/Panel/Building/College/UICollageView.h"
 #include "Module/UI/Panel/Building/Embassy/UIEmbassyView.h"
 #include "Module/UI/Panel/Building/Embassy/UIReinforcementsView.h"
 #include "Module/UI/Panel/Building/TreasureHunt/UITreasureHuntView.h"
@@ -203,7 +203,7 @@ void BuildingTipsHandle::ButtonTrainCall(UIBuildingTipButton *p_Ref, ui::Widget:
   if(p_Touch != Widget::TouchEventType::ENDED)
     return;
   auto l_Panel = UISoldiersCampView::Create();
-  l_Panel->InitData(p_Ref->_BuildEntity->GetBuildingIndex(), p_Ref->_BuildEntity);
+  l_Panel->InitData(p_Ref->_BuildEntity->GetBuildingIndex(), p_Ref->_BuildEntity, ETrainType::Soldiers);
   l_Panel->Show();
   GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
 }
@@ -261,7 +261,7 @@ void BuildingTipsHandle::ButtonBuildTrapCall(UIBuildingTipButton *p_Ref, ui::Wid
   if(p_Touch != Widget::TouchEventType::ENDED)
     return;
   auto l_Panel = UISoldiersCampView::Create();
-  l_Panel->InitData(p_Ref->_BuildEntity->GetBuildingIndex(), p_Ref->_BuildEntity);
+  l_Panel->InitData(p_Ref->_BuildEntity->GetBuildingIndex(), p_Ref->_BuildEntity, ETrainType::Trap);
   l_Panel->Show();
   GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
 }

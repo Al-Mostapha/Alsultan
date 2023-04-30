@@ -1,11 +1,40 @@
 #pragma once 
 
-enum class EArmyCategory {
+enum class EModelType {
   Infantry = 1,
   Knight = 2,
   Archer = 3,
   Catapult = 4, // منجنيق
-  Wall = 5
+  Wall = 5, // may Be error
+  Elite = 6
+};
+
+enum class ESoldierType {
+  None = 0,
+  Bubing = 1,
+  QIBING = 2,
+  GONGBING = 3,
+  CHEBING = 4,
+  TRAP_STONE = 5,
+  TRAP_ARROW = 6,
+  TRAP_WOOD = 7,
+  Elite = 8
+};
+
+enum class EArmyType {
+  infantryDf = 1,
+  infantryAk = 2,
+  cavalry = 3,
+  cavalryArrow = 4,
+  archer = 5,
+  crossbow = 6,
+  charists = 7,
+  siegeVehicles = 8,
+  trap = 9,
+  tower1 = 10,
+  tower2 = 11,
+  tower3 = 12,
+  elite = 13
 };
 
 enum class EArmy {
@@ -97,4 +126,17 @@ enum class EArmySkill {
   InfantriesCurse = 1322,
   CavalriesCurse = 1323,
   ArchersCurse = 1324
+};
+
+enum class ETrainType {
+  None = 0,
+  Soldiers = 1, 
+  Trap = 2
+};
+
+enum class EArmyOpType{
+  None = 0,
+  Normal = 1,
+  Wounded = 2,
+  All = 3
 };

@@ -1,5 +1,5 @@
 #include "Base.Geometry.h"
-
+#include "Include/IncludeEngine.h"
 namespace GBase {
 
   ELayoutAlignment DGetLayoutAlignment(){
@@ -45,7 +45,6 @@ namespace GBase {
     return p_X;
   }
 
-
   float DAlignNodeArray(GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding){
     CCAssert(p_Nodes.size(), "Nodes is empty");
     auto l_BeginX = 0;
@@ -81,7 +80,6 @@ namespace GBase {
     }
     return l_AccWidth;
   }
-
 
  float DAlignNodeArrayOnLimitX( GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding,
     bool p_LimitR, float p_LimitX){
@@ -174,5 +172,11 @@ namespace GBase {
 //   return node, tempLen
 // end
   }
+}
+
+TextHAlignment GBase::DFLabelR(){
+  if(GBase::DGetLayoutAlignment() == ELayoutAlignment::Right)
+    return TextHAlignment::RIGHT;
+  return TextHAlignment::LEFT;
 }
 

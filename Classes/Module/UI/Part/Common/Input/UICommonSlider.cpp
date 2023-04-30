@@ -12,7 +12,7 @@ void UICommonSlider::Ctor(){
 //     curValue = 1
 //   }
 //   self.slider = SoraDGetChildByName(self, "Slider_slider")
-_Slider = GBase::GetChildByName<Node *>(this, "slider");
+_Slider = GBase::DGetChildByName<Node *>(this, "slider");
 CSLoader::createNode("UiParts/Parts/Common/Input/commonSliderA.csb");
 //   self.labelMax = SoraDGetChildByName(self, "Text_max")
 //   self.btnUp = SoraDGetChildByName(self, "Button_up")

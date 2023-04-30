@@ -2,6 +2,7 @@
 #include "UICCSView.h"
 #include "Base/Common/Panel.Manger.h"
 #include "Scene/Main/MainScene.h"
+#include "View/Recharge/UIRechargeTinyPageNode.h"
 
 UIBasePanel* UIBasePanel::InitPanel(GString p_CCsFile, RBasePenelData *p_Data){
   _Panel = UICCSView::Create(p_CCsFile);
@@ -49,7 +50,7 @@ void UIBasePanel::Ctor(){
 }
 
 void UIBasePanel::BindBtnClose(){
-  _CloseButton = GBase::GetChildByName<ui::Button*>(this, "Button_close");
+  _CloseButton = GBase::DGetChildByName<ui::Button*>(this, "Button_close");
   if(_CloseButton){
     _CloseButton->addTouchEventListener([this](Ref *p_Ref, ui::Widget::TouchEventType p_Type){
       if(p_Type == ui::Widget::TouchEventType::ENDED){
@@ -206,7 +207,7 @@ UIBasePanel *UIBasePanel::Show(Node *p_ParentNode, int32 p_ZOrder){
 }
 
 Node *UIBasePanel::GameGuide_getTarget(GString p_Name){
-  return  GBase::GetChildByName<Node *>(this, p_Name.c_str());
+  return  GBase::DGetChildByName<Node *>(this, p_Name.c_str());
 }
 
 void UIBasePanel::ClosePanel(){

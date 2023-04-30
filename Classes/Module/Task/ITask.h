@@ -1,5 +1,5 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "Task.Enum.h"
 
 class ITask{
@@ -9,10 +9,22 @@ class ITask{
   GTime TimeEnd;
   GTime TimeStart;
   GTime TimeEndOrginal;
-  GTime GetRemainTime(){
+  virtual GTime GetRemainTime(){
     return TimeEnd - GDateTime::Now();
   }
-  ETask GetQueueType(){
+  virtual GTime GetTotalTime(){
+    return 0;
+  }
+  virtual ETask GetQueueType(){
     return TaskType;
   }
+
+  template<class T>
+  T *As();
 };
+
+template <typename T>
+inline T* ITask::As()
+{
+  return dynamic_cast<T*>(this);
+}

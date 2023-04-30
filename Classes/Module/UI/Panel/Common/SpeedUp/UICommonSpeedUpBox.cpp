@@ -9,9 +9,6 @@ void UICommonSpeedUpBox::Ctor(){
 
 }
 
-void UICommonSpeedUpBox::InitData(){
-
-}
 
 void UICommonSpeedUpBox::InitWidget(){
 

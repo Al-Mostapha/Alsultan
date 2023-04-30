@@ -1,6 +1,7 @@
 #pragma once
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBasePanel.h"
+#include "Module/Army/Army.Enum.h"
 
 
 class UISoldierSkillSingle : public UIBasePanel
@@ -13,5 +14,6 @@ class UISoldierSkillSingle : public UIBasePanel
   
 public: 
   static UISoldierSkillSingle* Create();
+  void InitData(EArmySkill){}
   void Ctor() override;
 };

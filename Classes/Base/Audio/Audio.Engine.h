@@ -11,4 +11,5 @@ public:
   void Init();
   void StopMusic();
   void SetMusicVolume(float volume);
+  void StopEffect(int32 p_AudioId){}
 };

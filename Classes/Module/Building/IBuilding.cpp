@@ -41,8 +41,8 @@ bool IBuilding::IgnoreClickEvent(Touch* p_Touch, Event* p_Event) const {
     auto l_ArrowTowerL = CityScene::Get()->GetNode<Node*>("build_1054");
     auto l_BehindArrowTower = CityScene::Get()->GetNode<Node*>("build_1066");
 
-    auto l_JiantaBaseLBtn = GBase::GetChildByName<Node*>(l_JiantaBaseL, "buildBtn");
-    auto l_JiantaBaseRBtn = GBase::GetChildByName<Node*>(l_JiantaBaseR, "buildBtn");
+    auto l_JiantaBaseLBtn = GBase::DGetChildByName<Node*>(l_JiantaBaseL, "buildBtn");
+    auto l_JiantaBaseRBtn = GBase::DGetChildByName<Node*>(l_JiantaBaseR, "buildBtn");
     auto l_TipBoxGuardSoldier = CityScene::Get()->TipBoxGuardSoldier;
     GVector<Node*> l_BlockingNode = {l_BuildingLayer, l_TipBoxWall,         l_JiantaBaseL,    l_JiantaBaseR,    l_ArrowTowerL,
                                      l_ArrowTowerR,   l_TipBoxGuardSoldier, l_JiantaBaseLBtn, l_JiantaBaseRBtn, l_BehindArrowTower};
@@ -530,14 +530,14 @@ void IBuilding::DoReqHelpByQueueType(ETask p_Task) {
     if (l_BuildingType == EBuilding::FirstAidTent) {
       //       data = nil
     } else if (l_BuildingType == EBuilding::Institute) {
-      l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+      //l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
     } else if (l_BuildingType == EBuilding::Miracle) {
-      l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+      //l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
     } else if (l_BuildingType == EBuilding::Blacksmith) {
       //  local eid, count = self:getTrainingAidAndCount()
       //  data = {equipid = eid}
     } else if (l_BuildingType == EBuilding::StarBraveStatue) {
-      l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
+     // l_Data.Id = static_cast<int>(ScienceCtrl::Get()->StudyingTechnology());
     }
   } else if (GetState() == EBuildingState::Building || GetState() == EBuildingState::Upgrading) {
     l_Data.Id = static_cast<int>(GetBuildingId());

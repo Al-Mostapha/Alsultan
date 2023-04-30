@@ -7,11 +7,11 @@ UIBuildingInfoSingle *UIBuildingInfoSingle::Create(){
 
 void UIBuildingInfoSingle::Ctor(){
   UIBasePanel::Ctor();
-  _ImgIcon = GBase::GetChildByName<ui::ImageView *>(this, "Image_icon");
-  _LabelDes = GBase::GetChildByName<ui::Text *>(this, "Text_des");
-  _LabelValue = GBase::GetChildByName<ui::Text *>(this, "Text_value");
-  _LabelPlusValue = GBase::GetChildByName<ui::Text *>(this, "Text_plusValue");
-  _BtnHelp = GBase::GetChildByName<ui::Button *>(this, "Button_help");
+  _ImgIcon = GBase::DGetChildByName<ui::ImageView *>(this, "Image_icon");
+  _LabelDes = GBase::DGetChildByName<ui::Text *>(this, "Text_des");
+  _LabelValue = GBase::DGetChildByName<ui::Text *>(this, "Text_value");
+  _LabelPlusValue = GBase::DGetChildByName<ui::Text *>(this, "Text_plusValue");
+  _BtnHelp = GBase::DGetChildByName<ui::Button *>(this, "Button_help");
   // self.tableInfoSingleData = {}
   if(_BtnHelp)
     _BtnHelp->addTouchEventListener(CC_CALLBACK_2(UIBuildingInfoSingle::BtnHelpCallBack, this));

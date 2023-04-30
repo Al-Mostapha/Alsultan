@@ -43,3 +43,7 @@ bool WorldMapDefine::IsInWarForbid(bool p_NoShowTips, bool p_Activity){
 bool WorldMapDefine::IsInWarForbidSoldier(bool p_NoShowTips, bool p_Activity){
   return false;
 }
+
+void WorldMapDefine::ShowWarTips(bool p_Activity){
+  
+}

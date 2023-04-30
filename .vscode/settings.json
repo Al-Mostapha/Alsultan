@@ -65,5 +65,13 @@
     "xlocmes": "cpp",
     "xlocmon": "cpp",
     "xloctime": "cpp"
+  },
+  "search.exclude": {
+    "**/build": true,
+    "**/cocos2d": true,
+    "**/libfairygui": true,
+    "**/proj.*": true,
+    "**/Resources": true,
+    "Config": true
   }
 }

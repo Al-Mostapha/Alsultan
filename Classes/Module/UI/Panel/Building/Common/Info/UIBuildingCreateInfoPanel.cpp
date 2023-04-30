@@ -1,4 +1,5 @@
 #include "UIBuildingCreateInfoPanel.h"
+#include "Base/Common/Common.Msg.h"
 #include "Module/UI/Panel/Building/Common/Builder/UIBuilderActivePop.View.h"
 #include "Module/UI/Part/Common/Button/UICommonGoldNormalBtn.h"
 #include "Base/Common/Common.Box.h"
@@ -51,40 +52,40 @@ void UIBuildingCreateInfoPanel::InitWidget(){
 
   _NodeRescources = GBase::DGetExtendChildFromCCSByName<UICommonResourcesMenu>(this, "CCS_commonResourcesMenu_up");
   _NodeRescources->SetNeedScale(true);
-  _LabelDes = GBase::GetChildByName<ui::Text *>(this, "Text_des");
-  _LabelNextLvlValue = GBase::GetChildByName<ui::Text *>(this, "Text_nextLvValue");
-  _LabelNextLvl = GBase::GetChildByName<ui::Text *>(this, "Text_nextLv");
-  _BtnUnlocked = GBase::GetChildByName<ui::Button *>(this, "Button_unlocked");
+  _LabelDes = GBase::DGetChildByName<ui::Text *>(this, "Text_des");
+  _LabelNextLvlValue = GBase::DGetChildByName<ui::Text *>(this, "Text_nextLvValue");
+  _LabelNextLvl = GBase::DGetChildByName<ui::Text *>(this, "Text_nextLv");
+  _BtnUnlocked = GBase::DGetChildByName<ui::Button *>(this, "Button_unlocked");
   _BtnUnlocked->setVisible(false);
   _BtnUpNow = GBase::DGetExtendChildFromCCSByName<UICommonGoldNormalBtn>(this, "CCS_commonGoldNormalBtn_upNow");
 
   auto l_ParamInitData = UICommonGoldNormalBtn::RInitDataParm();
   _BtnUpNow->InitData(l_ParamInitData, UICommonGoldNormalBtn::EShowType::Gold);
 
-  _BtnUp = GBase::GetChildByName<ui::Button *>(this, "Button_up");
-  _LabelNeed = GBase::GetChildByName<ui::Text *>(this, "Text_need");
-  _ImageR = GBase::GetChildByName<ui::ImageView *>(this, "Image_r");
-  _ImageL = GBase::GetChildByName<ui::ImageView *>(this, "Image_l");
-  _NodeNameBg = GBase::GetChildByName<Node *>(this, "Node_nameBg");
-  _LabelName = GBase::GetChildByName<ui::Text *>(this, "Text_name");
-  _NodeNeedTime = GBase::GetChildByName<Node *>(this, "Node_needTime");
-  _LabelUpTime = GBase::GetChildByName<ui::Text *>(this, "Text_upTime");
-  _CenterNode = GBase::GetChildByName<Node *>(this, "Center_Node");
-  _BottomNode = GBase::GetChildByName<Node *>(this, "Bottom_Node");
-  _ScrollUp = GBase::GetChildByName<ui::ScrollView *>(this, "ScrollView_up");
-  _ImgLight = GBase::GetChildByName<ui::ImageView *>(this, "Image_light");
-  _ImgFlag = GBase::GetChildByName<ui::ImageView *>(this, "Sprite_flag");
-  _ImgDesBg = GBase::GetChildByName<ui::ImageView *>(this, "Image_desBg");
-  _ImgTime = GBase::GetChildByName<ui::ImageView *>(this, "Image_time");
-  _ImgNameBg = GBase::GetChildByName<ui::ImageView *>(this, "Image_nameBg");
-  _LabelLuckyDay = GBase::GetChildByName<ui::Text *>(this, "Text_luckyDay");
+  _BtnUp = GBase::DGetChildByName<ui::Button *>(this, "Button_up");
+  _LabelNeed = GBase::DGetChildByName<ui::Text *>(this, "Text_need");
+  _ImageR = GBase::DGetChildByName<ui::ImageView *>(this, "Image_r");
+  _ImageL = GBase::DGetChildByName<ui::ImageView *>(this, "Image_l");
+  _NodeNameBg = GBase::DGetChildByName<Node *>(this, "Node_nameBg");
+  _LabelName = GBase::DGetChildByName<ui::Text *>(this, "Text_name");
+  _NodeNeedTime = GBase::DGetChildByName<Node *>(this, "Node_needTime");
+  _LabelUpTime = GBase::DGetChildByName<ui::Text *>(this, "Text_upTime");
+  _CenterNode = GBase::DGetChildByName<Node *>(this, "Center_Node");
+  _BottomNode = GBase::DGetChildByName<Node *>(this, "Bottom_Node");
+  _ScrollUp = GBase::DGetChildByName<ui::ScrollView *>(this, "ScrollView_up");
+  _ImgLight = GBase::DGetChildByName<ui::ImageView *>(this, "Image_light");
+  _ImgFlag = GBase::DGetChildByName<ui::ImageView *>(this, "Sprite_flag");
+  _ImgDesBg = GBase::DGetChildByName<ui::ImageView *>(this, "Image_desBg");
+  _ImgTime = GBase::DGetChildByName<ui::ImageView *>(this, "Image_time");
+  _ImgNameBg = GBase::DGetChildByName<ui::ImageView *>(this, "Image_nameBg");
+  _LabelLuckyDay = GBase::DGetChildByName<ui::Text *>(this, "Text_luckyDay");
   _LabelLuckyDay->setVisible(false);
-  _LabelFreeTip = GBase::GetChildByName<ui::Text *>(this, "Text_freeTip");
+  _LabelFreeTip = GBase::DGetChildByName<ui::Text *>(this, "Text_freeTip");
   _LabelFreeTip->setVisible(false);
-  _NodeWiseTutor = GBase::GetChildByName<Node *>(this, "Node_WiseTutor");
-  _TextWiseTime = GBase::GetChildByName<ui::Text *>(_NodeWiseTutor, "Text_WiseTime");
+  _NodeWiseTutor = GBase::DGetChildByName<Node *>(this, "Node_WiseTutor");
+  _TextWiseTime = GBase::DGetChildByName<ui::Text *>(_NodeWiseTutor, "Text_WiseTime");
   GBase::DSetTextWidthHeight(_TextWiseTime, {82, 24});
-  _BtnWiseTutor = GBase::GetChildByName<ui::Button *>(_NodeWiseTutor, "Button_WiseTutor");
+  _BtnWiseTutor = GBase::DGetChildByName<ui::Button *>(_NodeWiseTutor, "Button_WiseTutor");
   _BtnWiseTutor->addTouchEventListener(CC_CALLBACK_2(UIBuildingCreateInfoPanel::OnWiseTutorClick, this));
   //   self.nodeArtisanHouse = self.nodeWiseTutor:clone()
   //   self.nodeArtisanHouse:setVisible(false)
@@ -101,19 +102,19 @@ void UIBuildingCreateInfoPanel::InitWidget(){
   //   pic:loadTexture("icon_artisanhouse_9001368.png", ccui.TextureResType.plistType)
   //   pic:setScale(0.8)
   //   self.btnHelp = SoraDGetChildByName(self, "Button_help")
-  _BtnHelp = GBase::GetChildByName<ui::Button *>(this, "Button_help");
+  _BtnHelp = GBase::DGetChildByName<ui::Button *>(this, "Button_help");
   _BtnHelp->setVisible(false);
-  _NodeValue = GBase::GetChildByName<Node *>(this, "Node_value");
-  _LabelCurLvlValue = GBase::GetChildByName<ui::Text *>(this, "Text_curLvValue");
-  _IconWarCur = GBase::GetChildByName<Sprite *>(this, "icon_warCur");
-  _IconWarTo = GBase::GetChildByName<Sprite *>(this, "icon_warTo");
-  _LabelWarPro = GBase::GetChildByName<ui::Text *>(this, "Text_warPro");
+  _NodeValue = GBase::DGetChildByName<Node *>(this, "Node_value");
+  _LabelCurLvlValue = GBase::DGetChildByName<ui::Text *>(this, "Text_curLvValue");
+  _IconWarCur = GBase::DGetChildByName<Sprite *>(this, "icon_warCur");
+  _IconWarTo = GBase::DGetChildByName<Sprite *>(this, "icon_warTo");
+  _LabelWarPro = GBase::DGetChildByName<ui::Text *>(this, "Text_warPro");
   _LabelWarPro->setString("0%");
-  _NodeWar = GBase::GetChildByName<Node *>(this, "Node_war");
-  _ImgWarBg = GBase::GetChildByName<ui::ImageView *>(this, "Image_warProBg");
+  _NodeWar = GBase::DGetChildByName<Node *>(this, "Node_war");
+  _ImgWarBg = GBase::DGetChildByName<ui::ImageView *>(this, "Image_warProBg");
   _ImgWarBg->setLocalZOrder(-1);
-  _NodeProgressBar = GBase::GetChildByName<Node *>(this, "Node_progressBar");
-  _NodeEffect = GBase::GetChildByName<Node *>(this, "Node_effect");
+  _NodeProgressBar = GBase::DGetChildByName<Node *>(this, "Node_progressBar");
+  _NodeEffect = GBase::DGetChildByName<Node *>(this, "Node_effect");
   _WarBarTo = GDisplay::Get()->NewProgressTimer("frame_jzjz_jdt2.png", ProgressTimer::Type::RADIAL);
   _WarBarTo->setScaleX(GBase::DFIsRA() ? -1.f : 1.f);
   _WarBarTo->setColor({152, 85, 26});
@@ -130,7 +131,7 @@ void UIBuildingCreateInfoPanel::InitWidget(){
   _IconWarCur->setVisible(false);
   _ImgLight->setVisible(false);
   _ImgLight->setLocalZOrder(1);
-   GBase::GetChildByName<ui::Text *>(this, "Text_nextLv")->setString(Translate::i18n("common_text_280"));
+   GBase::DGetChildByName<ui::Text *>(this, "Text_nextLv")->setString(Translate::i18n("common_text_280"));
   _LabelNeed->setString(Translate::i18n("common_text_726"));
   _ImageR->setPositionX(_LabelNeed->getPositionX() + _LabelNeed->getContentSize().width/2 + 20);
   _ImageL->setPositionX(_LabelNeed->getPositionX() - _LabelNeed->getContentSize().width/2 - 20);
@@ -147,9 +148,9 @@ Node *UIBuildingCreateInfoPanel::AddRadiantDecreeBtn(){
   l_Node->setName("Buff_radiantDecree");
   _BottomNode->addChild(l_Node);
   l_Node->setPosition({150, 550});
-  _RadiantTime = GBase::GetChildByName<ui::Text *>(this, "Text_1");
+  _RadiantTime = GBase::DGetChildByName<ui::Text *>(this, "Text_1");
   _RadiantTime->setVisible(false);
-  _RadiantBtn = GBase::GetChildByName<ui::Button *>(this, "Button_1");
+  _RadiantBtn = GBase::DGetChildByName<ui::Button *>(this, "Button_1");
   l_Node->setVisible(false);
   _RadiantBtn->addTouchEventListener(CC_CALLBACK_2(UIBuildingCreateInfoPanel::BtnShowRadiantBuff, this));
   return nullptr;
@@ -178,9 +179,9 @@ void UIBuildingCreateInfoPanel::OnMessageListener(){
 }
 
 void UIBuildingCreateInfoPanel::SuitView(){
-  _NodeLeft = GBase::GetChildByName<ui::Layout *>(this, "Center_Panel_left");
-  _NodeTop = GBase::GetChildByName<ui::Layout *>(this, "Top_Panel");
-  _NodeBottom = GBase::GetChildByName<ui::Layout *>(this, "Bottom_Panel");
+  _NodeLeft = GBase::DGetChildByName<ui::Layout *>(this, "Center_Panel_left");
+  _NodeTop = GBase::DGetChildByName<ui::Layout *>(this, "Top_Panel");
+  _NodeBottom = GBase::DGetChildByName<ui::Layout *>(this, "Bottom_Panel");
   _NodeTop->setContentSize({640.0f, GDisplay::Get()->height - (_NodeLeft->getPositionY() + 0.5f * _NodeLeft->getContentSize().height)});
   _NodeBottom->setContentSize({640.f, _NodeLeft->getPositionY() - 0.5f * _NodeLeft->getContentSize().height});
   _CenterNode->setPositionY(std::max(450.0f, GDisplay::Get()->height / 2));
@@ -247,7 +248,7 @@ void UIBuildingCreateInfoPanel::UpdateWiseTutorBuff(){
       OpenWiseTutorTime(0);
       _WiseTutorTimer = GBase::DCreateTimer(this, CC_CALLBACK_1(UIBuildingCreateInfoPanel::OpenWiseTutorTime, this));
     }
-    GBase::DSetGray(GBase::GetChildByName<ui::ImageView *>(this, "Image_WiseIcon"), !_WiseTutorIsOpen);
+    GBase::DSetGray(GBase::DGetChildByName<ui::ImageView *>(this, "Image_WiseIcon"), !_WiseTutorIsOpen);
   }else{
   //   for i, v in ipairs(self.tableScrollSingles) do
   //     v:luckBlessOpen(false)
@@ -536,7 +537,7 @@ void UIBuildingCreateInfoPanel::ShowUnlockedInfo(){
       l_BtnImgName = BuildingRead::Get()->GetIcon(l_NextUnloacked._Building);
       _TableBuildInfo._BuildId._UnlockedId = static_cast<int32>(l_NextUnloacked._Building);
       l_Width = 140;
-    }else if(l_NextUnloacked._Science != EScience::None){
+    }else if(l_NextUnloacked._Science != EScienceID::None){
       l_BtnImgName = ScienceRead::Get()->GetIcon(l_NextUnloacked._Science);
       _TableBuildInfo._BuildId._UnlockedId = static_cast<int32>(l_NextUnloacked._Science);
       l_Width = 140;
@@ -759,7 +760,7 @@ void UIBuildingCreateInfoPanel::InitScroll(){
       _ISMet = false;
     if(!v._IsReach){
       _IsSpecialReach = false;
-      _BuildType == CANT_BY_TOOL;
+      _BuildType = CANT_BY_TOOL;
     }
   }
   for(auto iii = 0 ; iii < _TableBuildInfo._BuildData._CostItemWEs.size(); iii++){
@@ -785,7 +786,7 @@ void UIBuildingCreateInfoPanel::InitScroll(){
       _NeedWarBadgeBuy = v._ItemCount - v._CurCount;
       _NeedWarBadgeID = v.idItem;
       _IsSpecialReach = false;
-      _BuildType == CANT_BY_TOOL;
+      _BuildType = CANT_BY_TOOL;
     }
   }
 
@@ -904,9 +905,9 @@ void UIBuildingCreateInfoPanel::LightBlink(int32 p_Index){
 
 void UIBuildingCreateInfoPanel::ResBuyCallBack(){
   if(_ViewType == EBuildingOperateType::Build){
-    Build(EOPERATE_MODE::GOLD_REPLACE);
+    Build(EOperateMode::GoldReplace);
   }else if(_ViewType == EBuildingOperateType::Upgrade){
-    Upgrade(EOPERATE_MODE::GOLD_REPLACE);
+    Upgrade(EOperateMode::GoldReplace);
   }
 }
 
@@ -1078,7 +1079,7 @@ void UIBuildingCreateInfoPanel::BtnUpNowCallBack(Ref *p_Sender, ui::Widget::Touc
   GBase::PlaySound();
   if(_ViewType == EBuildingOperateType::Build){
     if(_IsFree && _IsEnough){
-      Build(EOPERATE_MODE::FREE);
+      Build(EOperateMode::FREE);
     }else{
       GBase::DShowBuyBox(
         RShowBuyBoxParam(
@@ -1112,7 +1113,7 @@ void UIBuildingCreateInfoPanel::BtnUpNowCallBack(Ref *p_Sender, ui::Widget::Touc
               if(p_Type != EMsgBoxCallBack::Yes)
                 return;
               if(_IsFree && _IsEnough)
-                this->Upgrade(EOPERATE_MODE::FREE);
+                this->Upgrade(EOperateMode::FREE);
               else if(GBase::Const::Get()->IS_FIRST_TIME_COST_GOLD_BUILDING)
                 GBase::DShowBuyBox(
                   RShowBuyBoxParam(
@@ -1130,7 +1131,7 @@ void UIBuildingCreateInfoPanel::BtnUpNowCallBack(Ref *p_Sender, ui::Widget::Touc
       }
     }
     if(_IsFree && _IsEnough){
-      Upgrade(EOPERATE_MODE::FREE);
+      Upgrade(EOperateMode::FREE);
     }else if(GBase::Const::Get()->IS_FIRST_TIME_COST_GOLD_BUILDING){
       GBase::DShowBuyBox(
         RShowBuyBoxParam(
@@ -1171,7 +1172,7 @@ void UIBuildingCreateInfoPanel::OnArtisanHouseClick(Ref *p_Sender, ui::Widget::T
   // end
 }
 
-void UIBuildingCreateInfoPanel::Build(EOPERATE_MODE p_Mode){
+void UIBuildingCreateInfoPanel::Build(EOperateMode p_Mode){
   
   auto l_Bid = _TableBuildInfo._BuildId._Bid;
   auto l_Index = _TableBuildInfo._BuildId._IID;
@@ -1272,10 +1273,10 @@ void UIBuildingCreateInfoPanel::BuildNow(EMsgBoxCallBack p_Call){
     return;
   if(!GBase::DEnoughWarBadge(_NeedWarBadgeBuy, _NeedWarBadgeID))
     return;
-  Build(EOPERATE_MODE::IMMEDIATELY);
+  Build(EOperateMode::Immediately);
 }
 
-void UIBuildingCreateInfoPanel::Upgrade(EOPERATE_MODE p_Mode){
+void UIBuildingCreateInfoPanel::Upgrade(EOperateMode p_Mode){
   auto l_Bid = _TableBuildInfo._BuildId._Bid;
   auto l_Iid = _TableBuildInfo._BuildId._IID;
   auto l_Data = _TableBuildInfo._BuildData;
@@ -1296,7 +1297,7 @@ void UIBuildingCreateInfoPanel::Upgrade(EOPERATE_MODE p_Mode){
     GBase::DSendMessage("MESSAGE_BUILD_UPGRADE", &l_MsgData);
     CityCtrl::Get()->UpgradeBuildReq(l_Iid, l_Bid, p_Mode);
     auto l_IsFullLv = BuildingLogic::Get()->BuildLvIsFull(l_Iid);
-    if((p_Mode == EOPERATE_MODE::IMMEDIATELY || p_Mode == EOPERATE_MODE::FREE) && !l_IsFullLv){
+    if((p_Mode == EOperateMode::Immediately || p_Mode == EOperateMode::FREE) && !l_IsFullLv){
     GBase::DRemoveAllPrePanelFromManager(this, true);
       _FirstRunWar = true;
       InitUpgradeData(_TableBuildInfo._BuildId._BuildEntity);
@@ -1384,7 +1385,7 @@ void UIBuildingCreateInfoPanel::UpgradeNow(EMsgBoxCallBack p_Call){
     return;
   if(!GBase::DEnoughWarBadge(_NeedWarBadgeBuy, _NeedWarBadgeID))
     return;
-  Upgrade(EOPERATE_MODE::IMMEDIATELY);
+  Upgrade(EOperateMode::Immediately);
 }
 
 Node *UIBuildingCreateInfoPanel::WarLvBarEffect(Node *p_Target){

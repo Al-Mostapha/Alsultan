@@ -7,7 +7,7 @@
 #include "cocos2d.h"
 #include "external/json/document.h"
 #include <time.h>
-#include <optional>
+
 
 typedef std::string GString;
 
@@ -20,13 +20,13 @@ typedef unsigned short int uint16;
 typedef signed int int32;
 typedef unsigned int uint32;
 
+typedef signed long long int64;
+typedef unsigned long long uint64;
+
 typedef uint32 Guid;
 
-typedef signed long int int64;
-typedef unsigned long int uint64;
-
 typedef rapidjson::Document GJsonObject;
-typedef time_t GTime;
+typedef int64 GTime;
 
 template <class T, int32 L>
 using GArray = std::array<T, L>;
@@ -38,6 +38,8 @@ using GMap = std::map<K, V>;
 
 template <class K>
 using GQueue = std::queue<K>;
+template <class K>
+using GFunc = std::function<K>;
 
 enum class ENullBool{
   Null,

@@ -17,7 +17,6 @@ enum class EBuilding;
 enum class EBuildingIndex;
 enum class EFactionType;
 enum class EMsgBoxCallBack;
-class UICommonPromptBox;
 struct RViewOtherData; 
 class UIBaseView;
 
@@ -37,12 +36,12 @@ struct RCreateLabelParm{
   float y = 0;
 };
 
-template <typename T> T GetChildByName(Node* p_Node, const char* p_name) {
+template <typename T> T DGetChildByName(Node* p_Node, const char* p_name) {
   if (!p_Node) return nullptr;
   if (p_Node->getName() == (std::string)p_name) return dynamic_cast<T>(p_Node);
 
   for (auto child : p_Node->getChildren()) {
-    auto l_node = GetChildByName<T>(child, p_name);
+    auto l_node = DGetChildByName<T>(child, p_name);
     if (l_node) return l_node;
   }
 
@@ -50,7 +49,7 @@ template <typename T> T GetChildByName(Node* p_Node, const char* p_name) {
 }
 
 template <class T> T* DGetExtendChildFromCCSByName(Node* p_Parent, const char* p_Name, bool p_NodeFitOffset = false, float p_Height = 0.0f) {
-  auto l_child = GetChildByName<Node *>(p_Parent, p_Name);
+  auto l_child = DGetChildByName<Node *>(p_Parent, p_Name);
   if (!l_child) return nullptr;
   auto l_NameTabel = GStringUtils::Split(GString(p_Name), GString("_"));
   for (auto i = 0; i < (int32)l_NameTabel.size(); i++) {
@@ -67,11 +66,11 @@ template <class T> T* DGetExtendChildFromCCSByName(Node* p_Parent, const char* p
   }
   return nullptr;
 }
-void PlaySound();
-void PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
-void PlaySound(const char* p_SoundName, int32 p_index, float p_delay = 0.0f, bool p_Tag3d = false);
+int32 PlaySound();
+int32 PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
+int32 PlaySound(const char* p_SoundName, int32 p_index, float p_delay = 0.0f, bool p_Tag3d = false);
 const char* getSoundPath(const char* p_SoundName);
-void SoraDFTarget(Node* p_node);
+void DFTarget(Node* p_node);
 EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building);
 bool IsTouchOnNode(Vec2 p_Point, Node* p_Node);
 
@@ -118,16 +117,9 @@ uint32 DGetCastleLv();
 void DShowCastleUPView();
 void DShowRateStarView();
 class UIPanelBase* DCurrentTopPanelFromManager();
-// showMsg, yesBtnTitle, noBtnTitle, callBackHandle, data, align, noSound
-UICommonPromptBox* DShowMsgBox(GString p_Msg,
-                              GString p_YesBtnTitle,
-                              GString p_NoBtnTitle,
-                              std::function<void(EMsgBoxCallBack)> p_CallBack,
-                              void* p_Data = nullptr,
-                              int p_Align = 0,
-                              bool p_NoSound = false);
+
 bool DIsBrave8Level();
-void DMixtureGLONE(Node* p_Node);
+void DMixtureGLONE(Sprite* p_Node);
 void DRemoveMessageByTarget(Node* p_Node);
 void DRemoveMessageFromTargetByName(Node* p_Node, const char* p_EventId);
 
@@ -145,7 +137,6 @@ void DDelayCallOnce(GString p_UniqueKey, ccSchedulerFunc p_Func, float p_Time = 
 UIBaseView *DSearchPanelFromManagerByName(const char* p_Name);
 void DStartLoginServerAndCheckVersion();
 void DShowLoginView(EScene p_Scene = EScene::City, EKingdomClassType p_KingdomClassType = EKingdomClassType::Normal);
-UICommonPromptBox *DShowLoginFailBox(const char *p_FailType, GString p_ShowMsg, bool p_HaveCancelBtn, std::function<void()> p_CallBack);
 bool DCheckIsOpenBuildStar();
 bool SoraDIsBraveOpen();
 

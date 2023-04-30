@@ -73,7 +73,7 @@ struct RBuildingLvlSpecs {
   uint32 steelReduce = 0;
   uint32 kingdomLv = 0;
   EBuilding unlockedBuild = EBuilding::None;
-  EScience unlockedTechnology = EScience::None;
+  EScienceID unlockedTechnology = EScienceID::None;
   uint32 capacity = 0;
   uint32 output = 0;
   uint32 addOutputCostGold = 0;
