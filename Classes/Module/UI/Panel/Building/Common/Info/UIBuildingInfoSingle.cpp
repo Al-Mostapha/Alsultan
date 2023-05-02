@@ -1,5 +1,7 @@
 #include "UIBuildingInfoSingle.h"
 #include "Module/CityResource/Resource.Read.h"
+#include "Base/Common/Common.Teml.h"
+
 UIBuildingInfoSingle *UIBuildingInfoSingle::Create(){
   auto l_Panel = Create("UiParts/Panel/Building/Common/buildInfoSingle.csb");
   return l_Panel;

@@ -6,5 +6,5 @@ UICommonFramTitle *UICommonFramTitle::Create(){
 }
 
 void UICommonFramTitle::Ctor(){
-  UICommonFramTitle::Ctor();
+  UIBasePanel::Ctor();
 }

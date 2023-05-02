@@ -8,6 +8,7 @@
 #include "Module/Science/Science.Ctrl.h"
 #include "Scene/CityScene.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
+#include "Base/Common/Common.Teml.h"
 
 USING_NS_CC;
 

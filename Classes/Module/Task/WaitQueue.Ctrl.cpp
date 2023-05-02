@@ -12,3 +12,7 @@ ITask *WaitQueueCtrl::GetWaitQueueData(ETask p_Task)
   static ITask *l_Task = new ITask();
   return l_Task;
 }
+
+bool WaitQueueCtrl::CheckIsWaiting(ETask, EScience){
+  return true;
+}

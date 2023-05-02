@@ -17,4 +17,5 @@ public:
   void Show() override {};
   static UITimerLabel *Create() {return create();};
   static UITimerLabel *DCreateTimerLabel(Node *p_lable);
+  void BeginTime(GTime){}
 };

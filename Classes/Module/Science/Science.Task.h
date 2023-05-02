@@ -6,5 +6,5 @@
 class ScienceTask : public ITask
 {
   public:
-    EScienceID _TechnologyID = EScienceID::None;
+    EScience _TechnologyID = EScience::None;
 };

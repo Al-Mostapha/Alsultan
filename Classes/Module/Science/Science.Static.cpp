@@ -16,7 +16,7 @@ RScienceCategory& ScienceStatic::getScienceCategory(EScienceType p_ScienceCatego
   return l_Instance.m_Science[p_ScienceCategory];
 }
 
-RScience& ScienceStatic::getScience(EScienceID p_ScienceType) {
+RScience& ScienceStatic::getScience(EScience p_ScienceType) {
   ScienceStatic& l_Instance = Get();
   for (auto& l_OneScienceCat : l_Instance.m_Science) {
     for (auto& l_OneScience : l_OneScienceCat.second.Tree) {
@@ -30,7 +30,7 @@ RScience& ScienceStatic::getScience(EScienceID p_ScienceType) {
   return l_Instance.m_InvalidScience;
 }
 
-RScienceLvlSpecs& ScienceStatic::getScienceLvlSpecs(EScienceID p_ScienceType, uint32 p_Lvl) {
+RScienceLvlSpecs& ScienceStatic::getScienceLvlSpecs(EScience p_ScienceType, uint32 p_Lvl) {
   ScienceStatic& l_Instance = Get();
   auto l_Science = getScience(p_ScienceType);
   for (auto& l_OneScienceLvl : l_Science.Lvls) {
@@ -44,7 +44,7 @@ RScienceLvlSpecs& ScienceStatic::getScienceLvlSpecs(EScienceID p_ScienceType, ui
   return l_Instance.m_InvalidScienceLvlSpecs;
 }
 
-bool ScienceStatic::isValidScienceLvl(EScienceID p_ScienceType, uint32 p_Lvl) {
+bool ScienceStatic::isValidScienceLvl(EScience p_ScienceType, uint32 p_Lvl) {
   ScienceStatic& l_Instance = Get();
   auto l_Science = getScience(p_ScienceType);
   for (auto& l_OneScienceLvl : l_Science.Lvls) {
@@ -53,7 +53,7 @@ bool ScienceStatic::isValidScienceLvl(EScienceID p_ScienceType, uint32 p_Lvl) {
   return false;
 }
 
-bool ScienceStatic::isValidScience(EScienceID p_ScienceType) { 
+bool ScienceStatic::isValidScience(EScience p_ScienceType) { 
   ScienceStatic& l_Instance = Get();
   for (auto& l_OneScienceCat : l_Instance.m_Science) {
     for (auto& l_OneScience : l_OneScienceCat.second.Tree) {

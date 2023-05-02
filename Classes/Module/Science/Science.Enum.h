@@ -121,10 +121,11 @@ enum class EScienceType {
   WarCommand,
   WarLight,
   AdvancedMilitary,
-  Process
+  Process,
+  Nebula
 };
 
-enum EScienceID{
+enum EScienceEffect{
   None = 0,
   WOOD_PRODUCTIVITY = 1,
   FOOD_PRODUCTIVITY = 2,

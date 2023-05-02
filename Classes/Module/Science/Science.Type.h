@@ -6,12 +6,12 @@
 #include "Science.Enum.h"
 
 struct RCostScience {
-  EScienceID ScienceType = EScienceID::None;
+  EScience ScienceType = EScience::None;
   uint32 scienceLvl = 0;
 };
 
 struct RCostScienceEnough{
-  EScienceID RequiredScience = EScienceID::None;
+  EScience RequiredScience = EScience::None;
   uint32 RequiredScienceLvl = 0;
   uint32 maxLvl = 0;
   bool isEnough = false;
@@ -19,7 +19,7 @@ struct RCostScienceEnough{
 
 struct RScienceLvlSpecs {
   uint32           index;
-  EScienceID         idScience;
+  EScience         idScience;
   EScienceType Category;
   uint32           lvl;
   GHashMap<EResource, uint32>       _CostResource;
@@ -30,7 +30,7 @@ struct RScienceLvlSpecs {
   GTime           _CostTime;
   GHashMap<EBuilding, uint32> CostBuilding;
   GHashMap<EBuilding, uint32> CostStarBuilding;
-  GHashMap<EScienceID, uint32> _TechnologyPrepose; // cost in technology
+  GHashMap<EScience, uint32> _TechnologyPrepose; // cost in technology
   RCostScience     CostScienceWEs;
   uint32           CostKingdomPoint;
   uint32           fighting;
@@ -39,7 +39,7 @@ struct RScienceLvlSpecs {
 };
 
 struct RScience {
-  EScienceID     idScience ;
+  EScience     idScience ;
   GString      Name      ;
   GString      Des       ;
   GString      Icon      ;
@@ -53,17 +53,17 @@ struct RScienceCategory {
   RCostBuilding CostStarBuilding;
   GString CategoryName;
   GString Icon;
-  GHashMap<EScienceID, RScience> Tree;
+  GHashMap<EScience, RScience> Tree;
 };
 
 struct RScienceDetail{
   int32 _CurrentLvl;
   int32 _MaxLvl;
-  EScienceID _TechnologyID;
+  EScience _TechnologyID;
   GString _CurrentLvlEffect;
   GString _NextLvlEffect;
   GTime _TechnologyTime;
-  ITask *_UpgradeIngTechnology;
+  GVector<ITask *> _UpgradeIngTechnology;
   struct RResources {
     EResource _Bid;
     uint32 _CurrentResource;
@@ -78,7 +78,7 @@ struct RScienceDetail{
     bool _IsContentmented;
   };
   struct RTechs {
-    EScienceID _Tid;
+    EScience _Tid;
     uint32 _CurrentLvl;
     uint32 _ConsumeLvl;
     bool _IsContentmented;
@@ -100,4 +100,18 @@ struct RScienceDetail{
   int32 _Cost;
 };
 
+struct ScienceTree{
+    const char *_Key;
+    GHashMap<EBuilding, uint32> _TechBuild;
+    GHashMap<EBuilding, uint32> _StarBuild;
+    const char *_TechName;
+    const char *_Icon;
+    GVector<EScience> _Tree;
+};
 
+struct RScienceTypeData{
+    //  technologyID = prefix,
+    int32 _CurrentLvl;
+    bool _IsOpened;
+    int32 _MaxLvl;
+};

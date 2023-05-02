@@ -4,6 +4,7 @@
 #include "BuildingIBlackSmith.h"
 #include "Module/UI/Common/Message/UIMsgNotice.h"
 #include "Module/Building/Building.Event.h"
+#include "Base/Common/Common.Teml.h"
 
 BuildingIBlackSmith::BuildingIBlackSmith() {
 

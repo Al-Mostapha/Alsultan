@@ -1,9 +1,10 @@
-#include "UICollageView.h"
+#include "UICollegeView.h"
 #include "UICollegeScrollSingle.h"
 #include "UICollegeWaitSingle.h"
 #include "UICollegeMainSingle.h"
 #include "UICollegeDetailsView.h"
 #include "Module/City/City.Ctrl.h"
+#include "Base/Common/Common.Teml.h"
 #include "Module/Building/Building.Logic.h"
 #include "Module/Building/Building.Read.h"
 #include "Module/Science/Science.Read.h"
@@ -17,12 +18,12 @@
 #include "Module/Activity/LuckyBless/LuckyBless.Ctrl.h"
 #include "Module/Activity/LuckyBless/LuckyBless.Type.h"
 
-UICollageView *UICollageView::Create(){
-  auto l_Panel = UICollageView::Create("UiParts/Panel/Building/View/College/collegeView.csb");
+UICollegeView *UICollegeView::Create(){
+  auto l_Panel = UICollegeView::Create("UiParts/Panel/Building/View/College/collegeView.csb");
   return l_Panel;
 }
 
-void UICollageView::Ctor(){
+void UICollegeView::Ctor(){
   
   GBase::PlaySound("uicontrol", 47);
   _NodeTitle = GBase::DGetExtendChildFromCCSByName<UICommonFramTitle>(this, "Top_CCS_commonFramTitle_study");
@@ -57,7 +58,7 @@ void UICollageView::Ctor(){
   _LabelStudyName = GBase::DGetChildByName<ui::Text *>(_CenterNodeTechInfo, "Text_name");
   _ButtonDetail = GBase::DGetChildByName<ui::Button *>(_CenterNodeTechInfo, "Button_detail");
   _ButtonDetail->setTouchEnabled(true);
-  _ButtonDetail->addTouchEventListener(CC_CALLBACK_2(UICollageView::BtnDetailClick, this));
+  _ButtonDetail->addTouchEventListener(CC_CALLBACK_2(UICollegeView::BtnDetailClick, this));
   _CcsStudying = GBase::DGetExtendChildFromCCSByName<UICollegeScrollSingle>(this, "CCS_collegeScrollSingle_studying");
   _Node_Title = GBase::DGetChildByName<Node *>(this, "Node_title");
   _TextTitle = GBase::DGetChildByName<ui::Text *>(_Node_Title, "Text_title");
@@ -81,13 +82,13 @@ void UICollageView::Ctor(){
   InitData();
 }
 
-void UICollageView::OnMessageListener(){
+void UICollegeView::OnMessageListener(){
   // SoraDAddMessage(self, "MESSAGE_UPDATE_TECHNOLOGY", handler(self, self.initData))
   // SoraDAddMessage(self, "MESSAGE_SERVER_LUCKYBLESS_UPDATE", handler(self, self.updateLuckyBless))
   // SoraDAddMessage(self, "MESSAGE_TECHNOLOGY_WAITQUEUE", handler(self, self.refreshWaitQueue))
 }
 
-void UICollageView::SuitView(){
+void UICollegeView::SuitView(){
   auto l_SizeImageBase = GBase::DGetChildByName<ui::ImageView *>(this, "Size_Image_base");
   l_SizeImageBase->setContentSize(Size(640.f, std::max(350.f, GDisplay::Get()->height - 610.f)));
   _CenterNodeTechInfo->setPositionY(GDisplay::Get()->height < 960 ? GDisplay::Get()->cy - 220 : GDisplay::Get()->cy - 230);
@@ -101,7 +102,7 @@ void UICollageView::SuitView(){
   }
 }
 
-void UICollageView::InitData(){
+void UICollegeView::InitData(){
   auto l_BuildCell = CityCtrl::Get()->GetBuildCellList(_Bid);
   int32 l_Blv = 1; //TODO:: Should be removed this is to bypass that collage not here
   if(l_BuildCell.size() > 0)
@@ -171,15 +172,15 @@ void UICollageView::InitData(){
   ShowAction(_StudyingType != EScienceType::None);
 }
 
-void UICollageView::SetRecommendInfo(Node *p_Node, RScienceLvlSpecs p_Info){
+void UICollegeView::SetRecommendInfo(Node *p_Node, RScienceLvlSpecs p_Info){
   auto l_CCSTech = GBase::DGetExtendChildFromCCSByName<UICollegeScrollSingle>(p_Node, "CCS_collegeScrollSingle_tech");
   auto l_TextTypeName = GBase::DGetChildByName<ui::Text *>(p_Node, "Text_typeName");
   auto l_TextPowerAdd = GBase::DGetChildByName<ui::Text *>(p_Node, "Text_powerAdd");
   auto l_TextTechName = GBase::DGetChildByName<ui::Text *>(p_Node, "Text_techName");
   auto l_ButtonStudy = GBase::DGetChildByName<ui::Button *>(p_Node, "Button_study");
   l_ButtonStudy->setTitleText(Translate::i18n("common_text_062"));
-  l_ButtonStudy->addTouchEventListener(CC_CALLBACK_2(UICollageView::BtnStudyClickCallBack, this));
-  auto l_Tid = new EScienceID;
+  l_ButtonStudy->addTouchEventListener(CC_CALLBACK_2(UICollegeView::BtnStudyClickCallBack, this));
+  auto l_Tid = new EScience;
   *l_Tid = p_Info.idScience;
   l_ButtonStudy->setUserData((void *)l_Tid);
   auto l_TypeData = ScienceRead::Get()->GetTypeTitleIcon(ScienceRead::Get()->GetType(p_Info.idScience));
@@ -194,7 +195,7 @@ void UICollageView::SetRecommendInfo(Node *p_Node, RScienceLvlSpecs p_Info){
   l_CCSTech->HideName();
 }
 
-void UICollageView::InitRecommendData(){
+void UICollegeView::InitRecommendData(){
   _RecommendData = ScienceCtrl::Get()->GetRecommendTech();
   _TextNoRecommend->setVisible(_RecommendData.size() == 0);
   if(_RecommendData.size() == 2){
@@ -212,7 +213,7 @@ void UICollageView::InitRecommendData(){
   }
 }
 
-void  UICollageView::UpdateLuckyBless(EventCustom *p_Event){
+void  UICollegeView::UpdateLuckyBless(EventCustom *p_Event){
   
   auto l_CurEffect = LuckyBlessCtrl::Get()->GetCurEffectType();
   if(l_CurEffect == ELuckyBlessEffect::TechnologyResearch){
@@ -223,7 +224,7 @@ void  UICollageView::UpdateLuckyBless(EventCustom *p_Event){
       _BottomNodeLucky->setPositionY(_StudyingType != EScienceType::None ? -170 : 0);
     if(_LuckyBlessTimer == nullptr){
       OpenLuckyTime(0);
-      _LuckyBlessTimer = GBase::DCreateTimer(this, CC_CALLBACK_1(UICollageView::OpenLuckyTime, this));
+      _LuckyBlessTimer = GBase::DCreateTimer(this, CC_CALLBACK_1(UICollegeView::OpenLuckyTime, this));
     }
   }else{
     if(_LuckyBlessTimer){
@@ -234,7 +235,7 @@ void  UICollageView::UpdateLuckyBless(EventCustom *p_Event){
   }
 }
 
-void UICollageView::OpenLuckyTime(float p_Dt){
+void UICollegeView::OpenLuckyTime(float p_Dt){
   auto l_LuckyData = LuckyBlessCtrl::Get()->GetLuckyData();
   auto l_LeftTime = LuckyBlessCtrl::Get()->GetRealTime().First;
   _LabelLcukyDes->setString(Translate::i18n("lucky_text_19", {
@@ -243,7 +244,7 @@ void UICollageView::OpenLuckyTime(float p_Dt){
   }));
 }
 
-void UICollageView::ShowAction(bool p_IsStudying){
+void UICollegeView::ShowAction(bool p_IsStudying){
   
   GBase::DMixtureGLONE(GBase::DGetChildByName<Sprite *>(_NodeLight, "dh_xueyuanyjf_1"));
   GBase::DMixtureGLONE(GBase::DGetChildByName<Sprite *>(_NodeLight, "dh_xueyuanyjf_2"));
@@ -273,7 +274,7 @@ void UICollageView::ShowAction(bool p_IsStudying){
   }
 }
 
-void UICollageView::TopStudyShow(bool p_IsStudy){
+void UICollegeView::TopStudyShow(bool p_IsStudy){
   _BottomNode->setVisible(!p_IsStudy);
   _NodeTimer->setVisible(p_IsStudy);
   _CenterNodeTechInfo->setVisible(p_IsStudy);
@@ -284,7 +285,7 @@ void UICollageView::TopStudyShow(bool p_IsStudy){
     _CcsStudying->SetTimeVisble(false);
     _LabelStudyName->setString(ScienceRead::Get()->GetName(_TableStuding._TechnologyID));
     OpenTimeUp(0);
-    _Timer = GBase::DCreateTimer(this, CC_CALLBACK_1(UICollageView::OpenTimeUp, this));
+    _Timer = GBase::DCreateTimer(this, CC_CALLBACK_1(UICollegeView::OpenTimeUp, this));
   }
 
   RefreshWaitQueue(nullptr);
@@ -293,13 +294,13 @@ void UICollageView::TopStudyShow(bool p_IsStudy){
   }
 }
 
-void UICollageView::SetMainSingleEffect(bool p_Visible){
+void UICollegeView::SetMainSingleEffect(bool p_Visible){
   for(auto l_Item : _TableBtn){
     l_Item.second->SetEffectVisible(p_Visible && l_Item.second->_Type == _StudyingType);
   }
 }
 
-void UICollageView::OpenTimeUp(float p_Dt){
+void UICollegeView::OpenTimeUp(float p_Dt){
   auto l_LeftTime = _Queue->GetRemainTime();
   auto l_TotalTime = _Queue->GetTotalTime();
   _TextTime->setString(GBase::DConvertSecondToString(l_LeftTime));
@@ -312,14 +313,14 @@ void UICollageView::OpenTimeUp(float p_Dt){
 }
 
 
-void UICollageView::BtnStudyClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){
+void UICollegeView::BtnStudyClickCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Type){
   if(p_Type != ui::Widget::TouchEventType::ENDED)
     return;
   GBase::PlaySound();
   auto l_Btn = dynamic_cast<ui::Button *>(p_Sender);
   CCAssert(l_Btn, "l_Btn is nullptr");
   CCAssert(l_Btn->getUserData(), "l_Btn is not find");
-  auto l_Science = (EScienceID *)l_Btn->getUserData();
+  auto l_Science = (EScience *)l_Btn->getUserData();
   auto l_ScienceType = ScienceRead::Get()->GetType(*l_Science);
   auto l_Panel = UICollegeDetailsView::Create();
   l_Panel->InitData(*l_Science, l_ScienceType);
@@ -327,7 +328,7 @@ void UICollageView::BtnStudyClickCallBack(Ref *p_Sender, ui::Widget::TouchEventT
   delete l_Science;
 }
 
-void UICollageView::BtnDetailClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type){
+void UICollegeView::BtnDetailClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type){
   if(p_Type != ui::Widget::TouchEventType::ENDED)
     return;
   auto l_Panel = UICollegeDetailsView::Create();
@@ -335,7 +336,7 @@ void UICollageView::BtnDetailClick(Ref *p_Sender, ui::Widget::TouchEventType p_T
   l_Panel->Show();
 }
 
-void UICollageView::RefreshWaitQueue(EventCustom *p_Event){
+void UICollegeView::RefreshWaitQueue(EventCustom *p_Event){
   if(!_NodeWait)
     return;
   auto l_WaitQuque = WaitQueueCtrl::Get()->GetWaitQueueData(ETask::TechnologyUpgradeQ)->As<ScienceTask>();
@@ -345,7 +346,7 @@ void UICollageView::RefreshWaitQueue(EventCustom *p_Event){
     _NodeWait->SetStateFree();
 }
 
-void UICollageView::OnEnterGuide(){
+void UICollegeView::OnEnterGuide(){
   // local guideCtrl = gametop.playertop_:getModule("guideCtrl")
   // guideCtrl:updateGuideModule(gGuideModule.TECH_GUIDE)
 }

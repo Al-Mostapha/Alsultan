@@ -3,6 +3,7 @@
 #include "BuildingFArrowTower.h"
 #include "Module/Player/Player.Static.h"
 #include "Module/UI/Common/Message/UIMsgNotice.h"
+#include "Base/Common/Common.Teml.h"
 
 BuildingFArrowTower::BuildingFArrowTower()
 {

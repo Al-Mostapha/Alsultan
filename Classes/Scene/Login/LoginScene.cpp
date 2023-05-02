@@ -767,7 +767,7 @@ void LoginScene::ShowServerMessageInfo(EventCustom* p_Event) {
     l_TransParm["resourceID"] = ResourceRead::Get()->GetName(l_IconData.iconID);
 
   } else if (l_EventData->IconData.IconType == ENoticeIcon::Tech) {
-    ScienceRead::Get()->GetIcon(static_cast<EScienceID>(l_IconData.iconID));
+    ScienceRead::Get()->GetIcon(static_cast<EScience>(l_IconData.iconID));
     if (ScienceRead::Get()->IsScience(l_EventData->Param.TechID)) l_TransParm["techID"] = ScienceRead::Get()->GetName(l_EventData->Param.TechID);
     if (AllianceRead::Get()->IsScience(l_EventData->Param.TechID)) l_TransParm["techID"] = AllianceRead::Get()->GetScienceName(l_EventData->Param.TechID);
 

@@ -3,6 +3,7 @@
 #include "Module/Science/Science.Read.h"
 #include "Module/City/City.Ctrl.h"
 #include "Base/Common/Common.Func.h"
+#include "Base/Common/Common.Teml.h"
 
 UICollegeMainSingle *UICollegeMainSingle::Create(){
   auto l_Panel = Create("UiParts/Panel/Building/View/College/collegeMainSingle.csb");
@@ -62,7 +63,7 @@ void UICollegeMainSingle::RunFadeInAct(float p_PosX, float p_PosY){
   for(auto iii = 0; iii < l_TargetArray.size(); iii++){
     auto l_Node = l_TargetArray.at(iii);
     l_Node->setOpacity(0);
-    l_Node->setScale(0.7);
+    l_Node->setScale(0.7f);
     auto l_Action = Sequence::create(
       DelayTime::create(0.8166666666666667f),
       Spawn::create(
@@ -171,4 +172,5 @@ void UICollegeMainSingle::BtnClickCallBack(Ref *p_Sender, ui::Widget::TouchEvent
   }else if(p_Type == ui::Widget::TouchEventType::CANCELED){
     l_IsMoved = false;
   }
+  
 }

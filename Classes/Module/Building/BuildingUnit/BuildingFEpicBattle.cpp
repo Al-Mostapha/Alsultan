@@ -3,6 +3,7 @@
 #include "BuildingFEpicBattle.h"
 #include "Module/UI/Panel/Building/EpicWar/UIEpicWarView.h"
 #include "Scene/CityScene.h"
+#include "Base/Common/Common.Teml.h"
 
 BuildingFEpicBattle::BuildingFEpicBattle()
 {

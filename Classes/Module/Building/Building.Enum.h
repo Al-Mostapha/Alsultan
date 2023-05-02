@@ -45,7 +45,9 @@ enum class EBuilding  {
   ResurrectionHall = 30004,
   ServiceCenter = 30005,
   EpicBattle = 30006,
-  Mastery = 30008
+  Mastery = 30008,
+
+  NEBULA_PALACE
 };
 
 enum class EBuildingPlace { // inner / outter

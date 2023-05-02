@@ -26,7 +26,11 @@ ScienceRead *ScienceRead::Get(){
   return s_ScienceRead;
 }
 
-const char *ScienceRead::GetIcon(EScienceID p_Science){
+const char *ScienceRead::GetIcon(EScience p_Science){
+  return "icon_item_common.png";
+}
+
+const char *ScienceRead::GetBg(EScience p_Science){
   return "icon_item_common.png";
 }
 
@@ -34,10 +38,30 @@ bool ScienceRead::IsScience(int32 p_Science){
   return true;
 }
 
-GString ScienceRead::GetName(EScienceID p_Science){
+GString ScienceRead::GetName(EScience p_Science){
   return "Science";
 }
 
 GString ScienceRead::GetName(int32 p_Science){
-  return GetName(static_cast<EScienceID>(p_Science));
+  return GetName(static_cast<EScience>(p_Science));
+}
+
+
+GVector<EScience> ScienceRead::GetTree(EScienceType p_Type){
+  return {
+    EScience::  SupplyCart,
+    EScience::Flank,
+    EScience::Heal,
+    EScience::Engineering,
+    EScience::Treatment,
+    EScience::Herbology,
+    EScience::Ration,
+    EScience::FlankII,
+    EScience::HealII,
+    EScience::PackageII,
+    EScience::EngineeringII,
+    EScience::TreatmentII,
+    EScience::HerbologyII,
+    EScience::RationII
+  };
 }

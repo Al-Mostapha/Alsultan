@@ -18,12 +18,12 @@ class UICollegeMainSingle;
 
 typedef cocostudio::timeline::ActionTimeline Anim;
 
-class UICollageView : public UIBasePanel
+class UICollegeView : public UIBasePanel
 {
 
-  CREATE_FUNC(UICollageView);
-  CreateUIPanel(UICollageView);
-  CreateUICCSView(UICollageView);
+  CREATE_FUNC(UICollegeView);
+  CreateUIPanel(UICollegeView);
+  CreateUICCSView(UICollegeView);
   
   bool _IsHideCurrentSceneView = true;
   bool _IsEnter = true;
@@ -71,7 +71,7 @@ class UICollageView : public UIBasePanel
   bool _IsPrivilege = false;
   
 public: 
-  static UICollageView* Create();
+  static UICollegeView* Create();
   void Ctor() override;
   void OnMessageListener();
   void SuitView();

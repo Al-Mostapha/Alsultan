@@ -2,6 +2,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "Include/IncludeConfig.h"
 #include "Include/IncludeBuildingFunc.h"
+#include "Base/Common/Common.Teml.h"
 
 
 UIBuildCreateScrollSingle::UIBuildCreateScrollSingle(){

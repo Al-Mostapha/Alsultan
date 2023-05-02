@@ -11,6 +11,6 @@ class UICollegeWaitSingle : public UIBasePanel
 public: 
   static UICollegeWaitSingle* Create();
   void Ctor() override;
-  void InitData(EScienceID){}
+  void InitData(EScience){}
   void SetStateFree(){}
 };

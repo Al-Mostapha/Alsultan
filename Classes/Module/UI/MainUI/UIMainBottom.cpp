@@ -1,6 +1,7 @@
 #include "UIMainBottom.h"
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "spine/SkeletonAnimation.h"
+#include "Base/Common/Common.Teml.h"
 #include "Module/Activity/ClientEvent.Mgr.h"
 #include "Module/UI/Animations/UIAnimationCollectItems.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"

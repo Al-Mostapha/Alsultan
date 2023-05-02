@@ -1,7 +1,7 @@
 #include "UICommonEllipseBar.h"
 
 UICommonEllipseBar *UICommonEllipseBar::Create(){
-  auto l_Panel = Create("UiParts/Parts/Common/Resource/buildCreateResBuy.csb");
+  auto l_Panel = Create("UiParts/Parts/Common/commonEllipseBar.csb");
   return l_Panel;
 }
 

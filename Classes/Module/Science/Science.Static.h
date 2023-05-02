@@ -13,8 +13,8 @@ class ScienceStatic {
   public:
   static ScienceStatic& Get();
   static RScienceCategory& getScienceCategory(EScienceType p_ScienceCategory);
-  static RScience& getScience(EScienceID p_ScienceType);
-  static RScienceLvlSpecs& getScienceLvlSpecs(EScienceID p_ScienceType, uint32 p_Lvl);
-  static bool isValidScienceLvl(EScienceID p_ScienceType, uint32 p_Lvl);
-  static bool isValidScience(EScienceID p_ScienceType);
+  static RScience& getScience(EScience p_ScienceType);
+  static RScienceLvlSpecs& getScienceLvlSpecs(EScience p_ScienceType, uint32 p_Lvl);
+  static bool isValidScienceLvl(EScience p_ScienceType, uint32 p_Lvl);
+  static bool isValidScience(EScience p_ScienceType);
 };

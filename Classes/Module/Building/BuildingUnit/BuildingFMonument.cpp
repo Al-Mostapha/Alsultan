@@ -3,6 +3,7 @@
 #include "BuildingFMonument.h"
 #include "Scene/CityScene.h"
 #include "Module/UI/Panel/Legend/Monument/UILegendM.View.h"
+#include "Base/Common/Common.Teml.h"
 
 BuildingFMonument::BuildingFMonument()
 {

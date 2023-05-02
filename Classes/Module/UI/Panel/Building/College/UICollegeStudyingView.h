@@ -1,6 +1,7 @@
 #pragma once
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBasePanel.h"
+#include "UICollegeScrollView.h"
 #include "Module/Science/Science.Enum.h"
 #include "Module/UI/Part/Common/Frame/UICommonFramTitle.h"
 
@@ -18,9 +19,10 @@ class UICollegeStudyingView : public UIBasePanel
   ui::ImageView *_ImageR = nullptr;
   Node *_SizeImageBase = nullptr;
   ui::Button *_BtnCloseRight = nullptr;
-  ui::ScrollView *_Scroll = nullptr;
+  UICollegeScrollView *_Scroll = nullptr;
 public: 
   static UICollegeStudyingView* Create();
   void Ctor() override;
   void InitData(EScienceType);
+  void JumpToTechnologyByID(EScience p_ScienceID);
 };

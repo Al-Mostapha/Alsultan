@@ -2,6 +2,7 @@
 
 #include "BuildingOCrystalMine.h"
 #include "Module/Building/Building.Event.h"
+#include "Base/Common/Common.Teml.h"
 
 BuildingOCrystalMine::BuildingOCrystalMine()
 {

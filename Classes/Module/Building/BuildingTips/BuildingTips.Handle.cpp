@@ -15,7 +15,7 @@
 #include "Module/UI/Panel/Building/Market/UIMarketNoAlliance.h"
 #include "Module/UI/Panel/Building/Market/UITradeBoardView.h"
 #include "Module/UI/Panel/Building/Market/UINewTradeBoardView.h"
-#include "Module/UI/Panel/Building/College/UICollageView.h"
+#include "Module/UI/Panel/Building/College/UICollegeView.h"
 #include "Module/UI/Panel/Building/Embassy/UIEmbassyView.h"
 #include "Module/UI/Panel/Building/Embassy/UIReinforcementsView.h"
 #include "Module/UI/Panel/Building/TreasureHunt/UITreasureHuntView.h"
@@ -70,7 +70,7 @@ BuildingTipsHandle *BuildingTipsHandle::Get(){
 void BuildingTipsHandle::Handle(
   UIBuildingTipButton* p_Ref, ui::Widget::TouchEventType p_Touch,
   EBuildingTips p_Op){
-    ButtonUpgradeCall(p_Ref, p_Touch);
+    ButtonResearchCall(p_Ref, p_Touch);
     return;
   switch (p_Op)
   {
@@ -252,7 +252,7 @@ void BuildingTipsHandle::ButtonAuctionCall(UIBuildingTipButton *p_Ref, ui::Widge
 void BuildingTipsHandle::ButtonResearchCall(UIBuildingTipButton *p_Ref, ui::Widget::TouchEventType p_Touch){
   if(p_Touch != Widget::TouchEventType::ENDED)
     return;
-  auto l_Panel = UICollageView::Create();
+  auto l_Panel = UICollegeView::Create();
   l_Panel->Show();
   GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP");
 }

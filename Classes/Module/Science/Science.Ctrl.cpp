@@ -6,11 +6,11 @@ ScienceCtrl *ScienceCtrl::Get(){
   return l_Instance;
 }
 
-uint32 ScienceCtrl::GetSciencePower(EScienceID p_ScienceEffect){
+uint32 ScienceCtrl::GetSciencePower(EScienceEffect p_ScienceEffect){
   return 0;
 }
 
-GPair<bool, uint32> ScienceCtrl::IsEnough( EScienceID p_Science, uint32 p_Lvl){
+GPair<bool, uint32> ScienceCtrl::IsEnough( EScienceEffect p_Science, uint32 p_Lvl){
   return GPair<bool, uint32>::Make(true, 0);
 }
 GPair<bool, GVector<RCostScienceEnough>> ScienceCtrl::IsEnough(GVector<RCostScience> &p_Science){

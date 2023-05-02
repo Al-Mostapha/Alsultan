@@ -1,5 +1,6 @@
 #include "UIBuildingCreateInfoPanel.h"
 #include "Base/Common/Common.Msg.h"
+#include "Base/Common/Common.Teml.h"
 #include "Module/UI/Panel/Building/Common/Builder/UIBuilderActivePop.View.h"
 #include "Module/UI/Part/Common/Button/UICommonGoldNormalBtn.h"
 #include "Base/Common/Common.Box.h"
@@ -537,7 +538,7 @@ void UIBuildingCreateInfoPanel::ShowUnlockedInfo(){
       l_BtnImgName = BuildingRead::Get()->GetIcon(l_NextUnloacked._Building);
       _TableBuildInfo._BuildId._UnlockedId = static_cast<int32>(l_NextUnloacked._Building);
       l_Width = 140;
-    }else if(l_NextUnloacked._Science != EScienceID::None){
+    }else if(l_NextUnloacked._Science != EScience::None){
       l_BtnImgName = ScienceRead::Get()->GetIcon(l_NextUnloacked._Science);
       _TableBuildInfo._BuildId._UnlockedId = static_cast<int32>(l_NextUnloacked._Science);
       l_Width = 140;

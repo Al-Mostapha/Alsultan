@@ -73,7 +73,7 @@ struct RBuildingLvlSpecs {
   uint32 steelReduce = 0;
   uint32 kingdomLv = 0;
   EBuilding unlockedBuild = EBuilding::None;
-  EScienceID unlockedTechnology = EScienceID::None;
+  EScience unlockedTechnology = EScience::None;
   uint32 capacity = 0;
   uint32 output = 0;
   uint32 addOutputCostGold = 0;
@@ -119,7 +119,7 @@ struct RCityBuildingUnit {
   GString BuildingPlace;
   EBuilding eBuildingType;
   EBuildingPos eBuildingPos;
-  RCityBuildingUnit(char* nodeName, char* buildingPlace, EBuildingPos eBP) 
+  RCityBuildingUnit(const char* nodeName, const char* buildingPlace, EBuildingPos eBP) 
   : NodeName(nodeName), BuildingPlace(buildingPlace), eBuildingPos(eBP){};
   RCityBuildingUnit() : NodeName(""), BuildingPlace(""), eBuildingPos(EBuildingPos::CBPlace_Inner){};
   void fromJson(GJson* json);

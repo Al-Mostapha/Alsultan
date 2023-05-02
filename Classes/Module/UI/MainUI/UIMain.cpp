@@ -3,6 +3,7 @@
 #include "UIMainBottom.h"
 #include "UIPandectView.h"
 #include "Base/Common/Common.Enum.h"
+#include "Base/Common/Common.Teml.h"
 #include "Base/Common/Common.Msg.h"
 #include "Module/Activity/LoginGift.Ctrl.h"
 #include "Game/Interior/Interior.Ctrl.h"

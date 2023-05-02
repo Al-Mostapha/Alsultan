@@ -1,4 +1,6 @@
 #include "UICollegeStudyingView.h"
+#include "Base/Common/Panel.Manger.h"
+#include "Base/Common/Common.Teml.h"
 
 UICollegeStudyingView *UICollegeStudyingView::Create(){
   auto l_Panel = Create("UiParts/Panel/Building/View/College/collegeStudyingView.csb");
@@ -23,10 +25,10 @@ void UICollegeStudyingView::Ctor(){
   _BtnCloseRight = GBase::DGetChildByName<ui::Button *>(this, "Button_close_right");
   if(_BtnCloseRight){
     _BtnCloseRight->setLocalZOrder(2);
-    _BtnCloseRight->addTouchEventListener([this](auto target, auto event){
+    _BtnCloseRight->addTouchEventListener([this](Ref *target, ui::Widget::TouchEventType event){
       if(event == ui::Widget::TouchEventType::ENDED){
-        GBase::DPlaySound();
-        GBase::DRemoveAllPanelFromManager();
+        GBase::PlaySound();
+        GPanelManger::Get()->DRemoveAllPanelFromManager();
       }
     });
   }
@@ -34,86 +36,46 @@ void UICollegeStudyingView::Ctor(){
 }
 
 void UICollegeStudyingView::InitData(EScienceType p_Type){
-// self.type = type
-//   local singleData = {}
-//   if not IsArClient then
-//     singleData = {
-//       [TECHNOLOGY_ATTR.military] = {
-//         scroll = "collegeWarScrollView",
-//         title = i18n("common_text_045")
-//       },
-//       [TECHNOLOGY_ATTR.cityDevelop] = {
-//         scroll = "collegeDevelopScrollView",
-//         title = i18n("common_text_331")
-//       },
-//       [TECHNOLOGY_ATTR.anchor] = {
-//         scroll = "collegeDefScrollView",
-//         title = i18n("common_text_332")
-//       },
-//       [TECHNOLOGY_ATTR.resource] = {
-//         scroll = "collegeResScrollView",
-//         title = i18n("common_text_123")
-//       },
-//       [TECHNOLOGY_ATTR.special] = {
-//         scroll = "collegeSpecialScrollView",
-//         title = i18n("common_text_1962")
-//       },
-//       [TECHNOLOGY_ATTR.soldier] = {
-//         scroll = "collegeSoldierScrollView",
-//         title = i18n("common_text_3772")
-//       },
-//       [TECHNOLOGY_ATTR.leader] = {
-//         scroll = "collegeCommanderScrollView",
-//         title = i18n("common_text_4055")
-//       },
-//       [TECHNOLOGY_ATTR.hero] = {
-//         scroll = "collegeHeroScrollView",
-//         title = i18n("common_name_01")
-//       }
-//     }
-//   else
-//     singleData = {
-//       [TECHNOLOGY_ATTR.military] = {
-//         scroll = "collegeWarScrollView",
-//         title = i18n("common_text_045")
-//       },
-//       [TECHNOLOGY_ATTR.cityDevelop] = {
-//         scroll = "collegeDevelopScrollView",
-//         title = i18n("common_text_331")
-//       },
-//       [TECHNOLOGY_ATTR.anchor] = {
-//         scroll = "collegeDefScrollView",
-//         title = i18n("common_text_332")
-//       },
-//       [TECHNOLOGY_ATTR.resource] = {
-//         scroll = "collegeResScrollView",
-//         title = i18n("common_text_123")
-//       },
-//       [TECHNOLOGY_ATTR.special] = {
-//         scroll = "collegeSpecialScrollView",
-//         title = i18n("common_text_1962")
-//       },
-//       [TECHNOLOGY_ATTR.soldier] = {
-//         scroll = "collegeSoldierScrollView",
-//         title = i18n("common_text_3772")
-//       },
-//       [TECHNOLOGY_ATTR.leader] = {
-//         scroll = "collegeCommanderScrollView",
-//         title = i18n("common_text_4055")
-//       },
-//       [TECHNOLOGY_ATTR.hero] = {
-//         scroll = "collegeHeroScrollView",
-//         title = i18n("common_name_01")
-//       },
-//       [TECHNOLOGY_ATTR.advancedmilitary] = {
-//         scroll = "collegeAdvancedMilitaryScrollView",
-//         title = i18n("common_name_02")
-//       }
-//     }
-//   end
-//   self.scroll = SoraDCreatePanelByFixName(singleData[self.type].scroll)
-//   self.scroll:initData(self.type)
-//   self.scroll:setPosition(0, 880)
-//   self.scroll:addTo(self.nodeTop, 0)
-//   self.nodeTitle:setTitle(singleData[self.type].title)
+  _Type = p_Type;
+  auto l_Scroll = "";
+  GString l_Title = "";
+  if(_Type == EScienceType::Military){
+    l_Scroll = "collegeWarScrollView";
+    l_Title = Translate::i18n("common_text_045");
+  } else if(_Type == EScienceType::CityDevelop){
+    l_Scroll = "collegeDevelopScrollView";
+    l_Title = Translate::i18n("common_text_331");
+  } else if(_Type == EScienceType::Anchor){
+    l_Scroll = "collegeDefScrollView";
+    l_Title = Translate::i18n("common_text_332");
+  } else if(_Type == EScienceType::Resource){
+    l_Scroll = "collegeResScrollView";
+    l_Title = Translate::i18n("common_text_123");
+  } else if(_Type == EScienceType::Special){
+    l_Scroll = "collegeSpecialScrollView";
+    l_Title = Translate::i18n("common_text_1962");
+  } else if(_Type == EScienceType::Soldier){
+    l_Scroll = "collegeSoldierScrollView";
+    l_Title = Translate::i18n("common_text_3772");
+  } else if(_Type == EScienceType::Leader){
+    l_Scroll = "collegeCommanderScrollView";
+    l_Title = Translate::i18n("common_text_4055");
+  } else if(_Type == EScienceType::Hero){
+    l_Scroll = "collegeHeroScrollView";
+    l_Title = Translate::i18n("common_name_01");
+  } else if(_Type == EScienceType::AdvancedMilitary){
+    l_Scroll = "collegeAdvancedMilitaryScrollView";
+    l_Title = Translate::i18n("common_name_02");
+  }
+  _Scroll = UICollegeScrollView::Create(l_Scroll);
+  _Scroll->InitData(_Type);
+  _Scroll->setPosition({0, 880});
+  _NodeTop->addChild(_Scroll, 0);
+  _NodeTitle->SetTitle(l_Title);
+}
+
+void UICollegeStudyingView::JumpToTechnologyByID(EScience p_ScienceID){
+  if(_Scroll){
+    _Scroll->JumpToTechnologyByID(p_ScienceID);
+  }
 }

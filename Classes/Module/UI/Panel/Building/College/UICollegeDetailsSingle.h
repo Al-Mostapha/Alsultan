@@ -3,13 +3,13 @@
 #include "Module/UI/UIBasePanel.h"
 #include "Module/Science/Science.Enum.h"
 
-class UICollegeDetailsView : public UIBasePanel
+class UICollegeDetailsSingle : public UIBasePanel
 {
-  CREATE_FUNC(UICollegeDetailsView);
-  CreateUIPanel(UICollegeDetailsView);
-  CreateUICCSView(UICollegeDetailsView);
+  CREATE_FUNC(UICollegeDetailsSingle);
+  CreateUIPanel(UICollegeDetailsSingle);
+  CreateUICCSView(UICollegeDetailsSingle);
 public: 
-  static UICollegeDetailsView* Create();
+  static UICollegeDetailsSingle* Create();
   void Ctor() override;
   void InitData(EScience, EScienceType p_Type = EScienceType::None){}
 };

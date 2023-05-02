@@ -4,6 +4,7 @@
 #include "Module/UI/EventCenter/EventTemplate/LostRuins/LostRuins.Ctrl.h"
 #include "Module/UI/Panel/Lord/LordInfo/UILordPowerView.h"
 #include "Module/Vip/ExaltedPrivilege.Ctrl.h"
+#include "Base/Common/Common.Teml.h"
 // #include "spine/SkeletonAnimation.h"
 
 UIMainTop* UIMainTop::Create() {

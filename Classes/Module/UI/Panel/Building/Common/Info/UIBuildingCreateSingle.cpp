@@ -9,6 +9,7 @@
 #include "Module/CityResource/Resource.Ctrl.h"
 #include "Module/Activity/LuckyBless/LuckyBless.Ctrl.h"
 #include "Module/Effect/Effect.Ctrl.h"
+#include "Base/Common/Common.Teml.h"
 
 UIBuildingCreateSingle *UIBuildingCreateSingle::Create(){
   auto l_Panel = Create("UiParts/Panel/Building/Common/buildCreateSingle.csb");

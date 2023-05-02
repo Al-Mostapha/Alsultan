@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingFElitePalace.h"
+#include "Base/Common/Common.Teml.h"
 #include "Module/Building/Building.Event.h"
+
 
 BuildingFElitePalace::BuildingFElitePalace()
 {

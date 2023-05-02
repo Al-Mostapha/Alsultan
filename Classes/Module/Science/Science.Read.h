@@ -12,11 +12,12 @@ class ScienceRead{
   };
 public:
   static ScienceRead *Get();
-  const char *GetIcon(EScienceID p_Science);
-  GString GetName(EScienceID p_Science);
+  const char *GetIcon(EScience p_Science);
+  const char *GetBg(EScience p_Science);
+  GString GetName(EScience p_Science);
   GString GetName(int32 p_Science);
   bool IsScience(int32 p_Science);
-  EScienceType GetType(EScienceID p_Science){ return EScienceType::Resource; }
+  EScienceType GetType(EScience p_Science){ return EScienceType::Resource; }
   RSingleData GetTypeTitleIcon(EScienceType){
     RSingleData l_Data;
     l_Data._Title = Translate::i18n("common_text_045");
@@ -26,5 +27,7 @@ public:
     return l_Data;
   }
 
-  uint32 GetFight(EScienceID p_Science, uint32 p_Lvl){return 10;}
+  uint32 GetFight(EScience p_Science, uint32 p_Lvl){return 10;}
+
+  GVector<EScience> GetTree(EScienceType);
 };

@@ -7,6 +7,7 @@
 #include "platform/android/jni/JniHelper.h"
 #endif
 #include "Module/Building/Building.Enum.h"
+#include "Base/Common/Common.Teml.h"
 
 
 UILoginView *UILoginView::Create()

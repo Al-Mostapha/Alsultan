@@ -10,6 +10,7 @@
 #include "Global/Global.Enum.h"
 #include "Base/DateTime.h"
 
+
 #undef PlaySound
 
 enum class EBuildingPlace;
@@ -19,6 +20,7 @@ enum class EFactionType;
 enum class EMsgBoxCallBack;
 struct RViewOtherData; 
 class UIBaseView;
+class UIBasePanel;
 
 
 
@@ -36,36 +38,6 @@ struct RCreateLabelParm{
   float y = 0;
 };
 
-template <typename T> T DGetChildByName(Node* p_Node, const char* p_name) {
-  if (!p_Node) return nullptr;
-  if (p_Node->getName() == (std::string)p_name) return dynamic_cast<T>(p_Node);
-
-  for (auto child : p_Node->getChildren()) {
-    auto l_node = DGetChildByName<T>(child, p_name);
-    if (l_node) return l_node;
-  }
-
-  return nullptr;
-}
-
-template <class T> T* DGetExtendChildFromCCSByName(Node* p_Parent, const char* p_Name, bool p_NodeFitOffset = false, float p_Height = 0.0f) {
-  auto l_child = DGetChildByName<Node *>(p_Parent, p_Name);
-  if (!l_child) return nullptr;
-  auto l_NameTabel = GStringUtils::Split(GString(p_Name), GString("_"));
-  for (auto i = 0; i < (int32)l_NameTabel.size(); i++) {
-    auto l_OneName = l_NameTabel.at(i);
-    if (l_OneName == "CCS") {
-      auto l_ClassName = l_NameTabel.at(i + 1);
-      auto l_Size = l_child->getContentSize();
-      // if nodeFitOffset then
-      //  SoraDDeviceFitOffset(childView, {futureName = className}, height)
-      // end
-      T* l_Inst = T::Create();
-      return l_Inst;
-    }
-  }
-  return nullptr;
-}
 int32 PlaySound();
 int32 PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
 int32 PlaySound(const char* p_SoundName, int32 p_index, float p_delay = 0.0f, bool p_Tag3d = false);
@@ -148,3 +120,4 @@ Label *DCreateLabel(RCreateLabelParm p_Parm);
 void DFadeInOut(Node *p_Node/**Fade paramters*/);
 
 };  // namespace GBase
+

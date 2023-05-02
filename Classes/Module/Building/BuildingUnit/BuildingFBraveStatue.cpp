@@ -2,7 +2,7 @@
 
 #include "BuildingFBraveStatue.h"
 #include "Module/Building/Building.Event.h"
-#include <memory>
+#include "Base/Common/Common.Teml.h"
 
 BuildingFBraveStatue::BuildingFBraveStatue()
 {

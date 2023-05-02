@@ -3,6 +3,7 @@
 #include "Base/Common/Panel.Manger.h"
 #include "Scene/Main/MainScene.h"
 #include "View/Recharge/UIRechargeTinyPageNode.h"
+#include "Base/Common/Common.Teml.h"
 
 UIBasePanel* UIBasePanel::InitPanel(GString p_CCsFile, RBasePenelData *p_Data){
   _Panel = UICCSView::Create(p_CCsFile);

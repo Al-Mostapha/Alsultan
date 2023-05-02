@@ -1,4 +1,5 @@
 #include "UICommonSlider.h"
+#include "Base/Common/Common.Teml.h"
 
 UICommonSlider *UICommonSlider::Create(){
   auto l_Panel = Create("UiParts/Parts/Common/Input/commonSliderA.csb");

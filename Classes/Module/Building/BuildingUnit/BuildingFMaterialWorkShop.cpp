@@ -3,7 +3,7 @@
 #include "BuildingFMaterialWorkShop.h"
 #include "Module/UI/Panel/Building/MatrialFactory/UIMatrialFactoryView.h"
 #include "Module/Building/Building.Event.h"
-#include <memory>
+#include "Base/Common/Common.Teml.h"
 BuildingFMaterialWorkShop::BuildingFMaterialWorkShop()
 {
 

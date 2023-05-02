@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingFRevivalHall.h"
+#include "Base/Common/Common.Teml.h"
 
 BuildingFRevivalHall::BuildingFRevivalHall()
 {

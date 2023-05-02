@@ -4,6 +4,7 @@
 #include "Module/Building/Building.Read.h"
 #include "Module/Building/Building.Logic.h"
 #include "Module/Building/IBuilding.h"
+#include "Base/Common/Common.Teml.h"
 #include "UIBuildingInfoSingle.h"
 
 int32 UIBuildingInfoPanel::WELevelProMin = 25;

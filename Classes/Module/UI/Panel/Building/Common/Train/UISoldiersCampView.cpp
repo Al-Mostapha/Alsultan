@@ -19,6 +19,7 @@
 #include "Base/Common/Common.Box.h"
 #include "Base/Common/Common.Msg.h"
 #include "Base/Common/Panel.Manger.h"
+#include "Base/Common/Common.Teml.h"
 #include "Module/Army/Army.Read.h"
 #include "Module/Army/Army.LtCtrl.h"
 #include "Module/CityResource/Resource.Read.h"
