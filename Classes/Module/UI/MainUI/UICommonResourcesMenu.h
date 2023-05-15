@@ -14,6 +14,7 @@ private:
 public:
 
   static UICommonResourcesMenu *Create();
+  void Ctor() override;
   void RunAnimation();
   void HiddleMainUI(bool p_IsHiddle = false);
   Node *GetResTarget(EResource p_ResType){

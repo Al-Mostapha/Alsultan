@@ -1,0 +1,188 @@
+
+pyramid_bg_01.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chibang
+  rotate: false
+  xy: 2, 550
+  size: 355, 458
+  orig: 355, 458
+  offset: 0, 0
+  index: -1
+piaodiao01
+  rotate: false
+  xy: 2, 2
+  size: 178, 144
+  orig: 178, 144
+  offset: 0, 0
+  index: -1
+piaodiao02
+  rotate: false
+  xy: 322, 386
+  size: 83, 162
+  orig: 83, 162
+  offset: 0, 0
+  index: -1
+piaodiao03
+  rotate: true
+  xy: 597, 723
+  size: 60, 166
+  orig: 60, 166
+  offset: 0, 0
+  index: -1
+shen
+  rotate: false
+  xy: 2, 148
+  size: 318, 400
+  orig: 318, 400
+  offset: 0, 0
+  index: -1
+tou
+  rotate: true
+  xy: 359, 568
+  size: 163, 185
+  orig: 163, 185
+  offset: 0, 0
+  index: -1
+youjianjia04
+  rotate: false
+  xy: 994, 973
+  size: 22, 35
+  orig: 22, 35
+  offset: 0, 0
+  index: -1
+youjianjia05
+  rotate: false
+  xy: 527, 548
+  size: 17, 18
+  orig: 17, 18
+  offset: 0, 0
+  index: -1
+youjianjian01
+  rotate: false
+  xy: 322, 148
+  size: 89, 77
+  orig: 89, 77
+  offset: 0, 0
+  index: -1
+youjianjian02
+  rotate: false
+  xy: 782, 628
+  size: 67, 76
+  orig: 67, 76
+  offset: 0, 0
+  index: -1
+youshou
+  rotate: false
+  xy: 597, 785
+  size: 285, 223
+  orig: 285, 223
+  offset: 0, 0
+  index: -1
+yumao01
+  rotate: false
+  xy: 346, 6
+  size: 101, 140
+  orig: 101, 140
+  offset: 0, 0
+  index: -1
+yumao02
+  rotate: true
+  xy: 182, 3
+  size: 143, 162
+  orig: 143, 162
+  offset: 0, 0
+  index: -1
+yumao03
+  rotate: false
+  xy: 546, 569
+  size: 127, 152
+  orig: 127, 152
+  offset: 0, 0
+  index: -1
+yumao04
+  rotate: false
+  xy: 449, 11
+  size: 84, 135
+  orig: 84, 135
+  offset: 0, 0
+  index: -1
+yumao05
+  rotate: false
+  xy: 765, 723
+  size: 38, 60
+  orig: 38, 60
+  offset: 0, 0
+  index: -1
+yumao07
+  rotate: true
+  xy: 535, 47
+  size: 103, 73
+  orig: 103, 73
+  offset: 0, 0
+  index: -1
+yumao08
+  rotate: true
+  xy: 413, 148
+  size: 113, 80
+  orig: 113, 80
+  offset: 0, 0
+  index: -1
+yumao09
+  rotate: true
+  xy: 675, 567
+  size: 154, 105
+  orig: 154, 105
+  offset: 0, 0
+  index: -1
+yumao10
+  rotate: true
+  xy: 884, 812
+  size: 196, 108
+  orig: 196, 108
+  offset: 0, 0
+  index: -1
+yumao11
+  rotate: true
+  xy: 407, 410
+  size: 156, 118
+  orig: 156, 118
+  offset: 0, 0
+  index: -1
+yumao12
+  rotate: false
+  xy: 409, 263
+  size: 121, 145
+  orig: 121, 145
+  offset: 0, 0
+  index: -1
+yumao13
+  rotate: false
+  xy: 322, 227
+  size: 85, 157
+  orig: 85, 157
+  offset: 0, 0
+  index: -1
+zuochibang01
+  rotate: false
+  xy: 359, 733
+  size: 236, 275
+  orig: 236, 275
+  offset: 0, 0
+  index: -1
+zuojianjia01
+  rotate: true
+  xy: 495, 152
+  size: 109, 83
+  orig: 109, 83
+  offset: 0, 0
+  index: -1
+zuojianjia02
+  rotate: false
+  xy: 805, 706
+  size: 90, 77
+  orig: 90, 77
+  offset: 0, 0
+  index: -1

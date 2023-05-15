@@ -6,6 +6,25 @@
 #include "CityScene.Move.h"
 #include "CityScene.Msg.h"
 
+#include "Base/Common/Fabric.h"
+#include "Base/Common/Cach/InstanceCach.Mgr.h"
+
+#include "Module/UI/UIManger.h"
+
+#include "Module/World/WorldMap/WorldMap.Def.h"
+#include "Module/World/WorldMap/WorldMap.Define.h"
+#include "Module/World/WorldMap/WorldMap.Util.h"
+#include "Module/Common/Military/MilitaryRank.Ctrl.h"
+
+#include "Module/UI/MainUI/UIMain.h"
+#include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "Module/UI/Part/Common/UIIphoneXTop.h"
+#include "Module/UI/Part/Common/UIIphoneXBottom.h"
+#include "Module/UI/Part/World/WorldMap/UIWorldMapFaceToDistance.h"
+#include "Module/UI/Panel/Notice/SystemNotice/UISystemNotice.View.h"
+#include "Module/World/WorldMap/View/UIWorldResourceMap.h"
+
+
 MainCityView *MainCityView::Create(RViewOtherData p_Data){
   auto l_Panel =  Create("UiParts/Panel/MainCity/mainCityView.csb");
   l_Panel->m_Param = p_Data;
@@ -30,7 +49,34 @@ void MainCityView::Ctor(){
   // n_MainCityView->n_ViewScrollView->setDelegate(nullptr);
   CityFloor::Ctor();
   addChild(_ViewScrollView, 0);
+  OnMessageListener();
   PreLoadImages();
+}
+
+void MainCityView::OnMessageListener() {
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_GOTO_FOREG_BACK_GROUD", CC_CALLBACK_1(MainCityView::GotoForeBackGroud, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_ONSHOW", CC_CALLBACK_1(MainCityView::ShowView, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_HIDE_SCENEVIEW_MAINUI", CC_CALLBACK_1(MainCityView::HideCurrentSceneViewAndMainUI, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINSUCCESS", CC_CALLBACK_1(MainCityView::CreatMainView, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINFINSH", CC_CALLBACK_1(MainCityView::LoginFinsh, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINFAIL", CC_CALLBACK_1(MainCityView::ServerSocketLoginFail, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINAGAIN", CC_CALLBACK_1(MainCityView::ServerSocketLoginAgain, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINAGAIN_QUICK", CC_CALLBACK_1(MainCityView::ServerSocketLoginAgain_Quick, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_SOCKET_KICKOUT", CC_CALLBACK_1(MainCityView::ServerSocketKickOut, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_MESSAGEINFO", CC_CALLBACK_1(MainCityView::ShowServerMessageInfo, this));
+  GBase::DAddMessage(this, "MESSAGE_LORDINFO_UPGRADE_LEVEL", CC_CALLBACK_1(MainCityView::MsgLordLevelUpView, this));
+  GBase::DAddMessage(this, "MESSAGE_SERVER_GUIDE_START_BY_STEP", CC_CALLBACK_1(MainCityView::GameGuideStart, this));
+  GBase::DAddMessage(this, "MESSAGE_MAIN_SCENE_IPHONEX", CC_CALLBACK_1(MainCityView::ShowIphoneX, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LUA_WILL_RELOAD", CC_CALLBACK_1(MainCityView::LuaWillReload, this));
+  GBase::DAddMessage(this, "MESSAGE_SERVER_OPTION_SHARE_BTN_UPDATE", CC_CALLBACK_1(MainCityView::UpdateShareButton, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINCITYVIEW_BUILD_QUEQUE_CALLBACK", CC_CALLBACK_1(MainCityView::BuildQuequeCallback, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_COMMON_ICON_TIP", CC_CALLBACK_1(MainCityView::UpdateCommonIconTip, this));
+  GBase::DAddMessage(this, "MESSAGE_VOICECHAT_SPEAKSTYLE_REFRESH", CC_CALLBACK_1(MainCityView::UpdateVoiceButton, this));
+  GBase::DAddMessage(this, "MESSAGE_VOICECHAT_SERVER_NOTICE_INVITEMSG", CC_CALLBACK_1(MainCityView::UpdateVoiceInviteButton, this));
+  GBase::DAddMessage(this, "MESSAGE_SERVER_GUIDE_END", CC_CALLBACK_1(MainCityView::ServerGuideEnd, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_COMMON_ICON_TIP", CC_CALLBACK_1(MainCityView::UpdateCommonIconTip, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_POWER_UPDATE", CC_CALLBACK_1(MainCityView::UpdatePower, this));
+  GBase::DAddMessage(this, "MESSAGE_MAINSCEN_EXP_UPDATE", CC_CALLBACK_1(MainCityView::UpdateEXP, this));
 }
 
 void MainCityView::InitAfterCreate() {
@@ -43,6 +89,117 @@ void MainCityView::InitAfterCreate() {
   n_MainCityView->MsgUpdateLion();
   MainCityBuildingMove::Get()->Init(this);
   MainCityABMManager::Get()->Init(this);
+}
+
+void MainCityView::CreatMainView(EventCustom *p_Event){
+
+  InitLoginSuccess();
+  ReleaseMainView();
+  _CurrentShowView = nullptr;
+  // userSDKManager.timeInfo.t_mainui.tbegin = SoraDGetSocketTime()
+  _MainUIView = UIMain::Create();
+  _MainUIView->setSwallowTouches(false);
+  addChild(_MainUIView, 2);
+
+  // userSDKManager.timeInfo.t_mainui.tend = SoraDGetSocketTime()
+  _WorldResourceMap = nullptr;
+  _SystemNoticeView = UISystemNoticeView::Create();
+  _SystemNoticeView->setSwallowTouches(false);
+  addChild(_SystemNoticeView, 6);
+  if (_IphoneXTop) {
+    _IphoneXTop->removeFromParent();
+    _IphoneXTop = nullptr;
+  }
+  _IphoneXTop = UIIphoneXTop::Create();
+  _IphoneXTop->setAnchorPoint(Vec2(0.5, 1));
+  _IphoneXTop->setVisible(false);
+  auto l_Display = GDisplay::Get();
+  _IphoneXTop->setPosition(Vec2(l_Display->cx, l_Display->height + l_Display->iPhoneXOffset));
+  addChild(_IphoneXTop, 6);
+  if (_IphoneXBottom) _IphoneXBottom->removeFromParent();
+  _IphoneXBottom = UIIphoneXBottom::Create();
+  _IphoneXBottom->setAnchorPoint(Vec2(0.5, 0));
+  _IphoneXBottom->setPosition(Vec2(l_Display->cx, 0));
+  _IphoneXBottom->setVisible(false);
+  addChild(_IphoneXBottom, 6);
+  _IphoneXBottom->setSwallowTouches(false);
+  if (GDevice::Get()->IsIphoneXMode()) {
+    // if device.isIpadMode() then
+    //   self.padIndex = 1
+    //   self.padSpirteL = display.newSprite("#frame_ipad_biankuang_L.png")
+    //   self.padSpirteL:setPosition(32, 0)
+    //   self.padSpirteL:setAnchorPoint(cc.p(0.5, 0))
+    //   self:addChild(self.padSpirteL, 6)
+    //   self.padSpirteR = display.newSprite("#frame_ipad_biankuang_R.png")
+    //   self.padSpirteR:setPosition(display.realSize.width - 32, 0)
+    //   self.padSpirteR:setAnchorPoint(cc.p(0.5, 0))
+    //   self:addChild(self.padSpirteR, 6)
+    // end
+  }
+  UpdateShareButton(nullptr);
+  UpdateVoiceButton(nullptr);
+  auto l_ShowViewType = EScene::City;
+  if (p_Event->getUserData()) l_ShowViewType = *(EScene*)p_Event->getUserData();
+  std::unique_ptr<RShowMainCityView> l_Data(new RShowMainCityView());
+  l_Data->isFromLogin = true;
+  l_Data->ViewType = l_ShowViewType;
+  GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_Data.get());
+}
+
+void MainCityView::ReleaseMainView() {
+  // userSDKManager.need2CallBackEventList = {}
+  _IsHideMainUICount = 0;
+  _IsHideCurrentSceneViewCount = 0;
+  GBase::DCloseLoading(this);
+  if (_CurrentShowView) {
+    _CurrentShowView->removeFromParent();
+    _CurrentShowView = nullptr;
+  }
+  if (_MainUIView) {
+    _MainUIView->removeFromParent();
+    _MainUIView = nullptr;
+  }
+  if (UIManger::Get()->IsShow("mainUI")) {
+    UIManger::Get()->Close("mainUI");
+  }
+  if (_WorldResourceMap) {
+    _WorldResourceMap->removeFromParent();
+    _WorldResourceMap = nullptr;
+  }
+  CleanPanelView();
+  if (_IphoneXTop) {
+    _IphoneXTop->removeFromParent();
+    _IphoneXTop = nullptr;
+  }
+  if (_IphoneXBottom) {
+    _IphoneXBottom->removeFromParent();
+    _IphoneXBottom = nullptr;
+  }
+  if (_ShareBtn) {
+    _ShareBtn->removeFromParent();
+    _ShareBtn = nullptr;
+  }
+  if (_VoiceBtn) {
+    _VoiceBtn->removeFromParent();
+    _VoiceBtn = nullptr;
+  }
+  if (_SystemNoticeView) {
+    _SystemNoticeView->removeFromParent();
+    _SystemNoticeView = nullptr;
+  }
+  InstanceCachManger::Get()->ClearCache();
+  for (auto l_Warnning : _WarnningList) {
+    l_Warnning->removeFromParent();
+  }
+  _WarnningList.clear();
+  GBase::DClearItemAwards();
+}
+
+void MainCityView::InitLoginSuccess() {
+  WorldMapDef::Get()->DoSwitchToAnchor();
+  GFabric::Get()->ReportDeviceInfoChange();
+  WorldMapUtil::Get()->ResetConfig();
+  MilitaryRankCtrl::Get()->SendMarshalLoginTip();
 }
 
 void MainCityView::UpdatePeriod(){

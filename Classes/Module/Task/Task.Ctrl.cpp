@@ -12,3 +12,8 @@ bool TaskCtrl::IsHospitalQueue(ETask p_Task){
     p_Task == ETask::atlantis_war_hostpital_queue || 
     p_Task == ETask::nebula_war_hostpital_queue ;
 }
+
+ITask *TaskCtrl::QueryQueue(ETask p_Task){
+  auto l_Task = new ITask();
+  return l_Task;
+}

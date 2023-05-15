@@ -13,4 +13,6 @@ class LuckyBlessCtrl{
   int GetResult(int p_ResCount){ return p_ResCount; }
   RLuckyBlessData GetLuckyData();
   GPair<GTime, GTime> GetRealTime();
+  int32 GetLeftActivateCount();
+  int32 GetLuckyBlessStatus();
 };

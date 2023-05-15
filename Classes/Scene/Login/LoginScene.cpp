@@ -170,15 +170,19 @@ void LoginScene::CreatePanelView() {
 void LoginScene::CreateLoginView(EScene p_Type, EKingdomClassType p_Kingdom) {
   if (p_Type == EScene::None) p_Type = EScene::City;
   stopAllActions();
-  runAction(Sequence::create(DelayTime::create(0.0167f),
-                            CallFunc::create([=]() {
-                              GAudioEngine::Get()->Init();
-                              LoginSettingRun();
-                              GAudioEngine::Get()->StopMusic();
-                              GAudioEngine::Get()->PlayMusic("loading", true);
-                              GAudioEngine::Get()->SetMusicVolume(0.5f);
-                            }),
-                            nullptr));
+  runAction(
+    Sequence::create(
+      DelayTime::create(0.0167f),
+        CallFunc::create([=]() {
+          GAudioEngine::Get()->Init();
+          LoginSettingRun();
+          GAudioEngine::Get()->StopMusic();
+          GAudioEngine::Get()->PlayMusic("loading", true);
+          GAudioEngine::Get()->SetMusicVolume(0.5f);
+        }),
+      nullptr
+    )
+  );
   if (n_LoginView) {
     n_LoginView->removeFromParent();
     n_LoginView = nullptr;

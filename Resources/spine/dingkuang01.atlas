@@ -1,0 +1,16 @@
+dingkuang01.png
+size:128,64
+filter:Linear,Linear
+cao01
+bounds:34,19,40,39
+rotate:90
+cao02
+bounds:34,3,25,14
+cao03
+bounds:75,20,39,32
+rotate:90
+cao04
+bounds:2,2,57,30
+rotate:90
+cao05
+bounds:61,5,27,12

@@ -7,4 +7,5 @@ class GuideCtrl
 public:
   static GuideCtrl *Get();
   RGuideStep *GetCurMainCityGuideStep();
+  int32 GetCurForceGuideStep();
 };

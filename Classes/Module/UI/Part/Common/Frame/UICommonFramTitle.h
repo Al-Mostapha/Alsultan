@@ -15,4 +15,5 @@ public:
   void Ctor() override;
   void InitWidget();
   void SetTitle(const GString& p_Title){}
+  void SetBtnHelpClickCallBack(Widget::ccWidgetTouchCallback p_Handle){}
 };

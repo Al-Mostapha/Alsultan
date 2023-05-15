@@ -1,0 +1,41 @@
+
+xuyuanshu_03_01.png
+size: 1024,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+teng_s
+  rotate: false
+  xy: 2, 2
+  size: 581, 57
+  orig: 581, 57
+  offset: 0, 0
+  index: -1
+teng_ss
+  rotate: false
+  xy: 585, 13
+  size: 129, 46
+  orig: 129, 46
+  offset: 0, 0
+  index: -1
+y10
+  rotate: true
+  xy: 716, 27
+  size: 32, 59
+  orig: 32, 59
+  offset: 0, 0
+  index: -1
+y11
+  rotate: true
+  xy: 827, 35
+  size: 24, 41
+  orig: 24, 41
+  offset: 0, 0
+  index: -1
+y9
+  rotate: true
+  xy: 777, 19
+  size: 40, 48
+  orig: 40, 48
+  offset: 0, 0
+  index: -1

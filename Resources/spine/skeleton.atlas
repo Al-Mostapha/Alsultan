@@ -1,0 +1,13 @@
+
+skeleton.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+suoliang003
+  rotate: false
+  xy: 2, 2
+  size: 641, 138
+  orig: 641, 138
+  offset: 0, 0
+  index: -1

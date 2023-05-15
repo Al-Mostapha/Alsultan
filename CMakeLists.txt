@@ -26,9 +26,17 @@
 cmake_minimum_required(VERSION 3.6)
 
 set(APP_NAME Alsultan)
+project(${APP_NAME} LANGUAGES CXX)
 
-project(${APP_NAME})
-include(D:/Mustapha/Tools/spine-runtimes/spine-cocos2dx/spine-cocos2dx.cmake)
+# add_compile_definitions(CC_SPRITE_DEBUG_DRAW=1)
+# add_compile_definitions(CC_LABEL_DEBUG_DRAW=1)
+# add_compile_definitions(CC_SPRITEBATCHNODE_DEBUG_DRAW=1)
+# add_compile_definitions(CC_LABELBMFONT_DEBUG_DRAW=1)
+# add_compile_definitions(CC_LABELATLAS_DEBUG_DRAW=1)
+
+
+
+include(D:/Mustapha/Tools/spine-runtimes-4.0/spine-cocos2dx/spine-cocos2dx.cmake)
 if(XCODE)
     if(NOT DEFINED CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET)
         SET (CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 8.0)
@@ -137,6 +145,7 @@ else()
 endif()
 
 add_subdirectory(libfairygui)
+target_compile_features(${APP_NAME} PRIVATE cxx_std_17)
 target_link_libraries(${APP_NAME} spine-cpp spine-cocos2dx)
 target_link_libraries(${APP_NAME} cocos2d)
 target_link_libraries(${APP_NAME} fairygui)
@@ -161,6 +170,7 @@ if(APPLE)
     #set_xcode_property(${APP_NAME} DEVELOPMENT_TEAM "GRLXXXX2K9")
 elseif(WINDOWS)
     cocos_copy_target_dll(${APP_NAME})
+
     string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
     string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
     string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}")

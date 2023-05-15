@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "Alliance.Enum.h"
 struct RAllianceMember{
   Guid AllianceID;
@@ -49,6 +49,16 @@ struct RAllianceProperty{
   int32 TerrScore = 0;
   // kingPacksInfo = {}
 
+};
+
+struct $AlliancePrifeInfo{
+  Guid AllianceID;
+  GString AllianceName;
+  GString LeaderName;
+  Guid LeaderID;
+  int32 iconID;
+  GString Avatar;
+  bool _Valid = false;
 };
 
 struct RAlliance {

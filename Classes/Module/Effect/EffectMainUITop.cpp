@@ -2,12 +2,13 @@
 #include "Module/UI/MainUI/UIMainTop.h"
 #include "Module/Activity/Activity.Type.h"
 
+
 EffectMainUITop *EffectMainUITop::Get(){
   static EffectMainUITop *l_Instance = new EffectMainUITop();
   return l_Instance;
 }
 
-Node *EffectMainUITop::LuckyBlessShow(ELuckyBlessActivityEffectType p_ShowType){
+Node *EffectMainUITop::LuckyBlessShow(ELuckyBlessEffect p_ShowType){
   // local gametop = gModuleMgr.getObject("gametop")
   // local luckyBlessCtrl = gametop.playertop_:getModule("luckyBlessCtrl")
   // local node = display.newNode()

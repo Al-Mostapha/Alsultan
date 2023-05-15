@@ -12,8 +12,8 @@ namespace spine{
 class ArmyRead{
 public:
   struct RArmySpinData{
-    char *_SpineSkel = "spine/soldiersV4/11bubing.skel";
-    char *_SpineAtlas = "spine/soldiersV4/11bubing.atlas";
+    const char *_SpineSkel = "spine/soldiersV4/11bubing.skel";
+    const char *_SpineAtlas = "spine/soldiersV4/11bubing.atlas";
     spine::SkeletonAnimation *_SpineAnim;
     Vec2 _Pos;
     Vec2 _Scale = {1, 1};

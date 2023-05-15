@@ -80,3 +80,7 @@ GHashMap<EActivityTime, bool> ActivityShowCtrl::GetActivityGroup(EActivityCenter
 RActivityShowData ActivityShowCtrl::GetCommunityInfo(EActivityTime p_IdEvent){
   return RActivityShowData();
 }
+
+bool ActivityShowCtrl::IsActivityOpen(EActivityTime p_IdEvent){
+  return false;
+}

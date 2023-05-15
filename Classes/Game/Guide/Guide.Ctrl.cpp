@@ -13,3 +13,7 @@ GuideCtrl *GuideCtrl::Get(){
 RGuideStep *GuideCtrl::GetCurMainCityGuideStep(){
   return nullptr;
 }
+
+int32 GuideCtrl::GetCurForceGuideStep(){
+  return 0;
+}

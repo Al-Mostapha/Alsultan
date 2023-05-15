@@ -12,7 +12,7 @@ class BuildingRead{
     EScience _Science = EScience::None;
     EArmy _Army = EArmy::None;
     int32 _unlockLvl = 0;
-    bool _IsValid;
+    bool _Valid;
   };
 public:
   static BuildingRead* Get();

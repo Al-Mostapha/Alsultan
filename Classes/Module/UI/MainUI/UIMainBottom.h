@@ -21,130 +21,130 @@ class UIMainBottom : public UIBaseView {
   CREATE_FUNC(UIMainBottom);
   CreateUIPanel(UIMainBottom);
   CreateUICCSView(UIMainBottom);
-  Node* n_NodeLOD = nullptr;
-  Node* n_NodeAreaRb = nullptr;
-  Node* n_NodeAreaLb = nullptr;
-  Node* n_NodeAreaB = nullptr;
-  EScene m_ViewChangeType = EScene::City;
-  Sprite* n_UiBg = nullptr;
-  ui::ImageView* n_UiBgLeft = nullptr;
-  ui::ImageView* n_UiBgRight = nullptr;
-  Node* n_NodeStyleBg = nullptr;
-  Node* n_NodeStyleTop = nullptr;
-  ui::ImageView* n_TipItems = nullptr;
-  ui::ImageView* n_TipAlliance = nullptr;
-  ui::ImageView* n_TipMail = nullptr;
-  ui::ImageView* n_TipHero = nullptr;
-  Label* n_TipHeroCount = nullptr;
-  Label* n_TipMailCount = nullptr;
-  Label* n_TipAllianceCount = nullptr;
-  Label* n_TipItemsCount = nullptr;
-  UIChatMainUiView* n_ChatMainUIView = nullptr;
-  Sprite* n_FrameWorldCity = nullptr;
-  ui::Button* n_ButtonWorldCity = nullptr;
-  ui::ImageView* n_ImgWorldCity = nullptr;
-  ui::Button* n_BtnAccount = nullptr;
-  Sprite* n_IconAccount = nullptr;
-  Sprite* n_RedPointAccount = nullptr;
-  ui::Button* n_BtnPyramidBattle = nullptr;
-  Sprite* n_SpriteBattleTimeBg = nullptr;
-  UITimerLabel* n_TxtPyramidBattleTime = nullptr;
-  ui::Button* n_BtnPyramidPlayoffs = nullptr;
-  Sprite* n_ImgPyramidPlayoffsBg = nullptr;
-  UITimerLabel* n_TxtPyramidPlayoffsTime = nullptr;
-  ui::Button* n_BtnCityUnlock = nullptr;
-  Sprite* n_SpriteCityUnlock = nullptr;
-  ui::Text* n_TxtCityUnlock = nullptr;
-  ui::Button* n_BtnNewPlayerBuff = nullptr;
-  UITimerLabel* n_TextNewPlayer = nullptr;
-  ui::Button* n_BtnPrinceGiftNewBuff = nullptr;
-  UITimerLabel* n_TextPrinceGiftNew = nullptr;
-  Sprite* n_SpritePrinceGiftNewBuff = nullptr;
-  ui::Button* n_BtnPrinceGiftBuff = nullptr;
-  UITimerLabel* n_TextPrinceGift = nullptr;
-  Sprite* n_SpritePrinceGiftBuff = nullptr;
-  ui::Button* n_BtnSultansWelBack = nullptr;
-  UITimerLabel* n_TextWelBack = nullptr;
-  ui::Button* n_BtnHero = nullptr;
-  ui::ImageView* n_IconBtnHero = nullptr;
-  ui::Button* n_BtnItems = nullptr;
-  ui::ImageView* n_IconBtnItems = nullptr;
-  Sprite* n_ItemNewIcon = nullptr;
-  Node* n_NodeDiscountEffect = nullptr;
-  ui::Button* n_BtnMail = nullptr;
-  ui::ImageView* n_IconBtnMail = nullptr;
-  ui::Button* n_BtnAlliance = nullptr;
-  ui::ImageView* n_IconBtnAlliance = nullptr;
-  ui::Button* n_BtnWatchTower = nullptr;
-  Sprite* n_IconAlarm = nullptr;
-  ui::Button* n_BtnWallBurning = nullptr;
-  ui::Button* n_BtnKingdomManager = nullptr;
-  Sprite* n_BtnKingdomManagerSprite = nullptr;
-  Sprite* n_SpKingdomManagerTimeBg = nullptr;
-  UITimerLabel* n_TxtKingdomManagerTime = nullptr;
-  ui::Button* n_BtnLegendKingManager = nullptr;
-  Sprite* n_BtnLegendKingManagerSprite = nullptr;
-  Sprite* n_SpLegendKingManagerTimeBg = nullptr;
-  UITimerLabel* n_TxtLegendKingManagerTime = nullptr;
-  ui::Button* n_BtnLegendInvite = nullptr;
-  Sprite* n_IconLegendInvite = nullptr;
-  UITimerLabel* n_TxtLegendInviteNum = nullptr;
-  ui::Button* n_BtnRadianceWar = nullptr;
-  Sprite* n_IconRadianceWar = nullptr;
-  Sprite* n_SpriteEffect = nullptr;
-  UITimerLabel* n_TxtRadianceWarNum = nullptr;
-  ui::Button* n_BtnHegemonManager = nullptr;
-  Sprite* n_BtnHegemonManagerSprite = nullptr;
-  Sprite* n_SpHegemonManagerTimeBg = nullptr;
-  UITimerLabel* n_TxtHegemonManagerTime = nullptr;
-  ui::Button* n_BtnHegemonBattle = nullptr;
-  Sprite* n_BtnHegemonBattleSprite = nullptr;
-  Sprite* n_SpHegemonBattleTimeBg = nullptr;
-  UITimerLabel* n_TxtHegemonBattleTime = nullptr;
-  ui::Button* n_BtnTrainPower = nullptr;
-  ui::Text* n_TextTrainPower = nullptr;
-  Sprite* n_RedTrainPower = nullptr;
-  ui::Text* n_NumTrainPower = nullptr;
-  ui::Button* n_BtnNeckLaceRank = nullptr;
-  Sprite* n_BtnNeckLaceRankSprite = nullptr;
-  Sprite* n_BtnNeckLaceRankBg = nullptr;
-  ui::Text* n_BtnNeckLaceRankText = nullptr;
-  ui::Button* n_BtnRomanSoul = nullptr;
-  Label* n_LabelAllianceName = nullptr;
-  Label* n_LabelHeroName = nullptr;
-  Label* n_LabelBagName = nullptr;
-  Label* n_LabelMailName = nullptr;
-  ui::Button* n_BtnSkill = nullptr;
-  ui::Button* n_BtnReplay = nullptr;
-  Sprite* n_BgTextVideo = nullptr;
-  Scheduler* m_Timer = nullptr;
-  ui::Text* n_TextVideo = nullptr;
-  Sprite* n_FrameMainGuide = nullptr;
-  UIQuestGuideNode *n_NodeQuestGuide = nullptr;
-  UIPreDownloadMainWidget* n_NodePreDownload = nullptr;
-  Node* n_NodeBottomBtn = nullptr;
-  ui::ImageView* n_BtnManager = nullptr;
-  ui::ScrollView* n_ScrollBtn = nullptr;
-  ui::Button* n_BtnSwitch = nullptr;
-  Node* n_NodeArrow = nullptr;
-  Sprite* n_IconRed = nullptr;
-  ui::Text* n_LabBtnNum = nullptr;
-  int32 m_BtnSwitchType = 1;
-  ui::Button *n_BtnLuckyRecharge = nullptr;
-  ui::Button *n_BtnHarvestSeason = nullptr;
-  ui::Button *n_BtnQuestionnaire = nullptr;
-  ui::Button *n_BtnLostRuins = nullptr;
-  ui::Button *n_BtnWindTower = nullptr;
-  ui::Button *n_BtnSnowWolfLost = nullptr;
-  ui::Button *n_BtnCrazyTrio = nullptr;
-  ui::Button *n_BtnCommunity = nullptr;
-  ui::Button *n_BtnMonthCard = nullptr;
-  ui::Button *n_BtnEnjoyLottery = nullptr;
-  ui::Button *n_BtnGoldPackage = nullptr;
-  Node *n_LuckyBlessNode = nullptr;
-  Scheduler *m_ExpostulationTimer = nullptr;
-  Node *n_BtnHelpAll = nullptr;
-  Node *n_EffectShine = nullptr;
+  Node* _NodeLOD = nullptr;
+  Node* _NodeAreaRb = nullptr;
+  Node* _NodeAreaLb = nullptr;
+  Node* _NodeAreaB = nullptr;
+  EScene _ViewChangeType = EScene::City;
+  Sprite* _UiBg = nullptr;
+  ui::ImageView* _UiBgLeft = nullptr;
+  ui::ImageView* _UiBgRight = nullptr;
+  Node* _NodeStyleBg = nullptr;
+  Node* _NodeStyleTop = nullptr;
+  ui::ImageView* _TipItems = nullptr;
+  ui::ImageView* _TipAlliance = nullptr;
+  ui::ImageView* _TipMail = nullptr;
+  ui::ImageView* _TipHero = nullptr;
+  Label *_TipHeroCount = nullptr;
+  Label *_TipMailCount = nullptr;
+  Label *_TipAllianceCount = nullptr;
+  Label *_TipItemsCount = nullptr;
+  UIChatMainUiView* _ChatMainUIView = nullptr;
+  Sprite* _FrameWorldCity = nullptr;
+  ui::Button* _ButtonWorldCity = nullptr;
+  ui::ImageView* _ImgWorldCity = nullptr;
+  ui::Button* _BtnAccount = nullptr;
+  Sprite* _IconAccount = nullptr;
+  Sprite* _RedPointAccount = nullptr;
+  ui::Button* _BtnPyramidBattle = nullptr;
+  Sprite* _SpriteBattleTimeBg = nullptr;
+  UITimerLabel* _TxtPyramidBattleTime = nullptr;
+  ui::Button* _BtnPyramidPlayoffs = nullptr;
+  Sprite* _ImgPyramidPlayoffsBg = nullptr;
+  UITimerLabel* _TxtPyramidPlayoffsTime = nullptr;
+  ui::Button* _BtnCityUnlock = nullptr;
+  Sprite* _SpriteCityUnlock = nullptr;
+  ui::Text* _TxtCityUnlock = nullptr;
+  ui::Button* _BtnNewPlayerBuff = nullptr;
+  UITimerLabel* _TextNewPlayer = nullptr;
+  ui::Button* _BtnPrinceGiftNewBuff = nullptr;
+  UITimerLabel* _TextPrinceGiftNew = nullptr;
+  Sprite* _SpritePrinceGiftNewBuff = nullptr;
+  ui::Button* _BtnPrinceGiftBuff = nullptr;
+  UITimerLabel* _TextPrinceGift = nullptr;
+  Sprite* _SpritePrinceGiftBuff = nullptr;
+  ui::Button* _BtnSultansWelBack = nullptr;
+  UITimerLabel* _TextWelBack = nullptr;
+  ui::Button* _BtnHero = nullptr;
+  ui::ImageView* _IconBtnHero = nullptr;
+  ui::Button* _BtnItems = nullptr;
+  ui::ImageView* _IconBtnItems = nullptr;
+  Sprite* _ItemNewIcon = nullptr;
+  Node* _NodeDiscountEffect = nullptr;
+  ui::Button* _BtnMail = nullptr;
+  ui::ImageView* _IconBtnMail = nullptr;
+  ui::Button* _BtnAlliance = nullptr;
+  ui::ImageView* _IconBtnAlliance = nullptr;
+  ui::Button* _BtnWatchTower = nullptr;
+  Sprite* _IconAlarm = nullptr;
+  ui::Button* _BtnWallBurning = nullptr;
+  ui::Button* _BtnKingdomManager = nullptr;
+  Sprite* _BtnKingdomManagerSprite = nullptr;
+  Sprite* _SpKingdomManagerTimeBg = nullptr;
+  UITimerLabel* _TxtKingdomManagerTime = nullptr;
+  ui::Button* _BtnLegendKingManager = nullptr;
+  Sprite* _BtnLegendKingManagerSprite = nullptr;
+  Sprite* _SpLegendKingManagerTimeBg = nullptr;
+  UITimerLabel* _TxtLegendKingManagerTime = nullptr;
+  ui::Button* _BtnLegendInvite = nullptr;
+  Sprite* _IconLegendInvite = nullptr;
+  UITimerLabel* _TxtLegendInviteNum = nullptr;
+  ui::Button* _BtnRadianceWar = nullptr;
+  Sprite* _IconRadianceWar = nullptr;
+  Sprite* _SpriteEffect = nullptr;
+  UITimerLabel* _TxtRadianceWarNum = nullptr;
+  ui::Button* _BtnHegemonManager = nullptr;
+  Sprite* _BtnHegemonManagerSprite = nullptr;
+  Sprite* _SpHegemonManagerTimeBg = nullptr;
+  UITimerLabel* _TxtHegemonManagerTime = nullptr;
+  ui::Button* _BtnHegemonBattle = nullptr;
+  Sprite* _BtnHegemonBattleSprite = nullptr;
+  Sprite* _SpHegemonBattleTimeBg = nullptr;
+  UITimerLabel* _TxtHegemonBattleTime = nullptr;
+  ui::Button* _BtnTrainPower = nullptr;
+  ui::Text* _TextTrainPower = nullptr;
+  Sprite* _RedTrainPower = nullptr;
+  ui::Text* _NumTrainPower = nullptr;
+  ui::Button* _BtnNeckLaceRank = nullptr;
+  Sprite* _BtnNeckLaceRankSprite = nullptr;
+  Sprite* _BtnNeckLaceRankBg = nullptr;
+  ui::Text* _BtnNeckLaceRankText = nullptr;
+  ui::Button* _BtnRomanSoul = nullptr;
+  Label* _LabelAllianceName = nullptr;
+  Label* _LabelHeroName = nullptr;
+  Label* _LabelBagName = nullptr;
+  Label* _LabelMailName = nullptr;
+  ui::Button* _BtnSkill = nullptr;
+  ui::Button* _BtnReplay = nullptr;
+  Sprite* _BgTextVideo = nullptr;
+  Scheduler* _Timer = nullptr;
+  ui::Text* _TextVideo = nullptr;
+  Sprite* _FrameMainGuide = nullptr;
+  UIQuestGuideNode *_NodeQuestGuide = nullptr;
+  UIPreDownloadMainWidget* _NodePreDownload = nullptr;
+  Node* _NodeBottomBtn = nullptr;
+  ui::ImageView* _BtnManager = nullptr;
+  ui::ScrollView* _ScrollBtn = nullptr;
+  ui::Button* _BtnSwitch = nullptr;
+  Node* _NodeArrow = nullptr;
+  Sprite* _IconRed = nullptr;
+  ui::Text* _LabBtnNum = nullptr;
+  int32 _BtnSwitchType = 1;
+  ui::Button *_BtnLuckyRecharge = nullptr;
+  ui::Button *_BtnHarvestSeason = nullptr;
+  ui::Button *_BtnQuestionnaire = nullptr;
+  ui::Button *_BtnLostRuins = nullptr;
+  ui::Button *_BtnWindTower = nullptr;
+  ui::Button *_BtnSnowWolfLost = nullptr;
+  ui::Button *_BtnCrazyTrio = nullptr;
+  ui::Button *_BtnCommunity = nullptr;
+  ui::Button *_BtnMonthCard = nullptr;
+  ui::Button *_BtnEnjoyLottery = nullptr;
+  ui::Button *_BtnGoldPackage = nullptr;
+  Node *_LuckyBlessNode = nullptr;
+  Scheduler *_ExpostulationTimer = nullptr;
+  Node *_BtnHelpAll = nullptr;
+  Node *_EffectShine = nullptr;
   public:
   UIMainBottom(){};
   ~UIMainBottom(){};
@@ -163,17 +163,22 @@ class UIMainBottom : public UIBaseView {
   void InitBattleOpenBtn();
 
 
-  Node *GetLodNode(){ return n_NodeLOD; };
-  Node *GetNodeAreaBottom(){ return n_NodeAreaB; }
-  Node *GetNodeAreaRB(){ return n_NodeAreaRb; }
-  Node *GetNodeAreaLB(){ return n_NodeAreaLb; }
+  Node *GetLodNode(){ return _NodeLOD; };
+  Node *GetNodeAreaBottom(){ return _NodeAreaB; }
+  Node *GetNodeAreaRB(){ return _NodeAreaRb; }
+  Node *GetNodeAreaLB(){ return _NodeAreaLb; }
 
   Label *ExchangeGroupText(ui::Text *p_Node, float p_Height = 0);
 
   void OnWorldCityClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void OnSkillClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void OnReplayClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
-  void OnBottomClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+
+  void OnHeroClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void OnItemClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void OnMailClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void OnAllianceClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+
   void BtnWatchTowerClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void BtnWallBurningClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void BtnKingdomManagerClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
@@ -241,46 +246,26 @@ class UIMainBottom : public UIBaseView {
   ui::Button *GetBtnTarget(const GString &p_Name);
   void CheckRemainsWar();
 
-  // SoraDAddMessage(self, "MESSAGE_MAINSCEN_LOGINFINSH", handler(self, self.reLoginFinish))
   void ReLoginFinish(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_CHAT_OPEN_UI_ALLIANCE", handler(self, self.openUIAlliance))
   void OpenUIAlliance(EventCustom *p_Event);
   void CurrentShowViewType(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_GUIDE_HIDE_AND_SHOW", handler(self, self.showOrHideGuideView))
   void ShowOrHideGuideView(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_REQ_NEW_PRINCE_GIFT_BUY_PACKAGE", handler(self, self.addPrinceGiftNewBuffButton))
   void AddPrinceGiftNewBuffButton(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_PRINCE_GIFT_GUIDE_BUFF_REFRESH", handler(self, self.showPrinceGiftGuideView))
   void ShowPrinceGiftGuideView(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_PRINCE_GIFT_GUIDE_REFRESH", handler(self, self.addPrinceGiftBuffButton))
   void AddPrinceGiftBuffButton(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SINBAD_TREASURE_UPDATE_LV_POP_WINDOW", handler(self, self.showSinbadPopWindow))
   void ShowSinbadPopWindow(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_WATCHTOWER_ADDINFO", handler(self, self.checkWatchTower))
   void CheckWatchTower(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_EVENTCENTER_ROMANSOUL_ALLIANCEATTACK", handler(self, self.checkRomanSoul))
   void CheckRomanSoul(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_PYRAMIDBATTLE_MAINUIICONCHECK", handler(self, self.btnPyramidBattleCheck))
   void BtnPyramidBattleCheck(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_GREEN_POINT_UPDATE", handler(self, self.greenPointUpdate))
   void GreenPointUpdate(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_GREEN_POINT_UPDATE_BYTYPE", handler(self, self.greenPointUpdateByType))
   void GreenPointUpdateByType(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_WALLS_NOTIFY_SUCCESS", handler(self, self.checkWallDefend))
   void CheckWallDefend(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_ALLIANCE_JOIN_SUCCESS", handler(self, self.RemovefirstJoinAllianceAnimation))
   void RemovefirstJoinAllianceAnimation(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_KINGDOMWAR_KINGDOMUSR_CHANGED", handler(self, self.btnKingdomManagerCheck))
   void BtnKingdomManagerCheck(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_LEGENDLORD_LORD_NOTIFY_CLEAN", handler(self, self.btnLegendKingManagerCheck))
   void BtnLegendKingManagerCheck(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_HEGEMON_LORD_NOTIFY_CLEAN", handler(self, self.msgHegemonClean))
   void MsgHegemonClean(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_HEGEMON_LORD_NOTIFY_AP_LT", handler(self, self.btnHegemonManagerCheck))
   void BtnHegemonManagerCheck(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_SERVER_HEGEMON_UPDATE_MAINUI_HEGEMON", handler(self, self.btnHegemonBattleCheck))
   void BtnHegemonBattleCheck(EventCustom *p_Event);
-  // SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_CASTLE_LEVELUP", handler(self, self.btnCityUnlockCheck))
   void BtnCityUnlockCheck(EventCustom *p_Event);
   // SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_NEWPLAYER_BUFF_END", handler(self, self.btnNewPlayerBuffCheck))
   void BtnNewPlayerBuffCheck(EventCustom *p_Event);

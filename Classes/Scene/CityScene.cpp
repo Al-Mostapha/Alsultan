@@ -81,7 +81,6 @@ bool CityScene::init() {
 }
 
 void CityScene::initCityLayers() {
-
   _GRootNormal = fairygui::GRoot::create(this, 5);
   _GRootNormal->retain();
   _GRootNormal->name = "GRoot";
@@ -93,6 +92,7 @@ void CityScene::initCityLayers() {
   _PanelView = ui::Layout::create();
   _PanelView->setContentSize(_MainCityView->getContentSize());
   addChild(_PanelView, 5);
+  GBase::DSendMessage("MESSAGE_MAINSCEN_LOGINSUCCESS");
   return;
   containerView = CityBuildingLayer;
   batchNodeXiyiNpc = Node::create();

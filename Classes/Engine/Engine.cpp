@@ -39,3 +39,43 @@ void GEngine::PrintNodeTree(Node *p_Node, int p_Depth)
     PrintNodeTree(l_Child, p_Depth + 1);
   }
 }
+
+
+void GEngine::NodeHighlight(Node *){}
+void GEngine::ButtonHighlight(Node *){}
+void GEngine::ClickableHighlight(Node * p_Parent){
+  if(p_Parent == nullptr)
+    return;
+  if(dynamic_cast<ui::Widget *>(p_Parent) != nullptr){
+    auto l_Widget = dynamic_cast<ui::Widget *>(p_Parent);
+    if(l_Widget->isTouchEnabled() == false)
+      return;
+      auto l_contentSize = l_Widget->getContentSize();
+      auto l_DrawNode = DrawNode::create();
+      Vec2 vertices[4] =
+      {
+          Vec2::ZERO,
+          Vec2(l_contentSize.width, 0.0f),
+          Vec2(l_contentSize.width, l_contentSize.height),
+          Vec2(0.0f, l_contentSize.height)
+      };
+    l_DrawNode->drawPoly(vertices, 4, true, Color4F::GREEN);
+    l_Widget->addChild(l_DrawNode);
+
+    l_Widget->addTouchEventListener([](Ref *p_Sender, ui::Widget::TouchEventType p_Type){
+      if(p_Type == ui::Widget::TouchEventType::BEGAN){
+        auto l_Widget = dynamic_cast<ui::Widget *>(p_Sender);
+        l_Widget->setOpacity(50);
+      }
+      else if(p_Type == ui::Widget::TouchEventType::ENDED){
+        auto l_Widget = dynamic_cast<ui::Widget *>(p_Sender);
+        l_Widget->setOpacity(100);
+      }
+    });
+  }
+  
+  for(auto l_Child : p_Parent->getChildren()){
+    ClickableHighlight(l_Child);
+  }
+
+}

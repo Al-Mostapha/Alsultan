@@ -279,7 +279,7 @@ void UICollegeView::TopStudyShow(bool p_IsStudy){
   _NodeTimer->setVisible(p_IsStudy);
   _CenterNodeTechInfo->setVisible(p_IsStudy);
   if(p_IsStudy){
-    auto l_Queue = TaskCtrl::Get()->QueryQueue(ETask::TechnologyUpgradeQ);
+    _Queue = TaskCtrl::Get()->QueryQueue(ETask::TechnologyUpgradeQ);
     _CcsStudying->InitData(_TableStuding._TechnologyID);
     _CcsStudying->HideNameLv();
     _CcsStudying->SetTimeVisble(false);
@@ -287,7 +287,6 @@ void UICollegeView::TopStudyShow(bool p_IsStudy){
     OpenTimeUp(0);
     _Timer = GBase::DCreateTimer(this, CC_CALLBACK_1(UICollegeView::OpenTimeUp, this));
   }
-
   RefreshWaitQueue(nullptr);
   if(_NodeWait){
     _NodeWait->setVisible(p_IsStudy);

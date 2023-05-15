@@ -8,4 +8,7 @@ class GEngine{
     static GEngine *Get();
     void Init();
     void PrintNodeTree(Node *p_Node, int p_Depth = 0);
+    void NodeHighlight(Node *);
+    void ButtonHighlight(Node *);
+    void ClickableHighlight(Node *);
 };

@@ -1,0 +1,17 @@
+reqiqiu.png
+size:512,256
+filter:Linear,Linear
+01
+bounds:268,59,9,31
+02
+bounds:297,152,100,140
+rotate:90
+03
+bounds:148,2,88,118
+rotate:90
+04
+bounds:2,4,86,144
+rotate:90
+05
+bounds:2,92,160,293
+rotate:90

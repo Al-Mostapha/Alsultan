@@ -15,7 +15,7 @@ class PlayerTop : public IModule , public PlayerTopModule{
   Guid GetPlayerID();
   void SetPlayerID(Guid p_IdPlayer) { m_IdPlayer = p_IdPlayer; }
   void SetKingdomID(int32 p_IdKingdom) { m_IdKingdom = p_IdKingdom; }
-
+  int32 GetKingdomID() { return m_IdKingdom; }
   void EnterGame() override;
   void GetLoginDataInitRsp();
   void ModuleEnterGame();

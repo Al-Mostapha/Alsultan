@@ -16,3 +16,11 @@ RLuckyBlessData LuckyBlessCtrl::GetLuckyData(){ return RLuckyBlessData(); }
 GPair<GTime, GTime> LuckyBlessCtrl::GetRealTime(){
   return GPair<GTime, GTime>(100, 100);
 }
+
+int32 LuckyBlessCtrl::GetLeftActivateCount(){
+  return 100;
+}
+
+int32 LuckyBlessCtrl::GetLuckyBlessStatus(){
+  return 0;
+}

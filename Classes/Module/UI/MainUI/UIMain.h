@@ -9,10 +9,10 @@
 
 class UIMain : public UIBaseView
 {
-  EScene m_CurrentViewType;
-  UIBaseView *m_TopArea;
-  UIBaseView *m_PandectView;
-  UIBaseView *m_BottomArea;
+  EScene _CurrentViewType;
+  UIBaseView *_TopArea;
+  UIBaseView *_PandectView;
+  UIBaseView *_BottomArea;
   CREATE_FUNC(UIMain);
   CreateUIPanel(UIMain);
 private:
@@ -21,7 +21,6 @@ public:
   UIMain();
   ~UIMain();
   void Ctor();
-  void Show() {};
   void BindTest();
   void ButtonCheatSendClick(Ref *Sender,  ui::Widget::TouchEventType p_Type);
   void ButtonTestSendClick(Ref *Sender,  ui::Widget::TouchEventType p_Type);
@@ -49,8 +48,8 @@ public:
   void NewChapterTaskOpen(EventCustom *p_Event);
   GVector<class UIBaseView *> GetCheckViewList();
 
-  UIMainTop *GetMainUITop(){ return dynamic_cast<UIMainTop *>(m_TopArea); }
-  UIMainBottom *GetMainUIBottom(){ return dynamic_cast<UIMainBottom *>(m_BottomArea); }
+  UIMainTop *GetMainUITop(){ return dynamic_cast<UIMainTop *>(_TopArea); }
+  UIMainBottom *GetMainUIBottom(){ return dynamic_cast<UIMainBottom *>(_BottomArea); }
   Node *gameGuide_getTarget(const char *p_ItemName){return nullptr;}
   static UIMain *Create() {
     auto l_Panel = CreateBaseView(GDisplay::Get()->size());

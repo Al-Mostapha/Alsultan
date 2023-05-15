@@ -18,6 +18,7 @@
 #include "Module/UI/Common/Message/UIMsgNotice.h"
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "Module/Player/Chapter/PlayerTask.Ctrl.h"
+#include "Engine/Engine.h"
 
 
 UIMain::UIMain()
@@ -31,33 +32,21 @@ UIMain::~UIMain()
 void UIMain::Ctor()
 {
   UIBaseView::Ctor();
-  //UIPanelBase::InitPanel();
-  // self.eventForegroundID = nil
-  // self.eventBackgroundID = nil
-  // self:listenerKeyPad()
-  // userSDKManager.reportOnline()
-  // userSDKManager.reportGameUserInfo()
-  // userSDKManager.reportMoneyCurrent()
-  // userSDKManager.setOnMessageListener()
-  // userSDKManager.setOnNoticeBoardListener()
-  // if SoraDConfigGet("System:GameDevelopLangCN~bool") then
-  //   SoraDSetGameLanguage("zh_cn")
-  // end
   setPositionX(GDisplay::Get()->rcx);
-  m_CurrentViewType = EScene::City;
-  m_TopArea = UIMainTop::Create();
-  m_TopArea->setAnchorPoint(Vec2(0, 1));
-  m_TopArea->setPosition(Vec2(0, getContentSize().height));
-  addChild(m_TopArea, 10);
-  m_PandectView = UIPandectView::Create();
-  m_PandectView->setAnchorPoint(Vec2(0, 0.5));
-  // self.pandectView:setPosition(SoraDFPoint(display.width - 139, self:getContentSize().height / 2, display.width))
-  m_PandectView->setPosition(Vec2(GDisplay::Get()->rcx - 139, getContentSize().height / 2));
-  addChild(m_PandectView, 20);
-  m_BottomArea = UIMainBottom::Create();
-  m_BottomArea->setAnchorPoint(Vec2(0, 0));
-  m_BottomArea->setPosition(Vec2(0, 0));
-  addChild(m_BottomArea, 10);
+  _CurrentViewType = EScene::City;
+  _TopArea = UIMainTop::Create();
+
+  _TopArea->setAnchorPoint(Vec2(0, 1));
+  _TopArea->setPosition(Vec2(0, getContentSize().height));
+  addChild(_TopArea, 10);
+  _PandectView = UIPandectView::Create();
+  _PandectView->setAnchorPoint(Vec2(0, 0.5));
+  _PandectView->setPosition(GBase::DFPoint(GDisplay::Get()->width - 139, getContentSize().height / 2, GDisplay::Get()->width));
+  addChild(_PandectView, 20);
+  _BottomArea = UIMainBottom::Create();
+  _BottomArea->setAnchorPoint(Vec2(0, 0));
+  _BottomArea->setPosition(Vec2(0, 0));
+  addChild(_BottomArea, 10);
   BindTest();
 }
 
@@ -114,7 +103,6 @@ void UIMain::OnExitOther(){
 
 void UIMain::OnMessageListener(){
   GBase::DAddMessage(this, "MESSAGE_MAIN_UI_HIDDLE", CC_CALLBACK_1(UIMain::SetMainUIHiddle, this));
-  //UIMain
   GBase::DAddMessage(this, "MESSAGE_MAINSCEN_LOGINFINSH", CC_CALLBACK_1(UIMain::ReLoginFinish, this));
   GBase::DAddMessage(this, "MESSAGE_MAINSCEN_ONSHOW", CC_CALLBACK_1(UIMain::ChangeMainScene, this));
   GBase::DAddMessage(this, "MESSAGE_TRIGGER_SKILLS", CC_CALLBACK_1(UIMain::LordSkillEffect, this));
@@ -258,10 +246,10 @@ void UIMain::ChangeMainScene(EventCustom *p_Event){
   if(!p_Event->getUserData())
     return;
   auto l_Scene = *static_cast<EScene*>(p_Event->getUserData());
-  if(l_Scene == EScene::None || l_Scene == m_CurrentViewType)
+  if(l_Scene == EScene::None || l_Scene == _CurrentViewType)
     return;
-  m_PandectView->setVisible(l_Scene == EScene::City);
-  m_CurrentViewType = l_Scene;
+  _PandectView->setVisible(l_Scene == EScene::City);
+  _CurrentViewType = l_Scene;
 }
 
 void UIMain::ShowHalloweenActionView(EventCustom *p_Event){
@@ -411,12 +399,12 @@ void UIMain::UpdateStyle(EventCustom *p_Event){
 GVector<UIBaseView*> UIMain::GetCheckViewList(){
   auto l_ViewList = GVector<UIBaseView*>();
   //TODO: Add View
-  if(m_TopArea)
-    l_ViewList.push_back(m_TopArea);
-  if(m_PandectView)
-    l_ViewList.push_back(m_PandectView);
-  if(m_BottomArea)  
-    l_ViewList.push_back(m_BottomArea);
+  if(_TopArea)
+    l_ViewList.push_back(_TopArea);
+  if(_PandectView)
+    l_ViewList.push_back(_PandectView);
+  if(_BottomArea)  
+    l_ViewList.push_back(_BottomArea);
   return l_ViewList;
 }
 

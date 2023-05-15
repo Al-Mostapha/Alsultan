@@ -26,6 +26,11 @@ RLordInfo LordInfoCtrl::GetLordInfo()
   return RLordInfo();
 }
 
+RLordInfo LordInfoCtrl::GetLordInfoByUid( Guid p_PlayerUid, int32 p_KID, const char *p_From )
+{
+  return RLordInfo();
+}
+
 uint32 LordInfoCtrl::GetLordLevel()
 {
   return 0;

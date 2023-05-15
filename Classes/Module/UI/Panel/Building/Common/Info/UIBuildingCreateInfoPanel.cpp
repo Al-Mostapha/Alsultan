@@ -194,7 +194,7 @@ void UIBuildingCreateInfoPanel::InitUpgradeData(IBuilding *p_Building){
   auto l_Pair = BuildingLogic::Get()->IsCanUpgrade(p_Building->GetBuildingIndex());
   bool l_Iscanupgrade = l_Pair.First;
   auto l_RetData = l_Pair.Second;
-  if(l_RetData._IsValid){
+  if(l_RetData._Valid){
     _TableBuildInfo._BuildId._Bid = p_Building->GetBuildingId();
     _TableBuildInfo._BuildId._IID = p_Building->GetBuildingIndex();
     _TableBuildInfo._BuildData = l_RetData;
@@ -524,7 +524,7 @@ void UIBuildingCreateInfoPanel::InitWarView(){
 void UIBuildingCreateInfoPanel::ShowUnlockedInfo(){
   auto l_BuildingCell = CityCtrl::Get()->GetBuildingCellByIndex(_TableBuildInfo._BuildId._IID);
   auto l_NextUnloacked = BuildingRead::Get()->GetNextUnlockedInfo(_TableBuildInfo._BuildId._Bid, l_BuildingCell->_Info.buildingLvl);
-  if(l_NextUnloacked._IsValid){
+  if(l_NextUnloacked._Valid){
     _LabelDes->setTextVerticalAlignment(TextVAlignment::TOP);
     if(l_NextUnloacked._unlockLvl == l_BuildingCell->_Info.buildingLvl + 1){
       _LabelDes->setString(Translate::i18n("common_text_1150"));

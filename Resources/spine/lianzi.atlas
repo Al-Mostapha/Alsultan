@@ -1,0 +1,131 @@
+
+lianzi.png
+size: 1024,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chuanglian_L
+  rotate: false
+  xy: 2, 657
+  size: 336, 1389
+  orig: 336, 1389
+  offset: 0, 0
+  index: -1
+chuanglian_R
+  rotate: false
+  xy: 340, 657
+  size: 336, 1389
+  orig: 336, 1389
+  offset: 0, 0
+  index: -1
+chuangsha_L
+  rotate: false
+  xy: 678, 657
+  size: 323, 1389
+  orig: 323, 1389
+  offset: 0, 0
+  index: -1
+lianshi01_L
+  rotate: false
+  xy: 911, 550
+  size: 75, 105
+  orig: 75, 105
+  offset: 0, 0
+  index: -1
+lianshi01_R
+  rotate: true
+  xy: 699, 439
+  size: 58, 94
+  orig: 58, 94
+  offset: 0, 0
+  index: -1
+lianshi02_L
+  rotate: true
+  xy: 569, 449
+  size: 48, 128
+  orig: 48, 128
+  offset: 0, 0
+  index: -1
+lianshi02_R
+  rotate: false
+  xy: 802, 509
+  size: 107, 146
+  orig: 107, 146
+  offset: 0, 0
+  index: -1
+lianshi03_L
+  rotate: false
+  xy: 156, 12
+  size: 75, 228
+  orig: 75, 228
+  offset: 0, 0
+  index: -1
+lianshi03_R
+  rotate: true
+  xy: 911, 505
+  size: 43, 91
+  orig: 43, 91
+  offset: 0, 0
+  index: -1
+lianshi04_L
+  rotate: true
+  xy: 300, 434
+  size: 26, 247
+  orig: 26, 247
+  offset: 0, 0
+  index: -1
+lianshi04_R
+  rotate: false
+  xy: 233, 13
+  size: 47, 227
+  orig: 47, 227
+  offset: 0, 0
+  index: -1
+liantou_L
+  rotate: false
+  xy: 569, 499
+  size: 231, 156
+  orig: 231, 156
+  offset: 0, 0
+  index: -1
+liantou_R
+  rotate: true
+  xy: 2, 2
+  size: 238, 152
+  orig: 238, 152
+  offset: 0, 0
+  index: -1
+paitou
+  rotate: false
+  xy: 2, 242
+  size: 268, 195
+  orig: 268, 195
+  offset: 0, 0
+  index: -1
+qiaolian_L
+  rotate: false
+  xy: 2, 439
+  size: 296, 216
+  orig: 296, 216
+  offset: 0, 0
+  index: -1
+qiaolian_R
+  rotate: false
+  xy: 300, 462
+  size: 267, 193
+  orig: 267, 193
+  offset: 0, 0
+  index: -1
+
+lianzi2.png
+size: 512,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chuangsha_R
+  rotate: false
+  xy: 2, 2
+  size: 323, 1389
+  orig: 323, 1389
+  offset: 0, 0
+  index: -1

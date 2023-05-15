@@ -64,7 +64,8 @@
     "xlocbuf": "cpp",
     "xlocmes": "cpp",
     "xlocmon": "cpp",
-    "xloctime": "cpp"
+    "xloctime": "cpp",
+    "variant": "cpp"
   },
   "search.exclude": {
     "**/build": true,
@@ -73,5 +74,10 @@
     "**/proj.*": true,
     "**/Resources": true,
     "Config": true
-  }
+  },
+  "files.exclude": {
+    "libfairygui": true,
+    "Resources": true
+  },
+  
 }

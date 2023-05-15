@@ -49,7 +49,7 @@ struct RCostBuildingUpgrade{
     uint32 power = 0;
   } Reword;
   GVector<RBuildingTask> _BuildingTaskQueue;
-  bool _IsValid;
+  bool _Valid;
 };
 
 struct RBuildingLvlSpecs {

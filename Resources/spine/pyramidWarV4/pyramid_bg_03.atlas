@@ -1,0 +1,244 @@
+
+pyramid_bg_03.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chibang01
+  rotate: false
+  xy: 464, 2
+  size: 68, 31
+  orig: 68, 31
+  offset: 0, 0
+  index: -1
+chibang02
+  rotate: false
+  xy: 690, 19
+  size: 40, 28
+  orig: 40, 28
+  offset: 0, 0
+  index: -1
+chibang03
+  rotate: false
+  xy: 885, 59
+  size: 28, 25
+  orig: 28, 25
+  offset: 0, 0
+  index: -1
+chibang04
+  rotate: false
+  xy: 979, 58
+  size: 26, 18
+  orig: 26, 18
+  offset: 0, 0
+  index: -1
+chibang05
+  rotate: true
+  xy: 965, 101
+  size: 25, 56
+  orig: 25, 56
+  offset: 0, 0
+  index: -1
+chibang06
+  rotate: false
+  xy: 820, 66
+  size: 20, 38
+  orig: 20, 38
+  offset: 0, 0
+  index: -1
+chibang07
+  rotate: true
+  xy: 326, 5
+  size: 24, 39
+  orig: 24, 39
+  offset: 0, 0
+  index: -1
+chibang08
+  rotate: true
+  xy: 733, 59
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+chibang09
+  rotate: true
+  xy: 648, 14
+  size: 33, 40
+  orig: 33, 40
+  offset: 0, 0
+  index: -1
+chibang10
+  rotate: true
+  xy: 658, 93
+  size: 33, 99
+  orig: 33, 99
+  offset: 0, 0
+  index: -1
+chibang11
+  rotate: true
+  xy: 367, 2
+  size: 31, 95
+  orig: 31, 95
+  offset: 0, 0
+  index: -1
+chibang12
+  rotate: true
+  xy: 759, 106
+  size: 20, 84
+  orig: 20, 84
+  offset: 0, 0
+  index: -1
+chibang13
+  rotate: true
+  xy: 759, 81
+  size: 23, 59
+  orig: 23, 59
+  offset: 0, 0
+  index: -1
+gong
+  rotate: true
+  xy: 468, 47
+  size: 79, 97
+  orig: 79, 97
+  offset: 0, 0
+  index: -1
+jian
+  rotate: false
+  xy: 567, 56
+  size: 89, 70
+  orig: 89, 70
+  offset: 0, 0
+  index: -1
+qunbai01
+  rotate: true
+  xy: 910, 88
+  size: 38, 53
+  orig: 38, 53
+  offset: 0, 0
+  index: -1
+qunbai02
+  rotate: true
+  xy: 690, 2
+  size: 15, 35
+  orig: 15, 35
+  offset: 0, 0
+  index: -1
+qunbai03
+  rotate: false
+  xy: 575, 6
+  size: 29, 48
+  orig: 29, 48
+  offset: 0, 0
+  index: -1
+qunbai04
+  rotate: true
+  xy: 759, 58
+  size: 21, 50
+  orig: 21, 50
+  offset: 0, 0
+  index: -1
+qunbai05
+  rotate: true
+  xy: 135, 7
+  size: 12, 41
+  orig: 12, 41
+  offset: 0, 0
+  index: -1
+qunbai06
+  rotate: true
+  xy: 965, 78
+  size: 21, 42
+  orig: 21, 42
+  offset: 0, 0
+  index: -1
+qunbai07
+  rotate: true
+  xy: 255, 2
+  size: 27, 69
+  orig: 27, 69
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: true
+  xy: 658, 49
+  size: 42, 73
+  orig: 42, 73
+  offset: 0, 0
+  index: -1
+tui
+  rotate: true
+  xy: 255, 31
+  size: 95, 110
+  orig: 95, 110
+  offset: 0, 0
+  index: -1
+xiashen
+  rotate: false
+  xy: 845, 86
+  size: 63, 40
+  orig: 63, 40
+  offset: 0, 0
+  index: -1
+youchibang01
+  rotate: false
+  xy: 2, 2
+  size: 73, 17
+  orig: 73, 17
+  offset: 0, 0
+  index: -1
+youchibang02
+  rotate: false
+  xy: 915, 58
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1
+youchibang03
+  rotate: false
+  xy: 77, 4
+  size: 56, 15
+  orig: 56, 15
+  offset: 0, 0
+  index: -1
+youchibang04
+  rotate: false
+  xy: 606, 18
+  size: 40, 36
+  orig: 40, 36
+  offset: 0, 0
+  index: -1
+youchibang05
+  rotate: false
+  xy: 842, 64
+  size: 41, 20
+  orig: 41, 20
+  offset: 0, 0
+  index: -1
+youchibang06
+  rotate: false
+  xy: 2, 21
+  size: 251, 105
+  orig: 251, 105
+  offset: 0, 0
+  index: -1
+youdabi
+  rotate: false
+  xy: 947, 56
+  size: 30, 20
+  orig: 30, 20
+  offset: 0, 0
+  index: -1
+zuochibang
+  rotate: true
+  xy: 367, 35
+  size: 91, 99
+  orig: 91, 99
+  offset: 0, 0
+  index: -1
+zuoshou
+  rotate: false
+  xy: 534, 4
+  size: 39, 41
+  orig: 39, 41
+  offset: 0, 0
+  index: -1

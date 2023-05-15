@@ -5,6 +5,7 @@
 #include "Module/UI/Panel/Lord/LordInfo/UILordPowerView.h"
 #include "Module/Vip/ExaltedPrivilege.Ctrl.h"
 #include "Base/Common/Common.Teml.h"
+#include "Engine/Engine.h"
 // #include "spine/SkeletonAnimation.h"
 
 UIMainTop* UIMainTop::Create() {
@@ -19,136 +20,137 @@ void UIMainTop::Ctor() {
   //   self.playerInfo = {}
   UIBaseView::Ctor();
   AddSubViews();
-  n_NodeLOD = GBase::DGetChildByName<Node*>(this, "Node_LOD");
-  n_NodeAreaRt = GBase::DGetChildByName<Node*>(n_NodeLOD, "Node_area_rt");
-  n_NodeAreaLt = GBase::DGetChildByName<Node*>(n_NodeLOD, "Node_area_lt");
-  n_NodeAreaT = GBase::DGetChildByName<Node*>(this, "Node_area_t");
-  n_NodeGold = GBase::DGetExtendChildFromCCSByName<UICommonGoldTop>(this, "CCS_commonGoldTop_gold");
-  n_NodeGold->SetMainUIStyle();
-  n_NodeGold->ShowAnimation();
-  n_ResMenu = GBase::DGetExtendChildFromCCSByName<UICommonResourcesMenu>(this, "CCS_commonResourcesMenu_menu");
-  n_ResMenu->RunAnimation();
-  n_ResMenu->HiddleMainUI(false);
-  n_BtnVip = GBase::DGetChildByName<ui::Button*>(this, "Button_vip");
-  n_BtnVip->setPressedActionEnabled(false);
-  n_ImgVip = GBase::DGetChildByName<ui::ImageView*>(this, "Image_vip");
-  n_SpriteActiveVip = GBase::DGetChildByName<Sprite*>(this, "Sprite_active");
-  n_SpriteActiveVip->setVisible(false);
-  n_LabelVip = GBase::DGetChildByName<ui::TextBMFont*>(this, "BitmapFontLabel_vip_en");
-  n_SpVipPointFrm = GBase::DGetChildByName<Sprite*>(this, "Sprite_vipNumFrm");
-  n_ImgLvBg = GBase::DGetChildByName<ui::ImageView*>(this, "Image_levelBg");
-  n_LabelLv = GBase::DGetChildByName<ui::Text*>(this, "BitmapFontLabel_leve");
-  n_SpriteHead = GBase::DGetChildByName<Sprite*>(this, "Sprite_head");
-  n_BarEXPBg = GBase::DGetChildByName<Sprite*>(this, "progressbar_main_exp");
-  n_BarEXP = GBase::DGetChildByName<ui::LoadingBar*>(this, "LoadingBar_exp");
-  // n_BarEXP->setClipEnabled(false);
-  n_BarHPBg = GBase::DGetChildByName<Sprite*>(this, "progressbar_main_stamina");
-  n_BarStamina = GBase::DGetChildByName<ui::LoadingBar*>(this, "LoadingBar_stamina");
+  _NodeLOD = GBase::DGetChildByName<Node*>(this, "Node_LOD");
+  _NodeAreaRt = GBase::DGetChildByName<Node*>(_NodeLOD, "Node_area_rt");
+  _NodeAreaLt = GBase::DGetChildByName<Node*>(_NodeLOD, "Node_area_lt");
+  _NodeAreaT = GBase::DGetChildByName<Node*>(this, "Node_area_t");
+  _NodeGold = GBase::DGetExtendChildFromCCSByName<UICommonGoldTop>(this, "CCS_commonGoldTop_gold");
+  _NodeGold->SetMainUIStyle();
+  _NodeGold->ShowAnimation();
+  _ResMenu = GBase::DGetExtendChildFromCCSByName<UICommonResourcesMenu>(this, "CCS_commonResourcesMenu_menu");
+  _ResMenu->RunAnimation();
+  _ResMenu->HiddleMainUI(false);
+  _BtnVip = GBase::DGetChildByName<ui::Button*>(this, "Button_vip");
+  _BtnVip->setPressedActionEnabled(false);
+  _ImgVip = GBase::DGetChildByName<ui::ImageView*>(this, "Image_vip");
+  _SpriteActiveVip = GBase::DGetChildByName<Sprite*>(this, "Sprite_active");
+  _SpriteActiveVip->setVisible(false);
+  _LabelVip = GBase::DGetChildByName<ui::TextBMFont*>(this, "BitmapFontLabel_vip_en");
+  _SpVipPointFrm = GBase::DGetChildByName<Sprite*>(this, "Sprite_vipNumFrm");
+  _ImgLvBg = GBase::DGetChildByName<ui::ImageView*>(this, "Image_levelBg");
+  _LabelLv = GBase::DGetChildByName<ui::Text*>(this, "BitmapFontLabel_leve");
+  _SpriteHead = GBase::DGetChildByName<Sprite*>(this, "Sprite_head");
+  _BarEXPBg = GBase::DGetChildByName<Sprite*>(this, "progressbar_main_exp");
+  _BarEXP = GBase::DGetChildByName<ui::LoadingBar *>(this, "LoadingBar_exp");
+  // _BarEXP->setClipEnabled(false);
+  _BarHPBg = GBase::DGetChildByName<Sprite*>(this, "progressbar_main_stamina");
+  _BarStamina = GBase::DGetChildByName<ui::LoadingBar*>(this, "LoadingBar_stamina");
   //   self.barStamina:setClipEnabled(false)
-  n_NodeHead = GBase::DGetChildByName<ui::Layout*>(this, "Panel_headFrame");
-  n_NodeWeakPoint = GBase::DGetChildByName<Node*>(this, "Node_headWeakPoint");
-  n_SpriteLordHead = GBase::DGetChildByName<Sprite*>(this, "sprite_lord_head");
-  n_BtnHead = GBase::DGetChildByName<ui::Button*>(this, "Button_head");
-  n_SpriteHeadRedPoint = GBase::DGetChildByName<Sprite*>(this, "Sprite_headRedPoint");
-  n_SpriteHeadRedPoint->setVisible(false);
-  n_IconVipNew = GBase::DGetChildByName<Sprite*>(this, "iconVipNew");
-  n_IconVipNew->setVisible(false);
-  n_ImgPower = GBase::DGetChildByName<Sprite*>(this, "sprite_power");
-  n_LabelPower = GBase::DGetChildByName<ui::Text*>(this, "Text_powerValue");
-  n_ScoreLabelPower = UICommonScoreLabel::DCreateScoreLabel(n_LabelPower, true);
-  n_BtnPower = GBase::DGetChildByName<ui::Button*>(this, "Button_power");
-  n_IconGem = GBase::DGetChildByName<Sprite*>(this, "icon_main_powegem");
-  n_IconGem->setVisible(GBase::Const::Get()->IsArClient);
-  n_LabelRechargeTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(this, "Text_rechargeTime"));
-  n_BtnRechargeActivity = GBase::DGetChildByName<ui::Button*>(this, "Button_recharge");
-  n_NodeRecharge = GBase::DGetChildByName<Node*>(this, "Node_recharge");
-  n_NodeRechargeIcon = n_NodeRecharge->getChildByName("Node_icon");
-  n_NodeEvent = GBase::DGetChildByName<Node*>(this, "Node_event");
-  n_NodeEventIcon = n_NodeEvent->getChildByName<Node*>("Node_icon");
-  n_ImageEvent = n_NodeEventIcon->getChildByName<ui::ImageView*>("Image_event");
-  n_NodeNew = GBase::DGetChildByName<Node*>(this, "Node_new");
+  _NodeHead = GBase::DGetChildByName<ui::Layout*>(this, "Panel_headFrame");
+  _NodeHead->setLocalZOrder(1);
+  _NodeWeakPoint = GBase::DGetChildByName<Node*>(this, "Node_headWeakPoint");
+  _SpriteLordHead = GBase::DGetChildByName<Sprite*>(this, "sprite_lord_head");
+  _BtnHead = GBase::DGetChildByName<ui::Button*>(this, "Button_head");
+  _SpriteHeadRedPoint = GBase::DGetChildByName<Sprite*>(this, "Sprite_headRedPoint");
+  _SpriteHeadRedPoint->setVisible(false);
+  _IconVipNew = GBase::DGetChildByName<Sprite*>(this, "iconVipNew");
+  _IconVipNew->setVisible(false);
+  _ImgPower = GBase::DGetChildByName<Sprite*>(this, "sprite_power");
+  _LabelPower = GBase::DGetChildByName<ui::Text*>(this, "Text_powerValue");
+  _ScoreLabelPower = UICommonScoreLabel::DCreateScoreLabel(_LabelPower, true);
+  _BtnPower = GBase::DGetChildByName<ui::Button*>(this, "Button_power");
+  _IconGem = GBase::DGetChildByName<Sprite*>(this, "icon_main_powegem");  
+  _IconGem->setVisible(GBase::Const::Get()->IsArClient);
+  _LabelRechargeTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(this, "Text_rechargeTime"));
+  _BtnRechargeActivity = GBase::DGetChildByName<ui::Button*>(this, "Button_recharge");
+  _NodeRecharge = GBase::DGetChildByName<Node*>(this, "Node_recharge");
+  _NodeRechargeIcon = _NodeRecharge->getChildByName("Node_icon");
+  _NodeEvent = GBase::DGetChildByName<Node*>(this, "Node_event");
+  _NodeEventIcon = _NodeEvent->getChildByName<Node*>("Node_icon");
+  _ImageEvent = _NodeEventIcon->getChildByName<ui::ImageView*>("Image_event");
+  _NodeNew = GBase::DGetChildByName<Node*>(this, "Node_new");
   auto l_NodeNewJump = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationNewJump.csb").First;
   l_NodeNewJump->setPosition(38, -60);
-  n_NodeNew->addChild(l_NodeNewJump);
-  n_BtnEvent = GBase::DGetChildByName<ui::Button*>(this, "Button_event");
-  n_LabelEventTime = GBase::DGetChildByName<ui::Text*>(this, "Text_eventTime");
-  n_LabelEventTime->setString(Translate::i18n("buildDes_name_106"));
-  n_SpriteEventRedPoint = GBase::DGetChildByName<Sprite*>(n_NodeEvent, "Sprite_numBg");
-  n_LabelEventRedNum = GBase::DGetChildByName<ui::Text*>(n_NodeEvent, "Text_num");
-  n_SpriteEventRedPoint->setVisible(false);
-  n_PanelTips = GBase::DGetChildByName<ui::Layout*>(n_NodeEvent, "Panel_tips");
-  GBase::DGetChildByName<ui::Text*>(n_PanelTips, "Text_tips")->setString(Translate::i18n("activity_text_03"));
-  n_PanelTips->setVisible(false);
-  n_ImageEvent->loadTexture("btn_main_new_activity.png", ui::Widget::TextureResType::PLIST);
-  n_ImageEvent->ignoreContentAdaptWithSize(true);
-  n_NodeNewJourney = GBase::DGetChildByName<Node*>(this, "Node_newJourney");
-  n_NodeNewJourney->setVisible(false);
-  n_NodeEtNew = GBase::DGetChildByName<Node*>(n_NodeNewJourney, "Node_etNew");
+  _NodeNew->addChild(l_NodeNewJump);
+  _BtnEvent = GBase::DGetChildByName<ui::Button*>(this, "Button_event");
+  _LabelEventTime = GBase::DGetChildByName<ui::Text*>(this, "Text_eventTime");
+  _LabelEventTime->setString(Translate::i18n("buildDes_name_106"));
+  _SpriteEventRedPoint = GBase::DGetChildByName<Sprite*>(_NodeEvent, "Sprite_numBg");
+  _LabelEventRedNum = GBase::DGetChildByName<ui::Text*>(_NodeEvent, "Text_num");
+  _SpriteEventRedPoint->setVisible(false);
+  _PanelTips = GBase::DGetChildByName<ui::Layout*>(_NodeEvent, "Panel_tips");
+  GBase::DGetChildByName<ui::Text*>(_PanelTips, "Text_tips")->setString(Translate::i18n("activity_text_03"));
+  _PanelTips->setVisible(false);
+  _ImageEvent->loadTexture("btn_main_new_activity.png", ui::Widget::TextureResType::PLIST);
+  _ImageEvent->ignoreContentAdaptWithSize(true);
+  _NodeNewJourney = GBase::DGetChildByName<Node*>(this, "Node_newJourney");
+  _NodeNewJourney->setVisible(false);
+  _NodeEtNew = GBase::DGetChildByName<Node*>(_NodeNewJourney, "Node_etNew");
   // TODO: FullPath
   auto l_NodeNewJump_2 = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationNewJump.csb").First;
   l_NodeNewJump_2->setPosition(38, -60);
-  n_NodeEtNew->addChild(l_NodeNewJump_2);
-  n_NodeIconJourney = GBase::DGetChildByName<Node*>(n_NodeNewJourney, "Node_iconJourney");
+  _NodeEtNew->addChild(l_NodeNewJump_2);
+  _NodeIconJourney = GBase::DGetChildByName<Node*>(_NodeNewJourney, "Node_iconJourney");
   auto l_NodeNewJump_3 = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationJourney.csb").First;
-  n_NodeIconJourney->addChild(l_NodeNewJump_3);
-  n_TextNewJourney = GBase::DGetChildByName<ui::Text*>(n_NodeNewJourney, "Text_newJourney");
-  n_TextNewJourney->setString(Translate::i18n("journey_art_1001"));
-  n_ButtonNewJourney = GBase::DGetChildByName<ui::Button*>(n_NodeNewJourney, "Button_newJourney");
-  n_ButtonNewJourney->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnJourneyClick, this));
-  n_NodeLucky = GBase::DGetChildByName<Node*>(this, "Node_rechargeLucky");
-  n_LuckyNumFrm = GBase::DGetChildByName<Sprite*>(this, "Sprite_numFrm");
-  n_LuckyNumTxt = GBase::DGetChildByName<ui::Text*>(this, "Text_pointNum");
-  n_BtnLucky = GBase::DGetChildByName<ui::Button*>(this, "Button_rechargeLucky");
-  n_NodeLuckyIcon = n_NodeLucky->getChildByName("Node_icon");
-  n_TxtLuckyTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(this, "Text_luckyTime"));
-  n_NodeCrazy = GBase::DGetChildByName<Node*>(this, "Node_crazy");
-  n_NodeCrazyIcon = n_NodeCrazy->getChildByName("Node_icon");
-  n_BtnCrazy = GBase::DGetChildByName<ui::Button*>(this, "Button_crazy");
-  n_TxtCrazyTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(this, "Text_crazyTime"));
-  n_TxtCrazyTime->setVisible(false);
-  n_RedPointCrazy = GBase::DGetChildByName<Sprite*>(this, "Sprite_crazyRedPoint");
-  n_NodeCrazy->getChildByName("Sprite_redBg")->setVisible(false);
-  n_NodeHeroGift = GBase::DGetChildByName<Node*>(this, "Node_choiceLucky");
-  GBase::DGetChildByName<Node*>(n_NodeHeroGift, "Sprite_numFrmChoice")->setVisible(false);
-  n_TxtHeroGiftTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(this, "Text_choiceLuckyTime"));
-  n_BtnHeroGift = GBase::DGetChildByName<ui::Button*>(this, "Button_choiceLucky");
-  n_BtnHeroGift->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnHeroRechargeClick, this));
-  auto l_NodeLucky = dynamic_cast<ui::Widget*>(n_NodeLucky);
+  _NodeIconJourney->addChild(l_NodeNewJump_3);
+  _TextNewJourney = GBase::DGetChildByName<ui::Text*>(_NodeNewJourney, "Text_newJourney");
+  _TextNewJourney->setString(Translate::i18n("journey_art_1001"));
+  _ButtonNewJourney = GBase::DGetChildByName<ui::Button*>(_NodeNewJourney, "Button_newJourney");
+  _ButtonNewJourney->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnJourneyClick, this));
+  _NodeLucky = GBase::DGetChildByName<Node*>(this, "Node_rechargeLucky");
+  _LuckyNumFrm = GBase::DGetChildByName<Sprite*>(this, "Sprite_numFrm");
+  _LuckyNumTxt = GBase::DGetChildByName<ui::Text*>(this, "Text_pointNum");
+  _BtnLucky = GBase::DGetChildByName<ui::Button*>(this, "Button_rechargeLucky");
+  _NodeLuckyIcon = _NodeLucky->getChildByName("Node_icon");
+  _TxtLuckyTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(this, "Text_luckyTime"));
+  _NodeCrazy = GBase::DGetChildByName<Node*>(this, "Node_crazy");
+  _NodeCrazyIcon = _NodeCrazy->getChildByName("Node_icon");
+  _BtnCrazy = GBase::DGetChildByName<ui::Button*>(this, "Button_crazy");
+  _TxtCrazyTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(this, "Text_crazyTime"));
+  _TxtCrazyTime->setVisible(false);
+  _RedPointCrazy = GBase::DGetChildByName<Sprite*>(this, "Sprite_crazyRedPoint");
+  _NodeCrazy->getChildByName("Sprite_redBg")->setVisible(false);
+  _NodeHeroGift = GBase::DGetChildByName<Node*>(this, "Node_choiceLucky");
+  GBase::DGetChildByName<Node*>(_NodeHeroGift, "Sprite_numFrmChoice")->setVisible(false);
+  _TxtHeroGiftTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(this, "Text_choiceLuckyTime"));
+  _BtnHeroGift = GBase::DGetChildByName<ui::Button*>(this, "Button_choiceLucky");
+  _BtnHeroGift->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnHeroRechargeClick, this));
+  auto l_NodeLucky = dynamic_cast<ui::Widget*>(_NodeLucky);
   InitKingNode(nullptr);
   InitSultansBackNode(nullptr);
 
-  n_BtnExplain = GBase::DGetChildByName<ui::Button*>(this, "Button_gameExplain");
-  n_BtnExplain->setPosition(Vec2(GBase::DFIsRA() ? 490.0f : 150.0f, -100.0f));
-  m_TableBuilder.clear();
-  m_TableBuilder.push_back(GBase::DGetExtendChildFromCCSByName<UIBuilderIcon>(this, "CCS_builderIcon_iron"));
-  m_TableBuilder.push_back(GBase::DGetExtendChildFromCCSByName<UIBuilderIcon>(this, "CCS_builderIcon_gold"));
+  _BtnExplain = GBase::DGetChildByName<ui::Button*>(this, "Button_gameExplain");
+  _BtnExplain->setPosition(Vec2(GBase::DFIsRA() ? 490.0f : 150.0f, -100.0f));
+  _TableBuilder.clear();
+  _TableBuilder.push_back(GBase::DGetExtendChildFromCCSByName<UIBuilderIcon>(this, "CCS_builderIcon_iron"));
+  _TableBuilder.push_back(GBase::DGetExtendChildFromCCSByName<UIBuilderIcon>(this, "CCS_builderIcon_gold"));
   AddBuildStarButton();
-  n_NodeTroops = GBase::DGetExtendChildFromCCSByName<UIMarchingTroops>(this, "CCS_marchingTroops_troop");
-  n_NodeTroops->setVisible(false);
-  n_NodeLostRuins = GBase::DGetChildByName<Node*>(this, "Node_LostRuins");
-  n_LostRuinsTaskIcon = GBase::DGetChildByName<ui::ImageView*>(n_NodeLostRuins, "Image_TaskIcon");
-  n_LostRuinsProgress = UIHtmlRichText::DChangeTextToHtml(GBase::DGetChildByName<ui::Text*>(n_NodeLostRuins, "Text_Progress"));
-  n_LostRuinsTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(n_NodeLostRuins, "Text_LeftTime"));
-  n_LostRuinsGetAwardBtn = GBase::DGetChildByName<ui::Button*>(n_NodeLostRuins, "Button_LostGetAward");
-  n_LostRuinsGetAwardBtn->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnLostRuinsGetAward, this));
-  n_LostRuinsGetAwardBtn->setTitleText(Translate::i18n("common_text_1146"));
-  n_TextLostTaskStatus = GBase::DGetChildByName<ui::Text*>(n_LostRuinsGetAwardBtn, "Text_LostTaskStatus");
-  n_TextLostTaskStatus->setString(Translate::i18n("common_text_2601"));
+  _NodeTroops = GBase::DGetExtendChildFromCCSByName<UIMarchingTroops>(this, "CCS_marchingTroops_troop");
+  _NodeTroops->setVisible(false);
+  _NodeLostRuins = GBase::DGetChildByName<Node*>(this, "Node_LostRuins");
+  _LostRuinsTaskIcon = GBase::DGetChildByName<ui::ImageView*>(_NodeLostRuins, "Image_TaskIcon");
+  _LostRuinsProgress = UIHtmlRichText::DChangeTextToHtml(GBase::DGetChildByName<ui::Text*>(_NodeLostRuins, "Text_Progress"));
+  _LostRuinsTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(_NodeLostRuins, "Text_LeftTime"));
+  _LostRuinsGetAwardBtn = GBase::DGetChildByName<ui::Button*>(_NodeLostRuins, "Button_LostGetAward");
+  _LostRuinsGetAwardBtn->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnLostRuinsGetAward, this));
+  _LostRuinsGetAwardBtn->setTitleText(Translate::i18n("common_text_1146"));
+  _TextLostTaskStatus = GBase::DGetChildByName<ui::Text*>(_LostRuinsGetAwardBtn, "Text_LostTaskStatus");
+  _TextLostTaskStatus->setString(Translate::i18n("common_text_2601"));
   RegisterListener();
   InitView();
   InitTimer();
   InitData();
-  n_NodeStylePower = GBase::DGetChildByName<Node*>(this, "Node_style_power");
-  n_NodeStyleHead = GBase::DGetChildByName<Node*>(this, "Node_style_head");
+  _NodeStylePower = GBase::DGetChildByName<Node*>(this, "Node_style_power");
+  _NodeStyleHead = GBase::DGetChildByName<Node*>(this, "Node_style_head");
   InitStyle();
 }
 
 void UIMainTop::UpdateHeadPos(EventCustom* p_Event) {
-  if (GBase::DIsBrave8Level()) {
-    n_NodeHead->setPositionX(12);
+  if (GBase::DIsBrave8Level() && GDisplay::Get()->height >= 1136) {
+    _NodeHead->setPositionX(43);
     m_OffestY = 45;
   } else {
-    n_NodeHead->setPositionX(57);
+    _NodeHead->setPositionX(0);
     m_OffestY = 0;
   }
   RangeLeftNodes();
@@ -157,11 +159,11 @@ void UIMainTop::UpdateHeadPos(EventCustom* p_Event) {
 }
 
 void UIMainTop::UpdateBuilderPos(float p_OffsetY) {
-  for (int32 i = 0; i < (int32)m_TableBuilder.size(); i++) {
-    m_TableBuilder.at(i)->setPositionY(p_OffsetY - 80 * (i - 1));
+  for (int32 i = 0; i < (int32)_TableBuilder.size(); i++) {
+    _TableBuilder.at(i)->setPositionY(p_OffsetY - 80 * (i - 1));
     if (std::floor(GDisplay::Get()->height == 853 /**and v:getBuilderType() == gQueueTypeDef.build_star_queue_privilege */)) {
       auto l_IsHide = GBase::DConfigGet<bool>("Game:GameSettingView:gameExplainSwitch~bool");
-      m_TableBuilder.at(i)->setPosition(Vec2(GBase::DFIsRA() ? 490 : 150, l_IsHide ? -100 : -180));
+      _TableBuilder.at(i)->setPosition(Vec2(GBase::DFIsRA() ? 490.f : 150.f, l_IsHide ? -100.f : -180.f));
     }
   }
 }
@@ -210,7 +212,7 @@ void UIMainTop::UpdateLostRuinsNode(EventCustom* p_Event) {
     //     }))
     //   end
   } else {
-    n_NodeLostRuins->setVisible(false);
+    _NodeLostRuins->setVisible(false);
   }
 }
 
@@ -305,65 +307,65 @@ void UIMainTop::UpdateSnowWolfLostNode(EventCustom* p_Event) {
 
 void UIMainTop::InitHalloweenShineEffect() {
   auto l_effectShine = GBase::DCreateAnimation("Node_Effect_wsj01", nullptr, true).First;
-  n_EffectShine = l_effectShine;
-  n_EffectShine->setPosition(195, 15);
-  n_ImgPower->addChild(n_EffectShine);
+  _EffectShine = l_effectShine;
+  _EffectShine->setPosition(195, 15);
+  _ImgPower->addChild(_EffectShine);
 }
 
 void UIMainTop::InitStyle() {
   auto l_Style = GGlobal::Get()->MainUIStyle;
   if (l_Style == EMainUIStyle::QuickSand) {
     auto l_TopNode = GBase::DCreateAnimation("mainUITop_style_ztsz", nullptr).First;
-    n_NodeStylePower->addChild(l_TopNode);
+    _NodeStylePower->addChild(l_TopNode);
     auto l_ActNode = GBase::DCreateAnimation("Node_Effect_liusha1", nullptr, true).First;
     l_ActNode->setPosition(320, 15);
-    n_NodeAreaT->addChild(l_ActNode, 999);
+    _NodeAreaT->addChild(l_ActNode, 999);
     l_ActNode->setName("actNode_style");
   } else if (l_Style == EMainUIStyle::Chritmas) {
     auto l_TopNode = GBase::DCreateAnimation("mainUITop_style_chritmas", nullptr).First;
-    n_NodeStyleHead->addChild(l_TopNode);
-    n_ImgPower->setSpriteFrame("farmer_sdzjm_zdl.png");
-    n_LabelPower->setPositionX(128.5);
-    n_BtnPower->setPosition(Vec2(128.5, 61.5));
+    _NodeStyleHead->addChild(l_TopNode);
+    _ImgPower->setSpriteFrame("farmer_sdzjm_zdl.png");
+    _LabelPower->setPositionX(128.5);
+    _BtnPower->setPosition(Vec2(128.5, 61.5));
   } else if (l_Style == EMainUIStyle::Easter) {
     // auto l_Spine = spine::SkeletonAnimation::createWithBinaryFile("spine/zhandouli.skel", "spine/zhandouli.atlas");
     // l_Spine->setPosition(65, 35);
     // l_Spine->setAnimation(0, "animation", true);
-    // n_ImgPower->addChild(l_Spine);
+    // _ImgPower->addChild(l_Spine);
     // auto l_Spine2 = spine::SkeletonAnimation::createWithBinaryFile("spine/zhandouli.skel", "spine/zhandouli.atlas");
     // l_Spine2->setPosition(250, 35);
     // l_Spine2->setAnimation(0, "animation", true);
-    // n_ImgPower->addChild(l_Spine2);
+    // _ImgPower->addChild(l_Spine2);
   } else if (l_Style == EMainUIStyle::Halloween) {
-    n_ImgPower->setPositionY(-20);
-    n_ImgPower->setLocalZOrder(10);
-    n_ImgPower->setSpriteFrame("frame_main_halloween_power01.png");
-    n_LabelPower->setPosition(Vec2(200, 62));
-    n_BtnPower->setPosition(Vec2(200, 70));
-    n_BtnVip->setLocalZOrder(10);
-    n_NodeGold->setLocalZOrder(10);
+    _ImgPower->setPositionY(-20);
+    _ImgPower->setLocalZOrder(10);
+    _ImgPower->setSpriteFrame("frame_main_hallowee_power01.png");
+    _LabelPower->setPosition(Vec2(200, 62));
+    _BtnPower->setPosition(Vec2(200, 70));
+    _BtnVip->setLocalZOrder(10);
+    _NodeGold->setLocalZOrder(10);
     InitHalloweenShineEffect();
   }
 }
 
 void UIMainTop::InitKingNode(EventCustom* p_Event) {
   if (ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::NEW_SERVER_RANK_MATCH)) {
-    n_NodeKingCom = n_NodeLucky;
-    n_NodeKingCom->setVisible(true);
-    n_NodeKingCom->setName("nodeKingCom");
-    n_NodeKingCom->setPositionX(n_NodeCrazy->getPositionX());
-    n_BtnKing = GBase::DGetChildByName<ui::Button*>(n_NodeKingCom, "Button_rechargeLucky");
-    n_KingRed = GBase::DGetChildByName<Sprite*>(n_NodeKingCom, "Sprite_numFrm");
-    n_TxtKingTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(n_NodeKingCom, "Text_luckyTime"));
-    n_NodeKingIcon = n_NodeKingCom->getChildByName("Node_icon");
+    _NodeKingCom = _NodeLucky;
+    _NodeKingCom->setVisible(true);
+    _NodeKingCom->setName("nodeKingCom");
+    _NodeKingCom->setPositionX(_NodeCrazy->getPositionX());
+    _BtnKing = GBase::DGetChildByName<ui::Button*>(_NodeKingCom, "Button_rechargeLucky");
+    _KingRed = GBase::DGetChildByName<Sprite*>(_NodeKingCom, "Sprite_numFrm");
+    _TxtKingTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(_NodeKingCom, "Text_luckyTime"));
+    _NodeKingIcon = _NodeKingCom->getChildByName("Node_icon");
     auto l_Node = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/kingCompetitionEnterEffect.csb").First;
-    n_NodeKingIcon->addChild(l_Node);
+    _NodeKingIcon->addChild(l_Node);
     l_Node->setPosition(Vec2(8, 40));
     l_Node->setScale(1.2f);
     GBase::DMixtureGLONE(GBase::DGetChildByName<Sprite*>(l_Node, "Sprite_9"));
     GBase::DMixtureGLONE(GBase::DGetChildByName<Sprite*>(l_Node, "Sprite_9_0"));
     GBase::DMixtureGLONE(GBase::DGetChildByName<Sprite*>(l_Node, "dh_zhounianjm_01_3"));
-    n_BtnKing->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+    _BtnKing->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
   }
   // local kingCompetitionltCtrl = include("kingCompetitionltCtrl")
   // if not clientEventMgr.judgeIsOpen(gActivityTimeActivityID.NEW_SERVER_RANK_MATCH) then
@@ -423,20 +425,20 @@ void UIMainTop::InitSultansBackNode(EventCustom* p_Event) {
     RangeLeft2Nodes();
     return;
   }
-  n_NodeSultansBack = n_NodeLucky;
-  n_NodeSultansBack->setVisible(true);
-  n_NodeSultansBack->setName("nodeSultansBack");
-  n_NodeSultansBack->setPositionX(n_NodeCrazy->getPositionX());
+  _NodeSultansBack = _NodeLucky;
+  _NodeSultansBack->setVisible(true);
+  _NodeSultansBack->setName("nodeSultansBack");
+  _NodeSultansBack->setPositionX(_NodeCrazy->getPositionX());
   auto l_Sprite = BaseCreate::CreateSprite("icon_sudanback_mian.png");
-  n_NodeSultansBack->getChildByName("Node_icon")->addChild(l_Sprite);
+  _NodeSultansBack->getChildByName("Node_icon")->addChild(l_Sprite);
   l_Sprite->setPosition(0, 36);
   auto l_EtSultan = GBase::DCreateAnimation("UiParts/Parts/Common/Animation/animationSultansBack.csb").First;
   l_EtSultan->setPosition(0, 36);
-  n_NodeSultansBack->getChildByName("Node_icon")->addChild(l_EtSultan);
-  n_BtnSultansBack = GBase::DGetChildByName<ui::Button*>(n_NodeSultansBack, "Button_rechargeLucky");
-  n_BtnSultansBack->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_SultansBackRed = GBase::DGetChildByName<Sprite*>(n_NodeSultansBack, "Sprite_numFrm");
-  n_TxtSultansBackTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(n_NodeSultansBack, "Text_luckyTime"));
+  _NodeSultansBack->getChildByName("Node_icon")->addChild(l_EtSultan);
+  _BtnSultansBack = GBase::DGetChildByName<ui::Button*>(_NodeSultansBack, "Button_rechargeLucky");
+  _BtnSultansBack->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  _SultansBackRed = GBase::DGetChildByName<Sprite*>(_NodeSultansBack, "Sprite_numFrm");
+  _TxtSultansBackTime = UITimerLabel::DCreateTimerLabel(GBase::DGetChildByName<Node*>(_NodeSultansBack, "Text_luckyTime"));
 
   // if not isOpen or not needShow or worldMapDefine.isInNewTrial() then
   //   self.nodeSultansBack:setVisible(false)
@@ -548,14 +550,14 @@ void UIMainTop::UpdateRedPoint(EventCustom* p_Event) {
 void UIMainTop::BtnPowerClickCallBack(Ref* p_Button, ui::Widget::TouchEventType p_Type) {
   if (p_Type == ui::Widget::TouchEventType::ENDED) {
     GBase::PlaySound("uicontrol", 19);
-    n_ImgPower->setScale(1);
+    _ImgPower->setScale(1);
     auto l_LordPowerView = UILordPowerView::Create();
     l_LordPowerView->InitPanel();
     l_LordPowerView->Show();
   } else if (p_Type == ui::Widget::TouchEventType::BEGAN) {
-    n_ImgPower->setScale(1.1f);
+    _ImgPower->setScale(1.1f);
   } else if (p_Type == ui::Widget::TouchEventType::CANCELED) {
-    n_ImgPower->setScale(1);
+    _ImgPower->setScale(1);
   }
 }
 
@@ -567,7 +569,7 @@ void UIMainTop::BtnLostRuinsGetAward(Ref* p_Button, ui::Widget::TouchEventType p
   // end
 }
 
-Node* UIMainTop::GetResTarget(EResource p_ResType) { return n_ResMenu->GetResTarget(p_ResType); }
+Node* UIMainTop::GetResTarget(EResource p_ResType) { return _ResMenu->GetResTarget(p_ResType); }
 
 void UIMainTop::onEnter() {
   UIBaseView::onEnter();
@@ -745,28 +747,28 @@ void UIMainTop::GetEquipSuccess(EventCustom* p_Event) {
 void UIMainTop::SetMarchingTroopsVisible(EventCustom* p_Event) {
   EScene l_ViewType = EScene::None;
   if (p_Event && p_Event->getUserData() != nullptr) l_ViewType = *static_cast<EScene*>(p_Event->getUserData());
-  if (l_ViewType == EScene::None || m_CurrentViewType == l_ViewType) return;
+  if (l_ViewType == EScene::None || _CurrentViewType == l_ViewType) return;
 
   bool l_ShowBuilder = l_ViewType == EScene::City;
-  n_NodeTroops->InitData(!l_ShowBuilder);
-  for (auto l_Builder : m_TableBuilder) l_Builder->setVisible(l_ShowBuilder);
+  _NodeTroops->InitData(!l_ShowBuilder);
+  for (auto l_Builder : _TableBuilder) l_Builder->setVisible(l_ShowBuilder);
 
-  if (n_NewTrailTeamUI) n_NewTrailTeamUI->setVisible(l_ShowBuilder);
+  if (_NewTrailTeamUI) _NewTrailTeamUI->setVisible(l_ShowBuilder);
   UpdateLostRuinsNode(nullptr);
   UpdateWindTowerNode(nullptr);
   UpdateSnowWolfLostNode(nullptr);
-  m_CurrentViewType = l_ViewType;
-  if (GBase::DConfigGet<bool>("Game:GameSettingView:gameExplainSwitch~bool")) n_BtnExplain->setVisible(l_ShowBuilder);
+  _CurrentViewType = l_ViewType;
+  if (GBase::DConfigGet<bool>("Game:GameSettingView:gameExplainSwitch~bool")) _BtnExplain->setVisible(l_ShowBuilder);
 }
 
 void UIMainTop::RegisterListener() {
-  n_BtnVip->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_BtnHead->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_BtnRechargeActivity->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_BtnPower->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnPowerClickCallBack, this));
-  n_BtnEvent->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_BtnLucky->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
-  n_BtnCrazy->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  _BtnVip->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  _BtnHead->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  _BtnRechargeActivity->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  _BtnPower->addTouchEventListener(CC_CALLBACK_2(UIMainTop::BtnPowerClickCallBack, this));
+  _BtnEvent->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  _BtnLucky->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
+  _BtnCrazy->addTouchEventListener(CC_CALLBACK_2(UIMainTop::OnBtnClick, this));
 }
 
 void UIMainTop::UpdateLordInfo(EventCustom* p_Event) {
@@ -926,7 +928,7 @@ void UIMainTop::InitView() {
   InitExplainBtn();
   InitLuckyBtn(nullptr);
   InitNewJourney();
-  n_NodeGold->UpdateGold();
+  _NodeGold->UpdateGold();
   UpdateRechargeRedPoint(nullptr);
   InitEventNode(nullptr);
   // TODO: self:lbsWeakPoint()
@@ -947,11 +949,11 @@ void UIMainTop::InitData() {
   UpdatePlayer(true);
   UpdateVip(nullptr);
   UpdateRedPoint(nullptr);
-  n_ResMenu->UpdateResources();
-  m_IsUpdateHP = false;
-  m_IsSetHPStyle = false;
-  m_IsShowEXP = false;
-  n_HasShowNewTrialBox = nullptr;
+  _ResMenu->UpdateResources();
+  _IsUpdateHP = false;
+  _IsSetHPStyle = false;
+  _IsShowEXP = false;
+  _HasShowNewTrialBox = nullptr;
 }
 
 void UIMainTop::InitTimer() {
@@ -2113,7 +2115,7 @@ void UIMainTop::KingdomLevelUp(EventCustom* p_Event) {
 
 void UIMainTop::CheckBuildStarButton() {
   auto l_IsFound = false;
-  for(auto l_BuilderIcon : m_TableBuilder){
+  for(auto l_BuilderIcon : _TableBuilder){
     if(l_BuilderIcon->GetBuilderType() == ETask::BuildStarQueue){
       l_IsFound = true;
       break;
@@ -2125,7 +2127,7 @@ void UIMainTop::CheckBuildStarButton() {
 
 void UIMainTop::CheckSecondBuildStarButton(EventCustom* p_Event) {
   bool l_IsFound = false;
-  for (auto it : m_TableBuilder) {
+  for (auto it : _TableBuilder) {
     if (it->GetBuilderType() == ETask::BuildStarQueuePrivilege) {
       l_IsFound = true;
       break;
@@ -2138,9 +2140,9 @@ void UIMainTop::CheckSecondBuildStarButton(EventCustom* p_Event) {
   l_BtnSecond->setScale(0.8f);
   l_BtnSecond->setPosition(Vec2(GBase::DFIsRA() ? 590 : 50, -340));
   l_BtnSecond->InitData(ETask::BuildStarQueuePrivilege);
-  l_BtnSecond->setVisible(m_CurrentViewType == EScene::City);
-  m_TableBuilder.push_back(l_BtnSecond);
-  n_NodeAreaLt->addChild(l_BtnSecond);
+  l_BtnSecond->setVisible(_CurrentViewType == EScene::City);
+  _TableBuilder.push_back(l_BtnSecond);
+  _NodeAreaLt->addChild(l_BtnSecond);
   UpdateHeadPos(nullptr);
 }
 
@@ -2150,17 +2152,17 @@ void UIMainTop::AddBuildStarButton() {
     l_Btn->setPosition(Vec2(GBase::DFIsRA() ? 590 : 50, -260));
     l_Btn->setScale(0.8f);
     l_Btn->InitData(ETask::BuildStarQueue);
-    l_Btn->setVisible(m_CurrentViewType == EScene::City);
-    m_TableBuilder.push_back(l_Btn);
-    n_NodeAreaLt->addChild(l_Btn);
+    l_Btn->setVisible(_CurrentViewType == EScene::City);
+    _TableBuilder.push_back(l_Btn);
+    _NodeAreaLt->addChild(l_Btn);
     if (ExaltedPrivilegeCtrl::Get()->CheckPrivilege(EExaltedPrivilege::ExtraStarUpgradeQueueNun)) {
       auto l_BtnSecond = UIBuilderIcon::Create();
       l_BtnSecond->setScale(0.8f);
       l_BtnSecond->setPosition(Vec2(GBase::DFIsRA() ? 590 : 50, -340));
       l_BtnSecond->InitData(ETask::BuildStarQueuePrivilege);
-      l_BtnSecond->setVisible(m_CurrentViewType == EScene::City);
-      m_TableBuilder.push_back(l_BtnSecond);
-      n_NodeAreaLt->addChild(l_BtnSecond);
+      l_BtnSecond->setVisible(_CurrentViewType == EScene::City);
+      _TableBuilder.push_back(l_BtnSecond);
+      _NodeAreaLt->addChild(l_BtnSecond);
     }
   }
 }

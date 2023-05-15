@@ -1,13 +1,14 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "Include/IncludeGlobal.h"
+#include "Module/Activity/LuckyBless/LuckyBLess.Enum.h"
 
 struct RActivityShowData;
 
 class EffectMainUITop{
   public: 
     static EffectMainUITop *Get();
-    Node *LuckyBlessShow(ELuckyBlessActivityEffectType p_ShowType);
+    Node *LuckyBlessShow(ELuckyBlessEffect p_ShowType);
     void DispatchArmyEffect(int32 p_HP);
     void FullHPEffect();
     void LordSkillTransresEffect();

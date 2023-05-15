@@ -1,0 +1,489 @@
+
+lanjingling.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dh_Tex_XL_ljlnf01_000
+  rotate: false
+  xy: 248, 444
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_001
+  rotate: false
+  xy: 682, 661
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_002
+  rotate: false
+  xy: 724, 661
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_003
+  rotate: false
+  xy: 682, 619
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_004
+  rotate: false
+  xy: 766, 661
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_005
+  rotate: false
+  xy: 724, 619
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_006
+  rotate: false
+  xy: 808, 661
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_007
+  rotate: false
+  xy: 766, 619
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_008
+  rotate: false
+  xy: 808, 619
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_009
+  rotate: false
+  xy: 237, 29
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_010
+  rotate: false
+  xy: 279, 29
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_011
+  rotate: false
+  xy: 321, 29
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_012
+  rotate: false
+  xy: 363, 29
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_013
+  rotate: false
+  xy: 405, 29
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_014
+  rotate: false
+  xy: 850, 630
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_015
+  rotate: false
+  xy: 892, 630
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_016
+  rotate: false
+  xy: 934, 630
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_017
+  rotate: false
+  xy: 494, 383
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_018
+  rotate: false
+  xy: 494, 341
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf01_019
+  rotate: false
+  xy: 494, 299
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_000
+  rotate: false
+  xy: 2, 215
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_001
+  rotate: true
+  xy: 616, 942
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_002
+  rotate: false
+  xy: 2, 13
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_003
+  rotate: true
+  xy: 818, 942
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_004
+  rotate: true
+  xy: 616, 860
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_005
+  rotate: true
+  xy: 818, 860
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_006
+  rotate: false
+  xy: 84, 215
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_007
+  rotate: false
+  xy: 84, 13
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_008
+  rotate: true
+  xy: 293, 519
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_009
+  rotate: true
+  xy: 293, 437
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_010
+  rotate: false
+  xy: 166, 284
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_011
+  rotate: false
+  xy: 166, 82
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_012
+  rotate: false
+  xy: 248, 235
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_013
+  rotate: false
+  xy: 330, 235
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_014
+  rotate: false
+  xy: 412, 235
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_015
+  rotate: true
+  xy: 248, 153
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_016
+  rotate: true
+  xy: 248, 71
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_017
+  rotate: true
+  xy: 616, 778
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_018
+  rotate: true
+  xy: 818, 778
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+dh_Tex_XL_ljlnf02_019
+  rotate: true
+  xy: 478, 696
+  size: 80, 200
+  orig: 80, 200
+  offset: 0, 0
+  index: -1
+erhuan_y
+  rotate: false
+  xy: 494, 263
+  size: 18, 34
+  orig: 18, 34
+  offset: 0, 0
+  index: -1
+erhuan_z
+  rotate: false
+  xy: 514, 263
+  size: 18, 34
+  orig: 18, 34
+  offset: 0, 0
+  index: -1
+huo
+  rotate: true
+  xy: 680, 703
+  size: 73, 179
+  orig: 73, 179
+  offset: 0, 0
+  index: -1
+jianjia_y
+  rotate: true
+  xy: 495, 491
+  size: 108, 52
+  orig: 108, 52
+  offset: 0, 0
+  index: -1
+jianjia_yh
+  rotate: true
+  xy: 549, 506
+  size: 101, 44
+  orig: 101, 44
+  offset: 0, 0
+  index: -1
+jianjia_z
+  rotate: true
+  xy: 450, 121
+  size: 112, 53
+  orig: 112, 53
+  offset: 0, 0
+  index: -1
+jianjia_zh
+  rotate: true
+  xy: 628, 611
+  size: 83, 52
+  orig: 83, 52
+  offset: 0, 0
+  index: -1
+kuijia
+  rotate: false
+  xy: 2, 611
+  size: 290, 136
+  orig: 290, 136
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: false
+  xy: 2, 749
+  size: 319, 273
+  orig: 319, 273
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 2, 417
+  size: 121, 192
+  orig: 121, 192
+  offset: 0, 0
+  index: -1
+wumingzhi_y
+  rotate: false
+  xy: 495, 454
+  size: 59, 35
+  orig: 59, 35
+  offset: 0, 0
+  index: -1
+wumingzhi_z
+  rotate: true
+  xy: 595, 535
+  size: 72, 33
+  orig: 72, 33
+  offset: 0, 0
+  index: -1
+xianglian
+  rotate: false
+  xy: 861, 672
+  size: 120, 104
+  orig: 120, 104
+  offset: 0, 0
+  index: -1
+xiangquan
+  rotate: false
+  xy: 478, 778
+  size: 136, 89
+  orig: 136, 89
+  offset: 0, 0
+  index: -1
+xiaozhi_y
+  rotate: false
+  xy: 450, 74
+  size: 56, 45
+  orig: 56, 45
+  offset: 0, 0
+  index: -1
+xiaozhu_z
+  rotate: true
+  xy: 125, 417
+  size: 67, 37
+  orig: 67, 37
+  offset: 0, 0
+  index: -1
+xtx_baoshi01
+  rotate: true
+  xy: 495, 425
+  size: 27, 53
+  orig: 27, 53
+  offset: 0, 0
+  index: -1
+xtx_baoshi02
+  rotate: false
+  xy: 2, 2
+  size: 14, 9
+  orig: 14, 9
+  offset: 0, 0
+  index: -1
+xtx_erhuan
+  rotate: true
+  xy: 983, 684
+  size: 92, 33
+  orig: 92, 33
+  offset: 0, 0
+  index: -1
+xtx_xiong
+  rotate: false
+  xy: 125, 486
+  size: 166, 123
+  orig: 166, 123
+  offset: 0, 0
+  index: -1
+xtx_yanqiu
+  rotate: true
+  xy: 536, 373
+  size: 50, 12
+  orig: 50, 12
+  offset: 0, 0
+  index: -1
+xtx_youshou
+  rotate: false
+  xy: 166, 21
+  size: 69, 59
+  orig: 69, 59
+  offset: 0, 0
+  index: -1
+xtx_zuoshou
+  rotate: false
+  xy: 630, 550
+  size: 46, 59
+  orig: 46, 59
+  offset: 0, 0
+  index: -1
+youdabi
+  rotate: true
+  xy: 323, 728
+  size: 110, 153
+  orig: 110, 153
+  offset: 0, 0
+  index: -1
+youshou
+  rotate: false
+  xy: 477, 869
+  size: 137, 153
+  orig: 137, 153
+  offset: 0, 0
+  index: -1
+youshoubi
+  rotate: false
+  xy: 526, 609
+  size: 100, 85
+  orig: 100, 85
+  offset: 0, 0
+  index: -1
+zuodabi
+  rotate: false
+  xy: 323, 840
+  size: 152, 182
+  orig: 152, 182
+  offset: 0, 0
+  index: -1
+zuoshou
+  rotate: false
+  xy: 294, 601
+  size: 153, 125
+  orig: 153, 125
+  offset: 0, 0
+  index: -1
+zuoshoubi
+  rotate: true
+  xy: 449, 601
+  size: 93, 75
+  orig: 93, 75
+  offset: 0, 0
+  index: -1

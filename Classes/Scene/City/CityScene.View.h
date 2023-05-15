@@ -9,6 +9,11 @@
 #include "CityScene.Create.h"
 #include "CityFloor.h"
 
+class UIMain;
+class UIWorldResourceMap;
+class UISystemNoticeView;
+class UIIphoneXTop;
+class UIIphoneXBottom;
 
 struct RShowMainCityView{
   bool isJudgeCurScene = false;
@@ -25,6 +30,22 @@ class MainCityView : public UIBaseView, public MainCityCreate, public CityFloor
   CreateUIPanel(MainCityView);
   CreateUICCSView(MainCityView);
   RViewOtherData m_Param;
+  UIBasePanel *_CurrentShowView = nullptr;
+  UIMain *_MainUIView;
+  UIWorldResourceMap *_WorldResourceMap = nullptr;
+  UISystemNoticeView *_SystemNoticeView = nullptr;
+  UIIphoneXTop *_IphoneXTop = nullptr;
+  UIIphoneXBottom *_IphoneXBottom = nullptr;
+
+  bool _IsComeFromBackGroud = false;
+  Scheduler *_ForeBackGroudTimer = nullptr;
+  EScene _CurrentViewType = EScene::None;
+  int32 _IsHideMainUICount = 0;
+  int32 _IsHideCurrentSceneViewCount = false;
+  UIBasePanel *_ShareBtn = nullptr;
+  UIBasePanel *_VoiceBtn = nullptr;
+  GVector<ui::ImageView *> _WarnningList;
+
 public:
   static MainCityView *Create(RViewOtherData p_Data);
   bool m_IsNeedFirstFight = false;
@@ -35,6 +56,7 @@ public:
   Scheduler *m_TimeHandlerPerFrame = nullptr;
   bool m_IsLogin = false;
   void Ctor();
+  void OnMessageListener();
   void PreLoadImages();
   bool IsNeedFirstFight();
   void AddToBufferNodeArrayByName(const char *p_Name, Node *p_Node) override;
@@ -76,4 +98,32 @@ public:
   void SetZoomScale(float p_Zoom, bool p_Anim = false, float p_Duration = 0.0f, bool p_CustomAnim = false);
   void RunContainerViewMove(Vec2 p_MoveToPos, float p_Duration = 0);
   void DisableMoveForDuration(float p_Duration = 0.5f);
+
+  void InitLoginSuccess();
+  void ReleaseMainView();
+  void CleanPanelView(){}
+
+  void GotoForeBackGroud(EventCustom *p_Event){}
+  void ShowView(EventCustom *p_Event){}
+  void HideCurrentSceneViewAndMainUI(EventCustom *p_Event){}
+  void CreatMainView(EventCustom *p_Event);
+  void LoginFinsh(EventCustom *p_Event){}
+  void ServerSocketLoginFail(EventCustom *p_Event){}
+  void ServerSocketLoginAgain(EventCustom *p_Event){}
+  void ServerSocketLoginAgain_Quick(EventCustom *p_Event){}
+  void ServerSocketKickOut(EventCustom *p_Event){}
+  void ShowServerMessageInfo(EventCustom *p_Event){}
+  void MsgLordLevelUpView(EventCustom *p_Event){}
+  void GameGuideStart(EventCustom *p_Event){}
+  void ShowIphoneX(EventCustom *p_Event){}
+  void LuaWillReload(EventCustom *p_Event){}
+  void UpdateShareButton(EventCustom *p_Event){}
+  void UpdateVoiceButton(EventCustom *p_Event){}
+  void UpdateVoiceInviteButton(EventCustom *p_Event){}
+  void UpdateCommonIconTip(EventCustom *p_Event){}
+  void BuildQuequeCallback(EventCustom *p_Event){}
+  void ServerGuideEnd(EventCustom *p_Event){}
+  void UpdatePower(EventCustom *p_Event){}
+  void UpdateEXP(EventCustom *p_Event){}
+
 };

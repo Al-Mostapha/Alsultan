@@ -11,4 +11,5 @@ public:
   EActivityState SetStateByID(EActivityTime p_IdEvent);
   GHashMap<EActivityTime, bool> GetActivityGroup(EActivityCenter p_IdGroup);
   RActivityShowData GetCommunityInfo(EActivityTime p_IdEvent);
+  bool IsActivityOpen(EActivityTime p_IdEvent);
 };

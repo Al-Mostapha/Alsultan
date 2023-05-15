@@ -1,0 +1,20 @@
+
+znq_qiqiu01.png
+size: 128,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hong
+  rotate: false
+  xy: 2, 2
+  size: 61, 168
+  orig: 61, 168
+  offset: 0, 0
+  index: -1
+lv
+  rotate: false
+  xy: 65, 2
+  size: 61, 168
+  orig: 61, 168
+  offset: 0, 0
+  index: -1

@@ -29,6 +29,7 @@ class UICollegeScrollSingle : public UIBasePanel
 public: 
   static UICollegeScrollSingle* Create();
   void Ctor() override;
+  Node *GetNodeLv() const {return _NodeLv;}
   void InitData(EScience p_TechId, EScienceType p_TechType = EScienceType::None);
   void HideName();
   void HideNameLv();

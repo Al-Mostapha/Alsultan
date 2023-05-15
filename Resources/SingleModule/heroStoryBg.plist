@@ -85,15 +85,15 @@
             <key>bg_yxgs_zs_03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1800,669},{232,914}}</string>
+                <string>{{1800,669},{914,232}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{232,914}}</string>
+                <string>{{0,0},{914,232}}</string>
                 <key>sourceSize</key>
-                <string>{232,914}</string>
+                <string>{914,232}</string>
             </dict>
         </dict>
         <key>metadata</key>

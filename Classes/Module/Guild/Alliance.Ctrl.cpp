@@ -10,3 +10,9 @@ void AllianceCtrl::Req4AllianceInviteData()
 {
   // ...
 }
+
+$AlliancePrifeInfo AllianceCtrl::GetAllianceInvitePopInfo()
+{
+  // ...
+  return $AlliancePrifeInfo();
+}

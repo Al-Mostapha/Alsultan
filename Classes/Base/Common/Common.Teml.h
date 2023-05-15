@@ -1,5 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Module/UI/UIBasePanel.h"
+#include "Base/Utils/String.Util.h"
 #include <type_traits>
 USING_NS_CC;
 
@@ -74,10 +76,22 @@ template <class T> T*
       T* l_Inst = T::Create();
       Node *l_Parent = l_child->getParent();
       l_Inst->setName(l_child->getName());
+      l_Inst->setPosition(l_child->getPosition());
+      l_Inst->setScale(l_child->getScale());
+      l_Inst->setAnchorPoint(l_child->getAnchorPoint());
+      l_Inst->setRotation(l_child->getRotation());
+      l_Inst->setLocalZOrder(l_child->getLocalZOrder());
       l_Inst->setTag(l_child->getTag());
       l_Inst->setUserData(l_child->getUserData());
       l_Inst->setUserObject(l_child->getUserObject());
       l_child->removeFromParentAndCleanup(true);
+      GVector<Node *> l_Desendents;
+      std::copy(l_child->getChildren().begin(), l_child->getChildren().end(), std::back_inserter(l_Desendents));
+      for(auto l_Dec : l_Desendents){
+        l_Dec->removeFromParentAndCleanup(true);
+        l_Inst->addChild(l_Dec);
+      }
+      
       l_Parent->addChild(l_Inst);
       return l_Inst;
     }
