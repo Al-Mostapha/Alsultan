@@ -10,6 +10,14 @@ struct RPolygonProps{
     float scale = 1.0f;
 };
 
+struct RBMFontLabelParam{
+  GString _Text;
+  GString _Font;
+  TextHAlignment _TextAlign = TextHAlignment::LEFT;
+  float _MaxLineW = 0;
+  Vec2 _Offset = Vec2::ZERO;
+  Vec2 _Pos = Vec2::ZERO;
+};
 class GDisplay
 {
 public:
@@ -76,5 +84,6 @@ public:
   Sprite *NewSprite(const char *p_FileName);
 
   ProgressTimer *NewProgressTimer(const char *p_Image, ProgressTimer::Type p_Type);
+  Label *NewBMFontLabel(RBMFontLabelParam);
 
 };

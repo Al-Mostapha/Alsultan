@@ -47,10 +47,11 @@ public:
   void Ctor() override;
   void InitData(EHeroClass p_Class, EHeroSortType p_SortType, bool p_NoJump= false);
   void OnChooseClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
-  void OnPowerClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
-  void OnCastleClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
-  void OnRareClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
-  void OnStoryClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
+  void OnPowerClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
+  void OnCastleClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
+  void OnRareClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
+  void OnStoryClick(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
+  void ScrollEventCallBack(Ref *p_Sender, ui::ScrollView::EventType p_Type){}
   void Show();
   void OnMessageListener();
   void InitBtns();
@@ -59,5 +60,5 @@ public:
   void UpdateHeroStory(EventCustom *p_Event);
   void PrepareScrollData(bool p_NoJump);
   void CleanOld();
-  void InitScrollList();
+  void InitScrollList(){}
 };

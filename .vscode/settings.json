@@ -65,7 +65,14 @@
     "xlocmes": "cpp",
     "xlocmon": "cpp",
     "xloctime": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "filesystem": "cpp",
+    "chrono": "cpp",
+    "format": "cpp",
+    "forward_list": "cpp",
+    "random": "cpp",
+    "memory_resource": "cpp",
+    "thread": "cpp"
   },
   "search.exclude": {
     "**/build": true,

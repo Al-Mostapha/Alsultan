@@ -1,5 +1,7 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#define MIN_BAG_CAPACITY 40
+
+typedef int EItemID;
 
 enum class EBadgeItemID {
   COMMON_BADGE_ID = 301101,

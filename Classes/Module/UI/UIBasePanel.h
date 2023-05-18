@@ -16,7 +16,6 @@ class UIBasePanel : public UIBaseView
 public:
   RRechargeAD _IsADShow;
   bool _IsHaveTextField = false;
-  bool _IsHideCurrentSceneView = false;
   bool _IsHidePrePanel = true;
   int32 _ShowPanelPowerValue = 1;
   float _FadeInDelay = 0.0f;

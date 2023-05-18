@@ -8,3 +8,8 @@ ShopLtCtrl *ShopLtCtrl::Get(){
 bool ShopLtCtrl::GetShopNewTag(const char *p_For){
   return true;
 }
+
+
+EItemType ShopLtCtrl::GetItemType(EItemID){
+  return EItemType::None;
+}

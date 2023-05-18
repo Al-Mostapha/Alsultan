@@ -38,8 +38,6 @@ enum class EHeroID{
   Hero_1717 ,
   Hero_1718 ,
   Hero_1719 ,
-  Hero_1717 ,
-  Hero_1717 ,
   Hero_1720 ,
   Hero_1721 ,
   Hero_1722 ,

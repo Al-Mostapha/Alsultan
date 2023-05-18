@@ -8,7 +8,7 @@
 #include "Module/UI/Common/Label/UIHtmlRichText.h"
 #include "Module/UI/MainUI/City/UIBuilderIcon.h"
 #include "Module/UI/MainUI/UIMarchingTroops.h"
-#include "Module/UI/MainUI/UICommonGoldTop.h"
+#include "Module/UI/Part/Common/Button/UICommonGoldTop.h"
 #include "Module/UI/MainUI/UICommonResourcesMenu.h"
 #include "Module/UI/Common/UICommonPromptBox.h"
 #include "Module/UI/EventCenter/EventTemplate/NewTrial/UINewTrialMainUI.h"

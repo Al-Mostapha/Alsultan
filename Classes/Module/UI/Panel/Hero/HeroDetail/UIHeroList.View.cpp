@@ -148,6 +148,17 @@ void UIHeroListView::InitData(EHeroClass p_Class, EHeroSortType p_SortType, bool
   PrepareScrollData(p_NoJump);
 }
 
+void UIHeroListView::CleanOld(){
+  
+  // for i, v in ipairs(self.tableSingle) do
+  //   if v.point then
+  //     v.point:setVisible(false)
+  //     table.insert(self.tableSpare, v.point)
+  //   end
+  // end
+  // self.tableSingle = {}
+}
+
 void UIHeroListView::PrepareScrollData(bool p_NoJump){
 
   CleanOld();
@@ -195,15 +206,15 @@ void UIHeroListView::PrepareScrollData(bool p_NoJump){
     _NodeNoHave->setVisible(false);
   }
   InitScrollList();
-  // if not self.initScrollEvent then
-  //   self.scroll:addEventListener(handler(self, self.scrollEventCallBack))
-  //   self.initScrollEvent = true
-  // end
-  // if not noJump then
-  //   self.scroll:jumpToTop()
-  // end
-  // if SoraDIsGameGuide() then
-  //   local posY = self.tableSingle[#self.haveHeros + 1].posY
-  //   self.scroll:jumpToPercentVertical(100 * (self.scroll:getInnerContainerSize().height - posY) / self.scroll:getInnerContainerSize().height)
-  // end
+  if(!_InitScrollEvent){
+    _Scroll->addEventListener(CC_CALLBACK_2(UIHeroListView::ScrollEventCallBack, this));
+    _InitScrollEvent = true;
+  }
+  if(!p_NoJump){
+    _Scroll->jumpToTop();
+  }
+  if(GBase::DIsGameGuide()){
+    auto l_PosY = _TableSingle[_HaveHeros.size()].Second.y;
+    _Scroll->jumpToPercentVertical(100 * (_Scroll->getInnerContainerSize().height - l_PosY) / _Scroll->getInnerContainerSize().height);
+  }
 }

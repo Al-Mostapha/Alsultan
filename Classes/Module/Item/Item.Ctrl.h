@@ -1,11 +1,16 @@
 #pragma once
-#include "Include/IncludeBase.h"
-#include "Base/Containers/Pair.h"
 #include "Item.Type.h"
+#include "BackPack.h"
+#include "Base/Containers/Pair.h"
+#include "Base/Containers/HashMap.h"
+
 
  
 
 class ItemCtrl {
+
+  GHashMap<EBackpackDef, BackPack *> _BackPacks;
+  void Ctor();
 public:
   struct ItemGift {
     uint32 idItem = 0;
@@ -20,4 +25,6 @@ public:
   bool HasDesc(uint32 p_IdItem);
   bool IsSkinShow(uint32 p_IdItem);
   uint32 GetItemCount(uint32 p_IdItem){ return 0; }
+  BackPack *GetBackPack(EBackpackDef p_BackpackDef);
+  GHashMap<EItemID, int32> GetNewItemInfoByType(EItemCategory);
 };

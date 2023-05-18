@@ -1,5 +1,5 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "Item.Enum.h"
 
 struct RCostItem {
@@ -49,4 +49,13 @@ struct RItem{
   uint32 maxControl = 0;
   bool limitedTime = false;
   bool gembox = false;
+};
+
+struct RClassifyItem{
+  EItemID _Id;
+  uint32 _Count;
+  GTime _InvalidTime;
+  bool _IsLimitedItem;
+  bool _IsInUseLimitedItem;
+  operator bool() const { return _Id != 0; } 
 };

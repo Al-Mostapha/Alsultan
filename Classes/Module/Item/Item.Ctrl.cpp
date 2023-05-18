@@ -2,9 +2,27 @@
 #include "Item.Static.h"
 
 ItemCtrl *ItemCtrl::Get(){
-  ItemCtrl *l_Instance = new ItemCtrl();
+  ItemCtrl *l_Instance = nullptr;
+  if(l_Instance == nullptr){
+    l_Instance = new ItemCtrl();
+    l_Instance->Ctor();
+  }
   return l_Instance;
 }
+
+void ItemCtrl::Ctor(){
+  // backpackCtrl.super.ctor(self, properties)
+  // self.backpacks = {}
+  // local propsBackpack = backpack.new(gBackpackDef.PROPS)
+  auto l_PropsBackpack = BackPack::Create(EBackpackDef::PROPS);
+  // self.backpacks[gBackpackDef.PROPS] = propsBackpack
+  _BackPacks[EBackpackDef::PROPS] = l_PropsBackpack;
+  // local materialBackpack = backpack.new(gBackpackDef.MATERIAL)
+  auto l_MaterialBackpack = BackPack::Create(EBackpackDef::MATERIAL);
+  // self.backpacks[gBackpackDef.MATERIAL] = materialBackpack
+  _BackPacks[EBackpackDef::MATERIAL] = l_MaterialBackpack;
+  // self:resetNewItemInfo()
+};
 
 GPair<bool, uint32> ItemCtrl::IsEnough(uint32 p_IdItem, uint32 p_Amount){
   return GPair<bool, uint32>::Make(true, 0);
@@ -47,3 +65,24 @@ bool ItemCtrl::IsSkinShow(uint32 p_IdItem){
   return false;
 }
 
+
+BackPack *ItemCtrl::GetBackPack(EBackpackDef p_BackpackDef){
+  // if not bType then
+  //   print("backpackCtrl:getBackpack:bType is nil")
+  //   return
+  // end
+  // local backpack = self.backpacks[bType]
+  // if backpack then
+  //   return backpack
+  // else
+  //   print("not found the backpack, backpackType = ", bType, type(bType))
+  // end
+  if(_BackPacks.Contains(p_BackpackDef))
+    return _BackPacks[p_BackpackDef];
+  return nullptr;
+}
+
+
+GHashMap<EItemID, int32> ItemCtrl::GetNewItemInfoByType(EItemCategory){
+  return GHashMap<EItemID, int32>();
+}

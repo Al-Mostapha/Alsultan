@@ -53,7 +53,7 @@
 #include "Module/UI/Panel/Item/BagView/UIBag.View.h"
 #include "Module/UI/Panel/Lord/Skill/UISkillNewActive.View.h"
 #include "Module/UI/Panel/Lord/UILordView.h"
-#include "Module/UI/Panel/Mail/UIMail.View.h"
+#include "Module/UI/Panel/Mail/MailView/UIMail.View.h"
 #include "Module/UI/Panel/Recharge/UIRechargeMonthlyFrame.h"
 #include "Module/World/Kingdom/KingdomMap.Ctrl.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"
@@ -62,6 +62,10 @@
 #include "spine/SkeletonAnimation.h"
 #include "Engine/Engine.h"
 
+
+UIMainBottom *UIMainBottom::Create() { 
+  return Create("UiParts/MainUi/mainUIBottom.csb");
+};
 
 void UIMainBottom::Ctor() {
   // cityBuildData:removeMessageListener()

@@ -151,9 +151,7 @@ class UIMainBottom : public UIBaseView {
   void InitPanel() {};
   void Ctor();
   void Show() {};
-  static UIMainBottom* Create() { 
-    return Create("UiParts/MainUi/mainUIBottom.csb");
-  };
+  static UIMainBottom* Create();
 
   void InitGroup();
   void InitStyle();

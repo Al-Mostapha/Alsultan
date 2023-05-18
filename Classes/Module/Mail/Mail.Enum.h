@@ -22,3 +22,14 @@ enum class EMailSetType{
   NEW_SYS = 17,
   COLLECT = 16
 };
+
+enum class EBattelMailType{
+  None = 0,
+  NORMAL = 1,
+  ALLIANCE = 2,
+  PALACE = 3,
+  ESCORT = 4,
+  PLAYING = 5,
+  EXPLORE = 6,
+  OTHER = 7
+};
