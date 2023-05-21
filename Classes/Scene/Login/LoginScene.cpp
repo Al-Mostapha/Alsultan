@@ -543,7 +543,7 @@ void LoginScene::SwitcherView(RShowMainCityView* p_Data) {
       GAudioEngine::Get()->PlayMusic("mainCity", true);
     }
   } else if (p_Data->ViewType == EScene::World) {
-    l_ShowView = WorldMapViewFactory::Create(p_Data->OtherData);
+    l_ShowView = WorldMapViewFactory::Get()->Create(p_Data->OtherData);
     l_ShowView->setName("worldMapView");
     GAudioEngine::Get()->PlayMusic("worldMap", true);
   }

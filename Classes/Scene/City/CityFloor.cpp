@@ -467,7 +467,7 @@ void CityFloor::InitWithBuildData() {
     this->CreateOuterCityBuilds();
     CityBuildingMgr::Get()->InitWithData(_CityView);
     this->DelayInitWithBuildData();
-    });
+  });
   _CityView->runAction(Sequence::create(l_ActDelay, l_CallFunc, nullptr));
 }
 

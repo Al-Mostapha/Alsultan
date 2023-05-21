@@ -603,7 +603,8 @@ void EffectMainCityView::showEagleSpreadWinds() {
 }
 
 void EffectMainCityView::showEagle() {
-  if (eagle == nullptr && eagleEffect == nullptr) eagleEffect = Node::create();
+  if (eagle == nullptr && eagleEffect == nullptr) 
+    eagleEffect = Node::create();
   eagle = Sprite::createWithSpriteFrameName("juying_01.png");
   eagle->setPosition(0, 0);
   eagleEffect->addChild(eagle, 1);

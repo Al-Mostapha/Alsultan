@@ -10,6 +10,7 @@
 #include "Base/Common/Cach/InstanceCach.Mgr.h"
 
 #include "Module/UI/UIManger.h"
+#include "Game/Guide/Guide.Ctrl.h"
 
 #include "Module/World/WorldMap/WorldMap.Def.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
@@ -23,6 +24,11 @@
 #include "Module/UI/Part/World/WorldMap/UIWorldMapFaceToDistance.h"
 #include "Module/UI/Panel/Notice/SystemNotice/UISystemNotice.View.h"
 #include "Module/World/WorldMap/View/UIWorldResourceMap.h"
+
+#include "Module/Player/Player.Top.h"
+#include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
+#include "Module/World/WorldMap/View/WorldMap.ViewFactory.h"
+#include "Module/Building/Building.Func.h"
 
 
 MainCityView *MainCityView::Create(RViewOtherData p_Data){
@@ -38,6 +44,7 @@ void MainCityView::AddToBufferNodeArrayByName(const char *p_Name, Node *p_Node){
 }
 
 void MainCityView::Ctor(){
+  OnMessageListener();
   setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->rcy));
   setContentSize(GDisplay::Get()->realSize);
   setAnchorPoint(Vec2(0.5, 0.5));
@@ -49,8 +56,70 @@ void MainCityView::Ctor(){
   // n_MainCityView->n_ViewScrollView->setDelegate(nullptr);
   CityFloor::Ctor();
   addChild(_ViewScrollView, 0);
-  OnMessageListener();
   PreLoadImages();
+}
+
+void MainCityView::SwitcherView(RShowMainCityView* p_Data) {
+  if (!p_Data) return;
+  if (_CurrentShowView) {
+    if (_CurrentViewType == p_Data->ViewType) _CurrentShowView->m_FreeImagesOnExit = false;
+    if (p_Data->isFactionSwitch) _CurrentShowView->m_FreeImagesOnExit = true;
+    _CurrentShowView->removeFromParentAndCleanup(true);
+    _CurrentShowView = nullptr;
+    //     criAdxAux.freeAudio()
+    //     imageManager.switchScene()
+  }
+  if (p_Data->OtherData.kingdomID)
+    WorldMapDefine::Get()->CurrentMapKindomID = p_Data->OtherData.kingdomID;
+  else
+    WorldMapDefine::Get()->CurrentMapKindomID = PlayerTop::Get()->GetMapID();
+  AtlantisWarUtil::Get()->RemoveWorldMapAtlantisWarInfo();
+  GAudioEngine::Get()->StopMusic();
+  UIBasePanel* l_ShowView = nullptr;
+
+  if (p_Data->ViewType == EScene::City) {
+    if (_FaceToDistanceNode) _FaceToDistanceNode->setVisible(false);
+    l_ShowView = MainCityView::Create(p_Data->OtherData);
+    l_ShowView->setName("mainCityView");
+    if (GuideCtrl::Get()->GetCurMainCityGuideStep() != nullptr) {
+      GAudioEngine::Get()->PlayMusic("worldMap", true);
+    } else {
+      GAudioEngine::Get()->PlayMusic("mainCity", true);
+    }
+  } else if (p_Data->ViewType == EScene::World) {
+    l_ShowView = WorldMapViewFactory::Get()->Create(p_Data->OtherData);
+    l_ShowView->setName("worldMapView");
+    GAudioEngine::Get()->PlayMusic("worldMap", true);
+  }
+  addChild(l_ShowView, 1);
+  _CurrentViewType = p_Data->ViewType;
+  _CurrentShowView = l_ShowView;
+  _SwitcherViewIng = false;
+  // if (CurrentMainUI()) {
+  //   GBase::DSendMessage("MESSAGE_MAINSCEN_MAINUITOP_EVENT_REFRESH");
+  // }
+}
+
+void MainCityView::ShowView(EventCustom* p_Event) {
+  //Show View for MainScene
+  if (!p_Event->getUserData()) return;
+  auto l_Data = static_cast<RShowMainCityView*>(p_Event->getUserData());
+  if (l_Data->isJudgeCurScene && l_Data->ViewType == _CurrentViewType) return;
+  if (l_Data->ViewType == EScene::None) return;
+  WorldMapDefine::Get()->CurrentMapKindomID = 0;
+  GUtil::Get()->ResetCSDCatch();
+
+  if (l_Data->isFromLogin) {
+    SwitcherView(l_Data);
+    if (l_Data->ViewType == EScene::World) CityBuildFunction::Get()->SetIsFirstLogin(false);
+  } else if (!_SwitcherViewIng) {
+    _SwitcherViewIng = true;
+    GBase::DShowSwitcherView(l_Data->OtherData);
+    auto l_Seq = Sequence::create(DelayTime::create(0.1f), CallFunc::create([=]() { SwitcherView(l_Data); }), nullptr);
+  } else {
+    stopAllActions();
+    SwitcherView(l_Data);
+  }
 }
 
 void MainCityView::OnMessageListener() {

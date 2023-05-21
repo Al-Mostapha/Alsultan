@@ -180,3 +180,21 @@ TextHAlignment GBase::DFLabelR(){
   return TextHAlignment::LEFT;
 }
 
+
+
+void GBase::DAutoSizeButtonText(ui::Button *p_Btn, Size p_Size){
+  if(!p_Btn) 
+    return;
+  auto l_Txt = p_Btn->getTitleRenderer();
+  if( p_Size.width != 0 && p_Size.height != 0){
+    l_Txt->setWidth(p_Size.width);
+    l_Txt->setHeight(p_Size.height);
+  }else{
+    auto l_Size = p_Btn->getContentSize();
+    l_Txt->setWidth(l_Size.width);
+    l_Txt->setHeight(l_Size.height);
+  }
+  l_Txt->setVerticalAlignment(TextVAlignment::CENTER);
+  l_Txt->setVerticalAlignment(TextVAlignment::CENTER);
+  p_Btn->setTitleText(p_Btn->getTitleText());
+}

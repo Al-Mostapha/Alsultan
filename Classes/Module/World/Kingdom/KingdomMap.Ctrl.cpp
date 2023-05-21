@@ -14,3 +14,8 @@ int32 KingdomMapCtrl::GetHallWarCount()
 void KingdomMapCtrl::ReLoginFinish()
 {
 }
+
+EKingdomClassType KingdomMapCtrl::GetKingdomClass()
+{
+  return EKingdomClassType::None;
+}

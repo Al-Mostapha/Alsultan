@@ -19,3 +19,6 @@ float Rad(float p_Degree) { return p_Degree * 3.1415926f / 180.0f; }
 
 float GMath::Sin(float p_Rad) { return sin(p_Rad); }
 float GMath::Cos(float p_Rad) { return cos(p_Rad); }
+
+
+float GMath::Floor(float p_Float){return std::floor(p_Float);}

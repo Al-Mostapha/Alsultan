@@ -4,6 +4,7 @@
 #include "Include/IncludeGlobal.h"
 #include "Base/Containers/HashMap.h"
 #include "Module/UI/UIBaseView.h"
+#include "Module/UI/UIBasePanel.h"
 #include "Module/UI/UICCSView.h"
 #include "Module/Building/Building.Enum.h"
 #include "CityScene.Create.h"
@@ -14,6 +15,7 @@ class UIWorldResourceMap;
 class UISystemNoticeView;
 class UIIphoneXTop;
 class UIIphoneXBottom;
+class UIWorldMapFaceToDistance;
 
 struct RShowMainCityView{
   bool isJudgeCurScene = false;
@@ -23,7 +25,7 @@ struct RShowMainCityView{
   RViewOtherData OtherData;
 };
 
-class MainCityView : public UIBaseView, public MainCityCreate, public CityFloor
+class MainCityView : public UIBasePanel, public MainCityCreate, public CityFloor
 {
   GHashMap<GString, Node *> n_BufferNodeArray;
   CREATE_FUNC(MainCityView);
@@ -38,6 +40,7 @@ class MainCityView : public UIBaseView, public MainCityCreate, public CityFloor
   UIIphoneXBottom *_IphoneXBottom = nullptr;
 
   bool _IsComeFromBackGroud = false;
+  bool _SwitcherViewIng = false;
   Scheduler *_ForeBackGroudTimer = nullptr;
   EScene _CurrentViewType = EScene::None;
   int32 _IsHideMainUICount = 0;
@@ -45,6 +48,8 @@ class MainCityView : public UIBaseView, public MainCityCreate, public CityFloor
   UIBasePanel *_ShareBtn = nullptr;
   UIBasePanel *_VoiceBtn = nullptr;
   GVector<ui::ImageView *> _WarnningList;
+  UIWorldMapFaceToDistance *_FaceToDistanceNode = nullptr;
+  UIBasePanel *_LoginView = nullptr;
 
 public:
   static MainCityView *Create(RViewOtherData p_Data);
@@ -104,7 +109,7 @@ public:
   void CleanPanelView(){}
 
   void GotoForeBackGroud(EventCustom *p_Event){}
-  void ShowView(EventCustom *p_Event){}
+  void ShowView(EventCustom *p_Event);
   void HideCurrentSceneViewAndMainUI(EventCustom *p_Event){}
   void CreatMainView(EventCustom *p_Event);
   void LoginFinsh(EventCustom *p_Event){}
@@ -125,5 +130,9 @@ public:
   void ServerGuideEnd(EventCustom *p_Event){}
   void UpdatePower(EventCustom *p_Event){}
   void UpdateEXP(EventCustom *p_Event){}
+
+
+  private:
+  void SwitcherView(RShowMainCityView *p_Data);
 
 };

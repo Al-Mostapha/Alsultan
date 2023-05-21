@@ -7,6 +7,9 @@ namespace cocos2d{
   class Node;
   class Vec2;
   enum class TextHAlignment;
+  namespace ui {
+    class Button;
+  }
 };
 
 using namespace cocos2d;
@@ -21,4 +24,5 @@ namespace GBase{
   float DAlignNodeArrayOnLimitX( GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding, bool p_LimitR, float p_LimitX);
   void DToCenter(Node *p_Node);
   TextHAlignment DFLabelR();
+  void DAutoSizeButtonText(ui::Button *p_Btn, Size p_Size = Size::ZERO);
 };

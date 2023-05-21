@@ -274,7 +274,8 @@ void UICreateBuildingPanel::CreateWheelAction(){
     DelayTime::create(0.5),
     CallFunc::create([this](){
       this->CreateWheelAction();
-    })
+    }),
+    nullptr
   );
   l_SpriteHand->runAction(l_HandAction);
 }

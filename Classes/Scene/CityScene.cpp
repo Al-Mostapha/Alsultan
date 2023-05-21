@@ -34,8 +34,12 @@ THE SOFTWARE.
 #include "external/json/document.h"
 #include "Engine/Engine.h"
 #include "FairyGUI.h"
-
-
+#include "Module/World/WorldMap/WorldMap.Define.h"
+#include "Module/Building/Building.Func.h"
+#include "Module/Player/Player.Top.h"
+#include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
+#include "Game/Guide/Guide.Ctrl.h"
+#include "Module/World/WorldMap/View/WorldMap.ViewFactory.h"
 USING_NS_CC;
 
 CityScene* CityScene::Get() {
@@ -153,6 +157,7 @@ void CityScene::initDraggingEvent() {
 
   //_eventDispatcher->addEventListenerWithSceneGraphPriority(MouseListiner, this);
 }
+
 
 void CityScene::menuCloseCallback(Ref* pSender) {
   // Close the cocos2d-x game scene and quit the application

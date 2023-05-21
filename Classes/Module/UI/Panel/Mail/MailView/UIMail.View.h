@@ -8,7 +8,7 @@ struct RMailInitData{
 
 };
 
-class UIMailView : UIBasePanel{
+class UIMailView : public UIBasePanel{
   CREATE_FUNC(UIMailView);
   CreateUIPanel(UIMailView);
   CreateUICCSView(UIMailView);
@@ -33,9 +33,8 @@ class UIMailView : UIBasePanel{
 public:
   static UIMailView* Create();
   void Ctor() override ;
-  void Show();
   void InitWithData(RMailInitData *p_InitData = nullptr);
-  void CreateRedPointLayer(){}
+  void CreateRedPointLayer();
   void OnSelDropDownBox(int32 p_Tag){}
   void OnTouchPanel(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}
   void OnBottomMenuEvent(Ref *p_Sender, ui::Widget::TouchEventType p_Type){}

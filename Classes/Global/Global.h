@@ -6,6 +6,9 @@
 
 struct RViewOtherData{
   int32 kingdomID = 0;
+  operator bool() const{
+    return true;
+  }
 };
 
 namespace GBase{

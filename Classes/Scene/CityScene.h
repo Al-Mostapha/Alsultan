@@ -26,6 +26,8 @@
 #include "Main/MainScene.h"
 USING_NS_CC;
 
+struct RShowMainCityView;
+
 class TestScrollViewDelegate : public Ext::ScrollViewDelegate {
   public:
   /**
@@ -77,10 +79,13 @@ class CityScene : public MainScene {
   void menuCloseCallback(cocos2d::Ref* pSender);
   void onEnter();
   void LoadAsset();
+  void ShowView(EventCustom *p_Event);
   static CityScene* getCityScene();
 
   // implement the "static create()" method manually
   CREATE_FUNC(CityScene);
+  private:
+  void SwitcherView(RShowMainCityView *p_Data);
 };
 
 #endif  // __CITYSCENE_H_

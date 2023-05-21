@@ -9,3 +9,7 @@ WorldMapWarDef * WorldMapWarDef::Get()
 GString WorldMapWarDef::GetKingdomClassTips(EKingdomClassType type, int32 p_IdKingdom){
   return "Kingdom Tip";
 };
+
+EKingdomClassType WorldMapWarDef::GetKingdomMapClassByKingdomId(int32 p_IdKingdom){
+  return EKingdomClassType::Normal;
+};

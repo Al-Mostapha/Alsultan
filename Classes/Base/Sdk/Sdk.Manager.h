@@ -7,9 +7,11 @@ class SDKManager
 public:
   static SDKManager* Get();
   bool IsSupportReplay();
-  bool IsBeta(){ return false; };
+  bool IsBeta(){ return true; };
   bool IsGameService(){ return false; };
   bool IsGameDevelop(){ return true; };
+  bool IsReportError(){ return true; };
+  
   int32 GetPushNotificationState();
   void SetSDKNoticeEnable();
   void GotoSettingPushNotification();

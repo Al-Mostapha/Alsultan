@@ -10,3 +10,8 @@ void WorldMapUtil::ResetConfig()
 {
   // Do something
 }
+
+bool WorldMapUtil::IsLodOpen()
+{
+  return true;
+}

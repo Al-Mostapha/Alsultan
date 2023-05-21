@@ -47,3 +47,11 @@ bool WorldMapDefine::IsInWarForbidSoldier(bool p_NoShowTips, bool p_Activity){
 void WorldMapDefine::ShowWarTips(bool p_Activity){
   
 }
+
+bool WorldMapDefine::IsNebulaKingdomID(){
+  return false;
+}
+
+bool WorldMapDefine::IsLegendLordKingdomID(){
+  return false;
+}
