@@ -58,6 +58,7 @@
 #include "Module/World/Kingdom/KingdomMap.Ctrl.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
+#include "Scene/City/CityScene.View.h"
 
 #include "spine/SkeletonAnimation.h"
 #include "Engine/Engine.h"
@@ -1202,7 +1203,10 @@ void UIMainBottom::OnWorldCityClick(Ref* p_Sender, ui::Widget::TouchEventType p_
     } else {
       _ViewChangeType = EScene::City;
     }
-    GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &_ViewChangeType);
+
+    static RShowMainCityView s_ShowMainCityView;
+    s_ShowMainCityView.ViewType = _ViewChangeType;
+    GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &s_ShowMainCityView);
   }
 }
 

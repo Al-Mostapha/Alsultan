@@ -78,14 +78,15 @@ void MainCityView::SwitcherView(RShowMainCityView* p_Data) {
   UIBasePanel* l_ShowView = nullptr;
 
   if (p_Data->ViewType == EScene::City) {
-    if (_FaceToDistanceNode) _FaceToDistanceNode->setVisible(false);
-    l_ShowView = MainCityView::Create(p_Data->OtherData);
-    l_ShowView->setName("mainCityView");
-    if (GuideCtrl::Get()->GetCurMainCityGuideStep() != nullptr) {
-      GAudioEngine::Get()->PlayMusic("worldMap", true);
-    } else {
-      GAudioEngine::Get()->PlayMusic("mainCity", true);
-    }
+    // if (_FaceToDistanceNode) _FaceToDistanceNode->setVisible(false);
+    // l_ShowView = MainCityView::Create(p_Data->OtherData);
+    // l_ShowView->setName("mainCityView");
+    // if (GuideCtrl::Get()->GetCurMainCityGuideStep() != nullptr) {
+    //   GAudioEngine::Get()->PlayMusic("worldMap", true);
+    // } else {
+    //   GAudioEngine::Get()->PlayMusic("mainCity", true);
+    // }
+    return;
   } else if (p_Data->ViewType == EScene::World) {
     l_ShowView = WorldMapViewFactory::Get()->Create(p_Data->OtherData);
     l_ShowView->setName("worldMapView");
@@ -209,10 +210,10 @@ void MainCityView::CreatMainView(EventCustom *p_Event){
   UpdateVoiceButton(nullptr);
   auto l_ShowViewType = EScene::City;
   if (p_Event->getUserData()) l_ShowViewType = *(EScene*)p_Event->getUserData();
-  std::unique_ptr<RShowMainCityView> l_Data(new RShowMainCityView());
-  l_Data->isFromLogin = true;
-  l_Data->ViewType = l_ShowViewType;
-  GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_Data.get());
+  static RShowMainCityView s_Data;
+  s_Data.isFromLogin = true;
+  s_Data.ViewType = l_ShowViewType;
+  GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &s_Data);
 }
 
 void MainCityView::ReleaseMainView() {

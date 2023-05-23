@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.2" orientation="isometric" renderorder="right-down" width="18" height="18" tilewidth="256" tileheight="128" infinite="0" nextobjectid="1">
+ <tileset firstgid="0" name="test" tilewidth="256" tileheight="140" spacing="6" margin="4" tilecount="98" columns="7">
+  <image source="../World_png/World_1.pkm" width="2048" height="2048"/>
+ </tileset>
+ <tileset firstgid="98" name="test 2" tilewidth="256" tileheight="140" spacing="6" margin="4" tilecount="98" columns="7">
+  <image source="../World_png/World_4.pkm" width="2048" height="2048"/>
+ </tileset>
+ <tileset firstgid="196" name="test3" tilewidth="256" tileheight="140" spacing="6" margin="4" tilecount="98" columns="7" offsetgid="0">
+  <image source="../World_png/World_5.pkm" width="2048" height="2048"/>
+ </tileset>
+ <layer name="tile" width="18" height="18" opacity="0.9" tileset="test3">
+  <data encoding="base64" compression="zlib">
+   eJxNUFsSwyAIHMB/8W1roib3P2RXM+1UZhAWlpda3WJ/+gFSO1p9QrrcowUhE2uqdj1NgVkgFEOsO2ewcd6d3TsvE75NgVzJJdVcso+r2gUAlTdjCE2kyLSaPW+bONaLodIRyNwAxPAdmNwrEAmKeXw0PfPMHt1uXaQV6Gjw7mXEBhIA9EfViV4MBtONCVUviYENCbt+rhRrB8HEyL08iy9axIq52M3Y98grqg+g34v8nesDEBEUmQ==
+  </data>
+ </layer>
+ <layer name="ground" width="18" height="18" tileset="test 2">
+  <data encoding="base64" compression="zlib">
+   eJxtT4kRgCAMyyQuAF0A+WQT2X8IC9SiaI7rkTSUFPjH8aaWWk1AJVFKjlxD5tu0sQH+JnW8bIXU0elhWMgOMNJITtrMA0Q/u2LKGDvaLq5Bwxqbdg1AEkm3aST7gvkztj7EPtf8rq8w/Sy4AOpEDWM=
+  </data>
+ </layer>
+</map>

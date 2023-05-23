@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.2" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="256" tileheight="128" infinite="0" nextobjectid="1">
+ <tileset firstgid="0" name="test" tilewidth="256" tileheight="140" spacing="6" margin="4" tilecount="98" columns="7">
+  <image source="World_png/World_1.pkm" width="2048" height="2048"/>
+ </tileset>
+ <tileset firstgid="98" name="test 2" tilewidth="256" tileheight="140" spacing="6" margin="4" tilecount="98" columns="7">
+  <image source="World_png/World_4.pkm" width="2048" height="2048"/>
+ </tileset>
+ <layer name="tile" width="20" height="20" tileset="test">
+  <data encoding="base64" compression="zlib">
+   eJwdkG2agyAMhDkGogsrStr6tcXWYvpxluT+p9ixf3hIIPNOZghm6Uqc7JxbY+qh60n5UvdEKI2djHmpikZNaPHl+PIYVpuJKInijNPS9bi1ptEtk1J8uqouwijS8OuuN0+aQIGw3kevlLoeYiJ7aDBPe7D5q6TRM73/iDbnJjM+PXqSCsfKeoZC/QlmhJgSK8w1tF0fvbRmuWXGvMCcddNry5rW815IvcTK1N1nbXaYBxuYMaew9Mz3MUt0lTkzUbA+FcDexp6w8FLiaU5DwQsTuGYB9zTVQ2ZWJtnmn1CXfT2CYyzKRxahgYS0R3DkFZExcerlCKMhoe1MwnBO0c0TPAHHLWaPyAjGv+vMmS7/dnNE9Q==
+  </data>
+ </layer>
+ <imagelayer name="08" x="2363" y="1524" offsetx="2363" offsety="1524">
+  <image source="NewTrial_08.png" plistSource="World_png/NewTrial_png.plist" width="1030" height="378"/>
+ </imagelayer>
+ <imagelayer name="07" x="3109" y="1175" offsetx="3109" offsety="1175">
+  <image source="NewTrial_07.png" plistSource="World_png/NewTrial_png.plist" width="952" height="396"/>
+ </imagelayer>
+ <imagelayer name="06" x="3211" y="864" offsetx="3211" offsety="864">
+  <image source="NewTrial_06.png" plistSource="World_png/NewTrial_png.plist" width="677" height="312"/>
+ </imagelayer>
+ <imagelayer name="05" x="2856" y="754" offsetx="2856" offsety="754">
+  <image source="NewTrial_05.png" plistSource="World_png/NewTrial_png.plist" width="449" height="220"/>
+ </imagelayer>
+ <imagelayer name="04" x="1529" y="1385" offsetx="1529" offsety="1385">
+  <image source="NewTrial_04.png" plistSource="World_png/NewTrial_png.plist" width="573" height="238"/>
+ </imagelayer>
+ <imagelayer name="03" x="1184" y="1384" offsetx="1184" offsety="1384">
+  <image source="NewTrial_03.png" plistSource="World_png/NewTrial_png.plist" width="439" height="472"/>
+ </imagelayer>
+ <imagelayer name="02" x="1516" y="197" offsetx="1516" offsety="197">
+  <image source="NewTrial_02.png" plistSource="World_png/NewTrial_png.plist" width="925" height="542"/>
+ </imagelayer>
+ <imagelayer name="01" x="368" y="716" offsetx="368" offsety="716">
+  <image source="NewTrial_01.png" plistSource="World_png/NewTrial_png.plist" width="1189" height="443"/>
+ </imagelayer>
+ <layer name="ground" width="20" height="20" opacity="0.9" tileset="test 2">
+  <data encoding="base64" compression="zlib">
+   eJxtT8sOgjAQnATwgXoxcASs1Pr4CU2bcDNq5eT/f4i7bbUQnWQfM91HFwhYLPFFxyaBfB41ze6BUvSRelRU/qRYR6ndYASjgDvFJJ3OnKDi2yTLs8hWn0QM93pcyGTp2iX7WhNp+bPYkpUNuasmbg+svYD13jXawdcIu3CwUDxeu2K4ueHg3t/KKE6j1gb/QCPOIb2xk11gg73aHH/6krSANSPpDS6jDlA=
+  </data>
+ </layer>
+</map>

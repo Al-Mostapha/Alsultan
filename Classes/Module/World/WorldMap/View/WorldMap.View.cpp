@@ -84,7 +84,8 @@ void WorldMapView::InitMapCell(){
   InitTmx();
   InitMapCell_imp();
   InitScrollView();
-  _TmxView->setPosition(_CurrentInMapViewCell->getPosition());
+  //_TmxView->setPosition(_CurrentInMapViewCell->getPosition());
+  _TmxView->setPosition(_TmxView->getContentSize()/2);
 }
 
 void WorldMapView::InitTmx(){

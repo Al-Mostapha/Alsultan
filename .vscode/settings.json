@@ -72,7 +72,21 @@
     "forward_list": "cpp",
     "random": "cpp",
     "memory_resource": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "bitset": "cpp",
+    "charconv": "cpp",
+    "condition_variable": "cpp",
+    "coroutine": "cpp",
+    "future": "cpp",
+    "iomanip": "cpp",
+    "mutex": "cpp",
+    "numeric": "cpp",
+    "ratio": "cpp",
+    "shared_mutex": "cpp",
+    "source_location": "cpp",
+    "stack": "cpp",
+    "stop_token": "cpp",
+    "fstream": "cpp"
   },
   "search.exclude": {
     "**/build": true,
