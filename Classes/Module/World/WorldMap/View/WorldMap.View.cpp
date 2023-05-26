@@ -7,6 +7,7 @@
 #include "Module/World/Kingdom/KingdomMap.Ctrl.h"
 #include "Module/Player/Player.Top.h"
 #include "Global/Global.h"
+#include "Engine/XTiledMap/XTiledLayer.h"
 
 typedef EWorldMapZOrder Z_ORDER;
 
@@ -106,7 +107,7 @@ void WorldMapView::InitTmx(){
     //   end
   }
 
-  _TmxView = TMXTiledMap::create(_Config._TileMapTmx);
+  _TmxView = XTiledMap::create(_Config._TileMapTmx);
   _TmxView->setName("tileMapTmx");
   _TmxView->setIgnoreAnchorPointForPosition(false);
   _TmxView->setAnchorPoint(Vec2(0.5f, 0.5f));

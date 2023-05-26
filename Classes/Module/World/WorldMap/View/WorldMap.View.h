@@ -6,6 +6,7 @@
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 #include "Global/Global.h"
 
+#include "Engine/XTiledMap/XTiledMap.h"
 
 struct RViewClass;
 class WorldMapView : public UIBasePanel, public WorldMapViewMul, public WorldMapViewObject{
@@ -44,9 +45,9 @@ class WorldMapView : public UIBasePanel, public WorldMapViewMul, public WorldMap
   Node *_ContainerViewNode = nullptr;
   ui::Layout *_ContainerView = nullptr;
 
-  TMXTiledMap *_TmxView = nullptr;
-  TMXLayer *_GroundLayer = nullptr;
-  TMXLayer *_MapLayer = nullptr;
+  XTiledMap *_TmxView = nullptr;
+  XTiledLayer *_GroundLayer = nullptr;
+  XTiledLayer *_MapLayer = nullptr;
   Ext::ScrollView *_ViewScrollView = nullptr;
 public: 
   RViewClass _Config;
