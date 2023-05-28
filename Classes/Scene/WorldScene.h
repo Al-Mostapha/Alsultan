@@ -40,6 +40,7 @@ public:
 
 
     virtual bool init();
+    void onEnter() override;
     void initDraggingEvent();
     void initWorldLayers();
     void menuCloseCallback(cocos2d::Ref* pSender);

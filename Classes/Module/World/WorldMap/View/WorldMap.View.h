@@ -7,6 +7,9 @@
 #include "Global/Global.h"
 
 #include "Engine/XTiledMap/XTiledMap.h"
+#include "2d/CCFastTMXTiledMap.h"
+#include "2d/CCFastTMXLayer.h"
+
 
 struct RViewClass;
 class WorldMapView : public UIBasePanel, public WorldMapViewMul, public WorldMapViewObject{

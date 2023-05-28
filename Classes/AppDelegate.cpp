@@ -30,6 +30,7 @@
 #include "Scene/InitScene.h"
 #include "Scene/Login/LoginScene.h"
 #include "Engine/Engine.h"
+#include "Scene/WorldScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 
@@ -116,7 +117,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     register_all_packages();
     GEngine::Get()->Init();
     // create a scene. it's an autorelease object
-    auto scene = CityScene::createScene();
+    auto scene = WorldScene::createScene();
     
     //auto scene = InitScene::createScene();
     //auto scene = LoginScene::Create();

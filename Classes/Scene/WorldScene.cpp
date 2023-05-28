@@ -29,11 +29,40 @@
 #include "Include/IncludeCityBuilding.h"
 #include "Module/City/CityBuildingUtils/CityBuildingTopTip.h"
 #include "ui/CocosGUI.h"
+#include "Engine/XTiledMap/XTiledMap.h"
 USING_NS_CC;
 
 Scene *WorldScene::createScene()
 {
     return WorldScene::create();
+}
+
+void WorldScene::onEnter(){
+  Scene::onEnter();
+  auto _TmxView = XTiledMap::create("tileMaps/WorldMapNew.tmx");
+  _TmxView->setName("tileMapTmx");
+  _TmxView->setIgnoreAnchorPointForPosition(false);
+  _TmxView->setAnchorPoint(Vec2(0.5f, 0.5f));
+  _TmxView->setCascadeOpacityEnabled(true);
+  _TmxView->setCascadeColorEnabled(true);
+
+  auto _TmxViewSize = _TmxView->getContentSize();
+  _TmxView->setPosition(Vec2(-_TmxViewSize.width/2, -_TmxViewSize.height/2));  
+  auto _ViewScrollView = Ext::ScrollView::create(Director::getInstance()->getVisibleSize());
+  _ViewScrollView->setName("viewScrollView");
+  _ViewScrollView->setContainer(_TmxView);
+  // _ViewScrollView->setClippingToBounds(false);
+  // _ViewScrollView->setMinScale(0.75);
+  // _ViewScrollView->setMaxScale(1.35);
+  // _ViewScrollView->setZoomScale(1);
+  // _ViewScrollView->setBounceable(false);
+  // self.viewScrollView:setInertiaValue(1)
+  // if self.viewScrollView.setScrollSpeed then
+  //   self.viewScrollView:setScrollSpeed(4)
+  //   self.viewScrollView:setScrollAcceleration(-3)
+  // end
+  _ViewScrollView->setPosition(Vec2(0, 0));
+  this->addChild(_ViewScrollView, 10);
 }
 
 // Print useful error message instead of segfaulting when files are not there.
@@ -57,11 +86,11 @@ bool WorldScene::init()
 
     // FileUtils::getInstance()->addSearchPath("cocosstudio");
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    // auto visibleSize = Director::getInstance()->getVisibleSize();
+    // Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    initWorldLayers();
-    initDraggingEvent();
+    // initWorldLayers();
+    // initDraggingEvent();
 
     /**auto mysprite = Sprite::createWithSpriteFrameName("prison.png");
      mysprite->setLocalZOrder(10);

@@ -86,7 +86,8 @@ void WorldMapView::InitMapCell(){
   InitMapCell_imp();
   InitScrollView();
   //_TmxView->setPosition(_CurrentInMapViewCell->getPosition());
-  _TmxView->setPosition(_TmxView->getContentSize()/2);
+  auto _TmxViewSize = _TmxView->getContentSize();
+  _TmxView->setPosition(Vec2(-_TmxViewSize.width/2, -_TmxViewSize.height/2)); 
 }
 
 void WorldMapView::InitTmx(){
@@ -106,7 +107,8 @@ void WorldMapView::InitTmx(){
     //     tileMapTmx = tileMapTmx[1]
     //   end
   }
-
+  
+  
   _TmxView = XTiledMap::create(_Config._TileMapTmx);
   _TmxView->setName("tileMapTmx");
   _TmxView->setIgnoreAnchorPointForPosition(false);
@@ -163,8 +165,8 @@ void WorldMapView::InitTmx(){
     //     }
     //   })
     _GroundLayer = l_GroundLayer;
-    _GroundLayer->setVisible(false);
-    _MapLayer = _GroundLayer;
+    // _GroundLayer->setVisible(false);
+    // _MapLayer = _GroundLayer;
   } else {
     //   self.mapLayer = tmxview:getLayer("tile")
     //   self.mapLayer:setName("tile")

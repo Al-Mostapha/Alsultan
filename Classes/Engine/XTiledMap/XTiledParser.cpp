@@ -378,7 +378,7 @@ void XTiledMapInfo::startElement(void* /*ctx*/, const char *name, const char **a
         s.width = attributeDict["width"].asFloat();
         s.height = attributeDict["height"].asFloat();
         //layer->_layerSize = s;
-        layer->_layerSize = Size(1000, 1000);
+        layer->_layerSize = Size(1201, 256);
 
         Value& visibleValue = attributeDict["visible"];
         layer->_visible = visibleValue.isNull() ? true : visibleValue.asBool();
