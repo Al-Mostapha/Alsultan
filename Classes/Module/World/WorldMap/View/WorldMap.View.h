@@ -12,11 +12,11 @@
 
 
 struct RViewClass;
-class WorldMapView : public UIBasePanel, public WorldMapViewMul, public WorldMapViewObject{
+class WorldMapView : public UIBasePanel, public WorldMapViewMul, public WorldMapViewObject,  public Ext::ScrollViewDelegate{
   CREATE_FUNC(WorldMapView);
   CreateUIPanel(WorldMapView);
   CreateUICCSView(WorldMapView);
-
+public:
   bool _InitIsSelected = false;
   EWorldMapLayInstanceTypeDef _LayInstanceType = EWorldMapLayInstanceTypeDef::LayInstanceNone;
   EKingdomClassType _MapClassType = EKingdomClassType::None;
@@ -42,17 +42,19 @@ class WorldMapView : public UIBasePanel, public WorldMapViewMul, public WorldMap
   float _MinTime = 0.4f;
 
   Size _TileSize;
-  Size _MapViewSize;
   Size _MapSize;
 
   Node *_ContainerViewNode = nullptr;
-  ui::Layout *_ContainerView = nullptr;
 
   XTiledMap *_TmxView = nullptr;
   XTiledLayer *_GroundLayer = nullptr;
   XTiledLayer *_MapLayer = nullptr;
   Ext::ScrollView *_ViewScrollView = nullptr;
 public: 
+
+  void scrollViewDidScroll(Ext::ScrollView* view) override;
+  void scrollViewDidZoom(Ext::ScrollView* view) override ;
+
   RViewClass _Config;
   RViewOtherData _Param;
   static WorldMapView *Create(RViewClass, RViewOtherData);
@@ -66,4 +68,5 @@ public:
   void InitTmx();
   void InitScrollView();
   void InitScrollDid();
+  WorldMapCell *CreateOneMapCell() override;
 };

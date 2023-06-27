@@ -132,7 +132,7 @@ public:
   void UpdateEXP(EventCustom *p_Event){}
 
 
-  private:
+  public:
   void SwitcherView(RShowMainCityView *p_Data);
 
 };

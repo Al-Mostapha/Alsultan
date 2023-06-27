@@ -86,7 +86,9 @@
     "source_location": "cpp",
     "stack": "cpp",
     "stop_token": "cpp",
-    "fstream": "cpp"
+    "fstream": "cpp",
+    "*.vert": "cpp",
+    "*.frag": "cpp"
   },
   "search.exclude": {
     "**/build": true,

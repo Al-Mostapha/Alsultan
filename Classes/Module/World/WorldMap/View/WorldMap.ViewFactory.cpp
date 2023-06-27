@@ -49,7 +49,7 @@ void WorldMapViewFactory::Init(){
     return;
   RViewClass l_Normal;
   l_Normal._CcsFile = "worldMapViewNormal";
-  l_Normal._TileMapTmx = WorldMapUtil::Get()->GetTileMapTmxForPlatform("tileMaps/WorldMapNew");
+  l_Normal._TileMapTmx = WorldMapUtil::Get()->GetTileMapTmxForPlatform("tileMaps/WorldMapNew128");
   l_Normal._IsSingleMapCell = false;
   l_Normal._TerrainControl = "tileMaps/World_png/worldTileControl.png";
   l_Normal._TerrainControlLod = "tileMaps/World_png/worldTileControl_lod5.png";

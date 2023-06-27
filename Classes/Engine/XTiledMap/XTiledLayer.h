@@ -3,7 +3,7 @@ Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
-Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+Copyright (c) 2020-2021 cocos2d-lua.org
 
 http://www.cocos2d-x.org
 
@@ -25,53 +25,56 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
+#pragma once
+
 #include "2d/CCSpriteBatchNode.h"
 #include "XTiledParser.h"
 #include "base/ccCArray.h"
 
 USING_NS_CC;
 
-class XTiledMapInfo;
-class XTiledLayerInfo;
-class XTilesetInfo;
-struct _ccCArray;
+class XTiledMap;
 
 /**
  * @addtogroup _2d
  * @{
  */
 
-/** @brief TMXLayer represents the TMX layer.
- * It is a subclass of SpriteBatchNode. By default the tiles are rendered using a TextureAtlas.
- * If you modify a tile on runtime, then, that tile will become a Sprite, otherwise no Sprite objects are created.
- * The benefits of using Sprite objects as tiles are:
- * - tiles (Sprite) can be rotated/scaled/moved with a nice API.
- * If the layer contains a property named "cc_vertexz" with an integer (in can be positive or negative),
- * then all the tiles belonging to the layer will use that value as their OpenGL vertex Z for depth.
- * On the other hand, if the "cc_vertexz" property has the "automatic" value, then the tiles will use an automatic vertex Z value.
- * Also before drawing the tiles, GL_ALPHA_TEST will be enabled, and disabled after drawing them. The used alpha func will be:
- * glAlphaFunc( GL_GREATER, value ).
- * "value" by default is 0, but you can change it from Tiled by adding the "cc_alpha_func" property to the layer.
- * The value 0 should work for most cases, but if you have tiles that are semi-transparent, then you might want to use a different
- * value, like 0.5.
- * For further information, please see the programming guide:
- * http://www.cocos2d-iphone.org/wiki/doku.php/prog_guide:tiled_maps
- * @since v0.8.1
- * Tiles can have tile flags for additional properties. At the moment only flip horizontal and flip vertical are used. These bit flags are defined in TMXXMLParser.h.
- * @since 1.1
- */
+enum
+{
+    XTiled_LAYER_UNDEFINED,
+    XTiled_LAYER_TILE,
+    XTiled_LAYER_OBJECT_GROUP,
+    XTiled_LAYER_IMAGE,
+    XTiled_LAYER_GROUP
+};
 
-class CC_DLL XTiledLayer : public SpriteBatchNode
+class TileAnimationData {
+public:
+    TileAnimationData();
+    ~TileAnimationData();
+    
+    float leftTime;
+    int frameIndex;
+    Vec2 pos;
+    Sprite *tile;
+    std::vector<uint32_t> gids;
+    std::vector<float> durations;
+};
+
+class CC_DLL XTiledLayer : public Node
 {
 public:
     /** Creates a TMXLayer with an tileset info, a layer info and a map info.
      *
-     * @param tilesetInfo An tileset info.
      * @param layerInfo A layer info.
-     * @param mapInfo A map info.
+     * @param tileMap.
      * @return An autorelease object.
      */
-    static XTiledLayer * create(XTilesetInfo *tilesetInfo, XTiledLayerInfo *layerInfo, XTiledMapInfo *mapInfo);
+    static XTiledLayer * create(XTiledLayerInfo *layerInfo, XTiledMap *tileMap);
+    static XTiledLayer * create(XImageLayerInfo *layerInfo, XTiledMap *tileMap);
+    static XTiledLayer * create(XTiledGroupInfo *layerInfo, XTiledMap *tileMap);
+    static XTiledLayer * create(XTiledObjectGroup *layerInfo, XTiledMap *tileMap);
     /**
      * @js ctor
      */
@@ -84,18 +87,14 @@ public:
 
     /** Initializes a TMXLayer with a tileset info, a layer info and a map info.
      *
-     * @param tilesetInfo An tileset info.
      * @param layerInfo A layer info.
-     * @param mapInfo A map info.
+     * @param tileMap.
      * @return If initializes successfully, it will return true.
      */
-    bool initWithTilesetInfo(XTilesetInfo *tilesetInfo, XTiledLayerInfo *layerInfo, XTiledMapInfo *mapInfo);
-
-    /** Dealloc the map that contains the tile position from memory.
-     * Unless you want to know at runtime the tiles positions, you can safely call this method.
-     * If you are going to call layer->tileGIDAt() then, don't release the map.
-     */
-    void releaseMap();
+    bool initWithLayerInfo(XTiledLayerInfo *layerInfo, XTiledMap *tileMap);
+    bool initWithLayerInfo(XImageLayerInfo *layerInfo, XTiledMap *tileMap);
+    bool initWithLayerInfo(XTiledGroupInfo *layerInfo, XTiledMap *tileMap);
+    bool initWithLayerInfo(XTiledObjectGroup *layerInfo, XTiledMap *tileMap);
 
     /** Returns the tile (Sprite) at a given a tile coordinate.
      * The returned Sprite will be already added to the TMXLayer. Don't add it again.
@@ -116,16 +115,7 @@ public:
      * @param flags Tile flags.
      * @return Returns the tile gid at a given tile coordinate. It also returns the tile flags.
      */
-	uint32_t getTileGIDAt(const Vec2& tileCoordinate, XTileFlags* flags = nullptr);
-
-    /** Sets the tile gid (gid = tile global id) at a given tile coordinate.
-     * The Tile GID can be obtained by using the method "tileGIDAt" or by using the TMX editor -> Tileset Mgr +1.
-     * If a tile is already placed at that position, then it will be removed.
-     *
-     * @param gid The tile gid.
-     * @param tileCoordinate The tile coordinate.
-     */
-    void setTileGID(uint32_t gid, const Vec2& tileCoordinate);
+	uint32_t getTileGIDAt(const Vec2& tileCoordinate, TMXTileFlags* flags = nullptr);
 
     /** Sets the tile gid (gid = tile global id) at a given tile coordinate.
      * The Tile GID can be obtained by using the method "tileGIDAt" or by using the TMX editor -> Tileset Mgr +1.
@@ -136,21 +126,21 @@ public:
      * @param tileCoordinate The tile coordinate.
      * @param flags The tile flags.
      */
-
-    void setTileGID(uint32_t gid, const Vec2& tileCoordinate, XTileFlags flags);
+    void setTileGID(uint32_t gid, const Vec2& tileCoordinate, TMXTileFlags flags = (TMXTileFlags)0);
 
     /** Removes a tile at given tile coordinate. 
      *
      * @param tileCoordinate The tile coordinate.
      */
-    void removeTileAt(const Vec2& tileCoordinate);
+    void removeTileAt(const Vec2& tileCoordinate, bool cleanGID = true);
 
     /** Returns the position in points of a given tile coordinate.
      *
      * @param tileCoordinate The tile coordinate.
+     * @param gid if > 0, use to get tileset's offset.
      * @return The position in points of a given tile coordinate.
      */
-	Vec2 getPositionAt(const Vec2& tileCoordinate);
+	Vec2 getPositionAt(const Vec2& tileCoordinate, uint32_t gid = 0);
 
     /** Return the value for the specific property name.
      *
@@ -158,7 +148,7 @@ public:
      * @return Return the value for the specific property name.
      */
 	Value getProperty(const std::string& propertyName) const;
-
+    
     /** Creates the tiles. */
     void setupTiles();
     
@@ -211,23 +201,6 @@ public:
      */
     void setTiles(uint32_t* tiles) { _tiles = tiles; };
     
-    /** Tileset information for the layer. 
-     *
-     * @return Tileset information for the layer.
-     */
-    XTilesetInfo* getTileSet() const { return _tileSet; }
-    
-    /** Set tileset information for the layer.
-     *
-     * @param info The tileset information for the layer.
-     * @js NA
-     */
-    void setTileSet(XTilesetInfo* info) {
-        CC_SAFE_RETAIN(info);
-        CC_SAFE_RELEASE(_tileSet);
-        _tileSet = info;
-    }
-    
     /** Layer orientation, which is the same as the map orientation.
      *
      * @return Layer orientation, which is the same as the map orientation.
@@ -244,12 +217,6 @@ public:
      *
      * @return Properties from the layer. They can be added using Tiled.
      */
-    const ValueMap& getProperties() const { return _properties; }
-    
-    /** Properties from the layer. They can be added using Tiled.
-     *
-     * @return Properties from the layer. They can be added using Tiled.
-     */
     ValueMap& getProperties() { return _properties; }
     
     /** Set an Properties from to layer.
@@ -259,58 +226,36 @@ public:
     void setProperties(const ValueMap& properties) {
         _properties = properties;
     }
-    //
-    // Override
-    //
-    /** TMXLayer doesn't support adding a Sprite manually.
-     @warning addChild(z, tag); is not supported on TMXLayer. Instead of setTileGID.
-     */
-    using SpriteBatchNode::addChild;
-    virtual void addChild(Node * child, int zOrder, int tag) override;
-    // super method
-    void removeChild(Node* child, bool cleanup) override;
-    /**
-    * @js NA
-    */
+    
+    /** get Tile's localZorder. */
+    int getLocalZForPos(const Vec2& pos) const;
+    
+    /** return Layer type */
+    int getLayerType() { return _layerType; };
+
     virtual std::string getDescription() const override;
 
 protected:
+    bool initCommon(Vec2 &layerOffset, XTiledMap *tileMap);
     Vec2 getPositionForIsoAt(const Vec2& pos);
     Vec2 getPositionForOrthoAt(const Vec2& pos);
     Vec2 getPositionForHexAt(const Vec2& pos);
     Vec2 getPositionForStaggeredAt(const Vec2& pos);
+    Vec2 getPositionForObject(const Vec2& pos);
     Vec2 calculateLayerOffset(const Vec2& offset);
 
-    /* optimization methods */
-    Sprite* appendTileForGID(uint32_t gid, const Vec2& pos);
-    Sprite* insertTileForGID(uint32_t gid, const Vec2& pos);
-    Sprite* updateTileForGID(uint32_t gid, const Vec2& pos);
-
-    intptr_t getZForPos(const Vec2& pos) const;
-
-    /* The layer recognizes some special properties, like cc_vertexz */
-    void parseInternalProperties();
+    int getIndex(const Vec2& pos) const;
+    Sprite *createTileSprite(int index, uint32_t gid);
+    void setTileTexture(Sprite* sprite, uint32_t gid);
     void setupTileSprite(Sprite* sprite, const Vec2& pos, uint32_t gid);
-    Sprite* reusedTileWithRect(const Rect& rect);
-    int getVertexZForPos(const Vec2& pos);
-
-    // index
-    ssize_t atlasIndexForExistantZ(int z);
-    ssize_t atlasIndexForNewZ(int z);
-
+    void setupTileAnimation(Sprite* sprite, const Vec2& pos, uint32_t gid, int index);
+    // play tile's animation
+    void tilesUpdate(float dt);
 
     //! name of the layer
     std::string _layerName;
     //! TMX Layer supports opacity
     unsigned char _opacity;
-    
-    //! Only used when vertexZ is used
-    int _vertexZvalue;
-    bool _useAutomaticVertexZ;
-
-    //! used for optimization
-    Sprite *_reusedTile;
-    ccCArray *_atlasIndexArray;
     
     // used for retina display
     float _contentScaleFactor;
@@ -321,8 +266,10 @@ protected:
     Size _mapTileSize;
     /** pointer to the map of tiles */
     uint32_t* _tiles;
-    /** Tileset information for the layer */
-    XTilesetInfo* _tileSet;
+    /** all tiles's sprite */
+    std::map<int, Sprite *> _tileSprites;
+    /** tiles's doing animation */
+    std::map<int, TileAnimationData *> _tilesAniData;
     /** Layer orientation, which is the same as the map orientation */
     int _layerOrientation;
     /** Stagger Axis */
@@ -333,6 +280,9 @@ protected:
     int _hexSideLength;
     /** properties from the layer. They can be added using Tiled */
     ValueMap _properties;
+    // weak ref to parent node
+    XTiledMap *_tileMap;
+    int _layerType;
 };
 
 // end of tilemap_parallax_nodes group

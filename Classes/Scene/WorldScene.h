@@ -26,8 +26,9 @@
 #define __WORLDSCENE_H_
 
 #include "cocos2d.h"
+#include "Main/MainScene.h"
 
-class WorldScene : public cocos2d::Scene
+class WorldScene : public MainScene
 {
 public:
 

@@ -7,7 +7,7 @@
 #include "Module/World/Kingdom/KingdomMap.Ctrl.h"
 #include "Module/Player/Player.Top.h"
 #include "Global/Global.h"
-#include "Engine/XTiledMap/XTiledLayer.h"
+#include "Engine/XTiledMap/XTiledMap.h"
 
 typedef EWorldMapZOrder Z_ORDER;
 
@@ -23,10 +23,11 @@ WorldMapView *WorldMapView::Create(RViewClass p_Config, RViewOtherData p_OtherDa
 
 void WorldMapView::Ctor(RViewClass p_Config, RViewOtherData p_OtherData){
   _Config = p_Config;
-  AddComponents(p_Config);
+  AddComponents(p_Config, this);
   InitParam();
   InitView();
   // self:callComFunc("init")
+  CallComFuncInit();
   // self:initOther()
   // self._ccsView:setLocalZOrder(Z_ORDER.otherTipView)
   // self:setAnchorPoint(cc.p(0, 0))
@@ -79,7 +80,7 @@ void WorldMapView::InitMapCell(){
   else
     WorldMapViewDef::Get()->NORMAL_SCALE = WorldMapViewDef::Get()->NORMAL_SCALE_DEFAULT;
   _ContainerViewNode = GDisplay::Get()->NewNode();
-  this->addChild(_ContainerViewNode, static_cast<int32>(Z_ORDER::containerViewNode));
+  addChild(_ContainerViewNode, static_cast<int32>(Z_ORDER::containerViewNode));
   _ContainerView = ui::Layout::create();
   _ContainerView->setName("containerView");
   InitTmx();
@@ -87,7 +88,7 @@ void WorldMapView::InitMapCell(){
   InitScrollView();
   //_TmxView->setPosition(_CurrentInMapViewCell->getPosition());
   auto _TmxViewSize = _TmxView->getContentSize();
-  _TmxView->setPosition(Vec2(-_TmxViewSize.width/2, -_TmxViewSize.height/2)); 
+  _TmxView->setPosition(Vec2(0, 0)); 
 }
 
 void WorldMapView::InitTmx(){
@@ -108,13 +109,13 @@ void WorldMapView::InitTmx(){
     //   end
   }
   
-  
   _TmxView = XTiledMap::create(_Config._TileMapTmx);
   _TmxView->setName("tileMapTmx");
   _TmxView->setIgnoreAnchorPointForPosition(false);
   _TmxView->setAnchorPoint(Vec2(0.5f, 0.5f));
   _TmxView->setCascadeOpacityEnabled(true);
   _TmxView->setCascadeColorEnabled(true);
+
   if(_MapClassType == EKingdomClassType::Radiance){
     //   local worldMapComTmx = include("worldMapComTmx")
     //   local mapLayer = tmxview:getLayer("desert")
@@ -203,14 +204,28 @@ void WorldMapView::InitScrollView(){
   //   self.viewScrollView:setScrollAcceleration(-3)
   // end
   _ViewScrollView->setPosition(Vec2(0, 0));
-  this->addChild(_ViewScrollView, static_cast<int32>(Z_ORDER::scrollView));
+  addChild(_ViewScrollView, static_cast<int32>(Z_ORDER::scrollView) + 10);
   InitScrollDid();
 }
 
-void WorldMapView::InitScrollDid(){
+void WorldMapView::scrollViewDidScroll(Ext::ScrollView* view){
+  _IsNeedRefreshScroll++;
+  CCLOG("scrollViewDidScroll");
+}
 
+void WorldMapView::scrollViewDidZoom(Ext::ScrollView* view){
+  CCLOG("scrollViewDidZoom");
+}
+
+void WorldMapView::InitScrollDid(){
+  _ViewScrollView->setDelegate(this);
 }
 
 float WorldMapView::GetBottomQuestBtnsOffsetY(){
   return 0.0f;
 }
+
+WorldMapCell *WorldMapView::CreateOneMapCell(){
+  return WorldMapCell::create(); 
+}
+
