@@ -7,6 +7,7 @@
 #include "Module/UI/UIBasePanel.h"
 #include "Module/UI/UICCSView.h"
 #include "Module/Building/Building.Enum.h"
+#include "Scene/Scene.Type.h"
 #include "CityScene.Create.h"
 #include "CityFloor.h"
 
@@ -16,14 +17,6 @@ class UISystemNoticeView;
 class UIIphoneXTop;
 class UIIphoneXBottom;
 class UIWorldMapFaceToDistance;
-
-struct RShowMainCityView{
-  bool isJudgeCurScene = false;
-  EScene ViewType = EScene::None;
-  bool isFromLogin = false;
-  bool isFactionSwitch = false;
-  RViewOtherData OtherData;
-};
 
 class MainCityView : public UIBasePanel, public MainCityCreate, public CityFloor
 {

@@ -1,7 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Include/IncludeEngine.h"
-#include "renderer/backend/Device.h"
 
 enum class EUniformType{
   Node,
@@ -28,10 +27,10 @@ struct RMeshNodeShader{
 struct RMeshNodeShaderCfg{
   EUniformType Attr;
   GString TexPath = "";
-  Texture2D Texture;
+  Texture2D *Texture;
   GString UnifromName = "";
   bool hasMipmap = false;
-  backend::SamplerDescriptor TexParam;
+  Texture2D::TexParams TexParam;
   bool texForce = false;
   float FloatValue = 0.0f;
   GVector<float> FloatVec;
@@ -49,6 +48,6 @@ struct RMeshNodeParm{
 namespace GBase{
   Mesh *DCreateMeshNode(const RMeshNodeParm &p_MeshData, Mesh *p_Node = nullptr);
   void DSetProgramStateParam(
-    backend::Program *p_Program, backend::ProgramState *p_State,
+    GLProgram *p_Program, GLProgramState *p_State,
     const GVector<RMeshNodeShaderCfg> &p_ShaderParam, Mesh *p_Mesh = nullptr);
 };

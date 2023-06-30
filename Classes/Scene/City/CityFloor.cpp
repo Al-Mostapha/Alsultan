@@ -132,30 +132,30 @@ void CityFloor::InitBufferNodeArray() {
     auto l_ChildName = l_Child->getName();
     AddToBufferNodeArrayByName(l_ChildName.c_str(), l_Child);
   }
-  for (auto i = 0; i < 18; i++) {
-    auto l_bg_hallName = StringUtils::format("BG_hall__%02d_2", i);
-    // TODO: Check for type of node on cocos studio
-    auto l_bghallItem = dynamic_cast<Sprite*>(GetBufferNodeByName(l_bg_hallName.c_str()));
-    if (l_bghallItem) {
-      auto l_texture = l_bghallItem->getTexture();
-      if (l_texture->hasMipmaps()) {
-        // TODO: Check if the name is right
-        Texture2D::TexParams l_texParams;  //= {GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR_MIPMAP_NEAREST, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE};
-        l_texParams.magFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.minFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.sAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
-        l_texParams.tAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
-        l_texture->setTexParameters(l_texParams);
-      } else {
-        Texture2D::TexParams l_texParams;
-        l_texParams.magFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.minFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.sAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
-        l_texParams.tAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
-        l_texture->setTexParameters(l_texParams);
-      }
-    }
-  }
+  // for (auto i = 0; i < 18; i++) {
+  //   auto l_bg_hallName = StringUtils::format("BG_hall__%02d_2", i);
+  //   // TODO: Check for type of node on cocos studio
+  //   auto l_bghallItem = dynamic_cast<Sprite*>(GetBufferNodeByName(l_bg_hallName.c_str()));
+  //   if (l_bghallItem) {
+  //     auto l_texture = l_bghallItem->getTexture();
+  //     if (l_texture->hasMipmaps()) {
+  //       // TODO: Check if the name is right
+  //       Texture2D::TexParams l_texParams;  //= {GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR_MIPMAP_NEAREST, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE};
+  //       l_texParams.magFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
+  //       l_texParams.minFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
+  //       l_texParams.sAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
+  //       l_texParams.tAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
+  //       l_texture->setTexParameters(l_texParams);
+  //     } else {
+  //       Texture2D::TexParams l_texParams;
+  //       l_texParams.magFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
+  //       l_texParams.minFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
+  //       l_texParams.sAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
+  //       l_texParams.tAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
+  //       l_texture->setTexParameters(l_texParams);
+  //     }
+  //   }
+  // }
   auto l_NewCityBgNode = GetBufferNodeByName("CCS_mainCityViewBG_bg")->getChildren().at(0);
   // if (l_NewCityBgNode) {
   //   auto l_ArrChild = l_NewCityBgNode->getChildren();

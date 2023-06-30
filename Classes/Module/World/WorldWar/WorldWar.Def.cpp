@@ -13,3 +13,7 @@ GString WorldMapWarDef::GetKingdomClassTips(EKingdomClassType type, int32 p_IdKi
 EKingdomClassType WorldMapWarDef::GetKingdomMapClassByKingdomId(int32 p_IdKingdom){
   return EKingdomClassType::Normal;
 };
+
+bool WorldMapWarDef::IsInWarForbidBonePoing(EKingdomClassType p_MapType){
+  return false;
+}

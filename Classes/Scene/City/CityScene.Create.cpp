@@ -424,17 +424,17 @@ void MainCityCreate::InitBufferNodeArray() {
       if (l_texture->hasMipmaps()) {
         // TODO: Check if the name is right
         Texture2D::TexParams l_texParams;  //= {GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR_MIPMAP_NEAREST, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE};
-        l_texParams.magFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.minFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.sAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
-        l_texParams.tAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
+        l_texParams.magFilter = GL_LINEAR_MIPMAP_NEAREST;
+        l_texParams.minFilter = GL_LINEAR_MIPMAP_NEAREST;
+        l_texParams.wrapS = GL_CLAMP_TO_EDGE;
+        l_texParams.wrapT = GL_CLAMP_TO_EDGE;
         l_texture->setTexParameters(l_texParams);
       } else {
         Texture2D::TexParams l_texParams;
-        l_texParams.magFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.minFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.sAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
-        l_texParams.tAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
+        l_texParams.magFilter = GL_LINEAR_MIPMAP_NEAREST;
+        l_texParams.minFilter = GL_LINEAR_MIPMAP_NEAREST;
+        l_texParams.wrapS = GL_CLAMP_TO_EDGE;
+        l_texParams.wrapT = GL_CLAMP_TO_EDGE;
         l_texture->setTexParameters(l_texParams);
       }
     }
@@ -447,17 +447,17 @@ void MainCityCreate::InitBufferNodeArray() {
       auto l_texture = l_OneChild->getTexture();
       if (l_texture->hasMipmaps()) {
         Texture2D::TexParams l_texParams;  //= {GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR_MIPMAP_NEAREST, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE};
-        l_texParams.magFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.minFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.sAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
-        l_texParams.tAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
+        l_texParams.magFilter = GL_LINEAR_MIPMAP_NEAREST;
+        l_texParams.minFilter = GL_LINEAR_MIPMAP_NEAREST;
+        l_texParams.wrapS = GL_CLAMP_TO_EDGE;
+        l_texParams.wrapT = GL_CLAMP_TO_EDGE;
         l_texture->setTexParameters(l_texParams);
       } else {
         Texture2D::TexParams l_texParams;
-        l_texParams.magFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.minFilter = backend::SamplerFilter::LINEAR_MIPMAP_NEAREST;
-        l_texParams.sAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
-        l_texParams.tAddressMode = backend::SamplerAddressMode::CLAMP_TO_EDGE;
+        l_texParams.magFilter = GL_LINEAR_MIPMAP_NEAREST;
+        l_texParams.minFilter = GL_LINEAR_MIPMAP_NEAREST;
+        l_texParams.wrapS = GL_CLAMP_TO_EDGE;
+        l_texParams.wrapT = GL_CLAMP_TO_EDGE;
         l_texture->setTexParameters(l_texParams);
       }
     }

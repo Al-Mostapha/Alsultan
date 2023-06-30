@@ -1,4 +1,5 @@
 #include "Timer.Mgr.h"
+#include "Engine/Base/XScheduler.h"
 
 bool GBase::DManagerFindTimerByTarget(const GString &p_Target){
   // function SoraDManagerFindTimerByTarget(target)
@@ -30,4 +31,15 @@ void GBase::DManagerAddTimer(const GString &p_Id){
   //   SoraDTimerManager[target] = timerArray
   // end
   // timerArray[#timerArray + 1] = timer
+}
+
+
+
+int32 GBase::DCreateDelayTimer(Node *p_Target, const std::function<void()> &p_Func, float p_Delay){
+  // local timeHandle = schedulerTime.performWithDelayGlobal(function()
+  //   timeCall()
+  // end, delay)
+  // SoraDManagerAddTimer(target, timeHandle)
+  // return timeHandle
+  return 0;
 }

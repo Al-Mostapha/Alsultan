@@ -4,29 +4,29 @@
 namespace GBase{
 
   Mesh *DCreateMeshNode(const RMeshNodeParm &p_MeshData,Mesh *p_Node){
-      // if(!p_Node)
-      //   p_Node = Mesh::create();
-      auto l_MeshNode = Sprite3D::create("3d/box.c3b");
-      l_MeshNode->setContentSize(p_MeshData.size);
-      //p_Node->setContentSize(size)
-      backend::Program *l_Shader;
-      if(!p_MeshData.Shader.IsFile){
-        l_Shader = backend::Device::getInstance()->newProgram(p_MeshData.Shader.VertBytesCode.c_str(), p_MeshData.Shader.FragBytesCode.c_str());
-      }else{
-        auto vertSource = FileUtils::getInstance()->getStringFromFile(p_MeshData.Shader.VertPath.c_str());
-        auto fragSourceRaw = FileUtils::getInstance()->getStringFromFile(p_MeshData.Shader.FragPath.c_str());
-        l_Shader = backend::Device::getInstance()->newProgram(p_MeshData.Shader.VertBytesCode.c_str(), p_MeshData.Shader.FragBytesCode.c_str());
-      }
-      CCASSERT(l_Shader, "SoraDCreateMeshNode shader is null !");
-      // local state = cc.GLProgramState:create(shader)
-      auto l_State = new backend::ProgramState(l_Shader);
-      // meshNode:setGLProgramState(state)
-      p_Node->setProgramState(l_State);
+      // // if(!p_Node)
+      // //   p_Node = Mesh::create();
+      // auto l_MeshNode = Sprite3D::create("3d/box.c3b");
+      // l_MeshNode->setContentSize(p_MeshData.size);
+      // //p_Node->setContentSize(size)
+      // backend::Program *l_Shader;
+      // if(!p_MeshData.Shader.IsFile){
+      //   l_Shader = backend::Device::getInstance()->newProgram(p_MeshData.Shader.VertBytesCode.c_str(), p_MeshData.Shader.FragBytesCode.c_str());
+      // }else{
+      //   auto vertSource = FileUtils::getInstance()->getStringFromFile(p_MeshData.Shader.VertPath.c_str());
+      //   auto fragSourceRaw = FileUtils::getInstance()->getStringFromFile(p_MeshData.Shader.FragPath.c_str());
+      //   l_Shader = backend::Device::getInstance()->newProgram(p_MeshData.Shader.VertBytesCode.c_str(), p_MeshData.Shader.FragBytesCode.c_str());
+      // }
+      // CCASSERT(l_Shader, "SoraDCreateMeshNode shader is null !");
+      // // local state = cc.GLProgramState:create(shader)
+      // auto l_State = new backend::ProgramState(l_Shader);
+      // // meshNode:setGLProgramState(state)
+      // p_Node->setProgramState(l_State);
 
-      // local sharedTextureCache = cc.Director:getInstance():getTextureCache()
-      auto l_SharedTextureCache = Director::getInstance()->getTextureCache();
-      // SoraDSetProgramStateParam(shader, state, param)
-      DSetProgramStateParam(l_Shader, l_State, p_MeshData.Param);
+      // // local sharedTextureCache = cc.Director:getInstance():getTextureCache()
+      // auto l_SharedTextureCache = Director::getInstance()->getTextureCache();
+      // // SoraDSetProgramStateParam(shader, state, param)
+      // DSetProgramStateParam(l_Shader, l_State, p_MeshData.Param);
       // if mesh.is3d then
       //   meshNode:setIs3D(true)
       // end
@@ -45,7 +45,7 @@ namespace GBase{
   }
 
 
-  void DSetProgramStateParam(backend::Program *p_Program, backend::ProgramState *p_State, const GVector<RMeshNodeShaderCfg> &p_Param, Mesh *p_Mesh){
+  void DSetProgramStateParam(GLProgram *p_Program, GLProgramState *p_State, const GVector<RMeshNodeShaderCfg> &p_Param, Mesh *p_Mesh){
 
     for(auto l_OneParam : p_Param){
       if(l_OneParam.Attr == EUniformType::Texture){
@@ -55,21 +55,17 @@ namespace GBase{
           if(l_OneParam.hasMipmap && !l_Texture->hasMipmaps()){
             l_Texture->generateMipmap();
           }
-          p_State->setTexture(
-            p_Program->getUniformLocation(l_OneParam.UnifromName.c_str()),
-            0, l_Texture->getBackendTexture());
+          p_State->setUniformTexture(l_OneParam.UnifromName.c_str(), l_Texture);
           auto l_Size = l_Texture->getContentSize();
           if(l_Size.height == l_Size.width && ((int)l_Size.height & (int)(l_Size.height - 1)) == 0 || l_OneParam.texForce){
             l_Texture->setTexParameters(l_OneParam.TexParam);
           }
         }
       }else if(l_OneParam.Attr == EUniformType::HashTexture){
-          if(l_OneParam.hasMipmap && !l_OneParam.Texture.hasMipmaps()){
-            l_OneParam.Texture.generateMipmap();
+          if(l_OneParam.hasMipmap && !l_OneParam.Texture->hasMipmaps()){
+            l_OneParam.Texture->generateMipmap();
           }
-          p_State->setTexture(
-            p_Program->getUniformLocation(l_OneParam.UnifromName.c_str()),
-            0, l_OneParam.Texture.getBackendTexture());
+          p_State->setUniformTexture(l_OneParam.UnifromName, l_OneParam.Texture);
         }else if(l_OneParam.Attr == EUniformType::MeshTexture){
           if(!p_Mesh) return;
           auto l_Tex = p_Mesh->getTexture()->getPath();
@@ -82,19 +78,19 @@ namespace GBase{
           DSetProgramStateParam(p_Program, p_State, {l_NewParam});
         }else if(l_OneParam.Attr == EUniformType::Float){
           auto l_Unifrom = p_Program->getUniformLocation(l_OneParam.UnifromName.c_str());
-          p_State->setUniform(l_Unifrom, &l_OneParam.FloatValue, sizeof(l_OneParam.FloatValue));
+          p_State->setUniformFloat(l_Unifrom, l_OneParam.FloatValue);
         }else if(l_OneParam.Attr == EUniformType::FloatVector){
           auto l_Unifrom = p_Program->getUniformLocation(l_OneParam.UnifromName.c_str());
-          p_State->setUniform(l_Unifrom, &l_OneParam.FloatVec, l_OneParam.FloatVec.size());
+          p_State->setUniformFloatv(l_Unifrom, l_OneParam.FloatVec.size(), l_OneParam.FloatVec.data());
         }else if(l_OneParam.Attr == EUniformType::Vec2){
           auto l_Unifrom = p_Program->getUniformLocation(l_OneParam.UnifromName.c_str());
-          p_State->setUniform(l_Unifrom, &l_OneParam.Vec2Value, sizeof(l_OneParam.Vec2Value));
+          p_State->setUniformVec2(l_Unifrom, l_OneParam.Vec2Value);
         }else if(l_OneParam.Attr == EUniformType::Vec3){
           auto l_Unifrom = p_Program->getUniformLocation(l_OneParam.UnifromName.c_str());
-          p_State->setUniform(l_Unifrom, &l_OneParam.Vec2Value, sizeof(l_OneParam.Vec3Value));
+          p_State->setUniformVec3(l_Unifrom, l_OneParam.Vec3Value);
         }else if(l_OneParam.Attr == EUniformType::Vec4){
           auto l_Unifrom = p_Program->getUniformLocation(l_OneParam.UnifromName.c_str());
-          p_State->setUniform(l_Unifrom, &l_OneParam.Vec4Value, sizeof(l_OneParam.Vec4Value));
+          p_State->setUniformVec4(l_Unifrom, l_OneParam.Vec4Value);
         }else if(l_OneParam.Attr == EUniformType::Function){
           //     if program:getUniform(v.name) then
           //       programState[v.value.setFun](programState, program:getUniform(v.name).location, v.value.paramFun())

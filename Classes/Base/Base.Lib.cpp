@@ -21,7 +21,9 @@ int32 PlaySound() {
     return -1;
 }
 int32 PlaySound(const char* p_SoundName, bool p_IsLoop, float p_delay) {
-  Sequence::create(DelayTime::create(p_delay), CallFunc::create([=]() { AudioEngine::play2d(p_SoundName, p_IsLoop); }), nullptr);
+  Sequence::create(DelayTime::create(p_delay), CallFunc::create([=]() { 
+    //AudioEngine::play2d(p_SoundName, p_IsLoop); 
+    }), nullptr);
     return -1;
 }
 
@@ -131,7 +133,7 @@ void DSendMessage(const char* p_EventId, void* p_Data) {
   }
 }
 bool DIsGameGuide() { return false; }
-Scheduler* DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_Priority) { return nullptr; }
+Scheduler* DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_PerFarme, int32 p_Priority) { return nullptr; }
 
 Scheduler* DCreateTimerEx(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, uint32 p_Time) { return nullptr; }
 
@@ -161,7 +163,7 @@ RenderTexture* DCreateScreenShot(bool p_IsBlur) {
   auto l_Width = GDisplay::Get()->size().width;
   auto l_Height = GDisplay::Get()->size().height;
   // TODO: 35056
-  auto l_RenderTexture = RenderTexture::create((int32)l_Width, (int32)l_Height, PixelFormat::RGBA8888 /*,35056*/);
+  auto l_RenderTexture = RenderTexture::create((int32)l_Width, (int32)l_Height, Texture2D::PixelFormat::RGBA8888 /*,35056*/);
   // renderTexture:setKeepMatrix(true)
   l_RenderTexture->begin();
   l_RenderTexture->setKeepMatrix(true);
@@ -228,9 +230,9 @@ bool DIsBrave8Level() { return false; }
 void DMixtureGLONE(Sprite* p_Node) {
   if(!p_Node) return;
   if(p_Node->isOpacityModifyRGB()){
-    p_Node->setBlendFunc({backend::BlendFactor::ONE, backend::BlendFactor::ONE});
+    p_Node->setBlendFunc({GL_ONE, GL_ONE});
   }else{
-    p_Node->setBlendFunc({backend::BlendFactor::SRC_ALPHA, backend::BlendFactor::ONE});
+    p_Node->setBlendFunc({GL_SRC_ALPHA, GL_ONE});
   }
 }
 
@@ -247,6 +249,11 @@ void DCloseLoading(Node* p_Parent, const char* p_Mark, bool p_All) {
     l_PreLoading = GBase::DGetChildByName<Node*>(p_Parent, "commonLoading");
     if (l_PreLoading) l_PreLoading->removeFromParent();
   }
+}
+
+Node *DGetLoading(Node* p_Parent){
+  if(!p_Parent) p_Parent = Director::getInstance()->getRunningScene();
+  return p_Parent->getChildByName("commonLoading");
 }
 
 bool DPostCheckMaintain(int32 p_KingdomId, GTime p_Time) { return false; }

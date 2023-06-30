@@ -17,6 +17,7 @@ namespace GBase{
   Vec2 DFPoint(double p_X, double p_Y, double p_Target);
   float DFPosX(float p_X, float p_Target);
   float DFPosX(float p_X, Node *p_Target);
+  float DFPosX(float p_X);
   ELayoutAlignment DGetLayoutAlignment();
   float DAlignNodeArray(GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding = {});
   void DAlignNodeArray(GVector<Node *> p_Nodes, bool p_IsRA, float p_padding);
@@ -25,4 +26,5 @@ namespace GBase{
   void DToCenter(Node *p_Node);
   TextHAlignment DFLabelR();
   void DAutoSizeButtonText(ui::Button *p_Btn, Size p_Size = Size::ZERO);
+  bool DIsPointInPolygon(const GVector<Vec2> &p_Polygon, Vec2 p_Point);
 };

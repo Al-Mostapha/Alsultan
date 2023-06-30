@@ -4,6 +4,7 @@ Copyright (c) 2010      Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -25,22 +26,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
-#include "XTiledObjectGroup.h"
+#include "XTileObjectGroup.h"
 #include "base/ccMacros.h"
 
-//implementation TMXObjectGroup
 
-XTiledObjectGroup::XTiledObjectGroup()
+XTileObjectGroup::XTileObjectGroup()
     : _groupName("")
 {
 }
 
-XTiledObjectGroup::~XTiledObjectGroup()
+XTileObjectGroup::~XTileObjectGroup()
 {
-    CCLOGINFO("deallocing TMXObjectGroup: %p", this);
+    CCLOGINFO("deallocing XTileObjectGroup: %p", this);
 }
 
-ValueMap XTiledObjectGroup::getObject(const std::string& objectName) const
+ValueMap XTileObjectGroup::getObject(const std::string& objectName) const
 {
     if (!_objects.empty())
     {
@@ -59,11 +59,10 @@ ValueMap XTiledObjectGroup::getObject(const std::string& objectName) const
     return ValueMap();
 }
 
-Value XTiledObjectGroup::getProperty(const std::string& propertyName) const
+Value XTileObjectGroup::getProperty(const std::string& propertyName) const
 {
     if (_properties.find(propertyName) != _properties.end())
         return _properties.at(propertyName);
 
     return Value();
 }
-

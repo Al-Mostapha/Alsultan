@@ -22,7 +22,7 @@ struct RLordBaseInfo {
     // rs.expUpper = expUpper
     // rs.imageId = imageId
     // rs.avatar = avatar
-    // rs.nickName = nickName
+  GString _NickName ;
     // rs.totalFc = totalFc
     // rs.partition = partition
     // rs.gold = gold

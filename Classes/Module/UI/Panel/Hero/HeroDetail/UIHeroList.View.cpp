@@ -179,7 +179,7 @@ void UIHeroListView::PrepareScrollData(bool p_NoJump){
     l_TotalH -= 40;
     for(auto iii = 0; iii < _HaveHeros.size(); iii++){
       auto v = _HaveHeros[iii];
-      _TableSingle.push_back(GPair{v, Vec2((iii % l_LineNum) * 210 + 110, l_TotalH)});
+      _TableSingle.push_back(GPair(v, Vec2((iii % l_LineNum) * 210 + 110, l_TotalH)));
       if(iii > 1 && iii % l_LineNum == 0){
         l_TotalH -= 280;
       }

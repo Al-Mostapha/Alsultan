@@ -57,3 +57,27 @@ void WorldMapViewObject::CallComFuncInit(){
     l_Iter->Init();
   }
 }
+
+void WorldMapViewObject::CallComFuncRelogin(){
+  for(auto l_Iter : _Components){
+    l_Iter->Relogin();
+  }
+}
+
+void WorldMapViewObject::CallComFuncOnMessageListener(){
+  for(auto l_Iter : _Components){
+    l_Iter->OnMessageListener();
+  }
+}
+
+void WorldMapViewObject::CallComFuncDoRequest(){
+  for(auto l_Iter : _Components){
+    l_Iter->DoRequest();
+  }
+}
+
+void WorldMapViewObject::CallComFuncDoClearData(){
+  for(auto l_Iter : _Components){
+    l_Iter->DClearData();
+  }
+}

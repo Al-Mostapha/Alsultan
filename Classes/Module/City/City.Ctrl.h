@@ -12,6 +12,7 @@ public:
   static CityCtrl *Get();
   void AddCity(Guid p_IdCity, CityCell *p_CityCell);
   CityCell *GetCurCity();
+  Vec2 GetCurCityPos(){ return Vec2::ZERO ;}
   
   GString GetBuildStarLight(uint32 p_StarLvl) { return "" ;}
   uint32 GetBuildStarColor(uint32 p_StarLvl) { return 0 ;}

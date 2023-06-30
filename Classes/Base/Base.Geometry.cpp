@@ -32,9 +32,13 @@ namespace GBase {
     return p_X;
   }
 
+  float DFPosX(float p_X){
+    return DFPosX(p_X, 0.f);
+  }
+
   float DFPosX(float p_X, Node *p_Target){
     float l_SizeW = 0;
-    if(p_Target->getParent())
+    if(p_Target && p_Target->getParent())
       l_SizeW = p_Target->getParent()->getContentSize().width;
     else 
       l_SizeW = 640;
@@ -197,4 +201,21 @@ void GBase::DAutoSizeButtonText(ui::Button *p_Btn, Size p_Size){
   l_Txt->setVerticalAlignment(TextVAlignment::CENTER);
   l_Txt->setVerticalAlignment(TextVAlignment::CENTER);
   p_Btn->setTitleText(p_Btn->getTitleText());
+}
+
+bool GBase::DIsPointInPolygon(const GVector<Vec2> &p_Polygon, Vec2 p_Point){
+  // local lineArray = {}
+  // local targetPoint = cc.pMidpoint(polygonPtArray[1], polygonPtArray[3])
+  // for i = 1, #polygonPtArray do
+  //   local point1 = polygonPtArray[i]
+  //   local point2 = polygonPtArray[1]
+  //   if i < #polygonPtArray then
+  //     point2 = polygonPtArray[i + 1]
+  //   end
+  //   if cc.pIsSegmentIntersect(point1, point2, touchPoint, targetPoint) then
+  //     return false
+  //   end
+  // end
+  // return true
+  return true;
 }

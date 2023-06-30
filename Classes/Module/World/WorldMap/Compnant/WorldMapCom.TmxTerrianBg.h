@@ -2,7 +2,6 @@
 #include "IWorldMap.Com.h"
 #include "Base/BaseTypeDef.h"
 #include "renderer/ccShaders.h"
-#include "renderer/backend/Device.h"
 #include "Module/World/WorldMap/WorldMap.Type.h"
 #include "Base/Containers/Pair.h"
 
@@ -18,8 +17,8 @@ class WorldMapComTmxTerrianBg : public IWorldMapCompnant
   private:
     RViewClass _Config;
     GString _TerrainDir = "tileMaps/commonMap/%s.%s";
-    int32 _TiledBgX = 0;
-    int32 _TiledBgY = 0;
+    float _TiledBgX = 0;
+    float _TiledBgY = 0;
     Vec4 _Resolution;
 
     Vec4 _TileInfo;
@@ -29,16 +28,35 @@ class WorldMapComTmxTerrianBg : public IWorldMapCompnant
   public:
     struct RTerrainCfg{
       Sprite *_TiledBg;
-      backend::ProgramState *_State;
-      backend::Program *_Shader;
+      GLProgramState *_State;
+      GLProgram *_Shader;
       bool _IsLow;
+      bool _IsValid = false;
+      operator bool(){
+        return _IsValid;
+      }
     };
     RTerrainCfg _NoramlCfg;
     RTerrainCfg _LowCfg;
     static WorldMapComTmxTerrianBg *Create(WorldMapView *p_Target);
-    void Init();
+
+    void Init() override;
+    void OnMessageListener() override;
+
     void Ctor();
     void InitMapTiledBg();
     GString GetTileControl(bool l_Lod = false);
     RTerrainCfg CreateTerrainBg(GPair<const char *, const char *> p_Shader, bool p_IsLow = false);
+
+
+    void UpdateTerrain(const RTerrainCfg &p_Cfg);
+
+    void UpdateMapPos(EventCustom *p_Event);
+    void UpdateScaleZoom(EventCustom *p_Event);
+    void UpdateLodChange(EventCustom *p_Event);
+
+    void UpdateTileVisible();
+    void Toggle3D();
+
+    GPair<int32, float> GetLodLevel(float p_Zoom);
 };

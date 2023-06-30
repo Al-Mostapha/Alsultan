@@ -10,28 +10,17 @@ void WorldMapViewMul::InitMapCell_imp(){
   _MapViewCellArray.clear();
   _MapViewPointArray.clear();
   _MapViewSwapPointArray.clear();
-  // local scaleH = 3 + (display.height - 960) / 426 * 0.3
   auto l_ScaleH = 3 + (GDisplay::Get()->height - 960) / 426 * 0.3;
-  // self.containerViewSize = cc.size(self.mapViewSize.width * 2, self.mapViewSize.height * scaleH)
   _ContainerViewSize = Size(_MapViewSize.width * 2, _MapViewSize.height * l_ScaleH);
-  // local halfViewWidth, halfViewHeight = self.containerViewSize.width / 2, self.containerViewSize.height / 2
   auto l_HalfViewWidth = _ContainerViewSize.width / 2;
   auto l_HalfViewHeight = _ContainerViewSize.height / 2;
-  // self.mapViewPointArray[1] = cc.p(halfViewWidth, halfViewHeight + self.mapViewSize.height / 2)
   _MapViewPointArray.push_back(Vec2(l_HalfViewWidth, l_HalfViewHeight + _MapViewSize.height / 2));
-  // self.mapViewPointArray[2] = cc.p(halfViewWidth - self.mapViewSize.width / 2, halfViewHeight)
   _MapViewPointArray.push_back(Vec2(l_HalfViewWidth - _MapViewSize.width / 2, l_HalfViewHeight));
-  // self.mapViewPointArray[3] = cc.p(halfViewWidth, halfViewHeight - self.mapViewSize.height / 2)
   _MapViewPointArray.push_back(Vec2(l_HalfViewWidth, l_HalfViewHeight - _MapViewSize.height / 2));
-  // self.mapViewPointArray[4] = cc.p(halfViewWidth + self.mapViewSize.width / 2, halfViewHeight)
   _MapViewPointArray.push_back(Vec2(l_HalfViewWidth + _MapViewSize.width / 2, l_HalfViewHeight));
-  // self.mapViewSwapPointArray[1] = cc.p(halfViewWidth, halfViewHeight + self.mapViewSize.height * RECT_PERCENT)
   _MapViewSwapPointArray.push_back(Vec2(l_HalfViewWidth, l_HalfViewHeight + _MapViewSize.height * l_RectPercent));
-  // self.mapViewSwapPointArray[2] = cc.p(halfViewWidth - self.mapViewSize.width * RECT_PERCENT, halfViewHeight)
   _MapViewSwapPointArray.push_back(Vec2(l_HalfViewWidth - _MapViewSize.width * l_RectPercent, l_HalfViewHeight));
-  // self.mapViewSwapPointArray[3] = cc.p(halfViewWidth, halfViewHeight - self.mapViewSize.height * RECT_PERCENT)
   _MapViewSwapPointArray.push_back(Vec2(l_HalfViewWidth, l_HalfViewHeight - _MapViewSize.height * l_RectPercent));
-  // self.mapViewSwapPointArray[4] = cc.p(halfViewWidth + self.mapViewSize.width * RECT_PERCENT, halfViewHeight)
   _MapViewSwapPointArray.push_back(Vec2(l_HalfViewWidth + _MapViewSize.width * l_RectPercent, l_HalfViewHeight));
 
   for(auto i = 0; i < _MapViewPointArray.size(); i++){
@@ -130,5 +119,25 @@ void WorldMapViewMul::SetMapcellKingdomID(int32 p_CellIndex){
   //   local kingdomID = kingdomPointDefine.getKingdomIDWithPoint(kingdomPoint, cellRegionId)
   //   self.mapViewCellArray[k]:setKingdomID(kingdomID, kingdomPoint, cellRegionId)
   // end
+}
+
+WorldMapCell *WorldMapViewMul::GetWorldMapCell(int32 p_KingdomID, bool create){
+  // local worldMapCell
+  // kingdomID = kingdomID or gametop.playertop_:getMapID()
+  // for _, v in pairs(self.mapViewCellArray) do
+  //   if kingdomID == v.kingdomID then
+  //     worldMapCell = v
+  //     break
+  //   end
+  // end
+  // if not worldMapCell and create then
+  //   self.preCenterPoint = nil
+  //   worldMapCell = self.mapViewCellArray[1]
+  //   worldMapCell:setKingdomID(kingdomID)
+  //   self:setMapcellKingdomID(1)
+  //   self:onSwapMapViewCell()
+  // end
+  // return worldMapCell
+  return nullptr;
 }
 

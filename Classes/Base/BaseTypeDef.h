@@ -7,6 +7,7 @@
 #include "cocos2d.h"
 #include "external/json/document.h"
 #include <time.h>
+#include <optional>
 
 
 typedef std::string GString;
@@ -40,6 +41,9 @@ template <class K>
 using GQueue = std::queue<K>;
 template <class K>
 using GFunc = std::function<K>;
+
+template <class K>
+using GOpt = std::optional<K>;
 
 enum class ENullBool{
   Null,

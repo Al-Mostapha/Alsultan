@@ -40,16 +40,6 @@ enum class ELodLayer {
   LOD_LAYER_NEBULA_4 = 11
 };
 
-
-enum class EWorldMapLayInstanceTypeDef {
-  LayInstanceNone = 0,
-  LayInstanceCity = 1,
-  LayInstanceAllianceResource = 2,
-  LayInstanceAllianceManor = 3,
-  LayInstanceBoss = 4,
-  LayInstanceFeast = 5
-};
-
 enum class EWorldMapZOrder {
   tmxView = -20,
   rolygonView = -18,
@@ -70,4 +60,14 @@ enum class EWorldMapZOrder {
   selectView = 10,
   otherTipView = 30,
   topTipView = 50
+};
+
+
+enum class EWorldMapLayInstance {
+  None = 0,
+  City = 1,
+  AllianceResource = 2,
+  AllianceManor = 3,
+  Boss = 4,
+  Feast = 5
 };

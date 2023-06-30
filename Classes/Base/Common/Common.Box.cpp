@@ -22,7 +22,7 @@ void GBase::DShowBuyBox(
 }
 
 
-Node *GBase::DShowLoading(Node *p_Parent, const Size &p_Size, 
+ui::Widget *GBase::DShowLoading(Node *p_Parent, const Size &p_Size, 
   int32 p_Mark, bool p_Transparent, GTime p_TimeOut, bool p_IsShadow){
   // if not parent or tolua.isnull(parent) then
   //   parent = display.getRunningScene()
@@ -37,7 +37,7 @@ Node *GBase::DShowLoading(Node *p_Parent, const Size &p_Size,
   // local newLoading = include("commonLoading").new(size)
   // newLoading:showLoading(parent, mark, isTransparent, timeOut, isShadow)
   // return newLoading
-  return Node::create();
+  return ui::Widget::create();
 }
 
 

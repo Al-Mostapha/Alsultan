@@ -62,3 +62,4 @@ struct RViewClass{
   GVector<RLodCfgScale> _LodCfgScale;
   GVector<RBorderLodScale> _BorderLodScale;
 };
+

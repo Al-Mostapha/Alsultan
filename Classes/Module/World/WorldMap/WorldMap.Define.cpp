@@ -52,6 +52,10 @@ bool WorldMapDefine::IsNebulaKingdomID(){
   return false;
 }
 
+bool WorldMapDefine::IsInNebula(){
+  return false;
+}
+
 bool WorldMapDefine::IsLegendLordKingdomID(){
   return false;
 }

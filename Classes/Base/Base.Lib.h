@@ -56,7 +56,7 @@ void DShowMsgTip(const GString& p_Message, const GString& p_Icon = "",  Node *p_
 GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
 GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building);
 
-Scheduler* DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_Priority = false);
+Scheduler* DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_PerFrame = false, int32 p_Priority = 0);
 Scheduler* DCreateTimerEx(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, uint32 p_Time = 0);
 bool DRemoveTimer(Node* p_Target, Scheduler* p_Scheduler);
 // this calld when player click on a building black smith
@@ -95,7 +95,8 @@ void DMixtureGLONE(Sprite* p_Node);
 void DRemoveMessageByTarget(Node* p_Node);
 void DRemoveMessageFromTargetByName(Node* p_Node, const char* p_EventId);
 
-void DCloseLoading(Node* p_Parent, const char* p_Mark = "", bool p_All = false);
+void DCloseLoading(Node* p_Parent = nullptr, const char* p_Mark = "", bool p_All = false);
+Node *DGetLoading(Node* p_Parent = nullptr);
 
 bool DPostCheckMaintain(int32 p_KingdomId = 0, GTime p_Time = GDateTime::Now());
 GString DFValueSuit(const GString& p_Value, const GString& p_Sign = "+");

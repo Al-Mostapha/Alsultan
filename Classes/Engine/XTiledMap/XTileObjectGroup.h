@@ -4,6 +4,7 @@ Copyright (c) 2010      Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -26,12 +27,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #pragma once
+
 #include "math/CCGeometry.h"
 #include "base/CCValue.h"
 #include "base/CCRef.h"
+
+
 USING_NS_CC;
-
-
 /**
  * @addtogroup _2d
  * @{
@@ -40,18 +42,18 @@ USING_NS_CC;
 /** @brief TMXObjectGroup represents the TMX object group.
  * @since v0.99.0
  */
-class CC_DLL XTiledObjectGroup : public Ref
+class CC_DLL XTileObjectGroup : public Ref
 {
 public:
     /**
      * @js ctor
      */
-    XTiledObjectGroup();
+    XTileObjectGroup();
     /**
      * @js NA
      * @lua NA
      */
-    virtual ~XTiledObjectGroup();
+    virtual ~XTileObjectGroup();
     
     /** Get the group name. 
      *
@@ -72,6 +74,8 @@ public:
      * @js NA
      */
     Value getProperty(const std::string& propertyName) const;
+    
+    CC_DEPRECATED_ATTRIBUTE Value propertyNamed(const std::string& propertyName) const { return getProperty(propertyName); };
 
     /** Return the dictionary for the specific object name.
      * It will return the 1st object found on the array for the given name.
@@ -79,6 +83,8 @@ public:
      * @return Return the dictionary for the specific object name.
      */
     ValueMap getObject(const std::string& objectName) const;
+    
+    CC_DEPRECATED_ATTRIBUTE ValueMap objectNamed(const std::string& objectName) const { return getObject(objectName); };
     
     /** Gets the offset position of child objects. 
      *
@@ -96,6 +102,7 @@ public:
      *
      * @return The list of properties stored in a dictionary.
      */
+    const ValueMap& getProperties() const { return _properties; }
     ValueMap& getProperties() { return _properties; }
     
     /** Sets the list of properties.
@@ -110,6 +117,7 @@ public:
      *
      * @return The array of the objects.
      */
+    const ValueVector& getObjects() const { return _objects; }
     ValueVector& getObjects() { return _objects; }
     
     /** Sets the array of the objects.
@@ -118,16 +126,6 @@ public:
      */
     void setObjects(const ValueVector& objects) {
         _objects = objects;
-    }
-    
-    unsigned char getOpacity() { return _opacity; }
-    void setOpacity(unsigned char opacity) {
-        _opacity = opacity;
-    }
-    
-    bool isVisible() { return _visible; }
-    void setVisible(bool visible) {
-        _visible = visible;
     }
     
 protected:
@@ -139,9 +137,5 @@ protected:
     ValueMap _properties;
     /** array of the objects */
     ValueVector _objects;
-    unsigned char _opacity;
-    bool _visible;
 };
 
-// end of tilemap_parallax_nodes group
-/** @} */

@@ -25,6 +25,7 @@ public:
   bool IsInRemains();
   bool IsInRadiance();
   bool IsInAtlantis();
+  bool IsInNebula();
   bool InInCrossWar();
   bool IsInKingdomBattle();
   bool IsInWarForbid(bool p_NoShowTips = false, bool p_Activity = false);
