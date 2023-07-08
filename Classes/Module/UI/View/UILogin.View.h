@@ -41,7 +41,7 @@ class UILoginView : public UIBasePanel
   bool      m_IsUpdateReload = false;
   bool      m_LoadImageFinish = false;
   bool      m_IsServerReturn = false;
-  Scheduler *m_TimerKey = nullptr;
+  GString m_TimerKey = nullptr;
   GHashMap<ELoginRangeTbl, RLoginRangeState> m_LoginRangeState;
   ELoginRangeTbl m_CurLoadingRange = ELoginRangeTbl::None;
   ui                ::Layout *n_MaskPregress = nullptr;

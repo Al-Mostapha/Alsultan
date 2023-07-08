@@ -19,7 +19,7 @@ struct GGlobal{
   }
   EMainUIStyle MainUIStyle = EMainUIStyle::None;
   int32 GAME_LOGIN_FAIL_COUNT = 0;
-  bool gEnableWorldMap3D;
+  GOpt<bool> gEnableWorldMap3D;
   Vec3 gWorldMapRotation3D = Vec3(-20, 0, 0);
   Vec3 gWorldMapRotation2D = Vec3(0, 0, 0);
   float gWorldMapRotation3D_X = -20;

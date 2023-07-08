@@ -2,6 +2,8 @@
 #include "Include/IncludeBase.h"
 #include "Include/IncludeEngine.h"
 
+typedef Sprite3D MeshNode;
+
 enum class EUniformType{
   Node,
   Texture,
@@ -17,10 +19,10 @@ enum class EUniformType{
 };
 
 struct RMeshNodeShader{
-  GString VertBytesCode;
-  GString VertPath;
-  GString FragBytesCode;
-  GString FragPath;
+  GOpt<GString> VertBytesCode;
+  GOpt<GString> VertPath;
+  GOpt<GString> FragBytesCode;
+  GOpt<GString> FragPath;
   bool IsFile = false;
 };
 
@@ -38,16 +40,30 @@ struct RMeshNodeShaderCfg{
   Vec3 Vec3Value;
   Vec4 Vec4Value;
 };
+
+struct RMeshData{
+  GVector<float> _Vertices;
+  GVector<unsigned short> _Triangles;
+  GVector<float> _Colors;
+  GVector<float> _TexCoords;
+  GVector<float> _Normals;
+  GVector<float> _UV;
+  bool _Is3D = false;
+};
+
 struct RMeshNodeParm{
-  RMeshNodeShader &Shader;
-  GVector<RMeshNodeShaderCfg> &Param;
+  RMeshData _Mesh;
+  RMeshNodeShader Shader;
+  GVector<RMeshNodeShaderCfg> Param;
   Size size;
+  GString _Defined;
 
 };
 
 namespace GBase{
-  Mesh *DCreateMeshNode(const RMeshNodeParm &p_MeshData, Mesh *p_Node = nullptr);
+  GTuple<MeshNode *, GLProgram *, GLProgramState *> 
+    DCreateMeshNode(const RMeshNodeParm &p_MeshData, MeshNode *p_Node = nullptr);
   void DSetProgramStateParam(
     GLProgram *p_Program, GLProgramState *p_State,
-    const GVector<RMeshNodeShaderCfg> &p_ShaderParam, Mesh *p_Mesh = nullptr);
+    const GVector<RMeshNodeShaderCfg> &p_ShaderParam, MeshNode *p_Mesh = nullptr);
 };

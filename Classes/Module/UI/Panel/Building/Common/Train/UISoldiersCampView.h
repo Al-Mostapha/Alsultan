@@ -39,9 +39,9 @@ public:
   GVector<UIBuildCreateResBuySingle *> _TableResSingle;
   // self.trianQueue = nil
   ITask *_TrainQueue= nullptr;
-  Scheduler *_Timer = nullptr;
-  Scheduler *_LuckyTimer = nullptr;
-  Scheduler *_LuckyBlessTimer = nullptr;
+  GString _Timer;
+  GString _LuckyTimer;
+  GString _LuckyBlessTimer;
   bool _LuckyBlessIsOpen = false;
   int32 _ResCostGold = 0;
   int32 _TrainGold = 0;  

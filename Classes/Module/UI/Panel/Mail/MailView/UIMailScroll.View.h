@@ -27,7 +27,7 @@ class UIMailScrollView : public UIBaseView
   ui::ScrollView *_ScrollView = nullptr;
   ui::Text *_LabelNotice = nullptr;
   Sprite *_LoadingSprite = nullptr;
-  Scheduler *_TimeHandler = nullptr;
+  GString _TimeHandler;
 
 public: 
   static UIMailScrollView* Create();

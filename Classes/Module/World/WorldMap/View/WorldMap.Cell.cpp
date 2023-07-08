@@ -6,7 +6,11 @@
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "WorldMap.View.h"
 #include "Base/Utils/Utils3D.h"
+#include "Module/UI/Panel/World/WorldMap/Floor/UIWorldMap.Tip.h"
+#include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
+#include "Module/World/WorldMap/Instance/WorldMapTilePolygon.h"
 
+typedef EWorldMapZOrder Z_ORDER;
 
 WorldMapCell *WorldMapCell::Create(WorldMapView *p_MapView){
   WorldMapCell *l_Cell = WorldMapCell::create();
@@ -58,7 +62,7 @@ void WorldMapCell::ViewOnClick(Ref* p_Target, ui::Widget::TouchEventType p_Event
   auto l_TouchPoint = getTouchBeganPosition();
   Vec2 l_CovertPoint;
 
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     auto l_CovertPointTemp = GBase::ConvertTouchToNodeSpace3D(this, l_TouchPoint);
     l_CovertPoint.x = l_CovertPointTemp.value().x;
     l_CovertPoint.y = l_CovertPointTemp.value().y;
@@ -68,7 +72,7 @@ void WorldMapCell::ViewOnClick(Ref* p_Target, ui::Widget::TouchEventType p_Event
 
   auto l_IsInTouch = GBase::DIsPointInPolygon(l_PointArray, l_CovertPoint);
   if(l_IsInTouch && _TouchPlayerCallFun){
-    if(GGlobal::Get()->gEnableWorldMap3D && p_Event == ui::Widget::TouchEventType::ENDED && _DrawNode){
+    if(GGlobal::Get()->gEnableWorldMap3D.value() && p_Event == ui::Widget::TouchEventType::ENDED && _DrawNode){
       _DrawNode->setPosition(l_CovertPoint);
       _DrawNode->setVisible(true);
     }
@@ -107,7 +111,7 @@ int32 WorldMapCell::GetRegionID() const {
 
 Vec2 WorldMapCell::TilePositionFromLocation(Vec2 p_Location, bool p_OutSize){ 
   Vec4 l_Pos;
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     l_Pos = GBase::ConvertTouchToNodeSpace3D(this, p_Location).value();
   }else{
     auto l_2DPos = convertToNodeSpace(p_Location);
@@ -159,7 +163,7 @@ Vec2 WorldMapCell::GetPointWithTile(Vec2 p_TilePoint, int32 p_HoldInstance){
   return l_Point;
 }
 
-void WorldMapCell::OnClickMap(Node *p_TileInstance, Vec2 p_TilePos, Node *p_OnShowView ){
+UIWorldMapTip *WorldMapCell::OnClickMap(Node *p_TileInstance, Vec2 p_TilePos, Node *p_OnShowView ){
   auto l_IsCanZhanling = true;
   auto l_IsCanQiancheng = true;
   auto l_FavoriteName = Translate::i18n("common_text_491");
@@ -195,41 +199,82 @@ void WorldMapCell::OnClickMap(Node *p_TileInstance, Vec2 p_TilePos, Node *p_OnSh
 
   GBase::PlaySound("worldmap", l_SoundID);
   auto l_ShowPoint = GetPointWithTile(p_TilePos);
-  // local screenPoint = SoraDConvertoScreenPos2DOr3D(self, showPoint)
   auto l_ScreenPoint = GBase::DConvertoScreenPos2DOr3D(this, {l_ShowPoint.x, l_ShowPoint.y, 0}).value();
-  // local coverShowPoint = onShowView:convertToNodeSpace(screenPoint)
   auto l_CoverShowPoint = p_OnShowView->convertToNodeSpace({l_ScreenPoint.x, l_ScreenPoint.y});
-  // local selectShowPanel = include("worldMapTip").new(self.kingdomID)
-  // selectShowPanel:setTilePoint(tilePos)
-  // selectShowPanel:setWorldMapCell(self)
-  // selectShowPanel:setFavoriteName(favoriteName)
-  // if worldMapDefine.isInRemains() then
-  //   local remainsWarUtil = include("remainsWarUtil")
-  //   isCanZhanling = not remainsWarUtil.checkIsInForbidAreaZhanling(tilePos)
-  // elseif isCanZhanling and worldMapDefine.isInRadiance() then
-  //   do
-  //     local radianceWarUtil = include("radianceWarUtil")
-  //     isCanZhanling = radianceWarUtil.isInSelfLeagueManor(tilePos)
-  //     if not isCanZhanling then
-  //       function msgTipsKey()
-  //         radianceWarUtil.showGuildToBuild(tilePos)
-  //       end
-  //     end
-  //   end
-  // elseif isCanZhanling and worldMapDefine.isInNebula() then
-  //   local nebulaWarUtil = include("nebulaWarUtil")
-  //   isCanZhanling, msgTipsKey = nebulaWarUtil.checkIsCanZhanling(tilePos)
-  // end
-  // if not isCanZhanling and not msgTipsKey then
-  //   msgTipsKey = i18n("common_text_485")
-  // end
-  // print(isCanZhanling, "isCanZhanling")
-  // selectShowPanel:setIsCanZhanling(isCanZhanling, msgTipsKey)
-  // selectShowPanel:initMapData(tileInstance)
-  // selectShowPanel:setPosition(coverShowPoint)
-  // selectShowPanel:addTo(onShowView, Z_ORDER.selectView)
-  // return selectShowPanel
+  auto l_SelectShowPanel = UIWorldMapTip::Create(_KingdomID);
+  l_SelectShowPanel->SetTilePoint(p_TilePos);
+  l_SelectShowPanel->SetWorldMapCell(this);
+  l_SelectShowPanel->SetFavoriteName(l_FavoriteName);
+  if(WorldMapDefine::Get()->IsInRemains()){
+    //   local remainsWarUtil = include("remainsWarUtil")
+    //   isCanZhanling = not remainsWarUtil.checkIsInForbidAreaZhanling(tilePos)
+  } else if(l_IsCanZhanling && WorldMapDefine::Get()->IsInRadiance()){
+    //   do
+    //     local radianceWarUtil = include("radianceWarUtil")
+    //     isCanZhanling = radianceWarUtil.isInSelfLeagueManor(tilePos)
+    //     if not isCanZhanling then
+    //       function msgTipsKey()
+    //         radianceWarUtil.showGuildToBuild(tilePos)
+    //       end
+    //     end
+    //   end
+  } else if(l_IsCanZhanling && WorldMapDefine::Get()->IsInNebula()){
+    //   local nebulaWarUtil = include("nebulaWarUtil")
+    //   isCanZhanling, msgTipsKey = nebulaWarUtil.checkIsCanZhanling(tilePos)
+  }
+  if(!l_IsCanZhanling && l_MsgTipsKey.empty())
+    l_MsgTipsKey = Translate::i18n("common_text_485");
+  l_SelectShowPanel->SetIsCanZhanling(l_IsCanZhanling, l_MsgTipsKey);
+  l_SelectShowPanel->InitMapData(p_TileInstance);
+  l_SelectShowPanel->setPosition(l_CoverShowPoint);
+  p_OnShowView->addChild(l_SelectShowPanel, static_cast<int32>(Z_ORDER::selectView));
+  return l_SelectShowPanel;
 }
+
+GTuple<UIBaseView *, Node *, Node *>
+WorldMapCell::OnClickInstance(GOpt<Vec2> p_TilePos, IWorldMapInstance *p_TileInstance, Node *p_OnShowView, Node *p_OnShowViewNode){
+  if(!p_TilePos)
+    return {nullptr, nullptr, nullptr};
+  bool l_ShowPolygon = true;
+  float l_PolygonScale = 1;
+  UIBaseView *l_SelectShowPanel = nullptr;
+  Node *l_SelectTilePolygon = nullptr;
+  Node *l_SelectTilesPolygon = nullptr;
+  Vec4 l_CoverShowPoint;
+  if(!p_TileInstance){
+    if(WorldMapDefine::Get()->IsInNebula())
+      return {nullptr, nullptr, nullptr};
+    auto l_ShowPoint = GetPointWithTile(p_TilePos.value());
+    l_CoverShowPoint = GBase::DCoverToPoint2DOr3D(this, l_ShowPoint, p_OnShowView);
+    l_SelectShowPanel = OnClickMap(nullptr, p_TilePos.value(), p_OnShowView);
+  }else{
+    auto l_ShowPoint = p_TileInstance->getPosition();
+    l_CoverShowPoint = GBase::DCoverToPoint2DOr3D(this, l_ShowPoint, p_OnShowView);
+    l_PolygonScale =p_TileInstance->GetHoldInstance();
+    l_PolygonScale = GMath::Min(l_PolygonScale, 3.0f);
+    std::tie(
+      l_SelectShowPanel, 
+      l_ShowPolygon, 
+      l_SelectTilesPolygon) = p_TileInstance->OnClickInstance(p_OnShowViewNode);
+    if(l_SelectTilesPolygon){
+      l_SelectTilesPolygon->setPosition(l_CoverShowPoint.x, l_CoverShowPoint.y);
+      p_OnShowView->addChild(l_SelectTilesPolygon, static_cast<int32>(Z_ORDER::selectBgView));
+    }
+  }
+  if(l_ShowPolygon){
+    auto l_TileRolygon = WorldMapTilePolygon::Create();
+    l_TileRolygon->setPosition(l_CoverShowPoint.x, l_CoverShowPoint.y);
+    l_TileRolygon->setScale(l_PolygonScale);
+    p_OnShowView->addChild(l_TileRolygon, static_cast<int32>(Z_ORDER::selectBgView));
+    l_SelectTilePolygon = l_TileRolygon;
+  }
+  return {
+    l_SelectShowPanel, 
+    l_SelectTilePolygon, // small white diamond shape under world unit
+    l_SelectTilesPolygon // Big white diamond shape under world unit (Alliance Flag)
+  };
+}
+
 
 void WorldMapCell::AddShowBonePoing(EKingdomClassType){
 

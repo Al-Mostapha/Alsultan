@@ -19,7 +19,7 @@ private:
   ui::Button *m_BtnMain;
   float m_BtnWidth = 0.0f;
   GVector<TableBtn> m_TableBtn;
-  Scheduler *m_Timer = nullptr;
+  GString m_Timer;
 public:
   UICommonShareButton();
   ~UICommonShareButton();

@@ -133,9 +133,6 @@ void DSendMessage(const char* p_EventId, void* p_Data) {
   }
 }
 bool DIsGameGuide() { return false; }
-Scheduler* DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_PerFarme, int32 p_Priority) { return nullptr; }
-
-Scheduler* DCreateTimerEx(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, uint32 p_Time) { return nullptr; }
 
 EFactionType DGetFactionType() { return EFactionType::Normal; }
 
@@ -157,7 +154,7 @@ void DAddMessage(Node* p_Node, const char* p_EventId, const std::function<void(E
   if (!_tMsgvectorList.Contains(p_EventId)) _tMsgvectorList[p_EventId] = GQueue<FMsgCallBack>();
   _tMsgvectorList[p_EventId].push(p_Callback);
 }
-void DManagerRemoveTimer(Scheduler* P_Timer) {}
+
 GString DConvertSecondToString(int p_Second) { return ""; }
 RenderTexture* DCreateScreenShot(bool p_IsBlur) {
   auto l_Width = GDisplay::Get()->size().width;

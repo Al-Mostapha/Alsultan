@@ -23,7 +23,7 @@ namespace GBase{
   void DAlignNodeArray(GVector<Node *> p_Nodes, bool p_IsRA, float p_padding);
   float DAlignNodeArrayOnBeginX(float p_Begin, GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding = {});
   float DAlignNodeArrayOnLimitX( GVector<Node *> p_Nodes, bool p_IsRA, GVector<float> p_padding, bool p_LimitR, float p_LimitX);
-  void DToCenter(Node *p_Node);
+  void DToCenter(Node *p_Node, float p_Interval = 10, bool pIsReverse = false, bool pIsSize = false);
   TextHAlignment DFLabelR();
   void DAutoSizeButtonText(ui::Button *p_Btn, Size p_Size = Size::ZERO);
   bool DIsPointInPolygon(const GVector<Vec2> &p_Polygon, Vec2 p_Point);

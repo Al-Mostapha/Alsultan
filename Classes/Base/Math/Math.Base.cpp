@@ -22,3 +22,7 @@ float GMath::Cos(float p_Rad) { return cos(p_Rad); }
 
 
 float GMath::Floor(float p_Float){return std::floor(p_Float);}
+
+float GMath::Clamp(float p_Value, float p_Min, float p_Max){
+  return std::min(std::max(p_Value, p_Min), p_Max);
+}

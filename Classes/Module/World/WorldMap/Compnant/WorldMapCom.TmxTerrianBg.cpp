@@ -38,9 +38,8 @@ void WorldMapComTmxTerrianBg::OnMessageListener(){
 }
 
 void WorldMapComTmxTerrianBg::Toggle3D(){
-
   GGlobal::Get()->gEnableWorldMap3D = true;
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     _TiledBg->setRotation3D(GGlobal::Get()->gWorldMapRotation3D);
   if(_LowCfg){
     _LowCfg._TiledBg->setRotation3D(GGlobal::Get()->gWorldMapRotation3D);
@@ -71,8 +70,8 @@ void WorldMapComTmxTerrianBg::InitMapTiledBg(){
   _TileInfo.z = 1 / l_TileSize.width;
   _TileInfo.w = 1 / l_TileSize.height;
   _CurTileControl = GetTileControl();
-  
-  const static auto l_Shader = GPair<const char *, const char *>(TarrianShader::Vert, TarrianShader::Freg);
+                                                                //TODO: Should be TarrianShader
+  const static auto l_Shader = GPair<const char *, const char *>(TarrianShaderLow::Vert, TarrianShaderLow::Freg);
   _NoramlCfg = CreateTerrainBg(l_Shader);
   _NoramlCfg._TiledBg->setName("tiledBg");
   _TiledBg = _NoramlCfg._TiledBg;

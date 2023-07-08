@@ -43,3 +43,21 @@ int32 GBase::DCreateDelayTimer(Node *p_Target, const std::function<void()> &p_Fu
   // return timeHandle
   return 0;
 }
+
+GString GBase::DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_PerFrame, int32 p_Priority){
+  GString p_TimeHandle;
+  if(p_PerFrame == true){
+    p_TimeHandle = XScheduler::Get()->ScheduleUpdateGlobal(p_SchedulerFunc, p_Priority);
+  }else{
+    p_TimeHandle = XScheduler::Get()->ScheduleGlobal(p_SchedulerFunc, 1, p_Priority);
+  }
+  DManagerAddTimer(p_TimeHandle);
+  return p_TimeHandle;
+}
+
+GString GBase::DCreateTimerEx(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, uint32 p_Time){
+  return "";
+}
+
+
+void GBase::DManagerRemoveTimer(GString P_Timer) {}

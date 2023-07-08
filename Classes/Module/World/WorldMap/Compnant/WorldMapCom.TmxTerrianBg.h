@@ -12,7 +12,7 @@ class WorldMapView;
 class RViewClass;
 
 
-class WorldMapComTmxTerrianBg : public IWorldMapCompnant
+class WorldMapComTmxTerrianBg : public IWorldMapComponent
 {
   private:
     RViewClass _Config;

@@ -31,7 +31,7 @@ Vec4 GBase::ConvertToWorldSpace3D(Node *p_Target, Vec2 p_Pos){
 }
 
 Vec4 GBase::ConvertToWorldSpace2DOr3D(Node *p_Target, Vec2 p_NodePos){
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     return ConvertToWorldSpace3D(p_Target, p_NodePos);
   }
 
@@ -87,7 +87,7 @@ GOpt<Vec4> GBase::ConvertTouchToNodeSpace3D(Node *p_Target, Vec2 p_TouchPos, GOp
 }
 
 GOpt<Vec4> GBase::ConvertTouchToNodeSpace2DOr3D(Node *p_Target, Vec2 p_TouchPos, Vec2 P_Rotation){
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     return ConvertTouchToNodeSpace3D(p_Target, p_TouchPos, P_Rotation);
   }
   auto l_2DPointSpace = p_Target->convertToNodeSpace(p_TouchPos);
@@ -140,7 +140,7 @@ GOpt<Vec3> GBase::DConvertoScreenPos3D(Node *p_Target, Vec3 p_NodePos){
 }
 
 GOpt<Vec3> GBase::DConvertoScreenPos2DOr3D(Node *p_Target, Vec3 p_NodePos){
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     return DConvertoScreenPos3D(p_Target,  p_NodePos);
   }
   auto l_2DPos = p_Target->convertToWorldSpace(Vec2(p_NodePos.x, p_NodePos.y));
@@ -158,7 +158,7 @@ Vec2 GBase::DProject2ScreenPos3D(Node *p_Target, Vec3 p_Pos){
 }
 
 Vec2 GBase::DProjec2ScreenPos2DOr3D(Node *p_Target, Vec3 p_NodePos){
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     return DProject2ScreenPos3D(p_Target, p_NodePos);
   }
   return p_Target->convertToWorldSpace({p_NodePos.x, p_NodePos.y});
@@ -170,7 +170,7 @@ Vec2 GBase::DVerticalProject2ScreenPos3D(Node *p_Target, Vec2 p_Pos){
 }
 
 Vec2 GBase::DVerticalProject2ScreenPos2DOr3D(Node *p_Target, Vec2 p_NodePos){
-  if(GGlobal::Get()->gEnableWorldMap3D)
+  if(GGlobal::Get()->gEnableWorldMap3D.value())
     return DVerticalProject2ScreenPos3D(p_Target, p_NodePos);
   return p_Target->convertToWorldSpace(p_NodePos);
 }
@@ -216,7 +216,7 @@ GOpt<Vec4> GBase::DConvertScreenPoint2NodePos3D(Node *p_Target, Vec2 p_ScreenPos
 }
 
 GOpt<Vec4> GBase::DConvertScreenPoint2NodePos2DOr3D(Node *p_Target, Vec2 p_ScreenPos){
-  if(GGlobal::Get()->gEnableWorldMap3D)
+  if(GGlobal::Get()->gEnableWorldMap3D.value())
     return DConvertScreenPoint2NodePos3D(p_Target, p_ScreenPos);
   auto l_2D = p_Target->convertToNodeSpace(p_ScreenPos);
   return Vec4{

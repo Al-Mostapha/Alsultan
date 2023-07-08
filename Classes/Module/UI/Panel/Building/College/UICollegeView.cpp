@@ -160,9 +160,9 @@ void UICollegeView::InitData(){
     _TableBtn[l_OneSc]->InitData(l_OneSc);
   }
   InitRecommendData();
-  if(_Timer){
+  if(!_Timer.empty()){
     GBase::DManagerRemoveTimer(_Timer);
-    _Timer = nullptr;
+    _Timer = "";
   }
   auto l_Ret = ScienceCtrl::Get()->StudyingTechnology();
   _TableStuding = l_Ret.First;
@@ -222,14 +222,14 @@ void  UICollegeView::UpdateLuckyBless(EventCustom *p_Event){
       _BottomNodeLucky->setPositionY(_StudyingType != EScienceType::None ? -120 : 0);
     else
       _BottomNodeLucky->setPositionY(_StudyingType != EScienceType::None ? -170 : 0);
-    if(_LuckyBlessTimer == nullptr){
+    if(_LuckyBlessTimer.empty()){
       OpenLuckyTime(0);
       _LuckyBlessTimer = GBase::DCreateTimer(this, CC_CALLBACK_1(UICollegeView::OpenLuckyTime, this));
     }
   }else{
-    if(_LuckyBlessTimer){
+    if(!_LuckyBlessTimer.empty()){
       GBase::DManagerRemoveTimer(_LuckyBlessTimer);
-      _LuckyBlessTimer = nullptr;
+      _LuckyBlessTimer = "";
     }
     _BottomNodeLucky->setVisible(false);
   }
@@ -306,7 +306,7 @@ void UICollegeView::OpenTimeUp(float p_Dt){
   _TimeBar->SetPercent((l_TotalTime - l_LeftTime) * 100 / l_TotalTime);
   if(l_LeftTime <= 0){
     GBase::DManagerRemoveTimer(_Timer);
-    _Timer = nullptr;
+    _Timer = "";
     TopStudyShow(false);
   }
 }

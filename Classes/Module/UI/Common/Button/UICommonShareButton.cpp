@@ -103,7 +103,7 @@ void UICommonShareButton::StartRecordScreen(EventCustom *p_Event) {
       )
     );
   }
-  if(!m_Timer){
+  if(m_Timer.empty()){
     RecordTimeTick(Director::getInstance()->getDeltaTime());  
     m_Timer = GBase::DCreateTimer(this, CC_CALLBACK_1(UICommonShareButton::RecordTimeTick, this));
   }
@@ -123,9 +123,9 @@ void UICommonShareButton::StopRecordScreen(EventCustom *p_Event) {
     l_Sprite->stopAllActions();
     l_Sprite->setOpacity(255);
   }
-  if(m_Timer){
+  if(!m_Timer.empty()){
     GBase::DManagerRemoveTimer(m_Timer);
-    m_Timer = nullptr;
+    m_Timer = "";
   }
   l_Btn->setTag(1);
   CCASSERT(l_Btn->getChildByName<ui::Text *>("Text_name"), "m_TableBtn size is error");

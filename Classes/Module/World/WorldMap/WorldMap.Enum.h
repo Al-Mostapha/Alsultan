@@ -71,3 +71,25 @@ enum class EWorldMapLayInstance {
   Boss = 4,
   Feast = 5
 };
+
+enum class EMapSyncMsgType{
+  ADD_PIECE_MAP = 1,
+  ADD_MAPOBJ = 2,
+  REMOVE_MAPOBJ = 3,
+  UPDATE_MAPOBJ = 4,
+  FLASH_ON_MAPOBJ = 5,
+  ADD_PIECE_QUEUE = 11,
+  ADD_QUEUE = 12,
+  REMOVE_QUEUE = 13,
+  UPDATE_QUEUE = 14,
+  UPDATE_SUPER_RES = 15,
+  SYNC_NUM = 21
+};
+
+enum class EWorldMapAllianceMarkType{
+  None,
+  _1, _2,  _3,
+  _4, _5, _6,
+  _7, _8, _9,
+  _10
+};

@@ -221,7 +221,7 @@ void UIMainBottom::Ctor() {
     _Timer = GBase::DCreateTimer(this, CC_CALLBACK_1(UIMainBottom::RecordTimeTick, this));
   } else {
     _BtnReplay->setVisible(false);
-    _Timer = nullptr;
+    _Timer = "";
   }
   _TextVideo = GBase::DGetChildByName<ui::Text*>(this, "text_video");
   _FrameMainGuide = GBase::DGetChildByName<Sprite*>(this, "frame_main_guide");
@@ -337,9 +337,9 @@ void UIMainBottom::CreateExpostulationTimer() {
 }
 
 void UIMainBottom::DeleteExpostulationTimer() {
-  if (_ExpostulationTimer) {
+  if (!_ExpostulationTimer.empty()) {
     GBase::DManagerRemoveTimer(_ExpostulationTimer);
-    _ExpostulationTimer = nullptr;
+    _ExpostulationTimer = "";
   }
 }
 

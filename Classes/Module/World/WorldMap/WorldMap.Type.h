@@ -63,3 +63,9 @@ struct RViewClass{
   GVector<RBorderLodScale> _BorderLodScale;
 };
 
+struct RAllianceMarkData{
+  GString _Name;
+  EWorldMapAllianceMarkType _MarkType;
+  int32 _MapId;
+  cocos2d::Vec2 _Position;
+};

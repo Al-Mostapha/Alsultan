@@ -31,9 +31,9 @@ class UICollegeView : public UIBasePanel
   RScienceDetail _TableStuding;
   EScienceType _StudyingType = EScienceType::None;
   //   self.type = nil
-  Scheduler *_Timer = nullptr;
-  Scheduler *_LuckyTimer = nullptr;
-  Scheduler *_LuckyBlessTimer = nullptr;
+  GString _Timer = nullptr;
+  GString _LuckyTimer = nullptr;
+  GString _LuckyBlessTimer = nullptr;
   ITask *_Queue = nullptr;
   GHashMap<EScienceType, UICollegeMainSingle*> _TableBtn;
   //   self.tableLock = {}

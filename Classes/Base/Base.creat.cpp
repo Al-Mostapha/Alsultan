@@ -74,8 +74,6 @@ namespace GBase {
 
 }  // namespace GBase
 
-
-
 Node *GBase::DFingerAction(
   bool p_IsHideEffect, bool p_IsStopAction, 
   int32 p_ActionTimes, bool p_IsHideFinger
@@ -98,3 +96,4 @@ Node *GBase::DFingerAction(
   }
   return l_Node;
 }
+

@@ -120,7 +120,7 @@ namespace GBase {
     return DAlignNodeArrayOnBeginX(l_BeginX, p_Nodes, p_IsRA, p_padding);
   }
 
-  void DToCenter(Node *p_Node){
+  void DToCenter(Node *p_Node, float p_Interval, bool pIsReverse, bool pIsSize){
 // function SoraDToCenter(node, interval, isReverse, isSize)
 //   local targets = node:getChildren()
 //   local totalLen = 0

@@ -184,7 +184,7 @@ void UIBuildingCreateSingle::NeedSpeedUp(){
 void UIBuildingCreateSingle::BuildTimerEnd(){
   if(_Type == EBuildingCondType::Time){
     GBase::DManagerRemoveTimer(_Timer);
-    _Timer = nullptr;
+    _Timer = "";
     if(_HandleCallBack)
       _HandleCallBack(_SingleData);
   }

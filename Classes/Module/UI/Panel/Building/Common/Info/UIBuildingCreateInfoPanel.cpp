@@ -221,7 +221,7 @@ void UIBuildingCreateInfoPanel::UpdateLuckyBless(EventCustom *p_Event){
   auto l_LBEffect = LuckyBlessCtrl::Get()->GetCurEffectType();
   if(l_LBEffect == ELuckyBlessEffect::BuildingUpgrade 
     && _ViewType == EBuildingOperateType::Upgrade){
-    if(_LuckyBlessTimer){
+    if(_LuckyBlessTimer.empty()){
       OpenLuckyTime(0.f);
       _LuckyBlessTimer = GBase::DCreateTimer(this, CC_CALLBACK_1(UIBuildingCreateInfoPanel::OpenLuckyTime, this));
     }

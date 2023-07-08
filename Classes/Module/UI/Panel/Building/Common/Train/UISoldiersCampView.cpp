@@ -574,7 +574,7 @@ void UISoldiersCampView::InitSkill(){
 
 int32 UISoldiersCampView::GetMaxCampCount(){
   
-  if(_Timer || !_TableCurSoldier._ArmyData._IsCanTrain)
+  if(!_Timer.empty() || !_TableCurSoldier._ArmyData._IsCanTrain)
     return 0;
   
   auto l_ResTrain = 0;
@@ -1024,7 +1024,7 @@ void UISoldiersCampView::RemoveSelf(){
     return;
   _IsRun = false;
   GBase::DManagerRemoveTimer(_Timer);
-  _Timer = nullptr;
+  _Timer = "";
   removeFromParent();
 }
 

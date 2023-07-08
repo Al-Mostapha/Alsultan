@@ -23,5 +23,7 @@ float Cos(float p_Rad);
 
 float Floor(float p_Float);
 
+float Clamp(float p_Value, float p_Min, float p_Max);
+
 GString  DConvertNumberWithUnit(float p_Num);
 }  // namespace GMath

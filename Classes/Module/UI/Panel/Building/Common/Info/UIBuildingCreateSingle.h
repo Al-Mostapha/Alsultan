@@ -52,7 +52,7 @@ public:
   Sprite *_SpriteLuckLine;
   ui::Text *_LabelLuckValue;
   ui::ScrollView *_Scroll;
-  Scheduler *_Timer;
+  GString _Timer;
   bool _IsMet;
   bool _SingleIsMoved = false;
   EBuildingCondType _Type;

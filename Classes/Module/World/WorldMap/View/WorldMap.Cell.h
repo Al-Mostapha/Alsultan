@@ -3,12 +3,16 @@
 #include "ui/CocosGUI.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 
-class XTileLayer;
+
+
 
 USING_NS_CC;
 
 class WorldMapView;
-
+class UIWorldMapTip;
+class IWorldMapInstance;
+class XTileLayer;
+class UIBaseView;
 class WorldMapCell : public cocos2d::ui::Layout
 {
   CREATE_FUNC(WorldMapCell);
@@ -57,6 +61,9 @@ class WorldMapCell : public cocos2d::ui::Layout
   Vec2 GetPointWithTile(Vec2 p_TilePoint, int32 p_HoldInstance = 1);
   void ViewOnClick(Ref* p_Target, ui::Widget::TouchEventType p_Event);
 
-  void OnClickMap(Node *p_TileInstance, Vec2 p_TilePos, Node *p_OnShowView );
+  UIWorldMapTip *OnClickMap(Node *p_TileInstance, Vec2 p_TilePos, Node *p_OnShowView );
+  GTuple<UIBaseView *, Node *, Node *> 
+  OnClickInstance(GOpt<Vec2> p_TilePos, IWorldMapInstance *p_TileInstance,
+   Node *p_OnShowView, Node *p_OnShowViewNode);
 
 };

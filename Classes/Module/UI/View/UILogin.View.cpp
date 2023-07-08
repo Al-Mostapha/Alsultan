@@ -586,9 +586,9 @@ void UILoginView::StartTimer(){
 }
 
 void UILoginView::StopTimer(){
-  if(m_TimerKey != nullptr){
+  if(!m_TimerKey.empty()){
     GBase::DManagerRemoveTimer(m_TimerKey);
-    m_TimerKey = nullptr;
+    m_TimerKey = "";
   }
 }
 
@@ -682,11 +682,11 @@ void UILoginView::LoadBar(float p_Cur){
 
 void UILoginView::AutoLoadingBar(float  p_EPercent, float p_Frame){
   if(m_LoadImageFinish){
-      Scheduler *l_ActionLoading;
+      GString l_ActionLoading;
       auto l_StopTimer = CallFunc::create([this, &l_ActionLoading](){
-        if(l_ActionLoading != nullptr){
+        if(!l_ActionLoading.empty()){
           GBase::DManagerRemoveTimer(l_ActionLoading);
-          l_ActionLoading = nullptr;
+          l_ActionLoading = "";
         }
         StopTimer();
       });

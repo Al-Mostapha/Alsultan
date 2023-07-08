@@ -19,8 +19,8 @@ class UIBuildingCreateInfoPanel : public UIBasePanel
 
   float _FadeInDelay = 0.3f;
   bool _FirstRunWar = true;
-  Scheduler *_LuckyBlessTimer;
-  Scheduler *_WiseTutorTimer;
+  GString _LuckyBlessTimer;
+  GString _WiseTutorTimer;
   bool _LuckyBlessIsOpen = false;
   bool _RadiantDecreeIsOpen = false;
   bool _WiseTutorIsOpen = false;

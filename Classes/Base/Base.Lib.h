@@ -56,8 +56,6 @@ void DShowMsgTip(const GString& p_Message, const GString& p_Icon = "",  Node *p_
 GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
 GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building);
 
-Scheduler* DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_PerFrame = false, int32 p_Priority = 0);
-Scheduler* DCreateTimerEx(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, uint32 p_Time = 0);
 bool DRemoveTimer(Node* p_Target, Scheduler* p_Scheduler);
 // this calld when player click on a building black smith
 void DGetEquip();
@@ -71,7 +69,7 @@ void DSendMessage(const char* p_EventId, void* p_Data = nullptr);
 bool DIsGameGuide();
 EFactionType DGetFactionType();
 void DCloseSwitcherView();
-void DManagerRemoveTimer(Scheduler* P_Timer);
+
 
 void DAddMessage(Node* p_Node, const char* p_EventId, const std::function<void(EventCustom*)>& p_Callback);
 

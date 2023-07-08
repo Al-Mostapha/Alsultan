@@ -25,7 +25,7 @@ namespace GBase{
   GOpt<Vec4> ConvertTouchToNodeSpace3D(Node *, Vec2, GOpt<Vec2> p_Rotation = {});
   GOpt<Vec4> ConvertTouchToNodeSpace2DOr3D(Node *p_Target, Vec2 p_TouchPos, Vec2 P_Rotation = Vec2::ZERO);
   Vec4 DConvertToPoint3D(Node *p_Target1, Vec2 p_TargetPos, Node *p_Target2 );
-  Vec4 DCoverToPoint2DOr3D(Node *, Vec2&, Node * = nullptr, bool = GGlobal::Get()->gEnableWorldMap3D);
+  Vec4 DCoverToPoint2DOr3D(Node *, Vec2&, Node * = nullptr, bool = GGlobal::Get()->gEnableWorldMap3D.value());
   GOpt<Vec3> DConvertoScreenPos3D(Node *p_Target, Vec3 p_NodePos);
   GOpt<Vec3> DConvertoScreenPos2DOr3D(Node *p_Target, Vec3 p_NodePos);
   Vec2 DProject2ScreenPos3D(Node *, Vec3);

@@ -8,6 +8,7 @@
 #include "external/json/document.h"
 #include <time.h>
 #include <optional>
+#include <tuple>
 
 
 typedef std::string GString;
@@ -44,6 +45,9 @@ using GFunc = std::function<K>;
 
 template <class K>
 using GOpt = std::optional<K>;
+
+template <typename... Args>
+using GTuple = std::tuple<Args...>;
 
 enum class ENullBool{
   Null,

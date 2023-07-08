@@ -23,9 +23,9 @@ typedef EWorldMapZOrder Z_ORDER;
 WorldMapView *WorldMapView::Create(RViewClass p_Config, RViewOtherData p_OtherData){
   WorldMapView *l_View = nullptr;
   if(p_Config._CcsFile == "")
-    l_View = Create("UiParts/Panel/World/WorldMap/worldMapViewNormal.csb");
+    l_View = Create("UiParts/Scene/World/worldMapViewNormal.csb");
   else  
-    l_View = Create("UiParts/Panel/World/WorldMap/" + p_Config._CcsFile + ".csb");
+    l_View = Create("UiParts/Scene/World/" + p_Config._CcsFile + ".csb");
   l_View->Ctor(p_Config, p_OtherData);
   return l_View;
 }
@@ -35,8 +35,8 @@ void WorldMapView::Ctor(RViewClass p_Config, RViewOtherData  p_Param){
   AddComponents(p_Config, this);
   InitParam(p_Param);
   InitView();
-  // self:callComFunc("init")
   CallComFuncInit();
+  CallComFuncOnMessageListener();
   InitOther();
   setLocalZOrder(static_cast<int32>(Z_ORDER::otherTipView));
   setAnchorPoint(Vec2(0, 0));
@@ -304,6 +304,14 @@ void WorldMapView::RefreshScroll(){
 
 void WorldMapView::scrollViewDidScroll(Ext::ScrollView* view){
   _IsNeedRefreshScroll++;
+  static bool l_IsMoved;
+  if(_IsNeedRefreshScroll > 0){
+    RefreshScroll();
+  }
+  UpdateShowTileInstance();
+  l_IsMoved = _IsMoved;
+  getEventDispatcher()->dispatchCustomEvent(WorldMapEvent::Get()->EVENT_UPDATE_INFO, &l_IsMoved);
+  UpdateDelayFrame();
 }
 
 void WorldMapView::scrollViewDidZoom(Ext::ScrollView* view){
@@ -794,7 +802,7 @@ void WorldMapView::UpdateMapPos(){
 }
 
 void WorldMapView::SetTmxCulledRect(XTiledMap *p_TmxView){
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     auto l_Width = GDisplay::Get()->width;
     auto l_Height = GDisplay::Get()->rheight;
     auto [l_Ret, l_TouchPos] = GBase::DGet3DTouchPos(_ViewScrollView, Vec2(l_Width, l_Height));
@@ -812,7 +820,7 @@ void WorldMapView::SetTmxCulledRect(XTiledMap *p_TmxView){
 }
 
 void WorldMapView::Toggle3D(EventCustom *p_Event){
-  if(GGlobal::Get()->gEnableWorldMap3D){
+  if(GGlobal::Get()->gEnableWorldMap3D.value()){
     _ViewScrollView->setRotation3D(GGlobal::Get()->gWorldMapRotation3D);
     //   if self.viewScrollView.setEnable3d then
     //     self.viewScrollView:setEnable3d(true)

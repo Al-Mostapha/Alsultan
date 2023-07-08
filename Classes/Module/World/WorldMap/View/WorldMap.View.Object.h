@@ -1,15 +1,17 @@
 #pragma once
 #include "Module/World/WorldMap/WorldMap.Type.h"
+#include "ui/CocosGUI.h"
 
 USING_NS_CC;
 
-class IWorldMapCompnant;
+class IWorldMapComponent;
 class WorldMapView;
 class WorldMapCell;
+class UIWorldMapBottomPoint;
 class WorldMapViewObject
 {
   protected:
-    GVector<IWorldMapCompnant *> _Components;
+    GVector<IWorldMapComponent *> _Components;
   public:
     void AddComponents(RViewClass p_Config, WorldMapView *p_Target);
     void CallComFuncInit();
@@ -41,4 +43,9 @@ class WorldMapViewObject
     bool IsTransferTouchIn(){ return false; }
     // worldMapComTransfer:moveTransferView(touchmovePoint, mapView)
     void moveTransferView(Vec2 p_TouchMovePoint, WorldMapCell *p_MapView){}
+
+    //worldMapComUI:getBottomPointNode(...)
+    UIWorldMapBottomPoint *GetBottomPointNode(){ return nullptr; }
+    //worldMapComNormal:getButtonMonsterSearch(...)
+    ui::Button *GetButtonMonsterSearch(){ return nullptr; }
 };

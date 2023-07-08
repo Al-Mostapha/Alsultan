@@ -50,8 +50,8 @@ public:
   bool m_IsFinishInit = false;
   Ext::ScrollView *n_ViewScrollView = nullptr;
   bool _IsBuildBtnEnable = false;
-  Scheduler *m_TimeHandler = nullptr;
-  Scheduler *m_TimeHandlerPerFrame = nullptr;
+  GString m_TimeHandler;
+  GString m_TimeHandlerPerFrame;
   bool m_IsLogin = false;
   void Ctor();
   void OnMessageListener();

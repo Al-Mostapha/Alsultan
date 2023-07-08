@@ -117,7 +117,7 @@ class UIMainBottom : public UIBaseView {
   ui::Button* _BtnSkill = nullptr;
   ui::Button* _BtnReplay = nullptr;
   Sprite* _BgTextVideo = nullptr;
-  Scheduler* _Timer = nullptr;
+  GString _Timer = "";
   ui::Text* _TextVideo = nullptr;
   Sprite* _FrameMainGuide = nullptr;
   UIQuestGuideNode *_NodeQuestGuide = nullptr;
@@ -142,7 +142,7 @@ class UIMainBottom : public UIBaseView {
   ui::Button *_BtnEnjoyLottery = nullptr;
   ui::Button *_BtnGoldPackage = nullptr;
   Node *_LuckyBlessNode = nullptr;
-  Scheduler *_ExpostulationTimer = nullptr;
+  GString _ExpostulationTimer;
   Node *_BtnHelpAll = nullptr;
   Node *_EffectShine = nullptr;
   public:
