@@ -10,6 +10,10 @@ KillMonsterVerifyCtrl *KillMonsterVerifyCtrl::Get()
   return l_Instance;
 }
 
+void KillMonsterVerifyCtrl::Init()
+{
+}
+
 bool KillMonsterVerifyCtrl::IsQuickSearchMonsterLock()
 {
   return false;

@@ -1204,9 +1204,9 @@ void UIMainBottom::OnWorldCityClick(Ref* p_Sender, ui::Widget::TouchEventType p_
       _ViewChangeType = EScene::City;
     }
 
-    static RShowMainCityView s_ShowMainCityView;
-    s_ShowMainCityView.ViewType = _ViewChangeType;
-    GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &s_ShowMainCityView);
+    static RShowMainCityView sShowMainCityView;
+    sShowMainCityView.ViewType = _ViewChangeType;
+    GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &sShowMainCityView);
   }
 }
 
@@ -1407,9 +1407,11 @@ void UIMainBottom::StopRecording(EventCustom* p_Event) {
 void UIMainBottom::OpenUIAlliance(EventCustom* p_Event) { InitAllianceView(); }
 
 void UIMainBottom::CurrentShowViewType(EventCustom* p_Event) {
-  EScene l_ViewType = EScene::None;
-  if (p_Event && p_Event->getUserData() != nullptr) l_ViewType = *static_cast<EScene*>(p_Event->getUserData());
-  _ViewChangeType = l_ViewType;
+  static RShowMainCityView sShowMainCityView;
+  if (p_Event && p_Event->getUserData() != nullptr) 
+    sShowMainCityView = *static_cast<RShowMainCityView*>(p_Event->getUserData());
+
+  _ViewChangeType = sShowMainCityView.ViewType;
   if (_ViewChangeType == EScene::City) {
     _ImgWorldCity->loadTexture("btn_main_world.png", TextureResType::PLIST);
     if (_NodeQuestGuide) _NodeQuestGuide->setVisible(true);

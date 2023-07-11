@@ -8,12 +8,18 @@ class IWorldMapComponent;
 class WorldMapView;
 class WorldMapCell;
 class UIWorldMapBottomPoint;
+class WorldMapComLod;
 class WorldMapViewObject
 {
   protected:
     GVector<IWorldMapComponent *> _Components;
   public:
+    WorldMapComLod *_WorldMapComLod;
     void AddComponents(RViewClass p_Config, WorldMapView *p_Target);
+    template <typename T>
+    T *GetComponent(const GString &p_Name){
+      return nullptr;
+    }
     void CallComFuncInit();
     void CallComFuncOnMessageListener();
     void CallComFuncRelogin();

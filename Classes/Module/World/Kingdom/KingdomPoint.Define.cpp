@@ -8,6 +8,6 @@ KingdomPointDefine * KingdomPointDefine::Get(){
   return _Instance;
 }
 
-GTuple<int32, int32, int32, int32> GetNeighbourKingdomsByPoint(Vec2 p_KingdomId, int32 p_RegionId){
+GTuple<int32, int32, int32, int32> KingdomPointDefine::GetNeighbourKingdomsByPoint(Vec2 p_KingdomId, int32 p_RegionId){
   return { 0, 0, 0, 0};
 }

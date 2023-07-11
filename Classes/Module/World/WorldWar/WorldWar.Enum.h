@@ -3,7 +3,9 @@
 enum class EConquestWarState
 {
   None = 0,
-  OPENING = 1,
-  PREPARE = 2,
-  END = 3,
+  LOCK = 1,
+  WAITING = 2,
+  NOT_MATCH = 3,
+  PREPARE = 4,
+  OPENING = 5
 };

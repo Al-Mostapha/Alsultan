@@ -717,9 +717,9 @@ void WorldMapView::GotoTilePointNew(RGotoTilePointNewEvAr &p_Param){
 void WorldMapView::RefreshRelogin(EventCustom *p_Event){
   auto l_MapKingdomClassType = KingdomMapCtrl::Get()->GetKingdomClass();
   if(l_MapKingdomClassType != _MapKingdomClassType){
-    static RShowMainCityView l_ShowMainCityView;
-    l_ShowMainCityView.ViewType = EScene::World;
-    GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &l_ShowMainCityView);
+    static RShowMainCityView lShowMainCityView;
+    lShowMainCityView.ViewType = EScene::World;
+    GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &lShowMainCityView);
     return;
   }
   _MyKindomID = PlayerTop::Get()->GetMapID();

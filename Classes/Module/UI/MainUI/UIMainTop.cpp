@@ -6,6 +6,7 @@
 #include "Module/Vip/ExaltedPrivilege.Ctrl.h"
 #include "Base/Common/Common.Teml.h"
 #include "Engine/Engine.h"
+#include "Scene/Scene.Type.h"
 // #include "spine/SkeletonAnimation.h"
 
 UIMainTop* UIMainTop::Create() {
@@ -745,8 +746,10 @@ void UIMainTop::GetEquipSuccess(EventCustom* p_Event) {
 }
 
 void UIMainTop::SetMarchingTroopsVisible(EventCustom* p_Event) {
-  EScene l_ViewType = EScene::None;
-  if (p_Event && p_Event->getUserData() != nullptr) l_ViewType = *static_cast<EScene*>(p_Event->getUserData());
+  RShowMainCityView sData;
+  if (p_Event && p_Event->getUserData() != nullptr)
+   sData = *static_cast<RShowMainCityView*>(p_Event->getUserData());
+  auto l_ViewType = sData.ViewType;
   if (l_ViewType == EScene::None || _CurrentViewType == l_ViewType) return;
 
   bool l_ShowBuilder = l_ViewType == EScene::City;

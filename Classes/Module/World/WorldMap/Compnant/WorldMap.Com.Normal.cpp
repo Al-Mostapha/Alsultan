@@ -7,7 +7,7 @@
 #include "Module/World/WorldMap/View/WorldMap.Cell.h"
 #include "Module/World/WorldMap/Monster/KillMonsterVerify.Ctrl.h"
 #include "Module/UI/Common/Timer/UITimerLabel.h"
-#include "Module/UI/Panel/World/WorldMap/Floor/WorldMapWar.Tip.h"
+#include "Module/UI/Panel/World/WorldMap/Floor/UIWorldMapWar.Tip.h"
 #include "Module/UI/Scene/World/MainUI/UIWorldMapMonsterSearch.h"
 #include "Module/Activity/ClientEvent.Mgr.h"
 #include "Module/Player/Player.Top.h"

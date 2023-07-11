@@ -219,3 +219,8 @@ bool GBase::DIsPointInPolygon(const GVector<Vec2> &p_Polygon, Vec2 p_Point){
   // return true
   return true;
 }
+
+float GBase::DGetAngleByPos(Vec2 pPoint1, Vec2 pPoint2){
+  auto lPoint = pPoint2 - pPoint1;
+  return GMath::Atan2(lPoint.y, lPoint.x) * 180 / M_PI;
+}

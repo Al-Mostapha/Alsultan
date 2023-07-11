@@ -225,8 +225,9 @@ GOpt<Vec4> GBase::DConvertScreenPoint2NodePos2DOr3D(Node *p_Target, Vec2 p_Scree
   };
 }
 
-
-
+GTuple<bool, GVector<Vec2>> GBase::DLineIntersectRect(Vec2 pLineStart, Vec2 pLineEnd, Rect pRect){
+  return {false, {}};
+}
 
 
 

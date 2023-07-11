@@ -13,6 +13,6 @@ GTime GServiceFunction::SystemTime(){
   return 0;
 }
 
-GString GetKingdomFormatName(GString p_Name, int p_KingdomID){
+GString GServiceFunction::GetKingdomFormatName(GString p_Name, int p_KingdomID){
   return "Kingdom#0";
 }

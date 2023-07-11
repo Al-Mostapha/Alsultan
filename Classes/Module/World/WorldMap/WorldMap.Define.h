@@ -26,11 +26,13 @@ public:
   bool IsInRadiance();
   bool IsInAtlantis();
   bool IsInNebula();
+  bool IsInPyramid();
   bool InInCrossWar();
   bool IsInKingdomBattle();
   bool IsInWarForbid(bool p_NoShowTips = false, bool p_Activity = false);
   bool IsInWarForbidSoldier(bool p_NoShowTips = false, bool p_Activity = false);
   void ShowWarTips(bool p_Activity = false);
   bool IsNebulaKingdomID();
-  bool IsLegendLordKingdomID();
+  bool IsLegendLordKingdomID(int32 pKingdomID = 0);
+  bool IsPyramidKingdomID(int32 pKingdomID = 0);
 };

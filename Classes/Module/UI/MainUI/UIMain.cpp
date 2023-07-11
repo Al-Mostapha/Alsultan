@@ -245,11 +245,12 @@ void UIMain::RefreshEventModule(EventCustom *p_Event){
 void UIMain::ChangeMainScene(EventCustom *p_Event){
   if(!p_Event->getUserData())
     return;
-  auto l_Scene = *static_cast<EScene*>(p_Event->getUserData());
-  if(l_Scene == EScene::None || l_Scene == _CurrentViewType)
+    
+  auto lScene = *static_cast<RShowMainCityView*>(p_Event->getUserData());
+  if(lScene.ViewType == EScene::None || lScene.ViewType == _CurrentViewType)
     return;
-  _PandectView->setVisible(l_Scene == EScene::City);
-  _CurrentViewType = l_Scene;
+  _PandectView->setVisible(lScene.ViewType == EScene::City);
+  _CurrentViewType = lScene.ViewType;
 }
 
 void UIMain::ShowHalloweenActionView(EventCustom *p_Event){
@@ -295,8 +296,10 @@ void UIMain::LordSkillEffect(EventCustom *p_Event){
       if(GBase::IEquals(l_CurrentView->GetViewName(), GString("worldMapView"))){
 
       }else{
-        std::unique_ptr<GPair<EScene, bool>> l_CurrentScene(new GPair<EScene, bool>(EScene::World, true));
-        GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_CurrentScene.get());
+        static RShowMainCityView s_Data;
+        s_Data.isFromLogin = true;
+        s_Data.ViewType = EScene::World;
+        GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &s_Data);
       }
     }
   }else if(l_LordSkill == ELordSkill::FullHP){

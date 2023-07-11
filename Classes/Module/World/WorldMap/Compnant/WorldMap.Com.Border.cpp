@@ -5,7 +5,7 @@
 #include "Module/UI/Scene/World/Neighbour/UIWorldMapNeighbour.h"
 #include "Module/World/WorldMap/WorldMap.Util.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
-#include "Module/UI/Part/World/WorldMap/Main/UIWorldMapBottomPoint.h"
+#include "Module/UI/Panel/World/WorldMap/Overlay/UIWorldMapBottomPoint.h"
 #include "Module/World/Kingdom/KingdomPoint.Define.h"
 #include "Module/World/Kingdom/Kingdom.Ctrl.h"
 #include "Module/World/Kingdom/NationalFlag.Read.h"

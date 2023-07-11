@@ -27,4 +27,5 @@ namespace GBase{
   TextHAlignment DFLabelR();
   void DAutoSizeButtonText(ui::Button *p_Btn, Size p_Size = Size::ZERO);
   bool DIsPointInPolygon(const GVector<Vec2> &p_Polygon, Vec2 p_Point);
+  float DGetAngleByPos(Vec2 pPoint1, Vec2 pPoint2);
 };

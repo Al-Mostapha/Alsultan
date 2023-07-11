@@ -6,6 +6,6 @@ class WorldMapWarDef{
 public: 
   static WorldMapWarDef * Get();
   GString GetKingdomClassTips(EKingdomClassType type, int32 p_IdKingdom = 0);
-  EKingdomClassType GetKingdomMapClassByKingdomId(int32 p_IdKingdom);
+  EKingdomClassType GetKingdomMapClassByKingdomId(int32 p_IdKingdom = 0);
   bool IsInWarForbidBonePoing(EKingdomClassType p_MapType);
 };

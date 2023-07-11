@@ -69,3 +69,8 @@ struct RAllianceMarkData{
   int32 _MapId;
   cocos2d::Vec2 _Position;
 };
+
+struct RRemoveTroopTipData{
+  int32 _MoveLineID;
+  cocos2d::Vec2 _MapMoveToTilePoint;
+};

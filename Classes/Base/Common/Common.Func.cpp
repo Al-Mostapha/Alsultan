@@ -1,6 +1,7 @@
 #include "Common.Func.h"
 #include "Engine/Display.h"
 #include "Base/Base.create.h"
+#include "Module/UI/Part/World/WorldMap/UIWorldMapFaceToDistance.h"
 
 Node *GBase::DCreateEffectNode(
   const GVector<RCreatEffctParam> &p_Parm, const char *p_Folder, bool p_IsAutoRemoveOnfinish
@@ -235,4 +236,22 @@ void GBase::DStopEffectNode(Node *p_Node){
     if(l_ChildEffect)
       l_ChildEffect->stopSystem();
   }
+}
+
+UIWorldMapFaceToDistance *GBase::DGetWorldMapFaceToDistanceNode(){
+  //   local currentScene = display.getRunningScene()
+  // local faceToDistanceNode
+  // if currentScene.name == "MainScene" then
+  //   local panel = currentScene:getPanelView()
+  //   faceToDistanceNode = panel.faceToDistanceNode
+  //   if not faceToDistanceNode or tolua.isnull(faceToDistanceNode) then
+  //     faceToDistanceNode = include("worldMapFaceToDistance").new()
+  //     faceToDistanceNode:setPosition(cc.p(display.cx, display.cy))
+  //     faceToDistanceNode:setVisible(false)
+  //     faceToDistanceNode:addTo(panel, 1)
+  //     panel.faceToDistanceNode = faceToDistanceNode
+  //   end
+  // end
+  // return faceToDistanceNode
+  return nullptr;
 }

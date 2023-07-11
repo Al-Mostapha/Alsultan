@@ -36,4 +36,5 @@ namespace GBase{
   GOpt<Vec4> DConvertScreenPoint2NodePos3D(Node *p_Target, Vec2 p_ScreenPos);
   GOpt<Vec4> DConvertScreenPoint2NodePos2DOr3D(Node *p_Target, Vec2 p_ScreenPos);
   Vec2 DCoverToPoint(Node *p_Node1, Vec2 p_TargetPoint, Node *p_Node2);
+  GTuple<bool, GVector<Vec2>> DLineIntersectRect(Vec2 pLineStart, Vec2 pLineEnd, Rect pRect);
 };

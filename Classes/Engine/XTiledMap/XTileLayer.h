@@ -270,6 +270,10 @@ public:
     virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags) override;
     void removeChild(Node* child, bool cleanup = true) override;
 
+    void initFilterLayer(std::vector<int> gid, GLProgramState *state){}
+    void setFilterBlendFunc(const BlendFunc &blendFunc){}
+    void setIsFilterEnable(bool enable){}
+
 protected:
 
     bool initWithTilesetInfo(XTilesetInfo *tilesetInfo, XTileLayerInfo *layerInfo, XTileMapInfo *mapInfo);

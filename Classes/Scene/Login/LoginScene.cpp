@@ -455,10 +455,10 @@ void LoginScene::CreatMainView(EventCustom* p_Event) {
   UpdateVoiceButton(nullptr);
   auto l_ShowViewType = EScene::City;
   if (p_Event->getUserData()) l_ShowViewType = *(EScene*)p_Event->getUserData();
-  std::unique_ptr<RShowMainCityView> l_Data(new RShowMainCityView());
-  l_Data->isFromLogin = true;
-  l_Data->ViewType = l_ShowViewType;
-  GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", l_Data.get());
+  static RShowMainCityView l_Data;
+  l_Data.isFromLogin = true;
+  l_Data.ViewType = l_ShowViewType;
+  GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &l_Data);
 }
 
 void LoginScene::ReleaseMainView() {

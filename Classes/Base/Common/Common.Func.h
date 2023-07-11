@@ -3,6 +3,7 @@
 #include "ui/CocosGUI.h"
 #include "Module/CityResource/Resource.Enum.h"
 
+class UIWorldMapFaceToDistance;
 namespace GBase{
   Node *DCreateEffectNode(
     const GVector<RCreatEffctParam> &p_Parm, 
@@ -18,4 +19,5 @@ namespace GBase{
   bool DResIsLock(EResource p_ResId);
   void DResetEffectNode(Node *p_Node);
   void DStopEffectNode(Node *p_Node);
+  UIWorldMapFaceToDistance *DGetWorldMapFaceToDistanceNode();
 };

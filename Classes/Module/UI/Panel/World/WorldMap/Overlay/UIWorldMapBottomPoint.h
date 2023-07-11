@@ -14,4 +14,5 @@ public:
 
   static UIWorldMapBottomPoint* Create();
   void Ctor() override;
+  void UpdateData(Vec2 pTilePoint, int32 pKingdomID){}
 };

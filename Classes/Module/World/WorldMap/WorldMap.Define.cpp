@@ -28,6 +28,10 @@ bool WorldMapDefine::IsInAtlantis(){
   return false;
 }
 
+bool WorldMapDefine::IsInPyramid(){
+  return false;
+}
+
 bool WorldMapDefine::InInCrossWar(){
   return false;
 }
@@ -56,6 +60,10 @@ bool WorldMapDefine::IsInNebula(){
   return false;
 }
 
-bool WorldMapDefine::IsLegendLordKingdomID(){
+bool WorldMapDefine::IsLegendLordKingdomID(int32 pKingdomID){
+  return false;
+}
+
+bool WorldMapDefine::IsPyramidKingdomID(int32 pKingdomID){
   return false;
 }
