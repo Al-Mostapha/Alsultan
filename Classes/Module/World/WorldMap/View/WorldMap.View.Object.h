@@ -9,6 +9,7 @@ class WorldMapView;
 class WorldMapCell;
 class UIWorldMapBottomPoint;
 class WorldMapComLod;
+class IWorldMapInstance;
 class WorldMapViewObject
 {
   protected:
@@ -54,4 +55,6 @@ class WorldMapViewObject
     UIWorldMapBottomPoint *GetBottomPointNode(){ return nullptr; }
     //worldMapComNormal:getButtonMonsterSearch(...)
     ui::Button *GetButtonMonsterSearch(){ return nullptr; }
+    //worldMapComInstanceNormal:getShowInstance(pos)
+    IWorldMapInstance *GetShowInstance(Vec2 pPos){ return nullptr; }
 };

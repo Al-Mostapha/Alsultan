@@ -1,5 +1,8 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Module/World/WorldMap/WorldMap.Enum.h"
+
+USING_NS_CC;
 
 class WorldMapDefine{
 public: 
@@ -35,4 +38,5 @@ public:
   bool IsNebulaKingdomID();
   bool IsLegendLordKingdomID(int32 pKingdomID = 0);
   bool IsPyramidKingdomID(int32 pKingdomID = 0);
+  Color3B GetMoveLineColor(EMapMoveLineColor pColor);
 };

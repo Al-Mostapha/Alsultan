@@ -30,10 +30,12 @@ private:
 public:
   bool m_FreeImagesOnExit = false;
   bool _IsHideCurrentSceneView = false;
+  Node *_CcsView = nullptr;
+  bool _IsTranslucentView = false;
   CREATE_FUNC(UIBaseView);
   static UIBaseView *Create(Size p_Size, bool p_IsColor = false, Node *p_Target = nullptr);
   virtual void Ctor();
-  void SetBackGround(float p_Opacity, Color3B p_Color);
+  void SetBackGround(float p_Opacity, Color3B p_Color = Color3B::BLACK);
   float GetPanelOffsetHeight();
   typedef std::function<void()> CallBack;
   void LoadImages(const GVector<GString> &p_ArrayImagesPath, CallBack p_CallBack = nullptr);

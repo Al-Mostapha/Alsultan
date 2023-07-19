@@ -35,3 +35,7 @@ RBorderLodScale WorldMapUtil::GetLodByScale(float p_Scale, RBorderLodScale p_Def
   // return curLodConfig
   return p_Default;
 }
+
+bool WorldMapUtil::IsTroopPriority(){
+  return true;
+}

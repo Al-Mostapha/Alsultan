@@ -15,6 +15,7 @@ static __TYPE__ *Create(GString p_CCSFile, Size p_ViewSize = Size::ZERO)\
   l_View->setName("ccsView");\
   l_BaseView->addChild(l_View, 1);\
   l_BaseView->Ctor();\
+  l_BaseView->_CcsView = l_View;\
   return l_BaseView;\
 }
 
@@ -31,6 +32,7 @@ static __TYPE__ *Create(Node *p_CCSFile, Size p_ViewSize)\
   auto l_BaseView = __TYPE__::CreateBaseView(p_ViewSize, false);\
   l_View->setName("ccsView");\
   l_BaseView->addChild(l_View, 1);\
+  l_BaseView->_CcsView = l_View;\
   return l_BaseView;\
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 
-class WorldMapInstanceBase : public cocos2d::Node
+class WorldMapInstanceBase : virtual public cocos2d::Node
 {
   virtual void OnMessageListener() = 0;
   virtual void OnEnterOther() = 0;

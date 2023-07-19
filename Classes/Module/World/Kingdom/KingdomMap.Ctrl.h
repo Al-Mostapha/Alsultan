@@ -11,4 +11,7 @@ public:
   void ReLoginFinish();
   EKingdomClassType GetKingdomClass();
   void OnSwitchWorldMap(ESwitchWorldMapTypeDef, int32 p_KID){}
+  bool ReqIsSafe(){
+    return true;
+  }
 };

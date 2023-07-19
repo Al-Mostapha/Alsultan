@@ -10,6 +10,6 @@ class WorldMapUtil{
   }
 
   RBorderLodScale GetLodByScale(float p_Scale, RBorderLodScale p_Default);
-
   bool IsLodOpen();
+  bool IsTroopPriority();
 };  

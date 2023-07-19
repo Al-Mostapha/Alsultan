@@ -22,3 +22,17 @@ enum class EEscortAddState {
   Opening = 2,
   Opened = 3
 };
+
+enum class EAllianceBuildingStatus{
+  FREE = 1,
+  BUILD = 2,
+  COMPLETE = 3,
+  LOCK = 10,
+  UNSET = 11,
+  NONE = 0,
+  PERFECT = 1,
+  BURNING = 2,
+  RECOVERING = 3,
+  DESTROY = 4,
+  BUILDING = 5
+};

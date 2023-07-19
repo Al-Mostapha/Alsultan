@@ -80,3 +80,16 @@ struct RAlliance {
   // self.queue = {}
   // self:addEventListener(tostring(gEscortAddState.OPENING), handler(self, self.escortOpeningTimeCb))
 };
+
+
+struct RAllianceBuildMainInfo {
+  int32 _Id;
+  int32 _Bid;
+  EAllianceBuildingStatus _Status;
+  int32 _HP;
+  int32 _MaxHP;
+  int32 _CurrentHP;
+  GTime _RemainCDTime;
+  int32 _BurningSpeed;
+  int32 _RecoverSpeed;
+};

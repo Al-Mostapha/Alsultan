@@ -67,3 +67,7 @@ bool WorldMapDefine::IsLegendLordKingdomID(int32 pKingdomID){
 bool WorldMapDefine::IsPyramidKingdomID(int32 pKingdomID){
   return false;
 }
+
+Color3B WorldMapDefine::GetMoveLineColor(EMapMoveLineColor pColor){
+  return Color3B();
+}

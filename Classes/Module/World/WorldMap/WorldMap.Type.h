@@ -74,3 +74,5 @@ struct RRemoveTroopTipData{
   int32 _MoveLineID;
   cocos2d::Vec2 _MapMoveToTilePoint;
 };
+
+struct RMoveLineArmyData{};
