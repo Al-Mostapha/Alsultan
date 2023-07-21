@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "ui/CocosGUI.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "Base/Containers/HashMap.h"
 
 
 
@@ -41,6 +42,7 @@ class WorldMapCell : public cocos2d::ui::Layout
   ui::Widget::ccWidgetTouchCallback _TouchPlayerCallFun = nullptr;
   EKingdomClassType _MapClassType;
   DrawNode* _DrawNode = nullptr;
+  GHashMap<GString, Node *> _CacheNodes;
   // self.cacheLeagueManorNodes = {
   //   [1] = {},
   //   [2] = {}
@@ -65,5 +67,11 @@ class WorldMapCell : public cocos2d::ui::Layout
   GTuple<UIBaseView *, Node *, Node *> 
   OnClickInstance(GOpt<Vec2> p_TilePos, IWorldMapInstance *p_TileInstance,
    Node *p_OnShowView, Node *p_OnShowViewNode);
+ 
+  Node* &operator[](const GString &pLayerName){
+    if(!_CacheNodes.Contains(pLayerName))
+      _CacheNodes[pLayerName] = nullptr;
+    return _CacheNodes[pLayerName];
+  }
 
 };

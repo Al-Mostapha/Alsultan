@@ -1,5 +1,6 @@
 #include "WorldMapLodCfg.h"
-#include "Base/Math/Math.Base.h"
+#include "Base/Math/Math.Base.h".
+#include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
 
 WorldMapLodCfg *WorldMapLodCfg::Get()
 {
@@ -15,7 +16,7 @@ void WorldMapLodCfg::Init()
 {
   _LodCastle._Component = "worldMapComInstanceLod";
   _LodCastle._Name = "worldMapComInstanceLodCastle";
-  _LodCastle._Param._LodLayer = ELodLayer::LOD_LAYER_CASTLE;
+  _LodCastle._Param._LodLayer = ELodLayer::CASTLE;
   _LodCastle._Param._Layer = "castle";
   _LodCastle._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 2;
   _LodCastle._Param._MaxInstanceDel = MAX_DELINSTANCE * 2;
@@ -59,7 +60,7 @@ void WorldMapLodCfg::Init()
     
   _LodNpc._Component = "worldMapComInstanceLod";
   _LodNpc._Name = "worldMapComInstanceLodNpc";
-  _LodNpc._Param._LodLayer = ELodLayer::LOD_LAYER_NPC;
+  _LodNpc._Param._LodLayer = ELodLayer::NPC;
   _LodNpc._Param._Layer = "npc";
   _LodNpc._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 2;
   _LodNpc._Param._MaxInstanceDel = MAX_DELINSTANCE * 2;
@@ -74,7 +75,7 @@ void WorldMapLodCfg::Init()
 
   _LodMonster._Component = "worldMapComInstanceLod";
   _LodMonster._Name = "worldMapComInstanceLodMonster";
-  _LodMonster._Param._LodLayer = ELodLayer::LOD_LAYER_MONSTER;
+  _LodMonster._Param._LodLayer = ELodLayer::MONSTER;
   _LodMonster._Param._Layer = "monster";
   _LodMonster._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 2;
   _LodMonster._Param._MaxInstanceDel = MAX_DELINSTANCE * 2;
@@ -88,7 +89,7 @@ void WorldMapLodCfg::Init()
 
   _LodBoss._Component = "worldMapComInstanceLod";
   _LodBoss._Name = "worldMapComInstanceLodBoss";
-  _LodBoss._Param._LodLayer = ELodLayer::LOD_LAYER_BOSS;
+  _LodBoss._Param._LodLayer = ELodLayer::BOSS;
   _LodBoss._Param._Layer = "boss";
   _LodBoss._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 3;
   _LodBoss._Param._MaxInstanceDel = MAX_DELINSTANCE * 3;
@@ -102,7 +103,7 @@ void WorldMapLodCfg::Init()
   
   _LodAllianceRes._Component = "worldMapComInstanceLod";
   _LodAllianceRes._Name = "worldMapComInstanceLodAllianceRes";
-  _LodAllianceRes._Param._LodLayer = ELodLayer::LOD_LAYER_ALLIANCERES;
+  _LodAllianceRes._Param._LodLayer = ELodLayer::ALLIANCERES;
   _LodAllianceRes._Param._Layer = "allianceres";
   _LodAllianceRes._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 2;
   _LodAllianceRes._Param._MaxInstanceDel = MAX_DELINSTANCE * 2;
@@ -116,7 +117,7 @@ void WorldMapLodCfg::Init()
 
   _LodAllianceStrong._Component = "worldMapComInstanceLod";
   _LodAllianceStrong._Name = "worldMapComInstanceLodAllianceStrong";
-  _LodAllianceStrong._Param._LodLayer = ELodLayer::LOD_LAYER_ALLIANCESTRONG;
+  _LodAllianceStrong._Param._LodLayer = ELodLayer::ALLIANCESTRONG;
   _LodAllianceStrong._Param._Layer = "alliancestrong";
   _LodAllianceStrong._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 3;
   _LodAllianceStrong._Param._MaxInstanceDel = MAX_DELINSTANCE * 3;
@@ -130,7 +131,7 @@ void WorldMapLodCfg::Init()
   
   _LodAlliance._Component = "worldMapComInstanceLodAlliance";
   _LodAlliance._Name = "worldMapComInstanceLodAlliance";
-  _LodAlliance._Param._LodLayer = ELodLayer::LOD_LAYER_ALLIANCE;
+  _LodAlliance._Param._LodLayer = ELodLayer::ALLIANCE;
   _LodAlliance._Param._Layer = "alliance";
   _LodAlliance._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 3;
   _LodAlliance._Param._MaxInstanceDel = MAX_DELINSTANCE * 3;
@@ -142,7 +143,7 @@ void WorldMapLodCfg::Init()
 
   _LodSelf._Component = "worldMapComInstanceLod";
   _LodSelf._Name = "worldMapComInstanceLodSelf";
-  _LodSelf._Param._LodLayer = ELodLayer::LOD_LAYER_SELF;
+  _LodSelf._Param._LodLayer = ELodLayer::SELF;
   _LodSelf._Param._Layer = "buildself";
   _LodSelf._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 3;
   _LodSelf._Param._MaxInstanceDel = MAX_DELINSTANCE * 3;
@@ -155,7 +156,7 @@ void WorldMapLodCfg::Init()
 
   _LodNebula._Component = "worldMapComInstanceLod";
   _LodNebula._Name = "worldMapComInstanceNebula";
-  _LodNebula._Param._LodLayer = ELodLayer::LOD_LAYER_NEBULA;
+  _LodNebula._Param._LodLayer = ELodLayer::NEBULA;
   _LodNebula._Param._Layer = "nebula";
   _LodNebula._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 2;
   _LodNebula._Param._MaxInstanceDel = MAX_DELINSTANCE * 2;
@@ -167,7 +168,7 @@ void WorldMapLodCfg::Init()
   
   _LodNebula4._Component = "worldMapComInstanceLod";
   _LodNebula4._Name = "worldMapComInstanceNebula4";
-  _LodNebula4._Param._LodLayer = ELodLayer::LOD_LAYER_NEBULA_4;
+  _LodNebula4._Param._LodLayer = ELodLayer::NEBULA_4;
   _LodNebula4._Param._Layer = "nebula4";
   _LodNebula4._Param._MaxInstanceShow = MAX_SHOWINSTANCE * 2;
   _LodNebula4._Param._MaxInstanceDel = MAX_DELINSTANCE * 2;

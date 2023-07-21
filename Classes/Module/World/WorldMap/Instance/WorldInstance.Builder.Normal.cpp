@@ -1,7 +1,18 @@
 #include "WorldInstance.Builder.Normal.h"
 #include "IWorldMapInstance.h"
 #include "WorldInstance.Factory.h"
-#include "Module/World/WorldMap/View/WorldMapCell.h"
+#include "Module/World/WorldMap/View/WorldMap.Cell.h"
+
+WorldInstanceBuilderNormal *WorldInstanceBuilderNormal::Create(){
+  auto lBuilder = new WorldInstanceBuilderNormal();
+  lBuilder->Ctor();
+  return lBuilder;
+}
+
+void WorldInstanceBuilderNormal::Ctor(){
+  _Lod = EWorldLodDef::LOD1;
+  _LayerName = "LayerLod_1";
+}
 
 GTuple<IWorldMapInstance *, bool> GetInstanceByType(RWorldInstanceConfig::RLod pLodConfig, int32 pClassType = 0){
   auto lClass = pLodConfig._Class;
@@ -27,8 +38,8 @@ IWorldMapInstance *WorldInstanceBuilderNormal::AddMapInstance(RWorldInstanceConf
   if(lLayerType != EGrouID::None){
     lWorldInstance->SetBatchNodeGroupID(lLayerType);
   }
-  lWorldInstance->SetPosition(lInstancePoint);
-  lWorldInstance->SetLocalZOrder(lDistance);
+  lWorldInstance->setPosition(lInstancePoint);
+  lWorldInstance->setLocalZOrder(lDistance);
   AddWorldInstance(pCell, lWorldInstance);
   if(lCache){
     lWorldInstance->release();

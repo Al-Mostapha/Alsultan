@@ -87,21 +87,6 @@ enum class EWorldLodDef {
   LOD6 = 6
 };
 
-enum class ELodLayer {
-  None = 0,
-  LOD_LAYER_NORMAL = 1,
-  LOD_LAYER_NPC = 2,
-  LOD_LAYER_ALLIANCE = 3,
-  LOD_LAYER_SELF = 4,
-  LOD_LAYER_CASTLE = 5,
-  LOD_LAYER_ALLIANCERES = 6,
-  LOD_LAYER_ALLIANCESTRONG = 7,
-  LOD_LAYER_MONSTER = 8,
-  LOD_LAYER_BOSS = 9,
-  LOD_LAYER_NEBULA = 10,
-  LOD_LAYER_NEBULA_4 = 11
-};
-
 enum class EWorldMapZOrder {
   tmxView = -20,
   rolygonView = -18,

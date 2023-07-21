@@ -13,7 +13,7 @@ public:
   int32 _PlayerID;
   EMapObjTypeDef _InstanceType;
   GTuple<UIBasePanel *, bool, Node*> OnClickInstance(Node *pNode);
-  
+
   void SetInstanceType(EMapObjTypeDef pInstanceType);
   void SetWorldMapCell(WorldMapCell *pWorldMapCell);
   void SetKingdomID(int32 pKingdomID);
@@ -22,9 +22,10 @@ public:
   void SetTilesArray(GVector<Vec2> pTilesArray);
   void SetTilePoint(Vec2 pTilePoint);
   void SetHoldInstace(int32 pHoldInstace);
-  
+  void SetBatchNodeGroupID(EGrouID pBatchNodeGroupID);
+  virtual void Ctor();
   virtual void InitInstanceData(void *pObjData){}
   virtual void InitInstanceData(EWorldInstanceClass pClass, void *pObjData, int32 pObjID = 0){}
   //angle name e, w, n, s, wn ...etc
-  virtual void InitInstanceData(EWorldInstanceClass pClass, void *pObjData, GString pAngleName, bool pIsFlipX, int32 pObjID){}
+  virtual void InitInstanceData(EWorldInstanceClass pClass, GString pAngleName, bool pIsFlipX, void *pObjData){}
 };

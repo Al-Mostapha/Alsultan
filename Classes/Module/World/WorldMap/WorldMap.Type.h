@@ -3,6 +3,7 @@
 #include "Base/BaseTypeDef.h"
 #include "Base/Containers/HashMap.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
   #define MAX_SHOWINSTANCE 3
