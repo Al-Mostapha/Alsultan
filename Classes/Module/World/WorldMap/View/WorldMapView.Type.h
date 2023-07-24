@@ -34,3 +34,15 @@ struct RGotoTilePointNewEvAr {
   int32 _KingdomID;
   bool _NeedAction;
 };
+
+struct RLeagueManorInstanceUpdateEvAr{
+  int32 _InstanceID = 0;
+  int32 _LeagueID = 0;
+  Vec2 _TilePoint = Vec2::ZERO;
+  EWorldMapLeagueManorUpdateType _UpdateType = EWorldMapLeagueManorUpdateType::None;
+  bool _ActiviyStatus = false;
+  int32 _Size = 1;
+  int32 _Radioation = 2;
+  int32 _Sn = 0;
+  float _ColorId = 0;
+};

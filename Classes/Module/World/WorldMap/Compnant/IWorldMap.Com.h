@@ -22,6 +22,10 @@ class IWorldMapComponent
       l_Ret->Ctor();
       return l_Ret;
     };
+    virtual void Ctor(){
+
+    };
+    
     virtual void Init(){
       ResetData();
     };

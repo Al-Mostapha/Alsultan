@@ -17,3 +17,7 @@ EKingdomClassType WorldMapWarDef::GetKingdomMapClassByKingdomId(int32 p_IdKingdo
 bool WorldMapWarDef::IsInWarForbidBonePoing(EKingdomClassType p_MapType){
   return false;
 }
+
+int32 WorldMapWarDef::GetMapRangMaxX(EKingdomClassType p_MapType){
+  return 1201;
+}

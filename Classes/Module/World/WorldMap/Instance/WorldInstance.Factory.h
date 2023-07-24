@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "WorldInstance.Enum.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "WorldInstance.Type.h"
 
 USING_NS_CC;
 

@@ -114,8 +114,20 @@ GTuple<IWorldMapInstance *, bool> WorldInstanceFactory::GetInstanceByType(EWorld
 }
 
 int32 WorldInstanceFactory::GetHoldInstaceByType(EMapObjTypeDef pTileInstanceType, EWorldInstanceClass pClass, int32 pClassType){
-  return 0;
+  auto lHoldInstace = 1;
+  if(_WorldInstanceConfig.Contains(pTileInstanceType)){
+    auto lConfig = _WorldInstanceConfig[pTileInstanceType];
+    lHoldInstace = lConfig._HoldInstace;
+    if(lConfig._HoldInstaceTable.Contains(static_cast<int32>(pClass))){
+      lHoldInstace = lConfig._HoldInstaceTable[static_cast<int32>(pClass)];
+    }else if(lConfig._HoldInstaceTable.Contains(pClassType)){
+      lHoldInstace = lConfig._HoldInstaceTable[pClassType];
+    }
+  }
+  return lHoldInstace;
 }
+
+
 
 GVector<Vec2> WorldInstanceFactory::GetTilesArrayByInstace(Vec2 pTilePoint, int32 pHoldInstace){
   return {};

@@ -448,3 +448,11 @@ enum class EGrouID  {
   group_lod_icon = 224,
   group_sign = 225
 };
+
+enum class EWorldMapLeagueManorUpdateType {
+  None = 0,
+  Add = 1,
+  Remove = 2,
+  Activity = 3,
+  RelationChange = 4
+};

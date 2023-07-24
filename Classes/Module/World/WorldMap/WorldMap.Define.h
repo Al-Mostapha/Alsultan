@@ -23,6 +23,8 @@ public:
   static WorldMapDefine * Get();
   int32 CurrentMapKindomID = 0;
   cocos2d::Size _WorldMapViewSize;
+  int32 _CurSelectNodeInfo = 1;
+  
   bool IsInWar();
   bool IsInLegendLord();
   bool IsInRemains();

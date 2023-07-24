@@ -68,7 +68,7 @@ void WorldMapComBorder::UpdateScaleZoom(EventCustom *p_Event){
   }
 }
 
-void WorldMapComBorder::UpdateMapPos(EventCustom *p_Event){
+void WorldMapComBorder::UpdateMapPos(EventCustom *pEvent){
   auto l_ZoomScale = _Target->_ViewScrollView->getZoomScale();
   auto l_BottomPointNode = _Target->GetBottomPointNode();
   auto l_TilePoint = l_BottomPointNode->_TilePoint;

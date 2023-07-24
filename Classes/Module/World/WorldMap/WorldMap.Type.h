@@ -77,3 +77,4 @@ struct RRemoveTroopTipData{
 };
 
 struct RMoveLineArmyData{};
+
