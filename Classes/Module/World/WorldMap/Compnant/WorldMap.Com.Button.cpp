@@ -247,93 +247,98 @@ void WorldMapComButton::TipButtonTouchCall(EventCustom *pEvent){
   }
   
   if(lTipButtonType == EWorldMapTipButtonType::shuoMing){
-  //       local instanceType = mapInstance:getInstanceType()
-  //       local instanceClassID = mapInstance.resourceClassID or 0
-  //       if gMapObjTypeDef.mapObjTypeSuperResource == instanceType then
-  //         local panel = SoraDCreatePanel("allianceBuildNoticeView")
-  //         panel:initData(instanceClassID, mapInstance.leagueID, mapInstance.kingdomID)
-  //         panel:show()
-  //       elseif gMapObjTypeDef.mapObjTypeAllianceBuild == instanceType then
-  //         local instanceBuildClassID = mapInstance.getBuildClassID and mapInstance:getBuildClassID()
-  //         if gMapAllianceBuildType.subTypeAllianceAltar == instanceBuildClassID then
-  //           local panel = SoraDCreatePanel("allianceBuildNoticeView")
-  //           panel:initData(instanceBuildClassID, mapInstance.leagueID, mapInstance.kingdomID)
-  //           panel:show()
-  //         end
-  //       elseif gMapObjTypeDef.mapTypeATBuilding == instanceType then
-  //         SoraDShowFixWindow(i18n("AncienTreasure_text_80"), {
-  //           i18n("AncienTreasure_text_81")
-  //         })
-  //       elseif gMapObjTypeDef.mapTypeWarTreasure == instanceType then
-  //         SoraDShowHelpMsgTip(i18n("warSecrit_text_01"))
-  //       elseif gMapObjTypeDef.mapType20Campfire == instanceType then
-  //         local panel = SoraDCreatePanel("anniversaryFlameExplainView")
-  //         panel:initData({
-  //           fireNum = mapInstance.flameNum,
-  //           owerName = mapInstance.owerName,
-  //           createUid = mapInstance.createUid,
-  //           flameStage = mapInstance.flameStage
-  //         })
-  //         panel:show()
-  //       else
-  //         local panel = SoraDCreatePanel("worldMapExplainView")
-  //         panel:initData(instanceType, instanceClassID)
-  //         panel:show()
-  //       end
+    //       local instanceType = mapInstance:getInstanceType()
+    auto lInstanceType = lMapInstance->_InstanceType;
+    //       local instanceClassID = mapInstance.resourceClassID or 0
+    //       if gMapObjTypeDef.mapObjTypeSuperResource == instanceType then
+    if(lInstanceType == EMapObjTypeDef::mapObjTypeSuperResource){
+      //         local panel = SoraDCreatePanel("allianceBuildNoticeView")
+      //         panel:initData(instanceClassID, mapInstance.leagueID, mapInstance.kingdomID)
+      //         panel:show()
+    } else if(lInstanceType == EMapObjTypeDef::mapObjTypeAllianceBuild){
+      //         local instanceBuildClassID = mapInstance.getBuildClassID and mapInstance:getBuildClassID()
+      //         if gMapAllianceBuildType.subTypeAllianceAltar == instanceBuildClassID then
+      //           local panel = SoraDCreatePanel("allianceBuildNoticeView")
+      //           panel:initData(instanceBuildClassID, mapInstance.leagueID, mapInstance.kingdomID)
+      //           panel:show()
+      //         end
+    } else if(lInstanceType == EMapObjTypeDef::mapTypeATBuilding){
+      //         SoraDShowFixWindow(i18n("AncienTreasure_text_80"), {
+      //           i18n("AncienTreasure_text_81")
+      //         })
+    } else if(lInstanceType == EMapObjTypeDef::mapTypeWarTreasure){
+      //         SoraDShowHelpMsgTip(i18n("warSecrit_text_01"))
+    } else if(lInstanceType == EMapObjTypeDef::mapType20Campfire){
+      //         local panel = SoraDCreatePanel("anniversaryFlameExplainView")
+      //         panel:initData({
+      //           fireNum = mapInstance.flameNum,
+      //           owerName = mapInstance.owerName,
+      //           createUid = mapInstance.createUid,
+      //           flameStage = mapInstance.flameStage
+      //         })
+      //         panel:show()
+    }else{
+      //         local panel = SoraDCreatePanel("worldMapExplainView")
+      //         panel:initData(instanceType, instanceClassID)
+      //         panel:show()
+    }
   }else if(lTipButtonType == EWorldMapTipButtonType::xiangqing){
-  //       local instanceType = mapInstance:getInstanceType()
-  //       local instanceClassID = mapInstance.resourceClassID or 0
-  //       if gMapObjTypeDef.mapObjTypeResource == instanceType then
-  //         local instanceID = mapInstance:getInstanceID()
-  //         local panel = SoraDCreatePanel("worldMapResOccupyView")
-  //         panel:initData({
-  //           classID = instanceClassID,
-  //           resPos = endPoint,
-  //           insID = instanceID
-  //         })
-  //         panel:show()
-  //       elseif gMapObjTypeDef.mapTypeWarTreasure == instanceType then
-  //         local instanceID = mapInstance:getInstanceID()
-  //         local panel = SoraDCreatePanel("worldMapResOccupyView")
-  //         panel:initDataFromWar({
-  //           classID = instanceClassID,
-  //           resPos = endPoint,
-  //           insID = instanceID,
-  //           data = tipButtonData,
-  //           playerName = mapInstance.playerName,
-  //           leagueName = mapInstance.leagueName
-  //         })
-  //         panel:show()
-  //       elseif gMapObjTypeDef.mapTypeRadianceWarResource == instanceType then
-  //         local instanceID = mapInstance:getInstanceID()
-  //         local panel = SoraDCreatePanel("radianceWarResOccupyView")
-  //         panel:initData({
-  //           classID = instanceClassID,
-  //           resPos = endPoint,
-  //           insID = instanceID,
-  //           resourceType = mapInstance.resourceType,
-  //           mapInstance = mapInstance
-  //         })
-  //         panel:show()
-  //       elseif gMapObjTypeDef.mapTypeMine == instanceType then
-  //         local panel = SoraDCreatePanel("worldResourceDetailView")
-  //         panel:initData({
-  //           resPos = endPoint,
-  //           resourceType = mapInstance:getBuildClassID(),
-  //           mapInstance = mapInstance
-  //         })
-  //         panel:show()
-  //       elseif gMapObjTypeDef.nebulaWarMine == instanceType then
-  //         uiManager:show("NebulaWarMineDetail", {mapInstance = mapInstance})
-  //       end
+    //       local instanceType = mapInstance:getInstanceType()
+    auto lInstanceType = lMapInstance->_InstanceType;
+    //       local instanceClassID = mapInstance.resourceClassID or 0
+
+    //       if gMapObjTypeDef.mapObjTypeResource == instanceType then
+    if(lInstanceType == EMapObjTypeDef::mapObjTypeResource){
+      //         local instanceID = mapInstance:getInstanceID()
+      //         local panel = SoraDCreatePanel("worldMapResOccupyView")
+      //         panel:initData({
+      //           classID = instanceClassID,
+      //           resPos = endPoint,
+      //           insID = instanceID
+      //         })
+      //         panel:show()
+    } else if(lInstanceType == EMapObjTypeDef::mapTypeWarTreasure){
+      //         local instanceID = mapInstance:getInstanceID()
+      //         local panel = SoraDCreatePanel("worldMapResOccupyView")
+      //         panel:initDataFromWar({
+      //           classID = instanceClassID,
+      //           resPos = endPoint,
+      //           insID = instanceID,
+      //           data = tipButtonData,
+      //           playerName = mapInstance.playerName,
+      //           leagueName = mapInstance.leagueName
+      //         })
+      //         panel:show()
+    }else if(lInstanceType == EMapObjTypeDef::mapTypeRadianceWarResource){
+      //         local instanceID = mapInstance:getInstanceID()
+      //         local panel = SoraDCreatePanel("radianceWarResOccupyView")
+      //         panel:initData({
+      //           classID = instanceClassID,
+      //           resPos = endPoint,
+      //           insID = instanceID,
+      //           resourceType = mapInstance.resourceType,
+      //           mapInstance = mapInstance
+      //         })
+      //         panel:show()
+    }else if(lInstanceType == EMapObjTypeDef::mapTypeMine){
+      //         local panel = SoraDCreatePanel("worldResourceDetailView")
+      //         panel:initData({
+      //           resPos = endPoint,
+      //           resourceType = mapInstance:getBuildClassID(),
+      //           mapInstance = mapInstance
+      //         })
+      //         panel:show()
+    }else if(lInstanceType == EMapObjTypeDef::nebulaWarMine){
+      //         uiManager:show("NebulaWarMineDetail", {mapInstance = mapInstance})
+    }
   }else if(lTipButtonType == EWorldMapTipButtonType::jinruChengshi){
-  //       SoraDSendMessage({
-  //         msg = "MESSAGE_MAINSCEN_ONSHOW",
-  //         viewType = VIEW_TYPE_CITY
-  //       })
+    //       SoraDSendMessage({
+    //         msg = "MESSAGE_MAINSCEN_ONSHOW",
+    //         viewType = VIEW_TYPE_CITY
+    //       })
   }else if(lTipButtonType == EWorldMapTipButtonType::chengshiZengyi){
-  //       local panel = SoraDCreatePanel("citybuffView")
-  //       panel:show()
+    //       local panel = SoraDCreatePanel("citybuffView")
+    //       panel:show()
   }else if(lTipButtonType == EWorldMapTipButtonType::decorate){
     //       local dressCtrl = gametop.playertop_:getModule("dressCtrl")
     //       local panel = SoraDCreatePanel("castleChangeView")

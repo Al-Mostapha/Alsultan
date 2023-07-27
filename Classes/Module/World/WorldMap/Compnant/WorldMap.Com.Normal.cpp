@@ -158,3 +158,4 @@ void WorldMapComNormal::BtnMonsterSearchCall(Ref *p_Sender, ui::Widget::TouchEve
   }
 
 }
+

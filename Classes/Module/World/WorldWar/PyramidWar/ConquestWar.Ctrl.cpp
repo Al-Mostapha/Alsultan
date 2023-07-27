@@ -2,7 +2,7 @@
 
 ConquestWarCtrl* ConquestWarCtrl::Get()
 {
-  static ConquestWarCtrl* l_ConquestWarCtrl = nullptr;
+  static ConquestWarCtrl *l_ConquestWarCtrl = nullptr;
   if(!l_ConquestWarCtrl){
     l_ConquestWarCtrl = new ConquestWarCtrl();
   }

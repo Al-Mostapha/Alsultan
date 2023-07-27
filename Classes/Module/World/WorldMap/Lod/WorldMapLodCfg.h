@@ -30,4 +30,5 @@ public:
   GVector<RLodCfgScale> _LodCfgScaleNormal;
   GVector<RBorderLodScale> _BorderLodScale;
   static WorldMapLodCfg *Get();
+  GTuple<int32, int32, int32> GetFogMapScale(float pZoomScale); 
 };

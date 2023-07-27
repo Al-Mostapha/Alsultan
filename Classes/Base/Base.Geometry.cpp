@@ -224,3 +224,30 @@ float GBase::DGetAngleByPos(Vec2 pPoint1, Vec2 pPoint2){
   auto lPoint = pPoint2 - pPoint1;
   return GMath::Atan2(lPoint.y, lPoint.x) * 180 / M_PI;
 }
+
+
+bool GBase::DRectIntersectsRect(const Rect &pRect1, const Rect &pRect2, bool pHaveBorder){
+
+  // local x11 = rect1.x
+  auto x11 = pRect1.origin.x;
+  // local y11 = rect1.y
+  auto y11 = pRect1.origin.y;
+  // local x12 = rect1.x + rect1.width
+  auto x12 = pRect1.origin.x + pRect1.size.width;
+  // local y12 = rect1.y + rect1.height
+  auto y12 = pRect1.origin.y + pRect1.size.height;
+  // local x21 = rect2.x
+  auto x21 = pRect2.origin.x;
+  // local y21 = rect2.y
+  auto y21 = pRect2.origin.y;
+  // local x22 = rect2.x + rect2.width
+  auto x22 = pRect2.origin.x + pRect2.size.width;
+  // local y22 = rect2.y + rect2.height
+  auto y22 = pRect2.origin.y + pRect2.size.height;
+  if(pHaveBorder){
+    return x12 >= x21 && x11 <= x22 && y12 >= y21 && y11 <= y22;
+  }else{
+      return x12 > x21 && x11 < x22 && y12 > y21 && y11 < y22;
+  }
+  return false;
+}

@@ -6,6 +6,7 @@ GTuple<UIBasePanel *, bool, Node*> IWorldMapInstance::OnClickInstance(Node *p_No
   return GTuple<UIBasePanel *, bool, Node*>();
 }
 
+void IWorldMapInstance::SetBatchNodeGroupID(EGrouID pBatchNodeGroupID){}
 void IWorldMapInstance::SetInstanceType(EMapObjTypeDef pInstanceType){}
 void IWorldMapInstance::SetWorldMapCell(WorldMapCell *pWorldMapCell){}
 void IWorldMapInstance::SetKingdomID(int32 pKingdomID){}

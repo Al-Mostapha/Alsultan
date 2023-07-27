@@ -25,7 +25,7 @@ GBase::DCreateMeshNode(const RMeshNodeParm &p_MeshData, Sprite3D *p_Node){
   auto l_State = GLProgramState::create(l_Shader);
   l_MeshNode->setGLProgramState(l_State);
   auto l_SharedTextureCache = Director::getInstance()->getTextureCache();
-  DSetProgramStateParam(l_Shader, l_State, p_MeshData.Param);
+  DSetProgramStateParam(l_Shader, l_State, p_MeshData._Param);
   if(p_MeshData._Mesh._Is3D){
     //l_MeshNode->setIs3D(true);
   }

@@ -57,4 +57,8 @@ class WorldMapViewObject
     ui::Button *GetButtonMonsterSearch(){ return nullptr; }
     //worldMapComInstanceNormal:getShowInstance(pos)
     IWorldMapInstance *GetShowInstance(Vec2 pPos){ return nullptr; }
+    //worldMapComManorData:getInstanceMapFromManager()
+    GHashMap<int32, IWorldMapInstance *> GetInstanceMapFromManager(){
+      return GHashMap<int32, IWorldMapInstance *> ();
+    }
 };

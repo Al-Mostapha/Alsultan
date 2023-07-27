@@ -14,7 +14,7 @@ void WorldInstanceBuilderNormal::Ctor(){
   _LayerName = "LayerLod_1";
 }
 
-GTuple<IWorldMapInstance *, bool> GetInstanceByType(RWorldInstanceConfig::RLod pLodConfig, int32 pClassType = 0){
+GTuple<IWorldMapInstance *, bool> GetInstanceByType(RWorldInstanceConfigLod pLodConfig, int32 pClassType = 0){
   auto lClass = pLodConfig._Class;
   if(pClassType && pLodConfig._ClassTable.Contains(pClassType)){
     lClass = pLodConfig._ClassTable[pClassType];
@@ -25,7 +25,7 @@ GTuple<IWorldMapInstance *, bool> GetInstanceByType(RWorldInstanceConfig::RLod p
   return {nullptr, false};
 };
 
-IWorldMapInstance *WorldInstanceBuilderNormal::AddMapInstance(RWorldInstanceConfig::RLod pConfig, WorldMapCell *pCell, RWorldInstanceData pData){
+IWorldMapInstance *WorldInstanceBuilderNormal::AddMapInstance(RWorldInstanceConfigLod pConfig, WorldMapCell *pCell, RWorldInstanceData pData){
   
   auto lTilePoint = pData._TilePoint;
   auto lTileInstanceType = pData._TileInstanceType;

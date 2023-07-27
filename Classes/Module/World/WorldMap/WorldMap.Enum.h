@@ -456,3 +456,9 @@ enum class EWorldMapLeagueManorUpdateType {
   Activity = 3,
   RelationChange = 4
 };
+
+enum class EManorlineSn{
+  strongHold = -2,
+  placePreview = -1,
+  None = 0
+};

@@ -5,6 +5,6 @@
 class ConquestWarCtrl
 {
 public:
-  static ConquestWarCtrl* ConquestWarCtrl::Get();
+  static ConquestWarCtrl *Get();
   EConquestWarState GetConquestWarState();
 };

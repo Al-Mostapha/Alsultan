@@ -323,7 +323,7 @@ void WorldMapComBorder::CreateGrayBorder(float p_MapWidth){
   RMeshNodeParm l_MeshNodeParam;
   l_MeshNodeParam._Mesh = l_MeshData;
   l_MeshNodeParam.Shader = l_Shader;
-  l_MeshNodeParam.Param = l_Params;
+  l_MeshNodeParam._Param = l_Params;
   
   auto [l_Mesh, l_ShaderTemp, l_State] = GBase::DCreateMeshNode(l_MeshNodeParam, nullptr);
   l_Mesh->setBlendFunc({GL_ONE, GL_ONE_MINUS_SRC_ALPHA});

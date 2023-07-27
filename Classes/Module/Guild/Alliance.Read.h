@@ -13,4 +13,5 @@ public:
   bool CheckRank(EAllianceRank p_Rank, bool p_ShowTip = false, const GString &p_Tip = "");
   bool GetPlayerConquestWarMigration(bool p_ShowMsg = true);
   bool GetPlayerBattleGroundMigration(bool p_ShowMsg = true);
+  GVector<float> &GetManorlineColorArray();
 };

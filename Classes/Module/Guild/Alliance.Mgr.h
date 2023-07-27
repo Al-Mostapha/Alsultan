@@ -1,5 +1,6 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
+#include "Alliance.Enum.h"
 
 class AllianceManager{
 public:
@@ -7,4 +8,5 @@ public:
   int32 IsHaveActived();
   Guid HasJoinAlliance(bool p_IsTeam = false);
   void ReqAgreeInviteJoin(Guid p_AllianceID, Guid p_PlayerId){}
+  int32 GetOwnAid(){ return 0; }
 };

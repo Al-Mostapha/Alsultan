@@ -36,3 +36,12 @@ enum class EAllianceBuildingStatus{
   DESTROY = 4,
   BUILDING = 5
 };
+
+enum class EMapAllianceRelationType{
+  None = 0,
+  ALLY,
+  FRIENDLY,
+  ENEMY,
+  SELF,
+  NORMAL
+};

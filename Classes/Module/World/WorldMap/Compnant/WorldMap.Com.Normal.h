@@ -17,7 +17,7 @@ public:
   void Init() override;
   void OnMessageListener() override;
   void Relogin() override;
-  void Ctor();
+  void Ctor() override;
   void BtnMonsterSearchCall(Ref *p_Sender, ui::Widget::TouchEventType p_Type);
   void MonsterSearchLock(EventCustom *p_Event);
   void ShowOrHideGuideView(EventCustom *p_Event);

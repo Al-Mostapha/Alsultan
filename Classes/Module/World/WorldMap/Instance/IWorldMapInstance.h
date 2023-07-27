@@ -11,7 +11,11 @@ class IWorldMapInstance : public WorldMapInstanceLod
 public:
   GString _LeagueName;
   int32 _PlayerID;
+  int32 _LeagueID;
   EMapObjTypeDef _InstanceType;
+  Vec2 _TilePoint;
+  Size _Size;
+  
   GTuple<UIBasePanel *, bool, Node*> OnClickInstance(Node *pNode);
 
   void SetInstanceType(EMapObjTypeDef pInstanceType);
@@ -23,6 +27,7 @@ public:
   void SetTilePoint(Vec2 pTilePoint);
   void SetHoldInstace(int32 pHoldInstace);
   void SetBatchNodeGroupID(EGrouID pBatchNodeGroupID);
+  
   virtual void Ctor();
   virtual void InitInstanceData(void *pObjData){}
   virtual void InitInstanceData(EWorldInstanceClass pClass, void *pObjData, int32 pObjID = 0){}

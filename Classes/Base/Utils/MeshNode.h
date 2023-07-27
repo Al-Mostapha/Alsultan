@@ -48,13 +48,18 @@ struct RMeshData{
   GVector<float> _TexCoords;
   GVector<float> _Normals;
   GVector<float> _UV;
+  struct {
+    Size _Size;
+    Vec2 _Center;
+    Vec2 _MinPos;
+  } _Bounds;
   bool _Is3D = false;
 };
 
 struct RMeshNodeParm{
   RMeshData _Mesh;
   RMeshNodeShader Shader;
-  GVector<RMeshNodeShaderCfg> Param;
+  GVector<RMeshNodeShaderCfg> _Param;
   Size size;
   GString _Defined;
 

@@ -34,6 +34,8 @@ class IWorldMapComponent
     virtual void DoRequest(){};
     virtual void DClearData(){};
     virtual void ResetData(){};
+    virtual void OnExit(){};
+
     void AddEventListener(const char * p_Event, const std::function<void(cocos2d::EventCustom *)> &p_Callback){
       Director::getInstance()->getEventDispatcher()->addCustomEventListener(p_Event, p_Callback);
     }

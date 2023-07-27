@@ -32,3 +32,21 @@ bool AllianceRead::GetPlayerConquestWarMigration(bool p_ShowMsg){
 bool AllianceRead::GetPlayerBattleGroundMigration(bool p_ShowMsg){
   return false;
 }
+
+GVector<float> &AllianceRead::GetManorlineColorArray(){
+  static GVector<float> lRet;
+  lRet = {
+    0, 1, 1,      1,
+    1, 0, 1,      0,
+    0, 0, 0.4941, 1,
+    0.98, 0.98,   0.98,
+    0.65, 0.65,   0.65
+  };
+  // for i, v in ipairs(allianceDesRead.landcolor) do
+  //   ret[#ret + 1] = v.color[1]
+  //   ret[#ret + 1] = v.color[2]
+  //   ret[#ret + 1] = v.color[3]
+  // end
+  //    allianceDesRead.manorlineColorArray = ret
+  return lRet;
+}

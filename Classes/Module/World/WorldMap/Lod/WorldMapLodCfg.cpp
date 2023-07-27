@@ -206,3 +206,39 @@ void WorldMapLodCfg::Init()
 }
 
 
+GTuple<int32, int32, int32> WorldMapLodCfg::GetFogMapScale(float pZoomScale){
+  int32 lLevel = 1;
+  int32 lScale = 1;
+  int32 lScaleNext = 1;
+
+  struct RZoomCfg{
+    double _Scale;
+    double _RangeMin;
+    double _RangeMax;
+    double _FadeEnd = 0;
+  };
+  static const GVector<RZoomCfg> sZoomCfg{
+    { 1,  0.75,  1,    0    },
+    { 2,  0.45,  0.75, 0.65 },
+    { 3,  0.25,  0.45, 0.35 },
+    { 5,  0.15,  0.25, 0.2  },
+    { 20, 0.05,  0.15, 0.1  },
+    { 50, 0.001, 0.05, 0.03 }
+  };
+
+  for(int32 iii = 1; iii <= sZoomCfg.size(); iii++){
+    auto lV = sZoomCfg[iii - 1];
+    if(pZoomScale > lV._RangeMin && pZoomScale <= lV._RangeMax){
+      lLevel = iii;
+      lScale = lV._Scale;
+      lScaleNext = lV._Scale;
+      if(lV._FadeEnd != 0 && pZoomScale > lV._FadeEnd){
+        lLevel = lLevel - (pZoomScale - lV._FadeEnd) / (lV._RangeMax - lV._FadeEnd);
+        lScale = sZoomCfg[iii - 2]._Scale;
+      }
+      break;
+    }
+  }
+
+  return {lLevel, lScale, lScaleNext};
+}

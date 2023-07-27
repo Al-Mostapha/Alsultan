@@ -9,7 +9,7 @@ GHashMap<EMapObjTypeDef, RWorldInstanceConfig> _WorldInstanceConfig;
 
 IWorldMapInstance *AddWorldInstanceNormale(
   IWorldInstanceBuilder *pBuilder, 
-  const RWorldInstanceConfig::RLod &pConfig, 
+  const RWorldInstanceConfigLod &pConfig, 
   WorldMapCell *pCell, RWorldInstanceData pData, int32){
   auto lWorldInstance = pBuilder->AddMapInstance(pConfig, pCell, pData);
   if(lWorldInstance){
@@ -21,7 +21,7 @@ IWorldMapInstance *AddWorldInstanceNormale(
 IWorldMapInstance *
 AddWorldInstanceClass(
   IWorldInstanceBuilder *pBuilder, 
-  const RWorldInstanceConfig::RLod &pConfig, 
+  const RWorldInstanceConfigLod &pConfig, 
   WorldMapCell *pCell, RWorldInstanceData pData, int32){
   auto lWorldInstance = pBuilder->AddMapInstance(pConfig, pCell, pData);
 
@@ -42,7 +42,7 @@ AddWorldInstanceClass(
 IWorldMapInstance *
 AddWorldInstanceObjID(
   IWorldInstanceBuilder *pBuilder, 
-  const RWorldInstanceConfig::RLod &pConfig, 
+  const RWorldInstanceConfigLod &pConfig, 
   WorldMapCell *pCell, RWorldInstanceData pData, int32 pObjID){
   auto lWorldInstance = pBuilder->AddMapInstance(pConfig, pCell, pData);
 
@@ -57,7 +57,7 @@ AddWorldInstanceObjID(
 IWorldMapInstance *
 AddWorldBuilding(
   IWorldInstanceBuilder *pBuilder, 
-  const RWorldInstanceConfig::RLod &pConfig, 
+  const RWorldInstanceConfigLod &pConfig, 
   WorldMapCell *pCell, RWorldInstanceData pData, int32){
   auto lWorldInstance = pBuilder->AddMapInstance(pConfig, pCell, pData);
 
@@ -71,7 +71,7 @@ AddWorldBuilding(
 IWorldMapInstance *
 AddWorldMonster(
   IWorldInstanceBuilder *pBuilder, 
-  const RWorldInstanceConfig::RLod &pConfig, 
+  const RWorldInstanceConfigLod &pConfig, 
   WorldMapCell *pCell, RWorldInstanceData pData, int32){
   auto lWorldMonster = pBuilder->AddMapInstance(pConfig, pCell, pData);
 
@@ -149,10 +149,10 @@ void WorldInstanceFactory::InitConfig(){
   lV->_DelayTime = true;
   lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3OrSelfLegend, InstanceLodCfgShow::Get());
 
-  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
-  lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfig::RLod();
-  lV->_Lod[EWorldLodDef::LOD3] = RWorldInstanceConfig::RLod();
-  lV->_Lod[EWorldLodDef::LOD4] = RWorldInstanceConfig::RLod();
+  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+  lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+  lV->_Lod[EWorldLodDef::LOD3] = RWorldInstanceConfigLod();
+  lV->_Lod[EWorldLodDef::LOD4] = RWorldInstanceConfigLod();
 
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBuilding;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::castleBatchNode;
@@ -173,7 +173,7 @@ void WorldInstanceFactory::InitConfig(){
   lV =  lEmplace(EMapObjTypeDef::mapObjTypeLegendLord);
   lV->_HoldInstace = 3;
   lV->_FromKey = "data";
-  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
+  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapLegendLord;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::palaceBatchNode;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceObjID;
@@ -183,7 +183,7 @@ void WorldInstanceFactory::InitConfig(){
   lV->_HoldInstace = 3;
   lV->_FromKey = "data";
 
-  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
+  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapRemainsWar;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::palaceBatchNode;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceObjID;
@@ -194,13 +194,13 @@ void WorldInstanceFactory::InitConfig(){
   lV->_FromKey = "castle";
   lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::AlwaysShow, InstanceLodCfgShow::Get());
 
-  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
+  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapCastle;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::palaceBatchNode;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
   lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
 
-  lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfig::RLod();
+  lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodCastle;
   lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::CASTLE;
   lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
@@ -209,13 +209,13 @@ void WorldInstanceFactory::InitConfig(){
   lV->_HoldInstace = 2;
   lV->_FromKey = "battery";
   lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3, InstanceLodCfgShow::Get());
-  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
+  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBattery;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::batteryBatchNode;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceObjID;
   lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
   
-  lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfig::RLod();
+  lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodBattery;
   lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::CASTLE;
   lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
@@ -223,7 +223,7 @@ void WorldInstanceFactory::InitConfig(){
   lV = lEmplace(EMapObjTypeDef::mapObjTypeFortress);
   lV->_HoldInstace = 2;
   lV->_FromKey = "fortress";
-  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
+  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapFortress;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
@@ -234,15 +234,15 @@ void WorldInstanceFactory::InitConfig(){
     lV->_HoldInstace = 1;
     lV->_FromKey = "resource";
     lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3OrSelf, InstanceLodCfgShow::Get());
-    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapResource;
       lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
       lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceClass;
       lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
-    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfig::RLod();
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapResourceLod2;
       lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
-    lV->_Lod[EWorldLodDef::LOD3] = RWorldInstanceConfig::RLod();
+    lV->_Lod[EWorldLodDef::LOD3] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD3]._Class = EWorldInstanceClass::WorldMapResourceLod;
       lV->_Lod[EWorldLodDef::LOD3]._Cache = true;
 
@@ -251,12 +251,12 @@ void WorldInstanceFactory::InitConfig(){
     lV->_FromKey = "camp";
     lV->_DelayTime = true;
     lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD2OrSelf, InstanceLodCfgShow::Get());
-    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapCampsite;
       lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
       lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
       lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
-    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfig::RLod();
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodCampsite;
       lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
 
@@ -266,12 +266,12 @@ void WorldInstanceFactory::InitConfig(){
     lV->_DelayTime = true;
     lV->_IsHurtDie = true;
     lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::MonsterShow, InstanceLodCfgShow::Get());
-    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfig::RLod();
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapMonster;
       lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::monsterBatchNode;
       lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
       lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
-    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfig::RLod();
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapMonsterLod;
       lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
       lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::MONSTER;
