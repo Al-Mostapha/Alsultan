@@ -7,11 +7,11 @@
             <key>Castle_King.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{718,493},{425,298}}</string>
+                <string>{{421,860},{425,298}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{425,298}}</string>
                 <key>sourceSize</key>
@@ -20,11 +20,11 @@
             <key>Castle_ramadan.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{288,1258},{390,280}}</string>
+                <string>{{687,278},{390,280}}</string>
                 <key>offset</key>
                 <string>{-36,59}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{25,1},{390,280}}</string>
                 <key>sourceSize</key>
@@ -33,7 +33,7 @@
             <key>Map_castle_2018_ramadan.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{618,922},{414,295}}</string>
+                <string>{{3,851},{414,295}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,11 +46,11 @@
             <key>Map_castle_2019_ramadan.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3,1258},{392,281}}</string>
+                <string>{{1081,282},{392,281}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{392,281}}</string>
                 <key>sourceSize</key>
@@ -59,11 +59,11 @@
             <key>Map_castle_2020ny.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{530,3},{486,357}}</string>
+                <string>{{794,1496},{486,357}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{486,357}}</string>
                 <key>sourceSize</key>
@@ -72,11 +72,11 @@
             <key>Map_castle_2nd.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{299,804},{417,315}}</string>
+                <string>{{1199,1177},{417,315}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{417,315}}</string>
                 <key>sourceSize</key>
@@ -85,7 +85,7 @@
             <key>Map_castle_3nd.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1020,654},{339,255}}</string>
+                <string>{{3,3},{339,255}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,11 +98,11 @@
             <key>Map_castle_Corban.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1685,913},{353,298}}</string>
+                <string>{{850,864},{353,298}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{353,298}}</string>
                 <key>sourceSize</key>
@@ -111,11 +111,11 @@
             <key>Map_castle_Easter.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{618,1221},{393,275}}</string>
+                <string>{{1370,3},{393,275}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{393,275}}</string>
                 <key>sourceSize</key>
@@ -124,11 +124,11 @@
             <key>Map_castle_bigR.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{288,1652},{341,279}}</string>
+                <string>{{342,277},{341,279}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{341,279}}</string>
                 <key>sourceSize</key>
@@ -137,11 +137,11 @@
             <key>Map_castle_crazyStar.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1358,913},{387,323}}</string>
+                <string>{{1620,1177},{387,323}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{387,323}}</string>
                 <key>sourceSize</key>
@@ -150,7 +150,7 @@
             <key>Map_castle_dengxiao.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1319,3},{393,289}}</string>
+                <string>{{687,567},{393,289}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>Map_castle_fort.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1205,1678},{335,282}}</string>
+                <string>{{3,262},{335,282}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>Map_castle_fourth.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3,3},{523,373}}</string>
+                <string>{{1284,1504},{523,373}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,11 +189,11 @@
             <key>Map_castle_hegemon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3,380},{452,282}}</string>
+                <string>{{1477,282},{452,282}}</string>
                 <key>offset</key>
                 <string>{-55,28}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,56},{452,282}}</string>
                 <key>sourceSize</key>
@@ -202,33 +202,20 @@
             <key>Map_castle_ice.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{572,1618},{362,294}}</string>
+                <string>{{1506,568},{362,294}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{362,294}}</string>
                 <key>sourceSize</key>
                 <string>{362,294}</string>
             </dict>
-            <key>Map_castle_legendaryking.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1358,1304},{370,318}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{370,318}}</string>
-                <key>sourceSize</key>
-                <string>{370,318}</string>
-            </dict>
             <key>Map_castle_linglong.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1716,3},{317,271}}</string>
+                <string>{{1049,3},{317,271}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +228,7 @@
             <key>Map_castle_newYear.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1020,320},{408,330}}</string>
+                <string>{{3,1479},{408,330}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,7 +241,7 @@
             <key>Map_castle_oasis.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1432,296},{375,339}}</string>
+                <string>{{415,1488},{375,339}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -267,11 +254,11 @@
             <key>Map_castle_panther.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3,836},{418,292}}</string>
+                <string>{{1084,568},{418,292}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{418,292}}</string>
                 <key>sourceSize</key>
@@ -280,7 +267,7 @@
             <key>Map_castle_ramadan.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{870,1704},{317,295}}</string>
+                <string>{{3,548},{317,295}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -293,7 +280,7 @@
             <key>Map_castle_remains_Wind.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{289,493},{425,307}}</string>
+                <string>{{1586,866},{425,307}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,11 +293,11 @@
             <key>Map_castle_smailwind.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{897,1325},{375,304}}</string>
+                <string>{{1207,866},{375,304}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{375,304}}</string>
                 <key>sourceSize</key>
@@ -319,7 +306,7 @@
             <key>Map_castle_snake.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1432,639},{368,270}}</string>
+                <string>{{677,3},{368,270}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -332,11 +319,11 @@
             <key>Map_castle_stream.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3,1654},{327,265}}</string>
+                <string>{{346,3},{327,265}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{327,265}}</string>
                 <key>sourceSize</key>
@@ -345,7 +332,7 @@
             <key>Map_castle_valentine.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{891,3},{424,313}}</string>
+                <string>{{359,1162},{424,313}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -358,11 +345,11 @@
             <key>Map_castle_warrior.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1680,1304},{359,287}}</string>
+                <string>{{324,560},{359,287}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{359,287}}</string>
                 <key>sourceSize</key>
@@ -371,7 +358,7 @@
             <key>Map_castle_watch.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1680,1667},{352,307}}</string>
+                <string>{{3,1150},{352,307}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,11 +371,11 @@
             <key>Map_castle_worldcup.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1036,913},{408,318}}</string>
+                <string>{{787,1166},{408,318}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{408,318}}</string>
                 <key>sourceSize</key>
@@ -402,9 +389,9 @@
             <key>realTextureFileName</key>
             <string>worldMapCastleSkin1.png</string>
             <key>size</key>
-            <string>{2048,2002}</string>
+            <string>{2014,1880}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8bad1477639dce5f976436b6958d5eb8:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:018ddfbcfa27d50be7a57d2be686ddfe:1/1$</string>
             <key>textureFileName</key>
             <string>worldMapCastleSkin1.png</string>
         </dict>

@@ -201,6 +201,7 @@ enum class EBuildingActionTag{
 
 
 enum class EBuildingCastleModel{
+  BYZANTINE = 0,
   Classical = 1,
   RAMADAN = 2,
   WARLV = 3,
@@ -230,7 +231,7 @@ enum class EBuildingCastleModel{
   NEWYEAR = 27,
   KOH2019RAMADAN = 28,
   HEGEMON = 29,
-  LEGENDARY = 30,
+  STARKING = 30,
   EASTER = 31,
   FOURTH = 32,
   SMAILWIND = 33,
@@ -254,7 +255,12 @@ enum class EBuildingCastleModel{
   THUNDERCLOUD = 51,
   CORBAN2021 = 52,
   HOURGLASS = 53,
-  ICEWOLF = 54
+  ICEWOLF = 54,
+  KOH2022RAMADAN = 55,
+  CORBAN2022 = 56,
+  SEVENTH = 57,
+  FOOTBALL = 58,
+  KINGSTARBATTLE = 59
 };
 
 enum class EBuildingOperateType {

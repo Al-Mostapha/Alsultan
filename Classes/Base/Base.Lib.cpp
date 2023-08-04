@@ -27,7 +27,11 @@ int32 PlaySound(const char* p_SoundName, bool p_IsLoop, float p_delay) {
     return -1;
 }
 
-int32 PlaySound(const char* p_SoundName, int32 p_index, float p_delay, bool p_Tag3d) {
+int32 PlaySound(const char* p_SoundName, const GString &pIndex, float p_delay, bool p_Tag3d) {
+  return -1;
+}
+
+int32 PlaySound(const char* p_SoundName, int32 pIndex, float p_delay, bool p_Tag3d) {
   return -1;
 }
 
@@ -100,7 +104,9 @@ void DShowMsgTip(const GString& p_Message, const GString& p_Icon, Node *p_Target
   l_Panel->ShowTip(p_Message, l_IconSprite);
 }
 
-GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl) { return GPair<GString, GString>::Make("war_lv_1", "war_lv_2"); }
+GTuple<bool, GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl) { 
+  return {false, "War lvl", "Desc or perc"}; 
+}
 GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building) { return GPair<int32, int32>::Make(0, 0); }
 void DGetEquip() {}
 bool DRemoveTimer(Node* p_Target, Scheduler* p_Scheduler) { return false; }
@@ -214,6 +220,7 @@ void DNewChapterOpen(bool p_IsFromLogin) {}
 
 void DShowCastleUnlockView() {}
 uint32 DGetCastleLv() { return 0; }
+uint32 DGetCastleWarLv() { return 0; }
 
 void DShowCastleUPView() {}
 void DShowRateStarView() {}

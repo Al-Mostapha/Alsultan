@@ -29,4 +29,5 @@ struct GGlobal{
   Vec3 gWorldMapRotation2D = Vec3(0, 0, 0);
   float gWorldMapRotation3D_X = -20;
   bool Global_isLoginNeedLoading = false;
+  GHashMap<GString, GHashMap<GString, GString>> gSoundDataList;
 };

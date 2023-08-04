@@ -73,6 +73,16 @@ enum class EResource {
   DECREE_EXP = 1653
 };
 
+enum class EResourceType{
+  None = 0,
+  Gold = 1,
+  Food = 2,
+  Wood = 3,
+  Iron = 4,
+  Silver = 5,
+  Crystal = 6
+};
+
 enum class EResBuyViewType {
   None = 0,
   Build = 1,
@@ -88,4 +98,11 @@ enum class EResBuyViewType {
   BUILD_STATUE_BRAVE = 11,
   WAR_GEM_REPLACE = 12,
   MGAGIC_LAMP_STRENGTH = 13
+};
+
+enum class EMapResourceLvBgColorDef{
+  None = 0,
+  Normal = 1,
+  Silver = 2,
+  Gold = 3
 };

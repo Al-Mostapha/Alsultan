@@ -107,6 +107,14 @@ Sprite *GDisplay::NewSprite(const char *p_FileName){
   return Sprite::createWithSpriteFrameName(p_FileName);
 }
 
+SpriteFrame *GDisplay::NewSpriteFrame(const char *p_FileName){
+  auto lFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(p_FileName);
+  if(!lFrame){
+    CCLOGERROR("display.newSpriteFrame() - invalid frameName %s", p_FileName);
+  }
+  return lFrame;
+}
+
 ProgressTimer *GDisplay::NewProgressTimer(const char *p_Image, ProgressTimer::Type p_Type){
   auto l_Sprite = NewSprite(p_Image);
   auto l_Progress = ProgressTimer::create(l_Sprite);
@@ -123,4 +131,33 @@ Label *GDisplay::NewBMFontLabel(RBMFontLabelParam p_Param){
     l_Label->setPosition(p_Param._Pos);
   }
   return l_Label;
+}
+
+Vector<SpriteFrame *> GDisplay::NewFrames(const char *pPattern, uint32 pBegin, uint32 pLength, bool pIsReversed){
+  Vector<SpriteFrame *> lFrames;
+  auto lStep = 1;
+  auto lLast = pBegin + pLength;
+  if(pIsReversed){
+    auto lTemp = pBegin;
+    pBegin = lLast;
+    lLast = lTemp;
+    lStep = -1;
+  }
+  for(auto i = pBegin; i != lLast; i += lStep){
+    auto lFrameName = StringUtils::format(pPattern, i);
+    auto lFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(lFrameName);
+    if(!lFrame){
+      CCLOGERROR("display.newFrames() - invalid frame, name %s", lFrameName.c_str());
+      return {};
+    }
+    lFrames.pushBack(lFrame);
+  }
+  return lFrames;
+}
+
+Animation *GDisplay::NewAnimation(const Vector<SpriteFrame *> &pFrames, float pTime){
+  if(pTime == -1){
+    pTime = 1.0f / pFrames.size();
+  }
+  return Animation::createWithSpriteFrames(pFrames, pTime);
 }

@@ -29,4 +29,5 @@ namespace GBase{
   bool DIsPointInPolygon(const GVector<Vec2> &p_Polygon, Vec2 p_Point);
   float DGetAngleByPos(Vec2 pPoint1, Vec2 pPoint2);
   bool DRectIntersectsRect(const Rect &pRect1, const Rect &pRect2, bool pHaveBorder = false);
+  float DGetTextLen(Label *pLabel);
 };

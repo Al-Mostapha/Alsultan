@@ -4,10 +4,23 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>icon_FieryDragon.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{313,117},{44,31}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{44,31}}</string>
+                <key>sourceSize</key>
+                <string>{44,31}</string>
+            </dict>
             <key>icon_hhzz_guaiwu.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{167,841},{43,45}}</string>
+                <string>{{301,436},{43,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -82,20 +95,20 @@
                 <key>sourceSize</key>
                 <string>{132,132}</string>
             </dict>
-            <key>lod_Pickaxe-B.png</key>
+            <key>icon_zlxc_01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{227,822},{44,44}}</string>
+                <string>{{311,997},{17,22}}</string>
                 <key>offset</key>
-                <string>{0,-1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{3,4},{44,44}}</string>
+                <string>{{5,1},{17,22}}</string>
                 <key>sourceSize</key>
-                <string>{50,50}</string>
+                <string>{27,24}</string>
             </dict>
-            <key>lod_Pickaxe-C.png</key>
+            <key>lod_Pickaxe-B.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{227,774},{44,44}}</string>
@@ -108,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{50,50}</string>
             </dict>
-            <key>lod_Pickaxe-G.png</key>
+            <key>lod_Pickaxe-C.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{265,643},{44,44}}</string>
@@ -121,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{50,50}</string>
             </dict>
-            <key>lod_Pickaxe-Grey.png</key>
+            <key>lod_Pickaxe-G.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{265,595},{44,44}}</string>
@@ -134,10 +147,23 @@
                 <key>sourceSize</key>
                 <string>{50,50}</string>
             </dict>
+            <key>lod_Pickaxe-Grey.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{167,937},{44,44}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,4},{44,44}}</string>
+                <key>sourceSize</key>
+                <string>{50,50}</string>
+            </dict>
             <key>lod_Pickaxe-R.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{167,938},{44,44}}</string>
+                <string>{{167,889},{44,44}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -150,7 +176,7 @@
             <key>lod_Pickaxe-Y.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{167,890},{44,44}}</string>
+                <string>{{167,841},{44,44}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -163,11 +189,11 @@
             <key>lod_allianceAggressor.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{249,952},{28,30}}</string>
+                <string>{{313,659},{28,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{6,5},{28,30}}</string>
                 <key>sourceSize</key>
@@ -176,11 +202,11 @@
             <key>lod_allianceBanner.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{245,743},{29,27}}</string>
+                <string>{{316,912},{29,27}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{3,3},{29,27}}</string>
                 <key>sourceSize</key>
@@ -189,7 +215,7 @@
             <key>lod_allianceBanner_Fire.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{248,709},{17,17}}</string>
+                <string>{{326,721},{17,17}}</string>
                 <key>offset</key>
                 <string>{6,-7}</string>
                 <key>rotated</key>
@@ -202,11 +228,11 @@
             <key>lod_allianceCrystalQuarry.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{36,983},{31,29}}</string>
+                <string>{{313,595},{31,29}}</string>
                 <key>offset</key>
                 <string>{1,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{3,3},{31,29}}</string>
                 <key>sourceSize</key>
@@ -215,7 +241,7 @@
             <key>lod_allianceFarm.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{316,818},{27,29}}</string>
+                <string>{{253,912},{27,29}}</string>
                 <key>offset</key>
                 <string>{2,0}</string>
                 <key>rotated</key>
@@ -228,11 +254,11 @@
             <key>lod_allianceIronMine.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3,983},{31,29}}</string>
+                <string>{{313,165},{31,29}}</string>
                 <key>offset</key>
                 <string>{1,-1}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{3,4},{31,29}}</string>
                 <key>sourceSize</key>
@@ -241,11 +267,11 @@
             <key>lod_allianceLumberMill.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,280},{31,25}}</string>
+                <string>{{301,485},{31,25}}</string>
                 <key>offset</key>
                 <string>{0,-3}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{2,8},{31,25}}</string>
                 <key>sourceSize</key>
@@ -254,11 +280,11 @@
             <key>lod_allianceSilverMine.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{69,983},{31,27}}</string>
+                <string>{{313,628},{31,27}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{2,5},{31,27}}</string>
                 <key>sourceSize</key>
@@ -267,11 +293,11 @@
             <key>lod_alliance_putup.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{301,436},{42,44}}</string>
+                <string>{{227,822},{42,44}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{4,4},{42,44}}</string>
                 <key>sourceSize</key>
@@ -280,11 +306,11 @@
             <key>lod_altar.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{316,781},{33,27}}</string>
+                <string>{{289,721},{33,27}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{1,3},{33,27}}</string>
                 <key>sourceSize</key>
@@ -306,7 +332,7 @@
             <key>lod_altarBeast.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{100,981},{33,29}}</string>
+                <string>{{249,945},{33,29}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +397,7 @@
             <key>lod_altar_Gray.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{133,981},{33,27}}</string>
+                <string>{{251,982},{33,27}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
@@ -397,11 +423,11 @@
             <key>lod_base_Azure.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{285,894},{26,40}}</string>
+                <string>{{292,691},{26,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{7,4},{26,40}}</string>
                 <key>sourceSize</key>
@@ -410,11 +436,11 @@
             <key>lod_base_blue.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{275,818},{26,40}}</string>
+                <string>{{248,691},{26,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{7,4},{26,40}}</string>
                 <key>sourceSize</key>
@@ -423,7 +449,7 @@
             <key>lod_base_gary.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{275,774},{26,40}}</string>
+                <string>{{253,868},{26,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -436,7 +462,7 @@
             <key>lod_base_green.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{255,870},{26,40}}</string>
+                <string>{{318,368},{26,40}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
@@ -449,7 +475,7 @@
             <key>lod_base_purple.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{278,729},{26,40}}</string>
+                <string>{{318,324},{26,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -462,11 +488,11 @@
             <key>lod_base_red.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{301,484},{26,40}}</string>
+                <string>{{318,280},{26,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{7,4},{26,40}}</string>
                 <key>sourceSize</key>
@@ -553,11 +579,11 @@
             <key>lod_captainGhost.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{313,851},{22,30}}</string>
+                <string>{{322,234},{22,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{9,5},{22,30}}</string>
                 <key>sourceSize</key>
@@ -579,7 +605,7 @@
             <key>lod_crystalQuarry.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,342},{21,25}}</string>
+                <string>{{282,997},{21,25}}</string>
                 <key>offset</key>
                 <string>{-4,2}</string>
                 <key>rotated</key>
@@ -592,11 +618,11 @@
             <key>lod_derek.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{164,986},{40,28}}</string>
+                <string>{{117,981},{40,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,6},{40,28}}</string>
                 <key>sourceSize</key>
@@ -605,7 +631,7 @@
             <key>lod_derekEntourage.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{313,671},{34,30}}</string>
+                <string>{{217,982},{34,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -618,11 +644,11 @@
             <key>lod_doubleHeadSnake.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,367},{40,24}}</string>
+                <string>{{245,721},{40,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,8},{40,24}}</string>
                 <key>sourceSize</key>
@@ -644,11 +670,11 @@
             <key>lod_farm.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{316,981},{17,25}}</string>
+                <string>{{318,412},{17,25}}</string>
                 <key>offset</key>
                 <string>{-3,2}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{6,3},{17,25}}</string>
                 <key>sourceSize</key>
@@ -657,7 +683,7 @@
             <key>lod_goldMine.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,411},{21,21}}</string>
+                <string>{{316,972},{21,21}}</string>
                 <key>offset</key>
                 <string>{-3,1}</string>
                 <key>rotated</key>
@@ -696,7 +722,7 @@
             <key>lod_ironMine.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,315},{25,23}}</string>
+                <string>{{316,945},{25,23}}</string>
                 <key>offset</key>
                 <string>{-3,2}</string>
                 <key>rotated</key>
@@ -722,11 +748,11 @@
             <key>lod_lumberMill.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{322,230},{27,21}}</string>
+                <string>{{284,938},{27,21}}</string>
                 <key>offset</key>
                 <string>{-2,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{2,7},{27,21}}</string>
                 <key>sourceSize</key>
@@ -735,7 +761,7 @@
             <key>lod_mapClick.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{313,595},{30,34}}</string>
+                <string>{{183,985},{30,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -748,7 +774,7 @@
             <key>lod_marchingQueue.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{280,986},{32,28}}</string>
+                <string>{{275,816},{32,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -761,7 +787,7 @@
             <key>lod_marchingQueue_Gray.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{244,986},{32,28}}</string>
+                <string>{{275,784},{32,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -774,7 +800,7 @@
             <key>lod_market.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{208,986},{32,28}}</string>
+                <string>{{276,752},{32,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -787,7 +813,7 @@
             <key>lod_mineLevel.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{248,691},{23,14}}</string>
+                <string>{{275,848},{23,14}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -796,6 +822,19 @@
                 <string>{{0,0},{23,14}}</string>
                 <key>sourceSize</key>
                 <string>{23,14}</string>
+            </dict>
+            <key>lod_mlj.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{312,752},{32,32}}</string>
+                <key>offset</key>
+                <string>{-1,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,3},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{40,40}</string>
             </dict>
             <key>lod_monster.png</key>
             <dict>
@@ -813,7 +852,7 @@
             <key>lod_monsterAggressor.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{215,952},{30,30}}</string>
+                <string>{{282,963},{30,30}}</string>
                 <key>offset</key>
                 <string>{-1,0}</string>
                 <key>rotated</key>
@@ -826,7 +865,7 @@
             <key>lod_monsterExecutioner.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{313,945},{22,32}}</string>
+                <string>{{322,198},{22,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -839,11 +878,11 @@
             <key>lod_monsterSnowman.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{285,862},{24,28}}</string>
+                <string>{{316,884},{24,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{8,6},{24,28}}</string>
                 <key>sourceSize</key>
@@ -852,7 +891,7 @@
             <key>lod_monsterSnowmanLeader.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{315,909},{26,32}}</string>
+                <string>{{283,866},{26,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -865,7 +904,7 @@
             <key>lod_monsterThieves.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{315,877},{28,28}}</string>
+                <string>{{316,852},{28,28}}</string>
                 <key>offset</key>
                 <string>{1,0}</string>
                 <key>rotated</key>
@@ -878,11 +917,11 @@
             <key>lod_monsterWerewolf.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{255,914},{26,32}}</string>
+                <string>{{311,822},{26,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{7,4},{26,32}}</string>
                 <key>sourceSize</key>
@@ -982,7 +1021,7 @@
             <key>lod_relic.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{313,117},{38,30}}</string>
+                <string>{{43,983},{38,30}}</string>
                 <key>offset</key>
                 <string>{-1,0}</string>
                 <key>rotated</key>
@@ -995,7 +1034,7 @@
             <key>lod_ruins.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{313,633},{34,30}}</string>
+                <string>{{215,944},{34,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1008,7 +1047,7 @@
             <key>lod_semluk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,743},{34,34}}</string>
+                <string>{{215,906},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1034,11 +1073,11 @@
             <key>lod_silverMine.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{322,199},{27,21}}</string>
+                <string>{{245,749},{27,21}}</string>
                 <key>offset</key>
                 <string>{-2,2}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{2,5},{27,21}}</string>
                 <key>sourceSize</key>
@@ -1047,7 +1086,7 @@
             <key>lod_snowMountain.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{313,709},{30,30}}</string>
+                <string>{{311,788},{30,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1060,7 +1099,7 @@
             <key>lod_stronghold_city.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{313,159},{30,36}}</string>
+                <string>{{149,985},{30,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1073,7 +1112,7 @@
             <key>lod_stronghold_fortress.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{275,691},{34,34}}</string>
+                <string>{{215,868},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
@@ -1086,7 +1125,7 @@
             <key>lod_stronghold_pillbox.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{215,912},{36,36}}</string>
+                <string>{{77,985},{36,36}}</string>
                 <key>offset</key>
                 <string>{1,1}</string>
                 <key>rotated</key>
@@ -1099,7 +1138,7 @@
             <key>lod_stronghold_tower.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{215,870},{36,38}}</string>
+                <string>{{3,983},{36,38}}</string>
                 <key>offset</key>
                 <string>{1,0}</string>
                 <key>rotated</key>
@@ -1125,7 +1164,7 @@
             <key>lod_xl.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{281,950},{28,32}}</string>
+                <string>{{284,902},{28,32}}</string>
                 <key>offset</key>
                 <string>{-2,1}</string>
                 <key>rotated</key>
@@ -1143,9 +1182,9 @@
             <key>realTextureFileName</key>
             <string>worldMapLodIcon.png</string>
             <key>size</key>
-            <string>{346,1017}</string>
+            <string>{347,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fcf20d4cdd1b846cf70c5b4122521bab:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:5f56400e963f02091868b6fca2eb9898:1/1$</string>
             <key>textureFileName</key>
             <string>worldMapLodIcon.png</string>
         </dict>

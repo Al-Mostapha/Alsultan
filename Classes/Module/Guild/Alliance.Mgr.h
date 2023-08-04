@@ -9,4 +9,5 @@ public:
   Guid HasJoinAlliance(bool p_IsTeam = false);
   void ReqAgreeInviteJoin(Guid p_AllianceID, Guid p_PlayerId){}
   int32 GetOwnAid(){ return 0; }
+  int32 GetOwnTeamID(){ return 0; }
 };

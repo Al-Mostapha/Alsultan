@@ -26,6 +26,11 @@ class UIBasePanel;
 
 namespace GBase {
 
+enum class EUILabelType{
+  BMF = 1,
+  TTF = 2
+};
+
 struct RCreateLabelParm{
   GString Txt;
   GString FontName = "";
@@ -36,11 +41,13 @@ struct RCreateLabelParm{
   Color4B Color = Color4B::WHITE;
   float x = 0;
   float y = 0;
+  EUILabelType UILabelType = EUILabelType::BMF;
 };
 
 int32 PlaySound();
 int32 PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
-int32 PlaySound(const char* p_SoundName, int32 p_index, float p_delay = 0.0f, bool p_Tag3d = false);
+int32 PlaySound(const char* p_SoundName,  const GString &pIndex, float p_delay = 0.0f, bool p_Tag3d = false);
+int32 PlaySound(const char* p_SoundName,  int32 pIndex, float p_delay = 0.0f, bool p_Tag3d = false);
 const char* getSoundPath(const char* p_SoundName);
 void DFTarget(Node* p_node);
 EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building);
@@ -53,7 +60,7 @@ void DSetTextWidthHeight(ui::Text* p_Label, Size p_Size);
 void DSetTextWidthHeight(Label* p_Label, Size p_Size);
 void DShowMsgTip(const GString& p_Message, const GString& p_Icon = "",  Node *p_Target = nullptr);
 
-GPair<GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
+GTuple<bool, GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
 GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building);
 
 bool DRemoveTimer(Node* p_Target, Scheduler* p_Scheduler);
@@ -77,13 +84,14 @@ GString DConvertSecondToString(int p_Second);
 RenderTexture* DCreateScreenShot(bool p_IsBlur = false);
 GString DGetDefaultLanguage();
 void DSetDefaultLanguage(bool p_IsNeedUpdate = false, bool p_IsNeedRefresh = false);
-template <typename T> T DConfigGet(const char* p_Key, bool p_ByUid = false, bool p_ByLTID = false) { return T(); }
+template <typename T> GOpt<T> DConfigGet(const char* p_Key, bool p_ByUid = false, bool p_ByLTID = false) { return {}; }
 template <typename T> void DConfigSet(const char* p_Key, T p_Val, bool p_ByUid = false, bool p_ByLTID = false) {}
 bool DFIsRA();
 float DFSign(float p_Num);
 void DNewChapterOpen(bool p_IsFromLogin = false);
 void DShowCastleUnlockView();
 uint32 DGetCastleLv();
+uint32 DGetCastleWarLv();
 void DShowCastleUPView();
 void DShowRateStarView();
 class UIPanelBase* DCurrentTopPanelFromManager();

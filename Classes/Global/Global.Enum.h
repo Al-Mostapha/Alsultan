@@ -77,3 +77,19 @@ enum class ELoginFailType {
   GetUserInfo = 5,
   SdkTokenError = 6
 };
+
+
+enum class EGreenPointNoticeType{
+  None = 0,
+  QUEST = 1,
+  ITEMS = 2,
+  MAIL = 3,
+  ALLIANCE = 4,
+  ALLIANCE_HELP = 5,
+  ALLIANCE_WAR = 6,
+  ALLIANCE_BUILD = 7,
+  ALLIANCE_TASK = 8,
+  HERO = 9,
+  HUNT = 10,
+  COUNTER_SYS = 11
+};

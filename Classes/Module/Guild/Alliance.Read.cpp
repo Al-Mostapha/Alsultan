@@ -50,3 +50,7 @@ GVector<float> &AllianceRead::GetManorlineColorArray(){
   //    allianceDesRead.manorlineColorArray = ret
   return lRet;
 }
+
+GString AllianceRead::GetFlagIcon(int32 pFid, bool pFromMemory){
+  return "Allianceflag_015.png";
+}

@@ -251,3 +251,17 @@ bool GBase::DRectIntersectsRect(const Rect &pRect1, const Rect &pRect2, bool pHa
   }
   return false;
 }
+
+float GBase::DGetTextLen(Label *pLabel){
+  // local txtContentInfo = {
+  //   fontName = "",
+  //   fontSize = label:getSystemFontSize(),
+  //   fontAlignmentH = label:getHorizontalAlignment(),
+  //   fontAlignmentV = label:getVerticalAlignment(),
+  //   fontDimensions = cc.size(0, 0),
+  //   isHtml = false
+  // }
+  // local measureSize = cc.Device:measureText(label:getString(), txtContentInfo)
+  // return measureSize.width
+  return pLabel->getContentSize().width;
+}

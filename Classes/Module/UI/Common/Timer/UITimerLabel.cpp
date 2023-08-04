@@ -6,3 +6,6 @@ UITimerLabel *UITimerLabel::DCreateTimerLabel(Node *p_lable){
   l_TimerLabel->_Panel = p_lable;
   return l_TimerLabel;
 }
+
+void UITimerLabel::RemoveTime(){
+}

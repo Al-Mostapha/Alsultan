@@ -462,3 +462,30 @@ enum class EManorlineSn{
   placePreview = -1,
   None = 0
 };
+
+enum class EWorldMapCastleEffectID {
+  None = 0,
+  Crystal_Heart = 9004501,
+  Flowery_Firework = 9004502,
+  Festival_Firework = 9004503,
+  Rainbow_castle = 9004504,
+  Victory_Firework = 9004505,
+  NewYear_FireWork_2020 = 9004506,
+  Snow_iceArea = 9004507,
+  Ramadan_Shining = 9004508,
+  JACK_O_LANTERN_ID = 9002611,
+  Snow_Ball_Troop_ID = 9003801,
+  Panther_Troop_ID1 = 9004001,
+  Panther_Troop_ID2 = 9004002,
+  Panther_Troop_ID3 = 9004003,
+  Lion_Troop_ID = 9002315,
+  Shining_Castle = 9004508,
+  Shining_Castle_2 = 9004509,
+  Snow_Effect = 9004510,
+  King_Troop_ID = 9002302,
+  Shining_Castle_3 = 9004511,
+  FirewWork_Ceremony = 9004512,
+  IceWolf_Castle = 9004513,
+  NewYear_FireWork_2022 = 9004514
+};
+

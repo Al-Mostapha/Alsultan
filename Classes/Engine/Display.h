@@ -82,8 +82,10 @@ public:
       DrawNode *p_DrawNode = nullptr);
 
   Sprite *NewSprite(const char *p_FileName);
+  SpriteFrame *NewSpriteFrame(const char *p_FileName);
 
   ProgressTimer *NewProgressTimer(const char *p_Image, ProgressTimer::Type p_Type);
   Label *NewBMFontLabel(RBMFontLabelParam);
-
+  Vector<SpriteFrame *> NewFrames(const char *pPattern, uint32 pBegin, uint32 pLength, bool pIsReversed = false);
+  Animation *NewAnimation(const Vector<SpriteFrame *> &pFrames, float pTime = -1);
 };

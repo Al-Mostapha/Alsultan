@@ -14,4 +14,5 @@ public:
   bool GetPlayerConquestWarMigration(bool p_ShowMsg = true);
   bool GetPlayerBattleGroundMigration(bool p_ShowMsg = true);
   GVector<float> &GetManorlineColorArray();
+  GString GetFlagIcon(int32 pFid, bool pFromMemory = false);
 };

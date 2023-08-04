@@ -42,3 +42,11 @@ enum class ELodLayer {
   NEBULA = 10,
   NEBULA_4 = 11
 };
+
+enum class EMapObjStateTypeDef{
+  None = 0,
+  Free = 1,
+  Fighting = 2,
+  HurtDie = 3,
+  Working = 4
+};
