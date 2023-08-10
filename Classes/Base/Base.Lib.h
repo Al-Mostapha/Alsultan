@@ -60,7 +60,7 @@ void DSetTextWidthHeight(ui::Text* p_Label, Size p_Size);
 void DSetTextWidthHeight(Label* p_Label, Size p_Size);
 void DShowMsgTip(const GString& p_Message, const GString& p_Icon = "",  Node *p_Target = nullptr);
 
-GTuple<bool, GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
+GTuple<bool, int32, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
 GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building);
 
 bool DRemoveTimer(Node* p_Target, Scheduler* p_Scheduler);

@@ -29,4 +29,10 @@ GString  DConvertNumberWithUnit(float p_Num);
 
 float Atan2(float p_Y, float p_X);
 
+float Random(float pMin, float pMax);
+
+void Randomseed(GTime pSeed);
+
+float Angle2Radian(float p_Angle);
+
 }  // namespace GMath

@@ -161,3 +161,66 @@ const Color3B &WorldMapDefine::GetLeagueManorLineColor(bool pIsSelf , EMapAllian
       return lineColor_normal;
   }
 }
+
+Sprite *WorldMapDefine::CreateCityImageWithLevel(int32 pCityLevel, EFactionType pFaction, Sprite *pImage, Vec2 pOffset){
+  if(!pImage)
+    return GDisplay::Get()->NewSprite("Castle_lv1_base.png");
+  return pImage;
+}
+
+Node *WorldMapDefine::GetCastleSkinEffect(EBuildingCastleModel pModel){
+  // local node = display.newNode()
+  // node:setName("skinBgEffectNode")
+  // local data = worldMapDefine.castleSkinEffect[castleType]
+  // if data then
+  //   if data.effect then
+  //     local par_node = SoraDCreateEffectNode(data.effect.param, nil, true)
+  //     par_node:addTo(node)
+  //   end
+  //   if data.imgs then
+  //     for k, v in pairs(data.imgs) do
+  //       local sprite = display.newSprite("#" .. v.png)
+  //       sprite:setPosition(v.pos)
+  //       sprite:addTo(node)
+  //       SoraDFadeINOUT(sprite)
+  //     end
+  //   end
+  //   if data.frames then
+  //     for k, v in pairs(data.frames) do
+  //       local sprite = display.newSprite("#" .. v.png)
+  //       sprite:setPosition(v.pos)
+  //       sprite:addTo(node)
+  //       local frames = display.newFrames(v.format, v.from, v.to)
+  //       local animation = display.newAnimation(frames, v.time / #frames)
+  //       sprite:playAnimationForever(animation)
+  //     end
+  //   end
+  //   if data.offset then
+  //     node:setPosition(data.offset)
+  //   end
+  //   if data.actSprite then
+  //     for k, v in pairs(data.actSprite) do
+  //       local sprite = display.newSprite("#" .. v.png)
+  //       sprite:setPosition(v.pos)
+  //       sprite:addTo(node)
+  //       local seq = cca.seq({
+  //         cca.moveBy(v.animationConfig[k].time, 0, v.animationConfig[k].offsetH),
+  //         cca.moveBy(v.animationConfig[k].time, 0, -v.animationConfig[k].offsetH),
+  //         cca.moveBy(v.animationConfig[k].time, 0, -v.animationConfig[k].offsetH),
+  //         cca.moveBy(v.animationConfig[k].time, 0, v.animationConfig[k].offsetH)
+  //       })
+  //       sprite:runAction(cc.RepeatForever:create(seq))
+  //     end
+  //   end
+  // end
+  // return node
+  return GDisplay::Get()->NewNode();
+}
+
+GOpt<RWarLevelConfig> WorldMapDefine::GetWarLevelData(int32 pWarLv){
+  return {};
+}
+
+bool WorldMapDefine::IsRadianceKingdomID(int32 pKingdomID){
+  return false;
+}

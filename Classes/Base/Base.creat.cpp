@@ -43,22 +43,22 @@ Vector<SpriteFrame*> BaseCreate::getAnimationFrames(GString Frame, int32 start, 
 Sprite* BaseCreate::CreateSprite(const char* p_Sprite) { return Sprite::createWithSpriteFrameName(p_Sprite); }
 
 namespace GBase {
-  GPair<Node*, Action*> DCreateAnimation(const char* p_FilePath, Node* p_Node, bool p_Loop) {
-    if (!p_FilePath) return GPair<Node*, Action*>(nullptr, nullptr);
-    if (p_FilePath == "") return GPair<Node*, Action*>(nullptr, nullptr);
+  GPair<Node*, XActionTimeLine*> DCreateAnimation(const char* p_FilePath, Node* p_Node, bool p_Loop) {
+    if (!p_FilePath) return {nullptr, nullptr};
+    if (p_FilePath == "") return {nullptr, nullptr};
     auto l_Action = CSLoader::createTimeline(p_FilePath);
     if (!p_Node) p_Node = CSLoader::createNode(p_FilePath);
     p_Node->runAction(l_Action);
     l_Action->gotoFrameAndPlay(0, p_Loop);
-    return GPair<Node*, Action*>(p_Node, l_Action);
+    return {p_Node, l_Action};
     ;
   }
 
   Sprite* CreateSprite(const char* p_SpritePath) { return Sprite::create(p_SpritePath); }
 
-  GPair<Node*, Action*> DCreateAnimationEx(const char* p_FilePath, Node* p_Node, bool p_Loop, float p_Speed, int32 p_StartIndex, int32 p_EndIndex) {
+  GPair<Node*, XActionTimeLine*> DCreateAnimationEx(const char* p_FilePath, Node* p_Node, bool p_Loop, float p_Speed, int32 p_StartIndex, int32 p_EndIndex) {
 
-    if (!p_FilePath) return GPair<Node*, Action*>(nullptr, nullptr);
+    if (!p_FilePath) return {nullptr, nullptr};
     auto l_CssFilePath = p_FilePath;
     if (GBase::GetCCSPath(p_FilePath) != "") l_CssFilePath = GBase::GetCCSPath(p_FilePath).c_str();
     auto l_Action = CSLoader::createTimeline(l_CssFilePath);
@@ -69,7 +69,7 @@ namespace GBase {
       l_Action->gotoFrameAndPlay(p_StartIndex, p_EndIndex, p_Loop);
     else
       l_Action->gotoFrameAndPlay(0, p_Loop);
-    return GPair<Node*, Action*>(p_Node, l_Action);
+    return {p_Node, l_Action};
   }
 
 }  // namespace GBase

@@ -52,3 +52,11 @@ struct RShowBuyBoxParam{
     } _HtmlParam;
 
 };
+
+struct RFadeInOutParam{
+  float _FadeIn = 1.f;
+  float _FadeOut = 1.f;
+  float _Delay = .5f;
+  float _BeginOpacity = 1.f;
+  float _EndOpacity = 1.f;
+};

@@ -20,4 +20,5 @@ namespace GBase{
   void DResetEffectNode(Node *p_Node);
   void DStopEffectNode(Node *p_Node);
   UIWorldMapFaceToDistance *DGetWorldMapFaceToDistanceNode();
+  void DFadeINOUT(Node *p_Node, const RFadeInOutParam &p_Param);
 };

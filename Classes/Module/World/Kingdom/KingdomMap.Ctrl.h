@@ -24,4 +24,10 @@ public:
     ROtherKingdomInfo t;
     return t;
   }
+  bool HasMyQueue(EMapMoveLineServerType, GOpt<EMapMoveLineStatusType>, GOpt<int32>, int32){
+    return true;
+  }
+  bool HasArmyHelpQueue2Player(int32 pPlayerId, EMapMoveLineStatusType){
+    return false;
+  }
 };

@@ -65,10 +65,23 @@ struct RMeshNodeParm{
 
 };
 
+struct RShaderEffectCfg{
+  RMeshData _MeshData;
+  RMeshNodeShader _Shader;
+  GVector<RMeshNodeShaderCfg> _Param;
+  Vec2 _Position;
+  Vec2 _Scale;
+  GOpt<Vec3> _Rotation;
+  GOpt<Vec2> _Rotation2D;
+  GOpt<float> _ScaleZ;
+  GOpt<BlendFunc> _Blend;
+};
+
 namespace GBase{
   GTuple<MeshNode *, GLProgram *, GLProgramState *> 
     DCreateMeshNode(const RMeshNodeParm &p_MeshData, MeshNode *p_Node = nullptr);
   void DSetProgramStateParam(
     GLProgram *p_Program, GLProgramState *p_State,
     const GVector<RMeshNodeShaderCfg> &p_ShaderParam, MeshNode *p_Mesh = nullptr);
+  MeshNode *DCreateShaderEffect(const RShaderEffectCfg &pCfg, Node *pTarget, int32 pZOrder = 0);
 };

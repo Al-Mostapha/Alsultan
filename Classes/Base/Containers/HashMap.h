@@ -16,7 +16,7 @@ using HashType = typename std::conditional<std::is_enum<Key>::value, EnumClassHa
 template <class K, class V>
 class  GHashMap : public std::unordered_map<K, V, HashType<K>>{
 public:
-  bool Contains(K p_Key){
+  bool Contains(K p_Key) const {
     return this->find(p_Key) != this->end();
   }
 

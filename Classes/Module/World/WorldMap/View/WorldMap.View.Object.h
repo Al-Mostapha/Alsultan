@@ -61,4 +61,8 @@ class WorldMapViewObject
     GHashMap<int32, IWorldMapInstance *> GetInstanceMapFromManager(){
       return GHashMap<int32, IWorldMapInstance *> ();
     }
+    //worldMapComInstanceNormal:getShowTilesArray()
+    GHashMap<GString, IWorldMapInstance *> GetShowTilesArray(){
+      return {};
+    }
 };

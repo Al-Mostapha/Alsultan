@@ -4,9 +4,11 @@
 #include "Module/Player/Lord.Enum.h"
 #include "Module/Player/Buff/Attribute.Enum.h"
 #include "Module/Building/Building.Enum.h"
+#include "Base/Containers/HashMap.h"
 
 class UITimerLabel;
 class WorldMapFireWorkEffect;
+class FireTimeNode;
 
 static const float IMG_PROTECT_SCALE_DEF = 0.75;
 static const float IMG_PROTECT_SCALE_WAR = 0.95;
@@ -32,11 +34,13 @@ enum class ESkillEffectType {
   APPOINT_CURE_SOLDIER_SPEED_BOOST = 4
 };
 
+struct RWorldBuildingInitDataAttr{
+  float _Range = 0;
+};
+
 struct RWorldBuildingInitData{
 
-  struct Attr{
-    float _Range = 0;
-  };
+
 
   int32 _PlayerID;
   int32 _PlayerLevel;
@@ -56,6 +60,7 @@ struct RWorldBuildingInitData{
   int32 _PrisonerNum = 0;
   int32 _Betray = 0;
   int32 _CityLevel = 0;
+  int32 _StarLv = 0;
   
   int32 _LeagueID = 0;
   GString _LeagueName = "";
@@ -76,10 +81,13 @@ struct RWorldBuildingInitData{
   GTime _CastleEffectStatusEndTime = -1;
   GTime _SelfCastleEffectStatusEndTime;
   GTime _CastleAppearanceEndTime;
-  GHashMap<EAttributeEnum, Attr> _Attr;
+  bool _CastleAppearance;
+  GHashMap<EAttributeEnum, RWorldBuildingInitDataAttr> _Attr;
   GString _Signature = "";
   ESignatureBoxType _SignatureBox = ESignatureBoxType::None;
 };
+
+
 
 
 class WorldMapBuilding : public IWorldMapInstance
@@ -125,9 +133,12 @@ class WorldMapBuilding : public IWorldMapInstance
   Vec2 _FacePoint = Vec2::ZERO;
   Vec2 _ImgOffset = IMG_OFFSET_DEF;
   GString _Signature = "";
+  
+  GTime _CastleAppearanceEndTime;
 
   Sprite *_CityImage = nullptr;
   Sprite *_CitySkin1Image = nullptr;
+  Sprite *_CurCityImage = nullptr;
   Sprite *_ImageLeagueFlag = nullptr;
   Sprite *_ImageCrown = nullptr;
   Sprite *_ImageZhencha = nullptr;
@@ -138,7 +149,9 @@ class WorldMapBuilding : public IWorldMapInstance
   Sprite *_ImageName = nullptr;
   Sprite *_OfficalImage = nullptr;
   Sprite *_OfficalIcon = nullptr;
-
+  Sprite *_PrisoneInIcon = nullptr;
+  Sprite *_MeteoriteEffect = nullptr;
+  
   Label  *_TextName = nullptr;
   Label *_TextLevel = nullptr;
   Label *_NecklaceName = nullptr;
@@ -150,6 +163,13 @@ class WorldMapBuilding : public IWorldMapInstance
   Node *_NecklaceNode = nullptr;
   Node *_FireNodeEx = nullptr;
   Node *_NodeMoveCityTime = nullptr;
+  Node *_NodeSnowMan = nullptr;
+  Node *_NodeSnowEffect = nullptr;
+  Node *_EtNodeLove = nullptr;
+  Node *_EtNodeRainbow = nullptr;
+  Node *_EtNodeShining = nullptr;
+  Node *_PyramidProtectNode = nullptr;
+  FireTimeNode *_FireWorkTimeNode = nullptr;
 
   ui::Text *_SignText = nullptr;
   ui::ImageView *_SignImage = nullptr;
@@ -172,7 +192,7 @@ class WorldMapBuilding : public IWorldMapInstance
   void SetSkinGroupID(EBuildingCastleModel pModel);
   void InitCityData(const RWorldBuildingInitData &pData);
   void UpdateData(const RWorldBuildingInitData &pData);
-  void ShowInstance(bool pShow, int32 pDelayTime);
+  void ShowInstance(bool pShow, int32 pDelayTime = 0);
   void UpdateLeagueInfo();
   void UpdateBuildingImg();
   void UpdateBuildingNecklace();
@@ -199,7 +219,7 @@ class WorldMapBuilding : public IWorldMapInstance
   void AddEnemyCastleEffect();
   void RemoveEnemyCastleEffect();
   bool IsNeedShowAttr(EAttributeEnum pAttrType);
-  void CheckAllCastleMeteorteEffect();
+  void CheckAllCastleMeteorteEffect(const GHashMap<EAttributeEnum, RWorldBuildingInitDataAttr> &pAttr, bool pIsRemove = false);
   void AddMeteoriteSkillEffect(EAttributeEnum pAttrType);
   void RemoveMeteoriteSkillEffect();
   void CastleLoveEffect();
@@ -216,7 +236,7 @@ class WorldMapBuilding : public IWorldMapInstance
   void RemovePyramidProtectEffect();
   GString GetFavoriteName();
   void PlayClickSound() override;
-  GVector<EWorldMapTipButtonType> GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar) override;
+  GVector<RButtonTypeArray> GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar) override;
   void LazyCreateOfficalImage();
   void UpdatePrisoneIn();
   void LazyCreatePrisoneInImage();
@@ -227,10 +247,10 @@ class WorldMapBuilding : public IWorldMapInstance
   void UpdateMoveTime();
   void UpdateWallWarning(EventCustom *pEvent);
   int32 GetSourceKingdomID();
-  void SendTileEffectMessage(EWorldMapLeagueManorUpdateType pUpdateType, float pRadius);
+  void SendTileEffectMessage(EWorldMapLeagueManorUpdateType pUpdateType, float pRadius = 0.f);
   GTuple<UIBasePanel *, bool, Node*> OnClickInstance(Node *pNode) override;
   GTuple<UIBasePanel *, bool, Node*> OnShowWorldMapTip(Node *pNode) override;
-  void RefreshSignShow(bool pIsShow);
+  void RefreshSignShow(bool pIsShow = false);
   void RefreshSignText();
   void SetIsOnClick(bool pIsOnClick);
   void RefreshSkillEffect(const RWorldBuildingInitData &pData);

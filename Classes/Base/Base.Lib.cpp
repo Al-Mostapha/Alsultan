@@ -104,8 +104,8 @@ void DShowMsgTip(const GString& p_Message, const GString& p_Icon, Node *p_Target
   l_Panel->ShowTip(p_Message, l_IconSprite);
 }
 
-GTuple<bool, GString, GString> DGetBuildWarLv(const uint32 p_BuildingLvl) { 
-  return {false, "War lvl", "Desc or perc"}; 
+GTuple<bool, int32, GString> DGetBuildWarLv(const uint32 p_BuildingLvl) { 
+  return {false, 1, "Desc or perc"}; 
 }
 GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building) { return GPair<int32, int32>::Make(0, 0); }
 void DGetEquip() {}

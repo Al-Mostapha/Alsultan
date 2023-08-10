@@ -13,3 +13,8 @@ EConquestWarState ConquestWarCtrl::GetConquestWarState()
 {
   return EConquestWarState::None;
 }
+
+bool ConquestWarCtrl::IsMatchKingdom(int32 pKid1, int32 pKid2)
+{
+  return false;
+}

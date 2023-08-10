@@ -1,4 +1,5 @@
 #include "Math.Base.h"
+#include "ccRandom.h"
 
 namespace GMath {
 
@@ -29,4 +30,16 @@ float GMath::Clamp(float p_Value, float p_Min, float p_Max){
 
 float GMath::Atan2(float p_Y, float p_X){
   return atan2(p_Y, p_X);
+}
+
+float GMath::Random(float pMin, float pMax){
+  return cocos2d::random(pMin, pMax);
+}
+
+void GMath::Randomseed(GTime pSeed){
+  // cocos2d::RandomHelper::getEngine().seed(pSeed);
+}
+
+float GMath::Angle2Radian(float p_Angle){
+  return CC_DEGREES_TO_RADIANS(p_Angle);
 }

@@ -1,6 +1,5 @@
 #pragma once
 
-
 enum class EAttributeEnum {
   None = 0,
   BATTLE_ATTACK_RATE = 1,
@@ -66,4 +65,25 @@ enum class EAttributeSourceEnum {
   GOD_ARMS = 3,
   TALENT_SKILL = 4,
   EQUIPMENT = 5
+};
+
+static EAttributeEnum gRangeAttributeList[]  = {
+  EAttributeEnum::BATTLE_ATTACK_RATE_RANGE,
+  EAttributeEnum::BATTLE_DEFEND_RATE_RANGE,
+  EAttributeEnum::BATTLE_HP_RATE_RANGE,
+  EAttributeEnum::BATTLE_DAMAGE_RATE_RANGE,
+  EAttributeEnum::MARCH_SPEED_BOOST_RAGNE,
+  EAttributeEnum::CURE_SOLDIER_SPEED_BOOST_RANGE,
+  EAttributeEnum::HALLOFWAR_ARMY_UP_RANGE,
+  EAttributeEnum::METEOR_TROOP_ATTACK_BOOST,
+  EAttributeEnum::METEOR_TROOP_DEFENSE_BOOST,
+  EAttributeEnum::METEOR_MARCH_SPEED_BOOST,
+  EAttributeEnum::METEOR_TROOP_HP_BOOST
+};
+
+static EAttributeEnum gMeteoriteSkillList[]  = {
+  EAttributeEnum::METEOR_TROOP_ATTACK_BOOST,
+  EAttributeEnum::METEOR_TROOP_DEFENSE_BOOST,
+  EAttributeEnum::METEOR_MARCH_SPEED_BOOST,
+  EAttributeEnum::METEOR_TROOP_HP_BOOST
 };

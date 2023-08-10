@@ -5,6 +5,7 @@
 class WorldMapBuildFireEffect{
   public:
   GTime _FightTime;
+  Node *_FireNode;
   void ResetFireEffect(){}
   virtual void AddFireEffect(GTime pFightTime){}
   void UpdateFireEffect(EMapObjStateTypeDef pStatus){}

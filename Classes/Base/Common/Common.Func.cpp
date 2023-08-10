@@ -255,3 +255,33 @@ UIWorldMapFaceToDistance *GBase::DGetWorldMapFaceToDistanceNode(){
   // return faceToDistanceNode
   return nullptr;
 }
+
+void GBase::DFadeINOUT(Node *p_Node, const RFadeInOutParam &p_Param){
+  // if not target then
+  //   return
+  // end
+  // local param = param or {}
+  // local time_in = param.fadeIn or 1
+  // local time_out = param.fadeOut or 1
+  // local time_delay = param.delay or 0.5
+  // local beginOpacity = param.beginOpacity
+  // local endOpacity = param.endOpacity
+  // if beginOpacity and endOpacity then
+  //   local seq = cca.seq({
+  //     cca.fadeTo(time_out, endOpacity),
+  //     cca.delay(time_delay),
+  //     cca.fadeTo(time_in, beginOpacity),
+  //     cca.delay(time_delay)
+  //   })
+  //   target:runAction(cc.RepeatForever:create(seq))
+  // else
+  //   local seq = cca.seq({
+  //     cca.fadeOut(time_out),
+  //     cca.delay(time_delay),
+  //     cca.fadeIn(time_in),
+  //     cca.delay(time_delay)
+  //   })
+  //   target:runAction(cc.RepeatForever:create(seq))
+  // end
+}
+

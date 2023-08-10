@@ -1,16 +1,38 @@
 #include "WorldMapBuilding.h"
 #include "Module/Guild/Alliance.Read.h"
+#include "Module/World/Kingdom/KingdomMap.Ctrl.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
 #include "Module/World/WorldMap/Instance/Component/WorldMapFireWorkEffect.h"
+#include "Module/World/WorldMap/Instance/InstanceCache.Mgr.h"
+#include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
+#include "Module/World/WorldMap/Instance/Component/WorldMapEffect.h"
 #include "Module/UI/Common/Timer/UITimerLabel.h"
 #include "Module/Player/Player.Top.h"
 #include "Module/Player/Skin/Castle/CastleSkin.Read.h"
+#include "Module/Player/Skin/Castle/CastleSkin.ConfigRead.h"
+#include "Module/Player/Buff/Attribute.Enum.h"
+#include "Module/Player/Skill/LordSkillModule.Api.h"
 #include "Module/Guild/Alliance.Mgr.h"
 #include "Module/Guild/Relation/AllianceRelation.Ctrl.h"
 #include "Module/World/WorldWar/PyramidWar/ConquestWar.Ctrl.h"
 #include "Module/World/WorldWar/WorldWar.Def.h"
+#include "Module/World/WorldWar/Remains/RemainsWar.Read.h"
+#include "Module/World/WorldWar/LegendLord/LegendLord.Ctrl.h"
+#include "Module/World/WorldWar/LegendLord/KingStar.Ctrl.h"
+#include "Module/World/WorldWar/LegendLord/Hegemon.Ctrl.h"
 #include "Base/Common/Common.Msg.h"
+#include "Base/Common/Common.Func.h"
+#include "Base/Common/Common.Teml.h"
 #include "Base/Functions/ServiceFunction.h"
+#include "Base/Utils/XTransition.h"
+#include "Base/Base.Geometry.h"
+#include "Module/Equip/Equip.Read.h"
+#include "Module/Vip/ExaltedPrivilege.Ctrl.h"
+#include "Module/Player/LordInfo.Ctrl.h"
+#include "Module/World/WorldMap/View/WorldMap.View.h"
+#include "Module/World/WorldMap/WorldMap.Func.h"
+#include "Module/City/City.Ctrl.h"
+
 
 void WorldMapBuilding::Ctor(){
   _InitData();
@@ -230,78 +252,26 @@ void WorldMapBuilding::InitCityData(const RWorldBuildingInitData &pData){
 }
 
 void WorldMapBuilding::UpdateData(const RWorldBuildingInitData &pData){
-  // local selfPlayerID = gametop.playertop_:getPlayerID() or 0
   auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
-  // local selfLeagueID = allianceMgr:getOwnTeamID()
   auto lSelfLeagueID = AllianceManager::Get()->GetOwnTeamID();
-  // self.data = data
-  // if data.playerID then
-  //   self.playerID = data.playerID
-  // end
   _PlayerID = pData._PlayerID;
-  // if data.playerName then
-  //   self.playerName = data.playerName
-  // end
   _PlayerName = pData._PlayerName;
-  // if data.playerLevel then
-  //   self.playerLevel = data.playerLevel
-  // end
   _PlayerLevel = pData._PlayerLevel;
-  // if data.inMapId then
-  //   self.inMapId = data.inMapId
-  // end
   _InMapID = pData._InMapID;
-  // if data.hideBattleLev ~= nil then
-  //   self.hideBattleLev = data.hideBattleLev
-  // end
   _HideBattleLev = pData._HideBattleLev;
-  //   if data.official then
-  //     self.officialType = data.official
-  //   end
   _OfficialType = pData._Official;
-  //   if data.worldOfficial then
-  //     self.leaguedOfficialType = data.worldOfficial
-  //   end
   _LeaguedOfficialType = pData._WorldOfficial;
-  //   if data.legendForSepOfficial then
-  //     self.kingStarOfficialType = data.legendForSepOfficial
-  //   end
   _KingStarOfficialType = pData._LegendForSepOfficial;
-  //   if data.hegemonOfficial then
-  //     self.hegemonOfficialType = data.hegemonOfficial
-  //   end
   _HegemonOfficialType = pData._HegemonOfficialType;
-  //   if data.showOfficialType then
-  //     self.showOfficialType = data.showOfficialType
-  //   end
   _ShowOfficialType = pData._ShowOfficialType;
-  //   if data.atlantisOfficialType then
-  //     self.atlantisOfficialType = data.atlantisOfficialType
-  //   end
   _AtlantisOfficialType = pData._AtlantisOfficialType;
-  //   if data.nebulaOfficialID then
-  //     self.nebulaOfficialID = data.nebulaOfficialID
-  //   end
   _NebulaOfficialID = pData._NebulaOfficialID;
-  //   if data.nebulaOfficialID2 then
-  //     self.nebulaOfficialID2 = data.nebulaOfficialID2
-  //   end
   _NebulaOfficialID2 = pData._NebulaOfficialID2;
-  //   self:updateOfficial()
-  UpdateOfficial();
-  //   self:updateTopShowIcons()
-  UpdateTopShowIcons();
-  // if data.factionType then
-  //   self.factionType = data.factionType
-  // end
   _FactionType = pData._FactionType;
-  // self:updateEmojiByData(data)
+
+  UpdateOfficial();
+  UpdateTopShowIcons();
   UpdateEmojiByData(pData._PlayerID, pData._EmojiID);
-  // if data.prisonerNum ~= nil then
-  //   self.prisonerNum = data.prisonerNum
-  //   self:updatePrisoneIn()
-  //   self:updateTopShowIcons()
-  // end
   if(pData._PrisonerNum){
     _PrisonerNum = pData._PrisonerNum;
     UpdatePrisoneIn();
@@ -349,7 +319,7 @@ void WorldMapBuilding::UpdateData(const RWorldBuildingInitData &pData){
       _ImageLevel->setPosition(Vec2(_CenterPoint.x + 60, _CenterPoint.y - 50));
       _TextLevel->setPosition(Vec2(_CenterPoint.x + 80, _CenterPoint.y - 43));
     }
-    _TextLevel->setString(lTextShowLV);
+    _TextLevel->setString(std::to_string(lTextShowLV));
     UpdateBuildingImg();
   }
 
@@ -508,449 +478,448 @@ void WorldMapBuilding::UpdateData(const RWorldBuildingInitData &pData){
       addChild(_FireWork);
       _FireWork->Play();
       if(_PlayerID == lSelfPlayerID){
-        //      self.fireWorkTimeNode = worldMapEffect.createFireTimeNode()
-        //      self.fireWorkTimeNode:setPosition(cc.p(self.centerPoint.x - 0, self.centerPoint.y - 120))
-        //      self.fireWorkTimeNode:addTo(self, 5)
-        //      self.fireWorkTimeNode.init(leftTime)
+        _FireWorkTimeNode = WorldMapEffect::Get()->CreateFireTimeNode();
+        _FireWorkTimeNode->setPosition(Vec2(_CenterPoint.x - 0, _CenterPoint.y - 120));
+        addChild(_FireWorkTimeNode, 5);
+        _FireWorkTimeNode->Init(lLeftTime);
       }
     }
     if(pData._SelfCastleEffect == EWorldMapCastleEffectID::Snow_Effect && lLeftTime > 0){
       CastleSnowIceEffect();
     }
   }else{
-  //  self:removeCastleFireWorkEffect()
+    RemoveCastleFireWorkEffect();
   }
-  // if castleAppearance then
-  //   self:castleSnowIceEffect(self.playerID == selfPlayerID)
-  // end
-  // if data.attr then
-  //   local isAdd = false
-  //   for i, v in ipairs(gRangeAttributeList) do
-  //     local attr = data.attr[tostring(v)]
-  //     if attr then
-  //       if self:isNeedShowAttr(v) then
-  //         self:sendTileEffectMessage(worldMapLeagueManorUpdateType.leagueManorInstanceAdd, attr.range)
-  //         self:checkAllCastleMeteorteEffect(data.attr, false)
-  //         isAdd = true
-  //       end
-  //       break
-  //     end
-  //   end
-  //   if not isAdd then
-  //     self:sendTileEffectMessage(worldMapLeagueManorUpdateType.leagueManorInstanceRemove)
-  //   end
-  // else
-  //   self:removeMeteoriteSkillEffect()
-  // end
-  // if data.signature then
-  //   self.signature = data.signature
-  //   self.signatureBox = data.signatureBox
-  // end
-  // self:refreshSignText()
-  // self:refreshSkillEffect(data)
-  // self:updateBuildStar(data.starLv)
+  if(pData._CastleAppearance)
+    CastleSnowIceEffect(pData._PlayerID == lSelfPlayerID);
+
+  if(pData._Attr.size()){
+    auto lIsAdd = false;
+    for(auto iii = 0; iii < sizeof(gRangeAttributeList)/sizeof(gRangeAttributeList[0]); iii++){
+      auto lV = gRangeAttributeList[iii];
+      if(pData._Attr.Contains(lV)){
+        auto lAttr = pData._Attr.at(lV);
+        if(IsNeedShowAttr(lV)){
+          SendTileEffectMessage(EWorldMapLeagueManorUpdateType::Add, lAttr._Range);
+          CheckAllCastleMeteorteEffect(pData._Attr, false);
+          lIsAdd = true;
+        }
+        break;
+      }
+    }
+    if(!lIsAdd)
+      SendTileEffectMessage(EWorldMapLeagueManorUpdateType::Remove);
+  }else{
+    RemoveMeteoriteSkillEffect();
+  }
+  
+  _Signature = pData._Signature;
+  _SignatureBox = pData._SignatureBox;
+  _CastleAppearanceEndTime = pData._CastleAppearanceEndTime;
+  RefreshSignShow(true);
+  RefreshSkillEffect(pData);
+  UpdateBuildStar(pData._StarLv);
 }
 
 void WorldMapBuilding::ShowInstance(bool pShow, int32 pDelayTime){
-  // delayTime = delayTime or 0
-  // if delayTime > 0 then
-  //   local actionsArray = {}
-  //   actionsArray[#actionsArray + 1] = cc.DelayTime:create(delayTime)
-  //   actionsArray[#actionsArray + 1] = cc.CallFunc:create(function()
-  //     self:setVisible(show)
-  //   end)
-  //   local action = transition.sequence(actionsArray)
-  //   self:runAction(action)
-  // else
-  //   self:setVisible(show)
-  // end
-  // if not show then
-  //   self:sendTileEffectMessage(worldMapLeagueManorUpdateType.leagueManorInstanceRemove)
-  //   self:removeInstanceSelf()
-  // end
+  if(pDelayTime > 0){
+    Vector<FiniteTimeAction *> lActionsArray;
+    lActionsArray.pushBack(DelayTime::create(pDelayTime));
+    lActionsArray.pushBack(CallFunc::create([=](){
+      setVisible(pShow);
+    }));
+    auto lAction = XTransition::Get()->Sequence_(lActionsArray);
+    runAction(lAction);
+  }else{
+    setVisible(pShow);
+  }
+  
+  if(!pShow){
+    SendTileEffectMessage(EWorldMapLeagueManorUpdateType::Remove);
+    RemoveInstanceSelf();
+  }
 }
 
 void WorldMapBuilding::UpdateLeagueInfo(){
-  // if self.warCamp and self.warCamp > 0 then
-  //   self.image_LeagueFlag:setVisible(true)
-  //   if self.leagueFlag then
-  //     local remainsWarRead = include("remainsWarRead")
-  //     self.image_LeagueFlag:setSpriteFrame(remainsWarRead.getCampIcon(self.warCamp))
-  //     if 1 == self.warCamp then
-  //       self.image_LeagueFlag:setScale(0.5)
-  //     else
-  //       self.image_LeagueFlag:setScale(1)
-  //     end
-  //   end
-  // elseif self.leagueID and 0 < self.leagueID then
-  //   self.image_LeagueFlag:setVisible(true)
-  //   if self.leagueFlag then
-  //     self.image_LeagueFlag:setSpriteFrame(allianceDesRead.getFlagIcon(self.leagueFlag))
-  //     self.image_LeagueFlag:setScale(0.3)
-  //   end
-  // else
-  //   self.image_LeagueFlag:setVisible(false)
-  // end
+  if(_WarCamp > 0){
+    _ImageLeagueFlag->setVisible(true);
+    if(_LeagueFlag){
+      _ImageLeagueFlag->setSpriteFrame(RemainsWarRead::Get()->GetCampIcon(_WarCamp));
+      if(_WarCamp == 1)
+        _ImageLeagueFlag->setScale(0.5);
+      else 
+      _ImageLeagueFlag->setScale(1);
+    }
+  }else if(_LeagueID > 0){
+    _ImageLeagueFlag->setVisible(true);
+    if(_LeagueFlag){
+      _ImageLeagueFlag->setSpriteFrame(AllianceRead::Get()->GetFlagIcon(_LeagueFlag));
+      _ImageLeagueFlag->setScale(0.3);
+    }
+  }else{
+    _ImageLeagueFlag->setVisible(false);
+  }
 }
 
 void WorldMapBuilding::UpdateBuildingImg(){
-  //   self.cityImage:removeAllChildren()
-  // self.citySkin1Image:removeAllChildren()
-  // self:removeSkinEffect()
-  // self:removeWarLvEffect()
-  // local textShowLV
-  // self.isShowWarLv, textShowLV = SoraDGetBuildWarLv(self.cityLevel)
-  // if self.isShowWarLv then
-  //   self:warLvEffect(textShowLV)
-  // end
-  // local isWarLV5 = self.isShowWarLv and textShowLV >= 5
-  // self.image_name_bg:setVisible(isWarLV5)
-  // if self:getChildByName("citySkin1Image_down") then
-  //   self:removeChildByName("citySkin1Image_down", true)
-  // end
-  // if self:getChildByName("dglNode") then
-  //   self:removeChildByName("dglNode", true)
-  // end
-  // if self:getChildByName("castle47effect") then
-  //   self:removeChildByName("castle47effect", true)
-  // end
-  // if self:getChildByName("cscNode") then
-  //   self:removeChildByName("cscNode", true)
-  // end
-  // if self:getChildByName("xlcbfdNode") then
-  //   self:removeChildByName("xlcbfdNode", true)
-  // end
-  // if self:getChildByName("xczwcbNode") then
-  //   self:removeChildByName("xczwcbNode", true)
-  // end
-  // if self:getChildByName("Node_thunder_1") then
-  //   self:removeChildByName("Node_thunder_1", true)
-  // end
-  // if self:getChildByName("Node_thunder_2") then
-  //   self:removeChildByName("Node_thunder_2", true)
-  // end
-  // if self:getChildByName("Node_starfall_1") then
-  //   self:removeChildByName("Node_starfall_1", true)
-  // end
-  // if self:getChildByName("Node_starfall_2") then
-  //   self:removeChildByName("Node_starfall_2", true)
-  // end
-  // if self:getChildByName("Node_starfall_3") then
-  //   self:removeChildByName("Node_starfall_3", true)
-  // end
-  // if self:getChildByName("Node_coffee") then
-  //   self:removeChildByName("Node_coffee", true)
-  // end
-  // if self:getChildByName("Node_sgsl") then
-  //   self:removeChildByName("Node_sgsl", true)
-  // end
-  // if self.isCityBgSkin ~= 0 and not self.node_snowMan then
-  //   local castleSkinRead = include("castleSkinRead")
-  //   local skinImageName = castleSkinRead.getMapImage(self.isCityBgSkin)
-  //   local castleModel = castleSkinRead.getCastleType(self.isCityBgSkin)
-  //   if skinImageName and 0 < string.len(skinImageName) then
-  //     self.cityImage:setVisible(false)
-  //     self.citySkin1Image:setVisible(true)
-  //     self.citySkin1Image:setSpriteFrame(display.newSpriteFrame(skinImageName))
-  //     self:setSkinGroupID(castleModel)
-  //     self.curCityImage = self.citySkin1Image
-  //     local skinOffset = castleSkinConfigRead.getSkinOffset(castleModel)
-  //     if skinOffset then
-  //       self.curCityImage:setPosition(skinOffset)
-  //     end
-  //     self.curCityImage:setScale(1)
-  //     if castleModel == BUILD_CASTLE_MODEL.KINGCOBRA then
-  //       self.curCityImage:setScale(0.9)
-  //     end
-  //     self.imgScale = IMG_PROTECT_SCALE_SKIN
-  //     self.imgOffset = IMG_OFFSET_SKIN
-  //     self:addSkinEffect(castleModel)
-  //     if self.isShowWarLv then
-  //       self:setSkinConfig(castleModel, textShowLV)
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.THUNDERCLOUD then
-  //       self.citySkin1Image:setVisible(false)
-  //       if not self:getChildByName("Node_thunder_1") then
-  //         local Node_thunder_1, action = SoraDCreatAnimation("Node_thunder_1", nil, false)
-  //         Node_thunder_1:setName("Node_thunder_1")
-  //         Node_thunder_1:setPosition(0, 100)
-  //         Node_thunder_1:addTo(self, 2)
-  //         action:setFrameEventCallFunc(function(frameEventName)
-  //           local frameEvent = frameEventName:getEvent()
-  //           if frameEvent and frameEvent == "toSecond" then
-  //             local Node_thunder_2 = SoraDCreatAnimation("Node_thunder_2")
-  //             Node_thunder_2:setName("Node_thunder_2")
-  //             Node_thunder_2:setPosition(0, 100)
-  //             Node_thunder_2:addTo(self, 2)
-  //           end
-  //         end)
-  //       end
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.SEVENTH then
-  //       self.citySkin1Image:setVisible(false)
-  //       if not self:getChildByName("Node_starfall_1") then
-  //         do
-  //           local Node_starfall_1, action = SoraDCreatAnimation("Node_starfall_1", nil, false)
-  //           Node_starfall_1:setName("Node_starfall_1")
-  //           Node_starfall_1:setPosition(0, 50)
-  //           Node_starfall_1:addTo(self, -2)
-  //           action:setFrameEventCallFunc(function(frameEventName)
-  //             local frameEvent = frameEventName:getEvent()
-  //             if frameEvent and frameEvent == "toSecond" then
-  //               do
-  //                 local Node_starfall_2, action2 = SoraDCreatAnimation("Node_starfall_2", nil, false)
-  //                 Node_starfall_2:setName("Node_starfall_2")
-  //                 if self.citySkin1Image_groupID then
-  //                   SoraDGetChildByName(Node_starfall_2, "chengbaozhuangban_01"):setGroupID(self.citySkin1Image_groupID)
-  //                 end
-  //                 Node_starfall_2:setPosition(0, 80)
-  //                 Node_starfall_2:addTo(self, -1)
-  //                 action2:setFrameEventCallFunc(function(frameEventName)
-  //                   local frameEvent = frameEventName:getEvent()
-  //                   if frameEvent and frameEvent == "tothree" then
-  //                     local Node_starfall_3, action3 = SoraDCreatAnimation("Node_starfall_3")
-  //                     Node_starfall_3:setName("Node_starfall_3")
-  //                     Node_starfall_3:setPosition(0, 80)
-  //                     Node_starfall_3:addTo(self, -1)
-  //                     if self.citySkin1Image_groupID then
-  //                       SoraDGetChildByName(Node_starfall_3, "chengbaozhuangban_02"):setGroupID(self.citySkin1Image_groupID)
-  //                     end
-  //                     Node_starfall_1:setVisible(false)
-  //                     Node_starfall_2:setVisible(false)
-  //                   end
-  //                 end)
-  //               end
-  //             end
-  //           end)
-  //         end
-  //       end
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.CORBAN2021 then
-  //       local Node_coffee = SoraDCreatAnimation("Node_coffee")
-  //       Node_coffee:setName("Node_coffee")
-  //       Node_coffee:setPosition(0, 100)
-  //       Node_coffee:addTo(self, 2)
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.HOURGLASS then
-  //       local Node_sgsl = SoraDCreatAnimation("Node_sgsl")
-  //       Node_sgsl:setName("Node_sgsl")
-  //       Node_sgsl:setPosition(-15, -20)
-  //       Node_sgsl:addTo(self, 2)
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.DEGULA and not self:getChildByName("dglNode") then
-  //       local dglNode = SoraDCreatAnimation("degulacbwai")
-  //       dglNode:setName("dglNode")
-  //       dglNode:setPosition(40, 40)
-  //       dglNode:addTo(self, 2)
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.ICECASTLE and not self:getChildByName("castle47effect") then
-  //       local castle47effect = SoraDCreatAnimation("castle47effect")
-  //       castle47effect:setName("castle47effect")
-  //       castle47effect:setPosition(-64, 100)
-  //       castle47effect:addTo(self, 2)
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.CONSTRUCTED and not self:getChildByName("cscNode") then
-  //       local cscNode = SoraDCreatAnimation("constructedCastle")
-  //       cscNode:setName("cscNode")
-  //       cscNode:setPosition(-2, 124)
-  //       cscNode:addTo(self, 2)
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.KOH2021RAMADAN and not self:getChildByName("xlcbfdNode") then
-  //       local xlcbfdNode = SoraDCreatAnimation("animationXLCBFD")
-  //       xlcbfdNode:setName("xlcbfdNode")
-  //       xlcbfdNode:setPosition(-70, -20)
-  //       xlcbfdNode:addTo(self, 1)
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.STARKING and not self:getChildByName("xczwcbNode") then
-  //       local xczwcbNode = SoraDCreatAnimation("animationXCZWCB")
-  //       xczwcbNode:setName("xczwcbNode")
-  //       xczwcbNode:setPosition(-65, -40)
-  //       xczwcbNode:addTo(self, 1)
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.HALLOWEEN2018 and not self:getChildByName("citySkin1Image_down") then
-  //       local sprite = display.newSprite("#Map_castle_Hallowmas2018_01.png")
-  //       self:addChild(sprite, -2)
-  //       sprite:setPosition(cc.p(-60, 40))
-  //       sprite:setName("citySkin1Image_down")
-  //       sprite:runAction(cc.RepeatForever:create(cca.seq({
-  //         cca.moveBy(0.16666666666666666, 0, -1),
-  //         cca.moveBy(1.3333333333333333, 0, -9),
-  //         cca.moveBy(0.16666666666666666, 0, -1),
-  //         cca.moveBy(0.16666666666666666, 0, 1),
-  //         cca.moveBy(1.3333333333333333, 0, 9),
-  //         cca.moveBy(0.16666666666666666, 0, 1)
-  //       })))
-  //       if self.citySkin1Image_groupID then
-  //         sprite:setGroupID(self.citySkin1Image_groupID)
-  //       end
-  //     end
-  //     if castleModel == BUILD_CASTLE_MODEL.GOLDENCITY then
-  //       self.curCityImage:stopAllActions()
-  //       local curPosX = self.curCityImage:getPositionX()
-  //       local curPosY = self.curCityImage:getPositionY()
-  //       self.curCityImage:runAction(cc.RepeatForever:create(cca.seq({
-  //         cca.moveTo(0.03333333333333333, curPosX, curPosY - 0.08),
-  //         cca.moveTo(3.3, curPosX, curPosY - 15),
-  //         cca.moveTo(3.3, curPosX, curPosY - 0.08),
-  //         cca.moveTo(0.03333333333333333, curPosX, curPosY)
-  //       })))
-  //     else
-  //       self.curCityImage:stopAllActions()
-  //     end
-  //     return
-  //   end
-  // elseif self.isShowWarLv and (textShowLV == 5 or textShowLV == 10) then
-  //   self.imgScale = IMG_PROTECT_SCALE_WAR_10
-  //   self.imgOffset = IMG_OFFSET_WAR_10
-  // else
-  //   self.imgScale = self.isShowWarLv and IMG_PROTECT_SCALE_WAR or IMG_PROTECT_SCALE_DEF
-  //   self.imgOffset = self.isShowWarLv and IMG_OFFSET_WAR or IMG_OFFSET_DEF
-  // end
-  // if not self.node_snowMan then
-  //   self.cityImage:setVisible(true)
-  //   self.citySkin1Image:setVisible(false)
-  //   worldMapDefine.createCityImageWithLevel(self.cityLevel, self.factionType, self.cityImage)
-  // end
+  
+  _CityImage->removeAllChildren();
+  _CitySkin1Image->removeAllChildren();
+  RemoveSkinEffect();
+  RemoveWarLvEffect();
+  auto [lIsShowWarLv, lTextShowLv, lDes] =  GBase::DGetBuildWarLv(_CityLevel);
+  _IsShowWarLv = lIsShowWarLv;
+  if(_IsShowWarLv)
+    WarLvEffect(lTextShowLv);
+  auto lIsWarLv5 = _IsShowWarLv && lTextShowLv >= 5;
+  _ImageNameBg->setVisible(lIsWarLv5);
+
+  static const GVector<GString> lNodes = {
+  "citySkin1Image_down", "dglNode", "castle47effect",
+  "cscNode", "xlcbfdNode", "xczwcbNode", "Node_thunder_1",
+  "Node_thunder_2", "Node_starfall_1", "Node_starfall_2",
+  "Node_starfall_3", "Node_coffee", "Node_sgsl"
+  };
+
+  for(auto lOneNode : lNodes){
+    if(getChildByName(lOneNode))
+      removeChildByName(lOneNode, true);
+  }
+
+  if(_IsCityBgSkin != 0 && _NodeSnowMan){
+
+    auto lSkinImageName = CastleSkinRead::Get()->GetMapImage(_IsCityBgSkin);
+    auto lCastleModel = CastleSkinRead::Get()->GetCastleType(_IsCityBgSkin);
+
+    if(lSkinImageName.size()){
+      _CityImage->setVisible(false);
+      _CitySkin1Image->setVisible(true);
+      _CitySkin1Image->setSpriteFrame(GDisplay::Get()->NewSpriteFrame(lSkinImageName.c_str()));
+      //     self:setSkinGroupID(castleModel)
+      _CurCityImage = _CitySkin1Image;
+      auto lSkinOffset = CastleSkinConfigRead::Get()->GetSkinOffset(lCastleModel);
+      if(lSkinOffset)
+        _CurCityImage->setPosition(lSkinOffset.value());
+      _CurCityImage->setScale(1);
+      if(lCastleModel == EBuildingCastleModel::KINGCOBRA)
+        _CurCityImage->setScale(0.9);
+      _ImgScale = IMG_PROTECT_SCALE_SKIN;
+      _ImgOffset = IMG_OFFSET_SKIN;
+      AddSkinEffect(lCastleModel);
+      if(_IsShowWarLv)
+        SetSkinConfig(lCastleModel, lTextShowLv);
+      if(lCastleModel == EBuildingCastleModel::THUNDERCLOUD){
+        _CitySkin1Image->setVisible(false);
+        if(getChildByName("Node_thunder_1")){
+          auto [lThunderNode1, lAction] = GBase::DCreateAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/Node_thunder_1.csb", nullptr, false);
+          lThunderNode1->setName("Node_thunder_1");
+          lThunderNode1->setPosition(0, 100);
+          addChild(lThunderNode1, 2);
+          lAction->setFrameEventCallFunc([=](auto pFrame){
+            static const auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/Node_thunder_2.csb";
+            auto lFrameEvent = dynamic_cast<cocostudio::timeline::EventFrame *>(pFrame);
+            if(!lFrameEvent)
+              return;
+            if(lFrameEvent->getEvent() != "toSecond")
+              return;
+            auto [lThunderNode2, lAction2] = GBase::DCreateAnimation(lPath);
+            lThunderNode2->setName("Node_thunder_2");
+            lThunderNode2->setPosition(0, 100);
+            addChild(lThunderNode2, 2);
+          });
+        }
+      }
+      
+      if(lCastleModel == EBuildingCastleModel::SEVENTH){
+        _CitySkin1Image->setVisible(false);
+        if(!getChildByName("Node_starfall_1")){
+          auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/Node_starfall_1.csb";
+          auto lT = GBase::DCreateAnimation(lPath, nullptr, false);
+          auto lNodeStarFall1 = lT.First;
+          auto lAction = lT.Second;
+
+          lNodeStarFall1->setName("Node_starfall_1");
+          lNodeStarFall1->setPosition(0, 50);
+          addChild(lNodeStarFall1, -2);
+          lAction->setFrameEventCallFunc([=](auto pFrame){
+            auto lFrameEventName = dynamic_cast<cocostudio::timeline::EventFrame *>(pFrame);
+            if(!lFrameEventName)
+              return;
+            if(lFrameEventName->getEvent() != "toSecond")
+              return;
+            static const auto lPath2 = "UiParts/Panel/World/WorldMap/Floor/Animation/Node_starfall_2.csb";
+            auto lT2 = GBase::DCreateAnimation(lPath2, nullptr, false);
+            auto lNodeStarFall2 = lT2.First;
+            auto lAction2 = lT2.Second;
+            lNodeStarFall2->setName("Node_starfall_2");
+            lNodeStarFall2->setPosition(0, 80);
+            //       if self.citySkin1Image_groupID then
+            //         SoraDGetChildByName(Node_starfall_2, "chengbaozhuangban_01"):setGroupID(self.citySkin1Image_groupID)
+            //       end
+            addChild(lNodeStarFall2, -1);
+            lAction2->setFrameEventCallFunc([=](auto pFrame){
+              auto lFrameEventName = dynamic_cast<cocostudio::timeline::EventFrame *>(pFrame);
+              if(!lFrameEventName)
+                return;
+              if(lFrameEventName->getEvent() != "tothree")
+                return;
+              static const auto lPath3 = "UiParts/Panel/World/WorldMap/Floor/Animation/Node_starfall_3.csb";
+              auto [lNodeStarFall3, lAction3] = GBase::DCreateAnimation(lPath3);
+              lNodeStarFall3->setName("Node_starfall_3");
+              lNodeStarFall3->setPosition(0, 80);
+              addChild(lNodeStarFall3, -1);
+              // if self.citySkin1Image_groupID then
+              //   SoraDGetChildByName(Node_starfall_3, "chengbaozhuangban_02"):setGroupID(self.citySkin1Image_groupID)
+              // end
+              lNodeStarFall1->setVisible(false);
+              lNodeStarFall2->setVisible(false);
+            });
+          });
+        }
+      }
+
+      if(lCastleModel == EBuildingCastleModel::CORBAN2021){
+        static const auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/Node_coffee.csb";
+        auto [lNodeCoffee, lAction] = GBase::DCreateAnimation(lPath);
+        lNodeCoffee->setName("Node_coffee");
+        lNodeCoffee->setPosition(0, 100);
+        addChild(lNodeCoffee, 2);
+      }
+
+      if(lCastleModel == EBuildingCastleModel::HOURGLASS){
+        static const auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/Node_sgsl.csb";
+        auto [lNodeSgsl, _] = GBase::DCreateAnimation(lPath);
+        lNodeSgsl->setName("Node_sgsl");
+        lNodeSgsl->setPosition(-15, -20);
+        addChild(lNodeSgsl, 2);
+      }
+
+      if(lCastleModel == EBuildingCastleModel::DEGULA && !getChildByName("dglNode")){
+        auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/degulacbwai.csb";
+        auto [lDglNode, _] = GBase::DCreateAnimation(lPath);
+        lDglNode->setName("dglNode");
+        lDglNode->setPosition(40, 40);
+        addChild(lDglNode, 2);
+      }
+      
+      if(lCastleModel  == EBuildingCastleModel::ICECASTLE && !getChildByName("castle47effect")){
+        auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/castle47effect.csb";
+        auto [lCastle47Effect, _] = GBase::DCreateAnimation(lPath);
+        lCastle47Effect->setName("castle47effect");
+        lCastle47Effect->setPosition(-64, 100);
+        addChild(lCastle47Effect, 2);
+      }
+
+      if(lCastleModel == EBuildingCastleModel::CONSTRUCTED && !getChildByName("cscNode")){
+        auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/constructedCastle.csb";
+        auto [lCscNode, _] = GBase::DCreateAnimation(lPath);
+        lCscNode->setName("cscNode");
+        lCscNode->setPosition(-2, 124);
+        addChild(lCscNode, 2);
+      }
+
+      if(lCastleModel == EBuildingCastleModel::KOH2021RAMADAN && !getChildByName("xlcbfdNode")){
+        auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/animationXLCBFD.csb";
+        auto [lXlcbfdNode, _] = GBase::DCreateAnimation(lPath);
+        lXlcbfdNode->setName("xlcbfdNode");
+        lXlcbfdNode->setPosition(-70, -20);
+        addChild(lXlcbfdNode, 1);
+      }
+
+      if(lCastleModel == EBuildingCastleModel::STARKING && !getChildByName("xczwcbNode")){
+        auto lPath = "UiParts/Panel/World/WorldMap/Floor/Animation/animationXCZWCB.csb";
+        auto [lXczwcbNode, _] = GBase::DCreateAnimation(lPath);
+        lXczwcbNode->setName("xczwcbNode");
+        lXczwcbNode->setPosition(-65, -40);
+        addChild(lXczwcbNode, 1);
+      }
+
+      if(lCastleModel == EBuildingCastleModel::HALLOWEEN2018 && !getChildByName("citySkin1Image_down")){
+        auto lSprite = GDisplay::Get()->NewSprite("Map_castle_Hallowmas2018_01.png");
+        addChild(lSprite, -2);
+        lSprite->setPosition(Vec2(-60, 40));
+        lSprite->setName("citySkin1Image_down");
+        lSprite->runAction(RepeatForever::create(Sequence::create(
+          MoveBy::create(0.16666666666666666, Vec2(0, -1)),
+          MoveBy::create(1.3333333333333333, Vec2(0, -9)),
+          MoveBy::create(0.16666666666666666, Vec2(0, -1)),
+          MoveBy::create(0.16666666666666666, Vec2(0, 1)),
+          MoveBy::create(1.3333333333333333, Vec2(0, 9)),
+          MoveBy::create(0.16666666666666666, Vec2(0, 1)),
+          nullptr
+        )));
+        // if(_CitySkin1Image->getGroupID() > 0)
+        //   lSprite->setGroupID(_CitySkin1Image->getGroupID());
+      }
+
+      if(lCastleModel == EBuildingCastleModel::GOLDENCITY){
+        _CurCityImage->stopAllActions();
+        auto lCurPosX = _CurCityImage->getPositionX();
+        auto lCurPosY = _CurCityImage->getPositionY();
+        _CurCityImage->runAction(RepeatForever::create(Sequence::create(
+          MoveBy::create(0.03333333333333333, Vec2(lCurPosX, lCurPosY - 0.08)),
+          MoveBy::create(3.3, Vec2(lCurPosX, lCurPosY - 15)),
+          MoveBy::create(3.3, Vec2(lCurPosX, lCurPosY - 0.08)),
+          MoveBy::create(0.03333333333333333, Vec2(lCurPosX, lCurPosY)),
+          nullptr
+        )));
+      }else{
+        _CurCityImage->stopAllActions();
+      }
+      return;
+    }
+  } 
+
+  else if(_IsShowWarLv && (lTextShowLv == 5 || lTextShowLv == 10)){
+    _ImgScale = IMG_PROTECT_SCALE_WAR_10;
+    _ImgOffset = IMG_OFFSET_WAR_10;
+  }else{
+    _ImgScale = _IsShowWarLv ? IMG_PROTECT_SCALE_WAR : IMG_PROTECT_SCALE_DEF;
+    _ImgOffset = _IsShowWarLv ? IMG_OFFSET_WAR : IMG_OFFSET_DEF;
+  }
+
+  if(!_NodeSnowMan){
+    _CityImage->setVisible(true);
+    _CitySkin1Image->setVisible(false);
+    WorldMapDefine::Get()->CreateCityImageWithLevel(_CityLevel, _FactionType, _CityImage);
+  }
 }
 
 void WorldMapBuilding::UpdateBuildingNecklace(){
-  // if self.neckLaceID and worldMapDefine.isInRadiance() then
-  //   local equipDesRead = include("equipDesRead")
-  //   self.necklaceNode:setVisible(true)
-  //   local necklaceIcon = self.necklaceNode:getChildByName("necklaceIcon")
-  //   necklaceIcon:setSpriteFrame(equipDesRead.getIcon(self.neckLaceID))
-  //   local necklaceName = self.necklaceNode:getChildByName("necklaceName")
-  //   necklaceName:setString(equipDesRead.getName(self.neckLaceID))
-  // else
-  //   self.necklaceNode:setVisible(false)
-  // end
+  if(_NecklaceID && WorldMapDefine::Get()->IsInRadiance()){
+    _NecklaceNode->setVisible(true);
+    auto lNecklaceIcon = _NecklaceNode->getChildByName<Sprite *>("necklaceIcon");
+    lNecklaceIcon->setSpriteFrame(EquipRead::Get()->GetIcon(_NecklaceID));
+    auto lNecklaceName = _NecklaceNode->getChildByName<ui::Text *>("necklaceName");
+    lNecklaceName->setString(EquipRead::Get()->GetName(_NecklaceID));
+  }else{
+    _NecklaceNode->setVisible(false);
+  }
 }
 
 GString WorldMapBuilding::SetLendLordPlayerInfo(const GString &pName){
-  // local textName = name or self.playerName
-  // if self.sourceKingdomID and self.sourceKingdomID > 0 then
-  //   textName = textName .. "#" .. self.sourceKingdomID
-  // end
-  // return textName
+  auto lTextName = pName.size() ? pName : _PlayerName;
+  if(_SourceKingdomID > 0){
+    lTextName = lTextName + "#" + std::to_string(_SourceKingdomID);
+  }
+  return lTextName;
 }
 
 void WorldMapBuilding::UpdateWarLvEffect(){
-  // if self.warLVnode then
-  //   self.warLVnode:setVisible(not self.hideBattleLev)
-  // end
+  if(_WarLVNode)
+    _WarLVNode->setVisible(!_HideBattleLev);
 }
 
-
 void WorldMapBuilding::UpdateAllianceCounter(EventCustom *pEvent){
-  // if data and data.type and data.type == GREEN_POINT_NOTICE_TYPE.COUNTER_SYS then
-  //   self:updateAllianceCounterAtkEffect()
-  // end
+  if(!pEvent)
+    return;
+  if(pEvent->getUserData())
+    return;
+  auto lData = (GPair<EGreenPointNoticeType, int32>*)pEvent->getUserData();
+  if(lData->First != EGreenPointNoticeType::COUNTER_SYS)
+    return;
+  UpdateAllianceCounterAtkEffect(nullptr);
 }
 
 void WorldMapBuilding::UpdateOfficeIcon(EventCustom *pEvent){
-  // if self.officalImage then
-  //   local isShow = SoraDConfigGet("Game:worldMapOfficeIcon:OfficeIcon~bool", {byUID = true})
-  //   if isShow == nil then
-  //     isShow = true
-  //   end
-  //   if self.node_snowMan then
-  //     isShow = false
-  //   end
-  //   self.isShowOffice = isShow
-  //   self:updateOfficial()
-  // end
+  if(!_OfficalImage)
+    return;
+  auto lIsShow = GBase::DConfigGet<bool>("Game:worldMapOfficeIcon:OfficeIcon~bool", true);
+  if(!lIsShow)
+    lIsShow = true;
+  if(_NodeSnowMan)
+    lIsShow = false;
+  _IsShowOffice = lIsShow.value();
+  UpdateOfficial();
+
 }
 
 void WorldMapBuilding::UpdatePrisionIcon(EventCustom *pEvent){
-  // if self.prisoneInIcon then
-  //   local isShow = SoraDConfigGet("Game:castleChangeSetting:PrisonHeroIcon~bool", {byUID = true})
-  //   if isShow == nil then
-  //     isShow = true
-  //   end
-  //   if self.node_snowMan then
-  //     isShow = false
-  //   end
-  //   self.isShowPrision = isShow
-  //   self:updatePrisoneIn()
-  // end
+  if(!_PrisoneInIcon)
+    return;
+  auto lIsShow = GBase::DConfigGet<bool>("Game:castleChangeSetting:PrisonHeroIcon~bool", true);
+  if(!lIsShow)
+    lIsShow = true;
+  if(_NodeSnowMan)
+    lIsShow = false;
+  _IsShowPrision = lIsShow.value();
+  UpdatePrisoneIn();
 }
 
 GString WorldMapBuilding::SetWarPlayerInfo(EventCustom *pEvent){
-  // local textName = name or self.playerName
-  // local selfSourceID = lordInfoCtrl:getMapSourceKid()
-  // local conquestWarCtrl = gametop.playertop_:getModule("conquestWarCtrl")
-  // local isMatchKingdom = conquestWarCtrl:isMatchKingdom(selfSourceID, self.kingdomID)
-  // if (selfSourceID == self.kingdomID or isMatchKingdom) and selfSourceID ~= self.sourceID then
-  //   textName = textName .. "#" .. self.sourceID
-  //   self.text_Name:setColor(cc.c3b(200, 0, 0))
-  //   local boolWarSmoke = SoraDConfigGet("Game:GameOptionsView:warSmoke~bool")
-  //   if boolWarSmoke then
-  //     self:addEnemyCastleEffect()
-  //   else
-  //     self:removeEnemyCastleEffect()
-  //   end
-  //   self.image_name:setSpriteFrame("frame_castle_name_enemy.png")
-  // end
-  // return textName
+  auto lTextName = _PlayerName;
+  if(pEvent && pEvent->getUserData())
+    lTextName = *(GString*)pEvent->getUserData();
+  auto lSelfeSourceID = LordInfoCtrl::Get()->GetMapSourceKid();
+  auto lIsMatchKingdom = ConquestWarCtrl::Get()->IsMatchKingdom(lSelfeSourceID, _KingdomID);
+  if((lSelfeSourceID == _KingdomID || lIsMatchKingdom) && lSelfeSourceID != _SourceID){
+    lTextName = lTextName + "#" + std::to_string(_SourceID);
+    _TextName->setColor(Color3B(200, 0, 0));
+    auto lIsShowWarSmoke = GBase::DConfigGet<bool>("Game:GameOptionsView:warSmoke~bool", true);
+    if(lIsShowWarSmoke)
+      AddEnemyCastleEffect();
+    else
+      RemoveEnemyCastleEffect();
+    _ImageName->setSpriteFrame("frame_castle_name_enemy.png");
+  }
+  return lTextName;
 }
 
 void WorldMapBuilding::AddSkinEffect(EBuildingCastleModel pCastleModel){
-  // local et_node = self:getChildByName("skinBgEffectNode")
-  // if not et_node then
-  //   et_node = worldMapDefine.getCastleSkinEffect(castleModel)
-  //   et_node:addTo(self, 1)
-  // end
+  auto lEtNode = getChildByName("skinBgEffectNode");
+  if(!lEtNode){
+    auto lEtNode = WorldMapDefine::Get()->GetCastleSkinEffect(pCastleModel);
+    addChild(lEtNode, 1);
+  }
 }
 
 void WorldMapBuilding::RemoveSkinEffect(){
-  // if self:getChildByName("skinBgEffectNode") then
-  //   self:removeChildByName("skinBgEffectNode", true)
-  // end
+  if(getChildByName("skinBgEffectNode"))
+    removeChildByName("skinBgEffectNode", true);
 }
 
 void WorldMapBuilding::SetSkinConfig(EBuildingCastleModel pCastleModel, int32 pWarLv){
-  // local config = castleSkinConfigRead.getSkinWarLvConfig(castleModel, warLv)
-  // if config then
-  //   self.warLVnode:setScale(config.scale)
-  //   self.warLVnode:setPosition(config.offset)
-  // else
-  //   self.warLVnode:setScale(1)
-  //   local data = worldMapDefine.getWarLevelData(warLv)
-  //   local offset = data.offset or cc.p(0, 0)
-  //   self.warLVnode:setPosition(offset)
-  //   if self.curCityImage then
-  //     self.curCityImage:setPosition(cc.p(0, 0))
-  //   end
-  // end
+  auto lConfig = CastleSkinConfigRead::Get()->GetSkinWarLvConfig(pCastleModel, pWarLv);
+  if(lConfig){
+    auto [lScale, lOffset] = lConfig.value();
+    _WarLVNode->setScale(lScale);
+    _WarLVNode->setPosition(lOffset);
+  }else{
+    _WarLVNode->setScale(1);
+    auto lData = WorldMapDefine::Get()->GetWarLevelData(pWarLv);
+    if(lData)
+      _WarLVNode->setPosition(lData.value()._Offset);
+    if(_CurCityImage)
+      _CurCityImage->setPosition(Vec2(0, 0));
+  }
 }
 
 void WorldMapBuilding::UpdateBuildingState(){
-  // self:updateFireEffect(self.buildingState)
+  UpdateFireEffect(_BuildingState);
 }
 
 void WorldMapBuilding::SetImgProtect(){
-  // if self:isSysWarProtect() then
-  //   self.image_Protect:setIsGray(true)
-  // else
-  //   self.image_Protect:setIsGray(false)
-  // end
-  // self.image_Protect:setVisible(true)
-  // self.image_Protect:setScale(self.imgScale)
-  // self.image_Protect:setPosition(cc.p(self.centerPoint.x + self.imgOffset.x, self.centerPoint.y + self.imgOffset.y))
+  if(IsSysWarProtect())
+    _ImageProtect->SetIsGray(true);
+  else 
+    _ImageProtect->SetIsGray(false);
+  _ImageProtect->setVisible(true);
+  _ImageProtect->setScale(_ImgScale);
+  _ImageProtect->setPosition(_CenterPoint + _ImgOffset);
 }
 
 void WorldMapBuilding::UpdateSafeState(){
-  // if self:isInAllianceWar() then
-  //   self:setImgProtect()
-  //   self:addPyramidProtectEffect()
-  // else
-  //   self:removePyramidProtectEffect()
-  //   if self.isSafe then
-  //     self:setImgProtect()
-  //   else
-  //     self.image_Protect:setVisible(false)
-  //   end
-  // end
+  if(IsInAllianceWar()){
+    SetImgProtect();
+    AddPyramidProtectEffect();
+  }else{
+    RemovePyramidProtectEffect();
+    if(_IsSafe){
+      SetImgProtect();
+    }else{
+      _ImageProtect->setVisible(false);
+    }
+  }
 }
 
 void WorldMapBuilding::AddFireEffect(GTime pFireTime ){
@@ -958,503 +927,515 @@ void WorldMapBuilding::AddFireEffect(GTime pFireTime ){
   // if data and data.fightingToPointX and data.fightingToPointY then
   //   self.facePoint = cc.p(data.fightingToPointX, data.fightingToPointY)
   // end
-  // self:doFightingAnimation()
+  DoFightingAnimation();
 }
 
 void WorldMapBuilding::DoFightingAnimation(){
-  // local x, y = self:getPosition()
-  // local beginPoint = cc.p(x, y + 30)
-  // local endPoint = self.facePoint
-  // local worldMapView = SoraDCurrentSceneShowView("worldMapView")
-  // if worldMapView then
-  //   endPoint = worldMapView:getPointWithTile(self.facePoint)
-  // end
-  // local angle = SoraDGetAngleByPos(beginPoint, endPoint)
-  // local radius = 80
-  // math.randomseed(tostring(os.time()):reverse():sub(1, 6))
-  // for _ = 1, self.bulletNum do
-  //   local bulletSprite = display.newSprite("#icon_battle_jian_4.png")
-  //   local randomPointX = math.random(-20, 20)
-  //   local randomPointY = math.random(-20, 20)
-  //   local randomAngle = math.random(-50, 50)
-  //   local randomDistence = radius + math.random(-30, 30)
-  //   local newAngle = angle + randomAngle
-  //   local radian = math.angle2radian(newAngle)
-  //   local pointX = randomDistence * math.cos(radian)
-  //   local pointY = randomDistence * math.sin(radian)
-  //   local point1 = cc.p(randomPointX, randomPointY)
-  //   local point2 = cc.p(pointX, pointY)
-  //   bulletSprite:setPosition(point1)
-  //   bulletSprite:setScale(0.5)
-  //   self.bulletNode:addChild(bulletSprite, 1)
-  //   local delayTime = math.random(0, 5) / 10
-  //   worldMapFunction.createThrowAction(bulletSprite, point1, point2, delayTime)
-  // end
-  // local actionsArray = {}
-  // actionsArray[#actionsArray + 1] = cc.DelayTime:create(3)
-  // actionsArray[#actionsArray + 1] = cc.CallFunc:create(function()
-  //   self:doFightingAnimation()
-  // end)
-  // local actions = transition.sequence(actionsArray)
-  // self.fireNode:runAction(actions)
+
+  auto [lX, lY] = getPosition();
+  auto lBeginPoint = Vec2(lX, lY + 30);
+  auto lEndPoint = _FacePoint;
+  auto lWorldMapView = dynamic_cast<WorldMapView *>(GBase::DCurrentSceneShowView("worldMapView"));
+  if(lWorldMapView){
+    lEndPoint = lWorldMapView->GetPointWithTile(_FacePoint);
+  }
+  
+  auto lAngle = GBase::DGetAngleByPos(lBeginPoint, lEndPoint);
+  auto lRadius = 80;
+  GMath::Randomseed(GOS::Get()->GetTime());
+  for(auto iii = 0; iii < _BulletNum; iii++){
+
+    auto lBulletSprite = Sprite::createWithSpriteFrameName("icon_battle_jian_4.png");
+    auto lRandomPointX = GMath::Random(-20, 20);
+    auto lRandomPointY = GMath::Random(-20, 20);
+    auto lRandomAngle = GMath::Random(-50, 50);
+    auto lRandomDistence = lRadius + GMath::Random(-30, 30);
+    auto lNewAngle = lAngle + lRandomAngle;
+    auto lRadian = GMath::Angle2Radian(lNewAngle);
+    auto lPointX = lRandomDistence * GMath::Cos(lRadian);
+    auto lPointY = lRandomDistence * GMath::Sin(lRadian);
+    auto lPoint1 = Vec2(lRandomPointX, lRandomPointY);
+    auto lPoint2 = Vec2(lPointX, lPointY);
+    auto lDelayTime = GMath::Random(0, 5) / 10;
+
+    lBulletSprite->setPosition(lPoint1);
+    lBulletSprite->setScale(0.5);
+    _BulletNode->addChild(lBulletSprite, 1);
+
+    WorldMapFunction::Get()->CreateThrowAction(lBulletSprite, lPoint1, lPoint2, lDelayTime);
+  }
+
+  Vector<FiniteTimeAction *> lActionsArray;
+  lActionsArray.pushBack(DelayTime::create(3));
+  lActionsArray.pushBack(CallFunc::create([=](){
+    DoFightingAnimation();
+  }));
+  XTransition::Get()->Sequence_(lActionsArray);
+  _FireNode->runAction(XTransition::Get()->Sequence_(lActionsArray));
 }
 
 void WorldMapBuilding::CrownUpEffect(Node *pNode){
-  // local param = {
-  //   [1] = {
-  //     plist = "et_castle_officer_01.plist",
-  //     scale = 1.1
-  //   },
-  //   [2] = {
-  //     plist = "et_castle_officer_02.plist",
-  //     scale = 1.3
-  //   }
-  // }
-  // local parNode = SoraDCreateEffectNode(param)
-  // parNode:setPosition(cc.p(node:getContentSize().width / 2, node:getContentSize().height / 2))
-  // parNode:addTo(node)
+  GVector<RCreatEffctParam> lParams(2);
+  lParams[0]._PList = "et_castle_officer_01.plist";
+  lParams[0]._Scale = {1.1f, 1.1f};
+  lParams[1]._PList = "et_castle_officer_02.plist";
+  lParams[1]._Scale = {1.3f, 1.3f};
+
+  auto lParNode = GBase::DCreateEffectNode(lParams);
+  lParNode->setPosition(Vec2(pNode->getContentSize().width / 2, pNode->getContentSize().height / 2));
+  pNode->addChild(lParNode);
 }
 
 void WorldMapBuilding::CrownDownEffect(Node *pNode){
-  // local param = {
-  //   [1] = {
-  //     plist = "et_cwgz_01.plist",
-  //     scale = 1.45
-  //   }
-  // }
-  // local parNode = SoraDCreateEffectNode(param)
-  // parNode:setPosition(cc.p(node:getContentSize().width / 2, node:getContentSize().height / 2))
-  // parNode:addTo(node)
+  GVector<RCreatEffctParam> lParams(1);
+  lParams[0]._PList = "et_cwgz_01.plist";
+  lParams[0]._Scale = {1.45f, 1.45f};
+  auto lPaNode = GBase::DCreateEffectNode(lParams);
+  lPaNode->setPosition(Vec2(pNode->getContentSize().width / 2, pNode->getContentSize().height / 2));
+  pNode->addChild(lPaNode);
 }
 
 Node *WorldMapBuilding::CreateLvEffectNode(int32 pWarLv){
-  // local data = worldMapDefine.getWarLevelData(warLv)
-  // if not data then
-  //   return
-  // end
-  // local node_warLvNode = display.newNode()
-  // local node_bottom = display.newNode()
-  // node_bottom:addTo(node_warLvNode, 1)
-  // local bottom = data.bottom
-  // local bottomImg = bottom.img
-  // for _, v in pairs(bottomImg.bg) do
-  //   local bg = display.newSprite("#" .. v.png)
-  //   bg:setPosition(v.pos)
-  //   bg:setGroupID(GROU_ID.group_warLv_base)
-  //   bg:addTo(node_bottom, 1)
-  // end
-  // for _, v in pairs(bottomImg.dh) do
-  //   local dh = display.newSprite("#" .. v.png)
-  //   dh:setPosition(v.pos)
-  //   dh:setGroupID(GROU_ID.group_warLv_base)
-  //   SoraDFadeINOUT(dh, {beginOpacity = 0.3, endOpacity = 0.7})
-  //   dh:addTo(node_bottom, 2)
-  // end
-  // if bottom.et then
-  //   local et_bottom = SoraDCreateEffectNode(bottom.et)
-  //   et_bottom:setGroupID(GROU_ID.group_warLv_base_particle)
-  //   et_bottom:setGroupAuto(true)
-  //   et_bottom:addTo(node_bottom, 3)
-  // end
-  // if bottom.scale then
-  //   node_bottom:setScale(bottom.scale)
-  // end
-  // if bottom.offset then
-  //   node_bottom:setPosition(bottom.offset)
-  // end
-  // local top = data.top
-  // local node_top = display.newNode()
-  // node_top:addTo(node_warLvNode, 2)
-  // local topImg = top.img
-  // for _, v in pairs(topImg.bg) do
-  //   local bg = display.newSprite("#" .. v.png)
-  //   bg:setGroupID(GROU_ID.group_warLv_top)
-  //   bg:setPosition(v.pos)
-  //   bg:addTo(node_top, 1)
-  // end
-  // for _, v in pairs(topImg.dh) do
-  //   local dh = display.newSprite("#" .. v.png)
-  //   dh:setPosition(v.pos)
-  //   dh:setGroupID(GROU_ID.group_warLv_top)
-  //   SoraDFadeINOUT(dh, {beginOpacity = 0.3, endOpacity = 0.7})
-  //   dh:addTo(node_top, 2)
-  // end
-  // if top.et then
-  //   local et_top = SoraDCreateEffectNode(top.et)
-  //   et_top:setGroupID(GROU_ID.group_warLv_top_particle)
-  //   et_top:setGroupAuto(true)
-  //   et_top:addTo(node_top, 3)
-  // end
-  // if top.scale then
-  //   node_top:setScale(top.scale)
-  // end
-  // if top.offset then
-  //   node_top:setPosition(top.offset)
-  // end
-  // local top_sword = data.top_sword
-  // local node_top_sword = display.newNode()
-  // node_top_sword:addTo(node_top, 2)
-  // node_top_sword:setName("node_top_sword")
-  // if top_sword then
-  //   local topImg = top_sword.img
-  //   for _, v in pairs(topImg.bg) do
-  //     local bg = display.newSprite("#" .. v.png)
-  //     bg:setGroupID(GROU_ID.group_warLv_top)
-  //     bg:setPosition(v.pos)
-  //     bg:addTo(node_top_sword, 1)
-  //   end
-  //   for _, v in pairs(topImg.dh) do
-  //     local dh = display.newSprite("#" .. v.png)
-  //     dh:setPosition(v.pos)
-  //     dh:setGroupID(GROU_ID.group_warLv_top)
-  //     SoraDFadeINOUT(dh, {beginOpacity = 0.3, endOpacity = 0.7})
-  //     dh:addTo(node_top_sword, 2)
-  //   end
-  //   if top_sword.et then
-  //     local et_top = SoraDCreateEffectNode(top_sword.et)
-  //     et_top:setGroupID(GROU_ID.group_warLv_top_particle)
-  //     et_top:setGroupAuto(true)
-  //     et_top:addTo(node_top_sword, 3)
-  //   end
-  // end
-  // local seq = cca.seq({
-  //   cca.moveBy(1.5, 0, 5),
-  //   cca.moveBy(1.5, 0, -5)
-  // })
-  // node_top:runAction(cc.RepeatForever:create(seq))
-  // if data.moon then
-  //   local node_moon = display.newNode()
-  //   node_moon:addTo(node_warLvNode, 3)
-  //   node_moon:setName("node_moon")
-  //   for _, v in pairs(data.moon.img.bg) do
-  //     local bg = display.newSprite("#" .. v.png)
-  //     bg:setGroupID(GROU_ID.group_warLv_top)
-  //     bg:setPosition(v.pos)
-  //     bg:addTo(node_moon, 1)
-  //   end
-  //   for _, v in pairs(data.moon.img.dh) do
-  //     local dh = display.newSprite("#" .. v.png)
-  //     dh:setPosition(v.pos)
-  //     dh:setGroupID(GROU_ID.group_warLv_top)
-  //     SoraDFadeINOUT(dh, {beginOpacity = 0.3, endOpacity = 0.7})
-  //     dh:addTo(node_moon, 2)
-  //   end
-  //   if data.moon.et then
-  //     local et_top = SoraDCreateEffectNode(data.moon.et)
-  //     et_top:setGroupID(GROU_ID.group_warLv_top_particle)
-  //     et_top:setGroupAuto(true)
-  //     et_top:addTo(node_moon, 3)
-  //   end
-  //   if warLv == CASTLE_NEX_MAX_WARLV then
-  //     local act = cca.seq({
-  //       cca.moveBy(0.5833333333333334, 0, -8),
-  //       cca.moveBy(0.16666666666666666, 0, 4),
-  //       cca.moveBy(0.43333333333333335, 0, 8),
-  //       cca.moveBy(0.15, 0, -2),
-  //       cca.moveBy(0.5, 0, -8),
-  //       cca.moveBy(0.8333333333333334, 0, 6)
-  //     })
-  //     node_moon:runAction(cc.RepeatForever:create(act))
-  //   end
-  //   if data.moon.scale then
-  //     node_moon:setScale(data.moon.scale)
-  //   end
-  //   if data.moon.offset then
-  //     node_moon:setPosition(data.moon.offset)
-  //   end
-  // end
-  // node_warLvNode:setTag(WAR_LV_BEGIN_TYPE + warLv)
-  // return node_warLvNode
+  auto lData = WorldMapDefine::Get()->GetWarLevelData(pWarLv);
+  if(!lData)
+    return nullptr;
+  auto lNodeWarLvNode = GDisplay::Get()->NewNode();
+  auto lNodeBottom = GDisplay::Get()->NewNode();
+  lNodeWarLvNode->addChild(lNodeBottom, 1);
+  auto lBottom = lData.value()._Bottom;
+  auto lBottomImg = lBottom._Img;
+
+  for(auto lV : lBottomImg._Bg){
+    auto lBg = GDisplay::Get()->NewSprite(lV._Png.c_str());
+    lBg->setPosition(lV._Pos);
+    //   bg:setGroupID(GROU_ID.group_warLv_base)
+    lNodeBottom->addChild(lBg, 1);
+  }
+
+  for(auto lV : lBottomImg._Dh){
+    auto lDh = GDisplay::Get()->NewSprite(lV._Png.c_str());
+    lDh->setPosition(lV._Pos);
+    //   dh:setGroupID(GROU_ID.group_warLv_base)
+    RFadeInOutParam lParam;
+    lParam._BeginOpacity = 0.3f;
+    lParam._EndOpacity = 0.7f;
+    GBase::DFadeINOUT(lDh, lParam);
+    lNodeBottom->addChild(lDh, 2);
+  }
+  
+  if(!lBottom._Et.empty()){
+    auto lEtBottom = GBase::DCreateEffectNode(lBottom._Et);
+    //   et_bottom:setGroupID(GROU_ID.group_warLv_base_particle)
+    //   et_bottom:setGroupAuto(true)
+    lNodeBottom->addChild(lEtBottom, 3);
+  }
+  
+  if(lBottom._Scale){
+    lNodeBottom->setScale(lBottom._Scale.value());  
+  }
+  
+  if(lBottom._Offset){
+    lNodeBottom->setPosition(lBottom._Offset.value());
+  }
+  
+  auto lTop = lData.value()._Top;
+  auto lNodeTop = GDisplay::Get()->NewNode();
+  lNodeWarLvNode->addChild(lNodeTop, 2);
+
+  auto lTopImg = lTop._Img;
+
+  for(auto lV : lTopImg._Bg){
+    auto lBg = GDisplay::Get()->NewSprite(lV._Png.c_str());
+    lBg->setPosition(lV._Pos);
+    //   bg:setGroupID(GROU_ID.group_warLv_base)
+    lNodeTop->addChild(lBg, 1);
+  }
+
+  for(auto lV : lTopImg._Dh){
+    auto lDh = GDisplay::Get()->NewSprite(lV._Png.c_str());
+    lDh->setPosition(lV._Pos);
+    //   dh:setGroupID(GROU_ID.group_warLv_top)
+    RFadeInOutParam lParam;
+    lParam._BeginOpacity = 0.3f;
+    lParam._EndOpacity = 0.7f;
+    GBase::DFadeINOUT(lDh, lParam);
+    lNodeTop->addChild(lDh, 2);
+  }
+
+  if(!lTop._Et.empty()){
+    auto lEtTop = GBase::DCreateEffectNode(lTop._Et);
+    //   et_top:setGroupID(GROU_ID.group_warLv_top_particle)
+    //   et_top:setGroupAuto(true)
+    lNodeTop->addChild(lEtTop, 3);
+  }
+  
+  if(lTop._Scale){
+    lNodeTop->setScale(lTop._Scale.value());  
+  }
+  
+  if(lTop._Offset)
+    lNodeTop->setPosition(lTop._Offset.value());
+
+  auto lTopSword = lData.value()._TopSword;
+  auto lNodeTopSword = GDisplay::Get()->NewNode();
+  lNodeTop->addChild(lNodeTopSword, 2);
+  lNodeTopSword->setName("node_top_sword");
+
+  if(lTopSword){
+    
+    auto lTopImg = lTopSword.value()._Img;
+    for(auto lV : lTopImg._Bg){
+      auto lBg = GDisplay::Get()->NewSprite(lV._Png.c_str());
+      //bg:setGroupID(GROU_ID.group_warLv_top)
+      lBg->setPosition(lV._Pos);
+      lNodeTopSword->addChild(lBg, 1);
+    }
+
+    for(auto lV : lTopImg._Dh){
+      auto lDh = GDisplay::Get()->NewSprite(lV._Png.c_str());
+      lDh->setPosition(lV._Pos);
+      //   dh:setGroupID(GROU_ID.group_warLv_top)
+      RFadeInOutParam lParam;
+      lParam._BeginOpacity = 0.3f;
+      lParam._EndOpacity = 0.7f;
+      GBase::DFadeINOUT(lDh, lParam);
+      lNodeTopSword->addChild(lDh, 2);
+    }
+
+    if(!lTopSword.value()._Et.empty()){
+      auto lEtTop = GBase::DCreateEffectNode(lTopSword.value()._Et);
+      //     et_top:setGroupID(GROU_ID.group_warLv_top_particle)
+      //     et_top:setGroupAuto(true)
+      lNodeTopSword->addChild(lEtTop, 3);
+    }
+  }
+  
+  auto lSeq = Sequence::create(
+    MoveBy::create(1.5, Vec2(0, 5)),
+    MoveBy::create(1.5, Vec2(0, -5)),
+    nullptr
+  );
+  
+  lNodeTop->runAction(RepeatForever::create(lSeq));
+
+  if(lData.value()._Moon){
+    
+    auto lNodeMoon = GDisplay::Get()->NewNode();
+    lNodeWarLvNode->addChild(lNodeMoon, 3);
+    lNodeMoon->setName("node_moon");
+    
+    for(auto lV : lData.value()._Moon.value()._Img._Bg){
+      auto lBg = GDisplay::Get()->NewSprite(lV._Png.c_str());
+      lBg->setPosition(lV._Pos);
+      //   bg:setGroupID(GROU_ID.group_warLv_top)
+      lNodeMoon->addChild(lBg, 1);
+    }
+
+    for(auto lV : lData.value()._Moon.value()._Img._Dh){
+      auto lDh = GDisplay::Get()->NewSprite(lV._Png.c_str());
+      lDh->setPosition(lV._Pos);
+      //   dh:setGroupID(GROU_ID.group_warLv_top)
+      RFadeInOutParam lParam;
+      lParam._BeginOpacity = 0.3f;
+      lParam._EndOpacity = 0.7f;
+      GBase::DFadeINOUT(lDh, lParam);
+      lNodeMoon->addChild(lDh, 2);
+    }
+    
+    if(!lData.value()._Moon.value()._Et.empty()){
+      auto lEtTop = GBase::DCreateEffectNode(lData.value()._Moon.value()._Et);
+      //     et_top:setGroupID(GROU_ID.group_warLv_top_particle)
+      //     et_top:setGroupAuto(true)
+      lNodeMoon->addChild(lEtTop, 3);
+    }
+
+    if(pWarLv == GBase::Const::Get()->CASTLE_NEX_MAX_WARLV){
+      auto lSeq = Sequence::create(
+        MoveBy::create(0.5833333333333334, Vec2(0, -8)),
+        MoveBy::create(0.16666666666666666, Vec2(0, 4)),
+        MoveBy::create(0.43333333333333335, Vec2(0, 8)),
+        MoveBy::create(0.15, Vec2(0, -2)),
+        MoveBy::create(0.5, Vec2(0, -8)),
+        MoveBy::create(0.8333333333333334, Vec2(0, 6)),
+        nullptr
+      );
+      lNodeMoon->runAction(RepeatForever::create(lSeq));
+    }
+
+    if(lData.value()._Moon.value()._Scale)
+      lNodeMoon->setScale(lData.value()._Moon.value()._Scale.value());
+
+    if(lData.value()._Moon.value()._Offset)
+      lNodeMoon->setPosition(lData.value()._Moon.value()._Offset.value());
+  }
+  
+  lNodeWarLvNode->setTag(WAR_LV_BEGIN_TYPE + pWarLv);
+  return lNodeWarLvNode;
 }
 
 void WorldMapBuilding::WarLvEffect(int32 pWarLv){
-  // if warLv == 0 then
-  //   self:removeWarLvEffect()
-  //   return
-  // end
-  // local data = worldMapDefine.getWarLevelData(warLv)
-  // if not data then
-  //   return
-  // end
-  // if data.offset then
-  //   self.warLVnode:setPosition(data.offset)
-  // end
-  // local node_warLvNode = instanceCacheMgr.getInstance(WAR_LV_BEGIN_TYPE + warLv)
-  // if node_warLvNode then
-  //   self.node_warLvNode = node_warLvNode
-  //   node_warLvNode:addTo(self.warLVnode)
-  //   node_warLvNode:release()
-  // else
-  //   node_warLvNode = createLvEffectNode(warLv)
-  //   if node_warLvNode then
-  //     self.node_warLvNode = node_warLvNode
-  //     node_warLvNode:addTo(self.warLVnode)
-  //   else
-  //     print("createLvEffectNode error warLv", warLv)
-  //   end
-  // end
+
+  if(pWarLv == 0){
+    RemoveWarLvEffect();
+    return;
+  }
+  
+  auto lData = WorldMapDefine::Get()->GetWarLevelData(pWarLv);
+  if(!lData)
+    return;
+  _WarLVNode->setPosition(lData.value()._Offset);
+  auto lNodeWarLvNode = InstanceCacheMgr::Get()->GetInstance(WAR_LV_BEGIN_TYPE + pWarLv);
+  if(lNodeWarLvNode){
+    _NodeWarLvNode = lNodeWarLvNode;
+    _WarLVNode->addChild(lNodeWarLvNode);
+    lNodeWarLvNode->release();
+  }else{
+    lNodeWarLvNode = CreateLvEffectNode(pWarLv);
+    if(lNodeWarLvNode){
+      _NodeWarLvNode = lNodeWarLvNode;
+      _WarLVNode->addChild(lNodeWarLvNode);
+    }else{
+      CCLOG("createLvEffectNode error warLv %d", pWarLv);
+    }
+  }
 }
 
 void WorldMapBuilding::RemoveWarLvEffect(){
-  // if self.node_warLvNode then
-  //   instanceCacheMgr.addNormalNode(self.node_warLvNode)
-  //   self.node_warLvNode:removeFromParent(false)
-  //   self.node_warLvNode = nil
-  // end
-  // self.warLVnode:setPosition(POINT_ZERO)
+  if(_NodeWarLvNode){
+    InstanceCacheMgr::Get()->AddNormalNode(_NodeWarLvNode);
+    _NodeWarLvNode->removeFromParent();
+    _NodeWarLvNode = nullptr;
+  }
+  _WarLVNode->setPosition(Vec2::ZERO);
 }
 
 void WorldMapBuilding::AddEnemyCastleEffect(){
-  // if self:getChildByName("et_node_enemy") then
-  //   return  
-  // end
-  // local param = {
-  //   [1] = {
-  //     plist = "et_heiwu_display_01.plist",
-  //     pos = {x = -8, y = -10}
-  //   }
-  // }
-  // local et_node = SoraDCreateEffectNode(param)
-  // et_node:setName("et_node_enemy")
-  // et_node:addTo(self)
+  if(getChildByName("et_node_enemy"))
+    return;
+  GVector<RCreatEffctParam> lParams(1);
+  lParams[0]._PList = "et_heiwu_display_01.plist";
+  lParams[0]._Pos = {-8, -10};
+  auto lEtNode = GBase::DCreateEffectNode(lParams);
+  lEtNode->setName("et_node_enemy");
+  addChild(lEtNode);
 }
 
 void WorldMapBuilding::RemoveEnemyCastleEffect(){
-  // if self:getChildByName("et_node_enemy") then
-  //   self:removeChildByName("et_node_enemy", true)
-  // end
+  if(getChildByName("et_node_enemy"))
+    removeChildByName("et_node_enemy", true);
 }
 
 bool WorldMapBuilding::IsNeedShowAttr(EAttributeEnum pAttrType){
-  // local selfLeagueID = allianceMgr:getOwnTeamID() or 0
-  // local leagueID = self.leagueID or 0
-  // for i, v in ipairs(gMeteoriteSkillList) do
-  //   print("attrEnum,v", attrEnum, v)
-  //   if attrEnum == v then
-  //     if selfLeagueID == leagueID then
-  //       return true
-  //     else
-  //       return false
-  //     end
-  //   end
-  // end
-  // return true
+  auto lSelfLeagueID = AllianceManager::Get()->GetOwnTeamID();
+  auto lLeagueID = _LeagueID;
+  for(auto lV : gMeteoriteSkillList){
+    if(pAttrType == lV){
+      if(lSelfLeagueID == lLeagueID)
+        return true;
+      else
+        return false;
+    }
+  }
+  return true;
 }
 
-void WorldMapBuilding::CheckAllCastleMeteorteEffect(){
+void WorldMapBuilding::CheckAllCastleMeteorteEffect(const GHashMap<EAttributeEnum, RWorldBuildingInitDataAttr> &pAttr, bool pIsRemove){
   // local worldMapView = SoraDCurrentSceneShowView("worldMapView")
-  // if not worldMapView then
-  //   return
-  // end
-  // local ret = worldMapView:getShowTilesArray()
-  // if ret == nil then
-  //   return
-  // end
-  // local selfPoint = self:getTilePoint()
-  // for i, v in ipairs(gMeteoriteSkillList) do
-  //   local attrValue = attr[tostring(v)]
-  //   if attr[tostring(v)] then
-  //     local rect = cc.rect(selfPoint.x - attrValue.range, selfPoint.y - attrValue.range, attrValue.range * 2, attrValue.range * 2)
-  //     for _, tileInstance in pairs(ret) do
-  //       if tileInstance and tileInstance.instanceType == gMapObjTypeDef.mapObjTypePlayer and self.leagueID == tileInstance.leagueID then
-  //         local tilePoint = tileInstance:getTilePoint()
-  //         if cc.rectContainsPoint(rect, tilePoint) then
-  //           tileInstance:addMeteoriteSkillEffect(v)
-  //         end
-  //       end
-  //     end
-  //   end
-  // end
+  auto lView = GBase::DCurrentSceneShowView("worldMapView");
+  auto lWorldMapView = dynamic_cast<WorldMapView *>(lView);
+  if(!lWorldMapView)
+    return;
+    
+  auto lRet = lWorldMapView->GetShowTilesArray();
+  if(lRet.empty())
+    return;
+
+  auto lSelfPoint = GetTilePoint();
+  for(auto lV : gMeteoriteSkillList){
+    if(pAttr.Contains(lV)){
+      auto lAttrValue = pAttr.at(lV);
+      auto lRect = Rect(lSelfPoint.x - lAttrValue._Range, lSelfPoint.y - lAttrValue._Range, lAttrValue._Range * 2, lAttrValue._Range * 2);
+      for(auto [Key, lTileInstance] : lRet){
+        if(lTileInstance && lTileInstance->_InstanceType == EMapObjTypeDef::mapObjTypePlayer && _LeagueID == lTileInstance->_LeagueID){
+          auto lTilePoint = lTileInstance->GetTilePoint();
+          if(lRect.containsPoint(lTilePoint)){
+              CC_ASSERT(dynamic_cast<WorldMapBuilding *>(lTileInstance) , "tileInstance is is not playerCity");
+              dynamic_cast<WorldMapBuilding *>(lTileInstance)->AddMeteoriteSkillEffect(lV);
+          }
+        }
+      }
+    }
+  }
 }
 
 void WorldMapBuilding::AddMeteoriteSkillEffect(EAttributeEnum pAttrType){
-  // if atttE == gAttributeEnum.METEOR_MARCH_SPEED_BOOST then
-  //   self:removeMeteoriteSkillEffect()
-  //   local effectSp = display.newSprite("#dh_chengbaosxzs_01.png")
-  //   effectSp:setPosition(cc.p(-15, 50))
-  //   effectSp:setScale(2)
-  //   effectSp:addTo(self, 1)
-  //   local frames = display.newFrames("dh_chengbaosxzs_%.2d.png", 1, 30)
-  //   local animation = display.newAnimation(frames, 1 / #frames)
-  //   effectSp:playAnimationForever(animation)
-  //   effectSp:runAction(cca.seq({
-  //     cca.delay(5),
-  //     cca.callFunc(function()
-  //       self:removeMeteoriteSkillEffect()
-  //     end)
-  //   }))
-  //   self.meteoriteEffect = effectSp
-  // else
-  //   local effectSp = display.newSprite("#dh_chengbaosxjn_01.png")
-  //   effectSp:setPosition(cc.p(-15, 150))
-  //   effectSp:setScale(2.5)
-  //   effectSp:addTo(self, 1)
-  //   local frames = display.newFrames("dh_chengbaosxjn_%.2d.png", 1, 29)
-  //   local animation = display.newAnimation(frames, 2 / #frames)
-  //   effectSp:playAnimationOnce(animation, {removeSelf = true})
-  // end
+  if(pAttrType == EAttributeEnum::METEOR_MARCH_SPEED_BOOST){
+    RemoveMeteoriteSkillEffect();
+    auto lEffectSp = GDisplay::Get()->NewSprite("dh_chengbaosxzs_01.png");
+    lEffectSp->setPosition(Vec2(-15, 50));
+    lEffectSp->setScale(2);
+    addChild(lEffectSp, 1);
+    auto lFrames = GDisplay::Get()->NewFrames("dh_chengbaosxzs_%.2d.png", 1, 30);
+    auto lAnimation = GDisplay::Get()->NewAnimation(lFrames, 1 / lFrames.size());
+    XTransition::Get()->PlayAnimationForever(lEffectSp, lAnimation);
+    lEffectSp->runAction(Sequence::create(
+      DelayTime::create(5),
+      CallFunc::create([=](){
+        RemoveMeteoriteSkillEffect();
+      }),
+      nullptr
+    ));
+    _MeteoriteEffect = lEffectSp;
+  } else {
+    auto lEffectSp = GDisplay::Get()->NewSprite("dh_chengbaosxjn_01.png");
+    lEffectSp->setPosition(Vec2(-15, 150));
+    lEffectSp->setScale(2.5);
+    addChild(lEffectSp, 1);
+    auto lFrames = GDisplay::Get()->NewFrames("dh_chengbaosxjn_%.2d.png", 1, 29);
+    auto lAnimation = GDisplay::Get()->NewAnimation(lFrames, 2 / lFrames.size());
+    XTransition::Get()->PlayAnimationOnce(lEffectSp, lAnimation, true);
+  }
 }
 
 void WorldMapBuilding::RemoveMeteoriteSkillEffect(){
-  // if self.meteoriteEffect then
-  //   self.meteoriteEffect:removeFromParent()
-  //   self.meteoriteEffect = nil
-  // end
+  if(_MeteoriteEffect){
+    _MeteoriteEffect->removeFromParent();
+    _MeteoriteEffect = nullptr;
+  }
 }
 
 void WorldMapBuilding::CastleLoveEffect(){
-  // if self.et_node_love then
-  //   return
-  // end
-  // local param = {
-  //   [1] = {
-  //     plist = "et_castlelove_02.plist",
-  //     pos = {x = 7.32, y = 27.46}
-  //   },
-  //   [2] = {
-  //     plist = "et_castlelove_03.plist",
-  //     pos = {x = 18.96, y = -59.42}
-  //   },
-  //   [3] = {
-  //     plist = "et_castlelove_04.plist",
-  //     pos = {x = 15.15, y = 10.27},
-  //     scale = 2
-  //   },
-  //   [4] = {
-  //     plist = "et_castlelove_01.plist",
-  //     pos = {x = 9.99, y = 53.25},
-  //     scale = {x = 2.5, y = 4.6}
-  //   }
-  // }
-  // self.et_node_love = SoraDCreateEffectNode(param)
-  // self.et_node_love:addTo(self)
+  if(_EtNodeLove)
+    return;
+
+  GVector<RCreatEffctParam> lParams(4);
+  lParams[0]._PList = "et_castlelove_02.plist";
+  lParams[0]._Pos = {7.32, 27.46};
+  lParams[1]._PList = "et_castlelove_03.plist";
+  lParams[1]._Pos = {18.96, -59.42};
+  lParams[2]._PList = "et_castlelove_04.plist";
+  lParams[2]._Pos = {15.15, 10.27};
+  lParams[2]._Scale = {2, 2};
+  lParams[3]._PList = "et_castlelove_01.plist";
+  lParams[3]._Pos = {9.99, 53.25};
+  lParams[3]._Scale = {2.5, 4.6};
+  _EtNodeLove = GBase::DCreateEffectNode(lParams);
+  addChild(_EtNodeLove);
 }
 
 void WorldMapBuilding::RemoveCastleEffect(){
-  // if self.et_node_love then
-  //   self.et_node_love:removeFromParent()
-  //   self.et_node_love = nil
-  // end
-  // if self.node_snowMan then
-  //   self.node_snowMan:removeFromParent()
-  //   self.node_snowMan = nil
-  //   self:updateBuildingImg()
-  //   self:updateOfficeIcon()
-  //   self:updatePrisoneIn()
-  // end
-  // if self.et_node_rainbow then
-  //   self.et_node_rainbow:stopAllActions()
-  //   self.et_node_rainbow:removeFromParent()
-  //   self.et_node_rainbow = nil
-  // end
-  // if self.et_node_shining then
-  //   self.et_node_shining:removeFromParent()
-  //   self.et_node_shining = nil
-  // end
-  // if self:getChildByName("et_node_rainbow_1") then
-  //   self:removeChildByName("et_node_rainbow_1", true)
-  // end
-  // if self:getChildByName("et_node_rainbow_2") then
-  //   self:removeChildByName("et_node_rainbow_2", true)
-  // end
+
+  if(_EtNodeLove){
+    _EtNodeLove->removeFromParent();
+    _EtNodeLove = nullptr;
+  }
+
+  if(_NodeSnowMan){
+    _NodeSnowMan->removeFromParent();
+    _NodeSnowMan = nullptr;
+    UpdateBuildingImg();
+    UpdateOfficeIcon(nullptr);
+    UpdatePrisoneIn();
+  }
+
+  if(_EtNodeRainbow){
+    _EtNodeRainbow->stopAllActions();
+    _EtNodeRainbow->removeFromParent();
+    _EtNodeRainbow = nullptr;
+  }
+
+  if(_EtNodeShining){
+    _EtNodeShining->removeFromParent();
+    _EtNodeShining = nullptr;
+  }
+  if(getChildByName("et_node_rainbow_1"))
+    removeChildByName("et_node_rainbow_1", true);
+  if(getChildByName("et_node_rainbow_2"))
+    removeChildByName("et_node_rainbow_2", true);
+
 }
 
 void WorldMapBuilding::CastleSnowEffect(){
-  // if self.node_snowEffect then
-  //   return
-  // end
-  // self.node_snowEffect = display.newNode()
-  // self.node_snowEffect:setPosition(-30, 70)
-  // self.node_snowEffect:addTo(self, 1)
-  // local snowEffect = SoraDCreatAnimation("animationSnowEffect")
-  // snowEffect:addTo(self.node_snowEffect)
+  if(_NodeSnowEffect)
+    return;
+  _NodeSnowEffect = GDisplay::Get()->NewNode();
+  _NodeSnowEffect->setPosition(Vec2(-30, 70));
+  addChild(_NodeSnowEffect, 1);
+  auto lSnowEffect = GBase::DCreateAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/animationSnowEffect.csb");
+  _NodeSnowEffect->addChild(lSnowEffect.First);
 }
 
 void WorldMapBuilding::CastleSnowIceEffect(bool pIsSelf){
-  // if self.node_snowMan then
-  //   return
-  // end
-  // self.node_snowMan = display.newNode()
-  // self.node_snowMan:setPosition(0, 0)
-  // self.node_snowMan:addTo(self, 1)
-  // if isSelf and self.data.castleAppearanceEndTime then
-  //   local leftTime = math.max(0, self.data.castleAppearanceEndTime - serviceFunctions.systemTime())
-  //   local timeNode = worldMapEffect.createFireTimeNode()
-  //   timeNode:setPosition(cc.p(0, -120))
-  //   timeNode:addTo(self.node_snowMan, 5)
-  //   timeNode.init(leftTime)
-  // end
-  // self.cityImage:setVisible(false)
-  // self.citySkin1Image:setVisible(false)
-  // self:updateOfficeIcon()
-  // self:updatePrisoneIn()
-  // local xueren = display.newSprite("#xuerenzhuangban.png")
-  // xueren:setPosition(cc.p(-45, 60))
-  // xueren:addTo(self.node_snowMan, 0)
-  // local yun = display.newSprite("#yunduozhuangban_001.png")
-  // yun:setPosition(cc.p(-15, 100))
-  // yun:setBlendFunc(gl.ONE, gl.ONE_MINUS_SRC_COLOR)
-  // yun:addTo(self.node_snowMan, 1)
-  // local frames = display.newFrames("yunduozhuangban_%.3d.png", 1, 20)
-  // local animation = display.newAnimation(frames, 2 / #frames)
-  // yun:playAnimationForever(animation)
-  // local param = {
-  //   [1] = {
-  //     plist = "et_xuerenddj_01.plist",
-  //     pos = cc.p(119.09, 53.82),
-  //     scale = 1.35
-  //   },
-  //   [2] = {
-  //     plist = "et_xuerenddj_01.plist",
-  //     pos = cc.p(-37.39, 57.54),
-  //     scale = 1.65
-  //   },
-  //   [3] = {
-  //     plist = "et_xuerenddj_02.plist",
-  //     pos = cc.p(-70.93, -33.32)
-  //   },
-  //   [4] = {
-  //     plist = "et_xuerenddj_02.plist",
-  //     pos = cc.p(-14.11, -89.37)
-  //   },
-  //   [5] = {
-  //     plist = "et_xuerenddj_02.plist",
-  //     pos = cc.p(152.46, -19.55)
-  //   },
-  //   [6] = {
-  //     plist = "et_xuerenddj_03.plist",
-  //     pos = cc.p(41.9, -46.1),
-  //     scale = 1.4237
-  //   },
-  //   [7] = {
-  //     plist = "et_xuerenddj_04.plist",
-  //     pos = cc.p(32.99, -36.95),
-  //     scale = 1.1245
-  //   },
-  //   [8] = {
-  //     plist = "et_xuerenddj_05.plist",
-  //     pos = cc.p(117.46, 54.45),
-  //     rotate = 179.07
-  //   },
-  //   [9] = {
-  //     plist = "et_xuerenddj_05.plist",
-  //     pos = cc.p(-31.71, 53.92),
-  //     scale = 0.8419,
-  //     rotate = 179.07
-  //   }
-  // }
-  // local et_node = SoraDCreateEffectNode(param)
-  // et_node:setPosition(-45, 45)
-  // et_node:addTo(self.node_snowMan, 0)
+
+  if(_NodeSnowMan)
+    return;
+  _NodeSnowMan = GDisplay::Get()->NewNode();
+  _NodeSnowMan->setPosition(Vec2::ZERO);
+  addChild(_NodeSnowMan, 1);
+
+  if(pIsSelf && _CastleAppearanceEndTime > 0){
+    auto lLeftTime = GMath::Max(0, _CastleAppearanceEndTime - GOS::Get()->GetTime());
+    auto lTimeNode = WorldMapEffect::Get()->CreateFireTimeNode();
+    lTimeNode->setPosition(Vec2(0, -120));
+    _NodeSnowMan->addChild(lTimeNode, 5);
+    lTimeNode->Init(_CastleAppearanceEndTime);
+  }
+  
+  _CurCityImage->setVisible(false);
+  _CitySkin1Image->setVisible(false);
+  UpdateOfficeIcon(nullptr);
+  UpdatePrisoneIn();
+  
+  auto lXueren = GDisplay::Get()->NewSprite("xuerenzhuangban.png");
+  lXueren->setPosition(Vec2(-45, 60));
+  _NodeSnowMan->addChild(lXueren, 0);
+  auto lYun = GDisplay::Get()->NewSprite("yunduozhuangban_001.png");
+  lYun->setPosition(Vec2(-15, 100));
+  lYun->setBlendFunc({GL_ONE, GL_ONE_MINUS_SRC_COLOR});
+  _NodeSnowMan->addChild(lYun, 1);
+  auto lFrames = GDisplay::Get()->NewFrames("yunduozhuangban_%.3d.png", 1, 20);
+  auto lAnimation = GDisplay::Get()->NewAnimation(lFrames, 2 / lFrames.size());
+  XTransition::Get()->PlayAnimationForever(lYun, lAnimation);
+
+  GVector<RCreatEffctParam> lParams(9);
+
+  lParams[0]._PList = "et_xuerenddj_01.plist";
+  lParams[0]._Pos = {119.09, 53.82};
+  lParams[0]._Scale = {1.35f, 1.35f};
+  lParams[1]._PList = "et_xuerenddj_01.plist";
+  lParams[1]._Pos = {-37.39, 57.54};
+  lParams[1]._Scale = {1.65f, 1.65f};
+  lParams[2]._PList = "et_xuerenddj_02.plist";
+  lParams[2]._Pos = {-70.93, -33.32};
+  lParams[3]._PList = "et_xuerenddj_02.plist";
+  lParams[3]._Pos = {-14.11, -89.37};
+  lParams[4]._PList = "et_xuerenddj_02.plist";
+  lParams[4]._Pos = {152.46, -19.55};
+  lParams[5]._PList = "et_xuerenddj_03.plist";
+  lParams[5]._Pos = {41.9, -46.1};
+  lParams[5]._Scale = {1.4237f, 1.4237f};
+  lParams[6]._PList = "et_xuerenddj_04.plist";
+  lParams[6]._Pos = {32.99, -36.95};
+  lParams[6]._Scale = {1.1245f, 1.1245f};
+  lParams[7]._PList = "et_xuerenddj_05.plist";
+  lParams[7]._Pos = {117.46, 54.45};
+  lParams[7]._Rotate = 179.07f;
+  lParams[8]._PList = "et_xuerenddj_05.plist";
+  lParams[8]._Pos = {-31.71, 53.92};
+  lParams[8]._Scale = {0.8419f, 0.8419f};
+  lParams[8]._Rotate = 179.07f;
+  
+  auto lEtNode = GBase::DCreateEffectNode(lParams);
+  lEtNode->setPosition(Vec2(-45, 45));
+  _NodeSnowMan->addChild(lEtNode, 0);
 }
 
 void WorldMapBuilding::CastleShiningEffect(){
-  // if self.et_node_shining then
-  //   return
-  // end
-  // self.et_node_shining = display.newNode()
-  // self.et_node_shining:setPosition(0, 0)
-  // self.et_node_shining:addTo(self)
+  if(_EtNodeShining)
+    return;
+  _EtNodeShining = GDisplay::Get()->NewNode();
+  _EtNodeShining->setPosition(0, 0);
+  addChild(_EtNodeShining);
   // for k, v in pairs(worldMapDefine.castleTwinkleCfg) do
   //   local effectNode = SoraDCreateShaderEffect(v, self.et_node_shining)
   //   if v.rotation and device.platform == "mac" then
@@ -1465,395 +1446,340 @@ void WorldMapBuilding::CastleShiningEffect(){
   //     })
   //   end
   // end
-  // if SoraDGetFactionType() == FACTION_TYPE.FACTION_BYZANTINE then
-  //   self.et_node_shining:setScale(1.2)
-  // end
+  if(GBase::DGetFactionType() == EFactionType::Byzantine)
+    _EtNodeShining->setScale(1.2);
 }
 
 void WorldMapBuilding::CastleShining2Effect(){
-  // if self.et_node_shining then
-  //   return
-  // end
-  // local effect = SoraDCreatAnimation("Node_bxcqcb_effect")
-  // effect:addTo(self, 999)
-  // effect:setPosition(cc.p(-60, 120))
-  // local hideName = SoraDFIsRA() and "Sprite_text_en" or "Sprite_text_ar"
-  // SoraDGetChildByName(effect, hideName):setVisible(false)
-  // self.et_node_shining = effect
+  if(_EtNodeShining)
+    return;
+  auto lEffect = GBase::DCreateAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/Node_bxcqcb_effect.csb");
+  addChild(lEffect.First, 999);
+  lEffect.First->setPosition(Vec2(-60, 120));
+  auto lHideName = GBase::DFIsRA() ? "Sprite_text_en" : "Sprite_text_ar";
+  GBase::DGetChildByName<Node *>(lEffect.First, lHideName)->setVisible(false);
+  _EtNodeShining = lEffect.First;
 }
 
 void WorldMapBuilding::CastleShining3Effect(){
-  // if self.et_node_shining then
-  //   return
-  // end
-  // local effect = SoraDCreatAnimation("animationXLCBCWTX")
-  // effect:setName("xlcbtxNode")
-  // effect:setPosition(-45, 140)
-  // effect:addTo(self, 2)
-  // self.et_node_shining = effect
+  if(_EtNodeShining)
+    return;
+  auto [lEffect, _] = GBase::DCreateAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/animationXLCBCWTX.csb");
+  lEffect->setName("xlcbtxNode");
+  lEffect->setPosition(Vec2(-45, 140));
+  addChild(lEffect, 2);
+  _EtNodeShining = lEffect;
 }
 
+// Frozen Lion effect
 void WorldMapBuilding::CastleShining4Effect(){
-  // if self.et_node_shining then
-  //   return
-  // end
-  // local effect = SoraDCreatAnimation("animationBYXLCBYHTX")
-  // effect:setPosition(-45, 140)
-  // effect:addTo(self, 2)
-  // self.et_node_shining = effect
+  if(_EtNodeShining)
+    return;
+  auto [lEffect, _] = GBase::DCreateAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/animationBYXLCBYHTX.csb");
+  lEffect->setPosition(-45, 140);
+  addChild(lEffect, 2);
+  _EtNodeShining = lEffect;
 }
 
 void WorldMapBuilding::CastleRainbowEffect(){
-  // if self.et_node_rainbow then
-  //   return
-  // end
-  // local bPercent = 0
-  // local ePercent = 78
-  // local actionTime = 2
-  // local perFrame = ePercent / (actionTime * 60)
-  // local isEffectShow = false
-  // self.et_node_rainbow = display.newNode()
-  // self.et_node_rainbow:setPosition(cc.p(self.centerPoint.x - 20, self.centerPoint.y + 50))
-  // self.et_node_rainbow:addTo(self, 9)
-  // local progress_rainbow = display.newProgressTimer("#icon_rainbow.png", display.PROGRESS_TIMER_RADIAL)
-  // progress_rainbow:setRotation(-140)
-  // progress_rainbow:addTo(self.et_node_rainbow, 9)
-  // progress_rainbow:setPercentage(bPercent)
-  // local function freeEffect()
-  //   local beginPos = cc.p(self.centerPoint.x - 161, self.centerPoint.y - 128.5)
-  //   local control_1 = cc.p(self.centerPoint.x - 55.44, self.centerPoint.y + 307.77)
-  //   local control_2 = cc.p(self.centerPoint.x + 281, self.centerPoint.y + 393.5)
-  //   local endPos = cc.p(self.centerPoint.x + 315.6, self.centerPoint.y + 147.8)
-  //   local param = {
-  //     [1] = {
-  //       plist = "et_caihong_01.plist",
-  //       pos = beginPos,
-  //       scale = 2.237,
-  //       rotate = -18.87,
-  //       posType = cc.POSITION_TYPE_FREE
-  //     }
-  //   }
-  //   local et_rainbow = SoraDCreateEffectNode(param)
-  //   et_rainbow:setName("et_node_rainbow_2")
-  //   et_rainbow:addTo(self, 10)
-  //   local seq = cca.seq({
-  //     cc.EaseSineIn:create(cc.BezierTo:create(1.6, {
-  //       control_1,
-  //       control_2,
-  //       endPos
-  //     })),
-  //     cca.callFunc(function()
-  //       SoraDStopEffectNode(et_rainbow)
-  //     end)
-  //   })
-  //   et_rainbow:runAction(seq)
-  // end
-  // local seqRainbow = cca.seq({
-  //   cca.spawn({
-  //     cca.callFunc(function()
-  //       bPercent = 0
-  //       progress_rainbow:stopAllActions()
-  //       progress_rainbow:setPercentage(bPercent)
-  //       local seq = cca.seq({
-  //         cca.callFunc(function()
-  //           bPercent = bPercent + perFrame
-  //           if bPercent <= ePercent then
-  //             progress_rainbow:setPercentage(bPercent)
-  //           else
-  //             progress_rainbow:stopAllActions()
-  //           end
-  //         end),
-  //         cca.delay(0.016666666666666666)
-  //       })
-  //       progress_rainbow:runAction(cc.RepeatForever:create(seq))
-  //     end),
-  //     cca.callFunc(freeEffect)
-  //   }),
-  //   cca.delay(2),
-  //   cca.callFunc(function()
-  //     if isEffectShow then
-  //       return
-  //     end
-  //     local param = {
-  //       [1] = {
-  //         plist = "et_caihong_02.plist",
-  //         rotate = -22.21,
-  //         pos = cc.p(self.centerPoint.x + 19.28, self.centerPoint.y + 24.46)
-  //       },
-  //       [2] = {
-  //         plist = "et_caihong_03.plist",
-  //         scale = {x = -0.855, y = 0.876},
-  //         rotate = 42.65,
-  //         pos = cc.p(self.centerPoint.x + 29, self.centerPoint.y + 76.06)
-  //       },
-  //       [3] = {
-  //         plist = "et_caihong_03.plist",
-  //         scale = 2.237,
-  //         rotate = -18.87,
-  //         pos = cc.p(self.centerPoint.x + 61.85, self.centerPoint.y + 147.93)
-  //       }
-  //     }
-  //     local et_node = SoraDCreateEffectNode(param)
-  //     et_node:setName("et_node_rainbow_1")
-  //     et_node:addTo(self, 10)
-  //     isEffectShow = true
-  //   end)
-  // })
-  // self.et_node_rainbow:runAction(seqRainbow)
+  if(_EtNodeRainbow)
+    return;
+  auto lBPercent = 0;
+  auto lEPercent = 78;
+  auto lActionTime = 2;
+  auto lPerFrame = float(lEPercent) / (lActionTime * 60);
+  auto lIsEffectShow = false;
+  _EtNodeRainbow = GDisplay::Get()->NewNode();
+  _EtNodeRainbow->setPosition(_CenterPoint + Vec2(-20, 50));
+  addChild(_EtNodeRainbow, 9);
+  auto lProgressRainbow = GDisplay::Get()->NewProgressTimer("icon_rainbow.png", ProgressTimer::Type::RADIAL);
+  lProgressRainbow->setRotation(-140);
+  _EtNodeRainbow->addChild(lProgressRainbow, 9);
+  lProgressRainbow->setPercentage(lBPercent);
+
+  auto lFreeEffect = [this](){
+    auto lBeginPos = _CenterPoint + Vec2(-161, -128.5);
+    auto lControl1 = _CenterPoint + Vec2(-55.44f, 307.77f);
+    auto lControl2 = _CenterPoint + Vec2(281, 393.5);
+    auto lEndPos = _CenterPoint + Vec2(315.6f, 147.8f);
+
+    GVector<RCreatEffctParam> lParams(1);
+    lParams[0]._PList = "et_caihong_01.plist";
+    lParams[0]._Pos = lBeginPos;
+    lParams[0]._Scale = {2.237f, 2.237f};
+    lParams[0]._Rotate = -18.87f;
+    lParams[0]._PosType = ParticleSystem::PositionType::FREE;
+
+    auto lEtRainbow = GBase::DCreateEffectNode(lParams);
+    lEtRainbow->setName("et_node_rainbow_2");
+    addChild(lEtRainbow, 10);
+    auto lSeq = Sequence::create(
+      EaseSineIn::create(BezierTo::create(1.6, {lControl1, lControl2, lEndPos})),
+      CallFunc::create([lEtRainbow](){
+        GBase::DStopEffectNode(lEtRainbow);
+      }),
+      nullptr
+    );
+    lEtRainbow->runAction(lSeq);
+  };
+
+  auto lSeqRainbow = Sequence::create(
+    Spawn::create(
+      CallFunc::create([&](){
+        lBPercent = 0;
+        lProgressRainbow->stopAllActions();
+        lProgressRainbow->setPercentage(lBPercent);
+        auto lSeq = Sequence::create(
+          CallFunc::create([&](){
+            lBPercent += lPerFrame;
+            if(lBPercent <= lEPercent)
+              lProgressRainbow->setPercentage(lBPercent);
+            else
+              lProgressRainbow->stopAllActions();
+          }),
+          DelayTime::create(0.016666666666666666),
+          nullptr
+        );
+        lProgressRainbow->runAction(RepeatForever::create(lSeq));
+      }),
+      CallFunc::create([this, lFreeEffect](){
+        lFreeEffect();
+      }),
+      nullptr
+    ),
+    DelayTime::create(2),
+    CallFunc::create([this, &lIsEffectShow](){
+      if(lIsEffectShow)
+        return;
+      GVector<RCreatEffctParam> lParams(3);
+      lParams[0]._PList = "et_caihong_02.plist";
+      lParams[0]._Rotate = -22.21f;
+      lParams[0]._Pos = _CenterPoint + Vec2{19.28f, 24.46f};
+      lParams[1]._PList = "et_caihong_03.plist";
+      lParams[1]._Scale = {-0.855f, 0.876f};
+      lParams[1]._Rotate = 42.65f;
+      lParams[1]._Pos = _CenterPoint + Vec2{29.f, 76.06f};
+      lParams[2]._PList = "et_caihong_03.plist";
+      lParams[2]._Scale = {2.237f, 2.237f};
+      lParams[2]._Rotate = -18.87f;
+      lParams[2]._Pos = _CenterPoint + Vec2{61.85f, 147.93f};
+      auto lEtNode = GBase::DCreateEffectNode(lParams);
+      lEtNode->setName("et_node_rainbow_1");
+      lEtNode->setPosition(Vec2::ZERO);
+      addChild(lEtNode, 10);
+      lIsEffectShow = true;
+    }), nullptr
+  );
+  _EtNodeRainbow->runAction(lSeqRainbow);
 }
 
 void WorldMapBuilding::RemoveCastleFireWorkEffect(){
-  // if self.fireWork then
-  //   self.fireWork:removeFromParent()
-  //   self.fireWork = nil
-  //   if self.fireWorkTimeNode then
-  //     self.fireWorkTimeNode:stopAllActions()
-  //     self.fireWorkTimeNode:removeFromParent()
-  //     self.fireWorkTimeNode = nil
-  //   end
-  // end
-  // if self.node_snowEffect then
-  //   self.node_snowEffect:removeFromParent()
-  //   self.node_snowEffect = nil
-  // end
+  if(_FireWork){
+    _FireWork->removeFromParent();
+    _FireWork = nullptr;
+    if(_FireWorkTimeNode){
+      _FireWorkTimeNode->stopAllActions();
+      _FireWorkTimeNode->removeFromParent();
+      _FireWorkTimeNode = nullptr;
+    }
+  }
+
+  if(_NodeSnowEffect){
+    _NodeSnowEffect->removeFromParent();
+    _NodeSnowEffect = nullptr;
+  }
 }
 
 void WorldMapBuilding::AddPyramidProtectEffect(){
-  // local param = {
-  //   [1] = {
-  //     plist = "et_cjztzc_protect_01.plist",
-  //     pos = {x = 0, y = 140},
-  //     scale = 2
-  //   },
-  //   [2] = {
-  //     plist = "et_cjztzc_protect_02.plist",
-  //     pos = {x = 0, y = 140},
-  //     scale = 2
-  //   },
-  //   [3] = {
-  //     plist = "et_cjztzc_protect_03.plist",
-  //     pos = {x = 0, y = 140},
-  //     scale = 2
-  //   },
-  //   [4] = {
-  //     plist = "et_cjztzc_protect_04.plist",
-  //     pos = {x = 0, y = 140},
-  //     scale = 2
-  //   }
-  // }
-  // if self.pyramidProtectNode then
-  //   SoraDResetEffectNode(self.pyramidProtectNode)
-  // else
-  //   self.pyramidProtectNode = SoraDCreateEffectNode(param)
-  //   self:addChild(self.pyramidProtectNode, 5)
-  //   self.pyramidProtectNode:setScale(self.imgScale)
-  //   self.pyramidProtectNode:setPosition(self.imgOffset)
-  // end
+
+  GVector<RCreatEffctParam> lParams(4);
+
+  lParams[0]._PList = "et_cjztzc_protect_01.plist";
+  lParams[0]._Pos = {0, 140};
+  lParams[0]._Scale = {2, 2};
+  lParams[1]._PList = "et_cjztzc_protect_02.plist";
+  lParams[1]._Pos = {0, 140};
+  lParams[1]._Scale = {2, 2};
+  lParams[2]._PList = "et_cjztzc_protect_03.plist";
+  lParams[2]._Pos = {0, 140};
+  lParams[2]._Scale = {2, 2};
+  lParams[3]._PList = "et_cjztzc_protect_04.plist";
+  lParams[3]._Pos = {0, 140};
+  lParams[3]._Scale = {2, 2};
+
+  if(_PyramidProtectNode){
+    GBase::DResetEffectNode(_PyramidProtectNode);
+  }else{
+    _PyramidProtectNode = GBase::DCreateEffectNode(lParams);
+    addChild(_PyramidProtectNode, 5);
+    _PyramidProtectNode->setScale(_ImgScale);
+    _PyramidProtectNode->setPosition(_ImgOffset);
+  }
 }
 
 void WorldMapBuilding::RemovePyramidProtectEffect(){
-  // if self.pyramidProtectNode then
-  //   self.pyramidProtectNode:removeFromParent()
-  //   self.pyramidProtectNode = nil
-  // end
+  if(_PyramidProtectNode){
+    _PyramidProtectNode->removeFromParent();
+    _PyramidProtectNode = nullptr;
+  }
 }
 
 GString WorldMapBuilding::GetFavoriteName(){
-  // local favoriteName = self.playerName
-  // if self.leagueName then
-  //   favoriteName = i18n("common_text_186", {
-  //     abbr = self.leagueName,
-  //     name = self.playerName
-  //   })
-  // end
-  // return favoriteName
+  auto lFavoriteName = _PlayerName;
+  if(!_LeagueName.empty())
+    lFavoriteName = Translate::i18n("common_text_186", {
+      {"abbr", _LeagueName.c_str()},
+      {"name", _PlayerName.c_str()}
+    });
+  return lFavoriteName;
 }
 
 void WorldMapBuilding::PlayClickSound(){
-  // SoraDPlaySound("innerbuildsound", 101)
+  GBase::PlaySound("innerbuildsound", 101);
 }
 
-GVector<EWorldMapTipButtonType> WorldMapBuilding::GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar){
-  // local buttonTypeArray = {}
-  // local selfPlayerID = gametop.playertop_:getPlayerID() or 0
-  // local selfLeagueID = allianceMgr:getOwnTeamID() or 0
-  // if isSelfKindom then
-  //   local playerID = self.playerID or 0
-  //   local leagueID = self.leagueID or 0
-  //   if selfPlayerID == playerID then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_jinruChengshi
-  //     })
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_chengshiZengyi
-  //     })
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_decorate
-  //     })
-  //     if SoraDGetCtrl("exaltedPrivilegeCtrl"):checkPrivilege(gExaltedPrivilegeType.SIGNATURE) then
-  //       table.insert(buttonTypeArray, {
-  //         buttonType = worldMapDefine.worldMapTipButtonType_sign
-  //       })
-  //     end
-  //   else
-  //     if not isInWar and worldMapDefine.kingdomStatus == gKingStatus.king then
-  //       table.insert(buttonTypeArray, {
-  //         buttonType = worldMapDefine.worldMapTipButtonType_renMing
-  //       })
-  //     end
-  //     local isInPyramid = self:isInAllianceWar()
-  //     local msgTipsKey
-  //     local atlantis = {}
-  //     if worldMapDefine.isInAtlantis() then
-  //       local atlantisWarUtil = include("atlantisWarUtil")
-  //       local ret = atlantisWarUtil.isTouchMarshal(self:getTilePoint())
-  //       if ret then
-  //         atlantis.isCanZhanling = false
-  //         atlantis.isCanZhencha = false
-  //         atlantis.zhenchaTips = i18n("atlantiswar_text_0096")
-  //         isInPyramid = not atlantis.isCanZhanling
-  //         msgTipsKey = atlantis.zhenchaTips
-  //       else
-  //         atlantis = atlantisWarUtil.checkAreaState(self:getTilePoint())
-  //         isInPyramid = not atlantis.isCanZhanling
-  //         msgTipsKey = atlantis.clickTips
-  //       end
-  //     elseif worldMapDefine.isInNebula() then
-  //       local nebulaActivityCtrl = SoraDGetCtrl("nebulaActivityCtrl")
-  //       if nebulaActivityCtrl:getCurRound() <= 3 then
-  //         isInPyramid = true
-  //         msgTipsKey = i18n("nebula_war_text_0194")
-  //       end
-  //     end
-  //     if selfLeagueID > 0 and selfLeagueID == leagueID then
-  //       local worldMapWarDef = include("worldMapWarDef")
-  //       if worldMapWarDef.isInWarForbidResourceHelp() then
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_ziyuanYuanzhu,
-  //           isButtonEnabled = not isInPyramid,
-  //           msgTipsKey = msgTipsKey
-  //         })
-  //       end
-  //       if kingdomMapCtrl:hasMyQueue(_G.gMapMoveLineServerType.moveLineTypeMassSlave, nil, nil, self.playerID) then
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_jijieBuduiXinxi
-  //         })
-  //       end
-  //       if kingdomMapCtrl:hasArmyHelpQueue2Player(self.playerID, gMapMoveLineStatusType.moveLineStatusTypeWorking) then
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_chakanYuanjun
-  //         })
-  //       else
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_shibingYuabzhu,
-  //           isButtonEnabled = not isInPyramid,
-  //           msgTipsKey = msgTipsKey
-  //         })
-  //       end
-  //     else
-  //       local isEnable = true
-  //       local isEnableZhenCha = true
-  //       local isEnableGongJi = true
-  //       if worldMapDefine.isRadianceKingdomID(self.kingdomID) then
-  //         local selfSourceID = lordInfoCtrl:getMapSourceKid()
-  //         if self.sourceKingdomID and 0 < self.sourceKingdomID and selfSourceID == self.sourceKingdomID then
-  //           isEnable = false
-  //           isEnableZhenCha = false
-  //           msgTipsKey = i18n("brightWar_text_133")
-  //         else
-  //           do
-  //             local radianceWarUtil = include("radianceWarUtil")
-  //             isEnable = radianceWarUtil.isInSelfLeagueManor(self:getTilePoint(), selfLeagueID, 2)
-  //             if not isEnable then
-  //               function msgTipsKey()
-  //                 radianceWarUtil.showGuildToBuild(self:getTilePoint())
-  //               end
-  //             end
-  //           end
-  //         end
-  //         isEnableGongJi = isEnable
-  //       elseif worldMapDefine.isInAtlantis() then
-  //         isEnable = atlantis.isCanZhanling
-  //         isEnableGongJi = atlantis.isCanZhanling
-  //       elseif worldMapDefine.isInNebula() then
-  //         local nebulaActivityCtrl = SoraDGetCtrl("nebulaActivityCtrl")
-  //         if nebulaActivityCtrl:getCurRound() <= 3 then
-  //           isEnable = false
-  //           isEnableGongJi = false
-  //           isEnableZhenCha = false
-  //         end
-  //       elseif _G.IsArClient then
-  //         local conquestWarCtrl = gametop.playertop_:getModule("conquestWarCtrl")
-  //         if conquestWarCtrl:isConquestWarOpenningAndNotInWar() then
-  //           local selfSourceID = lordInfoCtrl:getMapSourceKid()
-  //           if self.sourceID and 0 < self.sourceID and selfSourceID == self.sourceID then
-  //             isEnable = false
-  //             msgTipsKey = i18n("common_text_4576")
-  //           end
-  //         end
-  //       end
-  //       table.insert(buttonTypeArray, {
-  //         buttonType = worldMapDefine.worldMapTipButtonType_gongJi,
-  //         isButtonEnabled = isEnableGongJi,
-  //         msgTipsKey = msgTipsKey
-  //       })
-  //       local haveHall = cityCtrl:getBuildCell(BUILDID.HALL_OF_WAR, 0)
-  //       if haveHall and selfLeagueID > 0 and self.cityLevel >= CASTLE_LV6_LIMITED then
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_xuanZhan,
-  //           isButtonEnabled = isEnable,
-  //           msgTipsKey = msgTipsKey
-  //         })
-  //       end
-  //       local towerLv = cityCtrl:getBuildMaxLv(BUILDID.WATCH_TOWER)
-  //       if towerLv >= WATCH_TOWER_SCOUT_MIN_LV and not self.isSafe then
-  //         local _msgTipsKey = msgTipsKey
-  //         if worldMapDefine.isInAtlantis() then
-  //           isEnableZhenCha = atlantis.isCanZhencha
-  //           _msgTipsKey = atlantis.zhenchaTips
-  //         end
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_zhenCha,
-  //           isButtonEnabled = isEnableZhenCha,
-  //           msgTipsKey = _msgTipsKey
-  //         })
-  //       end
-  //       local lordSkillModuleAPI = include("lordSkillModuleAPI")
-  //       local qianruinfo = lordSkillModuleAPI:getSkillCDData(LORD_SKILL_QIANRU)
-  //       if self.isSafe and qianruinfo.isOpened then
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_qianru,
-  //           isButtonEnabled = not isInPyramid
-  //         })
-  //       end
-  //     end
-  //   end
-  //   if self:canHasEmojiOperator(selfPlayerID) then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_biaoqingyinzhang
-  //     })
-  //   end
-  // end
+GVector<RButtonTypeArray> WorldMapBuilding::GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar){
+  GVector<RButtonTypeArray> lButtonTypeArray;
+  auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
+  auto lSelfLeagueID = AllianceManager::Get()->GetOwnTeamID();
+
+  if(pIsSelfKingdom){
+    
+    auto lPlayerID = _PlayerID;
+    auto lLeagueID = _LeagueID;
+
+    if(lSelfPlayerID == _PlayerID){
+
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::jinruChengshi});
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::chengshiZengyi});
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::decorate});
+      if(ExaltedPrivilegeCtrl::Get()->CheckPrivilege(EExaltedPrivilege::SIGNATURE))
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::sign});
+      
+    }else{
+      if(!pIsInWar && WorldMapDefine::Get()->_kingdomStatus == EKingStatus::king)
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::renMing});
+      auto lIsInPyramid = IsInAllianceWar();
+      GString lMsgTipsKey;
+      if(WorldMapDefine::Get()->IsInAtlantis()){
+        //       local atlantisWarUtil = include("atlantisWarUtil")
+        //       local ret = atlantisWarUtil.isTouchMarshal(self:getTilePoint())
+        //       if ret then
+        //         atlantis.isCanZhanling = false
+        //         atlantis.isCanZhencha = false
+        //         atlantis.zhenchaTips = i18n("atlantiswar_text_0096")
+        //         isInPyramid = not atlantis.isCanZhanling
+        //         msgTipsKey = atlantis.zhenchaTips
+        //       else
+        //         atlantis = atlantisWarUtil.checkAreaState(self:getTilePoint())
+        //         isInPyramid = not atlantis.isCanZhanling
+        //         msgTipsKey = atlantis.clickTips
+        //       end
+      }else if(WorldMapDefine::Get()->IsInNebula()){
+        //       local nebulaActivityCtrl = SoraDGetCtrl("nebulaActivityCtrl")
+        //       if nebulaActivityCtrl:getCurRound() <= 3 then
+        //         isInPyramid = true
+        //         msgTipsKey = i18n("nebula_war_text_0194")
+        //       end
+      }
+
+      if(lSelfLeagueID > 0 && lSelfLeagueID == _LeagueID){
+        if(WorldMapWarDef::Get()->IsInWarForbidResourceHelp())
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::ziyuanYuanzhu, ! lIsInPyramid, lMsgTipsKey});
+        
+        if(KingdomMapCtrl::Get()->HasMyQueue(EMapMoveLineServerType::MassSlave, {}, {}, _PlayerID))
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::jijieBuduiXinxi});
+        
+        if(KingdomMapCtrl::Get()->HasArmyHelpQueue2Player(_PlayerID, EMapMoveLineStatusType::Working)){
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::chakanYuanjun});
+        }else{
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::shibingYuabzhu, ! lIsInPyramid, lMsgTipsKey});
+        }
+      }else{
+        
+        auto lIsEnable = true;
+        auto lIsEnableZhenCha = true;
+        auto lIsEnableGongJi = true;
+
+        if(WorldMapDefine::Get()->IsRadianceKingdomID(_KingdomID)){
+          auto lSelfSourceID = LordInfoCtrl::Get()->GetMapSourceKid();
+          if(_SourceKingdomID > 0 && _SourceKingdomID == lSelfSourceID){
+            lIsEnable = false;
+            lIsEnableZhenCha = false;
+            lMsgTipsKey = Translate::i18n("brightWar_text_133");
+          }else{
+            //    local radianceWarUtil = include("radianceWarUtil")
+            //    isEnable = radianceWarUtil.isInSelfLeagueManor(self:getTilePoint(), selfLeagueID, 2)
+            //    if not isEnable then
+            //      function msgTipsKey()
+            //        radianceWarUtil.showGuildToBuild(self:getTilePoint())
+            //      end
+            //    end
+          }
+          lIsEnableGongJi = lIsEnable;
+        } else if(WorldMapDefine::Get()->IsInAtlantis()){
+          //         isEnable = atlantis.isCanZhanling
+          //         isEnableGongJi = atlantis.isCanZhanling
+        }else if(WorldMapDefine::Get()->IsInNebula()){
+          //         local nebulaActivityCtrl = SoraDGetCtrl("nebulaActivityCtrl")
+          //         if nebulaActivityCtrl:getCurRound() <= 3 then
+          //           isEnable = false
+          //           isEnableGongJi = false
+          //           isEnableZhenCha = false
+          //         end
+        }else if(GBase::Const::Get()->IsArClient){
+          if(ConquestWarCtrl::Get()->IsConquestWarOpenningAndNotInWar()){
+            auto lSelfSourceID = LordInfoCtrl::Get()->GetMapSourceKid();
+            if(_SourceID > 0 && lSelfSourceID == _SourceID){
+              lIsEnable = false;
+              lMsgTipsKey = Translate::i18n("common_text_4576");
+            }
+          }
+        }
+      
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::gongJi, lIsEnableGongJi, lMsgTipsKey});
+        
+        auto lHaveHall = CityCtrl::Get()->GetBuildingCell(EBuilding::HallOfWar, EBuildingIndex::None);
+        if(lHaveHall && lSelfLeagueID > 0 && _CityLevel >= GBase::Const::Get()->CastleLvl6){
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::xuanZhan, lIsEnable, lMsgTipsKey});
+        }
+        
+        auto lTowerLv = CityCtrl::Get()->GetBuildingMaxLv(EBuilding::WatchTower);
+        if(lTowerLv >= GBase::Const::Get()->WATCH_TOWER_SCOUT_MIN_LV && ! _IsSafe){
+          auto l_MsgTipsKey = lMsgTipsKey;
+          //         if worldMapDefine.isInAtlantis() then
+          //           isEnableZhenCha = atlantis.isCanZhencha
+          //           _msgTipsKey = atlantis.zhenchaTips
+          //         end
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::zhenCha, lIsEnableZhenCha, l_MsgTipsKey});
+        }
+        auto lQianRuInfo = LordSkillModuleAPI::Get()->GetSkillCDData(GBase::Const::Get()->LORD_SKILL_QIANRU);
+        if(_IsSafe && lQianRuInfo._IsOpened)
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::qianru, ! lIsInPyramid});
+      }
+    } 
+    if(CanHasEmojiOperator(lSelfPlayerID)){
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::biaoqingyinzhang});
+    }
+  }
   // table.insert(buttonTypeArray, {
   //   buttonType = worldMapDefine.worldMapTipButtonType_yongHuXinxi
   // })
-  // if not isInWar then
-  //   if 0 >= self.leaguedOfficialType and legendLordCtrl:getIsSelfLegendKing() then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_leaguerenMing
-  //     })
-  //   end
-  //   if 0 >= self.kingStarOfficialType and kingStarCtrl:getIsSelfLegendKing() then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_kingStar_renMing
-  //     })
-  //   end
+  lButtonTypeArray.push_back({EWorldMapTipButtonType::yongHuXinxi});
+
+  if(!pIsInWar){
+  if(_LeaguedOfficialType <= 0 && LegendLordCtrl::Get()->GetIsSelfLegendKing())
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::leaguerenMing});
+
+  if(_HegemonOfficialType <= 0 && KingStarCtrl::Get()->GetIsSelfLegendKing())
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::kingStar_renMing});
   //   if 0 >= self.hegemonOfficialType and hegemonCtrl:getIsSelfHegemon() then
   //     table.insert(buttonTypeArray, {
   //       buttonType = worldMapDefine.worldMapTipButtonType_hegemonrenMing
   //     })
   //   end
-  // end
+  if(_Hem)
+  }
   // if 0 < self.prisonerNum then
   //   table.insert(buttonTypeArray, {
   //     buttonType = worldMapDefine.worldMapTipButtonType_prisonerIn

@@ -2,11 +2,33 @@
 #include "Base/BaseTypeDef.h"
 #include "Base/Common/Common.Type.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "Module/Building/Building.Enum.h"
 #include "Module/Guild/Alliance.Enum.h"
 #include "Module/CityResource/Resource.Enum.h"
 #include "Module/World/WorldMap/Instance/Component/WorldMapProtectNode.h"
 USING_NS_CC;
 
+struct RWarLevelConfig{
+  struct Img{
+    GString _Png;
+    Vec2 _Pos;
+  };
+
+  struct Side{
+    struct {
+      GVector<Img> _Bg;
+      GVector<Img> _Dh;
+    } _Img;
+    GVector<RCreatEffctParam> _Et;
+    GOpt<float> _Scale;
+    GOpt<Vec2> _Offset = Vec2::ZERO;
+  };
+  Side _Bottom;
+  Side _Top;
+  GOpt<Side> _TopSword;
+  GOpt<Side> _Moon;
+  Vec2 _Offset = Vec2::ZERO;
+};
 
 class WorldMapDefine{
 public: 
@@ -28,6 +50,7 @@ public:
   int32 CurrentMapKindomID = 0;
   cocos2d::Size _WorldMapViewSize;
   int32 _CurSelectNodeInfo = 1;
+  EKingStatus _kingdomStatus = EKingStatus::None;
   
   bool IsInWar();
   bool IsInLegendLord();
@@ -63,6 +86,10 @@ public:
   int32 GetResourceLevel(int32 pResourceClassID);
   int32 GetResourceCastleLv(int32 pResourceClassID);
   const Color3B &GetLeagueManorLineColor(bool pIsSelf = false, EMapAllianceRelationType pRelation = EMapAllianceRelationType::None);
+  Sprite *CreateCityImageWithLevel(int32 pCityLevel, EFactionType pFaction, Sprite *pImage, Vec2 pOffset = Vec2::ZERO);
+  Node *GetCastleSkinEffect(EBuildingCastleModel pModel);
+  GOpt<RWarLevelConfig> GetWarLevelData(int32 pWarLv);
+  bool IsRadianceKingdomID(int32 pKingdomID = 0);
 };
 
 

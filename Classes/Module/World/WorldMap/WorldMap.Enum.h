@@ -327,6 +327,7 @@ enum class EMapMoveLineMatrixType{
 };
 
 enum class EMapMoveLineStatusType {
+  None = -1,
   Rally = 0,
   Moving = 1,
   Working = 2,
@@ -461,6 +462,12 @@ enum class EManorlineSn{
   strongHold = -2,
   placePreview = -1,
   None = 0
+};
+enum class EKingStatus {
+  None = 1,
+  notKing = 2,
+  proxy = 3,
+  king = 4
 };
 
 enum class EWorldMapCastleEffectID {

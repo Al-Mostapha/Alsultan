@@ -9,6 +9,12 @@
 
 class WorldMapCell;
 
+struct RButtonTypeArray{
+  EWorldMapTipButtonType _ButtonType;
+  bool _IsButtonEnabled = true;
+  GString _MsgTipsKey = "";
+};
+
 class IWorldMapInstance : public WorldMapInstanceLod, public WorldMapBuildEmoji, public WorldMapBuildFireEffect
 {
 public:
@@ -27,8 +33,8 @@ public:
   virtual GTuple<UIBasePanel *, bool, Node*> OnShowWorldMapTip(Node *pNode);
   virtual void PlayClickSound() = 0;
   virtual void AddCacheBefore() = 0;
-  virtual GVector<EWorldMapTipButtonType> GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar){
-    return GVector<EWorldMapTipButtonType>();
+  virtual GVector<RButtonTypeArray> GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar){
+    return GVector<RButtonTypeArray>();
   };
 
   void SetInstanceType(EMapObjTypeDef pInstanceType);

@@ -21,3 +21,7 @@ bool WorldMapWarDef::IsInWarForbidBonePoing(EKingdomClassType p_MapType){
 int32 WorldMapWarDef::GetMapRangMaxX(EKingdomClassType p_MapType){
   return 1201;
 }
+
+bool WorldMapWarDef::IsInWarForbidResourceHelp(EKingdomClassType p_MapType){
+  return false;
+}

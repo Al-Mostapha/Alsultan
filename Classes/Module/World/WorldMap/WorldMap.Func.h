@@ -7,4 +7,8 @@ class WorldMapFunction{
   public:
     static WorldMapFunction *Get();
     GTuple<float, GString, bool> GetMonsterImgAngel(Vec2 pBeginPoint, Vec2 pEndPoint);
+    void CreateThrowAction(
+      Node *pNode, const Vec2 &pBeginPoint, const Vec2 &pEndPoint, float pDelayTime = 0,
+      float pSpeed = 300 , std::function<void()> pCallBack = nullptr
+    );
 };

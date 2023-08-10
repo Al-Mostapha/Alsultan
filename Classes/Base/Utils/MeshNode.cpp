@@ -94,3 +94,29 @@ void GBase::DSetProgramStateParam(GLProgram *p_Program, GLProgramState *p_State,
       }
     }
 }
+
+MeshNode *GBase::DCreateShaderEffect(const RShaderEffectCfg &pCfg, Node *pTarget, int32 pZOrder){
+
+  RMeshNodeParm lMeshNodeParem;
+  lMeshNodeParem.Shader = std::move(pCfg._Shader);
+  lMeshNodeParem.size   = Vec2(1, 1);
+  lMeshNodeParem._Param = std::move(pCfg._Param);
+  lMeshNodeParem._Mesh = std::move(pCfg._MeshData);
+
+  auto lEffectNode = std::get<0>(GBase::DCreateMeshNode(lMeshNodeParem));
+  lEffectNode->setPosition(pCfg._Position);
+  lEffectNode->setScale(pCfg._Scale.x, pCfg._Scale.y);
+  lEffectNode->setVisible(true);
+
+  pTarget->addChild(lEffectNode, pZOrder);
+  
+  if(pCfg._Rotation)
+    lEffectNode->setPosition3D(pCfg._Rotation.value());
+  if(pCfg._Rotation2D)
+    lEffectNode->setPosition(pCfg._Rotation2D.value());
+  if(pCfg._ScaleZ)
+    lEffectNode->setScaleY(pCfg._ScaleZ.value());
+  if(pCfg._Blend)
+    lEffectNode->setBlendFunc(pCfg._Blend.value());
+  return lEffectNode;
+}

@@ -9,4 +9,5 @@ public:
   EKingdomClassType GetKingdomMapClassByKingdomId(int32 p_IdKingdom = 0);
   bool IsInWarForbidBonePoing(EKingdomClassType p_MapType);
   int32 GetMapRangMaxX(EKingdomClassType p_MapType);
+  bool IsInWarForbidResourceHelp(EKingdomClassType p_MapType = EKingdomClassType::Normal);
 };
