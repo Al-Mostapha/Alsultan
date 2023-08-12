@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "Module/World/WorldMap/View/WorldMapView.Type.h"
 #include "Scene.Enum.h"
+#include "Module/Building/Building.Enum.h"
 
 
 enum class EWorldMapLayInstance;
@@ -13,6 +14,9 @@ struct RViewOtherData{
   bool _IsSelected = false;
   EWorldMapLayInstance _LayInstance;
   RLayInstanceData _LayInstanceData;
+  GString _View;
+  EBuilding _BID;
+  GString _Msg;
   operator bool() const{
     return true;
   }

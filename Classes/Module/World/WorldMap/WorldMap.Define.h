@@ -51,6 +51,8 @@ public:
   cocos2d::Size _WorldMapViewSize;
   int32 _CurSelectNodeInfo = 1;
   EKingStatus _kingdomStatus = EKingStatus::None;
+  EGameKingdomIdAssign LEGENDLORD_KINGDOM_ID = EGameKingdomIdAssign::LegendEnd;
+  EGameKingdomIdAssign KINGSTAR_KINGDOM_ID = EGameKingdomIdAssign::LegendStart;
   
   bool IsInWar();
   bool IsInLegendLord();
@@ -61,6 +63,7 @@ public:
   bool IsInPyramid();
   bool InInCrossWar();
   bool IsInKingdomBattle();
+  bool IsInNewTrial();
   bool IsInWarForbid(bool p_NoShowTips = false, bool p_Activity = false);
   bool IsInWarForbidSoldier(bool p_NoShowTips = false, bool p_Activity = false);
   void ShowWarTips(bool p_Activity = false);
@@ -90,6 +93,7 @@ public:
   Node *GetCastleSkinEffect(EBuildingCastleModel pModel);
   GOpt<RWarLevelConfig> GetWarLevelData(int32 pWarLv);
   bool IsRadianceKingdomID(int32 pKingdomID = 0);
+  bool IsRemainsKingdomID(int32 pKingdomID = 0);
 };
 
 

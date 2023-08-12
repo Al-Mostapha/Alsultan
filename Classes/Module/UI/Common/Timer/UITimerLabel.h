@@ -2,10 +2,9 @@
 #include "Include/IncludeBase.h"
 
 #include "Include/IncludeEngine.h"
-#include "Module/UI/Panel/UIPanelBase.h"
 
 
-class UITimerLabel : public UIPanelBase
+class UITimerLabel : public Label
 {
 
 private:
@@ -13,10 +12,11 @@ private:
 public:
   UITimerLabel(){};
   ~UITimerLabel(){};
-  void InitPanel() override{};
-  void Show() override {};
   static UITimerLabel *Create() {return create();};
-  static UITimerLabel *DCreateTimerLabel(Node *p_lable);
+  static UITimerLabel *DCreateTimerLabel(Label *pLable);
   void BeginTime(GTime){}
   void RemoveTime();
+  void SetTimeLast(std::function<GString(const GString &, GTime)> pHandle){}
+  void SetTimeEndListener(std::function<void()> pHandle){}
+  void SetTimeUpdateListener(std::function<void(GTime pTime)> pHandle){}
 };

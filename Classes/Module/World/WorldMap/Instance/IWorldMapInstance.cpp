@@ -27,3 +27,7 @@ void UpdateAllianceCounterAtkEffect(EventCustom *pEvent){
   //   self:removeAllianceEnemyCastleEffect()
   // end
 }
+
+void IWorldMapInstance::ShowWarningTip(const GString &pTipInfo, const std::function<void()> &pCallback, float pDelay){
+
+}

@@ -22,3 +22,11 @@ void CityLtCtrl::Init(){
     BuildInfo.insert(l_OneBuildingInfo);
   }
 }
+
+GString CityLtCtrl::GetBuildStarLight(int32 pStarLv){
+  return "icon_buildstar_light_1.png";
+}
+
+int32 CityLtCtrl::GetBuildStarColor(int32 pStarLv){
+  return 0;
+}

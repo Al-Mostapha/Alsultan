@@ -40,3 +40,7 @@ int32 LordInfoCtrl::GetMapSourceKid()
 {
   return 0;
 }
+
+EShowOfficialType LordInfoCtrl::GetShowOfficialTypeForLord(const RLordInfo &pLordInfo){
+  return EShowOfficialType::KING;
+}

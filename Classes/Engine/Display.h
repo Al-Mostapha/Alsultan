@@ -10,13 +10,15 @@ struct RPolygonProps{
     float scale = 1.0f;
 };
 
-struct RBMFontLabelParam{
+struct UIFontLabelParam{
+  GBase::EUILabelType _UILabelType = GBase::EUILabelType::TTF;
   GString _Text;
   GString _Font;
   TextHAlignment _TextAlign = TextHAlignment::LEFT;
   float _MaxLineW = 0;
   Vec2 _Offset = Vec2::ZERO;
   Vec2 _Pos = Vec2::ZERO;
+  float _FontSize = 14;
 };
 class GDisplay
 {
@@ -85,7 +87,27 @@ public:
   SpriteFrame *NewSpriteFrame(const char *p_FileName);
 
   ProgressTimer *NewProgressTimer(const char *p_Image, ProgressTimer::Type p_Type);
-  Label *NewBMFontLabel(RBMFontLabelParam);
+  template <typename T = Label>
+  T *NewBMFontLabel(UIFontLabelParam);
+  template <typename T = Label>
+  T *NewTTFLabel(UIFontLabelParam);
   Vector<SpriteFrame *> NewFrames(const char *pPattern, uint32 pBegin, uint32 pLength, bool pIsReversed = false);
   Animation *NewAnimation(const Vector<SpriteFrame *> &pFrames, float pTime = -1);
 };
+
+template <typename T>
+T *GDisplay::NewBMFontLabel(UIFontLabelParam p_Param){
+  auto l_Label = T::createWithBMFont(
+    p_Param._Font, p_Param._Text, p_Param._TextAlign,
+    p_Param._MaxLineW, p_Param._Offset);
+  if(!l_Label) return nullptr;
+  if (p_Param._Pos != Vec2::ZERO) {
+    l_Label->setPosition(p_Param._Pos);
+  }
+  return l_Label;
+}
+
+template <typename T>
+T *GDisplay::NewTTFLabel(UIFontLabelParam pParam){
+  return T::create();
+}

@@ -122,16 +122,7 @@ ProgressTimer *GDisplay::NewProgressTimer(const char *p_Image, ProgressTimer::Ty
   return l_Progress;
 }
 
-Label *GDisplay::NewBMFontLabel(RBMFontLabelParam p_Param){
-  auto l_Label = Label::createWithBMFont(
-    p_Param._Font, p_Param._Text, p_Param._TextAlign,
-    p_Param._MaxLineW, p_Param._Offset);
-  if(!l_Label) return nullptr;
-  if (p_Param._Pos != Vec2::ZERO) {
-    l_Label->setPosition(p_Param._Pos);
-  }
-  return l_Label;
-}
+
 
 Vector<SpriteFrame *> GDisplay::NewFrames(const char *pPattern, uint32 pBegin, uint32 pLength, bool pIsReversed){
   Vector<SpriteFrame *> lFrames;

@@ -20,18 +20,24 @@
 #include "Module/World/WorldWar/LegendLord/LegendLord.Ctrl.h"
 #include "Module/World/WorldWar/LegendLord/KingStar.Ctrl.h"
 #include "Module/World/WorldWar/LegendLord/Hegemon.Ctrl.h"
+#include "Module/World/WorldWar/LegendLord/LegendKing.Read.h"
+#include "Module/World/WorldWar/LegendLord/Hegemon.Read.h"
 #include "Base/Common/Common.Msg.h"
 #include "Base/Common/Common.Func.h"
 #include "Base/Common/Common.Teml.h"
 #include "Base/Functions/ServiceFunction.h"
 #include "Base/Utils/XTransition.h"
 #include "Base/Base.Geometry.h"
+#include "Engine/Base/UI/XUILabel.h"
 #include "Module/Equip/Equip.Read.h"
 #include "Module/Vip/ExaltedPrivilege.Ctrl.h"
 #include "Module/Player/LordInfo.Ctrl.h"
+#include "Module/Player/Official/OfficialInfo.Read.h"
+#include "Module/Player/Official/LordOfficial.Read.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"
 #include "Module/World/WorldMap/WorldMap.Func.h"
 #include "Module/City/City.Ctrl.h"
+#include "Module/City/CityBuilding/City.LtCtrl.h"
 
 
 void WorldMapBuilding::Ctor(){
@@ -1762,316 +1768,279 @@ GVector<RButtonTypeArray> WorldMapBuilding::GetInstanceOp(bool pIsSelfKingdom, b
       lButtonTypeArray.push_back({EWorldMapTipButtonType::biaoqingyinzhang});
     }
   }
-  // table.insert(buttonTypeArray, {
-  //   buttonType = worldMapDefine.worldMapTipButtonType_yongHuXinxi
-  // })
+  
   lButtonTypeArray.push_back({EWorldMapTipButtonType::yongHuXinxi});
 
   if(!pIsInWar){
-  if(_LeaguedOfficialType <= 0 && LegendLordCtrl::Get()->GetIsSelfLegendKing())
-    lButtonTypeArray.push_back({EWorldMapTipButtonType::leaguerenMing});
-
-  if(_HegemonOfficialType <= 0 && KingStarCtrl::Get()->GetIsSelfLegendKing())
-    lButtonTypeArray.push_back({EWorldMapTipButtonType::kingStar_renMing});
-  //   if 0 >= self.hegemonOfficialType and hegemonCtrl:getIsSelfHegemon() then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_hegemonrenMing
-  //     })
-  //   end
-  if(_Hem)
+    if(_LeaguedOfficialType <= 0 && LegendLordCtrl::Get()->GetIsSelfLegendKing())
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::leaguerenMing});
+    if(_HegemonOfficialType <= 0 && KingStarCtrl::Get()->GetIsSelfLegendKing())
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::kingStar_renMing});
+    if(_HegemonOfficialType <= 0 && HegemonCtrl::Get()->GetIsSelfHegemon())
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::hegemonrenMing});
   }
-  // if 0 < self.prisonerNum then
-  //   table.insert(buttonTypeArray, {
-  //     buttonType = worldMapDefine.worldMapTipButtonType_prisonerIn
-  //   })
-  // end
-  // if worldMapDefine.isRemainsKingdomID(self.kingdomID) and not worldMapDefine.isInRemains() then
-  //   table.insert(buttonTypeArray, {
-  //     buttonType = worldMapDefine.worldMapTipButtonType_remains_buff
-  //   })
-  // end
-  // return buttonTypeArray
+
+  if(_PrisonerNum > 0)
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::prisonerIn});
+  
+  if(WorldMapDefine::Get()->IsRemainsKingdomID(_KingdomID) && ! WorldMapDefine::Get()->IsInRemains())
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::remains_buff});
+  
+  return lButtonTypeArray;
 }
 
 void WorldMapBuilding::LazyCreateOfficalImage(){
-  // if self.officalImage == nil then
-  //   local officalImage = display.newSprite("#frame_king_22.png")
-  //   officalImage:setPosition(cc.p(self.centerPoint.x, self.centerPoint.y + 150))
-  //   officalImage:setScale(0.75)
-  //   officalImage:addTo(self, 5)
-  //   local officialImaSize = officalImage:getContentSize()
-  //   local officalIcon = display.newSprite("#icon_king.png")
-  //   officalIcon:setPosition(cc.p(officialImaSize.width / 2, officialImaSize.height / 2))
-  //   officalIcon:addTo(officalImage, 2)
-  //   self.officalImage = officalImage
-  //   self.officalIcon = officalIcon
-  // else
-  //   self.officalImage:setScale(0.75)
-  //   self.officalIcon:setScale(1)
-  //   self.officalImage:setVisible(true)
-  //   self.officalIcon:removeAllChildren()
-  // end
+  if(!_OfficalImage){
+    auto lOfficalImage = GDisplay::Get()->NewSprite("frame_king_22.png");
+    _OfficalImage->setPosition(_CenterPoint + Vec2(0, 150));
+    _OfficalImage->setScale(0.75f);
+    addChild(_OfficalImage, 5);
+    auto lOfficialImgSize = _OfficalImage->getContentSize();
+    auto lOfficialIcon = GDisplay::Get()->NewSprite("icon_king.png");
+    lOfficialIcon->setPosition(lOfficialImgSize / 2);
+    _OfficalImage->addChild(lOfficialIcon, 2);
+    _OfficalImage = lOfficalImage;
+    _OfficalIcon = lOfficialIcon;
+  }else{
+    _OfficalImage->setScale(0.75f);
+    _OfficalIcon->setScale(1);
+    _OfficalImage->setVisible(true);
+    _OfficalIcon->removeAllChildren();
+  }
 }
 
 void WorldMapBuilding::UpdatePrisoneIn(){
-  // if self.prisonerNum > 0 then
-  //   self:lazyCreatePrisoneInImage()
-  // elseif self.prisoneInIcon then
-  //   self.prisoneInIcon:setVisible(false)
-  // end
+  if(_PrisonerNum > 0){
+    LazyCreatePrisoneInImage();
+  }else{
+    _PrisoneInIcon->setVisible(false);
+  }
 }
 
 void WorldMapBuilding::LazyCreatePrisoneInImage(){
-  // if not self.node_snowMan then
-  //   if self.prisoneInIcon == nil then
-  //     local prisoneInIcon = display.newSprite("#btn_hero_prison.png")
-  //     prisoneInIcon:setPosition(cc.p(self.centerPoint.x, self.centerPoint.y + 120))
-  //     prisoneInIcon:setScale(1.3)
-  //     prisoneInIcon:addTo(self, 5)
-  //     self.prisoneInIcon = prisoneInIcon
-  //   else
-  //     self.prisoneInIcon:setVisible(true)
-  //   end
-  //   local selfPlayerID = gametop.playertop_:getPlayerID() or 0
-  //   if not self.isShowPrision and selfPlayerID == self.playerID then
-  //     self.prisoneInIcon:setVisible(false)
-  //   end
-  // elseif self.prisoneInIcon then
-  //   self.prisoneInIcon:setVisible(false)
-  // end
+  if(!_NodeSnowMan){
+    if(!_PrisoneInIcon){
+      _PrisoneInIcon = GDisplay::Get()->NewSprite("btn_hero_prison.png");
+      _PrisoneInIcon->setPosition(_CenterPoint + Vec2(0, 120));
+      _PrisoneInIcon->setScale(1.3f);
+      addChild(_PrisoneInIcon, 5);
+    }else{
+      _PrisoneInIcon->setVisible(true);
+    }
+    auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
+    if(!_IsShowPrision && lSelfPlayerID == _PlayerID)
+      _PrisoneInIcon->setVisible(false);
+  }else if(_PrisoneInIcon){
+    _PrisoneInIcon->setVisible(false);
+  }
 }
 
 void WorldMapBuilding::UpdateOfficial(){
-  // self:updateBuildingImg()
-  // local hide = true
-  // if self.isShowOffice then
-  //   local tbOfficialInfo = {}
-  //   tbOfficialInfo.official = self.officialType
-  //   tbOfficialInfo.legendTitle = self.leaguedOfficialType
-  //   tbOfficialInfo.legendForSepTitle = self.kingStarOfficialType
-  //   tbOfficialInfo.hegemonTitle = self.hegemonOfficialType
-  //   tbOfficialInfo.atlantisOfficialType = self.atlantisOfficialType
-  //   tbOfficialInfo.nebulaOfficialID = self.nebulaOfficialID
-  //   tbOfficialInfo.nebulaOfficialID2 = self.nebulaOfficialID2
-  //   tbOfficialInfo.showOfficialType = self.showOfficialType
-  //   local showOfficialType = lordInfoCtrl:getShowOfficialTypeForLord(tbOfficialInfo)
-  //   print("showOfficialType", showOfficialType, self.showOfficialType)
-  //   hide = false
-  //   if showOfficialType == gShowOfficialType.KING then
-  //     self:lazyCreateOfficalImage()
-  //     local officialInfoRead = include("officialInfoRead")
-  //     local officialInfo = officialInfoRead.getInfoByType(self.officialType)
-  //     if officialInfo then
-  //       self.officalIcon:setSpriteFrame(display.newSpriteFrame(officialInfo.img))
-  //       print("----------")
-  //       dump(officialInfo, "officialInfo")
-  //       if officialInfo.class < 2 then
-  //         self.officalImage:setSpriteFrame(display.newSpriteFrame("frame_king_23.png"))
-  //         self:crownUpEffect(self.officalIcon)
-  //       else
-  //         self.officalImage:setSpriteFrame(display.newSpriteFrame("frame_king_22.png"))
-  //         self:crownDownEffect(self.officalIcon)
-  //       end
-  //       local officialImaSize = self.officalImage:getContentSize()
-  //       self.officalIcon:setPosition(cc.p(officialImaSize.width / 2, officialImaSize.height / 2))
-  //     end
-  //   elseif showOfficialType == gShowOfficialType.LEGEND then
-  //     self:lazyCreateOfficalImage()
-  //     local legendKingRead = include("legendKingRead")
-  //     local officialInfo = legendKingRead.getOfficialInfo(gLegendBuffType.PLAYER, self.leaguedOfficialType)
-  //     if officialInfo then
-  //       self.officalIcon:setSpriteFrame(display.newSpriteFrame(officialInfo.img))
-  //       self.officalImage:setSpriteFrame(display.newSpriteFrame("icon_LegendaryKing_honor.png"))
-  //       self:crownUpEffect(self.officalIcon)
-  //       local officialImaSize = self.officalImage:getContentSize()
-  //       self.officalIcon:setPosition(cc.p(officialImaSize.width / 2, officialImaSize.height / 2))
-  //     end
-  //   elseif showOfficialType == gShowOfficialType.KINGSTAR then
-  //     self:lazyCreateOfficalImage()
-  //     local legendKingRead = include("legendKingRead")
-  //     local officialInfo = legendKingRead.getOfficialInfo(gLegendBuffType.PLAYER, self.kingStarOfficialType, worldMapDefine.KINGSTAR_KINGDOM_ID)
-  //     if officialInfo then
-  //       self.officalIcon:setSpriteFrame(display.newSpriteFrame(officialInfo.img))
-  //       self.officalImage:setSpriteFrame(display.newSpriteFrame("icon_LegendaryKing_honor.png"))
-  //       self:crownUpEffect(self.officalIcon)
-  //       local officialImaSize = self.officalImage:getContentSize()
-  //       self.officalIcon:setPosition(cc.p(officialImaSize.width / 2, officialImaSize.height / 2))
-  //     end
-  //   elseif showOfficialType == gShowOfficialType.HEGEMON then
-  //     self:lazyCreateOfficalImage()
-  //     self.officalImage:setScale(1)
-  //     local hegemonRead = include("hegemonRead")
-  //     local officialImage = hegemonRead.getOfficialIcon(self.hegemonOfficialType)
-  //     local isGood = hegemonRead.judgeIsGood(self.hegemonOfficialType)
-  //     if officialImage then
-  //       self.officalIcon:setSpriteFrame(display.newSpriteFrame(officialImage))
-  //       if isGood then
-  //         self.officalImage:setSpriteFrame(display.newSpriteFrame("frame_touxiangkuang_01.png"))
-  //       else
-  //         self.officalImage:setSpriteFrame(display.newSpriteFrame("frame_touxiangkuang_02.png"))
-  //       end
-  //       if self.hegemonOfficialType == 1 then
-  //         self.officalIcon:setScale(0.45)
-  //       end
-  //       if isGood then
-  //         self:crownUpEffect(self.officalIcon)
-  //       end
-  //       local officialImaSize = self.officalImage:getContentSize()
-  //       self.officalIcon:setPosition(cc.p(officialImaSize.width / 2, officialImaSize.height / 2))
-  //     end
-  //   elseif showOfficialType == gShowOfficialType.ATLANTIS then
-  //     self:lazyCreateOfficalImage()
-  //     self.officalImage:setScale(1)
-  //     local lordOfficialRead = include("lordOfficialRead")
-  //     local officialImage = lordOfficialRead.getOfficialIcon(showOfficialType, self.atlantisOfficialType)
-  //     if officialImage then
-  //       self.officalIcon:setSpriteFrame(display.newSpriteFrame(officialImage))
-  //       self.officalImage:setSpriteFrame(display.newSpriteFrame("frame_touxiangkuang_01.png"))
-  //       self:crownUpEffect(self.officalIcon)
-  //       local officialImaSize = self.officalImage:getContentSize()
-  //       self.officalIcon:setPosition(cc.p(officialImaSize.width / 2, officialImaSize.height / 2))
-  //     end
-  //   elseif showOfficialType == gShowOfficialType.NEBULA then
-  //     self:lazyCreateOfficalImage()
-  //     self.officalImage:setScale(1)
-  //     local lordOfficialRead = include("lordOfficialRead")
-  //     local officialImage = lordOfficialRead.getOfficialIcon(showOfficialType, self.nebulaOfficialID)
-  //     if officialImage then
-  //       self.officalIcon:setSpriteFrame(display.newSpriteFrame(officialImage))
-  //       self.officalImage:setSpriteFrame(display.newSpriteFrame("frame_touxiangkuang_01.png"))
-  //       self:crownUpEffect(self.officalIcon)
-  //       local officialImaSize = self.officalImage:getContentSize()
-  //       self.officalIcon:setPosition(cc.p(officialImaSize.width / 2, officialImaSize.height / 2))
-  //     end
-  //   elseif showOfficialType == gShowOfficialType.NEBULA2 then
-  //     self:lazyCreateOfficalImage()
-  //     self.officalImage:setScale(1)
-  //     local lordOfficialRead = include("lordOfficialRead")
-  //     local officialImage = lordOfficialRead.getOfficialIcon(showOfficialType, self.nebulaOfficialID2)
-  //     if officialImage then
-  //       self.officalIcon:setSpriteFrame(display.newSpriteFrame(officialImage))
-  //       self.officalImage:setSpriteFrame(display.newSpriteFrame("frame_touxiangkuang_01.png"))
-  //       self:crownUpEffect(self.officalIcon)
-  //       local officialImaSize = self.officalImage:getContentSize()
-  //       self.officalIcon:setPosition(cc.p(officialImaSize.width / 2, officialImaSize.height / 2))
-  //     end
-  //   else
-  //     hide = true
-  //   end
-  // end
-  // if hide and self.officalImage and self.officalImage:isVisible() then
-  //   self.officalImage:setVisible(false)
-  //   self.officalIcon:removeAllChildren()
-  // end
+  UpdateBuildingImg();
+  auto lHide = true;
+  
+  if(_IsShowOffice) {
+    
+    RLordInfo lTbOfficialInfo;
+    lTbOfficialInfo._Official = _OfficialType;
+    lTbOfficialInfo._LegendTitle = _LeaguedOfficialType;
+    lTbOfficialInfo._LegendForSepTitle = _KingStarOfficialType;
+    lTbOfficialInfo._HegemonTitle = _HegemonOfficialType;
+    lTbOfficialInfo._AtlantisOfficialType = _AtlantisOfficialType;
+    lTbOfficialInfo._NebulaOfficialID = _NebulaOfficialID;
+    lTbOfficialInfo._NebulaOfficialID2 = _NebulaOfficialID2;
+    lTbOfficialInfo._ShowOfficialType = _ShowOfficialType;
+    auto lShowOfficialType = LordInfoCtrl::Get()->GetShowOfficialTypeForLord(lTbOfficialInfo);
+    lHide = false;
+
+    if(lShowOfficialType == EShowOfficialType::KING){
+      LazyCreateOfficalImage();
+      auto lOfficialInfo = OfficialInfoRead::Get()->GetInfoByType(_OfficialType);
+      if(lOfficialInfo){
+        _OfficalIcon->setSpriteFrame(GDisplay::Get()->NewSpriteFrame(lOfficialInfo.value()._Img.c_str()));
+        if((int32)lOfficialInfo.value()._Class < (int32)EOfficialPersonClass::Bad){
+          _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("frame_king_23.png"));
+          CrownUpEffect(_OfficalIcon);
+        }else{
+          _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("frame_king_22.png"));
+          CrownDownEffect(_OfficalIcon);
+        }
+        _OfficalIcon->setPosition(_OfficalImage->getContentSize() / 2);
+      }
+    } else if(lShowOfficialType == EShowOfficialType::LEGEND){
+      LazyCreateOfficalImage();
+      auto lOfficialInfo = LegendKingRead::Get()->GetOfficialInfo(ELegendBuffType::PLAYER, _LeaguedOfficialType);
+      if(lOfficialInfo){
+        _OfficalIcon->setSpriteFrame(GDisplay::Get()->NewSpriteFrame(lOfficialInfo.value()._Img.c_str()));
+        _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("icon_LegendaryKing_honor.png"));
+        CrownUpEffect(_OfficalIcon);
+        _OfficalIcon->setPosition(_OfficalImage->getContentSize() / 2);
+      }
+    } else if(lShowOfficialType == EShowOfficialType::KINGSTAR){
+      LazyCreateOfficalImage();
+      auto lOficialInfo = LegendKingRead::Get()->GetOfficialInfo(ELegendBuffType::PLAYER, _KingStarOfficialType, (int32)WorldMapDefine::Get()->KINGSTAR_KINGDOM_ID);
+      if(lOficialInfo){
+        _OfficalIcon->setSpriteFrame(GDisplay::Get()->NewSpriteFrame(lOficialInfo.value()._Img.c_str()));
+        _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("icon_LegendaryKing_honor.png"));
+        CrownUpEffect(_OfficalIcon);
+        _OfficalIcon->setPosition(_OfficalImage->getContentSize() / 2);
+      }
+    } else if(lShowOfficialType == EShowOfficialType::HEGEMON){
+      LazyCreateOfficalImage();
+      _OfficalImage->setScale(1);
+      auto lOfficialImage = HegemonRead::Get()->GetOfficialIcon(_HegemonOfficialType);
+      auto lIsGood = HegemonRead::Get()->JudgeIsGood(_HegemonOfficialType);
+      if(lOfficialImage){
+        _OfficalIcon->setSpriteFrame(GDisplay::Get()->NewSpriteFrame(lOfficialImage.value().c_str()));
+        if(lIsGood){
+          _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("frame_touxiangkuang_01.png"));
+        }else{
+          _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("frame_touxiangkuang_02.png"));
+        }
+        if(_HegemonOfficialType == 1){
+          _OfficalIcon->setScale(0.45f);
+        }
+        if(lIsGood){
+          CrownUpEffect(_OfficalIcon);
+        }
+        _OfficalIcon->setPosition(_OfficalImage->getContentSize() / 2);
+      }
+    } else if(lShowOfficialType == EShowOfficialType::ATLANTIS){
+      LazyCreateOfficalImage();
+      _OfficalImage->setScale(1);
+      auto lOfficialImage = LordOfficialRead::Get()->GetOfficialIcon(lShowOfficialType, _AtlantisOfficialType);
+      if(lOfficialImage){
+        _OfficalIcon->setSpriteFrame(GDisplay::Get()->NewSpriteFrame(lOfficialImage.value().c_str()));
+        _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("frame_touxiangkuang_01.png"));
+        CrownUpEffect(_OfficalIcon);
+        _OfficalIcon->setPosition(_OfficalImage->getContentSize() / 2);
+      }
+    } else if(lShowOfficialType == EShowOfficialType::NEBULA){
+      LazyCreateOfficalImage();
+      _OfficalImage->setScale(1);
+      auto lOfficialImage = LordOfficialRead::Get()->GetOfficialIcon(lShowOfficialType, _NebulaOfficialID);
+      if(lOfficialImage){
+        _OfficalIcon->setSpriteFrame(GDisplay::Get()->NewSpriteFrame(lOfficialImage.value().c_str()));
+        _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("frame_touxiangkuang_01.png"));
+        CrownUpEffect(_OfficalIcon);
+        _OfficalIcon->setPosition(_OfficalImage->getContentSize() / 2);
+      }
+    } else if(lShowOfficialType == EShowOfficialType::NEBULA2){
+      LazyCreateOfficalImage();
+      _OfficalImage->setScale(1);
+      auto lOfficialImage = LordOfficialRead::Get()->GetOfficialIcon(lShowOfficialType, _NebulaOfficialID2);
+      if(lOfficialImage){
+        _OfficalIcon->setSpriteFrame(GDisplay::Get()->NewSpriteFrame(lOfficialImage.value().c_str()));
+        _OfficalImage->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("frame_touxiangkuang_01.png"));
+        CrownUpEffect(_OfficalIcon);
+        _OfficalIcon->setPosition(_OfficalImage->getContentSize() / 2);
+      }
+    } else {
+      lHide = true;
+    }
+  }
+
+  if(lHide && _OfficalImage && _OfficalImage->isVisible()){
+    _OfficalImage->setVisible(false);
+    _OfficalIcon->removeAllChildren();
+  }
 }
 
 void WorldMapBuilding::UpdateTopShowIcons(){
-  // local sortList = {
-  //   self.prisoneInIcon,
-  //   self.officalImage
-  // }
-  // local needShowTitleList = {}
-  // for _, v in ipairs(sortList) do
-  //   if v and v:isVisible() then
-  //     table.insert(needShowTitleList, v)
-  //   end
-  // end
-  // if #needShowTitleList >= 1 then
-  //   local dis = #needShowTitleList * 105 / 2
-  //   for i, v in ipairs(needShowTitleList) do
-  //     v:setPosition(cc.p(self.centerPoint.x - dis + 52.5 + (i - 1) * 105, self.centerPoint.y + 120))
-  //   end
-  // end
+  GVector<Node *> lNeedShowTitleList;
+  if(_PrisoneInIcon && _PrisoneInIcon->isVisible())
+    lNeedShowTitleList.push_back(_PrisoneInIcon);
+  if(_OfficalImage && _OfficalImage->isVisible())
+    lNeedShowTitleList.push_back(_OfficalImage);
+  
+  if(lNeedShowTitleList.size() >= 1){
+    auto lDis = lNeedShowTitleList.size() * 105 / 2;
+    for(int32 i = 0; i < lNeedShowTitleList.size(); ++i){
+      lNeedShowTitleList[i]->setPosition(Vec2(_CenterPoint.x - lDis + 52.5 + i * 105, _CenterPoint.y + 120));
+    }
+  }
 }
 
-void WorldMapBuilding::CreateMoveCityTimeNode(){
-  // local node = display.newNode()
-  // node:addTo(self, 100)
-  // node:setPosition(cc.p(self.centerPoint.x, self.centerPoint.y - 130))
-  // local image_bg = display.newSprite("#frame_map_18.png")
-  // image_bg:setAnchorPoint(cc.p(0.5, 0.5))
-  // image_bg:addTo(node)
-  // self.imageMoveCityTime = display.newSprite("#icon_hourglass.png")
-  // self.imageMoveCityTime:setAnchorPoint(cc.p(0.5, 0.5))
-  // self.imageMoveCityTime:addTo(node)
-  // self.txtMoveCityTime = cc.ui.UILabel.new({
-  //   UILabelType = 2,
-  //   text = "00:00:00",
-  //   size = 20
-  // })
-  // self.txtMoveCityTime:setAnchorPoint(cc.p(0.5, 0.5))
-  // self.txtMoveCityTime:addTo(node)
-  // self.txtMoveCityTime = SoraDCreateTimerLabel(self, self.txtMoveCityTime)
-  // self.txtMoveCityTime:setTimeLast(function(str, tick)
-  //   local reText = i18n("remains_text_83", {time = str})
-  //   return reText
-  // end)
-  // self.txtMoveCityTime:setTimeEndListener(function()
-  //   self:cleanMoveTime()
-  // end)
-  // self.txtMoveCityTime:setTimeUpdateListener(function()
-  //   self.imageMoveCityTime:setPositionX(SoraDFSign(self.txtMoveCityTime:getContentSize().width / 2 + 20))
-  // end)
-  // return node
+Node *WorldMapBuilding::CreateMoveCityTimeNode(){
+  auto lNode = GDisplay::Get()->NewNode();
+  addChild(lNode, 100);
+  lNode->setPosition(_CenterPoint + Vec2(0, -130));
+  auto lImageBg = GDisplay::Get()->NewSprite("frame_map_18.png");
+  lImageBg->setAnchorPoint(Vec2(0.5, 0.5));
+  lNode->addChild(lImageBg);
+  _ImageMoveCityTime = GDisplay::Get()->NewSprite("icon_hourglass.png");
+  _ImageMoveCityTime->setAnchorPoint(Vec2(0.5, 0.5));
+  lNode->addChild(_ImageMoveCityTime);
+  UIFontLabelParam lParam;
+  lParam._FontSize = 20;
+  lParam._Text = "00:00:00";
+  lParam._UILabelType = GBase::EUILabelType::TTF;
+
+  _TxtMoveCityTime = XUILabel::Create<UITimerLabel>(lParam);
+  _TxtMoveCityTime->setAnchorPoint(Vec2(0.5, 0.5));
+  lNode->addChild(_TxtMoveCityTime);
+  _TxtMoveCityTime->SetTimeLast([](const GString &pStr, GTime tick){
+    return Translate::i18n("remains_text_83", {{"time", pStr}});
+  });
+  _TxtMoveCityTime->SetTimeEndListener([this](){
+    CleanMoveTime();
+  });
+  _TxtMoveCityTime->SetTimeUpdateListener([this](GTime pTick){
+    _ImageMoveCityTime->setPositionX(GBase::DFSign(_TxtMoveCityTime->getContentSize().width / 2 + 20));
+  });
+  return lNode;
 }
 
 void WorldMapBuilding::CleanMoveTime(){
-  // self.moveCityTime = nil
-  // self:updateMoveTime()
+  _MoveCityTime = 0;
+  UpdateMoveTime();
 }
 
 void WorldMapBuilding::UpdateMoveTime(){
-  // if self.moveCityTime and self.moveCityTime > 0 then
-  //   if not self.nodeMoveCityTime then
-  //     self.nodeMoveCityTime = self:createMoveCityTimeNode()
-  //   end
-  //   if self.nodeMoveCityTime then
-  //     self.nodeMoveCityTime:setVisible(true)
-  //     if self.txtMoveCityTime then
-  //       self.txtMoveCityTime:beginTime(self.moveCityTime)
-  //     end
-  //   end
-  // elseif self.nodeMoveCityTime then
-  //   self.nodeMoveCityTime:setVisible(false)
-  // end
+  if(_MoveCityTime > 0){
+    if(!_NodeMoveCityTime){
+      _NodeMoveCityTime = CreateMoveCityTimeNode();
+    }
+    if(_NodeMoveCityTime){
+      _NodeMoveCityTime->setVisible(true);
+      if(_TxtMoveCityTime){
+        _TxtMoveCityTime->BeginTime(_MoveCityTime);
+      }
+    }
+  }else if(_NodeMoveCityTime){
+    _NodeMoveCityTime->setVisible(false);
+  }
 }
 
 void WorldMapBuilding::UpdateWallWarning(EventCustom *pEvent){
-  // local selfPlayerID = gametop.playertop_:getPlayerID() or 0
-  // local playerID = self.playerID or 0
-  // if selfPlayerID == playerID and playerID ~= 0 then
-  //   local tipsHandler = function()
-  //     local data = {
-  //       msg = "MESSAGE_MAINCITYVIEW_MOVETO_BUILDBYBID",
-  //       bid = BUILDID.WALLS,
-  //       view = "defendView"
-  //     }
-  //     SoraDSendMessage({
-  //       msg = "MESSAGE_MAINSCEN_ONSHOW",
-  //       viewType = VIEW_TYPE_CITY,
-  //       otherData = data
-  //     })
-  //     SoraDRemoveAllPanelFromManager()
-  //   end
-  //   if worldMapDefine.isInNewTrial() then
-  //     self:showWarningTip("devilvalley_text_23", tipsHandler)
-  //   end
-  // end
+  auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
+  auto lPlayerID = _PlayerID;
+  if(_PlayerID == lSelfPlayerID && _PlayerID != 0){
+    if(WorldMapDefine::Get()->IsInNewTrial()){
+      ShowWarningTip("devilvalley_text_23", [this](){
+        static RShowMainCityView lShowMainCityView;
+        lShowMainCityView.ViewType = EScene::City;
+        lShowMainCityView.OtherData._Msg = "MESSAGE_MAINCITYVIEW_MOVETO_BUILDBYBID";
+        lShowMainCityView.OtherData._Bid = BUILDID::WALLS;
+        lShowMainCityView.OtherData._View = "defendView";
+        GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &lShowMainCityView);
+        GPanelManger::DRemoveAllPanelFromManager();
+      });
+    }
+  }
 }
 
 int32 WorldMapBuilding::GetSourceKingdomID(){
-  // if self.sourceKingdomID then
-  //   return self.sourceKingdomID
-  // end
-  // return self.kingdomID
+  if(_SourceKingdomID)
+    return _SourceKingdomID;
+  return _KingdomID;
 }
 
 void WorldMapBuilding::SendTileEffectMessage(EWorldMapLeagueManorUpdateType pUpdateType, float pRadius){
-  // local selfPlayerID = gametop.playertop_:getPlayerID() or 0
-  // local playerID = self.playerID or 0
-  // local selfLeagueID = allianceMgr:getOwnTeamID() or 0
-  // local leagueID = self.leagueID or 0
-  // local _raduis = raduis or talentSkillCtrl:getSkillConfig(3).raduis
+  
+  auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
+  auto lSelfLeagueID = AllianceMgr::Get()->GetOwnTeamID();
+   // local _raduis = raduis or talentSkillCtrl:getSkillConfig(3).raduis
   // SoraDSendMessage({
   //   msg = "MESSAGE_WORLD_MAP_UPDATE_TILE_EFFECT",
   //   tilePoint = self:getTilePoint(),
@@ -2081,11 +2050,12 @@ void WorldMapBuilding::SendTileEffectMessage(EWorldMapLeagueManorUpdateType pUpd
   //   instanceID = self.instanceID,
   //   updateType = updateType
   // })
+
 }
 
 GTuple<UIBasePanel *, bool, Node*> WorldMapBuilding::OnClickInstance(Node *pNode){
-  // self:playClickSound()
-  // return self:onShowWorldMapTip(onShowView)
+  PlayClickSound();
+  return OnShowWorldMapTip(pNode);
 }
 
 GTuple<UIBasePanel *, bool, Node*> WorldMapBuilding::OnShowWorldMapTip(Node *pNode){
@@ -2095,62 +2065,48 @@ GTuple<UIBasePanel *, bool, Node*> WorldMapBuilding::OnShowWorldMapTip(Node *pNo
   //   gAtlantisUseSkillEffect = nil
   //   return nil, false
   // end
-  // self:setIsOnClick(true)
-  // return worldMapInstance.onShowWorldMapTip(self, ...)
+  SetIsOnClick(true);
+  return IWorldMapInstance::OnShowWorldMapTip(this);
 }
 
 void WorldMapBuilding::RefreshSignShow(bool pIsShow){
-  // if self.signature and self.signature ~= "" then
-  //   self.signNode:setVisible(isShow)
-  // else
-  //   self.signNode:setVisible(false)
-  // end
+  if(_Signature.empty()){
+    _SignNode->setVisible(false);
+  }else{
+    _SignNode->setVisible(pIsShow);
+  }
 }
 
 void WorldMapBuilding::RefreshSignText(){
-  // if self.signature and self.signature ~= "" then
-  //   self.signText:setString(self.signature)
-  //   self:refreshSignShow(not self.isOnClick)
-  //   if self.signatureBox and self.signatureBox == 1 then
-  //     self.signText:setPosition(0, -10)
-  //     self.signImage:loadTexture("frame_shmc_signature.png", ccui.TextureResType.plistType)
-  //     self.signImage:setContentSize(cc.size(160, 110))
-  //   else
-  //     self.signText:setPosition(0, 12)
-  //     self.signImage:loadTexture("frame_ssdt_qmk01.png", ccui.TextureResType.plistType)
-  //     self.signImage:setContentSize(cc.size(150, 62))
-  //   end
-  // else
-  //   self:refreshSignShow(false)
-  // end
+  if(!_Signature.empty()){
+    _SignText->setString(_Signature);
+    RefreshSignShow(!_IsOnClick);
+    if(_SignatureBox == ESignatureBoxType::Normal){
+      _SignText->setPosition(Vec2(0, -10));
+      _SignImage->loadTexture("frame_shmc_signature.png", TextureResType::PLIST);
+      _SignImage->setContentSize(Size(160, 110));
+    }else{
+      _SignText->setPosition(Vec2(0, 12));
+      _SignImage->loadTexture("frame_ssdt_qmk01.png", TextureResType::PLIST);
+      _SignImage->setContentSize(Size(150, 62));
+    }
+  }else{
+    RefreshSignShow(false);
+  }
 }
 
 void WorldMapBuilding::SetIsOnClick(bool pIsOnClick){
-  // self.isOnClick = isOnClick
-  // self:refreshSignShow(not self.isOnClick)
+  _IsOnClick = pIsOnClick;
+  RefreshSignShow(!_IsOnClick);
 }
 
 void WorldMapBuilding::RefreshSkillEffect(const RWorldBuildingInitData &pData){
-  // if not self.skillEffectList then
-  //   self.skillEffectList = {
-  //     [skillEffectType.RUINS_WAR_MOVE_CITY_LOCKED] = {
-  //       key = "isMoveCityLocked",
-  //       effect = nil
-  //     },
-  //     [skillEffectType.RUINS_WAR_SPEED_QUEUE_LOCKED] = {
-  //       key = "isSpeedQueueLocked",
-  //       effect = nil
-  //     },
-  //     [skillEffectType.APPOINT_DAMAGE_BOOST] = {
-  //       key = "isInDamagePlus",
-  //       effect = nil
-  //     },
-  //     [skillEffectType.APPOINT_CURE_SOLDIER_SPEED_BOOST] = {
-  //       key = "isInCureSpeedPlus",
-  //       effect = nil
-  //     }
-  //   }
-  // end
+  static GHashMap<ESkillEffectType, GPair<GString, Node *>> lSkillEffectTypeList = {
+    {ESkillEffectType::RUINS_WAR_MOVE_CITY_LOCKED, {"isMoveCityLocked", nullptr}},
+    {ESkillEffectType::RUINS_WAR_SPEED_QUEUE_LOCKED, {"isSpeedQueueLocked", nullptr}},
+    {ESkillEffectType::APPOINT_DAMAGE_BOOST, {"isInDamagePlus", nullptr}},
+    {ESkillEffectType::APPOINT_CURE_SOLDIER_SPEED_BOOST, {"isInCureSpeedPlus", nullptr}}
+  };
   // for i, v in ipairs(self.skillEffectList) do
   //   if data[v.key] then
   //     if not v.effect then
@@ -2163,19 +2119,26 @@ void WorldMapBuilding::RefreshSkillEffect(const RWorldBuildingInitData &pData){
   // end
 }
 
-void WorldMapBuilding::CreateSkillEffect(ESkillEffectType pEffectType){
+Node *WorldMapBuilding::CreateSkillEffect(ESkillEffectType pEffectType){
   // if effectType == skillEffectType.RUINS_WAR_MOVE_CITY_LOCKED then
   //   local effect = SoraDCreatAnimation("Node_yjzz_jntx2", nil, false)
   //   effect:addTo(self, 6)
   //   effect:setPosition(0, 50)
   //   return effect
   // end
+  if(pEffectType == ESkillEffectType::RUINS_WAR_SPEED_QUEUE_LOCKED){
+    auto lEffect = GBase::DCreatAnimation("Node_yjzz_jntx1", nullptr, false);
+    lEffect.First->addTo(this, 5);
+    lEffect.First->setPosition(Vec2(0, 0));
+    return lEffect.First;
+  }
   // if effectType == skillEffectType.RUINS_WAR_SPEED_QUEUE_LOCKED then
   //   local effect = SoraDCreatAnimation("Node_yjzz_jntx1", nil, false)
   //   effect:addTo(self, 5)
   //   effect:setPosition(0, 0)
   //   return effect
   // end
+
   // if effectType == skillEffectType.APPOINT_DAMAGE_BOOST then
   //   local criSprite = cc.criSprite.createCriSprite("G_shixue.usm", false, true, nil)
   //   criSprite:addTo(self, 6)
@@ -2192,110 +2155,112 @@ void WorldMapBuilding::CreateSkillEffect(ESkillEffectType pEffectType){
 }
 
 void WorldMapBuilding::UpdateBuildStar(int32 pStarLv){
-  // if starLv and starLv > 0 then
-  //   self.starLv = starLv
-  //   self.image_level:setSpriteFrame(display.newSpriteFrame("icon_main_buildstar_lv.png"))
-  //   self.image_level:setGroupID(GROU_ID.build_star_normal)
-  //   self.image_level:setPosition(cc.p(self.centerPoint.x + 90, self.centerPoint.y - 43))
-  //   self.text_Level:setPosition(cc.p(self.centerPoint.x + 112, self.centerPoint.y - 49))
-  //   local isShowWarLv, textLv = SoraDGetBuildWarLv(self.cityLevel)
-  //   self.text_Level:setString(string.format("%d-%d", textLv, self.starLv))
-  //   if not self.spStarLight then
-  //     local sprite = display.newSprite()
-  //     sprite:addTo(self.image_level)
-  //     sprite:setPosition(83, 35)
-  //     self.spStarLight = sprite
-  //   end
-  //   local iconName = cityltCtrl.getBuildStarLight(self.starLv)
-  //   self.spStarLight:setSpriteFrame(iconName)
-  //   self:checkAndSetVisible(self.spStarLight, true)
-  // else
-  //   self:checkAndSetVisible(self.spStarLight, false)
-  // end
-  // self:setBuildStarEffect()
+  if(pStarLv > 0){
+    _StarLv = pStarLv;
+    _ImageLevel->setSpriteFrame(GDisplay::Get()->NewSpriteFrame("icon_main_buildstar_lv.png"));
+    //   self.image_level:setGroupID(GROU_ID.build_star_normal)
+    _ImageLevel->setPosition(_CenterPoint + Vec2(90, -43));
+    _TextLevel->setPosition(_CenterPoint + Vec2(112, -49));
+    auto [lIsShWarLv, lTextLv] = GBase::DGetBuildWarLv(_CityLevel);
+    _TextLevel->setString(StringUtils::format("%s-%d", lTextLv.c_str(), _StarLv));
+    if(!_SpStarLight){
+      _SpStarLight = Sprite::create();
+      _ImageLevel->addChild(_SpStarLight);
+      _SpStarLight->setPosition(83, 35);
+    }
+    auto lIconName = CityLtCtrl::Get()->GetBuildStarLight(_StarLv);
+    _SpStarLight->setSpriteFrame(lIconName);
+    CheckAndSetVisible(_SpStarLight, true);
+  }else{
+    CheckAndSetVisible(_SpStarLight, false);
+  }
+  SetBuildStarEffect();
+}
+
+void WorldMapBuilding::CheckAndSetVisible(Node *pWidget, bool pIsVisible){
+  if(pWidget)
+    pWidget->setVisible(pIsVisible);
 }
 
 void WorldMapBuilding::SetBuildStarEffect(){
-  // if not self.starLv or not (self.starLv > 0) then
-  //   self:checkAndSetVisible(self.buildStar_light, false)
-  //   self:checkAndSetVisible(self.buildStar_level, false)
-  //   return
-  // end
-  // local level = cityltCtrl.getBuildStarColor(self.starLv)
-  // if not self.buildStar_light then
-  //   local effect = SoraDCreatAnimation("Node_buildStar_light")
-  //   effect:addTo(self)
-  //   local x, y = self.image_level:getPosition()
-  //   effect:setPosition(x + 20, y - 10)
-  //   self.buildStar_light = effect
-  //   for k, v in pairs(effect:getChildren()) do
-  //     v:setPosition(0, 0)
-  //     self:setBuildStarGroupID(v)
-  //   end
-  // end
-  // self:checkAndSetVisible(self.buildStar_light, true)
-  // local nodeName = string.format("Node_%d", level)
-  // for k, v in pairs(self.buildStar_light:getChildren()) do
-  //   v:setVisible(v:getName() == nodeName)
-  // end
-  // if level > 1 then
-  //   if not self.buildStar_level then
-  //     local effect = SoraDCreatAnimation("Node_buildStar_all")
-  //     effect:addTo(self.warLVnode)
-  //     self:setBuildStarGroupID(effect)
-  //     self.buildStar_level = effect
-  //   end
-  //   for k, v in pairs(self.buildStar_level:getChildren()) do
-  //     v:setVisible(false)
-  //   end
-  //   local node_moon = SoraDGetChildByName(self, "node_moon")
-  //   self:checkAndSetVisible(node_moon, false)
-  //   local node_top_sword = SoraDGetChildByName(self, "node_top_sword")
-  //   self:checkAndSetVisible(node_top_sword, false)
-  //   local __, warLv = SoraDGetBuildWarLv(self.cityLevel)
-  //   local warLvColor = 0
-  //   if warLv >= 6 and warLv <= 7 then
-  //     warLvColor = 1
-  //   elseif warLv >= 8 and warLv <= 9 then
-  //     warLvColor = 2
-  //   elseif warLv >= 10 then
-  //     warLvColor = 3
-  //   end
-  //   local nodeName = string.format("Node_%d_%d", warLvColor, level - 1)
-  //   local curEffect = SoraDGetChildByName(self.buildStar_level, nodeName)
-  //   if curEffect then
-  //     curEffect:setVisible(true)
-  //     curEffect:setPosition(cc.p(0, 0))
-  //     local data = worldMapDefine.getWarLevelData(warLv)
-  //     if data then
-  //       local pos = data.bottom.img.bg[1].pos
-  //       local scale = data.bottom.scale or 1
-  //       local offset = data.bottom.offset or cc.p(0, 0)
-  //       local x = pos.x * scale + offset.x
-  //       local y = pos.y * scale + offset.y
-  //       curEffect:setPosition(cc.p(x, y))
-  //     end
-  //     local nodePos = {
-  //       cc.p(-100, -70),
-  //       cc.p(-50, -70),
-  //       cc.p(170, 0),
-  //       cc.p(130, 55)
-  //     }
-  //     for i = 1, 4 do
-  //       local Node_a = SoraDGetChildByName(curEffect, "Node_a" .. i)
-  //       if Node_a then
-  //         Node_a:setPosition(nodePos[i])
-  //       end
-  //     end
-  //   end
-  //   self:checkAndSetVisible(self.buildStar_level, true)
-  // else
-  //   self:checkAndSetVisible(self.buildStar_level, false)
-  //   local node_moon = SoraDGetChildByName(self, "node_moon")
-  //   self:checkAndSetVisible(node_moon, true)
-  //   local node_top_sword = SoraDGetChildByName(self, "node_top_sword")
-  //   self:checkAndSetVisible(node_top_sword, true)
-  // end
+  if(_StarLv == 0){
+    CheckAndSetVisible(_Building, false);
+    CheckAndSetVisible(_ImageLevel, false);
+  }
+  auto lLevel = CityLtCtrl::Get()->GetBuildStarColor(_StarLv);
+  if(!_BuildStarLight){
+    auto lEffect = GBase::DCreatAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/Node_buildStar_light.csb");
+    addChild(lEffect.First);
+    lEffect.First->setPosition(_ImageLevel->getPosition() + Vec2(20, -10));
+    _BuildStarLight = lEffect.First;
+    for(auto lChild : lEffect.First->getChildren()){
+      lChild->setPosition(Vec2(0, 0));
+      SetBuildStarGroupID(lChild);
+    }
+  }
+  CheckAndSetVisible(_BuildStarLight, true);
+  auto lNodeName = StringUtils::format("Node_%d", lLevel);
+  for(auto lChild : _BuildStarLight->getChildren()){
+    lChild->setVisible(lChild->getName() == lNodeName);
+  }
+  if(lLevel > 1){
+    //   if not self.buildStar_level then
+    //     local effect = SoraDCreatAnimation("Node_buildStar_all")
+    //     effect:addTo(self.warLVnode)
+    //     self:setBuildStarGroupID(effect)
+    //     self.buildStar_level = effect
+    //   end
+    //   for k, v in pairs(self.buildStar_level:getChildren()) do
+    //     v:setVisible(false)
+    //   end
+    //   local node_moon = SoraDGetChildByName(self, "node_moon")
+    //   self:checkAndSetVisible(node_moon, false)
+    //   local node_top_sword = SoraDGetChildByName(self, "node_top_sword")
+    //   self:checkAndSetVisible(node_top_sword, false)
+    //   local __, warLv = SoraDGetBuildWarLv(self.cityLevel)
+    //   local warLvColor = 0
+    //   if warLv >= 6 and warLv <= 7 then
+    //     warLvColor = 1
+    //   elseif warLv >= 8 and warLv <= 9 then
+    //     warLvColor = 2
+    //   elseif warLv >= 10 then
+    //     warLvColor = 3
+    //   end
+    //   local nodeName = string.format("Node_%d_%d", warLvColor, level - 1)
+    //   local curEffect = SoraDGetChildByName(self.buildStar_level, nodeName)
+    //   if curEffect then
+    //     curEffect:setVisible(true)
+    //     curEffect:setPosition(cc.p(0, 0))
+    //     local data = worldMapDefine.getWarLevelData(warLv)
+    //     if data then
+    //       local pos = data.bottom.img.bg[1].pos
+    //       local scale = data.bottom.scale or 1
+    //       local offset = data.bottom.offset or cc.p(0, 0)
+    //       local x = pos.x * scale + offset.x
+    //       local y = pos.y * scale + offset.y
+    //       curEffect:setPosition(cc.p(x, y))
+    //     end
+    //     local nodePos = {
+    //       cc.p(-100, -70),
+    //       cc.p(-50, -70),
+    //       cc.p(170, 0),
+    //       cc.p(130, 55)
+    //     }
+    //     for i = 1, 4 do
+    //       local Node_a = SoraDGetChildByName(curEffect, "Node_a" .. i)
+    //       if Node_a then
+    //         Node_a:setPosition(nodePos[i])
+    //       end
+    //     end
+    //   end
+    //   self:checkAndSetVisible(self.buildStar_level, true)
+  }else{
+    //   self:checkAndSetVisible(self.buildStar_level, false)
+    //   local node_moon = SoraDGetChildByName(self, "node_moon")
+    //   self:checkAndSetVisible(node_moon, true)
+    //   local node_top_sword = SoraDGetChildByName(self, "node_top_sword")
+    //   self:checkAndSetVisible(node_top_sword, true)
+  }
 }
 
 void WorldMapBuilding::SetBuildStarGroupID(Node *pTarget){}

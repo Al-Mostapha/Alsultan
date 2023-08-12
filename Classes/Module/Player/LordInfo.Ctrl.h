@@ -12,4 +12,5 @@ public:
   RLordInfo GetLordInfoByUid( Guid p_PlayerUid, int32 p_KID, const char *p_From);
   uint32 GetLordLevel();
   int32 GetMapSourceKid();
+  EShowOfficialType GetShowOfficialTypeForLord(const RLordInfo &pLordInfo);
 };

@@ -2,8 +2,9 @@
 #include "cocos2d.h"
 #include "Include/IncludeBase.h"
 #include "Base/Containers/Pair.h"
-USING_NS_CC;
+#include "cocostudio/CocoStudio.h"
 
+USING_NS_CC;
 typedef cocostudio::timeline::ActionTimeline XActionTimeLine;
 
 struct GAnimationParm

@@ -3,6 +3,7 @@
 #include "Base/Containers/HashMap.h"
 #include "Module/City/City.Type.h"
 #include "Module/Effect/Effect.Enum.h"
+#include "Lord.Enum.h"
 
 struct RPlayer
 {
@@ -38,4 +39,13 @@ struct RLordInfo
   struct {
     int32 sourceKID = 0; // Source Kingdom ID
   } Base;
+
+  EShowOfficialType _ShowOfficialType;
+  EShowOfficialType _Official;
+  int32 _LegendTitle = 0;
+  int32 _LegendForSepTitle = 0;
+  int32 _HegemonTitle = 0;
+  int32 _AtlantisOfficialType = 0;
+  int32 _NebulaOfficialID = 0;
+  int32 _NebulaOfficialID2 = 0;
 };

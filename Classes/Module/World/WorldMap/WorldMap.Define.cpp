@@ -42,6 +42,10 @@ bool WorldMapDefine::IsInKingdomBattle(){
   return false;
 }
 
+bool WorldMapDefine::IsInNewTrial(){
+  return false;
+}
+
 bool WorldMapDefine::IsInWarForbid(bool p_NoShowTips, bool p_Activity){
   return false;
 }
@@ -222,5 +226,9 @@ GOpt<RWarLevelConfig> WorldMapDefine::GetWarLevelData(int32 pWarLv){
 }
 
 bool WorldMapDefine::IsRadianceKingdomID(int32 pKingdomID){
+  return false;
+}
+
+bool WorldMapDefine::IsRemainsKingdomID(int32 pKingdomID){
   return false;
 }

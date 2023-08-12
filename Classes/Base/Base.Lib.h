@@ -26,11 +26,6 @@ class UIBasePanel;
 
 namespace GBase {
 
-enum class EUILabelType{
-  BMF = 1,
-  TTF = 2
-};
-
 struct RCreateLabelParm{
   GString Txt;
   GString FontName = "";

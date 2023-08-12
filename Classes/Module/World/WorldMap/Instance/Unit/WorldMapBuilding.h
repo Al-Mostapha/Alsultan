@@ -151,6 +151,8 @@ class WorldMapBuilding : public IWorldMapInstance
   Sprite *_OfficalIcon = nullptr;
   Sprite *_PrisoneInIcon = nullptr;
   Sprite *_MeteoriteEffect = nullptr;
+  Sprite *_ImageMoveCityTime = nullptr;
+  Sprite *_SpStarLight = nullptr;
   
   Label  *_TextName = nullptr;
   Label *_TextLevel = nullptr;
@@ -169,6 +171,8 @@ class WorldMapBuilding : public IWorldMapInstance
   Node *_EtNodeRainbow = nullptr;
   Node *_EtNodeShining = nullptr;
   Node *_PyramidProtectNode = nullptr;
+  Node *_BuildStarLight = nullptr;
+  Node *_BuildStarLevel = nullptr;
   FireTimeNode *_FireWorkTimeNode = nullptr;
 
   ui::Text *_SignText = nullptr;
@@ -242,7 +246,7 @@ class WorldMapBuilding : public IWorldMapInstance
   void LazyCreatePrisoneInImage();
   void UpdateOfficial();
   void UpdateTopShowIcons();
-  void CreateMoveCityTimeNode();
+  Node *CreateMoveCityTimeNode();
   void CleanMoveTime();
   void UpdateMoveTime();
   void UpdateWallWarning(EventCustom *pEvent);
@@ -254,13 +258,14 @@ class WorldMapBuilding : public IWorldMapInstance
   void RefreshSignText();
   void SetIsOnClick(bool pIsOnClick);
   void RefreshSkillEffect(const RWorldBuildingInitData &pData);
-  void CreateSkillEffect(ESkillEffectType pEffectType);
+  Node *CreateSkillEffect(ESkillEffectType pEffectType);
   void UpdateBuildStar(int32 pStarLv);
   void SetBuildStarEffect();
   void SetBuildStarGroupID(Node *pTarget);
   bool IsSysWarProtect();
 
   void Toggle3D(EventCustom *pEvent);
-
+  
+  void CheckAndSetVisible(Node *pWidget, bool pIsVisible);
   
 };

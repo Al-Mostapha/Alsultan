@@ -45,6 +45,8 @@ public:
   void SetTilesArray(GVector<Vec2> pTilesArray);
   void SetTilePoint(Vec2 pTilePoint);
   void SetHoldInstace(int32 pHoldInstace);
+  void ShowWarningTip(const GString &pTipInfo, const std::function<void()> &pCallback = nullptr, float pDelay = 0.f);
+
   virtual void SetBatchNodeGroupID(EGrouID pBatchNodeGroupID);
   
   virtual void Ctor();

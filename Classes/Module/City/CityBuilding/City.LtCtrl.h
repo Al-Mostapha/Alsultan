@@ -10,5 +10,7 @@ class CityLtCtrl{
   public:
     void Init();
     static CityLtCtrl *Get();
+    GString GetBuildStarLight(int32 pStarLv);
+    int32 GetBuildStarColor(int32 pStarLv);
   
 };
