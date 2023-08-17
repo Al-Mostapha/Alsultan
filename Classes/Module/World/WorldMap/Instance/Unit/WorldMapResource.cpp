@@ -27,9 +27,9 @@ void WorldMapResource::_InitUI(){
   //self.image_level:setGroupID(worldMapDefine.GROU_ID.group_level_build)
   this->addChild(_ImageLevel, 1);
   GBase::RCreateLabelParm lParm;
-  lParm.UILabelType = GBase::EUILabelType::TTF;
-  lParm.Txt = "1";
-  lParm.fontSize = 14;
+  lParm._UILabelType = GBase::EUILabelType::TTF;
+  lParm._Text = "1";
+  lParm._FontSize = 14;
   _ResourceLevelLabel = GBase::DCreateLabel(lParm);
   _ResourceLevelLabel->setAnchorPoint(Vec2(0.5, 0.5));
   _ResourceLevelLabel->setSkewY(25);
@@ -175,37 +175,37 @@ void WorldMapResource::PlayClickSound(){
   }
 }
 
-GVector<EWorldMapTipButtonType> WorldMapResource::GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar){
+GVector<RButtonTypeArray> WorldMapResource::GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar){
 
-  GVector<EWorldMapTipButtonType> lButtonTypeArray;
+  GVector<RButtonTypeArray> lButtonTypeArray;
   auto lSelfLeagueID = AllianceManager::Get()->GetOwnTeamID();
   auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
   if(_PlayerID <= 0){
     if(pIsSelfKingdom){
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::zhanLing);
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::xiangqing);
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::zhanLing});
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::xiangqing});
     }
-    lButtonTypeArray.push_back(EWorldMapTipButtonType::shuoMing);
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::shuoMing});
   } else if(pIsSelfKingdom){
     if(_PlayerID == lSelfPlayerID){
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::fanHui);
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::xiangqing);
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::fanHui});
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::xiangqing});
       if(CanHasEmojiOperator(lSelfPlayerID)){
-        lButtonTypeArray.push_back(EWorldMapTipButtonType::biaoqingyinzhang);
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::biaoqingyinzhang});
       }
     }else if(_LeagueID > 0 && _LeagueID == lSelfLeagueID){
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::xiangqing);
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::yongHuXinxi);
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::xiangqing});
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::yongHuXinxi});
     }else{
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::gongJi);
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::xiangqing);
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::gongJi});
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::xiangqing});
       auto lTowerLv = CityCtrl::Get()->GetBuildingMaxLv(EBuilding::WatchTower);
       if(lTowerLv > 1)
-        lButtonTypeArray.push_back(EWorldMapTipButtonType::zhenCha);
-      lButtonTypeArray.push_back(EWorldMapTipButtonType::yongHuXinxi);
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::zhenCha});
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::yongHuXinxi});
     }
   }else{
-    lButtonTypeArray.push_back(EWorldMapTipButtonType::yongHuXinxi);
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::yongHuXinxi});
   }
   return lButtonTypeArray;
 }

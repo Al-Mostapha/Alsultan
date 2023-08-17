@@ -57,7 +57,7 @@ class WorldMapResource : public IWorldMapInstance
     GString GetFavoriteName();
     GTuple<UIBasePanel *, bool, Node*> OnClickInstance(Node *pNode) override;
     void PlayClickSound() override;
-    GVector<EWorldMapTipButtonType> GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar) override;
+    GVector<RButtonTypeArray> GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar) override;
     void UpdateParticleNode();
     void AddParticleNode();
     void RemoveParticleNode();

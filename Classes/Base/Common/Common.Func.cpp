@@ -1,6 +1,7 @@
 #include "Common.Func.h"
 #include "Engine/Display.h"
 #include "Base/Base.create.h"
+#include "Scene/Main/MainScene.h"
 #include "Module/UI/Part/World/WorldMap/UIWorldMapFaceToDistance.h"
 
 Node *GBase::DCreateEffectNode(
@@ -239,21 +240,21 @@ void GBase::DStopEffectNode(Node *p_Node){
 }
 
 UIWorldMapFaceToDistance *GBase::DGetWorldMapFaceToDistanceNode(){
-  //   local currentScene = display.getRunningScene()
-  // local faceToDistanceNode
-  // if currentScene.name == "MainScene" then
-  //   local panel = currentScene:getPanelView()
-  //   faceToDistanceNode = panel.faceToDistanceNode
-  //   if not faceToDistanceNode or tolua.isnull(faceToDistanceNode) then
-  //     faceToDistanceNode = include("worldMapFaceToDistance").new()
-  //     faceToDistanceNode:setPosition(cc.p(display.cx, display.cy))
-  //     faceToDistanceNode:setVisible(false)
-  //     faceToDistanceNode:addTo(panel, 1)
-  //     panel.faceToDistanceNode = faceToDistanceNode
-  //   end
-  // end
-  // return faceToDistanceNode
-  return nullptr;
+
+  auto lCurrentScene = GDisplay::Get()->GetRunningScene();
+  UIWorldMapFaceToDistance *lFaceToDistanceNode = nullptr;
+  if(lCurrentScene->_Name == "MainScene"){
+    auto lPanel = lCurrentScene->PanelView();
+    lFaceToDistanceNode = lPanel->getChildByName<UIWorldMapFaceToDistance *>("faceToDistanceNode");
+    if(!lFaceToDistanceNode){
+      lFaceToDistanceNode = UIWorldMapFaceToDistance::Create();
+      lFaceToDistanceNode->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
+      lFaceToDistanceNode->setVisible(false);
+      lPanel->addChild(lFaceToDistanceNode, 1);
+      lPanel->setName("faceToDistanceNode");
+    }
+  }
+  return lFaceToDistanceNode;
 }
 
 void GBase::DFadeINOUT(Node *p_Node, const RFadeInOutParam &p_Param){

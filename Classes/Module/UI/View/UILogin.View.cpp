@@ -531,10 +531,10 @@ void UILoginView::EnterGame(){
 
 void UILoginView::ResetIceHuntingRecord(){
   auto l_Result = GBase::DConfigGet<GString>("Game:worldMapView:iceHuntingLVRange~string", true);
-  if(l_Result == "none"){
+  if(l_Result && l_Result.value() == "none"){
     l_Result = "1,1";
   }
-  GBase::DConfigSet<GString>("Game:worldMapView:iceHuntingLVRange~string", l_Result, true);
+  GBase::DConfigSet<GString>("Game:worldMapView:iceHuntingLVRange~string", l_Result.value(), true);
 }
 
 void UILoginView::ResetSearchMonsterRecord(){

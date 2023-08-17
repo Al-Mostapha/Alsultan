@@ -1062,9 +1062,9 @@ void IBuilding::UpdateTextLvl() {
   auto l_StarLvl = GetStarLvl();
   auto [lIsWar, lWarLv, lDes] = GBase::DGetBuildWarLv(l_BuildingLvl);
   if (l_StarLvl > 0) {
-    SetTextLvl(lWarLv + "-" + std::to_string(l_StarLvl));
+    SetTextLvl(std::to_string(lWarLv) + "-" + std::to_string(l_StarLvl));
   } else {
-    SetTextLvl(lWarLv);
+    SetTextLvl(std::to_string(lWarLv));
   }
 }
 

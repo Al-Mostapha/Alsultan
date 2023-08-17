@@ -18,7 +18,7 @@ public:
   void Show(){};
   static UIPandectView *Create() {
     //TODO: sET Real path here
-    return Create("UiParts/Panel/World/WorldMap/worldResourceMap.csb");
+    return Create("UiParts/Scene/World/worldResourceMap.csb");
   };
 };
 

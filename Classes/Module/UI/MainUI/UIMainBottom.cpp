@@ -401,8 +401,8 @@ void UIMainBottom::InitGroup() {
 Label* UIMainBottom::ExchangeGroupText(ui::Text* p_Text, float p_Height) {
   auto l_CreateLabelParam = GBase::RCreateLabelParm();
   // l_CreateLabelParam.UILabelType = 2;
-  l_CreateLabelParam.Txt = "";
-  l_CreateLabelParam.fontSize = p_Text->getFontSize();
+  l_CreateLabelParam._Text = "";
+  l_CreateLabelParam._FontSize = p_Text->getFontSize();
   l_CreateLabelParam.Color = Color4B(p_Text->getTextColor());
   l_CreateLabelParam.Dimensions = Size(200, p_Height || 30);
   l_CreateLabelParam.hAlignment = TextHAlignment::CENTER;

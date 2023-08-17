@@ -1,5 +1,6 @@
 #include "WorldMap.Com.UI.h"
 #include "WorldMap.Com.Lod.h"
+#include "Engine/Engine.h"
 #include "Module/City/City.Ctrl.h"
 #include "Base/Common/Common.Teml.h"
 #include "Base/Common/Common.Func.h"
@@ -33,6 +34,7 @@ void WorldMapComUI::Init(){
   _IsHideDis = false;
   _MapViewCenterPoint = _Target->_MapViewCenterPoint;
   _NodeBottom = GBase::DGetChildByName<Node *>(_Target, "Node_bottom");
+  GEngine::Get()->PrintNodeTree(_Target);
   _NodeBottom->setPositionY(160 + GDisplay::Get()->iPhoneXBottom);
   _BottomPointNode = GBase::DGetExtendChildFromCCSByName<UIWorldMapBottomPoint>(_Target, "CCS_worldMapBottomPoint_1");
   _BottomPointNode->addTouchEventListener(CC_CALLBACK_2(WorldMapComUI::BottomPointOnClick, this));

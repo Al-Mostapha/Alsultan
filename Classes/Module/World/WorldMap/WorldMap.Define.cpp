@@ -107,7 +107,7 @@ WorldMapProtectNode *WorldMapDefine::CreateWorldMapProtect(bool pIsGreen){
   return WorldMapProtectNode::Create(pIsGreen);
 }
 
-WorldMapProtectNode *CreateWorldMapProtectNew(bool pIsGray = false){
+WorldMapProtectNode *WorldMapDefine::CreateWorldMapProtectNew(bool pIsGray){
   return WorldMapProtectNode::CreateNew(pIsGray);
 }
 
@@ -131,19 +131,12 @@ int32 WorldMapDefine::GetResourceCastleLv(int32 pResourceClassID){
   return 1;
 }
 
-// local lineColor_self = cc.c3b(0, 255, 0)
-static const Color3B lineColor_self = Color3B(0, 255, 0);
-// local lineColor_leader = cc.c3b(255, 0, 255)
+static const Color3B lineColor_self   = Color3B(0, 255, 0);
 static const Color3B lineColor_leader = Color3B(255, 0, 255);
-// local lineColor_league = cc.c3b(0, 126, 255)
 static const Color3B lineColor_league = Color3B(0, 126, 255);
-// local lineColor_all = cc.c3b(0, 255, 255)
-static const Color3B lineColor_all = Color3B(0, 255, 255);
-// local lineColor_friend = cc.c3b(255, 255, 0)
+static const Color3B lineColor_all    = Color3B(0, 255, 255);
 static const Color3B lineColor_friend = Color3B(255, 255, 0);
-// local lineColor_enemy = cc.c3b(255, 0, 0)
-static const Color3B lineColor_enemy = Color3B(255, 0, 0);
-// local lineColor_normal = cc.c3b(250, 250, 250)
+static const Color3B lineColor_enemy  = Color3B(255, 0, 0);
 static const Color3B lineColor_normal = Color3B(250, 250, 250);
 
 const Color3B &WorldMapDefine::GetLeagueManorLineColor(bool pIsSelf , EMapAllianceRelationType pRelation){

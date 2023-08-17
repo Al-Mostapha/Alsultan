@@ -9,6 +9,7 @@
 #include <time.h>
 #include <optional>
 #include <tuple>
+#include <variant>
 
 
 typedef std::string GString;
@@ -48,6 +49,9 @@ using GOpt = std::optional<K>;
 
 template <typename... Args>
 using GTuple = std::tuple<Args...>;
+
+template <typename... Args>
+using GVar = std::variant<Args...>;
 
 enum class ENullBool{
   Null,

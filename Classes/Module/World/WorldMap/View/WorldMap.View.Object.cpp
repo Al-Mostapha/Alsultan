@@ -1,6 +1,7 @@
 #include "WorldMap.View.Object.h"
 #include "Base/BaseTypeDef.h"
 #include "Module/World/WorldMap/Compnant/WorldMapCom.TmxTerrianBg.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.UI.h"
 
 void WorldMapViewObject::AddComponents(RViewClass p_Config, WorldMapView *p_Target){
   static GVector<GString> l_ComTable = {
@@ -19,6 +20,7 @@ void WorldMapViewObject::AddComponents(RViewClass p_Config, WorldMapView *p_Targ
     "worldMapComTileEffect"
   };
   _Components.push_back(WorldMapComTmxTerrianBg::Create(p_Target));
+  _Components.push_back(IWorldMapComponent::Create<WorldMapComUI>(p_Config, p_Target));
   // for _, v in ipairs(comTable) do
   //   self:addCustomComponent(v, nil, config)
   // end

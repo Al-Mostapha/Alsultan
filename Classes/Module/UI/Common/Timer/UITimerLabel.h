@@ -8,12 +8,15 @@ class UITimerLabel : public Label
 {
 
 private:
-  CREATE_FUNC(UITimerLabel);
+
 public:
+  CREATE_FUNC(UITimerLabel);
   UITimerLabel(){};
   ~UITimerLabel(){};
-  static UITimerLabel *Create() {return create();};
-  static UITimerLabel *DCreateTimerLabel(Label *pLable);
+  static UITimerLabel *Create() {
+    return create();
+  };
+  static UITimerLabel *DCreateTimerLabel(Node *pLable);
   void BeginTime(GTime){}
   void RemoveTime();
   void SetTimeLast(std::function<GString(const GString &, GTime)> pHandle){}

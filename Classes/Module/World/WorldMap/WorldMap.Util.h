@@ -3,7 +3,9 @@
 #include "WorldMap.Type.h"
 class WorldMapUtil{
   public:
+  GHashMap<int32, int32> _CastleModelCfg;
   static WorldMapUtil *Get();
+  void Init();
   void ResetConfig();
   GString GetTileMapTmxForPlatform(const GString &p_TmxName){
     return p_TmxName + ".tmx";

@@ -25,9 +25,11 @@
 #include "Base/Common/Common.Msg.h"
 #include "Base/Common/Common.Func.h"
 #include "Base/Common/Common.Teml.h"
+#include "Base/Common/Panel.Manger.h"
 #include "Base/Functions/ServiceFunction.h"
 #include "Base/Utils/XTransition.h"
 #include "Base/Base.Geometry.h"
+#include "Base/Base.create.h"
 #include "Engine/Base/UI/XUILabel.h"
 #include "Module/Equip/Equip.Read.h"
 #include "Module/Vip/ExaltedPrivilege.Ctrl.h"
@@ -91,9 +93,9 @@ void WorldMapBuilding::_InitUI(){
   addChild(_ImageName, 3);
   // self.image_name:setGroupID(GROU_ID.group_level_build)
   static GBase::RCreateLabelParm lParm;
-  lParm.UILabelType = GBase::EUILabelType::TTF;
-  lParm.Txt = "";
-  lParm.fontSize = 20;
+  lParm._UILabelType = GBase::EUILabelType::TTF;
+  lParm._Text = "";
+  lParm._FontSize = 20;
   _TextName = GBase::DCreateLabel(lParm);
   _TextName->setAnchorPoint(Vec2(0.5, 0.5));
   _TextName->setPosition(Vec2(_CenterPoint.x - 0, _CenterPoint.y - 90));
@@ -102,8 +104,8 @@ void WorldMapBuilding::_InitUI(){
   _ImageLevel = GDisplay::Get()->NewSprite("icon_map_reslevel.png");
   _ImageLevel->setPosition(Vec2(_CenterPoint.x + 60, _CenterPoint.y - 50));
   addChild(_ImageLevel, 2);
-  lParm.Txt = "1";
-  lParm.fontSize = 14;
+  lParm._Text = "1";
+  lParm._FontSize = 14;
   _TextLevel = GBase::DCreateLabel(lParm);
   _TextLevel->setAnchorPoint(Vec2(0.5, 0.5));
   _TextLevel->setSkewY(25);
@@ -131,8 +133,8 @@ void WorldMapBuilding::_InitUI(){
   lImageName->setAnchorPoint(Vec2(0.5, 0.5));
   lImageName->setPosition(Vec2(0, -50));
   _NecklaceNode->addChild(lImageName);
-  lParm.Txt = "";
-  lParm.fontSize = 14;
+  lParm._Text = "";
+  lParm._FontSize = 14;
   auto lNecklaceName = GBase::DCreateLabel(lParm);
   lNecklaceName->setAnchorPoint(Vec2(0.5, 0.5));
   _NecklaceNode->addChild(lNecklaceName);
@@ -170,24 +172,13 @@ void WorldMapBuilding::_InitUI(){
 }
 
 void WorldMapBuilding::OnMessageListener(){
-  GBase::DAddMessage(this, "MESSAGE_WORLD_MAP_TOGGLE_3D", CC_CALLBACK_1(WorldMapBuilding::Toggle3D, this));
+  // GBase::DAddMessage(this, "MESSAGE_WORLD_MAP_TOGGLE_3D", CC_CALLBACK_1(IWorldMapInstance::Toggle3D, this));
   GBase::DAddMessage(this, "MESSAGE_WORLD_MAP_ENEMY_CASTLE_EFFECT", CC_CALLBACK_1(WorldMapBuilding::SetWarPlayerInfo, this));
   GBase::DAddMessage(this, "MESSAGE_WALLS_NOTIFY_TRIAL_WARNING", CC_CALLBACK_1(WorldMapBuilding::UpdateWallWarning, this));
   GBase::DAddMessage(this, "MESSAGE_WORLD_MAP_CASTLE_OFFICEICON", CC_CALLBACK_1(WorldMapBuilding::UpdateOfficeIcon, this));
   GBase::DAddMessage(this, "MESSAGE_LORDINFO_TITLE_SHOW", CC_CALLBACK_1(WorldMapBuilding::UpdateOfficeIcon, this));
   GBase::DAddMessage(this, "MESSAGE_WORLD_MAP_CASTLE_PRISIONICON", CC_CALLBACK_1(WorldMapBuilding::UpdatePrisionIcon, this));
   GBase::DAddMessage(this, "MESSAGE_GREEN_POINT_UPDATE", CC_CALLBACK_1(WorldMapBuilding::UpdateAllianceCounter, this));
-}
-
-void WorldMapBuilding::RefreshSignShow(bool pIsShow){
-  if(!_Signature.empty())
-  {
-    _SignNode->setVisible(pIsShow);
-  }
-  else
-  {
-    _SignNode->setVisible(false);
-  }
 }
 
 void WorldMapBuilding::SetBatchNodeGroupID(EGrouID pBatchNodeGroupID){
@@ -522,6 +513,7 @@ void WorldMapBuilding::UpdateData(const RWorldBuildingInitData &pData){
   _Signature = pData._Signature;
   _SignatureBox = pData._SignatureBox;
   _CastleAppearanceEndTime = pData._CastleAppearanceEndTime;
+  _SysWarProtectStatusEndTime = pData._SysWarProtectStatusEndTime;
   RefreshSignShow(true);
   RefreshSkillEffect(pData);
   UpdateBuildStar(pData._StarLv);
@@ -2021,10 +2013,10 @@ void WorldMapBuilding::UpdateWallWarning(EventCustom *pEvent){
         static RShowMainCityView lShowMainCityView;
         lShowMainCityView.ViewType = EScene::City;
         lShowMainCityView.OtherData._Msg = "MESSAGE_MAINCITYVIEW_MOVETO_BUILDBYBID";
-        lShowMainCityView.OtherData._Bid = BUILDID::WALLS;
+        lShowMainCityView.OtherData._BID = EBuilding::Wall;
         lShowMainCityView.OtherData._View = "defendView";
         GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &lShowMainCityView);
-        GPanelManger::DRemoveAllPanelFromManager();
+        GPanelManger::Get()->DRemoveAllPanelFromManager();
       });
     }
   }
@@ -2039,7 +2031,7 @@ int32 WorldMapBuilding::GetSourceKingdomID(){
 void WorldMapBuilding::SendTileEffectMessage(EWorldMapLeagueManorUpdateType pUpdateType, float pRadius){
   
   auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
-  auto lSelfLeagueID = AllianceMgr::Get()->GetOwnTeamID();
+  auto lSelfLeagueID = AllianceManager::Get()->GetOwnTeamID();
    // local _raduis = raduis or talentSkillCtrl:getSkillConfig(3).raduis
   // SoraDSendMessage({
   //   msg = "MESSAGE_WORLD_MAP_UPDATE_TILE_EFFECT",
@@ -2083,11 +2075,11 @@ void WorldMapBuilding::RefreshSignText(){
     RefreshSignShow(!_IsOnClick);
     if(_SignatureBox == ESignatureBoxType::Normal){
       _SignText->setPosition(Vec2(0, -10));
-      _SignImage->loadTexture("frame_shmc_signature.png", TextureResType::PLIST);
+      _SignImage->loadTexture("frame_shmc_signature.png", ui::Widget::TextureResType::PLIST);
       _SignImage->setContentSize(Size(160, 110));
     }else{
       _SignText->setPosition(Vec2(0, 12));
-      _SignImage->loadTexture("frame_ssdt_qmk01.png", TextureResType::PLIST);
+      _SignImage->loadTexture("frame_ssdt_qmk01.png", ui::Widget::TextureResType::PLIST);
       _SignImage->setContentSize(Size(150, 62));
     }
   }else{
@@ -2101,12 +2093,12 @@ void WorldMapBuilding::SetIsOnClick(bool pIsOnClick){
 }
 
 void WorldMapBuilding::RefreshSkillEffect(const RWorldBuildingInitData &pData){
-  static GHashMap<ESkillEffectType, GPair<GString, Node *>> lSkillEffectTypeList = {
-    {ESkillEffectType::RUINS_WAR_MOVE_CITY_LOCKED, {"isMoveCityLocked", nullptr}},
-    {ESkillEffectType::RUINS_WAR_SPEED_QUEUE_LOCKED, {"isSpeedQueueLocked", nullptr}},
-    {ESkillEffectType::APPOINT_DAMAGE_BOOST, {"isInDamagePlus", nullptr}},
-    {ESkillEffectType::APPOINT_CURE_SOLDIER_SPEED_BOOST, {"isInCureSpeedPlus", nullptr}}
-  };
+  // static GHashMap<ESkillEffectType, GPair<GString, Node *>> lSkillEffectTypeList = {
+  //   {ESkillEffectType::RUINS_WAR_MOVE_CITY_LOCKED, {"isMoveCityLocked", nullptr}},
+  //   {ESkillEffectType::RUINS_WAR_SPEED_QUEUE_LOCKED, {"isSpeedQueueLocked", nullptr}},
+  //   {ESkillEffectType::APPOINT_DAMAGE_BOOST, {"isInDamagePlus", nullptr}},
+  //   {ESkillEffectType::APPOINT_CURE_SOLDIER_SPEED_BOOST, {"isInCureSpeedPlus", nullptr}}
+  // };
   // for i, v in ipairs(self.skillEffectList) do
   //   if data[v.key] then
   //     if not v.effect then
@@ -2127,8 +2119,8 @@ Node *WorldMapBuilding::CreateSkillEffect(ESkillEffectType pEffectType){
   //   return effect
   // end
   if(pEffectType == ESkillEffectType::RUINS_WAR_SPEED_QUEUE_LOCKED){
-    auto lEffect = GBase::DCreatAnimation("Node_yjzz_jntx1", nullptr, false);
-    lEffect.First->addTo(this, 5);
+    auto lEffect = GBase::DCreateAnimation("Node_yjzz_jntx1", nullptr, false);
+    addChild(lEffect.First, 5);
     lEffect.First->setPosition(Vec2(0, 0));
     return lEffect.First;
   }
@@ -2161,8 +2153,8 @@ void WorldMapBuilding::UpdateBuildStar(int32 pStarLv){
     //   self.image_level:setGroupID(GROU_ID.build_star_normal)
     _ImageLevel->setPosition(_CenterPoint + Vec2(90, -43));
     _TextLevel->setPosition(_CenterPoint + Vec2(112, -49));
-    auto [lIsShWarLv, lTextLv] = GBase::DGetBuildWarLv(_CityLevel);
-    _TextLevel->setString(StringUtils::format("%s-%d", lTextLv.c_str(), _StarLv));
+    auto [lIsShWarLv, lTextLv, l_] = GBase::DGetBuildWarLv(_CityLevel);
+    _TextLevel->setString(StringUtils::format("%s-%d", lTextLv, _StarLv));
     if(!_SpStarLight){
       _SpStarLight = Sprite::create();
       _ImageLevel->addChild(_SpStarLight);
@@ -2184,12 +2176,12 @@ void WorldMapBuilding::CheckAndSetVisible(Node *pWidget, bool pIsVisible){
 
 void WorldMapBuilding::SetBuildStarEffect(){
   if(_StarLv == 0){
-    CheckAndSetVisible(_Building, false);
-    CheckAndSetVisible(_ImageLevel, false);
+    CheckAndSetVisible(_BuildStarLight, false);
+    CheckAndSetVisible(_BuildStarLevel, false);
   }
   auto lLevel = CityLtCtrl::Get()->GetBuildStarColor(_StarLv);
   if(!_BuildStarLight){
-    auto lEffect = GBase::DCreatAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/Node_buildStar_light.csb");
+    auto lEffect = GBase::DCreateAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/Node_buildStar_light.csb");
     addChild(lEffect.First);
     lEffect.First->setPosition(_ImageLevel->getPosition() + Vec2(20, -10));
     _BuildStarLight = lEffect.First;
@@ -2204,65 +2196,70 @@ void WorldMapBuilding::SetBuildStarEffect(){
     lChild->setVisible(lChild->getName() == lNodeName);
   }
   if(lLevel > 1){
-    //   if not self.buildStar_level then
-    //     local effect = SoraDCreatAnimation("Node_buildStar_all")
-    //     effect:addTo(self.warLVnode)
-    //     self:setBuildStarGroupID(effect)
-    //     self.buildStar_level = effect
-    //   end
-    //   for k, v in pairs(self.buildStar_level:getChildren()) do
-    //     v:setVisible(false)
-    //   end
-    //   local node_moon = SoraDGetChildByName(self, "node_moon")
-    //   self:checkAndSetVisible(node_moon, false)
-    //   local node_top_sword = SoraDGetChildByName(self, "node_top_sword")
-    //   self:checkAndSetVisible(node_top_sword, false)
-    //   local __, warLv = SoraDGetBuildWarLv(self.cityLevel)
-    //   local warLvColor = 0
-    //   if warLv >= 6 and warLv <= 7 then
-    //     warLvColor = 1
-    //   elseif warLv >= 8 and warLv <= 9 then
-    //     warLvColor = 2
-    //   elseif warLv >= 10 then
-    //     warLvColor = 3
-    //   end
-    //   local nodeName = string.format("Node_%d_%d", warLvColor, level - 1)
-    //   local curEffect = SoraDGetChildByName(self.buildStar_level, nodeName)
-    //   if curEffect then
-    //     curEffect:setVisible(true)
-    //     curEffect:setPosition(cc.p(0, 0))
-    //     local data = worldMapDefine.getWarLevelData(warLv)
-    //     if data then
-    //       local pos = data.bottom.img.bg[1].pos
-    //       local scale = data.bottom.scale or 1
-    //       local offset = data.bottom.offset or cc.p(0, 0)
-    //       local x = pos.x * scale + offset.x
-    //       local y = pos.y * scale + offset.y
-    //       curEffect:setPosition(cc.p(x, y))
-    //     end
-    //     local nodePos = {
-    //       cc.p(-100, -70),
-    //       cc.p(-50, -70),
-    //       cc.p(170, 0),
-    //       cc.p(130, 55)
-    //     }
-    //     for i = 1, 4 do
-    //       local Node_a = SoraDGetChildByName(curEffect, "Node_a" .. i)
-    //       if Node_a then
-    //         Node_a:setPosition(nodePos[i])
-    //       end
-    //     end
-    //   end
-    //   self:checkAndSetVisible(self.buildStar_level, true)
+    if(_BuildStarLevel){
+      auto [lEffect, _] = GBase::DCreateAnimation("Node_buildStar_all");
+      _WarLVNode->addChild(lEffect);
+      _BuildStarLevel = lEffect;
+    }
+
+    for(auto lChild : _BuildStarLevel->getChildren()){
+      lChild->setVisible(false);
+    }
+    auto lNodeMoon = GBase::DGetChildByName<Node *>(_BuildStarLevel, "node_moon");
+    CheckAndSetVisible(lNodeMoon, false);
+    auto lNodeTopSword = GBase::DGetChildByName<Node *>(_BuildStarLevel, "node_top_sword");
+    CheckAndSetVisible(lNodeTopSword, false);
+    auto [_, lWarLv, lStr] = GBase::DGetBuildWarLv(_CityLevel);
+    int32 lWarLvColor = 0;
+    if(lWarLv >= 6 && lWarLv <= 7)
+      lWarLvColor = 1;
+    else if(lWarLv >= 8 && lWarLv <= 9)
+      lWarLvColor = 2;
+    else if(lWarLv >= 10)
+      lWarLvColor = 3;
+    auto lNodeName = StringUtils::format("Node_%d_%d", lWarLvColor, _StarLv - 1);
+    auto lCurEffect = GBase::DGetChildByName<Node *>(_BuildStarLevel, lNodeName.c_str());
+    if(lCurEffect){
+      lCurEffect->setVisible(true);
+      lCurEffect->setPosition(Vec2(0, 0));
+      auto lData = WorldMapDefine::Get()->GetWarLevelData(lWarLv);
+      if(lData){
+        auto lPos = lData->_Bottom._Img._Bg[0]._Pos;
+        auto lScale = lData->_Bottom._Scale.value();
+        auto lOffset = lData->_Bottom._Offset.value();
+        auto lX = lPos.x * lScale + lOffset.x;
+        auto lY = lPos.y * lScale + lOffset.y;
+        lCurEffect->setPosition(Vec2(lX, lY));
+      }
+      static auto lNodePos = GVector<Vec2>{
+        Vec2(-100, -70),
+        Vec2(-50, -70),
+        Vec2(170, 0),
+        Vec2(130, 55)
+      };
+      for(int32 i = 0; i < 4; ++i){
+        auto lNodeA = GBase::DGetChildByName<Node *>(lCurEffect, StringUtils::format("Node_a%d", i + 1).c_str());
+        if(lNodeA){
+          lNodeA->setPosition(lNodePos[i]);
+        }
+      }
+    }
+    CheckAndSetVisible(_BuildStarLevel, true);
   }else{
-    //   self:checkAndSetVisible(self.buildStar_level, false)
-    //   local node_moon = SoraDGetChildByName(self, "node_moon")
-    //   self:checkAndSetVisible(node_moon, true)
-    //   local node_top_sword = SoraDGetChildByName(self, "node_top_sword")
-    //   self:checkAndSetVisible(node_top_sword, true)
+    CheckAndSetVisible(_BuildStarLevel, false);
+    auto lNodeMoon = GBase::DGetChildByName<Node *>(_BuildStarLevel, "node_moon");
+    CheckAndSetVisible(lNodeMoon, true);
+    auto lNodeTopSword = GBase::DGetChildByName<Node *>(_BuildStarLevel, "node_top_sword");
+    CheckAndSetVisible(lNodeTopSword, true);
   }
 }
 
 void WorldMapBuilding::SetBuildStarGroupID(Node *pTarget){}
 
-bool WorldMapBuilding::IsSysWarProtect(){}
+bool WorldMapBuilding::IsSysWarProtect(){
+  auto lEndTime = _SysWarProtectStatusEndTime;
+  if(lEndTime > 0 && lEndTime > GOS::Get()->GetTime())
+    return true;
+  else
+    return false;
+}

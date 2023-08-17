@@ -8,7 +8,7 @@ class WorldMapBuildEmoji{
   int32 _OwnerUID;
   int32 _EmojiID;
   void UpdateEmojiByData(int32 pOwnerId, int32 pEmjoiId){}
-  bool CanHasEmojiOperator(int32 pPlayerId){return false;}
+  bool CanHasEmojiOperator(int32 pPlayerId = false){return false;}
   void ResetBuildEmoji(){}
   void UpdateEmoji(int32 pEmojiID){}
   bool IsHasEmoji(){return false;}

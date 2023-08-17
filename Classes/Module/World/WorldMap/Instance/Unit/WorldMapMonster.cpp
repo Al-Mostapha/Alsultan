@@ -32,9 +32,9 @@ void WorldMapMonster::_InitUI(){
   _Monster = GDisplay::Get()->NewSprite("anbs_dj_ws_01.png");
   this->addChild(_Monster, -1);
   GBase::RCreateLabelParm lParm;
-  lParm.Txt = "";
-  lParm.fontSize = 16;
-  lParm.UILabelType = GBase::EUILabelType::TTF;
+  lParm._Text = "";
+  lParm._FontSize = 16;
+  lParm._UILabelType = GBase::EUILabelType::TTF;
   _MonsterNameLabel = GBase::DCreateLabel(lParm);
   _MonsterNameLabel->setColor(Color3B(88, 52, 16));
   _MonsterNameLabel->setAnchorPoint(Vec2(0.5, 0.5));
@@ -45,7 +45,7 @@ void WorldMapMonster::_InitUI(){
   _ImageLevel->setPosition(_CenterPoint - Vec2(63, 70));
   addChild(_ImageLevel, 1);
   // self.image_level:setGroupID(worldMapDefine.GROU_ID.group_level_monster)
-  lParm.fontSize = 15;
+  lParm._FontSize = 15;
   _MonsterLevelLabel = GBase::DCreateLabel(lParm);
   _MonsterLevelLabel->setAnchorPoint(Vec2(0.5, 0.5));
   _MonsterLevelLabel->setPosition(_CenterPoint - Vec2{64, 70});

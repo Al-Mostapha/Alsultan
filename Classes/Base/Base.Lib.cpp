@@ -336,9 +336,9 @@ UIBaseView* DCurrentSceneShowView(const char* p_ViewName) { return nullptr; }
 Node* DCreateCSBNode(const char* p_CSBName) { return CSLoader::createNode(p_CSBName); }
 
 Label* DCreateLabel(RCreateLabelParm p_Parm) {
-  auto l_Text = p_Parm.Txt;
+  auto l_Text = p_Parm._Text;
   auto l_Font = p_Parm.FontName.empty() ? p_Parm.FontName : GDisplay::Get()->DefaultTTFFont;
-  auto l_Size = p_Parm.fontSize = 0 ? p_Parm.fontSize : GDisplay::Get()->DefaultTTFFontSize;
+  auto l_Size = p_Parm._FontSize = 0 ? p_Parm._FontSize : GDisplay::Get()->DefaultTTFFontSize;
   auto l_Color = p_Parm.Color != Color4B::WHITE ? p_Parm.Color : Color4B::WHITE;
   auto l_TextAlign = p_Parm.hAlignment != TextHAlignment::LEFT ? p_Parm.hAlignment : TextHAlignment::LEFT;
   auto l_TextValign = p_Parm.vAlignment != TextVAlignment::TOP ? p_Parm.vAlignment : TextVAlignment::TOP;

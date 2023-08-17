@@ -81,6 +81,7 @@ struct RWorldBuildingInitData{
   GTime _CastleEffectStatusEndTime = -1;
   GTime _SelfCastleEffectStatusEndTime;
   GTime _CastleAppearanceEndTime;
+  GTime _SysWarProtectStatusEndTime;
   bool _CastleAppearance;
   GHashMap<EAttributeEnum, RWorldBuildingInitDataAttr> _Attr;
   GString _Signature = "";
@@ -135,6 +136,7 @@ class WorldMapBuilding : public IWorldMapInstance
   GString _Signature = "";
   
   GTime _CastleAppearanceEndTime;
+  GTime _SysWarProtectStatusEndTime;
 
   Sprite *_CityImage = nullptr;
   Sprite *_CitySkin1Image = nullptr;
@@ -187,7 +189,6 @@ class WorldMapBuilding : public IWorldMapInstance
   void _InitData();
   void _InitUI();
   void OnMessageListener() override;
-  void RefreshSignShow(bool pIsShow);
 
   void SetBatchNodeGroupID(EGrouID pBatchNodeGroupID) override;
 
@@ -263,8 +264,6 @@ class WorldMapBuilding : public IWorldMapInstance
   void SetBuildStarEffect();
   void SetBuildStarGroupID(Node *pTarget);
   bool IsSysWarProtect();
-
-  void Toggle3D(EventCustom *pEvent);
   
   void CheckAndSetVisible(Node *pWidget, bool pIsVisible);
   

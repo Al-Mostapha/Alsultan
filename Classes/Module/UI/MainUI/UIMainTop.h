@@ -89,7 +89,7 @@ private:
   UITimerLabel *_TxtCrazyTime = nullptr;
   Sprite *_RedPointCrazy = nullptr;
   Node *_NodeHeroGift = nullptr;
-  UIPanelBase *_TxtHeroGiftTime = nullptr;
+  UITimerLabel *_TxtHeroGiftTime = nullptr;
   ui::Button *_BtnHeroGift = nullptr;
   Node *_NodeKingCom = nullptr;
   ui::Button *_BtnKing = nullptr;

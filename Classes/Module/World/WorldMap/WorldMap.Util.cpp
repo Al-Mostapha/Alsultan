@@ -1,10 +1,30 @@
 #include "WorldMap.Util.h"
 
+
 WorldMapUtil *WorldMapUtil::Get()
 {
-  static WorldMapUtil * s_WorldMapUtil = new WorldMapUtil();
+  static WorldMapUtil * s_WorldMapUtil = nullptr;
+  if (!s_WorldMapUtil)
+  {
+    s_WorldMapUtil = new WorldMapUtil();
+    s_WorldMapUtil->Init();
+  }
   return s_WorldMapUtil;
 }
+
+
+
+void WorldMapUtil::Init()
+{
+  _CastleModelCfg[8] = -140;
+  _CastleModelCfg[9] = -140;
+  _CastleModelCfg[10] = -140;
+  _CastleModelCfg[11] = -140;
+  _CastleModelCfg[12] = -140;
+  _CastleModelCfg[13] = -70;
+}
+
+
 
 void WorldMapUtil::ResetConfig()
 {

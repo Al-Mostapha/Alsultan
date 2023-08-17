@@ -17,7 +17,7 @@ T *XUILabel::Create(const UIFontLabelParam &pParam)
 {
   if(pParam._UILabelType == GBase::EUILabelType::TTF)
     return GDisplay::Get()->NewTTFLabel<T>(pParam);
-  else if(pParam._UILabelType == GBase::EUILabelType::BMFont)
+  else if(pParam._UILabelType == GBase::EUILabelType::BMF)
     return GDisplay::Get()->NewBMFontLabel<T>(pParam);
   else
     return nullptr;

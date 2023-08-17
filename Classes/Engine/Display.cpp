@@ -1,6 +1,8 @@
 #include "Display.h"
 #include "Device.h"
 #include "cocos2d.h"
+#include "Scene/Main/MainScene.h"
+
 #define CONFIG_SCREEN_WIDTH 640
 #define CONFIG_SCREEN_HEIGHT 960
 #define CONFIG_SCREEN_AUTOSCALE "FIXED_WIDTH"
@@ -103,9 +105,7 @@ void GDisplay::Init() {
   // printInfo(string.format("# display.c_bottom             = %0.2f", display.c_bottom))
 }
 
-Sprite *GDisplay::NewSprite(const char *p_FileName){
-  return Sprite::createWithSpriteFrameName(p_FileName);
-}
+
 
 SpriteFrame *GDisplay::NewSpriteFrame(const char *p_FileName){
   auto lFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(p_FileName);
@@ -151,4 +151,16 @@ Animation *GDisplay::NewAnimation(const Vector<SpriteFrame *> &pFrames, float pT
     pTime = 1.0f / pFrames.size();
   }
   return Animation::createWithSpriteFrames(pFrames, pTime);
+}
+
+
+ui::Scale9Sprite *GDisplay::NewScale9Sprite(const GString &pFileName, Vec2 pPos, Size pSize, GOpt<Rect> pCapInsets){
+  RNewSpriteParam lParam;
+  lParam._Size = pSize;
+  lParam._CapInsets = pCapInsets;
+  return GDisplay::Get()->NewSprite<ui::Scale9Sprite>(pFileName, pPos, lParam);
+}
+
+MainScene *GDisplay::GetRunningScene(){
+  return dynamic_cast<MainScene *>(Director::getInstance()->getRunningScene());
 }

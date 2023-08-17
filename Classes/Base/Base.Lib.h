@@ -27,16 +27,16 @@ class UIBasePanel;
 namespace GBase {
 
 struct RCreateLabelParm{
-  GString Txt;
+  GString _Text;
   GString FontName = "";
-  float fontSize;
+  float _FontSize;
   Size Dimensions = Size::ZERO;
   TextHAlignment hAlignment = TextHAlignment::LEFT;
   TextVAlignment vAlignment = TextVAlignment::TOP;
   Color4B Color = Color4B::WHITE;
   float x = 0;
   float y = 0;
-  EUILabelType UILabelType = EUILabelType::BMF;
+  EUILabelType _UILabelType = EUILabelType::BMF;
 };
 
 int32 PlaySound();

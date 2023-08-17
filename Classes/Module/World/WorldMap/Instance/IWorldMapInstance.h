@@ -49,10 +49,12 @@ public:
 
   virtual void SetBatchNodeGroupID(EGrouID pBatchNodeGroupID);
   
-  virtual void Ctor();
+  virtual void Ctor(){}
   virtual void InitInstanceData(void *pObjData){}
   virtual void InitInstanceData(EWorldInstanceClass pClass, void *pObjData, int32 pObjID = 0){}
   //angle name e, w, n, s, wn ...etc
   virtual void InitInstanceData(EWorldInstanceClass pClass, GString pAngleName, bool pIsFlipX, void *pObjData){}
   virtual void UpdateAllianceCounterAtkEffect(EventCustom *pEvent);
+
+  GTuple<bool, int32> CheckHasArmy();
 };

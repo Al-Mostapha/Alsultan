@@ -373,7 +373,7 @@ void UIMain::ShowAgreementBox(EventCustom *p_Event){
       if(l_BoxType != 1){
         auto l_ConfigTime = GBase::DConfigGet<int32>("Game:IOSNoticePush:saveTime~integer");
         auto l_NowTime = GServiceFunction::Get()->SystemTime();
-        if(l_ConfigTime == 0 || std::abs(l_NowTime - l_ConfigTime) >= 604800){
+        if(l_ConfigTime.value() == 0 || std::abs(l_NowTime - l_ConfigTime.value()) >= 604800){
           auto l_Msg = Translate::i18n("common_text_3836");
           auto l_Btn = Translate::i18n("common_text_477");
           if(l_BoxType == 3){

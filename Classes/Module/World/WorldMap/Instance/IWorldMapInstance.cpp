@@ -31,3 +31,7 @@ void UpdateAllianceCounterAtkEffect(EventCustom *pEvent){
 void IWorldMapInstance::ShowWarningTip(const GString &pTipInfo, const std::function<void()> &pCallback, float pDelay){
 
 }
+
+GTuple<bool, int32> IWorldMapInstance::CheckHasArmy(){
+  return GTuple<bool, int32>();
+}

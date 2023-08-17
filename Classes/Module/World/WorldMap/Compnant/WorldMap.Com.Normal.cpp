@@ -38,7 +38,7 @@ void WorldMapComNormal::Init()
   _EffectMonster = _BtnMonsterSearch->getChildByName("Node_particle");
   if(_EffectMonster){
     auto l_Bool = GBase::DConfigGet<bool>("Game:worldMapView:monsterEffect~bool");
-    _EffectMonster->setVisible(l_Bool);
+    _EffectMonster->setVisible(l_Bool.value_or(false));
     if(l_Bool){
       GVector<RCreatEffctParam> p_Et;
       auto l_OneParam = RCreatEffctParam();
@@ -109,7 +109,7 @@ void WorldMapComNormal::JudgeOpen( cocos2d::EventCustom *p_Event )
       //     end
     }
   }
-  _SeaMonsterRedPoint->setVisible(GBase::DConfigGet<bool>("Game:worldMapView:seaMonsterRedPoint~bool"));
+  _SeaMonsterRedPoint->setVisible(GBase::DConfigGet<bool>("Game:worldMapView:seaMonsterRedPoint~bool").value_or(false));
 }
 
 void WorldMapComNormal::MonsterSearchLock( cocos2d::EventCustom *p_Event )
@@ -153,7 +153,7 @@ void WorldMapComNormal::BtnMonsterSearchCall(Ref *p_Sender, ui::Widget::TouchEve
     }
     GBase::DConfigSet("Game:worldMapView:seaMonsterRedPoint~bool", false);
     if(_SeaMonsterRedPoint){
-      _SeaMonsterRedPoint->setVisible(GBase::DConfigGet<bool>("Game:worldMapView:seaMonsterRedPoint~bool"));
+      _SeaMonsterRedPoint->setVisible(GBase::DConfigGet<bool>("Game:worldMapView:seaMonsterRedPoint~bool").value_or(false));
     }
   }
 
