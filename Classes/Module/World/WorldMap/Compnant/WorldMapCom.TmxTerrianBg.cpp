@@ -12,13 +12,6 @@
 
 const int32 TileBG_Size = 1024;
 
-WorldMapComTmxTerrianBg *WorldMapComTmxTerrianBg::Create(WorldMapView *p_Target){
-  WorldMapComTmxTerrianBg *l_View = new WorldMapComTmxTerrianBg();
-  l_View->_Target = p_Target;
-  l_View->Ctor();
-  return l_View;
-}
-
 
 void WorldMapComTmxTerrianBg::Ctor(){
 

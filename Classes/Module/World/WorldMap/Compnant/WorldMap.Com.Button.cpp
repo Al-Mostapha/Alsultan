@@ -16,6 +16,11 @@
 #include "Module/UI/Panel/Item/Buy/UISpeedUpReCallBuyPop.View.h"
 
 
+void WorldMapComButton::Ctor()
+{
+
+}
+
 void WorldMapComButton::Init()
 {
 

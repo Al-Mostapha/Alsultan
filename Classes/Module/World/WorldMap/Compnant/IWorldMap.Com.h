@@ -15,10 +15,10 @@ class IWorldMapComponent
   public:
     UIWorldMapTroopTip *_CurrentTroopTip;
     template <typename T>
-    static T *Create(RViewClass p_Config, WorldMapView *p_Target){
+    static T *Create(RViewClass pConfig, WorldMapView *pTarget){
       auto l_Ret = new T();
-      l_Ret->_Config = p_Config;
-      l_Ret->_Target = p_Target;
+      l_Ret->_Config = pConfig;
+      l_Ret->_Target = pTarget;
       l_Ret->Ctor();
       return l_Ret;
     };

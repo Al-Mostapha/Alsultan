@@ -12,6 +12,8 @@
 #include "Module/Activity/ClientEvent.Mgr.h"
 #include "Module/Player/Player.Top.h"
 
+void WorldMapComNormal::Ctor(){}
+
 void WorldMapComNormal::Init()
 {
   IWorldMapComponent::Init();

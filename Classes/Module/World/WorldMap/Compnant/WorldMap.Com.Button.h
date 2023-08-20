@@ -13,7 +13,7 @@ public:
 
   void Init() override;
   void OnMessageListener() override;
-  void Ctor();
+  void Ctor() override;
 
   void TipButtonTouchCall(EventCustom *pEvent);
   void RemoveTroopBindingPanel(EventCustom *pEvent);

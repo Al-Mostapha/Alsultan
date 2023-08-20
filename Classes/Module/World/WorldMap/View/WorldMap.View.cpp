@@ -20,13 +20,17 @@
 
 typedef EWorldMapZOrder Z_ORDER;
 
-WorldMapView *WorldMapView::Create(RViewClass p_Config, RViewOtherData p_OtherData){
+WorldMapView *WorldMapView::Create(RViewClass pConfig, RViewOtherData pOtherData){
   WorldMapView *l_View = nullptr;
-  if(p_Config._CcsFile == "")
+  if(pConfig._CcsFile == "")
     l_View = Create("UiParts/Scene/World/worldMapViewNormal.csb");
   else  
-    l_View = Create("UiParts/Scene/World/" + p_Config._CcsFile + ".csb");
-  l_View->Ctor(p_Config, p_OtherData);
+    l_View = Create("UiParts/Scene/World/" + pConfig._CcsFile + ".csb");
+  auto lInnerView = GBase::DCreateCSBNode("UiParts/Scene/World/worldMapView.csb");
+  lInnerView->setAnchorPoint(Vec2(0, 0));
+  lInnerView->setPosition(Vec2(0, 0));
+  l_View->addChild(lInnerView);
+  l_View->Ctor(pConfig, pOtherData);
   return l_View;
 }
 

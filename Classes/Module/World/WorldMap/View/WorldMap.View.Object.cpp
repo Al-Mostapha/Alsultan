@@ -2,6 +2,13 @@
 #include "Base/BaseTypeDef.h"
 #include "Module/World/WorldMap/Compnant/WorldMapCom.TmxTerrianBg.h"
 #include "Module/World/WorldMap/Compnant/WorldMap.Com.UI.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.Normal.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.ManorlineNew.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.Water.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.ViewPiece.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.Button.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.Border.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.NormalFog.h"
 
 void WorldMapViewObject::AddComponents(RViewClass p_Config, WorldMapView *p_Target){
   static GVector<GString> l_ComTable = {
@@ -19,8 +26,25 @@ void WorldMapViewObject::AddComponents(RViewClass p_Config, WorldMapView *p_Targ
     "worldMapCom3D",
     "worldMapComTileEffect"
   };
-  _Components.push_back(WorldMapComTmxTerrianBg::Create(p_Target));
-  _Components.push_back(IWorldMapComponent::Create<WorldMapComUI>(p_Config, p_Target));
+  
+  _Components.emplace_back(_WorldMapComUI = IWorldMapComponent::Create<WorldMapComUI>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComViewPiece>(p_Config, p_Target));
+  //_Components.emplace_back(IWorldMapComponent::Create<WorldMapComInstanceNormal>(p_Config, p_Target));
+  //_Components.emplace_back(IWorldMapComponent::Create<WorldMapComMoveline>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComButton>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComTmxTerrianBg>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComNormal>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComManorLineNew>(p_Config, p_Target));
+  //_Components.emplace_back(IWorldMapComponent::Create<WorldMapComManorData>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComWater>(p_Config, p_Target));
+  //_Components.emplace_back(IWorldMapComponent::Create<WorldMapComPage>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComBorder>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComNormalFog>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComNormalFog>(p_Config, p_Target));
+
+  
+
+
   // for _, v in ipairs(comTable) do
   //   self:addCustomComponent(v, nil, config)
   // end
@@ -82,4 +106,9 @@ void WorldMapViewObject::CallComFuncDoClearData(){
   for(auto l_Iter : _Components){
     l_Iter->DClearData();
   }
+}
+
+
+UIWorldMapBottomPoint *WorldMapViewObject::GetBottomPointNode(){
+  return _WorldMapComUI->_BottomPointNode;
 }

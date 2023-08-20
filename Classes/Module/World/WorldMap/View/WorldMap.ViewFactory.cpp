@@ -48,7 +48,7 @@ void WorldMapViewFactory::Init(){
   if(_TbViewClass.size() > 0)
     return;
   RViewClass l_Normal;
-  l_Normal._CcsFile = "worldMapView";
+  l_Normal._CcsFile = "worldMapViewNormal";
   l_Normal._TileMapTmx = WorldMapUtil::Get()->GetTileMapTmxForPlatform("tileMaps/WorldMapNew128");
   l_Normal._IsSingleMapCell = false;
   l_Normal._TerrainControl = "tileMaps/World_png/worldTileControl.png";

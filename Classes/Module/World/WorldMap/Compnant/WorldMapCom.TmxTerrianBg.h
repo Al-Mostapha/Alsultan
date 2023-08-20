@@ -15,7 +15,6 @@ class RViewClass;
 class WorldMapComTmxTerrianBg : public IWorldMapComponent
 {
   private:
-    RViewClass _Config;
     GString _TerrainDir = "tileMaps/commonMap/%s.%s";
     float _TiledBgX = 0;
     float _TiledBgY = 0;
@@ -38,7 +37,6 @@ class WorldMapComTmxTerrianBg : public IWorldMapComponent
     };
     RTerrainCfg _NoramlCfg;
     RTerrainCfg _LowCfg;
-    static WorldMapComTmxTerrianBg *Create(WorldMapView *p_Target);
 
     void Init() override;
     void OnMessageListener() override;

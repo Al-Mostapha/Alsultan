@@ -199,7 +199,7 @@ void WorldMapComBorder::CreateGrayBorder(float p_MapWidth){
   auto l_TexWidth = 32;
   auto l_Length = p_MapWidth * 128.f;
   auto l_MaxU = l_Length / l_TexWidth;
-  auto l_TempIndex = 0;
+  unsigned short l_TempIndex = 0;
   Mat4 l_Mat = {
     1, -0.5, 0, 0,
     -1, -0.5, 0, 0,
@@ -224,23 +224,23 @@ void WorldMapComBorder::CreateGrayBorder(float p_MapWidth){
       auto l_BeginY = l_TempY * l_Length;
       auto l_EndX = (l_TempX/*+ 1*/) * l_Length;
       auto l_EndY = (l_TempY/*+ 1*/) * l_Length;
-      l_Vertices[l_VerticesIndex + 0] = l_BeginX;
-      l_Vertices[l_VerticesIndex + 1] = l_BeginY;
-      l_Vertices[l_VerticesIndex + 2] = l_BeginX;
-      l_Vertices[l_VerticesIndex + 3] = l_BeginY;
-      l_Vertices[l_VerticesIndex + 4] = l_EndX;
-      l_Vertices[l_VerticesIndex + 5] = l_BeginY;
-      l_Vertices[l_VerticesIndex + 6] = l_EndX;
-      l_Vertices[l_VerticesIndex + 7] = l_BeginY;
-      l_Vertices[l_VerticesIndex + 8] = l_BeginX;
-      l_Vertices[l_VerticesIndex + 9] = l_BeginY;
-      l_Vertices[l_VerticesIndex + 10] = l_BeginX;
-      l_Vertices[l_VerticesIndex + 11] = l_BeginY;
-      l_Vertices[l_VerticesIndex + 12] = l_BeginX;
-      l_Vertices[l_VerticesIndex + 13] = l_EndX;
-      l_Vertices[l_VerticesIndex + 14] = l_BeginX;
-      l_Vertices[l_VerticesIndex + 15] = l_EndX;
-
+      l_Vertices.push_back(l_BeginX);
+      l_Vertices.push_back(l_BeginY);
+      l_Vertices.push_back(l_BeginX);
+      l_Vertices.push_back(l_BeginY);
+      l_Vertices.push_back(l_EndX);
+      l_Vertices.push_back(l_BeginY);
+      l_Vertices.push_back(l_EndX);
+      l_Vertices.push_back(l_BeginY);
+      l_Vertices.push_back(l_BeginX);
+      l_Vertices.push_back(l_BeginY);
+      l_Vertices.push_back(l_BeginX);
+      l_Vertices.push_back(l_BeginY);
+      l_Vertices.push_back(l_BeginX);
+      l_Vertices.push_back(l_EndX);
+      l_Vertices.push_back(l_BeginX);
+      l_Vertices.push_back(l_EndX);
+      l_UV.resize(l_UvIndex + 2 * 8);
       for(int tempUvIndex = 0; tempUvIndex < 2; tempUvIndex++){
         l_UV[l_UvIndex + tempUvIndex * 8 + 0] = 0;
         l_UV[l_UvIndex + tempUvIndex * 8 + 1] = 0;
@@ -252,35 +252,37 @@ void WorldMapComBorder::CreateGrayBorder(float p_MapWidth){
         l_UV[l_UvIndex + tempUvIndex * 8 + 7] = 0;
       }
 
-      l_Normals[l_NormalIndex + 0] = -1;
-      l_Normals[l_NormalIndex + 1] = -1;
-      l_Normals[l_NormalIndex + 2] = -1;
-      l_Normals[l_NormalIndex + 3] = 1;
-      l_Normals[l_NormalIndex + 4] = 1;
-      l_Normals[l_NormalIndex + 5] = 1;
-      l_Normals[l_NormalIndex + 6] = 1;
-      l_Normals[l_NormalIndex + 7] = -1;
-      l_Normals[l_NormalIndex + 8] = 1;
-      l_Normals[l_NormalIndex + 9] = -1;
-      l_Normals[l_NormalIndex + 10] = -1;
-      l_Normals[l_NormalIndex + 11] = -1;
-      l_Normals[l_NormalIndex + 12] = -1;
-      l_Normals[l_NormalIndex + 13] = 1;
-      l_Normals[l_NormalIndex + 14] = 1;
-      l_Normals[l_NormalIndex + 15] = 1;
+      l_Normals.push_back(-1);
+      l_Normals.push_back(-1);
+      l_Normals.push_back(-1);
+      l_Normals.push_back(1);
+      l_Normals.push_back(1);
+      l_Normals.push_back(1);
+      l_Normals.push_back(1);
+      l_Normals.push_back(-1);
+      l_Normals.push_back(1);
+      l_Normals.push_back(-1);
+      l_Normals.push_back(-1);
+      l_Normals.push_back(-1);
+      l_Normals.push_back(-1);
+      l_Normals.push_back(1);
+      l_Normals.push_back(1);
+      l_Normals.push_back(1);
 
-      l_Triangles[l_TrianglesIndex + 0] = l_TempIndex * 8 + 0;
-      l_Triangles[l_TrianglesIndex + 1] = l_TempIndex * 8 + 1;
-      l_Triangles[l_TrianglesIndex + 2] = l_TempIndex * 8 + 2;
-      l_Triangles[l_TrianglesIndex + 3] = l_TempIndex * 8 + 2;
-      l_Triangles[l_TrianglesIndex + 4] = l_TempIndex * 8 + 3;
-      l_Triangles[l_TrianglesIndex + 5] = l_TempIndex * 8 + 0;
-      l_Triangles[l_TrianglesIndex + 6] = l_TempIndex * 8 + 4;
-      l_Triangles[l_TrianglesIndex + 7] = l_TempIndex * 8 + 5;
-      l_Triangles[l_TrianglesIndex + 8] = l_TempIndex * 8 + 6;
-      l_Triangles[l_TrianglesIndex + 9] = l_TempIndex * 8 + 6;
-      l_Triangles[l_TrianglesIndex + 10] = l_TempIndex * 8 + 7;
-      l_Triangles[l_TrianglesIndex + 11] = l_TempIndex * 8 + 4;
+      l_Triangles  = {
+        unsigned short(l_TempIndex * 8 + 0),
+        unsigned short(l_TempIndex * 8 + 1),
+        unsigned short(l_TempIndex * 8 + 2),
+        unsigned short(l_TempIndex * 8 + 2),
+        unsigned short(l_TempIndex * 8 + 3),
+        unsigned short(l_TempIndex * 8 + 0),
+        unsigned short(l_TempIndex * 8 + 4),
+        unsigned short(l_TempIndex * 8 + 5),
+        unsigned short(l_TempIndex * 8 + 6),
+        unsigned short(l_TempIndex * 8 + 6),
+        unsigned short(l_TempIndex * 8 + 7),
+        unsigned short(l_TempIndex * 8 + 4)
+      };
       l_TempIndex++;
     }
   }
@@ -316,7 +318,7 @@ void WorldMapComBorder::CreateGrayBorder(float p_MapWidth){
   l_Params.push_back(l_OneParam);
 
   l_OneParam.Attr = EUniformType::Vec4;
-  l_OneParam.Vec4Value = Vec4(1, 0.9490196078431372, 0.8156862745098039, 1);
+  l_OneParam.Vec4Value = Vec4(1, 0.9490196078431372f, 0.8156862745098039f, 1);
   l_OneParam.UnifromName = "borderColor";
   l_Params.push_back(l_OneParam);
 

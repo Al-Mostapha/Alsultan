@@ -9,6 +9,7 @@ class WorldMapView;
 class WorldMapCell;
 class UIWorldMapBottomPoint;
 class WorldMapComLod;
+class WorldMapComUI;
 class IWorldMapInstance;
 class WorldMapViewObject
 {
@@ -16,6 +17,7 @@ class WorldMapViewObject
     GVector<IWorldMapComponent *> _Components;
   public:
     WorldMapComLod *_WorldMapComLod;
+    WorldMapComUI *_WorldMapComUI;
     void AddComponents(RViewClass p_Config, WorldMapView *p_Target);
     template <typename T>
     T *GetComponent(const GString &p_Name){
@@ -52,7 +54,7 @@ class WorldMapViewObject
     void moveTransferView(Vec2 p_TouchMovePoint, WorldMapCell *p_MapView){}
 
     //worldMapComUI:getBottomPointNode(...)
-    UIWorldMapBottomPoint *GetBottomPointNode(){ return nullptr; }
+    UIWorldMapBottomPoint *GetBottomPointNode();
     //worldMapComNormal:getButtonMonsterSearch(...)
     ui::Button *GetButtonMonsterSearch(){ return nullptr; }
     //worldMapComInstanceNormal:getShowInstance(pos)
