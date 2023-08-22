@@ -110,7 +110,6 @@ class WorldMapBuilding : public IWorldMapInstance
   int32 _AtlantisOfficialType = 0;
   int32 _NebulaOfficialID = 0;
   int32 _NebulaOfficialID2 = 0;
-  int32 _LeagueFlag = 1;
   int32 _WarCamp = 0;
   int32 _InMapID = 0;
   int32 _PlayerLevel = 1;

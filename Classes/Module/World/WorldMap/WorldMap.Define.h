@@ -6,6 +6,7 @@
 #include "Module/Guild/Alliance.Enum.h"
 #include "Module/CityResource/Resource.Enum.h"
 #include "Module/World/WorldMap/Instance/Component/WorldMapProtectNode.h"
+#include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
 USING_NS_CC;
 
 struct RWarLevelConfig{
@@ -30,6 +31,14 @@ struct RWarLevelConfig{
   Vec2 _Offset = Vec2::ZERO;
 };
 
+struct RAllianceBuildInfo{
+  RAllianceBuildInfo( int32 pSize, int32 pRa, GString pImg):
+    _Size(pSize), _Radioation(pRa), _Image(pImg){}
+    int32 _Size = 2;
+    int32 _Radioation = 5;
+    GString _Image;
+};
+
 class WorldMapDefine{
 public: 
 
@@ -44,7 +53,7 @@ public:
     moveLine = 45,
     transView = 50,
     otherTipView = 100
-  };
+  }; 
 
   static WorldMapDefine * Get();
   int32 CurrentMapKindomID = 0;
@@ -94,6 +103,7 @@ public:
   GOpt<RWarLevelConfig> GetWarLevelData(int32 pWarLv);
   bool IsRadianceKingdomID(int32 pKingdomID = 0);
   bool IsRemainsKingdomID(int32 pKingdomID = 0);
+  GOpt<RAllianceBuildInfo> GetAllianceBuildInfo(EMapAllianceBuildType pBuild);
 };
 
 

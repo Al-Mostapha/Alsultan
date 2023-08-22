@@ -2,6 +2,7 @@
 #include "Include/IncludeBase.h"
 #include "Science/GuildScience.Enum.h"
 #include "Alliance.Enum.h"
+#include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
 
 class AllianceRead{
 public:
@@ -15,4 +16,6 @@ public:
   bool GetPlayerBattleGroundMigration(bool p_ShowMsg = true);
   GVector<float> &GetManorlineColorArray();
   GString GetFlagIcon(int32 pFid, bool pFromMemory = false);
+  Color3B GetTerritoryColor(int32 pColorId);
+  GString GetBuildName(EMapAllianceBuildType pBuildingClassID);
 };

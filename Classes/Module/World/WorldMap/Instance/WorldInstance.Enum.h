@@ -50,3 +50,15 @@ enum class EMapObjStateTypeDef{
   HurtDie = 3,
   Working = 4
 };
+
+enum class EMapAllianceBuildType{
+  None = 0,
+  Palace = 1,
+  Fort = 2,
+  WarHall = 3,
+  Shelter = 4,
+  KnowledgeTower = 5,
+  Flag = 6,
+  Altar = 8,
+  PriPalace = 9
+};

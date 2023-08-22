@@ -225,3 +225,25 @@ bool WorldMapDefine::IsRadianceKingdomID(int32 pKingdomID){
 bool WorldMapDefine::IsRemainsKingdomID(int32 pKingdomID){
   return false;
 }
+
+GHashMap<EMapAllianceBuildType, RAllianceBuildInfo> _AllianceBuildInfo{
+  {
+    {EMapAllianceBuildType::Palace,  {2, 5, "Map_build_unionpalace.png"}},
+    {EMapAllianceBuildType::Fort,    {2, 2, "Map_build_unionpalace.png"}},
+    {EMapAllianceBuildType::WarHall, {2, 0, "Map_build_unionpalace.png"}},
+    {EMapAllianceBuildType::Shelter, {2, 0, "Map_build_unionpalace.png"}},
+    {EMapAllianceBuildType::KnowledgeTower, {2, 0, "Map_build_unionpalace.png"}},
+    {EMapAllianceBuildType::Flag,    {1, 2, "Map_build_alliance_flagpole.png"}},
+    {EMapAllianceBuildType::Altar,   {2, -2, "icon_alliance_beast_build.png"}},
+    {EMapAllianceBuildType::PriPalace,   {2, 5, "Map_build_unionpalace.png"}}
+  }
+};
+
+
+
+GOpt<RAllianceBuildInfo> GetAllianceBuildInfo(EMapAllianceBuildType pBuild){
+  if(_AllianceBuildInfo.Contains(pBuild)){
+    return _AllianceBuildInfo[pBuild];
+  }
+  return {};
+}

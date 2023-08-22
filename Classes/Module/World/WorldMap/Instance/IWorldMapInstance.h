@@ -20,9 +20,11 @@ class IWorldMapInstance : public WorldMapInstanceLod, public WorldMapBuildEmoji,
 public:
   GString _LeagueName;
   GString _PlayerName;
+  GString _LeagueAbbrName;
   int32 _PlayerID;
   int32 _LeagueID;
   int32 _KingdomID;
+  int32 _LeagueFlag;
   EMapObjTypeDef _InstanceType;
   int32 _InstanceLevel;
   Vec2 _TilePoint;

@@ -54,3 +54,17 @@ GVector<float> &AllianceRead::GetManorlineColorArray(){
 GString AllianceRead::GetFlagIcon(int32 pFid, bool pFromMemory){
   return "Allianceflag_015.png";
 }
+
+Color3B AllianceRead::GetTerritoryColor(int32 pColorId){
+  // local data = allianceDesRead.landcolor[colorId]
+  // if data then
+  //   local color = data.color
+  //   return cc.c3b(color[1] * 255, color[2] * 255, color[3] * 255)
+  // end
+
+  return Color3B(0.07*255, 0.44*255, 0.26*255);
+}
+
+GString AllianceRead::GetBuildName(EMapAllianceBuildType pBuildingClassID){
+  return "BuildName";
+}

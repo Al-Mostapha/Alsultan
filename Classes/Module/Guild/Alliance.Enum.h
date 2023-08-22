@@ -1,4 +1,5 @@
 #pragma once
+#include "Pet/AlliancePet.Enum.h"
 
 enum class EAllianceRank{
   R0 = 0,
@@ -45,3 +46,5 @@ enum class EMapAllianceRelationType{
   SELF,
   NORMAL
 };
+
+

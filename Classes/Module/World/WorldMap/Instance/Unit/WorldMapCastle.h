@@ -33,14 +33,12 @@ class WorldMapCastle : public IWorldMapInstance
   public:
 
   int32 _SourceID = 0;
-  int32 _LeagueFlag = 0;
   bool _IsSelfIn = false;
   EKingdomWarStatusType _WarStatus;
   EKingStatus _KingStatus;
   EMapObjStateTypeDef _CastleState;
   GTime _WarStatusTime  = 0;
   bool _ShowWarStatusTime = false;
-  GString _LeagueAbbrName = "";
 
 
   Sprite *_BgImage = nullptr;

@@ -30,4 +30,13 @@ public:
   bool HasArmyHelpQueue2Player(int32 pPlayerId, EMapMoveLineStatusType){
     return false;
   }
+
+  int32 GetForbidMapObjWarBeginTime(EMapObjTypeDef pMapObjType){
+    return 0;
+  }
+  
+  int32 GetForbidMapObjWarLeftTime(EMapObjTypeDef pMapObjType){
+    return 0;
+  }
+
 };
