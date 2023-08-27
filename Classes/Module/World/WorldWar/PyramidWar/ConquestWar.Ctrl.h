@@ -11,4 +11,7 @@ public:
   bool IsConquestWarOpenningAndNotInWar(){
     return true;
   }
+  bool IsPlayerConquestWarMigration(){
+    return false;
+  }
 };

@@ -334,3 +334,10 @@ enum class EActivityState  {
   Open = 3,
   Calculate = 4
 };
+
+enum class EATBuildingStatus {
+  None = -1,
+  AT_INIT = 0,
+  AT_EXPLORE = 1,
+  AT_MINNING = 2
+};

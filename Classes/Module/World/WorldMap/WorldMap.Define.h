@@ -7,6 +7,7 @@
 #include "Module/CityResource/Resource.Enum.h"
 #include "Module/World/WorldMap/Instance/Component/WorldMapProtectNode.h"
 #include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
+#include "Module/World/WorldMap/Monster/Boss/Boss.Type.h"
 USING_NS_CC;
 
 struct RWarLevelConfig{
@@ -32,11 +33,18 @@ struct RWarLevelConfig{
 };
 
 struct RAllianceBuildInfo{
-  RAllianceBuildInfo( int32 pSize, int32 pRa, GString pImg):
-    _Size(pSize), _Radioation(pRa), _Image(pImg){}
     int32 _Size = 2;
     int32 _Radioation = 5;
     GString _Image;
+};
+
+struct RAttackEffectData{
+  GString _NodeName;
+  Vec2 _Pos;
+  float _Scale = 1.0f;
+  bool _IsFlipX;
+  EGrouID _GroupID1 = EGrouID::None;
+  EGrouID _GroupID2 = EGrouID::None;
 };
 
 class WorldMapDefine{
@@ -104,6 +112,12 @@ public:
   bool IsRadianceKingdomID(int32 pKingdomID = 0);
   bool IsRemainsKingdomID(int32 pKingdomID = 0);
   GOpt<RAllianceBuildInfo> GetAllianceBuildInfo(EMapAllianceBuildType pBuild);
+  EResourceType GetAllianceResourceType(int32 pResourceClassID);
+  GString GetAllianceResourceImageName(int32 pResourceClassID);
+  GString GetAllianceResourceName(int32 pResourceClassID);
+  bool HasBossHdRes(EBossType pBossID, uint32 pLevel);
+  RBossShowData GetWorldBossShow(EBossType pBossID, uint32 pLevel);
+  Node *CreateAttackEffectCsb(const RAttackEffectData &pData);
 };
 
 

@@ -93,6 +93,7 @@ class UIPanelBase* DCurrentTopPanelFromManager();
 
 bool DIsBrave8Level();
 void DMixtureGLONE(Sprite* p_Node);
+void DMixtureGLONEByParent(Node* p_Node);
 void DRemoveMessageByTarget(Node* p_Node);
 void DRemoveMessageFromTargetByName(Node* p_Node, const char* p_EventId);
 

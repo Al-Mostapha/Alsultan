@@ -1,67 +1,65 @@
 #include "WorldMapAncientTreasure.h"
+#include "Module/Guild/Alliance.Read.h"
+#include "Module/Guild/Alliance.Mgr.h"
+#include "Module/Guild/Relation/AllianceRelation.Ctrl.h"
+#include "Module/World/WorldMap/WorldMap.Define.h"
+#include "Module/Activity/AncientTreasure/AncientTreasure.Type.h"
+#include "Module/Player/Player.Top.h"
+#include "Module/City/City.Ctrl.h"
 
 void WorldMapAncientTreasure::Ctor() {
-  // self:_initUI()
-  // self:_initData()
+  _InitUI();
+  _InitData();
 }
 
 void WorldMapAncientTreasure::_InitData(){
-  // self.playerName = ""
-  // self.playerID = 0
-  // self.leagueID = 0
-  // self.leagueName = nil
-  // self.leagueAbbrName = nil
-  // self.pos = nil
-  // self.buildID = nil
-  // self.buildType = 0
-  // self.treasureState = gATBuildingStatus.AT_EXPLORE
-  // self.emojiID = nil
+  _TreasureState = EATBuildingStatus::AT_EXPLORE;
 }
 
 void WorldMapAncientTreasure::_InitUI(){
-  // self.image_LeagueFlag = display.newSprite(allianceDesRead.getFlagIcon(self.leagueFlag, true))
-  // self.image_LeagueFlag:setScale(0.3)
-  // self.image_LeagueFlag:setPosition(cc.p(self.centerPoint.x - 147, self.centerPoint.y - 10))
-  // self.image_LeagueFlag:setVisible(false)
-  // self.image_LeagueFlag:addTo(self, 1)
+  
+  _ImageLeagueFlag = GDisplay::Get()->NewSprite(AllianceRead::Get()->GetFlagIcon(_LeagueFlag, true));
+  _ImageLeagueFlag->setScale(0.3f);
+  _ImageLeagueFlag->setPosition(_CenterPoint.x - 147, _CenterPoint.y - 10);
+  _ImageLeagueFlag->setVisible(false);
+  addChild(_ImageLeagueFlag, 1);
   // self.image_LeagueFlag:setGroupID(worldMapDefine.GROU_ID.group_flag)
-  // self.image_league_name = display.newSprite("#frame_map_07.png")
-  // self.image_league_name:setAnchorPoint(cc.p(0.5, 0.5))
-  // self.image_league_name:setPosition(cc.p(self.centerPoint.x - 0, self.centerPoint.y - 35))
-  // self.image_league_name:setVisible(false)
-  // self.image_league_name:addTo(self, 1)
+  _ImageLeagueName = GDisplay::Get()->NewSprite("frame_map_07.png");
+  _ImageLeagueName->setAnchorPoint(Vec2(0.5f, 0.5f));
+  _ImageLeagueName->setPosition(_CenterPoint.x - 0, _CenterPoint.y - 35);
+  _ImageLeagueName->setVisible(false);
+  addChild(_ImageLeagueName, 1);
   // self.image_league_name:setGroupID(worldMapDefine.GROU_ID.group_level_build)
-  // self.text_league_Name = SoraDCreateLabel({
-  //   UILabelType = 2,
-  //   text = "leagueName",
-  //   size = 20
-  // })
-  // self.text_league_Name:setAnchorPoint(cc.p(0.5, 0.5))
-  // self.text_league_Name:setPosition(cc.p(self.centerPoint.x - 0, self.centerPoint.y - 35))
-  // self.text_league_Name:setVisible(false)
-  // self.text_league_Name:addTo(self, 1)
+  GBase::RCreateLabelParm lParm;
+  lParm._UILabelType = GBase::EUILabelType::TTF;
+  lParm._Text = "leagueName";
+  lParm._FontSize = 20;
+  
+  _TextLeagueName = GBase::DCreateLabel(lParm);
+  _TextLeagueName->setAnchorPoint(Vec2(0.5f, 0.5f));
+  _TextLeagueName->setPosition(_CenterPoint.x - 0, _CenterPoint.y - 35);
+  _TextLeagueName->setVisible(false);
+  addChild(_TextLeagueName, 1);
+
   // self.text_league_Name:setGroupID(worldMapDefine.GROU_ID.group_text)
-  // self.image_player_name = display.newSprite("#frame_map_07.png")
-  // self.image_player_name:setAnchorPoint(cc.p(0.5, 0.5))
-  // self.image_player_name:setPosition(cc.p(self.centerPoint.x - 0, self.centerPoint.y - 80))
-  // self.image_player_name:setVisible(false)
-  // self.image_player_name:addTo(self, 1)
-  // self.image_player_name:setGroupID(worldMapDefine.GROU_ID.group_level_build)
-  // self.text_player_Name = SoraDCreateLabel({
-  //   UILabelType = 2,
-  //   text = "playerName",
-  //   size = 20
-  // })
-  // self.text_player_Name:setAnchorPoint(cc.p(0.5, 0.5))
-  // self.text_player_Name:setPosition(cc.p(self.centerPoint.x - 0, self.centerPoint.y - 80))
-  // self.text_player_Name:setVisible(false)
-  // self.text_player_Name:addTo(self, 1)
+  _ImagePlayerName = GDisplay::Get()->NewSprite("frame_map_07.png");
+  _ImagePlayerName->setAnchorPoint(Vec2(0.5f, 0.5f));
+  _ImagePlayerName->setPosition(_CenterPoint.x - 0, _CenterPoint.y - 80);
+  _ImagePlayerName->setVisible(false);
+  addChild(_ImagePlayerName, 1);
+
+  lParm._Text = "playerName";
+  _TextPlayerName = GBase::DCreateLabel(lParm);
+  _TextPlayerName->setAnchorPoint(Vec2(0.5f, 0.5f));
+  _TextPlayerName->setPosition(_CenterPoint.x - 0, _CenterPoint.y - 80);
+  _TextPlayerName->setVisible(false);
+  addChild(_TextPlayerName, 1);
   // self.text_player_Name:setGroupID(worldMapDefine.GROU_ID.group_text)
-  // self.treasureImg = display.newSprite("#Map_build_sgmk.png")
-  // self:addChild(self.treasureImg, -1)
-  // self.etNode = SoraDCreatAnimation("ancientTreasureEffect")
-  // SoraDMixtureGLONEByParent(self.etNode)
-  // self:addChild(self.etNode, 1)
+ _TreasureImg = GDisplay::Get()->NewSprite("Map_build_sgmk.png");
+  addChild(_TreasureImg, -1);
+  _EtNode = GBase::DCreateAnimation("UiParts/Panel/World/WorldMap/Floor/Animation/ancientTreasureEffect.csb").First;
+  GBase::DMixtureGLONEByParent(_EtNode);
+  addChild(_EtNode, 1);
 }
 
 void WorldMapAncientTreasure::OnMessageListener() {}
@@ -73,180 +71,129 @@ void WorldMapAncientTreasure::SetBatchNodeGroupID(EGrouID pBatchNodeGroupID) {
 }
 
 void WorldMapAncientTreasure::InitInstanceData(const RAncientTreasureInitData &pData){
-  // dump(treasureData, "treasureData=========")
-  // if not treasureData then
-  //   return
-  // end
-  // self.pos = self:getTilePoint()
-  // if treasureData.buildID then
-  //   self.buildID = treasureData.buildID
-  // end
-  // self:updateData(treasureData)
+  _Pos = GetTilePoint();
+  _BuildID = pData._BuildID;
+  UpdateData(pData);
 }
 
-void WorldMapAncientTreasure::UpdateData(const RAncientTreasureInitData &pData){
-  // dump(treasureData, "worldMapAncientTreasure1111", 5)
-  // if not treasureData then
-  //   return
-  // end
-  // if treasureData.playerID then
-  //   self.playerID = treasureData.playerID
-  // end
-  // if treasureData.playerName then
-  //   self.playerName = treasureData.playerName
-  // end
-  // local isOccupy = false
-  // if treasureData.aid then
-  //   if self.leagueID ~= 0 and self.leagueID ~= treasureData.aid then
-  //     isOccupy = true
-  //   end
-  //   self.leagueID = treasureData.aid
-  // end
-  // if treasureData.leagueName then
-  //   self.leagueName = treasureData.leagueName
-  // end
-  // if treasureData.leagueAbbrName then
-  //   self.leagueAbbrName = treasureData.leagueAbbrName
-  // end
-  // if treasureData.buildType then
-  //   self.buildType = treasureData.buildType
-  // end
-  // if treasureData.buildStatus then
-  //   self.treasureState = treasureData.buildStatus
-  // end
-  // self:updateEmojiByData(treasureData)
-  // self:updatePlayerInfo()
-  // SoraDSendMessage({
-  //   msg = "MESSAGE_SERVER_ANCIENT_TREASURE_UPDATE",
-  //   instance = self,
-  //   isOccupy = isOccupy
-  // })
+void WorldMapAncientTreasure::UpdateData(const RAncientTreasureInitData &pTreasureData){
+
+  auto lIsOccupy = false;
+  if(_LeagueID > 0 && _LeagueID != pTreasureData._AID){
+    lIsOccupy = true;
+  }
+
+  _PlayerID = pTreasureData._PlayerID;
+  _PlayerName = pTreasureData._PlayerName;
+  _LeagueID = pTreasureData._AID;
+  _LeagueName = pTreasureData._LeagueName;
+  _LeagueAbbrName = pTreasureData._LeagueAbbrName;
+  _BuildType = pTreasureData._BuildType;
+  _TreasureState = pTreasureData._BuildStatus;
+
+  UpdateEmojiByData(pTreasureData._OwnerID, pTreasureData._EmojiID);
+  UpdatePlayerInfo();
+  static RMessageServerAncientTreasureUpdate lMessage;
+  lMessage._Instance = this;
+  lMessage._IsOccupy = lIsOccupy;
+  GBase::DSendMessage("MESSAGE_SERVER_ANCIENT_TREASURE_UPDATE", &lMessage);
 }
 
 void WorldMapAncientTreasure::UpdatePlayerInfo(){
-  // local selfLeagueID = allianceMgr:getOwnTeamID()
-  // if self.leagueID and self.leagueID > 0 and self.playerID and 0 < self.playerID then
-  //   if self.leagueID == selfLeagueID then
-  //     local nameColor = worldMapDefine.getLeagueManorLineColor(true)
-  //     self.text_league_Name:setColor(nameColor)
-  //     self.text_player_Name:setColor(nameColor)
-  //   else
-  //     local allianceRelationCtrl = gametop.playertop_:getModule("allianceRelationCtrl")
-  //     local allianceRelationType = allianceRelationCtrl:getRelationTypeWith(self.leagueID)
-  //     local nameColor = worldMapDefine.getLeagueManorLineColor(false, allianceRelationType)
-  //     self.text_league_Name:setColor(nameColor)
-  //     self.text_player_Name:setColor(nameColor)
-  //   end
-  //   self.image_LeagueFlag:setVisible(true)
-  //   self.image_league_name:setVisible(true)
-  //   self.text_league_Name:setVisible(true)
-  //   self.image_player_name:setVisible(true)
-  //   self.text_player_Name:setVisible(true)
-  //   if allianceDesRead.getFlagIcon(self.leagueFlag) then
-  //     self.image_LeagueFlag:setSpriteFrame(allianceDesRead.getFlagIcon(self.leagueFlag))
-  //   end
-  //   self.text_league_Name:setString(self.leagueName)
-  //   local textName = self.playerName
-  //   if self.leagueID and self.leagueID > 0 and self.leagueAbbrName then
-  //     textName = i18n("common_text_186", {
-  //       abbr = self.leagueAbbrName,
-  //       name = self.playerName
-  //     })
-  //   end
-  //   self.text_player_Name:setString(textName)
-  // else
-  //   self.image_LeagueFlag:setVisible(false)
-  //   self.image_league_name:setVisible(false)
-  //   self.text_league_Name:setVisible(false)
-  //   self.image_player_name:setVisible(false)
-  //   self.text_player_Name:setVisible(false)
-  // end
+  auto lSelfLeagueID = AllianceManager::Get()->GetOwnTeamID();
+  if(_LeagueID > 0 && _PlayerID > 0){
+    if(_LeagueID == lSelfLeagueID){
+      auto lNameColor = WorldMapDefine::Get()->GetLeagueManorLineColor(true);
+      _TextLeagueName->setColor(lNameColor);
+      _TextPlayerName->setColor(lNameColor);
+    }else{
+      auto lARelationType = AllianceRelationCtrl::Get()->GetRelationTypeWith(_LeagueID);
+      auto lNameColor = WorldMapDefine::Get()->GetLeagueManorLineColor(false, lARelationType);
+      _TextLeagueName->setColor(lNameColor);
+      _TextPlayerName->setColor(lNameColor);
+    }
+    
+    _ImageLeagueFlag->setVisible(true);
+    _ImageLeagueName->setVisible(true);
+    _TextLeagueName->setVisible(true);
+    _ImagePlayerName->setVisible(true);
+    _TextPlayerName->setVisible(true);
+
+    if(!AllianceRead::Get()->GetFlagIcon(_LeagueFlag).empty())
+      _TextLeagueName->setString(_LeagueName);
+    auto lTextName = _PlayerName;
+    if(_LeagueID > 0 && !_LeagueAbbrName.empty()){
+      lTextName = Translate::i18n("common_text_186", {{"abbr", _LeagueAbbrName}, {"name", _PlayerName}});
+    }
+    _TextPlayerName->setString(lTextName);
+  }else{
+    _ImageLeagueFlag->setVisible(false);
+    _ImageLeagueName->setVisible(false);
+    _TextLeagueName ->setVisible(false);
+    _ImagePlayerName->setVisible(false);
+    _TextPlayerName ->setVisible(false);
+  }
 }
 
 GString WorldMapAncientTreasure::GetFavoriteName(){
-  // local favoriteName = i18n("AncienTreasure_buildname_01")
-  // return favoriteName
+  return Translate::i18n("AncienTreasure_buildname_01");
 }
 
 void WorldMapAncientTreasure::PlayClickSound() {
-  // SoraDPlaySound("worldmap", 5)
+  GBase::PlaySound("worldmap", 5);
 }
 
 GVector<RButtonTypeArray> WorldMapAncientTreasure::GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar) {
-  // local buttonTypeArray = {}
-  // local selfLeagueID = allianceMgr:getOwnTeamID() or 0
-  // local selfPlayerID = gametop.playertop_:getPlayerID()
-  // local playerID = self.playerID or 0
-  // local leagueID = self.leagueID or 0
-  // print("playerID,selfPlayerID,leagueID,selfLeagueID,self.treasureState===", playerID, selfPlayerID, leagueID, selfLeagueID, self.treasureState)
-  // if isSelfKindom then
-  //   if selfLeagueID == 0 or SoraDGetCastleLv() < 6 then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_shuoMing
-  //     })
-  //     return buttonTypeArray
-  //   end
-  //   local allianceRelationType = SoraDGetCtrl("allianceRelationCtrl"):getRelationTypeWith(leagueID)
-  //   if allianceRelationType == gMapAllianceRelationType.ALLY then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_shuoMing
-  //     })
-  //     return buttonTypeArray
-  //   end
-  //   if self.treasureState == gATBuildingStatus.AT_EXPLORE then
-  //     if selfLeagueID > 0 and leagueID == selfLeagueID then
-  //       table.insert(buttonTypeArray, {
-  //         buttonType = worldMapDefine.worldMapTipButtonType_tanmingmibao
-  //       })
-  //     end
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_shuoMing
-  //     })
-  //   elseif self.treasureState == gATBuildingStatus.AT_MINNING then
-  //     if selfLeagueID > 0 and self.leagueID == selfLeagueID or self.leagueID == 0 then
-  //       table.insert(buttonTypeArray, {
-  //         buttonType = worldMapDefine.worldMapTipButtonType_wajuexiangqing
-  //       })
-  //       local haveHall = cityCtrl:getBuildCell(BUILDID.HALL_OF_WAR, 0)
-  //       if haveHall then
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_zuduiwajue
-  //         })
-  //       end
-  //       table.insert(buttonTypeArray, {
-  //         buttonType = worldMapDefine.worldMapTipButtonType_wajue
-  //       })
-  //     else
-  //       print("self.leagueID,selfLeagueID===", self.leagueID, selfLeagueID)
-  //       table.insert(buttonTypeArray, {
-  //         buttonType = worldMapDefine.worldMapTipButtonType_gongJi,
-  //         extra = {
-  //           dispatchType = worldMapDefine.worldMapTipButtonType_zhanLing
-  //         }
-  //       })
-  //       if self.leagueID and 0 < self.leagueID then
-  //         local towerLv = cityCtrl:getBuildMaxLv(BUILDID.WATCH_TOWER)
-  //         if towerLv > 1 then
-  //           table.insert(buttonTypeArray, {
-  //             buttonType = worldMapDefine.worldMapTipButtonType_zhenCha
-  //           })
-  //         end
-  //       end
-  //       local haveHall = cityCtrl:getBuildCell(BUILDID.HALL_OF_WAR, 0)
-  //       if haveHall then
-  //         table.insert(buttonTypeArray, {
-  //           buttonType = worldMapDefine.worldMapTipButtonType_xuanZhan
-  //         })
-  //       end
-  //     end
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_shuoMing
-  //     })
-  //   end
-  // else
-  //   table.insert(buttonTypeArray, {
-  //     buttonType = worldMapDefine.worldMapTipButtonType_shuoMing
-  //   })
-  // end
-  // return buttonTypeArray
+  
+  GVector<RButtonTypeArray> lButtonTypeArray;
+  auto lSelfLeagueID = AllianceManager::Get()->GetOwnTeamID();
+  auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
+  if(pIsSelfKingdom){
+    if(lSelfLeagueID == 0 || GBase::DGetCastleLv() < 6){
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::shuoMing});
+      return lButtonTypeArray;
+    }
+    
+    auto lRelationType = AllianceRelationCtrl::Get()->GetRelationTypeWith(_LeagueID);
+    if(lRelationType == EMapAllianceRelationType::ALLY){
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::shuoMing});
+      return lButtonTypeArray;
+    }
+
+    if(_TreasureState == EATBuildingStatus::AT_EXPLORE){
+      if(lSelfLeagueID > 0 && _LeagueID == lSelfLeagueID){
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::tanmingmibao});
+      }
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::shuoMing});
+    }else if(_TreasureState == EATBuildingStatus::AT_MINNING){
+      if(lSelfLeagueID > 0 && _LeagueID == lSelfLeagueID || _LeagueID == 0){
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::wajuexiangqing});
+        auto lHaveHall = CityCtrl::Get()->GetBuildingCell(EBuilding::HallOfWar, EBuildingIndex::None);
+        if(lHaveHall){
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::zuduiwajue});
+        }
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::wajue});
+      }else{
+        RButtonTypeArray lButtonType;
+        lButtonType._ButtonType = EWorldMapTipButtonType::gongJi;
+        lButtonType._Extra._DispatchType = EWorldMapTipButtonType::zhanLing;
+        lButtonTypeArray.push_back(lButtonType);
+        if(_LeagueID > 0){
+          auto lTowerLv = CityCtrl::Get()->GetBuildingMaxLv(EBuilding::WatchTower);
+          if(lTowerLv > 1){
+            lButtonTypeArray.push_back({EWorldMapTipButtonType::zhenCha});
+          }
+        }
+        
+        auto lHaveHall = CityCtrl::Get()->GetBuildingCell(EBuilding::HallOfWar, EBuildingIndex::None);
+        if(lHaveHall){
+          lButtonTypeArray.push_back({EWorldMapTipButtonType::xuanZhan});
+        }
+      }
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::shuoMing});
+    }
+  }else{
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::shuoMing});
+  }
+  return lButtonTypeArray;
 }

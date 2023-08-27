@@ -36,6 +36,10 @@ uint32 LordInfoCtrl::GetLordLevel()
   return 0;
 }
 
+uint32 LordInfoCtrl::GetSourceKid()
+{
+  return 0;
+}
 int32 LordInfoCtrl::GetMapSourceKid()
 {
   return 0;

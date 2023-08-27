@@ -13,6 +13,9 @@ struct RButtonTypeArray{
   EWorldMapTipButtonType _ButtonType;
   bool _IsButtonEnabled = true;
   GString _MsgTipsKey = "";
+  struct {
+    EWorldMapTipButtonType _DispatchType;
+  } _Extra;
 };
 
 class IWorldMapInstance : public WorldMapInstanceLod, public WorldMapBuildEmoji, public WorldMapBuildFireEffect

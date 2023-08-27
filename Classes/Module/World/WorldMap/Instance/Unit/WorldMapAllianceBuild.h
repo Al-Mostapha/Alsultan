@@ -2,6 +2,7 @@
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
 #include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
 #include "Module/World/Kingdom/kingdomMap.Enum.h"
+#include "Module/Guild/Pet/AlliancePet.Enum.h"
 
 class UIWorldMapAllianceBuildProgressBar;
 class UIWorldMapBossProgressBar;

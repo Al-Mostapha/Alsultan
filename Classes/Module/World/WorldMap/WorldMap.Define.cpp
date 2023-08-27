@@ -241,9 +241,58 @@ GHashMap<EMapAllianceBuildType, RAllianceBuildInfo> _AllianceBuildInfo{
 
 
 
-GOpt<RAllianceBuildInfo> GetAllianceBuildInfo(EMapAllianceBuildType pBuild){
+GOpt<RAllianceBuildInfo> WorldMapDefine::GetAllianceBuildInfo(EMapAllianceBuildType pBuild){
   if(_AllianceBuildInfo.Contains(pBuild)){
     return _AllianceBuildInfo[pBuild];
   }
   return {};
+}
+
+EResourceType WorldMapDefine::GetAllianceResourceType(int32 pResourceClassID){
+  return EResourceType::Food;
+}
+
+GString WorldMapDefine::GetAllianceResourceImageName(int32 pResourceClassID){
+  return "alliance_mineral_shuijingkuang.png";
+}
+
+GString WorldMapDefine::GetAllianceResourceName(int32 pResourceClassID){
+  return "alliance_build_name_05";
+}
+
+bool WorldMapDefine::HasBossHdRes(EBossType pBossID, uint32 pLevel){
+  return true;
+}
+
+RBossShowData WorldMapDefine::GetWorldBossShow(EBossType pBossID, uint32 pLevel){
+  return RBossShowData();
+}
+
+Node *WorldMapDefine::CreateAttackEffectCsb(const RAttackEffectData &pData){
+  // local node = SoraDCreatAnimationEx(data.nodeName)
+  // node:setPosition(data.pos or cc.p(0, 0))
+  // node:setName("attackEffectNode")
+  // local scale = data.scale or 1
+  // if data.isFlipX then
+  //   node:setScale(-scale, scale)
+  // else
+  //   node:setScale(scale)
+  // end
+  // local Node_effect = node:getChildByName("Node_effect")
+  // if Node_effect then
+  //   Node_effect:setGroupID(data.groupID1)
+  //   Node_effect:setGroupAuto(true)
+  // end
+  // local Sprite_main = node:getChildByName("Sprite_main")
+  // if Sprite_main then
+  //   Sprite_main:setGroupID(data.groupID2)
+  // end
+  // local Node_GLONE = SoraDGetChildByName(node, "Node_GLONE")
+  // if Node_GLONE then
+  //   for k, v in pairs(Node_GLONE:getChildren()) do
+  //     SoraDMixtureGLONE(v)
+  //   end
+  // end
+  // return node
+  return GDisplay::Get()->NewNode();
 }

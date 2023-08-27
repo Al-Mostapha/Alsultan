@@ -1,5 +1,13 @@
 #include "AlliancePet.Read.h"
 
+AlliancePetRead *AlliancePetRead::Get(){
+  static AlliancePetRead * _AlliancePetRead = nullptr;
+  if(_AlliancePetRead == nullptr){
+    _AlliancePetRead = new AlliancePetRead();
+  }
+  return _AlliancePetRead;
+}
+
 GHashMap<int32, RWorldMapAlliancePetOffset> AlliancePetRead::_WorldMapPetOffset = 
 {
   {

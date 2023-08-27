@@ -240,6 +240,21 @@ void DMixtureGLONE(Sprite* p_Node) {
   }
 }
 
+void DMixtureGLONEByParent(Node* p_Node){
+  // local children = target:getChildren()
+  // for _, v in pairs(children) do
+  //   local childName = v:getName()
+  //   local nameTabel = SoraDStringSplit(childName, "_")
+  //   local nameType = nameTabel[1]
+  //   if v:getChildrenCount() > 0 then
+  //     SoraDMixtureGLONEByParent(v)
+  //   end
+  //   if nameType == "G" and ("cc.ParticleSystemQuad" == tolua.type(v) or "cc.Sprite" == tolua.type(v)) then
+  //     SoraDMixtureGLONE(v)
+  //   end
+  // end
+}
+
 void DRemoveMessageByTarget(Node* p_Node) {}
 
 void DRemoveMessageFromTargetByName(Node* p_Node, const char* p_EventId) {}
