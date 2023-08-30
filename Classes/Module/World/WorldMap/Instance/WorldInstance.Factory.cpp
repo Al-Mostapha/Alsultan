@@ -10,7 +10,7 @@ GHashMap<EMapObjTypeDef, RWorldInstanceConfig> _WorldInstanceConfig;
 IWorldMapInstance *AddWorldInstanceNormale(
   IWorldInstanceBuilder *pBuilder, 
   const RWorldInstanceConfigLod &pConfig, 
-  WorldMapCell *pCell, RWorldInstanceData pData, int32){
+  WorldMapCell *pCell, RWorldInstanceData pData, RInstanceData){
   auto lWorldInstance = pBuilder->AddMapInstance(pConfig, pCell, pData);
   if(lWorldInstance){
     lWorldInstance->InitInstanceData(pData._ObjData);
@@ -22,7 +22,7 @@ IWorldMapInstance *
 AddWorldInstanceClass(
   IWorldInstanceBuilder *pBuilder, 
   const RWorldInstanceConfigLod &pConfig, 
-  WorldMapCell *pCell, RWorldInstanceData pData, int32){
+  WorldMapCell *pCell, RWorldInstanceData pData, RInstanceData){
   auto lWorldInstance = pBuilder->AddMapInstance(pConfig, pCell, pData);
 
   if(!lWorldInstance){
@@ -43,14 +43,14 @@ IWorldMapInstance *
 AddWorldInstanceObjID(
   IWorldInstanceBuilder *pBuilder, 
   const RWorldInstanceConfigLod &pConfig, 
-  WorldMapCell *pCell, RWorldInstanceData pData, int32 pObjID){
+  WorldMapCell *pCell, RWorldInstanceData pData, RInstanceData pObjData){
   auto lWorldInstance = pBuilder->AddMapInstance(pConfig, pCell, pData);
 
   if(!lWorldInstance){
     return nullptr;
   }
 
-  lWorldInstance->InitInstanceData(pData._Class, pData._ObjData, pObjID);
+  lWorldInstance->InitInstanceData(pData._Class, pData._ObjData, pObjData._ObjID);
   return lWorldInstance;
 }
 
@@ -58,7 +58,7 @@ IWorldMapInstance *
 AddWorldBuilding(
   IWorldInstanceBuilder *pBuilder, 
   const RWorldInstanceConfigLod &pConfig, 
-  WorldMapCell *pCell, RWorldInstanceData pData, int32){
+  WorldMapCell *pCell, RWorldInstanceData pData, RInstanceData){
   auto lWorldInstance = pBuilder->AddMapInstance(pConfig, pCell, pData);
 
   if(!lWorldInstance){
@@ -72,7 +72,7 @@ IWorldMapInstance *
 AddWorldMonster(
   IWorldInstanceBuilder *pBuilder, 
   const RWorldInstanceConfigLod &pConfig, 
-  WorldMapCell *pCell, RWorldInstanceData pData, int32){
+  WorldMapCell *pCell, RWorldInstanceData pData, RInstanceData){
   auto lWorldMonster = pBuilder->AddMapInstance(pConfig, pCell, pData);
 
   if(!lWorldMonster){
@@ -1082,4 +1082,43 @@ void WorldInstanceFactory::InitConfig(){
   //     }
   //   }
 
+}
+
+RWorldInstanceData GetWorldMapInstanceData_imp(WorldMapCell *pCell, RInstanceData pInstanceData, RWorldInstanceConfig pConfig){
+  
+  auto lKingdomID = pInstanceData._KID ? pInstanceData._KID : pCell->_KingdomID;
+  RWorldInstanceData lWorldInstanceData;
+  lWorldInstanceData._TileInstanceType = pInstanceData._Type;
+  lWorldInstanceData._TilePoint = Vec2(pInstanceData._X, pInstanceData._Y);
+  lWorldInstanceData._TileInstanceID = pInstanceData._ID;
+  lWorldInstanceData._TileInstanceKingdomID = lKingdomID;
+  lWorldInstanceData._MassRef = pInstanceData._Ref;
+
+  //   if config.fromKey then
+  //     worldInstanceData.objData = instanceData[config.fromKey] or {}
+  //   end
+  lWorldInstanceData._Class = pInstanceData._Class;
+  lWorldInstanceData._SubMapType = pInstanceData._SubMapType;
+  lWorldInstanceData._ObjID = pInstanceData._ObjID;
+  //lWorldInstanceData._ObjData._SettingID = pInstanceData._SettingID;
+  return lWorldInstanceData;
+}
+
+
+IWorldMapInstance *WorldInstanceFactory::CreateMapInstance(
+  IWorldInstanceBuilder *pBuilder, WorldMapCell *pCell, RInstanceData pInstanceData
+){
+  auto lInstanceType = pInstanceData._Type;
+  IWorldMapInstance *lWorldInstance = nullptr;
+  RWorldInstanceConfig lConfig;
+  if(_WorldInstanceConfig.Contains(lInstanceType)){
+    lConfig = _WorldInstanceConfig[lInstanceType];
+    auto lWorldInstanceData = pInstanceData._WorldInstanceData;
+    if(lWorldInstanceData){
+      lWorldInstanceData = GetWorldMapInstanceData_imp(pCell, pInstanceData, lConfig);
+      pInstanceData._WorldInstanceData = lWorldInstanceData;
+    }
+    lWorldInstance = pBuilder->CreateMapInstanceConfig(pCell, pInstanceData, lWorldInstanceData, lConfig);
+  }
+  return lWorldInstance;
 }

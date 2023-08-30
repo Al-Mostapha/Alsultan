@@ -16,5 +16,8 @@ class IWorldInstanceBuilder{
     void Init(GVector<WorldMapCell *> pCellArray);
     void InitMapCell(WorldMapCell *pCell);
     virtual IWorldMapInstance *AddMapInstance(RWorldInstanceConfigLod p, WorldMapCell *, RWorldInstanceData) = 0;
+    virtual IWorldMapInstance *CreateMapInstance(WorldMapCell *pCell, RInstanceData pInstanceData) = 0;
+    virtual IWorldMapInstance *CreateMapInstanceConfig(WorldMapCell *pCell, RInstanceData pInstanceData, 
+      GOpt<RWorldInstanceData> pWorldInstanceData, RWorldInstanceConfig pConfig) = 0;
     void AddWorldInstance(WorldMapCell *, IWorldMapInstance *){};
 };

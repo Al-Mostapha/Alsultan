@@ -20,7 +20,7 @@ void IWorldMapInstance::SetTilesArray(GVector<Vec2> pTilesArray){}
 void IWorldMapInstance::SetTilePoint(Vec2 pTilePoint){}
 void IWorldMapInstance::SetHoldInstace(int32 pHoldInstace){}
 
-void UpdateAllianceCounterAtkEffect(EventCustom *pEvent){
+void IWorldMapInstance::UpdateAllianceCounterAtkEffect(EventCustom *pEvent){
   // if self.playerID and SoraDGetCtrl("allianceCounterSysCtrl"):checkAllianceEnemy(self.playerID) then
   //   self:addAllianceEnemyCastleEffect()
   // else

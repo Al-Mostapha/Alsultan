@@ -296,3 +296,7 @@ Node *WorldMapDefine::CreateAttackEffectCsb(const RAttackEffectData &pData){
   // return node
   return GDisplay::Get()->NewNode();
 }
+
+bool WorldMapDefine::IsWorldBossCanAttackAlone(EBossType pBossID, uint32 pLevel){
+  return false;
+}

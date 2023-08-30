@@ -19,7 +19,7 @@
 struct RCostBuilding {
   EBuilding TypeReq = EBuilding::None;
   uint32 lvlReq = 0;
-  static RCostBuilding fromJson(GJson* json) { RCostBuilding temp; }
+  static RCostBuilding fromJson(GJson* json) { RCostBuilding temp; return temp; }
 };
 
 struct RCostBuildingEnough{
@@ -99,7 +99,7 @@ struct RBuildingLvlSpecs {
   RResource resCapacity;
   EWatchTowerEffect watchTowerEffect = EWatchTowerEffect::None;
   uint32 freeTime = 0;
-  static RBuildingLvlSpecs fromJson(GJson* json) {}
+  static RBuildingLvlSpecs fromJson(GJson* json) { return RBuildingLvlSpecs(); }
 };
 
 struct RBuildingMoreInfoData{

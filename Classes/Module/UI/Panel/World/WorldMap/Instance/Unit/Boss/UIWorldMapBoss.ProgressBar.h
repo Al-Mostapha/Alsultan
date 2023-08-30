@@ -14,4 +14,5 @@ public:
   static UIWorldMapBossProgressBar* Create();
   void Ctor() override;
   void SetPercent(float p_Percent) {};
+  void SetReleaseTime(GTime p_Time) {};
 };

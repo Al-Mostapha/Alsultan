@@ -17,9 +17,7 @@ struct RWorldMapBossInit{
   GTime _RecoverBeginTime;
 };
 
-struct RMassRef
-{
-};
+
 
 struct RAddFireData{
   GOpt<float> _FightingToPointX;
@@ -87,8 +85,8 @@ class WorldMapBoss : public IWorldMapInstance
     void UpdateProcessBar();
     bool CheckIsEndlessTrialBoss();
     GTuple<UIBasePanel *, bool, Node*> OnClickEndlessTrialBoss(Node *pNode);
-    void SetMassRef(GHashMap<int32, RMassRef> &pMassRef);
-    int32 GetReleaseLeftTime();
+    void SetMassRef(GOpt<RMassRef> pMassRef);
+    GTime GetReleaseLeftTime();
     int32 GetRefNum(const RMassRef &pMassRef);
     int32 GetPlaceUid();
     int32 GetSettingID();

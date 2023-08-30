@@ -30,7 +30,7 @@ public:
   UIBasePanel* InitPanel(Node *p_CCsFile, RBasePenelData *p_Data = nullptr);
   static UIBasePanel* create(){return nullptr;}
   static UIBasePanel* Create(GString p_CCsFile, RBasePenelData *p_Data = nullptr);
-  virtual void Ctor();
+  virtual void Ctor() override;
   void DeviceFitOffset();
   void BindBtnClose();
   void ClosePanel();

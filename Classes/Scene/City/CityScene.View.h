@@ -73,7 +73,7 @@ public:
     //mainCityFunctions.addBuild(self, buildBtnId, buildCfgId)
     
   }
-  void UpdatePeriod();
+  void UpdatePeriod() override;
   void LoadFixedBuilds();
   void SetMainCityEnabled(bool p_Enabled);
   void UpdateBuildTiles();

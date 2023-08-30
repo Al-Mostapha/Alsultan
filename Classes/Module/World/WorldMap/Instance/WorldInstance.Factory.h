@@ -20,5 +20,5 @@ class WorldInstanceFactory{
     int32 GetHoldInstaceByType(EMapObjTypeDef pTileInstanceType, EWorldInstanceClass pClass, int32 pClassType = 0);
     bool IsInstanceDelayTime(EMapObjTypeDef pTileInstanceType);
     GTuple<IWorldMapInstance *, bool> GetInstanceByType(EWorldInstanceClass pClass, bool pCache = false);
-    IWorldMapInstance *CreateMapInstance(IWorldInstanceBuilder *pBuilder, WorldMapCell *pCell, RWorldInstanceData pData);
+    IWorldMapInstance *CreateMapInstance(IWorldInstanceBuilder *pBuilder, WorldMapCell *pCell, RInstanceData pData);
 };

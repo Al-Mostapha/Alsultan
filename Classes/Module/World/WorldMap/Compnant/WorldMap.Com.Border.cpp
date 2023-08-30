@@ -270,18 +270,18 @@ void WorldMapComBorder::CreateGrayBorder(float p_MapWidth){
       l_Normals.push_back(1);
 
       l_Triangles  = {
-        unsigned short(l_TempIndex * 8 + 0),
-        unsigned short(l_TempIndex * 8 + 1),
-        unsigned short(l_TempIndex * 8 + 2),
-        unsigned short(l_TempIndex * 8 + 2),
-        unsigned short(l_TempIndex * 8 + 3),
-        unsigned short(l_TempIndex * 8 + 0),
-        unsigned short(l_TempIndex * 8 + 4),
-        unsigned short(l_TempIndex * 8 + 5),
-        unsigned short(l_TempIndex * 8 + 6),
-        unsigned short(l_TempIndex * 8 + 6),
-        unsigned short(l_TempIndex * 8 + 7),
-        unsigned short(l_TempIndex * 8 + 4)
+        (unsigned short)(l_TempIndex * 8 + 0),
+        (unsigned short)(l_TempIndex * 8 + 1),
+        (unsigned short)(l_TempIndex * 8 + 2),
+        (unsigned short)(l_TempIndex * 8 + 2),
+        (unsigned short)(l_TempIndex * 8 + 3),
+        (unsigned short)(l_TempIndex * 8 + 0),
+        (unsigned short)(l_TempIndex * 8 + 4),
+        (unsigned short)(l_TempIndex * 8 + 5),
+        (unsigned short)(l_TempIndex * 8 + 6),
+        (unsigned short)(l_TempIndex * 8 + 6),
+        (unsigned short)(l_TempIndex * 8 + 7),
+        (unsigned short)(l_TempIndex * 8 + 4)
       };
       l_TempIndex++;
     }

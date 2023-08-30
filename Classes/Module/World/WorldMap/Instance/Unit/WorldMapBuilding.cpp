@@ -1257,7 +1257,7 @@ void WorldMapBuilding::CheckAllCastleMeteorteEffect(const GHashMap<EAttributeEnu
         if(lTileInstance && lTileInstance->_InstanceType == EMapObjTypeDef::mapObjTypePlayer && _LeagueID == lTileInstance->_LeagueID){
           auto lTilePoint = lTileInstance->GetTilePoint();
           if(lRect.containsPoint(lTilePoint)){
-              CC_ASSERT(dynamic_cast<WorldMapBuilding *>(lTileInstance) , "tileInstance is is not playerCity");
+              CC_ASSERT(dynamic_cast<WorldMapBuilding *>(lTileInstance));
               dynamic_cast<WorldMapBuilding *>(lTileInstance)->AddMeteoriteSkillEffect(lV);
           }
         }

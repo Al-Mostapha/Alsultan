@@ -5,10 +5,15 @@
 #include "Base/Utils/XTransition.h"
 #include "Base/Common/Common.Func.h"
 #include "Base/Common/Common.Msg.h"
-#include "Module/World/WorldWar/PyramidWar/ConquestWar.Ctrl.h"
+#include "Base/Functions/ServiceFunction.h"
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "Module/Player/Player.Top.h"
 #include "Module/Guild/Alliance.Mgr.h"
+#include "Module/World/WorldWar/PyramidWar/ConquestWar.Ctrl.h"
+#include "Module/UI/Panel/World/WorldMap/Instance/Unit/Boss/UIWorldMapBoss.View.h"
+#include "Module/UI/Panel/World/WorldMap/Instance/Unit/Boss/UIWorldMapEndlessTrialBossInfo.h"
+#include "Module/World/WorldMap/Monster/Boss/WasteLand/WasteLand.Ctrl.h"
+
 
 void WorldMapBoss::Ctor() {
   _InitUI();
@@ -354,85 +359,93 @@ GTuple<UIBasePanel *, bool, Node*> WorldMapBoss::OnClickInstance(Node *pNode) {
       return {nullptr, false, nullptr};
     }
   }
-  // self:playClickSound()
-  PlayClickSound();
-  // local selectShowPanel = include("worldMapBossView").new()
   
-  // selectShowPanel:setPosition(cc.p(display.width / 2, display.height / 2))
-  // selectShowPanel:setTilePoint(cc.p(self.tilePoint.x, self.tilePoint.y))
-  // selectShowPanel:initData(self)
-  // selectShowPanel:show()
-  // return selectShowPanel, true
+  PlayClickSound();
+  auto lSelectShowPanel = UIWorldMapBossView::Create();
+  lSelectShowPanel->setPosition(Vec2(GDisplay::Get()->width/2, GDisplay::Get()->height/2));
+  lSelectShowPanel->SetTilePoint(_TilePoint);
+  lSelectShowPanel->InitData(this);
+  lSelectShowPanel->Show();
+  return {lSelectShowPanel, true, nullptr};
 }
 
 void WorldMapBoss::PlayClickSound() {
-  // if gSoundDataList[self.imgName] then
-  //   SoraDPlaySound("worldMapMonster", self.imgName)
-  // else
-  //   SoraDPlaySound("worldmap", 5)
-  // end
+  if(GGlobal::Get()->gSoundDataList.Contains(_ImgName)){
+    GBase::PlaySound("worldMapMonster", _ImgName);
+  }else{
+    GBase::PlaySound("worldmap", 5);
+  }
 }
 
 void WorldMapBoss::UpdateProcessBar(){
-  // if self.leftLife and self.leftLife > 0 then
-  //   self.progressBar:setPercent(self.leftLife)
-  // else
-  //   self.progressBar:setVisible(false)
-  // end
-  // self.progressBar:setReleaseTime(self:getReleaseLeftTime())
+  if(_LeftLife  > 0)
+    _ProgressBar->SetPercent(_LeftLife);
+  else
+    _ProgressBar->setVisible(false);
+  _ProgressBar->SetReleaseTime(GetReleaseLeftTime());
 }
 
 bool WorldMapBoss::CheckIsEndlessTrialBoss(){
-  // local classTab = {
-  //   [gBossType.endlessTrialBoss1] = true,
-  //   [gBossType.endlessTrialBoss2] = true,
-  //   [gBossType.endlessTrialBoss3] = true,
-  //   [gBossType.endlessTrialBoss4] = true,
-  //   [gBossType.endlessTrialBoss5] = true,
-  //   [gBossType.endlessTrialBoss6] = true,
-  //   [gBossType.endlessTrialBoss7] = true,
-  //   [gBossType.endlessTrialBoss8] = true
-  // }
-  // return classTab[self:getBossClassID()]
+  auto lBoss = GetBossClassID();
+  if(
+      lBoss == EBossType::endlessTrialBoss1 
+      || lBoss == EBossType::endlessTrialBoss2 
+      || lBoss == EBossType::endlessTrialBoss3 
+      || lBoss == EBossType::endlessTrialBoss4 
+      || lBoss == EBossType::endlessTrialBoss5 
+      || lBoss == EBossType::endlessTrialBoss6 
+      || lBoss == EBossType::endlessTrialBoss7 
+      || lBoss == EBossType::endlessTrialBoss8
+    )
+    return true;
+
+  return false;
 }
 
 GTuple<UIBasePanel *, bool, Node*> WorldMapBoss::OnClickEndlessTrialBoss(Node *pNode){
-  // if worldMapDefine.isInKingdomBattle() then
-  //   SoraDShowMsgTip(i18n("common_text_3302"))
-  //   return
-  // end
-  // self:playClickSound()
-  // local selectShowPanel = include("worldMapEndlessTrialBossInfo").new()
-  // selectShowPanel:setPosition(cc.p(display.width / 2, display.height / 2))
-  // selectShowPanel:setTilePoint(cc.p(self.tilePoint.x, self.tilePoint.y))
-  // selectShowPanel:initData(self)
-  // selectShowPanel:show()
-  // return selectShowPanel, true
+  if(WorldMapDefine::Get()->IsInKingdomBattle()){
+    GBase::DShowMsgBox(Translate::i18n("common_text_3302"));
+    return {nullptr, false, nullptr};
+  }
+  
+  PlayClickSound();
+
+  auto lSelectShowPanel = UIWorldMapEndlessTrialBossInfo::Create();
+  lSelectShowPanel->setPosition(Vec2(GDisplay::Get()->width/2, GDisplay::Get()->height/2));
+  lSelectShowPanel->SetTilePoint(_TilePoint);
+  lSelectShowPanel->InitData(this);
+  lSelectShowPanel->Show();
+  return {lSelectShowPanel, true, nullptr};
 }
 
-void WorldMapBoss::SetMassRef(GHashMap<int32, RMassRef> &pMassRef){
-  // if ref and next(ref) then
-  //   self.refNode:setVisible(true)
-  //   if worldMapDefine.isWorldBossCanAttackAlone(self:getBossClassID(), self.bossLevel) then
-  //     self.refLabel:setString(i18n("lost_ruins_text_26", {
-  //       num = self:getRefNum(ref)
-  //     }))
-  //   else
-  //     self.refLabel:setString(i18n("AncienTreasure_text_71", {
-  //       num = self:getRefNum(ref)
-  //     }))
-  //   end
-  // else
-  //   self.refNode:setVisible(false)
-  // end
+void WorldMapBoss::SetMassRef(GOpt<RMassRef> pMassRef){
+  if(pMassRef){
+    _RefNode->setVisible(true);
+    if(WorldMapDefine::Get()->IsWorldBossCanAttackAlone(GetBossClassID(), _BossLevel)){
+      _RefLabel->setString(
+        Translate::i18n("lost_ruins_text_26", {
+            {"num", std::to_string(GetRefNum(pMassRef.value()))}
+          }
+        )
+      );
+    }else{
+      _RefLabel->setString(
+        Translate::i18n(
+          "AncienTreasure_text_71", 
+          {{"num", std::to_string(GetRefNum(pMassRef.value()))}}
+        )
+      );
+    }
+  }else{
+    _RefNode->setVisible(false);
+  }
 }
 
-int32 WorldMapBoss::GetReleaseLeftTime(){
-  // if not self.recoverBeginTime then
-  //   return 0
-  // end
-  // local releaseTime = SoraDGetCtrl("wastelandCtrl"):getBossConfigByLv(self.bossLevel).release
-  // return self.recoverBeginTime + releaseTime - serviceFunctions.systemTime()
+GTime WorldMapBoss::GetReleaseLeftTime(){
+  if(!_RecoverBeginTime)
+    return 0;
+  auto lReleaseTime = WasteLandCtrl::Get()->GetBossConfigByLv()._Release;
+  return _RecoverBeginTime + lReleaseTime - GServiceFunction::Get()->SystemTime();
 }
 
 int32 WorldMapBoss::GetRefNum(const RMassRef &pMassRef){
@@ -441,6 +454,7 @@ int32 WorldMapBoss::GetRefNum(const RMassRef &pMassRef){
   //   num = num + table.nums(v)
   // end
   // return num
+  return 0;
 }
 
 int32 WorldMapBoss::GetPlaceUid(){

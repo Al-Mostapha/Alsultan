@@ -2,6 +2,7 @@
 #include "IWorldMapInstance.h"
 #include "WorldInstance.Factory.h"
 #include "Module/World/WorldMap/View/WorldMap.Cell.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapBuilding.h"
 
 WorldInstanceBuilderNormal *WorldInstanceBuilderNormal::Create(){
   auto lBuilder = new WorldInstanceBuilderNormal();
@@ -54,5 +55,46 @@ IWorldMapInstance *WorldInstanceBuilderNormal::AddMapInstance(RWorldInstanceConf
   lWorldInstance->SetTilePoint(lTilePoint);
   lWorldInstance->SetHoldInstace(lHoldInstace);
   
+  return lWorldInstance;
+}
+
+IWorldMapInstance *WorldInstanceBuilderNormal::CreateMapInstance(WorldMapCell * pCell, RInstanceData pInstanceData){
+  auto lWorldMapInstance = WorldInstanceFactory::Get()->CreateMapInstance(this, pCell, pInstanceData);
+  if(lWorldMapInstance){
+    auto lDelayTime = pInstanceData._DelayTime;
+    auto lBuildInstance = dynamic_cast<WorldMapBuilding *>(lWorldMapInstance);
+    if(lBuildInstance)
+      lBuildInstance->ShowInstance(true, lDelayTime);
+  }
+  return lWorldMapInstance;
+}
+
+GOpt<RWorldInstanceConfigLod> GetConfigByType(RWorldInstanceConfig pConfig, EWorldLodDef pLod = EWorldLodDef::LOD1){
+  auto lLodConfig = pConfig._Lod;
+  if(lLodConfig.Contains(pLod)){
+    return lLodConfig[pLod];
+  } 
+  return {};
+}
+
+IWorldMapInstance *WorldInstanceBuilderNormal::
+CreateMapInstanceConfig(
+  WorldMapCell *pCell, RInstanceData pInstanceData, 
+  GOpt<RWorldInstanceData> pWorldInstanceData, RWorldInstanceConfig pConfig
+){
+  auto lLodConfig = GetConfigByType(pConfig, _Lod);
+  if(!lLodConfig){
+    return nullptr;
+  }
+  IWorldMapInstance *lWorldInstance = nullptr;
+  auto lCreateFun = lLodConfig->_CreateFun;
+  if(lCreateFun){
+    lWorldInstance = lCreateFun(this, *lLodConfig, pCell, *pWorldInstanceData, pInstanceData);
+    // if(lLodConfig->_Cache){
+    //   lWorldInstance->SetCacheStatus(lLodConfig->_Cache);
+    // }
+  } else{
+    cocos2d::log("[instanceFactory] createFun is nil %d", pInstanceData._Type);
+  }
   return lWorldInstance;
 }

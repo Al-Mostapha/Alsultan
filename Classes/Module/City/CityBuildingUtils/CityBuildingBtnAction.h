@@ -118,6 +118,6 @@ struct RCityBtnAction : GStruct
 				BtnImage.c_str(),
 				ActionSortIndex, 
 				scale,
-			cocos2d::StringUtils::format("{x: %d, y: %d}", offset.x, offset.y).c_str());
+			cocos2d::StringUtils::format("{x: %f, y: %f}", offset.x, offset.y).c_str());
 	}
 };

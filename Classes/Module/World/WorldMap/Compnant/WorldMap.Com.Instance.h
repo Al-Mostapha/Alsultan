@@ -14,6 +14,8 @@
 #define MAX_DELINSTANCE 6
 #endif
 
+struct RNewInstanceData{};
+
 class WorldMapComInstance : public IWorldMapComponent{
 
   int32 _MaxInstanceDel = MAX_DELINSTANCE;
@@ -26,6 +28,12 @@ class WorldMapComInstance : public IWorldMapComponent{
   void Init() override;
   void OnMessageListener() override;
   void Ctor();
+
+  void Toggle3D(EventCustom *p_Event);
+  void UpdateRelationChange(EventCustom *p_Event);
+  void CheckAdddMapInstace(const RNewInstanceData &pData);
+  void ServerMessageAddMapInstace(EventCustom *p_Event);
+  
 
   void UpdateInfo(EventCustom *p_Event);
   void UpdateViewPieceIds(EventCustom *p_Event);

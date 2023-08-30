@@ -2,6 +2,10 @@
 #include "Module/World/WorldMap/WorldMap.Event.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"
 
+void WorldMapComInstance::Ctor(){
+  
+}
+
 void WorldMapComInstance::Init()
 {
   _LodPreview = false;

@@ -14,3 +14,8 @@ struct RBossShowData{
   GString _IconLod;
   float _ScaleLod;
 };
+
+
+struct RMassRef
+{
+};

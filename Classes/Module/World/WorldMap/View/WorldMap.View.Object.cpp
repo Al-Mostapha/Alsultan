@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "Module/World/WorldMap/Compnant/WorldMapCom.TmxTerrianBg.h"
 #include "Module/World/WorldMap/Compnant/WorldMap.Com.UI.h"
+#include "Module/World/WorldMap/Compnant/WorldMap.Com.InstanceNormal.h"
 #include "Module/World/WorldMap/Compnant/WorldMap.Com.Normal.h"
 #include "Module/World/WorldMap/Compnant/WorldMap.Com.ManorlineNew.h"
 #include "Module/World/WorldMap/Compnant/WorldMap.Com.Water.h"
@@ -29,7 +30,7 @@ void WorldMapViewObject::AddComponents(RViewClass p_Config, WorldMapView *p_Targ
   
   _Components.emplace_back(_WorldMapComUI = IWorldMapComponent::Create<WorldMapComUI>(p_Config, p_Target));
   _Components.emplace_back(IWorldMapComponent::Create<WorldMapComViewPiece>(p_Config, p_Target));
-  //_Components.emplace_back(IWorldMapComponent::Create<WorldMapComInstanceNormal>(p_Config, p_Target));
+  _Components.emplace_back(IWorldMapComponent::Create<WorldMapComInstanceNormal>(p_Config, p_Target));
   //_Components.emplace_back(IWorldMapComponent::Create<WorldMapComMoveline>(p_Config, p_Target));
   _Components.emplace_back(IWorldMapComponent::Create<WorldMapComButton>(p_Config, p_Target));
   _Components.emplace_back(IWorldMapComponent::Create<WorldMapComTmxTerrianBg>(p_Config, p_Target));

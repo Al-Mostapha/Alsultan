@@ -94,7 +94,8 @@ public:
   GString GetAttackEffectCsbName(const GString &pMonsterName, const GString &pDirection);
   int32 GetBeginAnimationByName(const GString &pMonsterName);
   const GVector<RCreatEffctParam> &GetEffectByNameAndDir(const GString &pMonsterName, const GString &pDirection){
-    return GVector<RCreatEffctParam>();
+    static  GVector<RCreatEffctParam> t;
+    return t;
   }
   bool CheckIsWastelandMonster(int32 pMonsterClassID = 0);
   WorldMapProtectNode *CreateWorldMapProtect(bool pIsGreen = false);
@@ -118,6 +119,7 @@ public:
   bool HasBossHdRes(EBossType pBossID, uint32 pLevel);
   RBossShowData GetWorldBossShow(EBossType pBossID, uint32 pLevel);
   Node *CreateAttackEffectCsb(const RAttackEffectData &pData);
+  bool IsWorldBossCanAttackAlone(EBossType pBossID, uint32 pLevel);
 };
 
 

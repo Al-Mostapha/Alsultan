@@ -5,6 +5,7 @@
 #include "WorldInstance.Enum.h"
 #include "Base/Containers/HashMap.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "Module/World/WorldMap/Monster/Boss/Boss.Type.h"
 
 
 
@@ -18,13 +19,35 @@ struct RWorldMonsterObjData{
 };
 
 struct RWorldInstanceData{
-  Vec2 _TilePoint;
-  EMapObjTypeDef _TileInstanceType;
-  int32 _SubMapType;
-  EWorldInstanceClass _Class;
-  int32 _TileInstanceID;
-  void *_ObjData;
+    Vec2 _TilePoint;
+    EMapObjTypeDef _TileInstanceType;
+    int32 _TileInstanceID;
+    int32 _TileInstanceKingdomID;
+    GOpt<RMassRef> _MassRef;
+    int32 _SubMapType;
+    EWorldInstanceClass _Class;
+    int32 _ObjID;
+    void *_ObjData;
 };
+
+
+struct RInstanceData{
+  int32 _X;
+  int32 _Y;
+  EMapObjTypeDef _Type;
+  int32 _ID;
+  int32 _KID;
+  int32 _DelayTime;
+  int32 _SubMapType;  
+  int32 _ObjID;
+  int32 _SettingID;
+  EWorldInstanceClass _Class;
+  GOpt<RWorldInstanceData> _WorldInstanceData;
+  GOpt<RMassRef> _Ref;
+  
+};
+
+
 struct RWorldInstanceConfigLod;
 
 
@@ -38,7 +61,8 @@ struct RWorldInstanceConfigLod {
       IWorldInstanceBuilder *, 
       const RWorldInstanceConfigLod &, 
       WorldMapCell *, 
-      RWorldInstanceData, int32)
+      RWorldInstanceData, 
+      RInstanceData)
   > _CreateFun = nullptr;
 
   GHashMap<int32, EWorldInstanceClass> _ClassTable;

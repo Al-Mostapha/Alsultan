@@ -11,6 +11,8 @@ class UIWorldMapBottomPoint;
 class WorldMapComLod;
 class WorldMapComUI;
 class IWorldMapInstance;
+class IInstanceBuilder;
+class IWorldInstanceBuilder;
 class WorldMapViewObject
 {
   protected:
@@ -18,6 +20,8 @@ class WorldMapViewObject
   public:
     WorldMapComLod *_WorldMapComLod;
     WorldMapComUI *_WorldMapComUI;
+    IWorldInstanceBuilder *_Builder;
+
     void AddComponents(RViewClass p_Config, WorldMapView *p_Target);
     template <typename T>
     T *GetComponent(const GString &p_Name){

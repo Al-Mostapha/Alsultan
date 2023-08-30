@@ -9,6 +9,7 @@
 #include "Module/World/WorldWar/WorldWar.Def.h"
 #include "Module/World/WorldMap/WorldMap.Event.h"
 #include "Module/World/WorldMap/MapSyncUtilClient.h"
+#include "Module/World/WorldMap/Instance/IWorldInstance.Builder.h"
 #include "Module/Player/Player.Top.h"
 #include "Global/Global.h"
 #include "Engine/XTiledMap/XTiledMap.h"
@@ -205,6 +206,14 @@ void WorldMapView::InitTmx(){
     //   })
     _GroundLayer = l_GroundLayer;
     _GroundLayer->setVisible(true);
+    auto lUnit  = _GroundLayer->getTileAt(Vec2(60, 58));
+    auto lPos = _GroundLayer->getPositionAt(Vec2(60, 58));
+
+    auto lCell = WorldMapCell::Create(this);
+    RInstanceData lData;
+    lData._Type = EMapObjTypeDef::mapObjTypeNpc;
+    _Builder->CreateMapInstance(lCell, lData);
+    lUnit->addChild(lCell);
     _MapLayer = _GroundLayer;
   } else {
     //   self.mapLayer = tmxview:getLayer("tile")
