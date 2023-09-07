@@ -243,9 +243,10 @@ void WorldMapBuilding::SetSkinGroupID(EBuildingCastleModel pModel){
   // end
 }
 
-void WorldMapBuilding::InitCityData(const RWorldBuildingInitData &pData){
-  // self:updateData(data)
-  UpdateData(pData);
+void WorldMapBuilding::InitCityData(void *pData){
+  CC_ASSERT(pData);
+  auto lData = static_cast<RWorldBuildingInitData *>(pData);
+  UpdateData(*lData);
 }
 
 void WorldMapBuilding::UpdateData(const RWorldBuildingInitData &pData){
@@ -552,7 +553,7 @@ void WorldMapBuilding::UpdateLeagueInfo(){
     _ImageLeagueFlag->setVisible(true);
     if(_LeagueFlag){
       _ImageLeagueFlag->setSpriteFrame(AllianceRead::Get()->GetFlagIcon(_LeagueFlag));
-      _ImageLeagueFlag->setScale(0.3);
+      _ImageLeagueFlag->setScale(0.3f);
     }
   }else{
     _ImageLeagueFlag->setVisible(false);
@@ -1783,16 +1784,14 @@ GVector<RButtonTypeArray> WorldMapBuilding::GetInstanceOp(bool pIsSelfKingdom, b
 
 void WorldMapBuilding::LazyCreateOfficalImage(){
   if(!_OfficalImage){
-    auto lOfficalImage = GDisplay::Get()->NewSprite("frame_king_22.png");
+    _OfficalImage = GDisplay::Get()->NewSprite("frame_king_22.png");
     _OfficalImage->setPosition(_CenterPoint + Vec2(0, 150));
     _OfficalImage->setScale(0.75f);
     addChild(_OfficalImage, 5);
     auto lOfficialImgSize = _OfficalImage->getContentSize();
-    auto lOfficialIcon = GDisplay::Get()->NewSprite("icon_king.png");
-    lOfficialIcon->setPosition(lOfficialImgSize / 2);
-    _OfficalImage->addChild(lOfficialIcon, 2);
-    _OfficalImage = lOfficalImage;
-    _OfficalIcon = lOfficialIcon;
+    _OfficalIcon = GDisplay::Get()->NewSprite("icon_king.png");
+    _OfficalIcon->setPosition(lOfficialImgSize / 2);
+    _OfficalImage->addChild(_OfficalIcon, 2);
   }else{
     _OfficalImage->setScale(0.75f);
     _OfficalIcon->setScale(1);

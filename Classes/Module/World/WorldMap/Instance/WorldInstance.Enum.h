@@ -6,6 +6,8 @@ enum class EWorldInstanceClass {
   WorldMapBuildingLod2,
   WorldMapBuildingLod,
   WorldMapLegendLord,
+  WorldMapRemains,
+  WorldMapIconLodInstance,
   WorldMapRemainsWar,
   WorldMapCastle,
   WorldMapIconLodCastle,
@@ -18,7 +20,10 @@ enum class EWorldInstanceClass {
   WorldMapCampsite,
   WorldMapIconLodCampsite,
   WorldMapMonster,
-  WorldMapMonsterLod
+  WorldMapMonsterLod,
+  WorldMapAllianceBuild,
+  WorldMapAllianceBuildLod,
+  
 };
 
 
@@ -61,4 +66,27 @@ enum class EMapAllianceBuildType{
   Flag = 6,
   Altar = 8,
   PriPalace = 9
+};
+
+enum class ESignatureBoxType{
+  None = 0,
+  Normal = 1,
+  War = 2
+};
+
+enum class ESkillEffectType {
+  None = 0,
+  RUINS_WAR_MOVE_CITY_LOCKED = 1,
+  RUINS_WAR_SPEED_QUEUE_LOCKED = 2,
+  APPOINT_DAMAGE_BOOST = 3,
+  APPOINT_CURE_SOLDIER_SPEED_BOOST = 4
+};
+
+
+enum class EKWBattery{
+  None = 0,
+  NORTH = 11,
+  EAST = 14,
+  SOUTH = 13,
+  WEST = 12
 };

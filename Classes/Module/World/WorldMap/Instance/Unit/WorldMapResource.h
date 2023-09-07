@@ -1,24 +1,12 @@
 #pragma once
 #include "Module/CityResource/Resource.Enum.h"
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
+#include "Module/World/WorldMap/Instance/WorldInstance.Type.h"
 
 class WorldMapProtectNode;
 
 
-struct RResourceInitData
-{
-  int32 _PlayerID = 0;
-  int32 _LeagueID = 0;
-  GString _PlayerName;
-  GString _LeagueName;
-  //Kingdom ID
-  int32 _SourceID = 0;
-  int32 _CurrentSourceNum = 0;
-  EMapResourceLvBgColorDef _LvBgColor = EMapResourceLvBgColorDef::Normal;
-  bool _IsSafe = false;
-  int32 _OwnerUid = 0;
-  int32 _Emoji = 0;
-};
+
 
 class WorldMapResource : public IWorldMapInstance
 {
@@ -41,13 +29,14 @@ class WorldMapResource : public IWorldMapInstance
 
   public:
     void Ctor() override;
+    CREATE_FUNC(WorldMapResource);
   private:
     void _InitUI();
     void _InitData();
   public:
     void AddCacheBefore() override;
     void SetBatchNodeGroupID(EGrouID pBatchNodeGroupID) override;
-    void InitInstanceData(int32 pResourceID, const RResourceInitData &pResourceData);
+    void InitInstanceData(int32 pResourceID, void *pResourceData, int32 ObjID = 0) override;
     void UpdateData(const RResourceInitData &pResourceData);
     void OnMessageListener() override;
     void UpdateAllianceCounter(EventCustom *pEvent);

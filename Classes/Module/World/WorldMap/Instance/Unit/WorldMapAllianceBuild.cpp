@@ -102,6 +102,11 @@ void WorldMapAllianceBuild::SetBuildSize(int32 pSize, float pRadioation){
   _Radioation = pRadioation;
 }
 
+void WorldMapAllianceBuild::InitInstanceData(int32 pBuildClassID, void *pData, int32 pObjID){
+  auto lData = (RWorldAllianceBuildInitData *)pData;
+  InitInstanceData((EMapAllianceBuildType)pBuildClassID, *lData);
+}
+
 void WorldMapAllianceBuild::InitInstanceData(EMapAllianceBuildType pBuildClassID, const RWorldAllianceBuildInitData &pData){
   _BuildClassID = pBuildClassID;
   auto lBuildinfo = WorldMapDefine::Get()->GetAllianceBuildInfo(_BuildClassID);

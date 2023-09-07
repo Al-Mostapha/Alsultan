@@ -1,46 +1,19 @@
 #pragma once
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
 #include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
-#include "Module/World/Kingdom/kingdomMap.Enum.h"
-#include "Module/Guild/Pet/AlliancePet.Enum.h"
+#include "Module/World/WorldMap/Instance/WorldInstance.Type.h"
+
 
 class UIWorldMapAllianceBuildProgressBar;
 class UIWorldMapBossProgressBar;
 class UITimerLabel;
 
-struct RWorldAllianceBuildInitData{
-
-  struct Beast{
-    EAlliancePetState _Status;
-    int32 _Type;
-    float _LeftLife = 0;
-  };
-  struct Wall{
-    float _HpMax = 0;
-  };
-
-  int32 _PlayerID;
-  GString _PlayerName = "";
-  int32 _LeagueID;
-  GString _LeagueName = "";
-  GString _LeagueAbbrName = "";
-  int32 _LeagueFlag;
-  EMapObjStateTypeDef _Status;
-  EMapObjStateTypeDef _ModelState;
-  EKingdomWarStatusType _WarStatus = EKingdomWarStatusType::None;
-  EKingStatus _KingStatus = EKingStatus::None;
-  int32 _ID = 0;
-
-  GOpt<Wall> _Wall;
-  GOpt<Beast> _Beast;
-
-  int32 _ColorID;
-};
 
 class WorldMapAllianceBuild : public IWorldMapInstance
 {
   public:
 
+  CREATE_FUNC(WorldMapAllianceBuild);
   class PetSprite : public Sprite
   {
     public:
@@ -82,6 +55,7 @@ class WorldMapAllianceBuild : public IWorldMapInstance
 
   void UpdateForbidMapObjWarSatusData(EventCustom *pEvent);
   void SetBuildSize(int32 pSize, float pRadioation);
+  void InitInstanceData(int32 pBuildClassID, void *pData, int32 pObjID) override;
   void InitInstanceData(EMapAllianceBuildType pBuildClassID, const RWorldAllianceBuildInitData &pData);
   EMapAllianceBuildType GetBuildClassID();
   int32 GetBuildID();

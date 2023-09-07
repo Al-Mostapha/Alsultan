@@ -97,3 +97,32 @@ Node *GBase::DFingerAction(
   return l_Node;
 }
 
+Label *GBase::DCreateWaveLabel(const GString &pText, Node *pParent, const RCreateWaveLabelParam &pParam){
+  GString lText = "NA";
+  if(!pText.empty())
+    lText = pText;
+  UIFontLabelParam lParam;
+  lParam._Text = lText;
+  lParam._Color = pParam._Color;
+  lParam._FontSize = pParam._FontSize;
+
+  auto lWaveLabel = GDisplay::Get()->NewTTFLabel(lParam);
+  pParent->addChild(lWaveLabel, pParam._ZOrder);
+  lWaveLabel->setPosition(pParam._Pos);
+  auto lMoveBy = MoveBy::create(pParam._Duration, Vec2(0, pParam._MoveH));
+  
+  auto lCallFunc = CallFunc::create([lWaveLabel](){
+    lWaveLabel->removeFromParent();
+  });
+  
+  auto lSeq = Sequence::create(
+    {
+      lMoveBy, 
+      lCallFunc, 
+    }
+  );
+
+  lWaveLabel->runAction(lSeq);
+  return lWaveLabel;
+}
+

@@ -28,7 +28,7 @@ GTuple<float, GString, bool> WorldMapFunction::GetMonsterImgAngel(Vec2 pBeginPoi
 
 void WorldMapFunction::CreateThrowAction(
   Node *pNode, const Vec2 &pBeginPoint, const Vec2 &pEndPoint,
-  float pDelayTime, float pSpeed, std::function<void()> pCallBack
+  float pDelayTime, float pSpeed, const std::function<void()> &pCallBack
 ){
   // if not target then
   //   return
@@ -73,4 +73,26 @@ void WorldMapFunction::CreateThrowAction(
   // end)
   // local action = transition.sequence(actionsArray)
   // target:runAction(action)
+}
+
+
+GTuple<float, GString, bool>  WorldMapFunction::GetBatteryImgAngel(Vec2 pBeginPoint, Vec2 pEndPoint){
+  //   local imgNameAngle = "w"
+  // local isFlipX = false
+  // local rotation = -SoraDGetAngleByPos(beginPoint, endPoint)
+  // if rotation >= -45 and rotation < 45 then
+  //   imgNameAngle = "w"
+  //   isFlipX = true
+  // elseif rotation >= -135 and rotation < -45 then
+  //   imgNameAngle = "n"
+  //   isFlipX = false
+  // elseif rotation >= 45 and rotation < 135 then
+  //   imgNameAngle = "s"
+  //   isFlipX = false
+  // else
+  //   imgNameAngle = "w"
+  //   isFlipX = false
+  // end
+  // return rotation, imgNameAngle, isFlipX
+  return {45, "w", false};
 }

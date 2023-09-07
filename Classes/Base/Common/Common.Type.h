@@ -25,6 +25,7 @@ struct RCreatEffctParam{
   int32 _Tp = 0;
   GString _Name = "";
   ParticleSystem::PositionType _PosType = ParticleSystem::PositionType::RELATIVE;
+  bool _AutoCull = false;
 };
 
 struct RShowBuyBoxParam{

@@ -19,6 +19,9 @@
 #include "Base/Utils/Utils3D.h"
 #include "Base/Base.Geometry.h"
 
+#include "Module/World/WorldMap/Instance/WorldInstance.Type.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapBuilding.h"
+
 typedef EWorldMapZOrder Z_ORDER;
 
 WorldMapView *WorldMapView::Create(RViewClass pConfig, RViewOtherData pOtherData){
@@ -208,13 +211,25 @@ void WorldMapView::InitTmx(){
     _GroundLayer->setVisible(true);
     auto lUnit  = _GroundLayer->getTileAt(Vec2(60, 58));
     auto lPos = _GroundLayer->getPositionAt(Vec2(60, 58));
-
+    _MapLayer = _GroundLayer;
+    
     auto lCell = WorldMapCell::Create(this);
     RInstanceData lData;
-    lData._Type = EMapObjTypeDef::mapObjTypeNpc;
-    _Builder->CreateMapInstance(lCell, lData);
-    lUnit->addChild(lCell);
-    _MapLayer = _GroundLayer;
+    lData._Type = EMapObjTypeDef::mapObjTypeAllianceBuild;
+    lData._X = 63;
+    lData._Y = 58;
+    lData._ObjID = 1;
+    // lData._Class = EWorldInstanceClass::WorldMapBuilding;
+    lData._SubMapType = 0;
+    lData._ID = 1;
+    lData._KID = 1;
+    lData._DelayTime = 1;
+    lData._SettingID = 0;
+    static RWorldAllianceBuildInitData lBuildingData;
+    lData._ObjData = &lBuildingData;
+
+    auto lWorldMapInstance = _Builder->CreateMapInstance(lCell, lData);
+    _MapLayer->addChild(lWorldMapInstance, 10);
   } else {
     //   self.mapLayer = tmxview:getLayer("tile")
     //   self.mapLayer:setName("tile")

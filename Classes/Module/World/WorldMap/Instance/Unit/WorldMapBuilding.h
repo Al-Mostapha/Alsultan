@@ -1,5 +1,6 @@
 #pragma once
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
+#include "Module/World/WorldMap/Instance/WorldInstance.Type.h"
 #include "Module/World/WorldMap/Instance/Component/WorldMapProtectNode.h"
 #include "Module/Player/Lord.Enum.h"
 #include "Module/Player/Buff/Attribute.Enum.h"
@@ -10,83 +11,16 @@ class UITimerLabel;
 class WorldMapFireWorkEffect;
 class FireTimeNode;
 
-static const float IMG_PROTECT_SCALE_DEF = 0.75;
-static const float IMG_PROTECT_SCALE_WAR = 0.95;
-static const float IMG_PROTECT_SCALE_WAR_10 = 1;
-static const float IMG_PROTECT_SCALE_SKIN = 0.9;
+static const float IMG_PROTECT_SCALE_DEF = 0.75f;
+static const float IMG_PROTECT_SCALE_WAR = 0.95f;
+static const float IMG_PROTECT_SCALE_WAR_10 = 1.f;
+static const float IMG_PROTECT_SCALE_SKIN = 0.9f;
 static const Vec2 IMG_OFFSET_DEF = Vec2(0, 70);
 static const Vec2 IMG_OFFSET_WAR =Vec2(-25, 110);
 static const Vec2 IMG_OFFSET_WAR_10 = Vec2(0, 70);
 static const Vec2 IMG_OFFSET_SKIN = Vec2(-30, 70);
 static const int32 WAR_LV_BEGIN_TYPE = 500; 
 
-enum class ESignatureBoxType{
-  None = 0,
-  Normal = 1,
-  War = 2
-};
-
-enum class ESkillEffectType {
-  None = 0,
-  RUINS_WAR_MOVE_CITY_LOCKED = 1,
-  RUINS_WAR_SPEED_QUEUE_LOCKED = 2,
-  APPOINT_DAMAGE_BOOST = 3,
-  APPOINT_CURE_SOLDIER_SPEED_BOOST = 4
-};
-
-struct RWorldBuildingInitDataAttr{
-  float _Range = 0;
-};
-
-struct RWorldBuildingInitData{
-
-
-
-  int32 _PlayerID;
-  int32 _PlayerLevel;
-  GString _PlayerName;
-  int32 _InMapID;
-  int32 _HideBattleLev;
-  EShowOfficialType _Official = EShowOfficialType::None;
-  int32 _WorldOfficial = 0;
-  int32 _LegendForSepOfficial = 0;
-  int32 _HegemonOfficialType = 0;
-  int32 _HegemonOfficial = 0;
-  EShowOfficialType _ShowOfficialType = EShowOfficialType::None;
-  int32 _AtlantisOfficialType = 0;
-  int32 _NebulaOfficialID = 0;
-  int32 _NebulaOfficialID2 = 0;
-  EFactionType _FactionType = EFactionType::Normal;
-  int32 _PrisonerNum = 0;
-  int32 _Betray = 0;
-  int32 _CityLevel = 0;
-  int32 _StarLv = 0;
-  
-  int32 _LeagueID = 0;
-  GString _LeagueName = "";
-  int32 _LeagueFlag = 0;
-  int32 _NecklaceID = 0;
-  int32 _Camp = 0;
-  int32 _EmojiID = 0;
-  EMapObjStateTypeDef _Status = EMapObjStateTypeDef::None;
-  bool _IsSafe = false;
-  bool _HasScoutRecord = false;
-  int32 _SourceKid = 0;
-  int32 _KingdomId = 0;
-  int32 _CastleSkin = 0;
-  int32 _NameBox = 0;
-  GTime _MoveCityCDEndTime;
-  EWorldMapCastleEffectID _CastleEffect;
-  EWorldMapCastleEffectID _SelfCastleEffect;
-  GTime _CastleEffectStatusEndTime = -1;
-  GTime _SelfCastleEffectStatusEndTime;
-  GTime _CastleAppearanceEndTime;
-  GTime _SysWarProtectStatusEndTime;
-  bool _CastleAppearance;
-  GHashMap<EAttributeEnum, RWorldBuildingInitDataAttr> _Attr;
-  GString _Signature = "";
-  ESignatureBoxType _SignatureBox = ESignatureBoxType::None;
-};
 
 
 
@@ -94,7 +28,7 @@ struct RWorldBuildingInitData{
 class WorldMapBuilding : public IWorldMapInstance
 {
   public:
-
+  CREATE_FUNC(WorldMapBuilding);
   bool _IsShowWarLv = false;
   bool _IsShowOffice = false;
   bool _IsShowPrision = false;
@@ -194,7 +128,7 @@ class WorldMapBuilding : public IWorldMapInstance
   bool IsInAllianceWar();
   void AddCacheBefore() override;
   void SetSkinGroupID(EBuildingCastleModel pModel);
-  void InitCityData(const RWorldBuildingInitData &pData);
+  void InitCityData(void *pData);
   void UpdateData(const RWorldBuildingInitData &pData);
   void ShowInstance(bool pShow, int32 pDelayTime = 0);
   void UpdateLeagueInfo();

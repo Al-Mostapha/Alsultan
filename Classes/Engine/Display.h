@@ -26,6 +26,7 @@ struct UIFontLabelParam{
   Vec2 _Offset = Vec2::ZERO;
   Vec2 _Pos = Vec2::ZERO;
   float _FontSize = 14;
+  Color3B _Color = Color3B::WHITE;
 };
 class GDisplay
 {

@@ -1,17 +1,14 @@
 #pragma once
+#include "Module/World/WorldMap/Instance/WorldInstance.Type.h"
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
 
-struct RMonsterInitData{
-  GOpt<bool> _IsCanKill;
-  GOpt<EMapObjStateTypeDef> _Status;
-  GOpt<int32> _LifeCount;
-  int32 _BossID;
-};
+
+
 
 class WorldMapMonster : public IWorldMapInstance
 {
   public:
-  
+  CREATE_FUNC(WorldMapMonster);
   int32 _MonsterClassID;
   GString _ImgName;
   GString _ImgNameAngle;
@@ -49,8 +46,8 @@ class WorldMapMonster : public IWorldMapInstance
   void DoStopAllActions();
   void InitInstanceData(
     int32 pMonsterClassID, const GString &pImgNameAngle,
-    bool pIsFlipX, const RMonsterInitData &pNpcData
-  );
+    bool pIsFlipX, void *pNpcData
+  ) override;
   void UpdateData(const RMonsterInitData &pNpcData);
   void RefreshNameLabel(const RMonsterInitData &pNpcData);
   bool CheckIsWastelandMonster(int32 pMonsterClassID = 0);

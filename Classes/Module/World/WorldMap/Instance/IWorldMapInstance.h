@@ -33,6 +33,15 @@ public:
   Vec2 _TilePoint;
   Size _Size;
   Node *_TipsNode;
+
+  template<typename T>
+  static IWorldMapInstance *Create()
+  { 
+      auto lInstance = T::create(); 
+      lInstance->Ctor();
+      return lInstance;
+  }
+
   
   virtual GTuple<UIBasePanel *, bool, Node*> OnClickInstance(Node *pNode);
   virtual GTuple<UIBasePanel *, bool, Node*> OnShowWorldMapTip(Node *pNode);
@@ -56,9 +65,13 @@ public:
   
   virtual void Ctor(){}
   virtual void InitInstanceData(void *pObjData){}
-  virtual void InitInstanceData(EWorldInstanceClass pClass, void *pObjData, int32 pObjID = 0){}
+
+  virtual void OnMessageListener(){}
+  virtual void OnEnterOther(){}
+
+  virtual void InitInstanceData(int32 pClass, void *pObjData, int32 pObjID = 0){}
   //angle name e, w, n, s, wn ...etc
-  virtual void InitInstanceData(EWorldInstanceClass pClass, GString pAngleName, bool pIsFlipX, void *pObjData){}
+  virtual void InitInstanceData(int32 pClass, const GString &pAngleName, bool pIsFlipX, void *pObjData){}
   virtual void UpdateAllianceCounterAtkEffect(EventCustom *pEvent);
 
   GTuple<bool, int32> CheckHasArmy();

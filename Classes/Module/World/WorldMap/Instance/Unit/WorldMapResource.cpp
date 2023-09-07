@@ -41,7 +41,6 @@ void WorldMapResource::_InitUI(){
   _OccupyIcon->setVisible(false);
   this->addChild(_OccupyIcon, 2);
   // self.occupyIcon:setGroupID(worldMapDefine.GROU_ID.group_protect)
-  _ImageProtect->setPosition(Vec2(_CenterPoint.x + 0, _CenterPoint.y + 70));
   _ImageProtect = WorldMapDefine::Get()->CreateWorldMapProtect(true);
   _ImageProtect->setScale(0.5);
   _ImageProtect->setPosition(Vec2(_CenterPoint.x + 0, _CenterPoint.y + 40));
@@ -58,7 +57,8 @@ void WorldMapResource::SetBatchNodeGroupID(EGrouID pBatchNodeGroupID){
   //self.resourceImage:setGroupID(groupID)
 }
 
-void WorldMapResource::InitInstanceData(int32 pResourceID, const RResourceInitData &pData){
+void WorldMapResource::InitInstanceData(int32 pResourceID, void *pResourceData, int32 ObjID){
+  auto lData = (RResourceInitData*)pResourceData;
   _ResourceClassID = pResourceID;
   auto lImageName = WorldMapDefine::Get()->GetResourceImageName(_ResourceClassID);
   _ResourceType = WorldMapDefine::Get()->GetResourceTypeID(_ResourceClassID);
@@ -66,7 +66,7 @@ void WorldMapResource::InitInstanceData(int32 pResourceID, const RResourceInitDa
   _InstanceLevel = _ResourceLevel;
   _ResourceLevelLabel->setString(std::to_string(_ResourceLevel));
   _ResourceImage->setSpriteFrame(lImageName);
-  UpdateData(pData);
+  UpdateData(*lData);
 }
 
 void WorldMapResource::UpdateData(const RResourceInitData &pData){

@@ -11,3 +11,7 @@ PalaceInfoRead *PalaceInfoRead::Get(){
 GString PalaceInfoRead::GetImg(int32 pID, bool pFromMemory){
   return "Map_King_castle_01.png";
 }
+
+GString PalaceInfoRead::GetBatteryImg(EKWBattery pBatteryPlace){
+  return "map_battery_11.png";
+}

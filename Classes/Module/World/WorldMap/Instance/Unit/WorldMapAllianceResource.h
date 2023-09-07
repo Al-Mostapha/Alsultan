@@ -18,6 +18,7 @@ struct RAllianceResourceInitData{
 class WorldMapAllianceResource : public IWorldMapInstance
 {
   public:
+    CREATE_FUNC(WorldMapAllianceResource);
     int32 _ResourceClassID;
     EResourceType _ResourceType;
     int32 _ResourceLevel;

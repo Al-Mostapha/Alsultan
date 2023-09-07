@@ -40,6 +40,7 @@ void BootstrapPlist::loadCitySpriteSheet(CallFunc* afterFinish)
 	spritecache->addSpriteFramesWithFile("secondaryUI/soldiersUI1.plist");
 	spritecache->addSpriteFramesWithFile("secondaryUI/soldiersUI2.plist");
 	spritecache->addSpriteFramesWithFile("secondaryUI/soldiersUI3.plist");
+
 }
 
 void BootstrapPlist::loadSpriteSheet(CallFunc* afterFinish)

@@ -30,7 +30,7 @@ void WorldMapMonster::_InitData(){
 
 void WorldMapMonster::_InitUI(){
   _Monster = GDisplay::Get()->NewSprite("anbs_dj_ws_01.png");
-  this->addChild(_Monster, -1);
+  addChild(_Monster, -1);
   GBase::RCreateLabelParm lParm;
   lParm._Text = "";
   lParm._FontSize = 16;
@@ -76,8 +76,9 @@ void WorldMapMonster::SetBatchNodeGroupID(EGrouID pBatchNodeGroupID){
 
 void WorldMapMonster::InitInstanceData(
   int32 pMonsterClassID, const GString &pImgNameAngle,
-  bool pIsFlipX, const RMonsterInitData &pNpcData
+  bool pIsFlipX, void *pNpcData
 ){
+  auto lNpcData = *(RMonsterInitData *)pNpcData;
   _MonsterClassID = pMonsterClassID;
   _ImgName =  WorldMapDefine::Get()->GetMonsterImageName(pMonsterClassID);
   _ImgNameAngle = pImgNameAngle;
@@ -86,7 +87,7 @@ void WorldMapMonster::InitInstanceData(
   _MonsterName = WorldMapDefine::Get()->GetMonsterName(pMonsterClassID);
   _MonsterLevel = WorldMapDefine::Get()->GetMonsterLevel(pMonsterClassID);
   _InstanceLevel = _MonsterLevel;
-  RefreshNameLabel(pNpcData);
+  RefreshNameLabel(lNpcData);
   _MonsterLevelLabel->setString(std::to_string(_MonsterLevel));
   if(_IsWastelandMonster){
     _MonsterLevelLabel->setVisible(false);
@@ -100,7 +101,7 @@ void WorldMapMonster::InitInstanceData(
   _MonsterLevelLabel->setPosition(_CenterPoint - Vec2(lOffsetX, 70));
   _Monster->setSpriteFrame(_ImgName + "_dj_" + "ws" + "_01.png");
   _Monster->setFlippedX(_IsFlipX);
-  UpdateData(pNpcData);
+  UpdateData(lNpcData);
 }
 
 void WorldMapMonster::UpdateData(const RMonsterInitData &pNpcData){

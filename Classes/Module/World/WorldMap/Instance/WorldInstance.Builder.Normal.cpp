@@ -21,7 +21,7 @@ GTuple<IWorldMapInstance *, bool> GetInstanceByType(RWorldInstanceConfigLod pLod
     lClass = pLodConfig._ClassTable[pClassType];
   }
   if(lClass != EWorldInstanceClass::None){
-    return WorldInstanceFactory::Get()->GetInstanceByType(lClass, pLodConfig._Cache);
+    return WorldInstanceFactory::Get()->GetInstanceByType(pLodConfig, pLodConfig._Cache);
   }
   return {nullptr, false};
 };

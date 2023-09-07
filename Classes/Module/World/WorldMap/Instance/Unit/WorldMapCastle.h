@@ -32,6 +32,7 @@ class WorldMapCastle : public IWorldMapInstance
 {
   public:
 
+  CREATE_FUNC(WorldMapCastle);
   int32 _SourceID = 0;
   bool _IsSelfIn = false;
   EKingdomWarStatusType _WarStatus;

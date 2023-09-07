@@ -22,6 +22,16 @@ struct GAnimationParm
   float opacity = 1;
 };
 
+struct RCreateWaveLabelParam
+{
+  Color3B _Color = Color3B(0, 255, 0);
+  Vec2 _Pos = Vec2::ZERO;
+  int32 _ZOrder = 1;
+  int32 _FontSize = 24;
+  float _Duration = 1;
+  float _MoveH = 80;
+};
+
 class BaseCreate
 {
 public:
@@ -36,4 +46,5 @@ namespace GBase{
   GPair<Node *, XActionTimeLine *> DCreateAnimationEx(const char *p_FilePath, Node *p_Node = nullptr, bool p_Loop = true, float p_Speed = 1.0f, int32 p_StartIndex = -1, int32 p_EndIndex = -1);
   Sprite *CreateSprite(const char *p_SpritePath);
   Node *DFingerAction(bool p_IsHideEffect, bool p_IsStopAction, int32 p_ActionTimes = 0, bool p_IsHideFinger= false);
+  Label *DCreateWaveLabel(const GString &pText, Node *pParent, const RCreateWaveLabelParam &pParam);
 };

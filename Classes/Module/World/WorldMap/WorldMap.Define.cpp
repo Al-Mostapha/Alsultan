@@ -79,7 +79,7 @@ Color3B WorldMapDefine::GetMoveLineColor(EMapMoveLineColor pColor){
 }
 
 GString WorldMapDefine::GetMonsterImageName(int32 pMonsterClassID){
-  return "MonsterImage";
+  return "anbs";
 }
 
 GString WorldMapDefine::GetMonsterName(int32 pMonsterClassID){
@@ -116,7 +116,8 @@ EResourceType WorldMapDefine::GetResourceTypeID(int32 pResourceClassID){
 }
 
 const GString &WorldMapDefine::GetResourceImageName(int32 pResourceClassID){
-  return "ResourceImageName";
+  static GString ResImageName = "Map_build_gold.png";
+  return ResImageName;
 }
 
 int32 WorldMapDefine::GetResourceLevel(int32 pResourceClassID){
@@ -124,7 +125,8 @@ int32 WorldMapDefine::GetResourceLevel(int32 pResourceClassID){
 }
 
 const GString &WorldMapDefine::GetResourceName(int32 pResourceClassID){
-  return "ResourceName";
+  static GString ResourceName = "ResourceImageName";
+  return ResourceName;
 }
 
 int32 WorldMapDefine::GetResourceCastleLv(int32 pResourceClassID){

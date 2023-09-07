@@ -4,6 +4,14 @@
 #include "WorldInstance.Type.h"
 #include "Module/World/WorldMap/View/WorldMap.Cell.h"
 #include "Module/World/WorldMap/WorldMap.Func.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapAllianceBuild.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapAllianceResource.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapAncientTreasure.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapBuilding.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapResource.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapMonster.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapCastle.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapCastle.h"
 
 GHashMap<EMapObjTypeDef, RWorldInstanceConfig> _WorldInstanceConfig;
 
@@ -30,11 +38,11 @@ AddWorldInstanceClass(
   }
   
   if(EMapObjTypeDef::mapObjTypeChristmasTree == pData._TileInstanceType || EMapObjTypeDef::mapTypeRamadanFeast == pData._TileInstanceType){
-    lWorldInstance->InitInstanceData(pData._Class,pData._ObjData);
+    lWorldInstance->InitInstanceData(static_cast<int32>(pData._Class), pData._ObjData);
     lWorldInstance->SetTilePoint(pData._TilePoint);
     lWorldInstance->SetInstanceID(pData._TileInstanceID);
   }else{
-    lWorldInstance->InitInstanceData(pData._Class, pData._ObjData);
+    lWorldInstance->InitInstanceData(static_cast<int32>(pData._Class), pData._ObjData);
   }
   return lWorldInstance;
 }
@@ -50,7 +58,7 @@ AddWorldInstanceObjID(
     return nullptr;
   }
 
-  lWorldInstance->InitInstanceData(pData._Class, pData._ObjData, pObjData._ObjID);
+  lWorldInstance->InitInstanceData(static_cast<int32>(pData._Class), pData._ObjData, pObjData._ObjID);
   return lWorldInstance;
 }
 
@@ -64,7 +72,10 @@ AddWorldBuilding(
   if(!lWorldInstance){
     return nullptr;
   }
-  //worldBuilding:initCityData(worldInstanceData.objData)
+  auto lWorldBuilding = dynamic_cast<WorldMapBuilding *>(lWorldInstance);
+  if(lWorldBuilding){
+    lWorldBuilding->InitCityData(pData._ObjData);
+  }
   return lWorldInstance;
 }
 
@@ -79,7 +90,7 @@ AddWorldMonster(
     return nullptr;
   }
   
-  auto lObjData = static_cast<RWorldMonsterObjData *>(pData._ObjData);
+  auto lObjData = static_cast<RMonsterInitData *>(pData._ObjData);
   auto lShowTilePoint = pData._TilePoint;
   Vec2 lFaceTilePoint;
   if(lObjData->_FaceTo == EMapNpcFaceTypeDef::LeftBottom){
@@ -91,7 +102,7 @@ AddWorldMonster(
   auto lBeginPoint = pCell->GetPointWithTile(lShowTilePoint);
   auto lEndPoint = pCell->GetPointWithTile(lFaceTilePoint);
   auto [_, imgNameAngle, isFlipX] = WorldMapFunction::Get()->GetMonsterImgAngel(lBeginPoint, lEndPoint);
-  lWorldMonster->InitInstanceData(pData._Class, imgNameAngle, isFlipX, lObjData);
+  lWorldMonster->InitInstanceData(static_cast<int32>(pData._Class), imgNameAngle, isFlipX, lObjData);
   // if worldInstanceData.massRef and worldMonster.setMassRef then
   //   worldMonster:setMassRef(worldInstanceData.massRef)
   // end
@@ -109,7 +120,20 @@ WorldInstanceFactory *WorldInstanceFactory::Get(){
   return lInstance;
 }
 
-GTuple<IWorldMapInstance *, bool> WorldInstanceFactory::GetInstanceByType(EWorldInstanceClass pClass, bool pCache){
+GTuple<IWorldMapInstance *, bool> WorldInstanceFactory:: GetInstanceByType(const RWorldInstanceConfigLod &pLodConfig, bool pCache){
+  // local worldInstance
+  // if class then
+  //   if cache then
+  //     worldInstance = instanceCacheMgr.getInstance(class)
+  //     if worldInstance then
+  //       return worldInstance, true
+  //     end
+  //   end
+  //   worldInstance = include(class).new()
+  //   worldInstance:setClassType(class)
+  // end
+  // return worldInstance
+  return {pLodConfig._ConstructorFun(), false};
   return {nullptr, false};
 }
 
@@ -157,6 +181,7 @@ void WorldInstanceFactory::InitConfig(){
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBuilding;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::castleBatchNode;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldBuilding;
+  lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapBuilding>;
   lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
 
   lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapBuildingLod2;
@@ -269,6 +294,7 @@ void WorldInstanceFactory::InitConfig(){
     lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapMonster;
       lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::monsterBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapMonster>;
       lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
       lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
     lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
@@ -455,23 +481,19 @@ void WorldInstanceFactory::InitConfig(){
   //       }
   //     }
   //   },
-  //   [gMapObjTypeDef.mapObjTypeRelics] = {
-  //     holdInstace = 2,
-  //     fromKey = "relics",
-  //     lodShowFun = lodShow.lessLOD3,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapRemains",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceNormale,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodInstance",
-  //         cache = true
-  //       }
-  //     }
-  //   },
+    lV = lEmplace(EMapObjTypeDef::mapObjTypeRelics);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "relics";
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapRemains;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
+      lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = nullptr;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodInstance;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
   //   [gMapObjTypeDef.mapObjTypeTreasure] = {
   //     holdInstace = 1,
   //     fromKey = "treasure",
@@ -550,28 +572,19 @@ void WorldInstanceFactory::InitConfig(){
   //       }
   //     }
   //   },
-  //   [gMapObjTypeDef.mapObjTypeAllianceBuild] = {
-  //     holdInstace = 2,
-  //     holdInstaceTable = {
-  //       [gMapAllianceBuildType.subTypeAllianceFlag] = 1
-  //     },
-  //     fromKey = "build",
-  //     delayTime = true,
-  //     lodShowFun = lodShow.allianceBuild,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapAllianceBuild",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceClass,
-  //         cache = false
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapAllianceBuildLod",
-  //         lodLayer = LOD_LAYER.LOD_LAYER_ALLIANCERES,
-  //         cache = true
-  //       }
-  //     }
-  //   },
+    lV = lEmplace(EMapObjTypeDef::mapObjTypeAllianceBuild);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "build";
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::AllianceBuild, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapAllianceBuild;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceClass;
+      lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapAllianceBuild>;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = false;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapAllianceBuildLod;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
   //   [gMapObjTypeDef.mapTypeMine] = {
   //     holdInstace = 2,
   //     holdInstaceTable = {
@@ -1101,6 +1114,11 @@ RWorldInstanceData GetWorldMapInstanceData_imp(WorldMapCell *pCell, RInstanceDat
   lWorldInstanceData._SubMapType = pInstanceData._SubMapType;
   lWorldInstanceData._ObjID = pInstanceData._ObjID;
   //lWorldInstanceData._ObjData._SettingID = pInstanceData._SettingID;
+
+
+  /*TODO: Remove this line*/
+  lWorldInstanceData._ObjData = pInstanceData._ObjData;
+
   return lWorldInstanceData;
 }
 
@@ -1114,7 +1132,7 @@ IWorldMapInstance *WorldInstanceFactory::CreateMapInstance(
   if(_WorldInstanceConfig.Contains(lInstanceType)){
     lConfig = _WorldInstanceConfig[lInstanceType];
     auto lWorldInstanceData = pInstanceData._WorldInstanceData;
-    if(lWorldInstanceData){
+    if(!lWorldInstanceData){
       lWorldInstanceData = GetWorldMapInstanceData_imp(pCell, pInstanceData, lConfig);
       pInstanceData._WorldInstanceData = lWorldInstanceData;
     }

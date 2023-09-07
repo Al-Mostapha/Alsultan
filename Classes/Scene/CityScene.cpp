@@ -69,8 +69,14 @@ void CityScene::LoadAsset() {
   GDisplay::Get()->AddSpriteFrames("NormalUI/NormalUI2.plist");
   GDisplay::Get()->AddSpriteFrames("NormalUI/NormalUI4.plist");
   GDisplay::Get()->AddSpriteFrames("CommonUI/CommonUI0.plist");
-  GDisplay::Get()->AddSpriteFrames("SingleModule/iconBuilding.plist");
   GDisplay::Get()->AddSpriteFrames("CommonUI/CommonUI2.plist");
+  GDisplay::Get()->AddSpriteFrames("SingleModule/iconBuilding.plist");
+  GDisplay::Get()->AddSpriteFrames("FrameAnimation/worldMapMonster.plist");
+  GDisplay::Get()->AddSpriteFrames("SingleModule/exclusiveVip.plist");
+  GDisplay::Get()->AddSpriteFrames("SingleModule/kingUI.plist");
+  GDisplay::Get()->AddSpriteFrames("worldMap/worldMapCastle.plist");
+  GDisplay::Get()->AddSpriteFrames("worldMap/worldMapCastleSkin1.plist");
+  GDisplay::Get()->AddSpriteFrames("worldMap/worldMapBuilding.plist");
 }
 
 // on "init" you need to initialize your instance
