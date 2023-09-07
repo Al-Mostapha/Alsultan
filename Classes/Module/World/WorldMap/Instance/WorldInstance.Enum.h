@@ -23,7 +23,29 @@ enum class EWorldInstanceClass {
   WorldMapMonsterLod,
   WorldMapAllianceBuild,
   WorldMapAllianceBuildLod,
-  
+  WorldMapMonsterNebula,
+  WorldMapMonsterSnowMan,
+  WorldMapMonsterSemluk,
+  WorldMapMonsterSea,
+  WorldMapMonsterFiesta,
+  WorldMapBoss,
+  WorldMapBossWindTower,
+  WorldMapIconLodBoss,
+  WorldMapAllianceResource,
+  WorldMapIconLodAlliance,
+  WorldMapTreasure,
+  WorldMapChest,
+  WorldMapTreasureBowl,
+  WorldMapBattlefieldSite,
+  WorldMapEscort,
+  WorldMapMineBuild,
+  WorldMapIconLodMine,
+  WorldMapStronghold,
+  WorldMapIconLodStrong,
+  WorldMapKingdomLvTower,
+  WorldMapPyramidGloryBuild,
+  WorldMapNewTrialCity,
+  WorldMapTrialBattery,
 };
 
 
@@ -89,4 +111,25 @@ enum class EKWBattery{
   EAST = 14,
   SOUTH = 13,
   WEST = 12
+};
+
+
+enum class EMapBattlefieldSiteTypeDef {
+  None = 0,
+  ObjTypeBigPyramid = 1,
+  ObjTypeSmallPyramid = 2,
+  ObjTypeSuplly = 3,
+  ObjTypeTransport = 4,
+  ObjTypeBlessTower = 5,
+  ObjTypeMedicalCenter = 6,
+  ObjTypeStage = 7,
+  ObjTypeRelic = 8,
+  ObjTypeBattery = 9,
+  TypeAWBellTower = 10,
+  TypeAWArmory = 11
+};
+
+enum class EMapNewTrialBuildType {
+  Castle = 1, 
+  Battery = 2
 };

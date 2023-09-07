@@ -171,7 +171,7 @@ struct RWorldInstanceConfigLod {
       RInstanceData)
   > _CreateFun = nullptr;
   std::function<IWorldMapInstance *()> _ConstructorFun = nullptr;
-  GHashMap<int32, EWorldInstanceClass> _ClassTable;
+  GHashMap<int32, GTuple<EWorldInstanceClass, std::function<IWorldMapInstance *()>>> _ClassTable;
   ELodLayer _LodLayer = ELodLayer::None;
 };
 

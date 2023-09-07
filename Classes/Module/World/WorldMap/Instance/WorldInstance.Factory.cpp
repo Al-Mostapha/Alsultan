@@ -302,185 +302,155 @@ void WorldInstanceFactory::InitConfig(){
       lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
       lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::MONSTER;
 
-  //   [gMapObjTypeDef.nebulaNpc] = {
-  //     holdInstace = 1,
-  //     fromKey = "npc",
-  //     delayTime = true,
-  //     isHurtDie = true,
-  //     lodShowFun = lodShow.monsterShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapMonsterNebula",
-  //         batchNode = batchNode.monsterNebulaBatchNode,
-  //         createFun = addWorldMonster,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapMonsterLod",
-  //         lodLayer = LOD_LAYER_MONSTER,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapTypeHuntFair] = {
-  //     holdInstace = 1,
-  //     fromKey = "npc",
-  //     delayTime = true,
-  //     isHurtDie = true,
-  //     lodShowFun = lodShow.npcShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapMonsterSnowMan",
-  //         batchNode = batchNode.monsterBatchNode,
-  //         createFun = addWorldMonster,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapMonsterLod",
-  //         lodLayer = LOD_LAYER_MONSTER,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapTypeSemluk] = {
-  //     holdInstace = 1,
-  //     fromKey = "npc",
-  //     delayTime = true,
-  //     isHurtDie = true,
-  //     lodShowFun = lodShow.npcShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapMonsterSemluk",
-  //         batchNode = batchNode.monsterSemlukBatchNode,
-  //         createFun = addWorldMonster,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapMonsterLod",
-  //         lodLayer = LOD_LAYER_MONSTER,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapObjSeaMonsterInvade] = {
-  //     holdInstace = 1,
-  //     fromKey = "npc",
-  //     delayTime = true,
-  //     isHurtDie = true,
-  //     lodShowFun = lodShow.npcShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapMonsterSea",
-  //         batchNode = batchNode.monsterSeaBatchNode,
-  //         createFun = addWorldMonster,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapMonsterLod",
-  //         lodLayer = LOD_LAYER_MONSTER,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapTypeMonsterFiesta] = {
-  //     holdInstace = 1,
-  //     fromKey = "monsterFiesta",
-  //     lodShowFun = lodShow.npcShow,
-  //     isHurtDie = true,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapMonsterFiesta",
-  //         batchNode = batchNode.monsterFiestaBatchNode,
-  //         createFun = addWorldMonster,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapMonsterLod",
-  //         lodLayer = LOD_LAYER_MONSTER,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapObjTypeBoss] = {
-  //     holdInstace = 2,
-  //     fromKey = "boss",
-  //     delayTime = true,
-  //     isHurtDie = true,
-  //     lodShowFun = lodShow.bossShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapBoss",
-  //         classTable = {
-  //           [gBossType.windTowerBoss] = "worldMapBossWindTower"
-  //         },
-  //         batchNode = batchNode.bossBatchNode,
-  //         createFun = addWorldMonster,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodBoss",
-  //         lodLayer = LOD_LAYER_BOSS,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapTypeHeroBattleBoss1] = {
-  //     holdInstace = 2,
-  //     fromKey = "boss",
-  //     delayTime = true,
-  //     isHurtDie = true,
-  //     lodShowFun = lodShow.bossShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapBoss",
-  //         batchNode = batchNode.bossBatchNode,
-  //         createFun = addWorldMonster,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodBoss",
-  //         lodLayer = LOD_LAYER_BOSS,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapTypeHeroBattleBoss2] = {
-  //     holdInstace = 2,
-  //     fromKey = "boss",
-  //     delayTime = true,
-  //     isHurtDie = true,
-  //     lodShowFun = lodShow.bossShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapBoss",
-  //         batchNode = batchNode.bossBatchNode,
-  //         createFun = addWorldMonster,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodBoss",
-  //         lodLayer = LOD_LAYER_BOSS,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapObjTypeSuperResource] = {
-  //     holdInstace = 2,
-  //     fromKey = "superRes",
-  //     lodShowFun = lodShow.alwaysShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapAllianceResource",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceClass,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodAlliance",
-  //         cache = true
-  //       }
-  //     }
-  //   },
+    lV = lEmplace(EMapObjTypeDef::nebulaNpc);
+    lV->_HoldInstace = 1;
+    lV->_FromKey = "npc";
+    lV->_DelayTime = true;
+    lV->_IsHurtDie = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::MonsterShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapMonsterNebula;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::monsterNebulaBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapMonster>;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapMonsterLod;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::MONSTER;
+
+  lV = lEmplace(EMapObjTypeDef::mapTypeHuntFair);
+    lV->_HoldInstace = 1;
+    lV->_FromKey = "npc";
+    lV->_DelayTime = true;
+    lV->_IsHurtDie = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::NpcShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapMonsterSnowMan;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::monsterBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapMonsterLod;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::MONSTER;
+    
+  lV = lEmplace(EMapObjTypeDef::mapTypeSemluk);
+    lV->_HoldInstace = 1;
+    lV->_FromKey = "npc";
+    lV->_DelayTime = true;
+    lV->_IsHurtDie = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::NpcShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapMonsterSemluk;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::monsterSemlukBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapMonsterLod;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::MONSTER;
+
+  lV = lEmplace(EMapObjTypeDef::mapObjSeaMonsterInvade);
+    lV->_HoldInstace = 1;
+    lV->_FromKey = "npc";
+    lV->_DelayTime = true;
+    lV->_IsHurtDie = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::NpcShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapMonsterSea;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::monsterSeaBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapMonsterLod;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::MONSTER;
+
+  lV = lEmplace(EMapObjTypeDef::mapTypeMonsterFiesta);
+    lV->_HoldInstace = 1;
+    lV->_FromKey = "monsterFiesta";
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::NpcShow, InstanceLodCfgShow::Get());
+    lV->_IsHurtDie = true;
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapMonsterFiesta;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::monsterFiestaBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapMonsterLod;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::MONSTER;
+
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeBoss);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "boss";
+    lV->_DelayTime = true;
+    lV->_IsHurtDie = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::BossShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBoss;
+      lV->_Lod[EWorldLodDef::LOD1]._ClassTable = {
+        {
+          {
+            static_cast<int32>(EBossType::windTowerBoss), 
+            {EWorldInstanceClass::WorldMapBossWindTower, /*IWorldMapInstance::Create<WorldMapBossWindTower>*/nullptr}
+          }
+        }
+      };
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::bossBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodBoss;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::BOSS;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+
+  lV = lEmplace(EMapObjTypeDef::mapTypeHeroBattleBoss1);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "boss";
+    lV->_DelayTime = true;
+    lV->_IsHurtDie = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::BossShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBoss;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::bossBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodBoss;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::BOSS;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+  
+  lV = lEmplace(EMapObjTypeDef::mapTypeHeroBattleBoss2);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "boss";
+    lV->_DelayTime = true;
+    lV->_IsHurtDie = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::BossShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBoss;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::bossBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldMonster;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodBoss;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::BOSS;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+      
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeSuperResource);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "superRes";
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::AlwaysShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapAllianceResource;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceClass;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodAlliance;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+
     lV = lEmplace(EMapObjTypeDef::mapObjTypeRelics);
     lV->_HoldInstace = 2;
     lV->_FromKey = "relics";
@@ -494,85 +464,68 @@ void WorldInstanceFactory::InitConfig(){
     lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodInstance;
       lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
-  //   [gMapObjTypeDef.mapObjTypeTreasure] = {
-  //     holdInstace = 1,
-  //     fromKey = "treasure",
-  //     delayTime = true,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapTreasure",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceNormale,
-  //         cache = false
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapObjTypeChest] = {
-  //     holdInstace = 1,
-  //     fromKey = "chest",
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapChest",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceClass,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapTypeTreasureBowl] = {
-  //     holdInstace = 2,
-  //     fromKey = "treasureBowl",
-  //     isHurtDie = true,
-  //     lodShowFun = lodShow.bossShow,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapTreasureBowl",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceClass,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodBoss",
-  //         lodLayer = LOD_LAYER_BOSS,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapObjTypeBattlefieldSite] = {
-  //     holdInstace = 2,
-  //     holdInstaceTable = {
-  //       [gMapBattlefieldSiteTypeDef.subMapObjTypeBigPyramid] = 3,
-  //       [gMapBattlefieldSiteTypeDef.subMapTypeAWArmory] = 1
-  //     },
-  //     fromKey = "battlefieldSite",
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapBattlefieldSite",
-  //         batchNode = batchNode.pyramidBatchNode,
-  //         createFun = addWorldInstanceObjID,
-  //         cache = false
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapObjTypeEscort] = {
-  //     holdInstace = 2,
-  //     fromKey = "escort",
-  //     lodShowFun = lodShow.lessLOD3,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapEscort",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceNormale,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodInstance",
-  //         lodLayer = LOD_LAYER_NPC,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-    lV = lEmplace(EMapObjTypeDef::mapObjTypeAllianceBuild);
+
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeTreasure);
+    lV->_HoldInstace = 1;
+    lV->_FromKey = "treasure";
+    lV->_DelayTime = true;
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapTreasure;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = false;
+
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeChest);
+    lV->_HoldInstace = 1;
+    lV->_FromKey = "chest";
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapChest;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceClass;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+  
+  lV = lEmplace(EMapObjTypeDef::mapTypeTreasureBowl);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "treasureBowl";
+    lV->_IsHurtDie = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::BossShow, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapTreasureBowl;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceClass;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodInstance;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeBattlefieldSite);
+    lV->_HoldInstace = 2;
+    lV->_HoldInstaceTable = {{
+      {static_cast<int32>(EMapBattlefieldSiteTypeDef::ObjTypeBigPyramid), 3},
+      {static_cast<int32>(EMapBattlefieldSiteTypeDef::TypeAWArmory), 1}
+    }};
+    lV->_FromKey = "battlefieldSite";
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBattlefieldSite;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::pyramidBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceObjID;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = false;
+  
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeEscort);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "escort";
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapEscort;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodInstance;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::NPC;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeAllianceBuild);
     lV->_HoldInstace = 2;
     lV->_FromKey = "build";
     lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::AllianceBuild, InstanceLodCfgShow::Get());
@@ -585,104 +538,91 @@ void WorldInstanceFactory::InitConfig(){
     lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapAllianceBuildLod;
       lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
-  //   [gMapObjTypeDef.mapTypeMine] = {
-  //     holdInstace = 2,
-  //     holdInstaceTable = {
-  //       [gMapAllianceBuildType.subTypeAllianceFlag] = 1
-  //     },
-  //     fromKey = "data",
-  //     delayTime = true,
-  //     lodShowFun = lodShow.lessLOD5,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapMineBuild",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceClass,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodMine",
-  //         lodLayer = LOD_LAYER.LOD_LAYER_ALLIANCERES,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.stronghold] = {
-  //     holdInstace = 2,
-  //     holdInstaceTable = {
-  //       [gMapAllianceBuildType.subTypeAllianceFlag] = 1
-  //     },
-  //     fromKey = "data",
-  //     delayTime = true,
-  //     lodShowFun = lodShow.lessLOD5,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapStronghold",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceClass,
-  //         cache = true
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodStrong",
-  //         lodLayer = LOD_LAYER.LOD_LAYER_ALLIANCESTRONG,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapObjTypeKingdomLevelBuild] = {
-  //     holdInstace = 2,
-  //     fromKey = "build",
-  //     lodShowFun = lodShow.lessLOD3,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapKingdomLvTower",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceNormale,
-  //         cache = false
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodBattery",
-  //         lodLayer = LOD_LAYER_CASTLE,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapTypePyramidGloryBuild] = {
-  //     holdInstace = 2,
-  //     fromKey = "build",
-  //     lodShowFun = lodShow.lessLOD3,
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         class = "worldMapPyramidGloryBuild",
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceNormale,
-  //         cache = false
-  //       },
-  //       [worldLodDef.LOD2] = {
-  //         class = "worldMapIconLodBattery",
-  //         lodLayer = LOD_LAYER_CASTLE,
-  //         cache = true
-  //       }
-  //     }
-  //   },
-  //   [gMapObjTypeDef.mapObjNewTrialCity] = {
-  //     holdInstace = 2,
-  //     fromKey = "data",
-  //     holdInstaceTable = {
-  //       [gMapNewTrialBuildType.subMapTypeDVWCastle] = 5
-  //     },
-  //     lod = {
-  //       [worldLodDef.LOD1] = {
-  //         classTable = {
-  //           [gMapNewTrialBuildType.subMapTypeDVWCastle] = "worldMapNewTrialCity",
-  //           [gMapNewTrialBuildType.subMapTypeDVWBattery] = "worldMapTrialBattery"
-  //         },
-  //         batchNode = batchNode.buildingBatchNode,
-  //         createFun = addWorldInstanceNormale,
-  //         cache = false
-  //       }
-  //     }
-  //   },
+
+  lV = lEmplace(EMapObjTypeDef::mapTypeMine);
+    lV->_HoldInstace = 2;
+    lV->_HoldInstaceTable = {{
+      {static_cast<int32>(EMapAllianceBuildType::Flag), 1}
+    }};
+    lV->_FromKey = "data";
+    lV->_DelayTime = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLod5, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapMineBuild;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceClass;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodMine;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::ALLIANCERES;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+
+  lV = lEmplace(EMapObjTypeDef::stronghold);
+    lV->_HoldInstace = 2;
+    lV->_HoldInstaceTable = {{
+      {static_cast<int32>(EMapAllianceBuildType::Flag), 1}
+    }};
+    lV->_FromKey = "data";
+    lV->_DelayTime = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLod5, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapStronghold;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceClass;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodStrong;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::ALLIANCESTRONG;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+  
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeKingdomLevelBuild);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "build";
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapKingdomLvTower;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = false;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodBattery;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeKingdomLevelBuild);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "build";
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod(); 
+      lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapPyramidGloryBuild;
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = false;
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod(); 
+      lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapIconLodBattery;
+      lV->_Lod[EWorldLodDef::LOD2]._LodLayer = ELodLayer::CASTLE;
+      lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+
+  lV = lEmplace(EMapObjTypeDef::mapObjTypeKingdomLevelBuild);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "data";
+    lV->_HoldInstaceTable = {{
+      {static_cast<int32>(EMapNewTrialBuildType::Castle), 5}
+    }};
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod(); 
+      lV->_Lod[EWorldLodDef::LOD1]._ClassTable = {{
+        {
+          static_cast<int32>(EMapNewTrialBuildType::Castle),
+          {EWorldInstanceClass::WorldMapNewTrialCity, /*IWorldMapInstance::Create<WorldMapNewTrialCity>*/nullptr}
+        },
+        {
+          static_cast<int32>(EMapNewTrialBuildType::Battery),
+          {EWorldInstanceClass::WorldMapTrialBattery, /*IWorldMapInstance::Create<WorldMapTrialBattery>*/nullptr}
+        }
+      }};
+      lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
+      lV->_Lod[EWorldLodDef::LOD1]._Cache = false;
+      
   //   [gMapObjTypeDef.mapObjTypeChristmasTree] = {
   //     holdInstace = 2,
   //     fromKey = "tree",
