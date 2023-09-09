@@ -17,11 +17,13 @@ void WorldInstanceBuilderNormal::Ctor(){
 
 GTuple<IWorldMapInstance *, bool> GetInstanceByType(RWorldInstanceConfigLod pLodConfig, int32 pClassType = 0){
   auto lClass = pLodConfig._Class;
+  auto lConstructorFun = pLodConfig._ConstructorFun;
+
   if(pClassType && pLodConfig._ClassTable.Contains(pClassType)){
-    lClass = pLodConfig._ClassTable[pClassType];
+    std::tie(lClass, lConstructorFun) = pLodConfig._ClassTable[pClassType];
   }
   if(lClass != EWorldInstanceClass::None){
-    return WorldInstanceFactory::Get()->GetInstanceByType(pLodConfig, pLodConfig._Cache);
+    return WorldInstanceFactory::Get()->GetInstanceByType(pLodConfig, lConstructorFun, pLodConfig._Cache);
   }
   return {nullptr, false};
 };

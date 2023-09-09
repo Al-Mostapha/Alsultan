@@ -14,7 +14,9 @@ class InstanceLodCfgShow{
   bool AlwaysShow(EWorldLodDef pLod, int32 pPlayerID, int32 pLeagueID){ return true; }
   bool LessLOD3(EWorldLodDef pLod, int32 = 0, int32 = 0){ return true; }
   bool LessLod5(EWorldLodDef pLod, int32 = 0, int32 = 0){ return true; }
+  bool LessLOD6(EWorldLodDef pLod, int32 = 0, int32 = 0){ return true; }
   bool MonsterShow(EWorldLodDef pLod, int32 = 0, int32 = 0){ return true; }
+  bool NebulaWarMineShow(EWorldLodDef pLod, int32 = 0, int32 = 0){ return true; }
   bool AllianceBuild(EWorldLodDef pLod, int32 pLeagueID = 0, int32 = 0){ return true; }
   bool NpcShow(EWorldLodDef pLod, int32 pLeagueID = 0, int32 = 0){ return true; }
   bool BossShow(EWorldLodDef pLod, int32 pLeagueID = 0, int32 = 0){ return true; }
