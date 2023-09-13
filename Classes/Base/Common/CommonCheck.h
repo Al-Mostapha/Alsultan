@@ -8,6 +8,7 @@ namespace GBase{
       return l_Instance;
     }
     bool ScreenShoot = false;
+    bool LegendLord = false;
   };
   
 }

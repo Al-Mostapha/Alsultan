@@ -14,4 +14,16 @@ public:
   bool JudgeIsGood(int32 pOfficialId){
     return false;
   }
+
+  GString GetName(int32 pBuildTypeID){
+    return "HegemonReadName";
+  };
+
+  GString GetImage(int32 pBuildTypeID){
+    return "LegendaryKing_palace.png";
+  };
+
+  bool IsLegendLordBuilding(int32 pBuildTypeID){
+    return true;
+  };
 };

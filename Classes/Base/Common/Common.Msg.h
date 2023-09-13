@@ -17,5 +17,5 @@ namespace GBase{
                               bool p_NoSound = false);
   UICommonPromptBox *DShowLoginFailBox(const char *p_FailType, 
     GString p_ShowMsg, bool p_HaveCancelBtn, GFunc<void()> p_CallBack);
-
-};
+  void ShowServerTip(const GString &pTitle, const GString &pContent);
+};  

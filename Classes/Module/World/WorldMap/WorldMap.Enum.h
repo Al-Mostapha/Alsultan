@@ -530,3 +530,15 @@ enum class EBossType  {
   fireDragon1 = 38,
   fireDragon2 = 39
 };
+
+enum class ELosRuinsStatus{
+  None = -1,
+  SURVEY = 0,
+  NOT_RECIEVE = 1,
+  GIVE_UP = 2,
+  RECIEVED = 3,
+  COMPLETE = 4,
+  RECIEVED_REWARD = 5,
+  OVERDUE = 6,
+  CANCEL = 7
+};

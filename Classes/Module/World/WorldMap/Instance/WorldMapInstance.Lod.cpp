@@ -11,3 +11,7 @@ void WorldMapInstanceLod::RemoveInstanceSelf(){
 Vec2 WorldMapInstanceLod::GetTilePoint(){
   return Vec2(0, 0);
 }
+
+uint32 WorldMapInstanceLod::GetInstanceID(){
+  return 1;
+}

@@ -21,3 +21,7 @@ UICommonPromptBox*  GBase::DShowMsgBox(GString p_Msg, GString p_YesBtnTitle,
 UICommonPromptBox* GBase::DShowLoginFailBox(const char* p_FailType, GString p_ShowMsg, bool p_HaveCancelBtn, std::function<void()> p_CallBack) {
   return nullptr;
 }
+
+void GBase::ShowServerTip(const GString &pTitle, const GString &pContent){
+
+}

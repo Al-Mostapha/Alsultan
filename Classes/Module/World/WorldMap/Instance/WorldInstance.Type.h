@@ -27,6 +27,7 @@ struct RMonsterInitData{
   EMapNpcFaceTypeDef _FaceTo;
 };
 
+
 struct RResourceInitData
 {
   int32 _PlayerID = 0;
@@ -186,3 +187,21 @@ struct RWorldInstanceConfig{
     GHashMap<int32, int32> _HoldInstaceTable;
 };
 
+
+
+struct RWorldInstanceOccupier{
+  uint32 _PlayerID = 0;
+  GString _PlayerName = "";
+  int32 _LeagueID = 0;
+  uint32 _SourceKid = 0;
+  GString _LeagueName = "";
+  GString _LeagueAbbrName = "";
+  int32 _LeagueFlag = 0;
+  GTime _CurrOccupyBeginTime;
+  GTime _HistOccupyTotalSecs;
+};
+
+struct RLegendLordOccupierChangedEvArg{
+  int32 _BuildID = 0;
+  GOpt<RWorldInstanceOccupier> _Occupier;
+};

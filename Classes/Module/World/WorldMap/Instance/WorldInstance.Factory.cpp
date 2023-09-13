@@ -11,7 +11,7 @@
 #include "Module/World/WorldMap/Instance/Unit/WorldMapResource.h"
 #include "Module/World/WorldMap/Instance/Unit/WorldMapMonster.h"
 #include "Module/World/WorldMap/Instance/Unit/WorldMapCastle.h"
-#include "Module/World/WorldMap/Instance/Unit/WorldMapCastle.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapLegendLord.h"
 
 GHashMap<EMapObjTypeDef, RWorldInstanceConfig> _WorldInstanceConfig;
 
@@ -166,43 +166,47 @@ void WorldInstanceFactory::InitConfig(){
     return &(_WorldInstanceConfig[pType]);
   };
 
-  lV =lEmplace(EMapObjTypeDef::mapObjTypePlayer);
+  {
+    lV = lEmplace(EMapObjTypeDef::mapObjTypePlayer);
+    lV->_HoldInstace = 2;
+    lV->_FromKey = "user";
+    lV->_DelayTime = true;
+    lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3OrSelfLegend, InstanceLodCfgShow::Get());
 
-  lV->_HoldInstace = 2;
-  lV->_FromKey = "user";
-  lV->_DelayTime = true;
-  lV->_LodShowFun = CC_CALLBACK_3(InstanceLodCfgShow::LessLOD3OrSelfLegend, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+    lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
+    lV->_Lod[EWorldLodDef::LOD3] = RWorldInstanceConfigLod();
+    lV->_Lod[EWorldLodDef::LOD4] = RWorldInstanceConfigLod();
 
-  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
-  lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
-  lV->_Lod[EWorldLodDef::LOD3] = RWorldInstanceConfigLod();
-  lV->_Lod[EWorldLodDef::LOD4] = RWorldInstanceConfigLod();
+    lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBuilding;
+    lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::castleBatchNode;
+    lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldBuilding;
+    lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapBuilding>;
+    lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
 
-  lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBuilding;
-  lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::castleBatchNode;
-  lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldBuilding;
-  lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapBuilding>;
-  lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapBuildingLod2;
+    lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
 
-  lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapBuildingLod2;
-  lV->_Lod[EWorldLodDef::LOD2]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD3]._Class = EWorldInstanceClass::WorldMapBuildingLod;
+    lV->_Lod[EWorldLodDef::LOD3]._LodLayerFun = CC_CALLBACK_2(InstanceLodCfgShow::SelfLayerLod3, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD3]._Cache = true;
 
-  lV->_Lod[EWorldLodDef::LOD3]._Class = EWorldInstanceClass::WorldMapBuildingLod;
-  lV->_Lod[EWorldLodDef::LOD3]._LodLayerFun = CC_CALLBACK_2(InstanceLodCfgShow::SelfLayerLod3, InstanceLodCfgShow::Get());
-  lV->_Lod[EWorldLodDef::LOD3]._Cache = true;
+    lV->_Lod[EWorldLodDef::LOD4]._Class = EWorldInstanceClass::WorldMapBuildingLod;
+    lV->_Lod[EWorldLodDef::LOD4]._LodLayerFun = CC_CALLBACK_2(InstanceLodCfgShow::SelfLayerLod4, InstanceLodCfgShow::Get());
+    lV->_Lod[EWorldLodDef::LOD4]._Cache = true;
+  }
 
-  lV->_Lod[EWorldLodDef::LOD4]._Class = EWorldInstanceClass::WorldMapBuildingLod;
-  lV->_Lod[EWorldLodDef::LOD4]._LodLayerFun = CC_CALLBACK_2(InstanceLodCfgShow::SelfLayerLod4, InstanceLodCfgShow::Get());
-  lV->_Lod[EWorldLodDef::LOD4]._Cache = true;
-
-  lV =  lEmplace(EMapObjTypeDef::mapObjTypeLegendLord);
-  lV->_HoldInstace = 3;
-  lV->_FromKey = "data";
-  lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
-  lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapLegendLord;
-  lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::palaceBatchNode;
-  lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceObjID;
-  lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+  {
+    lV =  lEmplace(EMapObjTypeDef::mapObjTypeLegendLord);
+    lV->_HoldInstace = 3;
+    lV->_FromKey = "data";
+    lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
+    lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapLegendLord;
+    lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapLegendLord>;
+    lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::palaceBatchNode;
+    lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceObjID;
+    lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
+  }
 
   lV = lEmplace(EMapObjTypeDef::mapObjTypeRemainsWar);
   lV->_HoldInstace = 3;
