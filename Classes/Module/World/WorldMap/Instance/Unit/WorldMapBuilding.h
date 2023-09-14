@@ -122,7 +122,6 @@ class WorldMapBuilding : public IWorldMapInstance
   void _InitData();
   void _InitUI();
   void OnMessageListener() override;
-
   void SetBatchNodeGroupID(EGrouID pBatchNodeGroupID) override;
 
   bool IsInAllianceWar();

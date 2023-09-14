@@ -1,5 +1,6 @@
 #pragma once
 #include "Module/UI/UICCSView.h"
+#include "Module/UI/UIBasePanel.h"
 
 class UIWorldMapLostRuinsSurveyView : public UIBasePanel{
   CREATE_FUNC(UIWorldMapLostRuinsSurveyView);

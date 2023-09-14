@@ -8,6 +8,9 @@
 #include "Module/World/WorldMap/Instance/Component/WorldMapProtectNode.h"
 #include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
 #include "Module/World/WorldMap/Monster/Boss/Boss.Type.h"
+#include "Module/World/WorldMap/Monster/Boss/Boss.Enum.h"
+#include "Module/World/WorldMap/Floor/Chest/Chestpackshow.h"
+
 USING_NS_CC;
 
 struct RWarLevelConfig{
@@ -120,6 +123,7 @@ public:
   RBossShowData GetWorldBossShow(EBossType pBossID, uint32 pLevel);
   Node *CreateAttackEffectCsb(const RAttackEffectData &pData);
   bool IsWorldBossCanAttackAlone(EBossType pBossID, uint32 pLevel);
+  RChestBackShow GetChestpackShow(int32 pChestID);
 };
 
 

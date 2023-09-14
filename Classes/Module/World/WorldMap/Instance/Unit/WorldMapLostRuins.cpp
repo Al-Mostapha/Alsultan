@@ -131,7 +131,7 @@ GTuple<bool, GTime, GTime> WorldMapLostRuins::IsSurveying(){
 
 GTuple<UIBasePanel *, bool, Node*> WorldMapLostRuins::OnClickInstance(Node *pNode) {
   if(LordInfoCtrl::Get()->GetSourceKid() > 0 || LordInfoCtrl::Get()->GetSourceKid() != _KingdomID)
-    return;
+    return {nullptr, false, nullptr};
   PlayClickSound();
   UIBasePanel *lView = nullptr;
   if(_Status == ELosRuinsStatus::SURVEY){

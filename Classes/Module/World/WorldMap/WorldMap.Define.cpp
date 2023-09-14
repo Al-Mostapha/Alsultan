@@ -302,3 +302,7 @@ Node *WorldMapDefine::CreateAttackEffectCsb(const RAttackEffectData &pData){
 bool WorldMapDefine::IsWorldBossCanAttackAlone(EBossType pBossID, uint32 pLevel){
   return false;
 }
+
+RChestBackShow WorldMapDefine::GetChestpackShow(int32 pChestID){
+  return RChestBackShow();
+}

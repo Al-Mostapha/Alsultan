@@ -2,6 +2,7 @@
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
 #include "Module/UI/Panel/World/WorldMap/Instance/Unit/Boss/UIWorldMapBoss.ProgressBar.h"
 #include "Module/World/WorldMap/Monster/Boss/Boss.Type.h"
+#include "Module/World/Kingdom/KingdomMap.Enum.h"
 
 struct RWorldMapBossInit{
   uint32 _Level = 0;
@@ -15,6 +16,8 @@ struct RWorldMapBossInit{
   EMapObjStateTypeDef _Status = EMapObjStateTypeDef::None;
   uint32 _PlaceUid = 0;
   GTime _RecoverBeginTime;
+  uint32 _ObjId = 0;
+  EKingdomWarStatusType _WarStatus = EKingdomWarStatusType::None;
 };
 
 
@@ -60,8 +63,8 @@ class WorldMapBoss : public IWorldMapInstance
     Label *_RefLabel = nullptr;
 
     void Ctor() override;
-    void _InitData();
-    void _InitUI();
+    virtual void _InitData();
+    virtual void _InitUI();
     void OnMessageListener() override;
     void AddCacheBefore() override;
     void SetBatchNodeGroupID(EGrouID pBatchNodeGroupID) override;
@@ -70,7 +73,7 @@ class WorldMapBoss : public IWorldMapInstance
       bool pIsFlipX, const RWorldMapBossInit &pInitData
     );
     EBossType GetBossClassID() const;
-    void updateData(const RWorldMapBossInit &pInitData);
+    virtual void updateData(const RWorldMapBossInit &pInitData);
     void AddFireEffect(float pFightTime, const RAddFireData &pData);
     void SetScaleAndPositionY();
     void DoStopAllActions();
@@ -80,7 +83,7 @@ class WorldMapBoss : public IWorldMapInstance
     void DoDieingAnimation();
     void FinishedAfterDead();
     void AddFightEffect();
-    GTuple<UIBasePanel *, bool, Node*> OnClickInstance(Node *pNode) override;
+    virtual GTuple<UIBasePanel *, bool, Node*> OnClickInstance(Node *pNode) override;
     void PlayClickSound() override;
     void UpdateProcessBar();
     bool CheckIsEndlessTrialBoss();
