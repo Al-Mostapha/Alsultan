@@ -306,3 +306,11 @@ bool WorldMapDefine::IsWorldBossCanAttackAlone(EBossType pBossID, uint32 pLevel)
 RChestBackShow WorldMapDefine::GetChestpackShow(int32 pChestID){
   return RChestBackShow();
 }
+
+uint32 WorldMapDefine::GetWarTreasureCastleLv(int32 pResourceClassID){
+  return 1;
+}
+
+GString WorldMapDefine::GetWarTreasureBuildingName(int32 pResourceClassID){
+  return "GetWarTreasureBuildingName";
+}

@@ -244,3 +244,13 @@ GVector<RButtonTypeArray> WorldMapFortress::GetInstanceOp(bool pIsSelfKingdom, b
 void WorldMapFortress::PlayClickSound() {
   GBase::PlaySound("innerbuildsound", 119);
 }
+
+void WorldMapFortress::UpdateModelState(){
+  // if self.modelState == gMapObjStateTypeDef.gMapObjStateTypeFree then
+  //   self:doFreeAnimation()
+  // elseif self.modelState == gMapObjStateTypeDef.gMapObjStateTypeFighting then
+  //   self:doFightingAnimation()
+  // elseif self.modelState == gMapObjStateTypeDef.gMapObjStateTypeHurtDie then
+  //   self:doHurtDieAnimation()
+  // end
+}

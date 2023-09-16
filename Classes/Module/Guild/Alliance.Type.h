@@ -93,3 +93,18 @@ struct RAllianceBuildMainInfo {
   int32 _BurningSpeed;
   int32 _RecoverSpeed;
 };
+
+
+struct RStrongholdBuildConfig{
+  uint32 _ID;
+  GString _Name;
+  int32 _Size;
+  GString _Image;
+  int32 _Effects;
+  GString _Leader;
+  GString _Bosstroops1;
+  GString _Bosstroops2;
+  GString _Bosstroops3;
+  GString _IconLod;
+  GString _ImageLod;
+};

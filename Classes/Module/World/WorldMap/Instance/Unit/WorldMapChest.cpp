@@ -74,20 +74,20 @@ void WorldMapChest::InitInstanceData(int32 pClass, void *pChestData, int32 pObjI
   auto lChestData = (RUnitChestInit *)pChestData;
   _ChestClassID = pClass;
   _ChestShow = WorldMapDefine::Get()->GetChestpackShow(_ChestClassID);
-  _NameLabel->setString(Translate::i18n(_ChestShow._Name));
+  _NameLabel->setString(Translate::i18n(_ChestShow._Name.c_str()));
   _ChestImg->setSpriteFrame(_ChestShow._Effects + "_01.png");
 
   Animation *lAnimation = nullptr;
   if(_ChestClassID == 2 && WorldMapDefine::Get()->_HasCamelHdRes) {
-    auto lFrames = GDisplay::Get()->NewFrames("zyluotuo0" + std::to_string(lChestData->_Level) + "_dj_ws_%.2d.png", 1, 24);
+    auto lFrames = GDisplay::Get()->NewFrames(("zyluotuo0" + std::to_string(lChestData->_Level) + "_dj_ws_%.2d.png").c_str(), 1, 24);
     lAnimation = GDisplay::Get()->NewAnimation(lFrames, 0.05f);
   } else {
-    auto lFrames = GDisplay::Get()->NewFrames(_ChestShow._Effects + "_%.2d.png", 1, 6);
+    auto lFrames = GDisplay::Get()->NewFrames((_ChestShow._Effects + "_%.2d.png").c_str(), 1, 6);
     if(_ChestShow._Effects == "zwbx"){
-      lFrames.pushBack(GDisplay::Get()->GetSpriteFrame(_ChestShow._Effects + "_01.png"));
+      lFrames.pushBack(GDisplay::Get()->NewSpriteFrame((_ChestShow._Effects + "_01.png").c_str()));
     }else if(_ChestShow._Effects == "sdlr"){
-      lFrames = GDisplay::Get()->NewFrames(_ChestShow._Effects + "_ws_%.2d.png", 1, 8);
-      lFrames.pushBack(GDisplay::Get()->GetSpriteFrame(_ChestShow._Effects + "_ws_01.png"));
+      lFrames = GDisplay::Get()->NewFrames((_ChestShow._Effects + "_ws_%.2d.png").c_str(), 1, 8);
+      lFrames.pushBack(GDisplay::Get()->NewSpriteFrame((_ChestShow._Effects + "_ws_01.png").c_str()));
       _CountLabel->setPosition(Vec2(_CenterPoint.x, _CenterPoint.y - 35));
       _CountLabelBg->setPosition(Vec2(_CenterPoint.x, _CenterPoint.y - 35));
     }
@@ -101,8 +101,8 @@ void WorldMapChest::InitInstanceData(int32 pClass, void *pChestData, int32 pObjI
 
 void WorldMapChest::UpdateData(const RUnitChestInit &pChestData){
   auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
-  if(pChestData.Contain(lSelfPlayerID))
-    _IsColl = pChestData[lSelfPlayerID];
+  if(pChestData._CollUids.Contains(lSelfPlayerID))
+    _IsColl = pChestData._CollUids.at(lSelfPlayerID);
   else
     _IsColl = false;
   _ChestLevel = pChestData._Level;

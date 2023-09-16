@@ -8,7 +8,6 @@
 #include "Module/World/WorldMap/Instance/Component/WorldMapProtectNode.h"
 #include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
 #include "Module/World/WorldMap/Monster/Boss/Boss.Type.h"
-#include "Module/World/WorldMap/Monster/Boss/Boss.Enum.h"
 #include "Module/World/WorldMap/Floor/Chest/Chestpackshow.h"
 
 USING_NS_CC;
@@ -73,7 +72,8 @@ public:
   EKingStatus _kingdomStatus = EKingStatus::None;
   EGameKingdomIdAssign LEGENDLORD_KINGDOM_ID = EGameKingdomIdAssign::LegendEnd;
   EGameKingdomIdAssign KINGSTAR_KINGDOM_ID = EGameKingdomIdAssign::LegendStart;
-  
+  bool _HasCamelHdRes = false;
+
   bool IsInWar();
   bool IsInLegendLord();
   bool IsInRemains();
@@ -124,6 +124,8 @@ public:
   Node *CreateAttackEffectCsb(const RAttackEffectData &pData);
   bool IsWorldBossCanAttackAlone(EBossType pBossID, uint32 pLevel);
   RChestBackShow GetChestpackShow(int32 pChestID);
+  uint32 GetWarTreasureCastleLv(int32 pResourceClassID);
+  GString GetWarTreasureBuildingName(int32 pResourceClassID);
 };
 
 

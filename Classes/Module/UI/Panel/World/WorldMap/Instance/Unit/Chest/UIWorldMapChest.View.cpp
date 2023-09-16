@@ -1,4 +1,4 @@
-#include "UIWorldMapChestزView.h"
+#include "UIWorldMapChest.View.h"
 
 UIWorldMapChestView *UIWorldMapChestView::Create()
 {

@@ -13,3 +13,7 @@ int32 LostRuinsCtrl::GetNewSurveyNum()
 RLostRuinsQuest LostRuinsCtrl::GetRunningQuestInfo(){
   return RLostRuinsQuest();
 }
+
+RLostRuinsQuest LostRuinsCtrl::GetQuestInfo(Vec2 pPos){
+  return RLostRuinsQuest();
+}
