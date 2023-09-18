@@ -4,6 +4,11 @@
 #include "Module/World/Kingdom/KingdomMap.Enum.h"
 #include "Module/World/Kingdom/Kingdom.Type.h"
 
+struct  RTreasureBowlInfo{
+  bool _IsCanClick;
+  int32 _RewardLimit;
+};
+
 class KingdomMapCtrl
 {
 public: 
@@ -37,6 +42,11 @@ public:
   
   int32 GetForbidMapObjWarLeftTime(EMapObjTypeDef pMapObjType){
     return 0;
+  }
+
+  GOpt<RTreasureBowlInfo> GetTreasureBowlInfo(){
+    RTreasureBowlInfo t;
+    return t;
   }
 
 };

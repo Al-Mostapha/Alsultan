@@ -2,6 +2,8 @@
 #include "Base/BaseTypeDef.h"
 #include "CommandHall.Enum.h"
 
+USING_NS_CC;
+
 class CommandHallTaskNode : public Node{
   public:
     Sprite *_BgSprite = nullptr;

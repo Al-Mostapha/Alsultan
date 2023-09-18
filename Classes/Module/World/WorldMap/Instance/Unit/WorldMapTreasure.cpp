@@ -2,6 +2,9 @@
 #include "Base/Functions/ServiceFunction.h"
 #include "Base/Utils/XTransition.h"
 #include "Module/UI/Common/Timer/UITimerLabel.h"
+#include "Module/Guild/Alliance.Mgr.h"
+#include "Module/Player/Player.Top.h"
+#include "Module/City/City.Ctrl.h"
 
 void WorldMapTreasure::Ctor() {
   _TreasureState = EMapObjStateTypeDef::Free;
@@ -85,51 +88,32 @@ void WorldMapTreasure::PlayClickSound() {
 }
 
 GVector<RButtonTypeArray> WorldMapTreasure::GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar) {
-  // local buttonTypeArray = {}
-  // local gametop = gModuleMgr.getObject("gametop")
-  // local allianceMgr = gametop.playertop_:getModule("allianceMgr")
-  // local selfLeagueID = allianceMgr:getOwnTeamID() or 0
-  // local selfPlayerID = gametop.playertop_:getPlayerID()
-  // local playerID = self.playerID or 0
-  // local leagueID = self.leagueID or 0
-  // if playerID == selfPlayerID then
-  //   table.insert(buttonTypeArray, {
-  //     buttonType = worldMapDefine.worldMapTipButtonType_fanHui
-  //   })
-  //   table.insert(buttonTypeArray, {
-  //     buttonType = worldMapDefine.worldMapTipButtonType_buDuiXiangqing
-  //   })
-  //   if self:canHasEmojiOperator(selfPlayerID) then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_biaoqingyinzhang
-  //     })
-  //   end
-  // elseif isSelfKindom then
-  //   if selfLeagueID > 0 and selfLeagueID == leagueID then
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_yongHuXinxi
-  //     })
-  //   else
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_gongJi
-  //     })
-  //     local cityCtrl = gametop.playertop_:getModule("cityCtrl")
-  //     local towerLv = cityCtrl:getBuildMaxLv(BUILDID.WATCH_TOWER)
-  //     if towerLv > 1 then
-  //       table.insert(buttonTypeArray, {
-  //         buttonType = worldMapDefine.worldMapTipButtonType_zhenCha
-  //       })
-  //     end
-  //     table.insert(buttonTypeArray, {
-  //       buttonType = worldMapDefine.worldMapTipButtonType_yongHuXinxi
-  //     })
-  //   end
-  // else
-  //   table.insert(buttonTypeArray, {
-  //     buttonType = worldMapDefine.worldMapTipButtonType_yongHuXinxi
-  //   })
-  // end
-  // return buttonTypeArray
+  GVector<RButtonTypeArray> lButtonTypeArray;
+
+  auto lSelfLeagueID = AllianceManager::Get()->GetOwnTeamID();
+  auto lSelfPlayerID = PlayerTop::Get()->GetPlayerID();
+
+  if(_PlayerID == lSelfPlayerID){
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::fanHui});
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::buDuiXiangqing});
+    if(CanHasEmojiOperator(lSelfPlayerID)){
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::biaoqingyinzhang});
+    }
+  } else if(pIsSelfKingdom){
+    if(lSelfLeagueID > 0 && lSelfLeagueID == _LeagueID){
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::yongHuXinxi});
+    }else{
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::gongJi});
+      auto lTowerLv = CityCtrl::Get()->GetBuildingMaxLv(EBuilding::WatchTower);
+      if(lTowerLv > 1){
+        lButtonTypeArray.push_back({EWorldMapTipButtonType::zhenCha});
+      }
+      lButtonTypeArray.push_back({EWorldMapTipButtonType::yongHuXinxi});
+    }
+  }else{
+    lButtonTypeArray.push_back({EWorldMapTipButtonType::yongHuXinxi});
+  }
+  return lButtonTypeArray;
 }
 
 void WorldMapTreasure::AddCacheBefore() {

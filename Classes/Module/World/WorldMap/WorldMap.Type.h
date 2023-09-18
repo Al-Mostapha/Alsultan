@@ -78,3 +78,4 @@ struct RRemoveTroopTipData{
 
 struct RMoveLineArmyData{};
 
+

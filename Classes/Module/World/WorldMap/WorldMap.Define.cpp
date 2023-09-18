@@ -314,3 +314,17 @@ uint32 WorldMapDefine::GetWarTreasureCastleLv(int32 pResourceClassID){
 GString WorldMapDefine::GetWarTreasureBuildingName(int32 pResourceClassID){
   return "GetWarTreasureBuildingName";
 }
+
+RTreasureBowl WorldMapDefine::GetTreasureBowlpackShow(int32 pTreasureBowlClassID){
+  RTreasureBowl lRet;
+    lRet._Index = 1;
+    lRet._Image = "icon_TreasureBowl.png";
+    lRet._Effects = "zhouniangz";
+    lRet._Delay = 2;
+    lRet._Name = "common_text_3549";
+    lRet._Notice1 = "common_text_3547";
+    lRet._Notice2 = "common_text_3548";
+    lRet._IconLod = "lod_monster.png";
+    lRet._ScaleLod = 3;
+  return lRet;
+}

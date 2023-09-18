@@ -49,6 +49,18 @@ struct RAttackEffectData{
   EGrouID _GroupID2 = EGrouID::None;
 };
 
+struct RTreasureBowl {
+  int32 _Index;
+  GString _Image;
+  GString _Effects;
+  float _Delay;
+  GString _Name;
+  GString _Notice1;
+  GString _Notice2;
+  GString _IconLod;
+  float _ScaleLod;
+};
+
 class WorldMapDefine{
 public: 
 
@@ -126,6 +138,7 @@ public:
   RChestBackShow GetChestpackShow(int32 pChestID);
   uint32 GetWarTreasureCastleLv(int32 pResourceClassID);
   GString GetWarTreasureBuildingName(int32 pResourceClassID);
+  RTreasureBowl GetTreasureBowlpackShow(int32 pTreasureBowlClassID);
 };
 
 

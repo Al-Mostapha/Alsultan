@@ -8,7 +8,7 @@ CommandHallUtil *CommandHallUtil::Get(){
   return lInstance;
 }
 
-Node *CommandHallUtil::CreateTaskNode(){
+CommandHallTaskNode *CommandHallUtil::CreateTaskNode(){
   // local taskNode = display.newNode()
   // local bgSprite = display.newSprite("#img_commandhall_sign_01.png")
   // bgSprite:addTo(taskNode)
@@ -25,5 +25,5 @@ Node *CommandHallUtil::CreateTaskNode(){
   //   iconSprite:setSpriteFrame(taskIcon)
   // end
   // return taskNode
-  return GDisplay::Get()->NewNode();
+  return CommandHallTaskNode::create();
 }

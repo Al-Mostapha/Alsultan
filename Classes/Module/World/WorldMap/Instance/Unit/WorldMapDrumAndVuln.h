@@ -6,7 +6,6 @@ struct RWorldMapDrumAndVulnInit {
   GString _PlayerName;
   uint32 _LeagueID = 0;
   GString _LeagueName;
-  GString _PlayerName;
   uint32 _SourceKid = 0;
   uint32 _EmojiID = 0;
 };

@@ -13,5 +13,5 @@ GString CommandHallRead::GetTaskNpcResource(ECommandHallTaskType pTaskType){
 }
 
 ECommandHallTaskType CommandHallRead::GetTaskType(ECommandHallTaskType pTaskID){
-  return ECommandHallTaskType::NONE;
+  return ECommandHallTaskType::None;
 }

@@ -1,6 +1,7 @@
+#pragma once
 
 enum class ECommandHallTaskType{
-  NONE = 0,
+  None = 0,
   REBEL_ARMY_GROUP_TASK = 1,
   REBEL_ARMY_PIONEER_TASK = 2,
   DIALOGUE_TASK = 3,

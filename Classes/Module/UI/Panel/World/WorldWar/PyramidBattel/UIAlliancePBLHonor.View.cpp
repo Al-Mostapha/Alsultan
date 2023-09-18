@@ -9,10 +9,3 @@ void UIAlliancePBLHonorView::Ctor(){
 
 }
 
-void UIAlliancePBLHonorView::InitData(){
-
-}
-
-void UIAlliancePBLHonorView::InitWidget(){
-
-}

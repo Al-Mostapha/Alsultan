@@ -54,7 +54,7 @@ struct RCommandHallTask{
 
 struct RCommandHallShow{
     uint32 _Index = 0;
-    ECommandHallTaskType _Type = ECommandHallTaskType::NONE;
+    ECommandHallTaskType _Type = ECommandHallTaskType::None;
     GString _Name;
     GString _Text;
     GString _Icon;
