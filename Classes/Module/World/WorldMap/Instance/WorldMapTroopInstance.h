@@ -2,6 +2,7 @@
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBaseView.h"
 #include "Module/World/WorldMap/WorldMap.Type.h"
+#include "Module/City/CityBuilding/CommandHall/CommandHall.Enum.h"
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
 #include "Module/World/WorldMap/Floor/Troops/WorldMapMoveLine.h"
 #include "Module/UI/Panel/World/WorldMap/Floor/UIWorldMapEmoji.h"

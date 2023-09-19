@@ -27,7 +27,7 @@ void WorldMapDrumAndVuln::SetBatchNodeGroupID(EGrouID pBatchNodeGroupID) {
   // self.treasureImg:setGroupID(groupID)
 }
 
-void WorldMapDrumAndVuln::InitInstanceData(int32 pClass, void *pObjData, int32 pObjID = 0) {
+void WorldMapDrumAndVuln::InitInstanceData(int32 pClass, void *pObjData, int32 pObjID) {
   _ResourceClassID = pClass;
   if(_ResourceClassID == 4302) {
     _TreasureImg->setSpriteFrame("Map_build_vulnerary.png");

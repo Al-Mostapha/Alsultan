@@ -381,3 +381,11 @@ void DFadeInOut(Node* p_Node /**, float p_Time, float p_Delay, std::function<voi
   // ));
 }  // namespace
 }  // namespace GBase
+
+
+void GBase::DShowFixWindow(
+  GString pTitle, GVector<GString> pMsgtbl, 
+  Color3B pColor, GBase::RShowFixWindowOther pOther
+){
+
+}

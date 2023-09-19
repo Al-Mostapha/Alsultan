@@ -11,3 +11,8 @@ WindTowerCtrl * WindTowerCtrl::Get(){
 int32 WindTowerCtrl::GetNewSurveyNum(){
   return 0;
 }
+
+RWindTowerQuestInfo WindTowerCtrl::GetQuestInfo(Vec2 pPoint){
+  RWindTowerQuestInfo lQuestInfo;
+  return lQuestInfo;
+}

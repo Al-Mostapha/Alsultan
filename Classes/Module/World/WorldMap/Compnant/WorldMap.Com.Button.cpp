@@ -3,18 +3,33 @@
 #include "Base/Common/Common.Msg.h"
 #include "Module/City/City.Ctrl.h"
 #include "Module/Player/LordInfo.Ctrl.h"
+
+#include "Module/World/WorldMap/WorldMap.Type.h"
+
+#include "Module/Guild/Alliance.Read.h"
+
 #include "Module/World/Kingdom/KingdomMap.Ctrl.h"
+#include "Module/World/WorldMap/Floor/Escort/Escort.Ctrl.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"
 #include "Module/World/WorldMap/Instance/WorldMapTroopInstance.h"
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
 #include "Module/World/WorldMap/Instance/WorldMapTroopInstance.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapAllianceResource.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapAllianceBuild.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapAnniversaryCamp.h"
 
 #include "Module/UI/Panel/Lord/UILordView.h"
+
 #include "Module/UI/Panel/Alliance/AllianceBuild/UIAllianceBuildMainInfo.View.h"
+#include "Module/UI/Panel/Alliance/AllianceBuild/UIAllianceBuildNotice.View.h"
+
 #include "Module/UI/Panel/World/WorldMap/Overlay/Troops/UIWorldMapTroopsDetails.View.h"
 #include "Module/UI/Panel/World/WorldMap/Overlay/Troops/UIWorldMapEmojiSeal.h"
+#include "Module/UI/Panel/World/WorldMap/Overlay/Attacks/Occupy/UIWorldMapResOccupy.View.h"
+#include "Module/UI/Panel/World/WorldExplain/UIWorldMapExplain.View.h"
 #include "Module/UI/Panel/Item/Buy/UISpeedUpReCallBuyPop.View.h"
 
+#include "Module/UI/EventCenter/EventTemplate/AnniversaryFlam/UIAnniversaryFlameExplain.View.h"
 
 void WorldMapComButton::Ctor()
 {
@@ -85,20 +100,7 @@ void WorldMapComButton::ServerMessage_reqClosestBuild(EventCustom *pEvent){
   // self.reqEscortData = {}
 }
 
-struct RTipButtonTouchCallEvAr{
-  union {
-    GVector<RMoveLineArmyData> _ArmyData;
-    int32 _MoveLineID;
-    bool _IsRecall;
-  } _TipButtonData;
-  EWorldMapTipButtonType _TipButtonType;
-  struct{
 
-  } _TipButtonExtra;
-  Vec2    _TargetPoint;
-  IWorldMapInstance *_MapInstance;
-  int32 _KingdomID;
-};
 
 
 void DetectSafeStateFunc(const std::function<void()> &pCallBackHandle){
@@ -180,18 +182,16 @@ void WorldMapComButton::TipButtonTouchCall(EventCustom *pEvent){
     //   worldEscortAidAddition:initWithData(mapInstance:getAssistData())
     //   worldEscortAidAddition:show()
   }else if(lTipButtonType == EWorldMapTipButtonType::lueduo){
-  //   do
-  auto lCastleBcell = CityCtrl::Get()->GetBuildingCell(EBuilding::Castle, EBuildingIndex::Castle);
-    //     local escortCtrl = gametop.playertop_:getModule("escortCtrl")
-    //     local minLv = escortCtrl.dataMgr:getEscortCityLevelMin()
-    //     if minLv > tonumber(castleBcell.info.lv) then
-    //       SoraDShowMsgTip(i18n("common_text_2483"), "#icon_escort_convey.png")
-    //       return
-    //     end
-    //     local allianceDesRead = include("allianceDesRead")
-    //     if allianceDesRead.getPlayerConquestWarMigration() then
-    //       return
-    //     end
+    auto lCastleBcell = CityCtrl::Get()->GetBuildingCell(EBuilding::Castle, EBuildingIndex::Castle);
+    auto lMinLv = EscortCtrl::Get()->GetEscortCityLevelMin();
+    if(lCastleBcell->_Info.buildingLvl < lMinLv){
+      GBase::DShowMsgTip(Translate::i18n("notice_0161"), "icon_escort_convey.png");
+      return;
+    }
+
+    if(AllianceRead::Get()->GetPlayerConquestWarMigration()){
+      return;
+    }
     //     local assistData = mapInstance:getAssistData()
     //     if assistData ~= nil and assistData.assistorInfo ~= nil and assistData.assistorInfo.uid ~= nil then
     //       local selfUid = lordInfoCtrl:getLordInfo().base.uid
@@ -233,7 +233,6 @@ void WorldMapComButton::TipButtonTouchCall(EventCustom *pEvent){
     //       return
     //     end
     //     OpenDispatchView()
-    //   end
   }else if(lTipButtonType == EWorldMapTipButtonType::yongHuXinxi){
 
     LordInfoCtrl::Get()->GetLordInfoByUid(lMapInstance->_PlayerID, lData->_KingdomID,  "WorldMapComButton");
@@ -252,69 +251,67 @@ void WorldMapComButton::TipButtonTouchCall(EventCustom *pEvent){
   }
   
   if(lTipButtonType == EWorldMapTipButtonType::shuoMing){
-    //       local instanceType = mapInstance:getInstanceType()
     auto lInstanceType = lMapInstance->_InstanceType;
     //       local instanceClassID = mapInstance.resourceClassID or 0
-    //       if gMapObjTypeDef.mapObjTypeSuperResource == instanceType then
     if(lInstanceType == EMapObjTypeDef::mapObjTypeSuperResource){
-      //         local panel = SoraDCreatePanel("allianceBuildNoticeView")
-      //         panel:initData(instanceClassID, mapInstance.leagueID, mapInstance.kingdomID)
-      //         panel:show()
+      auto lPanel = UIAllianceBuildNoticeView::Create();
+      auto lResClassId = lMapInstance->_ResourceClassID;
+      lPanel->InitData((int32)lResClassId, lMapInstance->_LeagueID, lMapInstance->_KingdomID);
+      lPanel->Show();
     } else if(lInstanceType == EMapObjTypeDef::mapObjTypeAllianceBuild){
-      //         local instanceBuildClassID = mapInstance.getBuildClassID and mapInstance:getBuildClassID()
-      //         if gMapAllianceBuildType.subTypeAllianceAltar == instanceBuildClassID then
-      //           local panel = SoraDCreatePanel("allianceBuildNoticeView")
-      //           panel:initData(instanceBuildClassID, mapInstance.leagueID, mapInstance.kingdomID)
-      //           panel:show()
-      //         end
+      auto lInstanceBuildClassID = dynamic_cast<WorldMapAllianceBuild *>(lMapInstance)->GetBuildClassID();
+      if(lInstanceBuildClassID == EMapAllianceBuildType::Altar){
+        auto lPanel = UIAllianceBuildNoticeView::Create();
+        lPanel->InitData((int32)lInstanceBuildClassID, lMapInstance->_LeagueID, lMapInstance->_KingdomID);
+        lPanel->Show();
+      }
+
     } else if(lInstanceType == EMapObjTypeDef::mapTypeATBuilding){
-      //         SoraDShowFixWindow(i18n("AncienTreasure_text_80"), {
-      //           i18n("AncienTreasure_text_81")
-      //         })
+      GBase::DShowFixWindow(
+        Translate::i18n("AncienTreasure_text_80"),
+        { Translate::i18n("AncienTreasure_text_81") }
+      );
     } else if(lInstanceType == EMapObjTypeDef::mapTypeWarTreasure){
-      //         SoraDShowHelpMsgTip(i18n("warSecrit_text_01"))
+      GBase::DShowHelpMsgTip(Translate::i18n("warSecrit_text_01"));
     } else if(lInstanceType == EMapObjTypeDef::mapType20Campfire){
-      //         local panel = SoraDCreatePanel("anniversaryFlameExplainView")
-      //         panel:initData({
-      //           fireNum = mapInstance.flameNum,
-      //           owerName = mapInstance.owerName,
-      //           createUid = mapInstance.createUid,
-      //           flameStage = mapInstance.flameStage
-      //         })
-      //         panel:show()
+      auto lInst = dynamic_cast<WorldMapAnniversaryCamp *>(lMapInstance);
+      auto lPanel = UIAnniversaryFlameExplainView::Create();
+      RAnniversaryFlamFireInit lData;
+      lData._FireNum = lInst->_FlameNum;
+      lData._OwerName = lInst->_OwerName;
+      lData._CreateUid = lInst->_CreateUid;
+      lData._FlameStage = lInst->_FlameStage;
+      lPanel->InitData(lData);
+      lPanel->Show();
     }else{
-      //         local panel = SoraDCreatePanel("worldMapExplainView")
-      //         panel:initData(instanceType, instanceClassID)
-      //         panel:show()
+      auto lPanel = UIWorldMapExplainView::Create();
+      lPanel->InitData(lInstanceType, lMapInstance->_ResourceClassID);
+      lPanel->Show();
     }
   }else if(lTipButtonType == EWorldMapTipButtonType::xiangqing){
-    //       local instanceType = mapInstance:getInstanceType()
     auto lInstanceType = lMapInstance->_InstanceType;
     //       local instanceClassID = mapInstance.resourceClassID or 0
-
-    //       if gMapObjTypeDef.mapObjTypeResource == instanceType then
     if(lInstanceType == EMapObjTypeDef::mapObjTypeResource){
-      //         local instanceID = mapInstance:getInstanceID()
-      //         local panel = SoraDCreatePanel("worldMapResOccupyView")
-      //         panel:initData({
-      //           classID = instanceClassID,
-      //           resPos = endPoint,
-      //           insID = instanceID
-      //         })
-      //         panel:show()
+      auto lInstanceID = lMapInstance->_InstanceID;
+      RResourceOccupyInit lData;
+      lData._ClassID = lMapInstance->_ResourceClassID;
+      lData._InstID = lInstanceID;
+      lData._ResPos = lEndPoint;
+      auto lPanel = UIWorldMapResOccupyView::Create();
+      lPanel->InitData(lData);
+      lPanel->Show();
     } else if(lInstanceType == EMapObjTypeDef::mapTypeWarTreasure){
-      //         local instanceID = mapInstance:getInstanceID()
-      //         local panel = SoraDCreatePanel("worldMapResOccupyView")
-      //         panel:initDataFromWar({
-      //           classID = instanceClassID,
-      //           resPos = endPoint,
-      //           insID = instanceID,
-      //           data = tipButtonData,
-      //           playerName = mapInstance.playerName,
-      //           leagueName = mapInstance.leagueName
-      //         })
-      //         panel:show()
-    }else if(lInstanceType == EMapObjTypeDef::mapTypeRadianceWarResource){
+      RResourceOccupyInitFromWar lParam;
+      lParam._ClassID = lMapInstance->_ResourceClassID;
+      lParam._InstID = lMapInstance->_InstanceID;
+      lParam._ResPos = lEndPoint;
+      lParam._Data = lData->_TipButtonData;
+      lParam._PlayerName = lMapInstance->_PlayerName;
+      lParam._LeagueName = lMapInstance->_LeagueName;
+      auto lPanel = UIWorldMapResOccupyView::Create();
+      lPanel->InitDataFromWar(lParam);
+      lPanel->Show();
+    } else if(lInstanceType == EMapObjTypeDef::mapTypeRadianceWarResource){
       //         local instanceID = mapInstance:getInstanceID()
       //         local panel = SoraDCreatePanel("radianceWarResOccupyView")
       //         panel:initData({

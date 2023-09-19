@@ -16,6 +16,10 @@
   #define MAX_DELINSTANCE 20
 #endif
 
+USING_NS_CC;
+
+class IWorldMapInstance;
+
 struct RLodCfg
 {
   GString _Component;
@@ -79,3 +83,17 @@ struct RRemoveTroopTipData{
 struct RMoveLineArmyData{};
 
 
+struct RTipButtonTouchCallEvAr{
+  union RTipButtonData {
+    GVector<RMoveLineArmyData> _ArmyData;
+    int32 _MoveLineID;
+    bool _IsRecall;
+  } _TipButtonData;
+  EWorldMapTipButtonType _TipButtonType;
+  struct{
+
+  } _TipButtonExtra;
+  Vec2    _TargetPoint;
+  IWorldMapInstance *_MapInstance;
+  int32 _KingdomID;
+};

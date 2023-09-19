@@ -3,6 +3,7 @@
 #include "Module/UI/UIBasePanel.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 #include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
+#include "Module/CityResource/Resource.Enum.h"
 #include "WorldInstance.Enum.h"
 #include "WorldMapBuildEmoji.h"
 #include "WorldMapBuildFireEffect.h"
@@ -29,10 +30,12 @@ public:
   int32 _KingdomID;
   int32 _LeagueFlag;
   EMapObjTypeDef _InstanceType;
+  EResource _ResourceClassID;
   int32 _InstanceLevel;
   Vec2 _TilePoint;
   Size _Size;
   Node *_TipsNode;
+
 
   template<typename T>
   static IWorldMapInstance *Create()

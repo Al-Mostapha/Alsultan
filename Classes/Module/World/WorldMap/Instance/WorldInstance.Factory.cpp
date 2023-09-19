@@ -12,6 +12,10 @@
 #include "Module/World/WorldMap/Instance/Unit/WorldMapMonster.h"
 #include "Module/World/WorldMap/Instance/Unit/WorldMapCastle.h"
 #include "Module/World/WorldMap/Instance/Unit/WorldMapLegendLord.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapRemainsWar.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapBattery.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapFortress.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapCampsite.h"
 
 GHashMap<EMapObjTypeDef, RWorldInstanceConfig> _WorldInstanceConfig;
 
@@ -216,6 +220,7 @@ void WorldInstanceFactory::InitConfig(){
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapRemainsWar;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::palaceBatchNode;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceObjID;
+  // lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapRemainsWar>;
   lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
 
   lV = lEmplace(EMapObjTypeDef::mapObjTypeCastale);
@@ -226,6 +231,7 @@ void WorldInstanceFactory::InitConfig(){
   lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapCastle;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::palaceBatchNode;
+  lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapCastle>;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
   lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
 
@@ -241,6 +247,7 @@ void WorldInstanceFactory::InitConfig(){
   lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapBattery;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::batteryBatchNode;
+  lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapBattery>;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceObjID;
   lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
   
@@ -255,6 +262,7 @@ void WorldInstanceFactory::InitConfig(){
   lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
   lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapFortress;
   lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+  lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapFortress>;
   lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
   lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
 
@@ -267,6 +275,7 @@ void WorldInstanceFactory::InitConfig(){
       lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapResource;
       lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
       lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceClass;
+      lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapResource>;
       lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
     lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD2]._Class = EWorldInstanceClass::WorldMapResourceLod2;
@@ -283,6 +292,7 @@ void WorldInstanceFactory::InitConfig(){
     lV->_Lod[EWorldLodDef::LOD1] = RWorldInstanceConfigLod();
       lV->_Lod[EWorldLodDef::LOD1]._Class = EWorldInstanceClass::WorldMapCampsite;
       lV->_Lod[EWorldLodDef::LOD1]._BatchNode = EGrouID::buildingBatchNode;
+      // lV->_Lod[EWorldLodDef::LOD1]._ConstructorFun = IWorldMapInstance::Create<WorldMapCampsite>;
       lV->_Lod[EWorldLodDef::LOD1]._CreateFun = AddWorldInstanceNormale;
       lV->_Lod[EWorldLodDef::LOD1]._Cache = true;
     lV->_Lod[EWorldLodDef::LOD2] = RWorldInstanceConfigLod();

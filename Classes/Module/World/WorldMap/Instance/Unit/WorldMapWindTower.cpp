@@ -42,7 +42,7 @@ void WorldMapWindTower::OnMessageListener() {
   GBase::DAddMessage(this, "MESSAGE_SERVER_WORLD_MAP_EVENT_LSIT_INFO_NEW", CC_CALLBACK_1(WorldMapWindTower::UpdateData, this));
 }
 
-void WorldMapWindTower::InitInstanceData(int32 pClass, void *pObjData, int32 pObjID = 0) {
+void WorldMapWindTower::InitInstanceData(int32 pClass, void *pObjData, int32 pObjID) {
   UpdateData();
 }
 

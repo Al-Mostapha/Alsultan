@@ -1,6 +1,8 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
 
+USING_NS_CC;
+
 class WindTowerUtil{
   public:
     static WindTowerUtil *Get();

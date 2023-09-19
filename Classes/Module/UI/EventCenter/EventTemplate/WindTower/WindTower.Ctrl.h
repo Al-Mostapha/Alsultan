@@ -1,6 +1,8 @@
 #pragma once
 #include "WindTower.Type.h"
 
+USING_NS_CC;
+
 class WindTowerCtrl{
 public:
   static WindTowerCtrl *Get();

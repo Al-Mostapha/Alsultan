@@ -179,6 +179,7 @@ GTuple<UIBasePanel *, bool, Node*> WorldMapCommandHallNpc::OnClickInstance(Node 
   // selectShowPanel:upateInfoPanel(self.taskID, self.taskIndex)
   // selectShowPanel:show()
   // return selectShowPanel, true
+  return {nullptr, false, nullptr};
 }
 
 uint32 WorldMapCommandHallNpc::GetTaskIndex(){

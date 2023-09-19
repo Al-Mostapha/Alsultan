@@ -122,5 +122,16 @@ Label *DCreateLabel(RCreateLabelParm p_Parm);
 
 void DFadeInOut(Node *p_Node/**Fade paramters*/);
 
+struct RShowFixWindowOther{
+  bool _IsHtml = false;
+  bool _NoEmpty = false;
+  bool _HideBtn = false;
+  bool _ShowArrow = false;
+  bool _AutoHeight = false;
+  int32 _Height = 0;
+};
+
+void DShowFixWindow(GString pTitle, GVector<GString> pMsgtbl, Color3B pColor = {}, RShowFixWindowOther pOther = {});
+
 };  // namespace GBase
 

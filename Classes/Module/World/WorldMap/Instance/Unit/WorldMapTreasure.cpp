@@ -43,7 +43,7 @@ void WorldMapTreasure::SetBatchNodeGroupID(EGrouID pBatchNodeGroupID) {
   // self.treasureImg:setGroupID(groupID)
 }
 
-void WorldMapTreasure::InitInstanceData(int32 pClass, void *pObjData, int32 pObjID = 0) {
+void WorldMapTreasure::InitInstanceData(int32 pClass, void *pObjData, int32 pObjID) {
   if(pObjData == nullptr) {
     return;
   }
