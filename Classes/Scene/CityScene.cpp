@@ -104,41 +104,41 @@ void CityScene::initCityLayers() {
   addChild(_PanelView, 5);
   GBase::DSendMessage("MESSAGE_MAINSCEN_LOGINSUCCESS");
   return;
-  containerView = CityBuildingLayer;
-  batchNodeXiyiNpc = Node::create();
-  batchNodeNpc = Node::create();
-  batchNodeSoldierGuards = Node::create();
+  // containerView = CityBuildingLayer;
+  // batchNodeXiyiNpc = Node::create();
+  // batchNodeNpc = Node::create();
+  // batchNodeSoldierGuards = Node::create();
 
-  CityBuildingLayer->addChild(batchNodeXiyiNpc);
-  CityBuildingLayer->addChild(batchNodeNpc);
-  CityBuildingLayer->addChild(batchNodeSoldierGuards);
+  // CityBuildingLayer->addChild(batchNodeXiyiNpc);
+  // CityBuildingLayer->addChild(batchNodeNpc);
+  // CityBuildingLayer->addChild(batchNodeSoldierGuards);
 
-  batchNodeXiyiNpc->setLocalZOrder(ECityTargetZOrder::Get()->banyungong);
-  batchNodeNpc->setLocalZOrder(ECityTargetZOrder::Get()->banyungong);
-  batchNodeSoldierGuards->setLocalZOrder(ECityTargetZOrder::Get()->soldiers);
+  // batchNodeXiyiNpc->setLocalZOrder(ECityTargetZOrder::Get()->banyungong);
+  // batchNodeNpc->setLocalZOrder(ECityTargetZOrder::Get()->banyungong);
+  // batchNodeSoldierGuards->setLocalZOrder(ECityTargetZOrder::Get()->soldiers);
 
-  batchNodeXiyiNpc->setPosition(0, 0);
-  batchNodeNpc->setPosition(0, 0);
-  batchNodeSoldierGuards->setPosition(0, 0);
+  // batchNodeXiyiNpc->setPosition(0, 0);
+  // batchNodeNpc->setPosition(0, 0);
+  // batchNodeSoldierGuards->setPosition(0, 0);
 
-  auto Cloud = CSLoader::createNode("UiParts/Scene/City/mainCityViewCloud.csb");
-  CityUiLayer = CSLoader::createNode("UiParts/MainUi/mainUIBottom.csb");
-  auto ResBox = CSLoader::createNode("UiParts/MainUi/commonResourcesMenu.csb");
-  auto TopUi = CSLoader::createNode("UiParts/MainUi/mainUITop.csb");
+  // auto Cloud  = CSLoader::createNode("UiParts/Scene/City/mainCityViewCloud.csb");
+  // CityUiLayer = CSLoader::createNode("UiParts/MainUi/mainUIBottom.csb");
+  // auto ResBox = CSLoader::createNode("UiParts/MainUi/commonResourcesMenu.csb");
+  // auto TopUi  = CSLoader::createNode("UiParts/MainUi/mainUITop.csb");
 
-  ResBox->setPosition(0, Director::getInstance()->getWinSize().height);
-  TopUi->setPosition(0, Director::getInstance()->getWinSize().height - 57);
-  Cloud->setPosition(0, 680);
-  Cloud->setLocalZOrder(-1);
-  this->CityFloorLayer->addChild(CityBuildingLayer);
-  this->CityFloorLayer->addChild(Cloud);
-  this->CityUiLayer->addChild(ResBox);
-  this->CityUiLayer->addChild(TopUi, -1);
+  // ResBox->setPosition(0, Director::getInstance()->getWinSize().height);
+  // TopUi->setPosition(0, Director::getInstance()->getWinSize().height - 57);
+  // Cloud->setPosition(0, 680);
+  // Cloud->setLocalZOrder(-1);
+  // this->CityFloorLayer->addChild(CityBuildingLayer);
+  // this->CityFloorLayer->addChild(Cloud);
+  // this->CityUiLayer->addChild(ResBox);
+  // this->CityUiLayer->addChild(TopUi, -1);
 
-  // BaseScrollLayer->setContainer(CityBuildingLayer);
+  // // BaseScrollLayer->setContainer(CityBuildingLayer);
 
-  if (this->CityFloorLayer) BaseScrollLayer->addChild(this->CityFloorLayer);
-  if (this->CityUiLayer) addChild(this->CityUiLayer);
+  // if (this->CityFloorLayer) BaseScrollLayer->addChild(this->CityFloorLayer);
+  // if (this->CityUiLayer) addChild(this->CityUiLayer);
 }
 
 void CityScene::initDraggingEvent() {

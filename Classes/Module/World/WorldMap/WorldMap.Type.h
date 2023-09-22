@@ -84,10 +84,11 @@ struct RMoveLineArmyData{};
 
 
 struct RTipButtonTouchCallEvAr{
-  union RTipButtonData {
+  struct RTipButtonData {
     GVector<RMoveLineArmyData> _ArmyData;
     int32 _MoveLineID;
     bool _IsRecall;
+    Vec2 _TilePoint;
   } _TipButtonData;
   EWorldMapTipButtonType _TipButtonType;
   struct{

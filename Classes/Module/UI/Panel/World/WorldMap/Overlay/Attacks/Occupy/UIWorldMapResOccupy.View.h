@@ -11,7 +11,7 @@ struct RResourceOccupyInit{
 };
 
 struct RResourceOccupyInitFromWar{
-  int32 _InstID;
+  uint32 _InstID;
   EResource _ClassID;
   Vec2 _ResPos;
   RTipButtonTouchCallEvAr::RTipButtonData _Data;

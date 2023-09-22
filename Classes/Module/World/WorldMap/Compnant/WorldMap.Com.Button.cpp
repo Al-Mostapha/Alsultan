@@ -2,6 +2,7 @@
 #include "Base/Base.Lib.h"
 #include "Base/Common/Common.Msg.h"
 #include "Module/City/City.Ctrl.h"
+#include "Module/City/CityBuilding/Castle/Dress/Dress.Ctrl.h"
 #include "Module/Player/LordInfo.Ctrl.h"
 
 #include "Module/World/WorldMap/WorldMap.Type.h"
@@ -17,15 +18,25 @@
 #include "Module/World/WorldMap/Instance/Unit/WorldMapAllianceResource.h"
 #include "Module/World/WorldMap/Instance/Unit/WorldMapAllianceBuild.h"
 #include "Module/World/WorldMap/Instance/Unit/WorldMapAnniversaryCamp.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapRadianceWarResource.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapMineBuild.h"
+#include "Module/World/WorldMap/Instance/Unit/WorldMapRadianceWarBeacon.h"
 
 #include "Module/UI/Panel/Lord/UILordView.h"
 
+#include"Module/UI/Panel/Building/CityInfo/UICityBuff.View.h"
+#include"Module/UI/Panel/Building/Castle/UICastleChange.View.h"
+
 #include "Module/UI/Panel/Alliance/AllianceBuild/UIAllianceBuildMainInfo.View.h"
 #include "Module/UI/Panel/Alliance/AllianceBuild/UIAllianceBuildNotice.View.h"
+#include "Module/UI/Panel/Alliance/Member/UIAllianceMemberList.h"
+
+#include "Module/UI/Panel/World/WorldWar/Radiance/UIRadianceWarResOccupy.View.h"
 
 #include "Module/UI/Panel/World/WorldMap/Overlay/Troops/UIWorldMapTroopsDetails.View.h"
 #include "Module/UI/Panel/World/WorldMap/Overlay/Troops/UIWorldMapEmojiSeal.h"
 #include "Module/UI/Panel/World/WorldMap/Overlay/Attacks/Occupy/UIWorldMapResOccupy.View.h"
+#include "Module/UI/Panel/World/WorldMap/Instance/Unit/Alliance/Resource/UIWorldResourceDetail.View.h"
 #include "Module/UI/Panel/World/WorldExplain/UIWorldMapExplain.View.h"
 #include "Module/UI/Panel/Item/Buy/UISpeedUpReCallBuyPop.View.h"
 
@@ -301,7 +312,7 @@ void WorldMapComButton::TipButtonTouchCall(EventCustom *pEvent){
       lPanel->InitData(lData);
       lPanel->Show();
     } else if(lInstanceType == EMapObjTypeDef::mapTypeWarTreasure){
-      RResourceOccupyInitFromWar lParam;
+      RResourceOccupyInitFromWar lParam ;
       lParam._ClassID = lMapInstance->_ResourceClassID;
       lParam._InstID = lMapInstance->_InstanceID;
       lParam._ResPos = lEndPoint;
@@ -312,103 +323,107 @@ void WorldMapComButton::TipButtonTouchCall(EventCustom *pEvent){
       lPanel->InitDataFromWar(lParam);
       lPanel->Show();
     } else if(lInstanceType == EMapObjTypeDef::mapTypeRadianceWarResource){
-      //         local instanceID = mapInstance:getInstanceID()
-      //         local panel = SoraDCreatePanel("radianceWarResOccupyView")
-      //         panel:initData({
-      //           classID = instanceClassID,
-      //           resPos = endPoint,
-      //           insID = instanceID,
-      //           resourceType = mapInstance.resourceType,
-      //           mapInstance = mapInstance
-      //         })
-      //         panel:show()
+      auto lInstanceID = lMapInstance->_InstanceID;
+      auto lPanel = UIRadianceWarResOccupyView::Create();
+      auto lParam = RadianceWarResOccupyInit();
+      lParam._ClassID = lInstanceID;
+      lParam._ResPos = lEndPoint;
+      lParam._InsID = lInstanceID;
+      lParam._ResourceType = (EResource)dynamic_cast<WorldMapRadianceWarResource *>(lMapInstance)->_ResourceType;
+      lParam._MapInstance = lMapInstance;
+      lPanel->InitData(lParam);
+      lPanel->Show();
     }else if(lInstanceType == EMapObjTypeDef::mapTypeMine){
       //         local panel = SoraDCreatePanel("worldResourceDetailView")
-      //         panel:initData({
-      //           resPos = endPoint,
-      //           resourceType = mapInstance:getBuildClassID(),
-      //           mapInstance = mapInstance
-      //         })
-      //         panel:show()
+      auto lPanel = UIWorldResourceDetailView::Create();
+      auto lParam = RResourceDetailViewInit();
+      
+      lParam._ResPos = lEndPoint;
+      lParam._ResourceType = dynamic_cast<WorldMapMineBuild *>(lMapInstance)->GetBuildClassID();
+      lParam._MapInstance = lMapInstance;
+      lPanel->InitData(lParam);
+      lPanel->Show();
+
     }else if(lInstanceType == EMapObjTypeDef::nebulaWarMine){
       //         uiManager:show("NebulaWarMineDetail", {mapInstance = mapInstance})
     }
   }else if(lTipButtonType == EWorldMapTipButtonType::jinruChengshi){
-    //       SoraDSendMessage({
-    //         msg = "MESSAGE_MAINSCEN_ONSHOW",
-    //         viewType = VIEW_TYPE_CITY
-    //       })
+    static RShowMainCityView sShowMainCityView;
+    sShowMainCityView.ViewType = EScene::City;
+    GBase::DSendMessage("MESSAGE_MAINSCEN_ONSHOW", &sShowMainCityView);
   }else if(lTipButtonType == EWorldMapTipButtonType::chengshiZengyi){
-    //       local panel = SoraDCreatePanel("citybuffView")
-    //       panel:show()
+    auto lPanel = UICityBuffView::Create();
+    lPanel->Show();
   }else if(lTipButtonType == EWorldMapTipButtonType::decorate){
-    //       local dressCtrl = gametop.playertop_:getModule("dressCtrl")
-    //       local panel = SoraDCreatePanel("castleChangeView")
-    //       panel:initData({
-    //         isFromWorld = true,
-    //         dressID = dressCtrl:getCurDressID(gDressType.CASTLE),
-    //         toShop = false
-    //       })
-    //       panel:show()
+    auto lPanel = UICastleChangeView::Create();
+    RCastleChangeViewInit lParam;
+    lParam._IsFromWorld = true;
+    lParam._ToShop = false;
+    lParam._DressID = DressCtrl::Get()->GetCurDressID(EDressType::CASTLE);
+    lPanel->InitData(lParam);
+    lPanel->Show();
   }else if(lTipButtonType == EWorldMapTipButtonType::fanHui){
-    //       do
-    //         local function sendMsgFun()
-    //           local instanceID = mapInstance:getInstanceID()
-    //           kingdomMapCtrl:reqBackQueue(endPoint.x, endPoint.y, instanceID)
-    //           local instanceType = mapInstance:getInstanceType()
-    //           if instanceType == gMapObjTypeDef.mapObjTypeLegendLord or instanceType == gMapObjTypeDef.nebulaWarBuilding then
-    //             local hasArmy, queueId = mapInstance:checkHasArmy()
-    //             if queueId then
-    //               if not _G._returnQueueIdList then
-    //                 _G._returnQueueIdList = {}
-    //               end
-    //               _G._returnQueueIdList[queueId] = true
-    //             end
-    //           end
-    //         end
-    //         local showMsg = i18n("notice_0025")
-    //         local instanceType = mapInstance:getInstanceType()
-    //         if instanceType == gMapObjTypeDef.mapObjTypeTreasure then
-    //           showMsg = i18n("common_text_1648")
-    //         elseif instanceType == gMapObjTypeDef.mapTypeRadianceWarGate then
-    //           showMsg = i18n("brightWar_text_149")
-    //         elseif instanceType == gMapObjTypeDef.mapTypeRadianceWarBeacon then
-    //           if mapInstance and mapInstance:isOccupCompleted() then
-    //             showMsg = nil
-    //             sendMsgFun()
-    //           else
-    //             showMsg = i18n("brightWar_text_149")
-    //           end
-    //         elseif instanceType == gMapObjTypeDef.nebulaWarMine then
-    //           showMsg = i18n("nebula_war_text_0282")
-    //         end
-    //         if showMsg then
-    //           SoraDShowMsgBox(showMsg, i18n("common_text_054"), i18n("common_text_185"), function(callType)
-    //             if callType == MSGBOX_CALLBACK_YES then
-    //               sendMsgFun()
-    //             end
-    //           end)
-    //         end
-    //       end
+    auto lSendMsgFun = [](){
+      // local instanceID = mapInstance:getInstanceID()
+      // kingdomMapCtrl:reqBackQueue(endPoint.x, endPoint.y, instanceID)
+      // local instanceType = mapInstance:getInstanceType()
+      // if instanceType == gMapObjTypeDef.mapObjTypeLegendLord or instanceType == gMapObjTypeDef.nebulaWarBuilding then
+      //   local hasArmy, queueId = mapInstance:checkHasArmy()
+      //   if queueId then
+      //     if not _G._returnQueueIdList then
+      //       _G._returnQueueIdList = {}
+      //     end
+      //     _G._returnQueueIdList[queueId] = true
+      //   end
+      // end
+    };
+    auto lShowMsg = Translate::i18n("notice_0025");
+    auto lInstanceType = lMapInstance->_InstanceType;
+
+    if(lInstanceType == EMapObjTypeDef::mapObjTypeTreasure){
+      lShowMsg = Translate::i18n("common_text_1648");
+    }else if(lInstanceType == EMapObjTypeDef::mapTypeRadianceWarGate){
+      lShowMsg = Translate::i18n("brightWar_text_149");
+    }else if(lInstanceType == EMapObjTypeDef::mapTypeRadianceWarBeacon){
+      if(/*lMapInstance->IsOccupCompleted()*/ false){
+        lShowMsg = "";
+        lSendMsgFun();
+      }else{
+        lShowMsg = Translate::i18n("brightWar_text_149");
+      }
+    }else if(lInstanceType == EMapObjTypeDef::nebulaWarMine){
+      lShowMsg = Translate::i18n("nebula_war_text_0282");
+    }
+    if(!lShowMsg.empty()){
+      GBase::DShowMsgBox(
+        lShowMsg, Translate::i18n("common_text_054"), Translate::i18n("common_text_185"),
+        [lSendMsgFun](auto pCallType){
+          if(pCallType == EMsgBoxCallBack::Yes){
+            lSendMsgFun();
+          }
+        }
+      );
+    }
   } else if(lTipButtonType == EWorldMapTipButtonType::cancel){
-    //       do
-    //         local name = mapInstance:getFavoriteName()
-    //         local showMsg = i18n("brightWar_text_58", {name = name})
-    //         local instanceType = mapInstance:getInstanceType()
-    //         SoraDShowMsgBox(showMsg, i18n("common_text_054"), i18n("common_text_185"), function(callType)
-    //           if callType == MSGBOX_CALLBACK_YES then
-    //             if instanceType == gMapObjTypeDef.mapTypeRadianceWarBeacon then
-    //               local objId = mapInstance:getSiteClassID()
-    //               local radianceWarCtrl = gametop.playertop_:getModule("radianceWarCtrl")
-    //               radianceWarCtrl:reqRadianceWarFreeBeacon(objId)
-    //             elseif instanceType == gMapObjTypeDef.mapTypeRadianceWarResource then
-    //               local instanceID = mapInstance:getInstanceID()
-    //               local radianceWarCtrl = gametop.playertop_:getModule("radianceWarCtrl")
-    //               radianceWarCtrl:reqRadianceWarFreeRes(instanceID)
-    //             end
-    //           end
-    //         end)
-    //       end
+    auto lName = lMapInstance->GetFavoriteName();
+    auto lShowMsg = Translate::i18n("brightWar_text_58", { { "name", lName } });
+    auto lInstanceType = lMapInstance->_InstanceType;
+
+    GBase::DShowMsgBox(
+      lShowMsg, Translate::i18n("common_text_054"), 
+      Translate::i18n("common_text_185"), [lMapInstance](auto pCallType){
+      if(pCallType == EMsgBoxCallBack::Yes){
+        if(lMapInstance->_InstanceType == EMapObjTypeDef::mapTypeRadianceWarBeacon){
+          auto lObjId = dynamic_cast<WorldMapRadianceWarBeacon *>(lMapInstance)->GetSiteClassID();
+          // local radianceWarCtrl = gametop.playertop_:getModule("radianceWarCtrl")
+          // radianceWarCtrl:reqRadianceWarFreeBeacon(objId);
+        }else if(lMapInstance->_InstanceType == EMapObjTypeDef::mapTypeRadianceWarResource){
+          auto lInstanceID = lMapInstance->_InstanceID;
+          // auto lRadianceWarCtrl = gametop.playertop_->GetModule<RadianceWarCtrl>("radianceWarCtrl");
+          // lRadianceWarCtrl->ReqRadianceWarFreeRes(lInstanceID);
+        }
+      }
+    });
   }else if(lTipButtonType == EWorldMapTipButtonType::cancel_cancel){
     //       do
     //         local showMsg = i18n("brightWar_text_91")
@@ -443,14 +458,13 @@ void WorldMapComButton::TipButtonTouchCall(EventCustom *pEvent){
   //       }
   //       self:dispatchEvent(event)
   }else if(lTipButtonType == EWorldMapTipButtonType::yaoqingQianCheng){
-    //       local tilePoint = tipButtonData.tilePoint
-    //       local panel = SoraDCreatePanel("allianceMemberList")
-    //       panel:initData(nil, {inviteMoveCityPos = tilePoint})
-    //       panel:show()
+    auto lTilePoint = lData->_TipButtonData._TilePoint;
+    auto lPanel = UIAllianceMemberList::Create();
+    lPanel->InitData(0, { lTilePoint });
+    lPanel->Show();
   }else if(lTipButtonType == EWorldMapTipButtonType::lingdiqianCheng){
-    //       print("\233\162\134\229\156\176\232\191\129\229\159\142")
-    //       local kingdomID = data.kingdomID
-    //       local mapViewCell = self.target_:getWorldMapCell(kingdomID)
+    auto lKingdomID = lData->_KingdomID;
+    auto lMapViewCell = _Target->GetWorldMapCell(lKingdomID);
     //       local worldMapEvent = include("worldMapEvent")
     //       local event = {
     //         name = worldMapEvent.EVENT_TRANS,

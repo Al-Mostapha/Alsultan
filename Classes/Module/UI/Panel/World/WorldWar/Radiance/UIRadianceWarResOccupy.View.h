@@ -8,9 +8,9 @@ USING_NS_CC;
 class IWorldMapInstance;
 
 struct RadianceWarResOccupyInit{
-  int32 _ClassID
+  int32 _ClassID;
   Vec2 _ResPos;
-  int332 _InsID;
+  int32 _InsID;
   EResource _ResourceType;
   IWorldMapInstance *_MapInstance;
 };

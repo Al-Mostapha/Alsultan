@@ -2,6 +2,10 @@
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBasePanel.h"
 
+struct RAllianceMemberInit{
+  Vec2 _InviteMoveCityPos;
+};
+
 class UIAllianceMemberList : public UIBasePanel
 {
 
@@ -13,6 +17,6 @@ class UIAllianceMemberList : public UIBasePanel
 public: 
   static UIAllianceMemberList* Create();
   void Ctor() override;
-  void InitData();
+  void InitData(int32 pAID = 0, const RAllianceMemberInit &pData = {});
   void InitWidget();
 };

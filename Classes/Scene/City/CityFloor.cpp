@@ -869,7 +869,7 @@ bool CityFloor::InitPlayerLevelOffLine() {
 
 IBuilding *CityFloor::AddBuilding(EBuildingIndex p_Index, EBuilding p_IdBuilding){
   static int32 l_BaseUid = 100000000;
-  p_Index = EBuildingIndex::Build_1060;
+  // p_Index = EBuildingIndex::Build_1060;
   //   local self = mainCity
   // local buildButton = self:getBufferNodeByName("build_" .. buildBtnId)
   auto l_BuildingPlaceName = GString("build_") + std::to_string(static_cast<int32>(p_Index));

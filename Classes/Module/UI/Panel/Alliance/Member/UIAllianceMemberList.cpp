@@ -9,7 +9,7 @@ void UIAllianceMemberList::Ctor(){
 
 }
 
-void UIAllianceMemberList::InitData(){
+void UIAllianceMemberList::InitData(int32 pAID, const RAllianceMemberInit &pData){
 
 }
 

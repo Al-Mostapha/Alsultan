@@ -9,7 +9,7 @@ void UICastleChangeView::Ctor(){
 
 }
 
-void UICastleChangeView::InitData(){
+void UICastleChangeView::InitData(const RCastleChangeViewInit &pData){
 
 }
 

@@ -3,6 +3,14 @@
 #include "Module/UI/UIBasePanel.h"
 
 class IBuilding;
+
+struct RCastleChangeViewInit{
+  bool _IsFromWorld;
+  bool _ToShop;
+  bool _ToWorld;
+  int32 _DressID;
+};
+
 class UICastleChangeView : public UIBasePanel
 {
 
@@ -14,6 +22,6 @@ class UICastleChangeView : public UIBasePanel
 public: 
   static UICastleChangeView* Create();
   void Ctor() override;
-  void InitData();
+  void InitData(const RCastleChangeViewInit &pData);
   void InitWidget();
 };

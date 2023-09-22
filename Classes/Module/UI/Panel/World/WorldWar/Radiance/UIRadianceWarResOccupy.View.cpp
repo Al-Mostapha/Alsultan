@@ -4,7 +4,7 @@ UIRadianceWarResOccupyView* UIRadianceWarResOccupyView::Create(){
   return Create("");
 }
 
-void UIRadianceWarResOccupyView::InitData(EMapObjTypeDef pInstanceType, EResource pClassID, GString pTitle){
+void UIRadianceWarResOccupyView::InitData(const RadianceWarResOccupyInit &pData){
   
 }
   

@@ -178,9 +178,7 @@ void UIBuildingTipButton::InitWithData(EBuildingTips p_Tip, IBuilding *p_Buildin
   //_Icon->loadTexture(l_IconFile, TextureResType::PLIST);
   // self.icon:ignoreContentAdaptWithSize(true)
   _Icon->ignoreContentAdaptWithSize(true);
-  // self.text:ignoreContentAdaptWithSize(true)
   _Text->ignoreContentAdaptWithSize(true);
-  // self.text:setTextAreaSize(cc.size(0, 0))
   _Text->setTextAreaSize({0, 0});
   // self.text:setString(i18n(self.opType.Desc))
   _Text->setString(Translate::i18n(l_OpData.BtnDesc.c_str()));

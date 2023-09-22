@@ -71,6 +71,7 @@ public:
 
   virtual void OnMessageListener(){}
   virtual void OnEnterOther(){}
+  virtual GString GetFavoriteName(){ return ""; }
 
   virtual void InitInstanceData(int32 pClass, void *pObjData, int32 pObjID = 0){}
   //angle name e, w, n, s, wn ...etc

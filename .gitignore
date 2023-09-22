@@ -1,5 +1,7 @@
 .gitignore
-cocos2d
+cocos2d/**/*.dll
+cocos2d/**/*.lib
+cocos2d/**/*.a
 proj.*
 build
 .vs
