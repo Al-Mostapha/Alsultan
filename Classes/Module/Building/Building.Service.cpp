@@ -7,7 +7,7 @@
 #include "Module/City/CityBuilding/City.LtCtrl.h"
 
 void BuildingService::fetchCityBuilding(int32 idCity) {
-  NetBaseModule::getJson("/api/CityBuilding/fetchCityBuilding", [](GJson* json) {
+  NetModule::getJson("/api/CityBuilding/fetchCityBuilding", [](GJson* json) {
     if (json == nullptr) {
       cocos2d::log("Error Null ptr From CityBuilding Fitch");
       return;
@@ -23,7 +23,7 @@ void BuildingService::fetchCityBuilding(int32 idCity) {
 }
 
 void BuildingService::fetchBuildingInfo() {
-  NetBaseModule::getJson("/api/Building/fetchBuildingInfo", [](GJson* json) {
+  NetModule::getJson("/api/Building/fetchBuildingInfo", [](GJson* json) {
     if (json == nullptr) {
       cocos2d::log("Error Null ptr From getBuildingInfo Fetch");
       return;

@@ -2,21 +2,39 @@
 #include "Module/Config/Config.module.h"
 #include <iostream>
 
-NetBaseModule::NetBaseModule()
+static NetModule *Get(){
+    static NetModule *l_Inst = new NetModule();
+    return l_Inst;
+}
+void NetModule::Init(){
+  _WsClient = WsClient::Create(GConfigModule::Config._WsConfig._Host, GConfigModule::Config._WsConfig._Port);
+  _WsClient->Connect();
+}
+
+void NetModule::SetHost(GString pHost){
+
+}
+
+void NetModule::SetWsPort(int32 pPort){
+
+}
+
+
+NetModule::NetModule()
 {
 }
 
-NetBaseModule::~NetBaseModule()
+NetModule::~NetModule()
 {
 }
 
-NetBaseModule *NetBaseModule::getInstance()
+NetModule *NetModule::getInstance()
 {
-    static NetBaseModule instance;
+    static NetModule instance;
     return &instance;
 }
 
-Net::HttpRequest *NetBaseModule::_createHttp(const GString &url)
+Net::HttpRequest *NetModule::_createHttp(const GString &url)
 {
 
     Net::HttpRequest *request = new Net::HttpRequest();
@@ -24,7 +42,7 @@ Net::HttpRequest *NetBaseModule::_createHttp(const GString &url)
     return request;
 }
 
-bool NetBaseModule::getJson(const GString &url, JsonStrCallBack callback)
+bool NetModule::getJson(const GString &url, JsonStrCallBack callback)
 {
     Net::HttpRequest *request = _createHttp(url);
     if (!request)

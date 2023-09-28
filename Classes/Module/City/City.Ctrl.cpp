@@ -30,7 +30,6 @@ bool CityCtrl::GetCastleUpgradePopStatus(){
 }
 
 BuildingCell *CityCtrl::GetBuildingCellByIndex(EBuildingIndex p_BuildingIndex){
-  return new BuildingCell();
   auto l_BuildList = GetBuildList();
   if(!l_BuildList.size())
     return nullptr;

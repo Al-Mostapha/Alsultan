@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "Device.h"
 #include "Display.h"
+#include "Module/Net/NetBase.Module.h"
 
 GEngine *GEngine::Get()
 {
@@ -16,6 +17,7 @@ void GEngine::Init()
 {
   GDevice::Get()->Init();
   GDisplay::Get()->Init();
+  NetModule::Get()->Init();
   // GConfig::Get()->Init();
   // GAudio::Get()->Init();
   // GScene::Get()->Init();

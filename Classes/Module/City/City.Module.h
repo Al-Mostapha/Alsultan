@@ -16,7 +16,7 @@ class CityModule
 public:
     static void GetPlayerCity(int32 idPayer)
     {
-        NetBaseModule::getJson(
+        NetModule::getJson(
             "/api/City/getCity",
             [](GJson *json)
             {

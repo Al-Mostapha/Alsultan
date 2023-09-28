@@ -4,7 +4,7 @@
 
 void CityResourceService::getCityResource(int32 idCity)
 {
-    NetBaseModule::getJson(
+    NetModule::getJson(
         "/api/CityResource/getCityResource",
         [](GJson *json)
         {

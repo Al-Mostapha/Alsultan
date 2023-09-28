@@ -7,11 +7,6 @@ struct RBuildingCellInfo {
   int32 buildingLvl;
   int32 starLvl;
   EBuildingState state;
-  RBuildingCellInfo(){
-    BuildingIndex = EBuildingIndex::Crystal;
-    IdBuilding = EBuilding::CrystalMine;
-    buildingLvl = 10;
-  }
 };
 
 class BuildingCell {

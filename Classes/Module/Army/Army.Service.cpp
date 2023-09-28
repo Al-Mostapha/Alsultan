@@ -5,7 +5,7 @@
 void ArmyService::getCityArmy(int32 idCity)
 {
 
-    NetBaseModule::getJson(
+    NetModule::getJson(
         "/api/CityArmy/getCityArmy",
         [](GJson *json)
         {

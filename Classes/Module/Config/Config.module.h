@@ -13,6 +13,11 @@ struct GConfig
         GString ApiPath;
         GString ApiVersion;
     } ApiConfig;
+
+    struct {
+        GString _Host = "localhost";
+        int32 _Port = 8080;
+    } _WsConfig;
 };
 
 class GConfigModule

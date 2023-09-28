@@ -1,17 +1,28 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "network/HttpClient.h"
+#include "WsClient.h"
 
 namespace Net = cocos2d::network;
 typedef std::function<void(GJson *)> JsonStrCallBack;
-class NetBaseModule
+class NetModule
 {
+    int32 _RequestCount = 0;
+    int32 _WsPort;
+    GString _Host;
+    WsClient *_WsClient;
 
 public:
-    NetBaseModule();
-    ~NetBaseModule();
+
+    
+    NetModule();
+    ~NetModule();
+    static NetModule *Get();
+    void Init();
+    void SetHost(GString pHost);
+    void SetWsPort(int32 pPort);
     static Net::HttpRequest *_createHttp(const GString &url);
-    static NetBaseModule *getInstance();
+    static NetModule *getInstance();
     static bool getJson(const GString &url, JsonStrCallBack callback);
     static void _post();
     static void _put();
