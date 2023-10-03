@@ -14,6 +14,8 @@ enum class ERequestState{
 
 enum class ERequestError{
   None,
+  NoResponse,
+  NotJson,
   Timeout,
   Network,
   Server,

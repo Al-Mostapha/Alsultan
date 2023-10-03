@@ -1,5 +1,5 @@
 #pragma once
-#include "Include/IncludeBase.h"
+#include "Base/BaseTypeDef.h"
 #include "City.Type.h"
 
 class CityStatic{
@@ -9,9 +9,11 @@ public:
     return idCurrentCity;
   }
 
+  static CityStatic *Get();
+
   static void setIDCurrentCity(Guid idCity){
     idCurrentCity = idCity;
   }
-  static RCity& getCurrentCity();
+  RCity& GetCurrentCity();
   static RCity& getCity(Guid idCity);
 };

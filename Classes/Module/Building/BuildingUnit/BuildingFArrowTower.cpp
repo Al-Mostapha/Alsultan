@@ -4,6 +4,7 @@
 #include "Module/Player/Player.Static.h"
 #include "Module/UI/Common/Message/UIMsgNotice.h"
 #include "Base/Common/Common.Teml.h"
+#include "Module/City/City.Static.h"
 
 BuildingFArrowTower::BuildingFArrowTower()
 {
@@ -28,8 +29,7 @@ void BuildingFArrowTower::onEnter()
 	IBuilding::onEnter();
 
 	auto _vm = getViewModel(
-		PlayerStatic::SultanPlayer
-			.City.CityBuilding
+		CityStatic::Get()->GetCurrentCity().CityBuilding
 			.CityBuildingFixed
 			.wall.buildingLvl);
 	BuildingSpriteImage = StringUtils::format(

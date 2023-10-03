@@ -2,10 +2,16 @@
 #include "Module/Player/Player.Static.h"
 
 Guid CityStatic::idCurrentCity;
-RCity& CityStatic::getCity(Guid idCity){
-  return PlayerStatic::getPlayer().City;
+
+CityStatic *CityStatic::Get(){
+  static CityStatic *pCityStatic = new CityStatic();
+  return pCityStatic;
 }
 
-RCity& CityStatic::getCurrentCity(){
+RCity& CityStatic::getCity(Guid idCity){
+  return PlayerStatic::getPlayer()._Cities[idCity];
+}
+
+RCity& CityStatic::GetCurrentCity(){
   return getCity(getIDCurrentCity());
 }

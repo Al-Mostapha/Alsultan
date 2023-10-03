@@ -7,9 +7,10 @@ USING_NS_CC;
 
 class IResponse ;
 class IRequest : public Ref{
-  private:
+  public:
   GString _Url = "";
   GHashMap<GString, GString> _Params;
+  GString _Data = "";
   ERequestMethod _Method = ERequestMethod::Get;
   ERequestContentType _ContentType = ERequestContentType::Json;
   ERequestState _State = ERequestState::None;
@@ -39,10 +40,13 @@ class IRequest : public Ref{
   virtual void SetOnComplete(std::function<void(IResponse *, IRequest *)> p_OnComplete) { _OnComplete = p_OnComplete; }
   virtual void SetOnError(std::function<void(ERequestError, GString)> p_OnError) { _OnError = p_OnError; }
   virtual void SetOnSuccess(std::function<void(IResponse *, IRequest *)> p_OnSuccess) { _OnSuccess = p_OnSuccess; }
+  virtual void Done(std::function<void(IResponse *, IRequest *)> p_OnSuccess) { _OnSuccess = p_OnSuccess; }
   virtual void SetBeforeSend(std::function<void(IRequest *)> p_BeforeSend) { _BeforeSend = p_BeforeSend; }
 
   GString GetRequestID() { return _RequestID; }
   void SetRequestID(const GString &pID) { _RequestID = pID; }
+
+  
 
   virtual void Send() = 0;
 

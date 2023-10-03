@@ -6,19 +6,34 @@
 #include "Scene/CityScene.h"
 #include "Module/City/CityBuilding/City.LtCtrl.h"
 
+
+BuildingService *BuildingService::Get(){
+  static BuildingService *instance = nullptr;
+  if (instance == nullptr) {
+    instance = new BuildingService();
+  }
+  return instance;
+}
+void BuildingService::Init(){
+
+}
+IRequest *BuildingService::GetBuildingList(){
+  return NetModule::Get()->GetJson("/api/Building/GetBuildingList");
+}
+
 void BuildingService::fetchCityBuilding(int32 idCity) {
   NetModule::getJson("/api/CityBuilding/fetchCityBuilding", [](GJson* json) {
     if (json == nullptr) {
       cocos2d::log("Error Null ptr From CityBuilding Fitch");
       return;
     }
-    if (GString(json->GetString("state")) == "ok")
-      PlayerStatic::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
-    else
-      cocos2d::log("Error Fetching CityBuilding From Server ....");
-    auto newScene = CityScene::createScene();
+    // if (GString(json->GetString("state")) == "ok")
+    //   // PlayerStatic::SultanPlayer.City.CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
+    // else
+    //   cocos2d::log("Error Fetching CityBuilding From Server ....");
+    // auto newScene = CityScene::createScene();
     // cocos2d::Director::getInstance()->popScene();
-    cocos2d::Director::getInstance()->pushScene(newScene);
+    // cocos2d::Director::getInstance()->pushScene(newScene);
   });
 }
 

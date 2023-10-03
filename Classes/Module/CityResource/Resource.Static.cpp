@@ -2,6 +2,6 @@
 #include "Module/City/City.Static.h"
 
 RCityResource& ResourceStatic::getCityResource(){
-  return CityStatic::getCurrentCity().CityResource;
+  return CityStatic::Get()->GetCurrentCity().CityResource;
 }
 

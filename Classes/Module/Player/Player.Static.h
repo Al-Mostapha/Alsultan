@@ -12,4 +12,9 @@ public:
     static GHashMap<EEffect, TEffect>& getEffects(){
         return SultanPlayer.Effect;
     }
+    static PlayerStatic *Get();
+    GString GetPlayerToken();
+    GHashMap<int32, RCity>& GetCities(){
+        return SultanPlayer._Cities;
+    }
 };

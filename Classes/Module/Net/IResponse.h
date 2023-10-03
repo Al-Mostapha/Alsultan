@@ -13,8 +13,8 @@ class IResponse : public Ref{
   ERequestState _State = ERequestState::None;
   ERequestError _ErrorType = ERequestError::None;
   ERequestType _Type = ERequestType::Http;
-  bool _IsJson = true;
-  GJson *_Json = nullptr;
+  bool IsJson() { return true; }
+  XJson *_Json = nullptr;
 
   Ref* autorelease()
   {

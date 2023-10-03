@@ -12,4 +12,5 @@ public:
     float GetFloat(const char *str, float DefaultVal = -1);
     bool GetBool(const char *str, bool DefaultVal = false);
     GJson *GetJsonObject(const char *str, GJson *DefaultVal = nullptr);
+    GString ToString();
 };

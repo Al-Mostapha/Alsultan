@@ -1,8 +1,12 @@
 #include "NetBase.Module.h"
 #include "Module/Config/Config.module.h"
 #include <iostream>
+#include "WsClient.h"
+#include "WsRequest.h"
+#include "IResponse.h"
+#include "Module/Player/Player.Static.h"
 
-static NetModule *Get(){
+NetModule *NetModule::Get(){
     static NetModule *l_Inst = new NetModule();
     return l_Inst;
 }
@@ -77,4 +81,28 @@ bool NetModule::getJson(const GString &url, JsonStrCallBack callback)
     request->release();
     return true;
     // request->setUrl("");
+}
+
+IRequest *NetModule::GetJson(const GString &url, std::function<void(XJson *, IRequest *)>  pCallback){
+  auto lRequest = WsRequest::Create();
+  lRequest->_Url = url;
+  lRequest->_Method      = ERequestMethod::Get;
+  lRequest->_ContentType = ERequestContentType::Json;
+  lRequest->_Type        = ERequestType::WebSocket;
+  lRequest->_Token       = PlayerStatic::Get()->GetPlayerToken();
+  lRequest->_OnComplete  = [pCallback, lRequest](IResponse *pResponse, IRequest *pRequest) {
+    if(!pResponse){
+      if(lRequest->_OnError)
+        lRequest->_OnError(ERequestError::NoResponse, "Response is null");
+      throw "Response is null";
+    }
+    if(!pResponse->IsJson()){
+      if(lRequest->_OnError)
+        lRequest->_OnError(ERequestError::NotJson, "Response is null");
+      throw "Response is not json";
+    }
+    pCallback(pResponse->_Json, pRequest);
+  };
+  lRequest->Send();
+  return lRequest;
 }

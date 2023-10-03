@@ -13,9 +13,9 @@ void CityResourceService::getCityResource(int32 idCity)
                 cocos2d::log("Null Ptr From City Resource");
                 return;
             }
-            if (GString(json->GetString("state")) == "ok")
-                PlayerStatic::SultanPlayer.City.CityResource.fromJson(json->GetJsonObject("CityResource"));
-            else
-                cocos2d::log("Error Fetch City Resource ...");
+            // if (GString(json->GetString("state")) == "ok")
+            //     // PlayerStatic::SultanPlayer.City.CityResource.fromJson(json->GetJsonObject("CityResource"));
+            // else
+            //     cocos2d::log("Error Fetch City Resource ...");
         });
 }

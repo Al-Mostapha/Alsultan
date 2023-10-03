@@ -91,7 +91,9 @@
     "*.frag": "cpp",
     "cstdarg": "cpp",
     "regex": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "any": "cpp",
+    "valarray": "cpp"
   },
   "search.exclude": {
     "**/build": true,

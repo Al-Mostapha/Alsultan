@@ -9,4 +9,5 @@ class PlayerTopModule{
     virtual void EnterGame();
     void InitCtrlData();
     void InitDelayCtrlData();
+    
 };

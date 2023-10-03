@@ -24,12 +24,12 @@ class WsClient : public network::WebSocket::Delegate{
 	bool close();
 
 	bool send(GString message);
-	bool send(IRequest *pRequest);
+	bool Send(IRequest *pRequest);
 
   private:
 	network::WebSocket* _socket = nullptr;
 	GString _url = "";
-	std::vector<GString> _pendingMessages;
+	GVector<IRequest *> _PendingRequests;
   GHashMap<GString, IRequest *> _Request;
 
 	virtual void onOpen(cocos2d::network::WebSocket* ws);

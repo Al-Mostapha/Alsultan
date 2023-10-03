@@ -1,14 +1,16 @@
 #include "WsRequest.h"
+#include "NetBase.Module.h"
+#include "WsClient.h"
 
 GString GenerateUUID() {
     char buffer[64];
     snprintf(buffer, sizeof(buffer),
-             "%04X%04X-%04X-%04X-%04X-%04X%04X%04X",
-             rand() & 0xFFFF, rand() & 0xFFFF,
-             rand() & 0xFFFF,
-             ((rand() & 0x0FFF) | 0x4000),
-             rand() & 0x3FFF | 0x8000,
-             rand() & 0xFFFF, rand() & 0xFFFF, rand() & 0xFFFF);
+            "%04X%04X-%04X-%04X-%04X-%04X%04X%04X",
+            rand() & 0xFFFF, rand() & 0xFFFF,
+            rand() & 0xFFFF,
+            ((rand() & 0x0FFF) | 0x4000),
+            rand() & 0x3FFF | 0x8000,
+            rand() & 0xFFFF, rand() & 0xFFFF, rand() & 0xFFFF);
 
     return GString(buffer);
 }
@@ -16,6 +18,15 @@ GString GenerateUUID() {
 WsRequest *WsRequest::Create()
 {
   auto lReq =  new WsRequest();
-  lReq->SetRequestID(GenerateUUID());
+  auto lUUid = GenerateUUID();
+  lReq->SetRequestID(lUUid);
   return lReq;
+}
+
+void WsRequest::Send()
+{
+  auto lWsClient = NetModule::Get()->_WsClient;
+  if(!lWsClient)
+    return;
+  lWsClient->Send(this);
 }

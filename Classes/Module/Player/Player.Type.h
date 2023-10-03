@@ -9,8 +9,9 @@ struct RPlayer
 {
     int32 idCurrentCity;
     int32 idPlayer;
-    RCity City;
+    GHashMap<int32, RCity> _Cities;
     GHashMap<EEffect, struct TEffect> Effect;
+    GString _Token;
 };
 
 struct RLordBaseInfo {

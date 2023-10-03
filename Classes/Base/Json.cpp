@@ -1,4 +1,6 @@
 #include "Json.h"
+#include "external/json/stringbuffer.h"
+#include "external/json/writer.h"
 #undef GetObject
 const char *GJson::kTypeNames[] =
     {"Null", "False", "True", "Object", "Array", "String", "Number"};
@@ -84,4 +86,13 @@ GJson *GJson::GetJsonObject(const char *str, GJson *DefaultVal)
     }
     cocos2d::log("Error Parsing Bool: %s For Value of %s ", str, kTypeNames[value.GetType()]);
     return DefaultVal;
+}
+
+
+GString GJson::ToString()
+{
+    rapidjson::StringBuffer buffer;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+    this->Accept(writer);
+    return buffer.GetString();
 }

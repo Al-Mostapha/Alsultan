@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Module/Net/IRequest.h"
 #include "CityScene.View.h"
 #include "CityScene.Create.h"
 #include "CityScene.ABMManager.h"
@@ -26,10 +27,12 @@
 #include "Module/World/WorldMap/View/UIWorldResourceMap.h"
 
 #include "Module/Player/Player.Top.h"
+#include "Module/Player/Player.Static.h"
 #include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
 #include "Module/World/WorldMap/View/WorldMap.ViewFactory.h"
 #include "Module/Building/Building.Func.h"
-
+#include "Module/City/City.Service.h"
+#include "Module/Building/Building.Service.h"
 
 MainCityView *MainCityView::Create(RViewOtherData p_Data){
   auto l_Panel =  Create("UiParts/Panel/MainCity/mainCityView.csb");
@@ -336,7 +339,21 @@ void MainCityView::PreLoadImages(){
 void MainCityView::FinishLoadImages(){
   m_IsFinishInit = true;
   OnMessageListener_FinishLoadImage();
-  MainCityView::InitAfterCreate();
+
+  CityService::Get()->GetCityList()->Done(
+    [this](auto pReq, auto pRes){
+      auto lCities = PlayerStatic::Get()->GetCities();
+      for(auto [lCityID, lCity] : lCities){
+        CityService::Get()->GetCityInfo(lCityID)->Done(
+          [this](auto pReq, auto pRes){
+            BuildingService::Get()->GetBuildingList()->Done([this](auto pReq, auto pRes){
+              this->InitAfterCreate();
+            });
+          }
+        );
+      }
+    });
+
   GBase::DPushItemAward(GBase::DPopItemAward());
   if(GBase::DCloseLoginView()){
       //   userSDKManager.logEvent(gSDKDef.TDonEvent.enter_city, {})

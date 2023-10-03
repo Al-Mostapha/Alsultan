@@ -10,6 +10,7 @@
 #include "Scene/City/CityScene.Enum.h"
 #include "Module/City/City.Type.h"
 #include "Module/Player/Player.Static.h"
+#include "Module/City/City.Static.h"
 
 class CityModule
 {
@@ -31,6 +32,6 @@ public:
     static void showCityBuilding();
     static void showCityEffect();
     static RCity& getCurrentCity(){
-        return PlayerStatic::SultanPlayer.City;
+        return CityStatic::Get()->GetCurrentCity();
     }
 };

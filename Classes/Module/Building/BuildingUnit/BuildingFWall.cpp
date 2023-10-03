@@ -3,6 +3,7 @@
 #include "BuildingFWall.h"
 #include "Module/Player/Player.Static.h"
 #include "Scene/CityScene.h"
+#include "Module/City/City.Static.h"
 
 BuildingFWall::BuildingFWall()
 {
@@ -42,8 +43,7 @@ EBuildingViewModel BuildingFWall::getViewModel(int32 walLvl)
 void BuildingFWall::setBuildingSprite()
 {
 	auto _vm = getViewModel(
-			PlayerStatic::SultanPlayer
-					.City.CityBuilding
+			CityStatic::Get()->GetCurrentCity().CityBuilding
 					.CityBuildingFixed
 					.wall.buildingLvl);
 	BuildingSpriteImage = StringUtils::format("chengmen_lv%d.png", static_cast<int32>(_vm));

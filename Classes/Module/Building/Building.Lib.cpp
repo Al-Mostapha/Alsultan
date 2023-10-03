@@ -4,6 +4,7 @@
 #include "Include/IncludeCityBuilding.h"
 #include "Module/Building/IBuilding.h"
 #include "Module/Player/Player.Static.h"
+#include "Module/City/City.Static.h"
 
 void BuildingLib::buildCity() {}
 
@@ -101,7 +102,7 @@ IBuilding* BuildingLib::getBuildingClassByType(EBuilding buildingType) {
   }
 };
 
-RCityBuilding& BuildingLib::getCurentCityBuilding() { return PlayerStatic::SultanPlayer.City.CityBuilding; }
+RCityBuilding& BuildingLib::getCurentCityBuilding() { return CityStatic::Get()->GetCurrentCity().CityBuilding; }
 
 GVector<RCityBuildingUnit> BuildingLib::getBuildingList(EBuilding buildingType) {
   GVector<RCityBuildingUnit> BuildingList;
