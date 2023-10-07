@@ -83,13 +83,19 @@ bool NetModule::getJson(const GString &url, JsonStrCallBack callback)
     // request->setUrl("");
 }
 
-IRequest *NetModule::GetJson(const GString &url, std::function<void(XJson *, IRequest *)>  pCallback){
-  auto lRequest = WsRequest::Create();
+IRequest *NetModule::GetJson(const GString &url, std::function<void(XJson, IRequest *)>  pCallback){
+  return GetJson(url, {}, pCallback);
+}
+IRequest *NetModule::GetJson(
+  const GString &url, const XJson &pParams,
+  std::function<void(XJson, IRequest *)>  pCallback){
+  auto lRequest = WsRequest::Create(url);
   lRequest->_Url = url;
   lRequest->_Method      = ERequestMethod::Get;
   lRequest->_ContentType = ERequestContentType::Json;
   lRequest->_Type        = ERequestType::WebSocket;
   lRequest->_Token       = PlayerStatic::Get()->GetPlayerToken();
+  lRequest->_Data        = pParams.dump();
   lRequest->_OnComplete  = [pCallback, lRequest](IResponse *pResponse, IRequest *pRequest) {
     if(!pResponse){
       if(lRequest->_OnError)

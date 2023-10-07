@@ -14,3 +14,4 @@ public:
     GJson *GetJsonObject(const char *str, GJson *DefaultVal = nullptr);
     GString ToString();
 };
+

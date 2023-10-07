@@ -346,7 +346,8 @@ void MainCityView::FinishLoadImages(){
       for(auto [lCityID, lCity] : lCities){
         CityService::Get()->GetCityInfo(lCityID)->Done(
           [this](auto pReq, auto pRes){
-            BuildingService::Get()->GetBuildingList()->Done([this](auto pReq, auto pRes){
+            BuildingService::Get()->GetBuildingList()->Done(
+            [this](auto pReq, auto pRes){
               this->InitAfterCreate();
             });
           }

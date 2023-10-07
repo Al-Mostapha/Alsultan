@@ -5,7 +5,11 @@
 
 USING_NS_CC;
 
+
 class IResponse ;
+
+typedef std::function<void(IResponse *, class IRequest *)> ReqCallback;
+
 class IRequest : public Ref{
   public:
   GString _Url = "";
@@ -18,9 +22,9 @@ class IRequest : public Ref{
   ERequestType _Type = ERequestType::Http;
   GMap<ERequestHeader, GString> _Headers;
   GString _Token = "";
-  std::function<void(IResponse *, IRequest *)> _OnComplete = nullptr;
+  ReqCallback _OnComplete = nullptr;
   std::function<void(ERequestError, GString)> _OnError = nullptr;
-  std::function<void(IResponse *, IRequest *)> _OnSuccess = nullptr;
+  ReqCallback _OnSuccess = nullptr;
   std::function<void(IRequest *)> _BeforeSend = nullptr;
   GString _RequestID = "";
   GTime _TimeStamp;
@@ -37,11 +41,11 @@ class IRequest : public Ref{
   virtual void SetType(ERequestType p_Type) { _Type = p_Type; }
   virtual void SetHeaders(GMap<ERequestHeader, GString> p_Headers) { _Headers = p_Headers; }
   virtual void SetToken(GString p_Token) { _Token = p_Token; }
-  virtual void SetOnComplete(std::function<void(IResponse *, IRequest *)> p_OnComplete) { _OnComplete = p_OnComplete; }
+  virtual void SetOnComplete(ReqCallback p_OnComplete) { _OnComplete = p_OnComplete; }
   virtual void SetOnError(std::function<void(ERequestError, GString)> p_OnError) { _OnError = p_OnError; }
-  virtual void SetOnSuccess(std::function<void(IResponse *, IRequest *)> p_OnSuccess) { _OnSuccess = p_OnSuccess; }
-  virtual void Done(std::function<void(IResponse *, IRequest *)> p_OnSuccess) { _OnSuccess = p_OnSuccess; }
-  virtual void SetBeforeSend(std::function<void(IRequest *)> p_BeforeSend) { _BeforeSend = p_BeforeSend; }
+  virtual void SetOnSuccess(ReqCallback p_OnSuccess) { _OnSuccess = p_OnSuccess; }
+  virtual void Done(ReqCallback p_OnSuccess) { _OnSuccess = p_OnSuccess; }
+  virtual void SetBeforeSend(std::function<void(IRequest *)>  p_BeforeSend) { _BeforeSend = p_BeforeSend; }
 
   GString GetRequestID() { return _RequestID; }
   void SetRequestID(const GString &pID) { _RequestID = pID; }

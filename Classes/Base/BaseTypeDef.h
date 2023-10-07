@@ -10,7 +10,6 @@
 #include <optional>
 #include <tuple>
 #include <variant>
-#include "Type/Json/XJson.h"
 
 
 typedef std::string GString;
@@ -59,10 +58,6 @@ enum class ENullBool{
   True,
   False
 };
-
-
-
-using XJson = nlohmann::json;
 
 // template <class K>
 // using GOptional = std::optional<K>;

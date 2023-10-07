@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Base/Type/Json/XJson.h"
 #include "Army.Enum.h"
 #include "Module/Building/Building.Enum.h"
 #include "Module/CityResource/Resource.Enum.h"
@@ -297,17 +298,17 @@ struct RCityArmy
         };
     } ArmyTrap;
 
-    void fromJson(GJson *json)
+    void fromJson(const XJson &json)
     {
         if (json == nullptr)
             return;
-        ArmyA.fromJson(json->GetJsonObject("ArmyA"));
-        ArmyB.fromJson(json->GetJsonObject("ArmyB"));
-        ArmyC.fromJson(json->GetJsonObject("ArmyC"));
-        ArmyD.fromJson(json->GetJsonObject("ArmyD"));
-        ArmyE.fromJson(json->GetJsonObject("ArmyE"));
-        ArmyF.fromJson(json->GetJsonObject("ArmyF"));
-        ArmyTrap.fromJson(json->GetJsonObject("ArmyTrap"));
+        // ArmyA.fromJson(json->GetJsonObject("ArmyA"));
+        // ArmyB.fromJson(json->GetJsonObject("ArmyB"));
+        // ArmyC.fromJson(json->GetJsonObject("ArmyC"));
+        // ArmyD.fromJson(json->GetJsonObject("ArmyD"));
+        // ArmyE.fromJson(json->GetJsonObject("ArmyE"));
+        // ArmyF.fromJson(json->GetJsonObject("ArmyF"));
+        // ArmyTrap.fromJson(json->GetJsonObject("ArmyTrap"));
     }
 };
 

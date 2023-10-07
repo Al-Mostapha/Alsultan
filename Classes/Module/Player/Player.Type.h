@@ -4,6 +4,7 @@
 #include "Module/City/City.Type.h"
 #include "Module/Effect/Effect.Enum.h"
 #include "Lord.Enum.h"
+#include "Base/Type/Json/XJson.h"
 
 struct RPlayer
 {
@@ -12,6 +13,7 @@ struct RPlayer
     GHashMap<int32, RCity> _Cities;
     GHashMap<EEffect, struct TEffect> Effect;
     GString _Token;
+    void FromJson(const XJson &json);
 };
 
 struct RLordBaseInfo {

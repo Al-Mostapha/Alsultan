@@ -4,6 +4,7 @@
 #include "Include/IncludeBuildingBase.h"
 #include "Module/Army/Army.Type.h"
 #include "Module/CityResource/Resource.Type.h"
+#include "Base/Type/Json/XJson.h"
 
 struct RCity
 {
@@ -12,15 +13,15 @@ struct RCity
     RCityBuilding CityBuilding;
     RCityArmy CityArmy;
     RCityResource CityResource;
-    void fromJson(GJson *json)
+    void fromJson(const XJson &pJson)
     {
-        if (json == nullptr)
-            return;
-        idPlayer = json->GetInt("idPlayer", 0);
-        idCity = json->GetInt("idCity", 0);
-        CityBuilding.fromJson(json->GetJsonObject("CityBuilding"));
-        CityArmy.fromJson(json->GetJsonObject("CityArmy"));
-        CityResource.fromJson(json->GetJsonObject("CityResource"));
+        if (pJson.is_null())
+          return;
+        idPlayer = pJson.value("idPlayer", 0);
+        idCity = pJson.value("idCity", 0);
+        CityBuilding.fromJson(pJson.value("CityBuilding", XJson::object()));
+        CityArmy.fromJson(pJson.value("CityArmy", XJson::object()));
+        CityResource.fromJson(pJson.value("CityResource", XJson::object()));
     }
 };
 

@@ -1,6 +1,7 @@
 #include "WsClient.h"
 #include "IRequest.h"
 #include "WsRequest.h"
+#include "WsResponse.h"
 
 WsClient * WsClient::Create(GString pHost, int32 pPort)
 {
@@ -94,6 +95,7 @@ bool WsClient::Send(IRequest *pReq)
         };
         CCLOG("Sending Through websocket %s", lJson.dump().c_str());
 				this->_socket->send(lJson.dump());
+        this->_Requests[pReq->_RequestID] = pReq;
       }
 			else if (this->_socket->getReadyState() == network::WebSocket::State::CONNECTING)
 				this->_PendingRequests.push_back(pReq);
@@ -143,7 +145,7 @@ void WsClient::onOpen(network::WebSocket * ws)
 
   cocos2d::log("onOpen");
   auto lRequest = WsRequest::Create();
-  lRequest->_Url = "/api/v1/room";
+  lRequest->_Url = "/api/BuildingCtrl/GetCityBuildings";
   lRequest->_Method      = ERequestMethod::Get;
   lRequest->_ContentType = ERequestContentType::Json;
   lRequest->_State       = ERequestState::None;
@@ -154,6 +156,8 @@ void WsClient::onOpen(network::WebSocket * ws)
   lRequest->_Data        = R"({"Json":"Json"})";
   lRequest->_OnComplete  = [](IResponse *pResponse, IRequest *pRequest) {
     cocos2d::log("OnComplete");
+    cocos2d::log(pResponse->_Data.c_str());
+    cocos2d::log(pResponse->_Json.dump().c_str());
   };
 
   lRequest->_OnError     = [](ERequestError pError, GString pMessage) {
@@ -167,15 +171,36 @@ void WsClient::onOpen(network::WebSocket * ws)
   lRequest->_BeforeSend  = [](IRequest *pRequest) {
     CCLOG("BeforeSend");
   };
-
   lRequest->Send();
-
 }
 
 void WsClient::onMessage(network::WebSocket * ws, const network::WebSocket::Data & data)
 {
-	std::string(data.bytes, data.len);
-  cocos2d::log("onMessage %s", std::string(data.bytes, data.len).c_str());
+	auto lMsg = GString(data.bytes, data.len);
+  auto lRes = WSResponse::Create(lMsg);
+  lRes->FromWsMsg();
+  cocos2d::log("onMessage %s", lRes->_Json.dump().c_str());
+  lRes->Exec();
+  Exec(lRes);
+}
+
+bool WsClient::Exec(IResponse *pResponse){
+
+  if(!pResponse->_Json.contains("RequestID"))
+    return false;
+  auto lRequestID = pResponse->_Json["RequestID"].get<GString>();
+  if(!this->_Requests.Contains(lRequestID))
+    return false;
+  auto lRequest = this->_Requests[lRequestID];
+  this->_Requests.erase(lRequestID);
+  if(lRequest->_OnComplete)
+    lRequest->_OnComplete(pResponse, lRequest);
+  if(lRequest->_OnSuccess)
+    lRequest->_OnSuccess(pResponse, lRequest);
+
+  lRequest->release();
+  pResponse->release();
+  return true;
 }
 
 void WsClient::onClose(network::WebSocket * ws)

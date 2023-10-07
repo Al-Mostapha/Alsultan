@@ -14,7 +14,8 @@ class IResponse : public Ref{
   ERequestError _ErrorType = ERequestError::None;
   ERequestType _Type = ERequestType::Http;
   bool IsJson() { return true; }
-  XJson *_Json = nullptr;
+  XJson _Json = nullptr;
+  virtual void Exec() = 0;
 
   Ref* autorelease()
   {

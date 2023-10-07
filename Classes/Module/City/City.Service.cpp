@@ -14,13 +14,21 @@ void CityService::Init()
 IRequest *CityService::GetCityList()
 {
   return NetModule::Get()->GetJson(
-    "/api/City/GetCityList"
+    "/api/ACity/GetCityList", {}, 
+    [](auto lJson, auto lReq){
+
+    }
   );
 }
 
 IRequest *CityService::GetCityInfo(int32 pCityId)
 {
   return NetModule::Get()->GetJson(
-    "/api/City/GetCityInfo"
+    "/api/City/GetCityInfo", {
+      {"CityID", pCityId}
+    },
+    [](auto lJson, auto lReq){
+
+    }
   );
 }

@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "Base/Containers/HashMap.h"
 #include "Base/Json.h"
+#include "Base/Type/Json/XJson.h"
 #include "Base/Reflect.h"
 #include "Module/Army/Army.Enum.h"
 #include "Building.Const.h"
@@ -334,13 +335,13 @@ struct RCityBuilding {
     }
   } CityBuildingOuter;
 
-  void fromJson(GJson* json) {
-    if (json == nullptr) return;
-    idCity = json->GetInt("idCity", 0);
-    idPlayer = json->GetInt("idPlayer", 0);
-    CityBuildingFixed.fromJson(json->GetJsonObject("CityBuildingFixed"));
-    CityBuildingInner.fromJson(json->GetJsonObject("CityBuildingInner"));
-    CityBuildingOuter.fromJson(json->GetJsonObject("CityBuildingOuter"));
+  void fromJson(const XJson &json) {
+    // if (json == nullptr) return;
+    // idCity = json->GetInt("idCity", 0);
+    // idPlayer = json->GetInt("idPlayer", 0);
+    // CityBuildingFixed.fromJson(json->GetJsonObject("CityBuildingFixed"));
+    // CityBuildingInner.fromJson(json->GetJsonObject("CityBuildingInner"));
+    // CityBuildingOuter.fromJson(json->GetJsonObject("CityBuildingOuter"));
   }
 };
 
