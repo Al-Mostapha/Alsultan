@@ -93,7 +93,8 @@
     "regex": "cpp",
     "set": "cpp",
     "any": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "codecvt": "cpp"
   },
   "search.exclude": {
     "**/build": true,

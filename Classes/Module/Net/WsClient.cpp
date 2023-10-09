@@ -144,34 +144,6 @@ void WsClient::onOpen(network::WebSocket * ws)
 	// }
 
   cocos2d::log("onOpen");
-  auto lRequest = WsRequest::Create();
-  lRequest->_Url = "/api/BuildingCtrl/GetCityBuildings";
-  lRequest->_Method      = ERequestMethod::Get;
-  lRequest->_ContentType = ERequestContentType::Json;
-  lRequest->_State       = ERequestState::None;
-  lRequest->_Error       = ERequestError::None;
-  lRequest->_Type        = ERequestType::Http;
-  lRequest->_Headers     = GMap<ERequestHeader, GString>();
-  lRequest->_Token       = "";
-  lRequest->_Data        = R"({"Json":"Json"})";
-  lRequest->_OnComplete  = [](IResponse *pResponse, IRequest *pRequest) {
-    cocos2d::log("OnComplete");
-    cocos2d::log(pResponse->_Data.c_str());
-    cocos2d::log(pResponse->_Json.dump().c_str());
-  };
-
-  lRequest->_OnError     = [](ERequestError pError, GString pMessage) {
-    cocos2d::log("OnError");
-  };
-
-  lRequest->_OnSuccess   = [](IResponse *pResponse, IRequest *pRequest) {
-    cocos2d::log("OnSuccess");
-  };
-
-  lRequest->_BeforeSend  = [](IRequest *pRequest) {
-    CCLOG("BeforeSend");
-  };
-  lRequest->Send();
 }
 
 void WsClient::onMessage(network::WebSocket * ws, const network::WebSocket::Data & data)

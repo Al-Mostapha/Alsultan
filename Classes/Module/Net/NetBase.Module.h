@@ -26,10 +26,10 @@ public:
     void SetWsPort(int32 pPort);
     IRequest *GetJson(
       const GString &url, 
-      std::function<void(XJson, IRequest *)> pCallback = nullptr);
+      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
     IRequest *GetJson(
       const GString &url, const XJson &pParams,
-      std::function<void(XJson, IRequest *)> pCallback = nullptr);
+      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
     static Net::HttpRequest *_createHttp(const GString &url);
     static NetModule *getInstance();
     static bool getJson(const GString &url, JsonStrCallBack callback);

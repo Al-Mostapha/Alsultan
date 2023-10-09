@@ -4,6 +4,8 @@
 #include "Module/Net/NetBase.Module.h"
 #include "Module/Player/Player.Static.h"
 #include "Scene/CityScene.h"
+#include "Module/City/City.Static.h"
+#include "Module/City/City.Cell.h"
 #include "Module/City/CityBuilding/City.LtCtrl.h"
 
 
@@ -17,8 +19,36 @@ BuildingService *BuildingService::Get(){
 void BuildingService::Init(){
 
 }
-IRequest *BuildingService::GetBuildingList(){
-  return NetModule::Get()->GetJson("/api/Building/GetBuildingList");
+IRequest *BuildingService::GetBuildingList(int32 pCityId){
+  return NetModule::Get()->GetJson(
+    "/api/ACityBuilding/GetBuildingList",
+    {
+      {"CityID", pCityId}
+    },
+    [pCityId](auto pJson, auto pReq){
+      if(pJson.is_null()){
+        Logger::Log("GetBuildingList is null");
+        return;
+      }
+      
+      if(!CityStatic::Get()->GetCityList().Contains(pCityId)){
+        Logger::Log("GetBuildingList City is not found");
+        return;
+      }
+
+      auto lState = pJson.value("State", "");
+      if(lState != "Ok"){
+        Logger::Log("GetBuildingList State is not Success");
+        return;
+      }
+      
+      auto lBuildingList = pJson.value("BuildingList", XJson::array());
+      for(auto lBuilding : lBuildingList){
+        BuildingCell lBuildingCell;
+        lBuildingCell.FromJson(lBuilding);
+        CityStatic::Get()->GetCityList()[pCityId].BuildingList[lBuildingCell.GetBuildingIndex()] = lBuildingCell;
+      }
+    });
 }
 
 void BuildingService::fetchCityBuilding(int32 idCity) {

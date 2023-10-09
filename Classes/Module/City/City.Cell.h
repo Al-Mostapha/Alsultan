@@ -4,6 +4,7 @@
 #include "Module/Building/IBuilding.h"
 #include "Module/CityResource/CityResource.h"
 #include "Module/Task/ITask.h"
+#include "Base/Type/Json/XJson.h"
 
 class CityCell {
   public:
@@ -12,6 +13,9 @@ class CityCell {
   GVector<ELockedArea> AreaList;
   GVector<ITask*> Queue;
   RResource SafeRes;
+  int32 _CityID;
+  int32 _Lvl;
+  int32 _PlayerID;
   void *Mastery;
   void *DrawingData;
 
@@ -23,6 +27,7 @@ class CityCell {
   void OpenArea(ELockedArea p_Area);
   ITask *QueryQueue(ETask p_Task){return nullptr;}
   void FromJson(GJson *p_Json);
+  void FromJson(const XJson &pJson);
   private:
     BuildingCell &GetBuilding(EBuildingIndex p_Index);
     bool BuildingFound(EBuildingIndex p_Index);

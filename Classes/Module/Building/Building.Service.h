@@ -9,7 +9,7 @@ class BuildingService
 public:
     static BuildingService *Get();
     void Init();
-    IRequest *GetBuildingList();
+    IRequest *GetBuildingList(int32 pCityId);
     static void fetchCityBuilding(int32 idCity);
     static void fetchBuildingInfo();
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
 #include "BuildingTips.Type.h"
+#include "Base/Containers/HashMap.h"
 
 class BuildingTipsStatic {
   private:

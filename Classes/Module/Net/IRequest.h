@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "Net.Enum.h"
 #include "Base/Containers/HashMap.h"
+#include "Base/Type/Json/XJson.h"
 
 USING_NS_CC;
 

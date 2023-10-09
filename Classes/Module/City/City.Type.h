@@ -13,7 +13,7 @@ struct RCity
     RCityBuilding CityBuilding;
     RCityArmy CityArmy;
     RCityResource CityResource;
-    void fromJson(const XJson &pJson)
+    void FromJson(const XJson &pJson)
     {
         if (pJson.is_null())
           return;

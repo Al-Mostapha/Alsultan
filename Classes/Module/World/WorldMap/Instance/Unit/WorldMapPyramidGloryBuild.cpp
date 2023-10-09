@@ -82,7 +82,7 @@ void WorldMapPyramidGloryBuild::UpdateActivityState(){
 
 }
 
-GTuple<UIBasePanel *, bool, Node*> OnClickInstance(Node *pNode) {
+GTuple<UIBasePanel *, bool, Node*> WorldMapPyramidGloryBuild::OnClickInstance(Node *pNode) {
   UIAlliancePBLHonorView::Create()->Show();
   return {nullptr, false, nullptr};
 }

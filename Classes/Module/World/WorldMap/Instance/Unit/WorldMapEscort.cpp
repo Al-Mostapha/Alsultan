@@ -88,7 +88,7 @@ void WorldMapEscort::Req4Escort(){
   // end
 }
 
-GVector<RButtonTypeArray> GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar) {
+GVector<RButtonTypeArray> WorldMapEscort::GetInstanceOp(bool pIsSelfKingdom, bool pIsInWar) {
   GVector<RButtonTypeArray> lButtonTypeArray;
   if(pIsSelfKingdom){
     lButtonTypeArray.push_back({EWorldMapTipButtonType::yayun});

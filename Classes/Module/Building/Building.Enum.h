@@ -1,5 +1,4 @@
 #pragma once
-#include "Include/IncludeBase.h"
 
 enum class EBuilding  {
   None = 0,
@@ -145,10 +144,10 @@ enum class EBuildingIndex {
   Mastery = 30008,
   CommandHall = 30009,
   MagicLamp = 30010,
-  LockArea_1 = static_cast<int32>(ELockedArea::AreaLock_1221),
-  LockArea_2 = static_cast<int32>(ELockedArea::AreaLock_1222),
-  LockArea_3 = static_cast<int32>(ELockedArea::AreaLock_1223),
-  LockArea_4 = static_cast<int32>(ELockedArea::AreaLock_1224)
+  LockArea_1 = static_cast<int>(ELockedArea::AreaLock_1221),
+  LockArea_2 = static_cast<int>(ELockedArea::AreaLock_1222),
+  LockArea_3 = static_cast<int>(ELockedArea::AreaLock_1223),
+  LockArea_4 = static_cast<int>(ELockedArea::AreaLock_1224)
 };
 
 enum class EBuildingPos { CBPlace_None = 0, CBPlace_Fixed = 1, CBPlace_Inner = 2, CBPlace_Outer = 3 };

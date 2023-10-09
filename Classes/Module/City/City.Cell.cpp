@@ -96,3 +96,14 @@ void CityCell::FromJson(GJson *p_Json){
   //   _citycell:addBuildChargeQueue(gQueueTypeDef.charge_build_queue, starttime, totaltime, lefttime)
   // end
 }
+
+void CityCell::FromJson(const XJson &pJson){
+  if (pJson.is_null())
+    return;
+  // IdBuilding = pJson.value("IdBuilding", EBuilding::None);
+  _CityID = pJson.value("_CityID", 0);
+  // BuildingIndex = pJson.value("BuildingIndex", EBuildingIndex::None);
+  // buildingLvl = pJson.value("buildingLvl", 0);
+  // starLvl = pJson.value("starLvl", 0);
+  // state = pJson.value("state", EBuildingState::None);
+}

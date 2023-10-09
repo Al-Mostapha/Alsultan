@@ -83,12 +83,13 @@ bool NetModule::getJson(const GString &url, JsonStrCallBack callback)
     // request->setUrl("");
 }
 
-IRequest *NetModule::GetJson(const GString &url, std::function<void(XJson, IRequest *)>  pCallback){
+IRequest *NetModule::GetJson(
+  const GString &url, std::function<void(const XJson &, IRequest *)>  pCallback){
   return GetJson(url, {}, pCallback);
 }
 IRequest *NetModule::GetJson(
   const GString &url, const XJson &pParams,
-  std::function<void(XJson, IRequest *)>  pCallback){
+  std::function<void(const XJson &, IRequest *)>  pCallback){
   auto lRequest = WsRequest::Create(url);
   lRequest->_Url = url;
   lRequest->_Method      = ERequestMethod::Get;

@@ -6,8 +6,7 @@
 class CityCell;
 class IBuilding;
 class CityCtrl {
-  GHashMap<Guid, CityCell *> m_CityList;
-  Guid m_CID ;
+  Guid m_CID = 1;
 public:
   static CityCtrl *Get();
   void AddCity(Guid p_IdCity, CityCell *p_CityCell);

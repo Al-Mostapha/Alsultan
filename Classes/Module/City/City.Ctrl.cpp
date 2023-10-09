@@ -1,5 +1,6 @@
 #include "City.Ctrl.h"
 #include "City.Cell.h"
+#include "City.Static.h"
 #include "Module/Building/Building.Cell.h"
 
 CityCtrl *CityCtrl::Get(){
@@ -8,12 +9,13 @@ CityCtrl *CityCtrl::Get(){
 }
 
 void CityCtrl::AddCity(Guid p_IdCity, CityCell *p_CityCell){
-  m_CityList.emplace(p_IdCity, p_CityCell);
+  CityStatic::Get()->GetCityList().emplace(p_IdCity, *p_CityCell);
 }
 
 CityCell *CityCtrl::GetCurCity(){
-  if(m_CityList.Contains(m_CID))
-    return m_CityList[m_CID];
+  auto lCurrentCityID = CityStatic::Get()->GetCurrentCityID();
+  if(CityStatic::Get()->GetCityList().Contains(lCurrentCityID))
+    return &CityStatic::Get()->GetCityList()[lCurrentCityID];
   return nullptr;
 }
 

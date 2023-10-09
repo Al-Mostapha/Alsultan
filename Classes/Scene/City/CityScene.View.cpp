@@ -32,6 +32,8 @@
 #include "Module/World/WorldMap/View/WorldMap.ViewFactory.h"
 #include "Module/Building/Building.Func.h"
 #include "Module/City/City.Service.h"
+#include "Module/City/City.Static.h"
+#include "Module/City/City.Cell.h"
 #include "Module/Building/Building.Service.h"
 
 MainCityView *MainCityView::Create(RViewOtherData p_Data){
@@ -342,11 +344,12 @@ void MainCityView::FinishLoadImages(){
 
   CityService::Get()->GetCityList()->Done(
     [this](auto pReq, auto pRes){
-      auto lCities = PlayerStatic::Get()->GetCities();
-      for(auto [lCityID, lCity] : lCities){
-        CityService::Get()->GetCityInfo(lCityID)->Done(
-          [this](auto pReq, auto pRes){
-            BuildingService::Get()->GetBuildingList()->Done(
+      auto lCities = CityStatic::Get()->GetCityList();
+      for(auto [_, lCity] : lCities){
+        auto lCityId = lCity._CityID;
+        CityService::Get()->GetCityInfo(lCityId)->Done(
+          [this, lCityId](auto pReq, auto pRes){
+            BuildingService::Get()->GetBuildingList(lCityId)->Done(
             [this](auto pReq, auto pRes){
               this->InitAfterCreate();
             });

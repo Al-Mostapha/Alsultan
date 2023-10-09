@@ -2,6 +2,9 @@
 #include "Base/BaseTypeDef.h"
 #include "Module/Building/Building.Enum.h"
 #include "BuildingTips.Enum.h"
+#include "Base/Type/Json/XJson.h"
+
+USING_NS_CC;
 
 struct RBuildingTipsBtnListData{
   int32 bid;
@@ -21,7 +24,7 @@ struct RBuildingTipsBtnListData{
   };
   GVector<EBuildingTips> CoolingOperateList;
   GVector<EBuildingTips> TrainingOperateList;
-  void FromJson(GJson *p_Json){
+  void FromJson(const XJson &pJson){
     BuildingName = "Test";
   }
 };
