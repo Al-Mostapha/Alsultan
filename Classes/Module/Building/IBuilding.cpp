@@ -195,8 +195,8 @@ void IBuilding::HideWorkDone() {
 void IBuilding::ShowBuildLvl() {
   if (IsLocked()) return;
   if (IsOpening()) return;
-  if (this->n_BuildingLvText) this->n_BuildingLvText->setVisible(true);
-  if (this->n_BuildingLvBg) this->n_BuildingLvBg->setVisible(true);
+  if (this->_BuildingLvText) this->_BuildingLvText->setVisible(true);
+  if (this->_BuildingLvBg) this->_BuildingLvBg->setVisible(true);
 }
 
 void IBuilding::UpdateLvl() {
@@ -206,12 +206,12 @@ void IBuilding::UpdateLvl() {
   auto l_WarLvlText = GBase::DGetBuildWarLv(l_BuildingLvl);
   UpdateTextLvl();
   UpdateIsCanUpgrade();
-  if (l_IsWarLvl <= 0 && n_BuildingLvBg) {
-    n_BuildingLvBg->setSpriteFrame("icon_main_build_lv.png");
+  if (l_IsWarLvl <= 0 && _BuildingLvBg) {
+    _BuildingLvBg->setSpriteFrame("icon_main_build_lv.png");
     m_IsSHowWarLv = false;
   }
-  if (l_IsWarLvl > 0 && n_BuildingLvBg) {
-    n_BuildingLvBg->setSpriteFrame("icon_main_build_warlv.png");
+  if (l_IsWarLvl > 0 && _BuildingLvBg) {
+    _BuildingLvBg->setSpriteFrame("icon_main_build_warlv.png");
     m_IsSHowWarLv = false;
   }
   UpdateViewModel();
@@ -243,27 +243,27 @@ void IBuilding::InitStateMachine() {}
 
 void IBuilding::UpdateStarLvlBgLight() {
   auto l_StarLvl = GetStarLvl();
-  if (!n_BuildingLvBg) return;
-  n_BuildingLvBg->setSpriteFrame("icon_main_buildstar_lv.png");
+  if (!_BuildingLvBg) return;
+  _BuildingLvBg->setSpriteFrame("icon_main_buildstar_lv.png");
   UpdateTextLvl();
   if (!n_SpStarLight) {
     n_SpStarLight = Sprite::create();
-    n_BuildingLvBg->addChild(n_SpStarLight);
+    _BuildingLvBg->addChild(n_SpStarLight);
     n_SpStarLight->setPosition(83, 35);
   }
   auto l_IconName = CityCtrl::Get()->GetBuildStarLight(l_StarLvl);
   n_SpStarLight->setSpriteFrame(l_IconName);
   if (!n_BuildStarLight) {
     auto l_Action = GBase::DCreateAnimation(CsbUiFilePath::NodeBuildStarLight.c_str(), n_BuildStarLight).Second;
-    n_BuildingLvBg->addChild(n_BuildStarLight);
-    n_BuildingLvBg->setPosition(83, 35);
-    for (auto l_OneNode : n_BuildingLvBg->getChildren()) {
+    _BuildingLvBg->addChild(n_BuildStarLight);
+    _BuildingLvBg->setPosition(83, 35);
+    for (auto l_OneNode : _BuildingLvBg->getChildren()) {
       l_OneNode->setPosition(0, 0);
     }
   }
   auto l_Lvl = CityCtrl::Get()->GetBuildStarColor(l_StarLvl);
   auto l_NodeName = StringUtils::format("Node_%d", l_Lvl);
-  for (auto l_OneNode : n_BuildingLvBg->getChildren()) {
+  for (auto l_OneNode : _BuildingLvBg->getChildren()) {
     l_OneNode->setVisible(l_OneNode->getName() == l_NodeName);
   }
 }
@@ -1077,11 +1077,11 @@ void IBuilding::UpdateIsCanUpgrade() {
 void IBuilding::SetIsCanUpgrade(bool p_IsCan) {
   _IsCanUpgrade = p_IsCan;
   if (_IsCanUpgradeStar) return;
-  if (!n_UpgradeSprite) return;
+  if (!_UpgradeSprite) return;
   if (_IsCanUpgrade)
-    n_UpgradeSprite->setVisible(true);
+    _UpgradeSprite->setVisible(true);
   else
-    n_UpgradeSprite->setVisible(false);
+    _UpgradeSprite->setVisible(false);
 };
 
 void IBuilding::setBuildingSprite() {
@@ -1092,28 +1092,28 @@ void IBuilding::setBuildingSprite() {
 }
 
 void IBuilding::setUpgradeSprite() {
-  n_UpgradeSprite = Sprite::createWithSpriteFrameName("icon_main_build_lv.png");
-  n_UpgradeSprite->setPosition(LvlBgOffset.x - 46, LvlBgOffset.y - 22);
-  n_UpgradeSprite->setLocalZOrder(5);
-  addChild(n_UpgradeSprite);
+  _UpgradeSprite = Sprite::createWithSpriteFrameName("icon_main_build_lv.png");
+  _UpgradeSprite->setPosition(LvlBgOffset.x - 46, LvlBgOffset.y - 22);
+  _UpgradeSprite->setLocalZOrder(5);
+  addChild(_UpgradeSprite);
 }
 
 void IBuilding::setBuildingLvBg() {
-  n_BuildingLvBg = Sprite::createWithSpriteFrameName("icon_main_build_upgrade.png");
-  n_BuildingLvBg->setPosition(LvlBgOffset.x, LvlBgOffset.y);
-  n_BuildingLvBg->setLocalZOrder(5);
-  addChild(n_BuildingLvBg);
+  _BuildingLvBg = Sprite::createWithSpriteFrameName("icon_main_build_upgrade.png");
+  _BuildingLvBg->setPosition(LvlBgOffset.x, LvlBgOffset.y);
+  _BuildingLvBg->setLocalZOrder(5);
+  addChild(_BuildingLvBg);
 }
 
 void IBuilding::setBuildingLvlText() {
-  n_BuildingLvText = Label::createWithSystemFont("8", "Arial", 18);
-  n_BuildingLvText->setSkewY(25);
-  n_BuildingLvText->setAnchorPoint(Vec2(0.5, 0.5));
-  n_BuildingLvText->setColor(Color3B(235, 255, 20));
-  n_BuildingLvText->setPosition(LvlBgOffset.x - 20, LvlBgOffset.y - 1);
-  n_BuildingLvText->setLocalZOrder(6);
-  n_BuildingLvText->setAlignment(TextHAlignment::CENTER);
-  addChild(n_BuildingLvText);
+  _BuildingLvText = Label::createWithSystemFont("8", "Arial", 18);
+  _BuildingLvText->setSkewY(25);
+  _BuildingLvText->setAnchorPoint(Vec2(0.5, 0.5));
+  _BuildingLvText->setColor(Color3B(235, 255, 20));
+  _BuildingLvText->setPosition(LvlBgOffset.x - 20, LvlBgOffset.y - 1);
+  _BuildingLvText->setLocalZOrder(6);
+  _BuildingLvText->setAlignment(TextHAlignment::CENTER);
+  addChild(_BuildingLvText);
 }
 
 void IBuilding::setBuildingSleepSprite() {

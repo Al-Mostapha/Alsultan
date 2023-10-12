@@ -27,9 +27,9 @@ bool BuildingFBraveStatue::init()
 
 void BuildingFBraveStatue::setBuildingLvBg()
 {
-	n_BuildingLvBg = Sprite::createWithSpriteFrameName("frame_armor_quality_01.png");
-	n_BuildingLvBg->setPosition(LvlBgOffset.x, LvlBgOffset.y);
-	addChild(n_BuildingLvBg);
+	_BuildingLvBg = Sprite::createWithSpriteFrameName("frame_armor_quality_01.png");
+	_BuildingLvBg->setPosition(LvlBgOffset.x, LvlBgOffset.y);
+	addChild(_BuildingLvBg);
 }
 void BuildingFBraveStatue::onEnter()
 {

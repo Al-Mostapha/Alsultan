@@ -27,8 +27,8 @@ bool BuildingOFarm::init() {
 	setBuildingSleepSprite();
 	//setBuildingIconMiracle();
 	ShowAnimWorking();
-	n_BuildingLvBg->setLocalZOrder(6);
-	n_BuildingLvText->setLocalZOrder(8);
+	_BuildingLvBg->setLocalZOrder(6);
+	_BuildingLvText->setLocalZOrder(8);
 	return true;
 }
 

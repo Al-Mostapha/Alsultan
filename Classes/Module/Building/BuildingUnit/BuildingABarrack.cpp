@@ -43,19 +43,19 @@ void BuildingABarrack::onEnter()
 }
 
 void BuildingABarrack::setBuildingBtn(){
-	BuildingBtn = Layout::create();
-	BuildingBtn->setBackGroundColor(Color3B::BLACK);
-	BuildingBtn->setBackGroundColorType(Layout::BackGroundColorType::SOLID);
-	BuildingBtn->setContentSize(Size(100, 100));
-	BuildingBtn->setAnchorPoint(Vec2(0.5f, 0.5f));
+	_BuildingBtn = Layout::create();
+	_BuildingBtn->setBackGroundColor(Color3B::BLACK);
+	_BuildingBtn->setBackGroundColorType(Layout::BackGroundColorType::SOLID);
+	_BuildingBtn->setContentSize(Size(100, 100));
+	_BuildingBtn->setAnchorPoint(Vec2(0.5f, 0.5f));
 	auto closeItem = MenuItem::create([](Ref * sender){ cocos2d::log("Button 1 4555555555555555555555555"); });
 	closeItem->setColor(Color3B::BLUE);
 	closeItem->setContentSize(Size(100, 100));
 	closeItem->setCascadeColorEnabled(true);
 	auto menu = Menu::create(closeItem, NULL);
 	menu->setPosition(Vec2(100, 100));
-	BuildingBtn->addChild(menu);
-	addChild(BuildingBtn, 1500);
+	_BuildingBtn->addChild(menu);
+	addChild(_BuildingBtn, 1500);
 }
 
 void BuildingABarrack::ShowWorkDone(){

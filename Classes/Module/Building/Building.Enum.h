@@ -29,10 +29,10 @@ enum class EBuilding  {
   Farm = 201,
   LumberMill = 202,
   IronMine = 203,
-  SilverMine = 204,
+  SilverMine   = 204,
   MarchingTent = 205,
   FirstAidTent = 206,
-  CrystalMine = 207,
+  CrystalMine  = 207,
   MaterialWorkShop = 210,
   Miracle = 301,
   ElitePalace = 302,
@@ -45,7 +45,10 @@ enum class EBuilding  {
   ServiceCenter = 30005,
   EpicBattle = 30006,
   Mastery = 30008,
-
+  AreaLock_1221 = 1221,
+  AreaLock_1222 = 1222,
+  AreaLock_1223 = 1223,
+  AreaLock_1224 = 1224,
   NEBULA_PALACE
 };
 
@@ -144,10 +147,10 @@ enum class EBuildingIndex {
   Mastery = 30008,
   CommandHall = 30009,
   MagicLamp = 30010,
-  LockArea_1 = static_cast<int>(ELockedArea::AreaLock_1221),
-  LockArea_2 = static_cast<int>(ELockedArea::AreaLock_1222),
-  LockArea_3 = static_cast<int>(ELockedArea::AreaLock_1223),
-  LockArea_4 = static_cast<int>(ELockedArea::AreaLock_1224)
+  LockArea_1 = static_cast<int>(EBuilding::AreaLock_1221),
+  LockArea_2 = static_cast<int>(EBuilding::AreaLock_1222),
+  LockArea_3 = static_cast<int>(EBuilding::AreaLock_1223),
+  LockArea_4 = static_cast<int>(EBuilding::AreaLock_1224)
 };
 
 enum class EBuildingPos { CBPlace_None = 0, CBPlace_Fixed = 1, CBPlace_Inner = 2, CBPlace_Outer = 3 };

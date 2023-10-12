@@ -35,11 +35,11 @@ class IBuilding : public cocos2d::Node ,public BuildingCell{
   CREATE_FUNC(IBuilding);
   Vec2 m_BasePos;
   RBuildingViewNodes m_ViewNodes;
-  Sprite* BuildingSprite;
-  Sprite* n_UpgradeSprite;
-  Label* n_BuildingLvText;
-  Sprite* n_BuildingLvBg;
-  Layout* BuildingBtn;
+  Sprite* BuildingSprite = nullptr;
+  Sprite* _UpgradeSprite = nullptr;
+  Label* _BuildingLvText = nullptr;
+  Sprite* _BuildingLvBg = nullptr;
+  Layout* _BuildingBtn = nullptr;
     
   RCityBuildingUnit Info;
 
