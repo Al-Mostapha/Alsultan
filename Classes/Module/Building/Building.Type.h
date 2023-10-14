@@ -130,13 +130,13 @@ struct RCityBuildingUnit {
 
 struct RBuildingSpecs {
   int32 index = 0;
-  int32 idBuilding = 0;
+  EBuilding BuildingID = EBuilding::None;
   bool isDemolish = false;
   bool isExchange = false;
   bool isBuild = false;
   bool isUpgrade = false;
   EBuilding buildingType = EBuilding::None;
-  int32 bType = 0;
+  EBuildingPlace bType = EBuildingPlace::Inner;
   int32 maxCount = 0;
   int32 maxLvl = 0;
   int32 initLvl = 0;

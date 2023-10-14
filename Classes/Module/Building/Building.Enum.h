@@ -55,7 +55,8 @@ enum class EBuilding  {
 enum class EBuildingPlace { // inner / outter
   Inner = 0,
   Outer = 1,
-  None = 2
+  None = 2,
+  Fixed = 3
 };
 
 enum class ELockedArea{

@@ -27,6 +27,7 @@ bool BuildingFBraveStatue::init()
 
 void BuildingFBraveStatue::setBuildingLvBg()
 {
+  GDisplay::Get()->AddSpriteFrames("FrameAnimation/diaoxiangFA.plist");
 	_BuildingLvBg = Sprite::createWithSpriteFrameName("frame_armor_quality_01.png");
 	_BuildingLvBg->setPosition(LvlBgOffset.x, LvlBgOffset.y);
 	addChild(_BuildingLvBg);

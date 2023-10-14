@@ -120,7 +120,7 @@ void UICreateBuildingPanel::SetBuildingTypeAndData(EBuilding p_BuildingType, int
 void UICreateBuildingPanel::UpdateView(){
 
   m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief));
-  m_LabelCount->setVisible(m_CurrentBuilding.bType == 1);
+  m_LabelCount->setVisible(m_CurrentBuilding.bType == EBuildingPlace::Outer);
   m_LabelNeed->setVisible(!m_CurrentBuilding.isCanBuild);
   m_LabelName->setString(Translate::i18n(m_CurrentBuilding.BuildingName));
   m_BtnBuild->setTouchEnabled(m_CurrentBuilding.isCanBuild);
@@ -141,7 +141,7 @@ void UICreateBuildingPanel::UpdateView(){
     }));
   }
 
-  if(m_CurrentBuilding.bType == 1){
+  if(m_CurrentBuilding.bType == EBuildingPlace::Outer){
     m_LabelCount->setString(Translate::i18n("common_text_739", {
       {"cur", std::to_string(BuildingCtrl::Get()->getBuildingCount(m_CurrentBuilding.buildingType))},
       {"max",  std::to_string(m_CurrentBuilding.maxCount)},

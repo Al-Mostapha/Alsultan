@@ -2,12 +2,12 @@
 
 #include "BuildingNone.h"
 #include "Module/Player/Player.Static.h"
+#include "Module/Building/Building.Lib.h"
 
 BuildingNone::BuildingNone()
 {
-
-	BuildingSpriteImage = "inner_city_building_tile.png";
-	BuildingIconMiracle = "armyicon_s_10004711.png";
+	BuildingSpriteImage  = "inner_city_building_tile.png";
+	BuildingIconMiracle  = "armyicon_s_10004711.png";
 	BuildingSpriteOffset = {0, 39};
 }
 
@@ -23,19 +23,18 @@ bool BuildingNone::init()
 void BuildingNone::onEnter()
 {
 	IBuilding::onEnter();
-
-	cocos2d::log("Building ------------------------ Pos Place %d", static_cast<int32>(this->Info.eBuildingPos));
-	if (Info.eBuildingPos == EBuildingPos::CBPlace_Inner)
+  auto lBuildingPlace = BuildingLib::Get()->DGetBuildTypeByIndex(m_BuildingIndex);
+  if (lBuildingPlace == EBuildingPlace::Inner)
 		BuildingSpriteImage = "inner_city_building_tile.png";
-	else if (Info.eBuildingPos == EBuildingPos::CBPlace_Outer)
+	else if (lBuildingPlace == EBuildingPlace::Outer)
 		BuildingSpriteImage = "res_tile.png";
 
 	setBuildingSprite();
-	setBuildingLvBg();
-	setUpgradeSprite();
-	setBuildingLvlText();
-	setBuildingSleepSprite();
-	setBuildingIconMiracle();
+	// setBuildingLvBg();
+	// setUpgradeSprite();
+	// setBuildingLvlText();
+	// setBuildingSleepSprite();
+	// setBuildingIconMiracle();
 }
 
 /**

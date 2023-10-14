@@ -151,7 +151,7 @@ EBuildingPlace BuildingLib::DGetBuildTypeByIndex(EBuildingIndex p_Building){
     //TODO: this is trivial condiction look to next condition
   if(l_BuildingPlace > 30000)
     return EBuildingPlace::Inner;
-  if(l_BuildingPlace > 1200) // this also greater the 30k
+  if(l_BuildingPlace >= 1200) // this also greater the 30k
     return EBuildingPlace::Inner;
   return EBuildingPlace::Outer;
 }

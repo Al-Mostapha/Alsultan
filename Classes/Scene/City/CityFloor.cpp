@@ -909,7 +909,7 @@ IBuilding *CityFloor::AddBuilding(EBuildingIndex p_Index, EBuilding p_IdBuilding
       return nullptr;
     }
 
-    l_BuildingPlace->addChild(l_BuildContentNode, 1);
+
     l_BuildContentNode->setName("buildName");
     l_BuildContentNode->setTag(l_BaseUid++);
     l_BuildContentNode->setIgnoreAnchorPointForPosition(false);
@@ -921,6 +921,7 @@ IBuilding *CityFloor::AddBuilding(EBuildingIndex p_Index, EBuilding p_IdBuilding
     }else{
       l_BuildContentNode->SetBuildingIndex(p_Index);
     }
+    l_BuildingPlace->addChild(l_BuildContentNode, 1);
     return l_BuildContentNode;
   }else{
     CCLOG("Cannot Fing Building Place of %d", static_cast<int32>(p_Index));

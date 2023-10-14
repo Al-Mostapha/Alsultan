@@ -20,13 +20,13 @@
 RBuildingSpecs RBuildingSpecs::fromJson(GJson* json) {
   RBuildingSpecs temp;
   temp.index = json->GetInt("index");
-  temp.idBuilding = json->GetInt("idBuilding");
+  temp.BuildingID = static_cast<EBuilding>(json->GetInt("BuildingID"));
   temp.isDemolish = json->GetBool("isdemolish");
   temp.isExchange = json->GetBool("isExchange");
   temp.isBuild = json->GetBool("isBuild");
   temp.isUpgrade = json->GetBool("isUpgrade");
   temp.buildingType = static_cast<EBuilding>(json->GetInt("buildingType"));
-  temp.bType = json->GetInt("bType");
+  temp.bType = static_cast<EBuildingPlace>(json->GetInt("bType"));
   temp.maxCount = json->GetInt("maxCount");
   temp.maxLvl = json->GetInt("maxLvl");
   temp.initLvl = json->GetInt("initLvl");

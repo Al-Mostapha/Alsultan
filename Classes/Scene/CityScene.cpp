@@ -77,6 +77,9 @@ void CityScene::LoadAsset() {
   GDisplay::Get()->AddSpriteFrames("worldMap/worldMapCastle.plist");
   GDisplay::Get()->AddSpriteFrames("worldMap/worldMapCastleSkin1.plist");
   GDisplay::Get()->AddSpriteFrames("worldMap/worldMapBuilding.plist");
+  GDisplay::Get()->AddSpriteFrames("SingleModule/armyIcon.plist");
+  GDisplay::Get()->AddSpriteFrames("FrameAnimation/mainCityOutGfsc.plist");
+  GDisplay::Get()->AddSpriteFrames("FrameAnimation/diaoxiangFA.plist");
 }
 
 // on "init" you need to initialize your instance

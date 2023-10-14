@@ -33,13 +33,14 @@ bool BuildingFMonument::init()
 
 void BuildingFMonument::ShowAnimWorking(bool p_ShowGlow)
 {
+  GDisplay::Get()->AddSpriteFrames("Lucency/xwxuzhuang.plist");
 	auto frames = getAnimation("dh_xwxuzhuang_%02d.png", 1, 15);
 	auto sprite = Sprite::createWithSpriteFrame(frames.front());
 
 	sprite->setPosition(-25, 140);
 	sprite->setScale(1.475f, 1.695f);
 	sprite->setRotation(-28.15f);
-	sprite->setOpacity(76.5f);
+	sprite->setOpacity(76);
 
 	auto animation = Animation::createWithSpriteFrames(frames, 0.1111111111111111f);
 
