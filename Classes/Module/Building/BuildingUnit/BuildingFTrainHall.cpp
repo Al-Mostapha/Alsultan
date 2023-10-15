@@ -58,13 +58,13 @@ void BuildingFTrainHall::onEnter()
 }
 
 
-void BuildingFTrainHall::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFTrainHall::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_2122", {
         {"name", Translate::i18n("buildDes_name_123")},
         {"lv", std::to_string(GBase::Const::Get()->CastleLvl7)}
     }));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
   }
+  return true;
 }

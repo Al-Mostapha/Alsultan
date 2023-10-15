@@ -1,8 +1,7 @@
 #include "Module/City/City.Module.h"
 #include "CitySceneEffect.h"
 #include "Scene/CityScene.h"
-
-#include "Module/UI/Panel/Building/UICreateBuildingPanel.h"
+#include "Module/UI/Panel/Building/UIBuildCreatePanel.h"
 
 void CityModule::showCityEffect()
 {
@@ -50,8 +49,7 @@ void CityModule::showCityEffect()
   EffectMainCityView::addWallEffect();
   EffectMainCityView::cloudRunEffect();
 
-  auto p = UICreateBuildingPanel::create();
-  p->InitPanel();
+  auto p = UIBuildCreatePanel::Create();
   Scene *scene = Director::getInstance()->getRunningScene();
   scene->addChild(p);
 

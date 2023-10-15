@@ -18,4 +18,5 @@ class BuildingLib {
   static bool isCanBuild(EBuilding p_BuildingType);
   EBuildingPlace DGetBuildTypeByIndex(EBuildingIndex p_Building);
   EBuildingPlace DGetBuildTypeByBid(EBuilding p_Building);
+  bool DIsFixedBuild(EBuildingIndex pIndex);
 };

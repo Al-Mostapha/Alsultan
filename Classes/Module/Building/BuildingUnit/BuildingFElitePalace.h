@@ -17,7 +17,7 @@ public:
 	void onEnter() override;
   void ShowWorkDone() override;
 	static void initBuilingData();
-  void Clicked(Touch *p_Touch, Event *p_Event) override;
+  bool Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch) override;
 	CREATE_FUNC(BuildingFElitePalace);
 
 	/**

@@ -24,6 +24,8 @@ void CityBuildings::BuildingButtonCallFun(
     _CurrentSelectBuild = p_Build;
     auto l_CityBuild = dynamic_cast<IBuilding *>(p_Build->getChildByName("buildName"));
     if(l_CityBuild){
+      if(l_CityBuild->Clicked(p_Ref, p_Touch))
+        return;
       if(!_CacheTip){
         _CacheTip = UIBuildingTipPanel::Create();
         _ContainerView->addChild(_CacheTip, 10000);

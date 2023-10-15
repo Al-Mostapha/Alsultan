@@ -38,13 +38,12 @@ void BuildingFPetCenter::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingFPetCenter::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFPetCenter::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_1973", {
       {"lv" , std::to_string(GBase::Const::Get()->CastleLvl4)}
     }));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
   }
-  
+  return true;
 }

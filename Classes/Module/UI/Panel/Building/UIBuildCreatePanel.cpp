@@ -1,4 +1,4 @@
-#include "UICreateBuildingPanel.h"
+#include "UIBuildCreatePanel.h"
 #include "cocostudio/CocoStudio.h"
 #include "Include/IncludeConfig.h"
 #include "Include/IncludeBuildingFunc.h"
@@ -9,32 +9,23 @@
 #include "Base/Common/Common.Teml.h"
 
 
-UICreateBuildingPanel::UICreateBuildingPanel(){
-  
+UIBuildCreatePanel *UIBuildCreatePanel::Create(){
+  return Create(CsbUiFilePath::UIPanelCreatBuilding);
 }
 
-UICreateBuildingPanel::~UICreateBuildingPanel(){
+void UIBuildCreatePanel::Ctor(){
 
-}
-
-void UICreateBuildingPanel::InitPanel(){
-  Node *panel = CSLoader::createNode(CsbUiFilePath::UIPanelCreatBuilding);
-  if(!panel){
-    cocos2d::log("UICreateBuildingPanel::initPanel error No find %s", CsbUiFilePath::UIPanelCreatBuilding.c_str());
-    return;
-  }
-  
-  m_LabelDes   = GBase::DGetChildByName<Label*>(panel, "Text_des");
-  m_LabelCount = GBase::DGetChildByName<Label*>(panel,"Text_count");
-  m_LabelNeed  = GBase::DGetChildByName<Label*>(panel,"Text_need");
-  m_LabelName  = GBase::DGetChildByName<Label*>(panel,"Text_name");
-  m_BackGround = GBase::DGetChildByName<ui::ImageView *>(panel,"Image_bbg");
-  m_BtnBuild   = GBase::DGetChildByName<ui::Button *>(panel,"Button_build");
-  m_NodeLeft   = GBase::DGetChildByName<ui::Layout *>(panel,"Center_Panel_left");
-  m_NodeRight  = GBase::DGetChildByName<ui::Layout *>(panel,"Center_Panel_right");
-  m_NodeTop    = GBase::DGetChildByName<ui::Layout *>(panel,"Top_Panel");
-  m_NodeBottom = GBase::DGetChildByName<ui::Layout *>(panel,"Bottom_Panel");
-  m_NodeCenter = GBase::DGetChildByName<Node *>(panel,"Center_Node");
+  m_LabelDes   = GBase::DGetChildByName<Label*>(this, "Text_des");
+  m_LabelCount = GBase::DGetChildByName<Label*>(this,"Text_count");
+  m_LabelNeed  = GBase::DGetChildByName<Label*>(this,"Text_need");
+  m_LabelName  = GBase::DGetChildByName<Label*>(this,"Text_name");
+  m_BackGround = GBase::DGetChildByName<ui::ImageView *>(this,"Image_bbg");
+  m_BtnBuild   = GBase::DGetChildByName<ui::Button *>(this,"Button_build");
+  m_NodeLeft   = GBase::DGetChildByName<ui::Layout *>(this,"Center_Panel_left");
+  m_NodeRight  = GBase::DGetChildByName<ui::Layout *>(this,"Center_Panel_right");
+  m_NodeTop    = GBase::DGetChildByName<ui::Layout *>(this,"Top_Panel");
+  m_NodeBottom = GBase::DGetChildByName<ui::Layout *>(this,"Bottom_Panel");
+  m_NodeCenter = GBase::DGetChildByName<Node *>(this,"Center_Node");
   m_LabelCount->setVisible(false);  
   m_LabelNeed->setVisible(false); 
   
@@ -43,7 +34,7 @@ void UICreateBuildingPanel::InitPanel(){
   m_BtnBuild->setTitleText(Translate::i18n("common_text_042"));
   m_BtnBuild->addTouchEventListener([this](Ref *pSender, ui::Widget::TouchEventType type){
     if(type == ui::Widget::TouchEventType::ENDED){
-      cocos2d::log("UICreateBuildingPanel::initPanel build");
+      cocos2d::log("UIBuildCreatePanel::initPanel build");
     }
   });
 
@@ -56,18 +47,17 @@ void UICreateBuildingPanel::InitPanel(){
   m_LabelDes->setOpacity(0);
   m_LabelCount->setOpacity(0);
   m_LabelNeed->setOpacity(0);
-  addChild(panel);
 }
 
-void UICreateBuildingPanel::SetBuildingTypeAndData(EBuilding p_BuildingType, int32 p_BuildingIndex){
-  m_BuildableList = BuildingLib::getCanBuildList(p_BuildingType);
+void UIBuildCreatePanel::SetBuildingTypeAndData(EBuildingPlace pType, EBuildingIndex pIndex){
+  //m_BuildableList = BuildingLib::getCanBuildList(pType);
   if(m_SelectWheel == nullptr){
     CreateWheelScrollView();
     m_SelectWheel->setVisible(false);
     runAction(
       Sequence::create(
         CallFunc::create( [this](){
-          this->m_BtnBuild->setScale(0.1);
+          this->m_BtnBuild->setScale(0.1f);
           this->m_NodeLeft->runAction( FadeIn::create(0.5));
           this->m_NodeRight->runAction(FadeIn::create(0.5));
           this->m_NodeTop->runAction(FadeIn::create(0.5));
@@ -76,12 +66,12 @@ void UICreateBuildingPanel::SetBuildingTypeAndData(EBuilding p_BuildingType, int
           this->m_LabelCount->runAction(FadeIn::create(0.5));
           this->m_LabelNeed->runAction(FadeIn::create(0.5));
           this->m_BtnBuild->runAction(Sequence::create(
-            ScaleTo::create(0.3, 1.2),
-            ScaleTo::create(0.1, 1.0),
+            ScaleTo::create(0.3f, 1.2f),
+            ScaleTo::create(0.1f, 1.0f),
             nullptr
           ));
         }),
-        DelayTime::create(0.4),
+        DelayTime::create(0.4f),
         CallFunc::create([this](){
           this->m_SelectWheel->UnfoldAction(0.5);
           this->m_SelectWheel->setVisible(true);
@@ -117,7 +107,7 @@ void UICreateBuildingPanel::SetBuildingTypeAndData(EBuilding p_BuildingType, int
 
 // createButtonCallFun
 
-void UICreateBuildingPanel::UpdateView(){
+void UIBuildCreatePanel::UpdateView(){
 
   m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief));
   m_LabelCount->setVisible(m_CurrentBuilding.bType == EBuildingPlace::Outer);
@@ -160,13 +150,13 @@ void UICreateBuildingPanel::UpdateView(){
   })*/
 }
 
-void UICreateBuildingPanel::WheelScrollBack(const RBuildingSpecs& p_BuildingInfoUnit, size_t p_Index){
+void UIBuildCreatePanel::WheelScrollBack(const RBuildingSpecs& p_BuildingInfoUnit, size_t p_Index){
   m_CurrentIndex = p_Index;
   m_CurrentBuilding = p_BuildingInfoUnit;
   UpdateView();
 }
 
-void UICreateBuildingPanel::SelectWheelByBuildingType(EBuilding p_BuildingType){
+void UIBuildCreatePanel::SelectWheelByBuildingType(EBuilding p_BuildingType){
   if(!m_SelectWheel)
     return;
   
@@ -181,7 +171,7 @@ void UICreateBuildingPanel::SelectWheelByBuildingType(EBuilding p_BuildingType){
   m_CurrentIndex = l_CurIndex;
 }
 
-void UICreateBuildingPanel::CreateWheelScrollView(){
+void UIBuildCreatePanel::CreateWheelScrollView(){
 
   GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
   for(auto l_BuildingUnit : m_BuildableList){
@@ -228,14 +218,14 @@ void UICreateBuildingPanel::CreateWheelScrollView(){
 
 }
 
-void UICreateBuildingPanel::ClickEffect(Node *p_Target){
+void UIBuildCreatePanel::ClickEffect(Node *p_Target){
   auto l_PartNode = BaseCreate::createParticle("et_dianji_display.plist", Vec2(), Vec2(), 0.0f);
   l_PartNode->setName("particle_click_node");
   l_PartNode->setPosition(p_Target->getContentSize().width / 2 -30, p_Target->getContentSize().height / 2 - 30);
   p_Target->addChild(l_PartNode, -1);
 }
 
-void UICreateBuildingPanel::CreateWheelAction(){
+void UIBuildCreatePanel::CreateWheelAction(){
 
   auto l_GuideNode = m_NodeCenter->getChildByName("wheelGuideEffectNode");
   if(!l_GuideNode)

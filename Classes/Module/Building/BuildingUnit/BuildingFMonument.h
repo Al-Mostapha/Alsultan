@@ -16,7 +16,7 @@ public:
 	void onEnter();
 	void ShowAnimWorking(bool p_ShowGlow = false) override;
 	void ShowNormalParticle() override;
-  void Clicked(Touch *p_Touch, Event *p_Event) override;
+  bool Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch) override;
 	static void initBuilingData();
 	CREATE_FUNC(BuildingFMonument);
 

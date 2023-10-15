@@ -16,9 +16,9 @@ public:
 	void onEnter();
 	static void initBuilingData();
 	CREATE_FUNC(BuildingNone);
-
+  
+  bool Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch) override;
 	/**
-
 	void OnBtnClickedDetail();
 	void OnBtnClickedUpgrade();
 	void OnBtnClickedTrain();

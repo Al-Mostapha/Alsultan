@@ -67,14 +67,14 @@ EBuildingViewModel BuildingFArrowTower::getViewModel(int32 walLvl)
 	return EBuildingViewModel::None;
 }
 
-void BuildingFArrowTower::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFArrowTower::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     auto l_Notice = UIMsgNotice::Create();
     l_Notice->InitPanel();
     l_Notice->Notice("notice_0056");
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
   }
+  return true;
 }
 
 void BuildingFArrowTower::UpdateLvl(){

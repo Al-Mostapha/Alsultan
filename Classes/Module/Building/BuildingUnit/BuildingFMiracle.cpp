@@ -40,3 +40,20 @@ void BuildingFMiracle::UpdateLvl(){
   ShowBuildLvl();
   IBuilding::UpdateLvl();
 }
+
+bool BuildingFMiracle::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
+  //   local _iscanbuild, retdata = buildLogic.isCanBuild(BUILDID.MIRACLE)
+  //   local tableCurBuild = {
+  //     bid = BUILDID.MIRACLE,
+  //     iscanbuild = _iscanbuild
+  //   }
+  //   local tableCurRetdata = retdata
+  //   local panel = SoraDCreatePanel("buildCreateInfoPanel")
+  //   panel:initBuildData({
+  //     buildID = tableCurBuild,
+  //     buildData = tableCurRetdata,
+  //     buildType = {buildType = buildType, buildIndex = index}
+  //   })
+  //   panel:show()
+  return true;
+}

@@ -99,7 +99,7 @@ void BuildingFMaterialWorkShop::ShowNormalParticle()
 }
 
 
-void BuildingFMaterialWorkShop::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFMaterialWorkShop::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     auto l_TipInfo = Translate::i18n("common_text_2122", {
       {"name", Translate::i18n("common_text_2123")},
@@ -107,12 +107,13 @@ void BuildingFMaterialWorkShop::Clicked(Touch *p_Touch, Event *p_Event){
     });
     GBase::DShowMsgTip(l_TipInfo, "gongfang.png");
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
+    return true;
   }
 
   auto l_Panel = UIMatrialFactoryView::Create();
   l_Panel->InitPanel();
   l_Panel->Show();
+  return true;
 }
 
 void BuildingFMaterialWorkShop::ShowWorkDone(){

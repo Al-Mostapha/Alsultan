@@ -85,14 +85,14 @@ void BuildingFEpicBattle::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingFEpicBattle::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFEpicBattle::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_2122", {
       {"name", Translate::i18n("epicbattle_title_01")},
       {"lv", std::to_string(GBase::Const::Get()->CastleLvl7)}
     }));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
+    return true;
   }
 
   auto l_Sequance = Sequence::create(
@@ -111,12 +111,12 @@ void BuildingFEpicBattle::Clicked(Touch *p_Touch, Event *p_Event){
     DelayTime::create(0.3f),
     CallFunc::create([](){
       if(!CityScene::Get())
-        return;
+        return true;
       CityScene::Get()->ButtonEpicBattle->setEnabled(true);
       CityScene::Get()->ButtonEpicBattle->setSwallowTouches(false);
     }),
     nullptr
   );
   CityScene::Get()->runAction(l_Sequance);
-  return;
+  return true;
 }

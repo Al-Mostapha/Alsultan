@@ -1,10 +1,13 @@
-#include "Include/IncludeEngine.h"
-#include "Module/UI/Panel/UIPanelBase.h"
-#include "Include/IncludeBuildingBase.h"
+#include "Module/UI/UIBasePanel.h"
+#include "Module/Building/Building.Type.h"
 
 
-class UICreateBuildingPanel : public UIPanelBase
+class UIBuildCreatePanel : public UIBasePanel
 {
+
+  CREATE_FUNC(UIBuildCreatePanel);
+  CreateUIPanel(UIBuildCreatePanel);
+  CreateUICCSView(UIBuildCreatePanel);
 
 private:
 
@@ -28,18 +31,15 @@ private:
 
   
 public:
-  UICreateBuildingPanel();
-  ~UICreateBuildingPanel();
-  void InitPanel() override;
-  void SetBuildingTypeAndData(EBuilding p_BuildingType = EBuilding::None, int32 p_BuildingIndex = 0);
+  static UIBuildCreatePanel* Create();
+  void Ctor() override;
+  void SetBuildingTypeAndData(EBuildingPlace pType, EBuildingIndex pIndex = EBuildingIndex::None);
   void CreateWheelScrollView();
   void WheelScrollBack(const RBuildingSpecs& p_BuildingInfoUnit, size_t p_Index);
   void UpdateView();
   void SelectWheelByBuildingType(EBuilding p_BuildingType);
   void ClickEffect(Node *p_Target);
   void CreateWheelAction();
-  CREATE_FUNC(UICreateBuildingPanel);
-
 };
 
 

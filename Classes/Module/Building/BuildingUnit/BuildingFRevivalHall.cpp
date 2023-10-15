@@ -50,10 +50,10 @@ void BuildingFRevivalHall::onEnter()
 }
 
 
-void BuildingFRevivalHall::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFRevivalHall::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_3499"));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return ;
   }
+  return true;
 }

@@ -136,7 +136,8 @@ GVector<RCityBuildingUnit> BuildingLib::getBuildingResList() {
 GVector<RBuildingSpecs> BuildingLib::getCanBuildList(EBuilding p_BuildingType) {
   GVector<RBuildingSpecs> l_BuildableList;
   for (auto l_building : BuildingStatic::BuildableList) {
-    if (BuildingStatic::BuildingInfo.count(l_building)) l_BuildableList.push_back(BuildingStatic::BuildingInfo[l_building]);
+    if (BuildingStatic::BuildingInfo.count(l_building)) 
+    l_BuildableList.push_back(BuildingStatic::BuildingInfo[l_building]);
   }
   return l_BuildableList;
 }
@@ -154,6 +155,15 @@ EBuildingPlace BuildingLib::DGetBuildTypeByIndex(EBuildingIndex p_Building){
   if(l_BuildingPlace >= 1200) // this also greater the 30k
     return EBuildingPlace::Inner;
   return EBuildingPlace::Outer;
+}
+
+bool BuildingLib::DIsFixedBuild(EBuildingIndex pIndex){
+  auto lBuildingIndex = static_cast<int32>(pIndex);
+  if(lBuildingIndex >= (int32)EBuildingIndex::LeisureCenter && lBuildingIndex <= (int32)EBuildingIndex::ResurrectionHall)
+    return true;
+  if(pIndex == EBuildingIndex::MaterialWorkShop)
+    return true;
+  return false;
 }
 
 EBuildingPlace BuildingLib::DGetBuildTypeByBid(EBuilding p_Building){

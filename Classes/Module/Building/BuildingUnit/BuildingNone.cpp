@@ -1,8 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingNone.h"
+#include "Base/Common/Common.Box.h"
+#include "Module/City/City.Func.Parm.h"
 #include "Module/Player/Player.Static.h"
 #include "Module/Building/Building.Lib.h"
+#include "Module/UI/Panel/Building/UIBuildCreatePanel.h"
 
 BuildingNone::BuildingNone()
 {
@@ -36,6 +39,97 @@ void BuildingNone::onEnter()
 	// setBuildingSleepSprite();
 	// setBuildingIconMiracle();
 }
+
+bool BuildingNone::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
+
+  auto lBuildingIndex = GetBuildingIndex();
+  auto lBuildingType = BuildingLib::Get()->DGetBuildTypeByIndex(lBuildingIndex);
+  if(BuildingLib::Get()->DIsFixedBuild(lBuildingIndex)){
+    GBase::DShowMsgTip(Translate::i18n("notice_0026"));
+    return true;
+  }
+
+  auto lCallFuncCreate = CallFunc::create([&](){
+    auto lIndex = getTag();
+    if(GetBuildingIndex() == EBuildingIndex::MonumentRos)
+      return;
+    auto lPanel = UIBuildCreatePanel::Create();
+    lPanel->Show();
+    lPanel->SetBuildingTypeAndData(lBuildingType, GetBuildingIndex());
+    //   if buildID then
+    //     panel:selectWheelByBid(buildID)
+    //   end
+    static RDoOffestMoveParam p_Parm ;
+    p_Parm._OffsetType = EMainCityViewOffsetType::Building;
+    p_Parm._BuildIndex = GetBuildingIndex();
+    GBase::DSendMessage("MESSAGE_MAINCITYVIEW_OFFSET_BUILD", &p_Parm);
+  });
+
+  //   local spriteTile
+  //   if buildType == 0 then
+  //     if buildIndex == cityBuildConstDef.buildIndexDef.index_Miracle then
+  //       spriteTile = display.newSprite("#" .. "BG_miracle_01.png")
+  //       if SoraDGetFactionType() == FACTION_TYPE.FACTION_BYZANTINE then
+  //         spriteTile = display.newSprite("#" .. "BG_diaoxaing_byzantine_01.png")
+  //       end
+  //     else
+  //       spriteTile = display.newSprite("#" .. "inner_city_building_tile.png")
+  //     end
+  //     if spriteTile then
+  //       build:addChild(spriteTile)
+  //       if buildIndex == cityBuildConstDef.buildIndexDef.index_Miracle then
+  //         print("\229\136\176\232\191\153\233\135\140=====1")
+  //         spriteTile:setPosition(cc.p(129, 51))
+  //         if SoraDGetFactionType() == FACTION_TYPE.FACTION_BYZANTINE then
+  //           spriteTile:setPosition(cc.p(70, 122))
+  //         end
+  //       else
+  //         print("\229\136\176\232\191\153\233\135\140=====2")
+  //         spriteTile:setPosition(cc.p(132, 62))
+  //       end
+  //     end
+  //   else
+  //     local spriteTileName = "res_tile" .. buildIndex
+  //     spriteTile = self.batchNodeOuterTiles:getChildByName(spriteTileName)
+  //   end
+  //   build:setTouchEnabled(false)
+  auto lCallFunc1 = CallFunc::create([&](){
+    if(BuildingSprite)
+      BuildingSprite->runAction(TintBy::create(0.1, -0.5, -0.5, -0.5));
+    GBase::DShowLoading(nullptr, {}, 1000, true);
+  });
+  
+  auto lDelay1 = DelayTime::create(0.2);
+  auto lDelay2 = DelayTime::create(0.1);
+
+  //   local callFunc2 = cca.callFunc(function()
+  //     SoraDCloseLoading(nil, 1000)
+
+  //   end)
+  auto lCallFunc2 = CallFunc::create([&](){
+    GBase::DCloseLoading(nullptr, "1000");
+    if(lBuildingType == EBuildingPlace::Inner && BuildingSprite){
+      auto lRemoveCall = CallFunc::create([&](){
+        if(BuildingSprite)
+          BuildingSprite->removeFromParent();
+      });
+      auto lFadeOut = FadeOut::create(0.1);
+      BuildingSprite->runAction(Sequence::create(lFadeOut, lRemoveCall, nullptr));
+    }
+    //     build:setTouchEnabled(true)
+    //     build:setSwallowTouches(false)
+    m_IsBuildBtnEnabled = true;
+  });
+  //   self:buildCreatePanelShowBegin()
+  m_IsBuildBtnEnabled = false;
+  runAction(
+    Sequence::create(
+      lCallFunc1, lDelay1,
+      lCallFuncCreate, lDelay2,
+      lCallFunc2, nullptr
+    )
+  );
+} 
 
 /**
 void BuildingClassBarrack::setBarrackInfantry() {}

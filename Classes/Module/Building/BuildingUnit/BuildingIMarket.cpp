@@ -33,7 +33,7 @@ void BuildingIMarket::onEnter() {
 	IBuilding::onEnter();
 }
 
-void BuildingIMarket::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingIMarket::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   // if cityBuild:getBuildBid() == BUILDID.MARKET then
   //   local gametop = gModuleMgr.getObject("gametop")
   //   local guideCtrl = gametop.playertop_:getModule("guideCtrl")
@@ -51,6 +51,7 @@ void BuildingIMarket::Clicked(Touch *p_Touch, Event *p_Event){
   //     end
   //   end
   // end
+  return true;
 }
 
 

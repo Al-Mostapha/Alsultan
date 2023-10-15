@@ -36,7 +36,7 @@ void BuildingIDrillGrounds::onEnter() {
 
 }
 
-void BuildingIDrillGrounds::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingIDrillGrounds::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   // if cityBuild:getBuildBid() == BUILDID.DRILL_GROUDS then
   //   local gametop = gModuleMgr.getObject("gametop")
   //   local guideCtrl = gametop.playertop_:getModule("guideCtrl")
@@ -51,6 +51,7 @@ void BuildingIDrillGrounds::Clicked(Touch *p_Touch, Event *p_Event){
   //     guideCtrl:updateGuideModule(gGuideModule.ARENA)
   //   end
   // end
+  return true;
 }
 
 

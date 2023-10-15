@@ -74,14 +74,14 @@ void BuildingFMonument::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingFMonument::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFMonument::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_2122", {
       {"name", Translate::i18n("history_name_11")},
       {"lv", std::to_string(GBase::Const::Get()->CastleLvl6)}
     }));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
+    return true;
   }
   auto l_Sequence = Sequence::create(
     CallFunc::create([this](){
@@ -111,4 +111,6 @@ void BuildingFMonument::Clicked(Touch *p_Touch, Event *p_Event){
   );
   if(CityScene::Get())
     CityScene::Get()->runAction(l_Sequence);
+
+  return true;
 }

@@ -73,15 +73,15 @@ void BuildingFElitePalace::showWorkingEffect()
   addChild(Part5, 10);
 }
 
-void BuildingFElitePalace::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFElitePalace::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_2122", {
       {"name", Translate::i18n("common_text_3129")},
       {"lv", std::to_string(GBase::Const::Get()->CastleLvl16)}
     }));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
   }
+  return true;
 }
 
 void BuildingFElitePalace::ShowWorkDone(){

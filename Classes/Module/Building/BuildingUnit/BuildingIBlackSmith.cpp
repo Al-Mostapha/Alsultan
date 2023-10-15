@@ -75,14 +75,14 @@ void BuildingIBlackSmith::ShowNormalParticle() {
 }
 
 
-void BuildingIBlackSmith::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingIBlackSmith::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     auto l_Notice = UIMsgNotice::Create();
     l_Notice->InitPanel();
     l_Notice->Notice("common_text_796");
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
   }
+  return true;
 }
 
 void BuildingIBlackSmith::ShowAnimWorking(bool p_ShowGlow) {

@@ -73,14 +73,14 @@ void BuildingOCrystalMine::ShowNormalParticle()
 	addChild(Part3, 1);
 }
 
-void BuildingOCrystalMine::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingOCrystalMine::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLockVisible())
-    return;
+    return true;
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_3970", { {"lv", "3"} }));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
   }
-
+  return true;
 }
 
 void BuildingOCrystalMine::ShowWorkDone(){

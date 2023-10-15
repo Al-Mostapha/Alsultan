@@ -105,6 +105,7 @@ class IBuilding : public cocos2d::Node ,public BuildingCell{
   virtual void setBuildingBtn();
   void setBuildingUnitData(RCityBuildingUnit& _CBUD);
   virtual void Clicked(Touch* p_Touch, Event* p_Event);
+  virtual bool Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){ return false; }
   virtual void InitEvents();
   virtual void InitTouchEvents();
   virtual void RemoveBuildingTip();

@@ -39,13 +39,13 @@ void BuildingIHallOfWar::onEnter() {
 
 
 
-void BuildingIHallOfWar::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingIHallOfWar::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsFignting()){
     auto l_Panel = UIAllianceWarView::Create();
     l_Panel->InitData();
     l_Panel->Show();
-    return;
   }
+  return true;
 }
 
 

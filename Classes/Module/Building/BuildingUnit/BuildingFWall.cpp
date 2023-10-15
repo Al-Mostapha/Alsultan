@@ -82,6 +82,6 @@ void BuildingFWall::onEnter()
 }
 
 
-void BuildingFWall::Clicked(Touch *p_Touch, Event *p_Event){
-  
+bool BuildingFWall::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
+  return false;
 }

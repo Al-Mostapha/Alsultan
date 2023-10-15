@@ -40,15 +40,15 @@ void BuildingFBraveStatue::onEnter()
 	// n_UpgradeSprite->setTexture("frame_armor_quality_01.png");
 }
 
-void BuildingFBraveStatue::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFBraveStatue::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_2122", {
       {"name", Translate::i18n("specialization_text_01")},
       {"lv", std::to_string(GBase::Const::Get()->CastleLvl15)}
     }));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
   }
+  return true;
 }
 
 void BuildingFBraveStatue::ShowWorkDone(){

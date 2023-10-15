@@ -84,13 +84,13 @@ void BuildingFPrison::onEnter()
 	IBuilding::onEnter();
 }
 
-void BuildingFPrison::Clicked(Touch *p_Touch, Event *p_Event){
+bool BuildingFPrison::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   if(IsLocked()){
     GBase::DShowMsgTip(Translate::i18n("common_text_2122", {
       {"name", Translate::i18n("buildDes_name_125")},
       {"lv", std::to_string(GBase::Const::Get()->CastleLvl16)}
     }));
     CityLib::Get()->ShowTintOnce(GBase::DGetChildByName<Node *>(this, "buildImg"));
-    return;
   }
+  return true;
 }
