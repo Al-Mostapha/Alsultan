@@ -133,11 +133,11 @@ GVector<RCityBuildingUnit> BuildingLib::getBuildingResList() {
   return BuildingList;
 }
 
-GVector<RBuildingSpecs> BuildingLib::getCanBuildList(EBuilding p_BuildingType) {
+GVector<RBuildingSpecs> BuildingLib::getCanBuildList(EBuildingPlace pBuildingPlace) {
   GVector<RBuildingSpecs> l_BuildableList;
   for (auto l_building : BuildingStatic::BuildableList) {
-    if (BuildingStatic::BuildingInfo.count(l_building)) 
-    l_BuildableList.push_back(BuildingStatic::BuildingInfo[l_building]);
+    // if (BuildingStatic::BuildingInfo.count(l_building)) 
+      l_BuildableList.push_back(BuildingStatic::BuildingInfo[l_building]);
   }
   return l_BuildableList;
 }

@@ -15,10 +15,10 @@ UIBuildCreatePanel *UIBuildCreatePanel::Create(){
 
 void UIBuildCreatePanel::Ctor(){
 
-  m_LabelDes   = GBase::DGetChildByName<Label*>(this, "Text_des");
-  m_LabelCount = GBase::DGetChildByName<Label*>(this,"Text_count");
-  m_LabelNeed  = GBase::DGetChildByName<Label*>(this,"Text_need");
-  m_LabelName  = GBase::DGetChildByName<Label*>(this,"Text_name");
+  m_LabelDes   = GBase::DGetChildByName<ui::Text *>(this, "Text_des");
+  m_LabelCount = GBase::DGetChildByName<ui::Text *>(this,"Text_count");
+  m_LabelNeed  = GBase::DGetChildByName<ui::Text *>(this,"Text_need");
+  m_LabelName  = GBase::DGetChildByName<ui::Text *>(this,"Text_name");
   m_BackGround = GBase::DGetChildByName<ui::ImageView *>(this,"Image_bbg");
   m_BtnBuild   = GBase::DGetChildByName<ui::Button *>(this,"Button_build");
   m_NodeLeft   = GBase::DGetChildByName<ui::Layout *>(this,"Center_Panel_left");
@@ -50,7 +50,9 @@ void UIBuildCreatePanel::Ctor(){
 }
 
 void UIBuildCreatePanel::SetBuildingTypeAndData(EBuildingPlace pType, EBuildingIndex pIndex){
-  //m_BuildableList = BuildingLib::getCanBuildList(pType);
+  _BuildingIndex = pIndex;
+  _BuildingType = pType;
+  m_BuildableList = BuildingLib::getCanBuildList(pType);
   if(m_SelectWheel == nullptr){
     CreateWheelScrollView();
     m_SelectWheel->setVisible(false);
@@ -138,8 +140,9 @@ void UIBuildCreatePanel::UpdateView(){
     }));
   }
 
-  if(m_CurrentBuilding.index == 0)
+  if(_BuildingIndex == EBuildingIndex::None)
     return;
+    
   auto l_Index = m_CurrentBuilding.index;
   auto l_BuildingType = m_CurrentBuilding.buildingType;
 /*
@@ -175,8 +178,7 @@ void UIBuildCreatePanel::CreateWheelScrollView(){
 
   GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
   for(auto l_BuildingUnit : m_BuildableList){
-    UIBuildCreateScrollSingle *l_ScrollSingle = UIBuildCreateScrollSingle::create();
-    l_ScrollSingle->InitPanel();
+    UIBuildCreateScrollSingle *l_ScrollSingle = UIBuildCreateScrollSingle::Create();
     l_ScrollSingle->initData(l_BuildingUnit.buildingType);
     l_ScrollViews.push_back(l_ScrollSingle);
   }

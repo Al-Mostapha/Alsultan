@@ -48,8 +48,8 @@ GBase::DAddMessage(_Self, "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_TIP", CC_CALLBACK_1
 //   SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_CANCEL_DEMOLISH_BUILD", handler(self, self.cancelDemolishBuild))
 //   SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_CANCEL_UPGRADE_BUILD", handler(self, self.cancelUpgradeBuild))
 //   SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_EXCHANGE_BUILD", handler(self, self.exchangeBuild))
-//   SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_ADD_BUILD_PREVIEW", handler(self, self.addBuildPreview))
-//   SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_PREVIEW", handler(self, self.removeBuildPreview))
+GBase::DAddMessage(_Self, "MESSAGE_MAINCITYVIEW_ADD_BUILD_PREVIEW",CC_CALLBACK_1(MainCityMsg::AddBuildPreview, this));
+GBase::DAddMessage(_Self, "MESSAGE_MAINCITYVIEW_REMOVE_BUILD_PREVIEW", CC_CALLBACK_1(MainCityMsg::RemoveBuildPreview, this));
 //   SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_SHOW_HARVEST_ARMY_RESULT", handler(self, self.showHarvestArmyResult))
 //   SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_BUILD_BTN_EVENT", handler(self, self.buildBtnEvent))
 //   SoraDAddMessage(self, "MESSAGE_SERVER_MAINCITYVIEW_ARMY_QUEUE_CALLBACK", handler(self, self.armyQueueCallback))
@@ -224,4 +224,38 @@ void MainCityMsg::RemoveBuildTip(EventCustom *p_Event){
       _Self->_CurrentSelectBuild = nullptr;
     }
   }
+}
+
+void MainCityMsg::AddBuildPreview(EventCustom *p_Event){
+  if(p_Event == nullptr || p_Event->getUserData() == nullptr)
+    return;
+  auto l_Data = static_cast<GPair<EBuildingIndex, EBuilding> *>(p_Event->getUserData());
+  static auto lBuildingIndex = l_Data->First;
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_PREVIEW", &lBuildingIndex);
+  _Self->AddBuild(l_Data->First, l_Data->Second);
+}
+
+
+void MainCityMsg::RemoveBuildPreview(EventCustom *p_Event){
+  if(p_Event == nullptr || p_Event->getUserData() == nullptr)
+    return;
+  auto lBuildingIndex = *static_cast<EBuildingIndex *>(p_Event->getUserData());
+  auto lBuildBtnName = "build_" + std::to_string(static_cast<int32>(lBuildingIndex));
+  auto lBuildButton = _Self->GetBufferNodeByName(lBuildBtnName.c_str());
+  if(lBuildButton == nullptr)
+    return;
+  //   if buildButton then
+  //     local buildContentNode = buildButton:getChildByName("buildName")
+  //     if nil ~= buildContentNode then
+  //       local buildCell = buildContentNode:getBuildCell()
+  //       if buildCell ~= nil then
+  //         return
+  //       end
+  //     end
+  //   end
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_MAINCITYVIEW_REMOVE_BUILD",
+  //     index = buildIndex
+  //   })
+
 }

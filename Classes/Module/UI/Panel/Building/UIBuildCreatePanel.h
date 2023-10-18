@@ -11,10 +11,10 @@ class UIBuildCreatePanel : public UIBasePanel
 
 private:
 
-  Label *m_LabelDes;
-  Label *m_LabelCount;
-  Label *m_LabelNeed;
-  Label *m_LabelName;
+  ui::Text *m_LabelDes;
+  ui::Text *m_LabelCount;
+  ui::Text *m_LabelNeed;
+  ui::Text *m_LabelName;
   Node *m_NodeCenter;
   ui::ImageView *m_BackGround;
   ui::Button *m_BtnBuild;
@@ -28,6 +28,8 @@ private:
   int m_CurrentIndex = 1;
   RBuildingSpecs m_CurrentBuilding;
   RCostBuildingUpgrade m_CostBuildingUpgrade;
+  EBuildingIndex _BuildingIndex = EBuildingIndex::None;
+  EBuildingPlace _BuildingType = EBuildingPlace::None;
 
   
 public:

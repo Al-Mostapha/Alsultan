@@ -25,6 +25,7 @@ enum class EBuilding  {
   DrillGrounds = 121,
   HallOfWar = 122,
   TrainHall = 123,
+  HeroesMonument = 124,
   Prison = 125,
   Farm = 201,
   LumberMill = 202,

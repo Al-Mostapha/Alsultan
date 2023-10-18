@@ -129,6 +129,7 @@ bool BuildingNone::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
       lCallFunc2, nullptr
     )
   );
+  return true;
 } 
 
 /**

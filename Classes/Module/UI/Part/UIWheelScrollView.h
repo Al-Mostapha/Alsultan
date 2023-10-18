@@ -35,7 +35,7 @@ public:
   void removeChildren();
   void setInertiaValue(bool p_Inertia);
   void initData(GVector<Node *> p_Array, float p_PosX, float p_CellHeight, float p_CircleRadius, bool p_IsSound, bool p_IsIgnoreOpacity = false);
-  void ScrollEventCallBack(Ref* p_Ref, ui::ScrollView::EventType p_EventType){}
+  void ScrollEventCallBack(Ref* p_Ref, ui::ScrollView::EventType p_EventType);
   void ScrollTouchEventCallBack(Ref* p_Ref, ui::Widget::TouchEventType p_EventType);
   void UpdateItems();
   void selectedCellIndex(int p_CellIndex, float p_TimeInSec = 0, bool p_Attenuated = false, float p_AttenuatedY = 0);

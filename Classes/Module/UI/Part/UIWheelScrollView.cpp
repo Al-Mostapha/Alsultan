@@ -5,6 +5,7 @@
 UIWheelScrollView *UIWheelScrollView::Create(Size p_Size)
 {
   auto l_View  = CreateBaseView(p_Size, false);
+  l_View->Ctor();
   l_View->setAnchorPoint(Vec2(0, 0));
   l_View->setSwallowTouches(false);
   return l_View;
@@ -59,8 +60,8 @@ void UIWheelScrollView::initData(GVector<Node *> p_Array, float p_PosX, float p_
 void UIWheelScrollView::selectedCellIndex(int p_CellIndex, float p_TimeInSec, bool p_Attenuated, float p_AttenuatedY)
 {
   auto l_ScrollInner = _ScrollView->getInnerContainer();
-  p_CellIndex = std::min(std::max(1, p_CellIndex), (int)m_WidgetArray.size());
-  auto l_OffsetY = m_WidgetArray[p_CellIndex]->getPositionY() - 0.5 * _ScrollView->getContentSize().height + p_AttenuatedY;
+  p_CellIndex = std::min(std::max(1, p_CellIndex), (int)_ItemArray.size());
+  auto l_OffsetY = _ItemArray[p_CellIndex]->getPositionY() - 0.5 * _ScrollView->getContentSize().height + p_AttenuatedY;
   auto l_ScrollPercent = l_OffsetY == 0.0f ? 100.0f : 100.0f * (1 - l_OffsetY / (l_ScrollInner->getContentSize().height - _ScrollView->getContentSize().height));
   if (p_TimeInSec > 0.0f)
   {
@@ -95,15 +96,15 @@ void UIWheelScrollView::ScrollTouchEventCallBack(Ref *p_Sender, ui::Widget::Touc
     {
       _IsScrollToIndex = -1;
       _ScrollView->setTouchEnabled(false);
-      SetTouchDetection(0.3);
+      SetTouchDetection(0.3f);
     }
-    else if (l_CurrentIndex < m_WidgetArray.size() && l_ScrollInner->convertToNodeSpace(
+    else if (l_CurrentIndex < _ItemArray.size() && l_ScrollInner->convertToNodeSpace(
         static_cast<ui::Widget *>(p_Sender)->getTouchBeganPosition()
       ).y >= l_CenterY + 50 * _CellHeight)
     {
       _IsScrollToIndex = 1;
       _ScrollView->setTouchEnabled(false);
-      SetTouchDetection(0.3);
+      SetTouchDetection(0.3f);
     }
 
 
@@ -140,6 +141,25 @@ void UIWheelScrollView::SetTouchDetection(float p_Delay)
             _ScrollView->setTouchEnabled(true); 
         }),
         nullptr));
+}
+
+void UIWheelScrollView::ScrollEventCallBack(Ref* p_Ref, ui::ScrollView::EventType pEvent){
+  UpdateItems();
+  if(pEvent == ui::ScrollView::EventType::SCROLLING_ENDED){
+    if(_IsScrollEnd){
+      pointCurSelectSingle(false);
+      _IsScrollEnd = false;
+      if(!_ScrollView->isTouchEnabled()){
+        _ScrollView->setTouchEnabled(true);
+      }
+    }
+    else{
+      bounceSingle();
+      if(!_ScrollView->isTouchEnabled()){
+        _ScrollView->setTouchEnabled(true);
+      }
+    }
+  }
 }
 
 
@@ -180,7 +200,7 @@ void UIWheelScrollView::bounceSingle(){
   
   auto l_ScrollInner = _ScrollView->getInnerContainer();
   auto l_OffsetY = -l_ScrollInner->getPositionY();
-  auto l_CenterY = l_OffsetY + 0.5 * _ScrollView->getContentSize().height;
+  auto l_CenterY = l_OffsetY + 0.5f * _ScrollView->getContentSize().height;
   auto l_MinOffsetY = 0.0f;
   for(uint32 i = 0; i < _ItemArray.size(); i++)
   {
@@ -199,15 +219,15 @@ void UIWheelScrollView::bounceSingle(){
   }
   if(l_ScrollPercent <= 0)
   {
-    _ScrollView->scrollToTop(0.2, false);
+    _ScrollView->scrollToTop(0.2f, false);
   }
   else if(l_ScrollPercent >= 100)
   {
-    _ScrollView->scrollToBottom(0.2, false);
+    _ScrollView->scrollToBottom(0.2f, false);
   }
   else
   {
-    _ScrollView->scrollToPercentVertical(l_ScrollPercent, 0.2, true);
+    _ScrollView->scrollToPercentVertical(l_ScrollPercent, 0.2f, true);
   }
   _IsScrollEnd = true;
 }
@@ -295,7 +315,7 @@ void UIWheelScrollView::UnfoldAction(float p_delay){
       }
     }
     else if(i == _CurrentIndex){
-      _ItemArray[i]->setScaleY(0.1);
+      _ItemArray[i]->setScaleY(0.1f);
       _ItemArray[i]->runAction(
         ScaleTo::create(l_Delay, 1)
       );

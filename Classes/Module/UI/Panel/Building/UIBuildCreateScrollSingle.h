@@ -1,24 +1,25 @@
 #pragma once
-#include "Include/IncludeEngine.h"
-#include "Module/UI/Panel/UIPanelBase.h"
+#include "Module/UI/UIBasePanel.h"
 #include "Include/IncludeBuildingBase.h"
 
 
-class UIBuildCreateScrollSingle : public UIPanelBase
+class UIBuildCreateScrollSingle : public UIBasePanel
 {
+
+  CREATE_FUNC(UIBuildCreateScrollSingle);
+  CreateUIPanel(UIBuildCreateScrollSingle);
+  CreateUICCSView(UIBuildCreateScrollSingle);
 
 private:
 
-  Label *m_LabelName;
+  ui::Text *m_LabelName;
   ui::ImageView *m_ImgLock;
   Sprite *m_ImgIcon;
   ui::Layout *m_ShowPanel;
   
 public:
-  UIBuildCreateScrollSingle();
-  ~UIBuildCreateScrollSingle();
-  void InitPanel() override;
+  static UIBuildCreateScrollSingle* Create();
+  void Ctor() override;
   void initData(EBuilding p_BuildingType = EBuilding::None);
-  CREATE_FUNC(UIBuildCreateScrollSingle);
 
 };

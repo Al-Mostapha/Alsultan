@@ -5,28 +5,19 @@
 #include "Base/Common/Common.Teml.h"
 
 
-UIBuildCreateScrollSingle::UIBuildCreateScrollSingle(){
-  
+UIBuildCreateScrollSingle *UIBuildCreateScrollSingle::Create(){
+  return Create(CsbUiFilePath::UIBuildCreateScrollSingle);
 }
 
-UIBuildCreateScrollSingle::~UIBuildCreateScrollSingle(){
 
-}
+void UIBuildCreateScrollSingle::Ctor(){
 
-void UIBuildCreateScrollSingle::InitPanel(){
-  Node *panel = CSLoader::createNode(CsbUiFilePath::UIBuildCreateScrollSingle);
-  if(!panel){
-    cocos2d::log("UIBuildCreateScrollSingle::initPanel error No find %s", CsbUiFilePath::UIBuildCreateScrollSingle.c_str());
-    return;
-  }
-
-  m_LabelName = GBase::DGetChildByName<Label *>(panel, "Text_name");
-  m_ImgLock = GBase::DGetChildByName<ui::ImageView *>(panel, "Image_lock");
+  m_LabelName = GBase::DGetChildByName<ui::Text *>(this, "Text_name");
+  m_ImgLock = GBase::DGetChildByName<ui::ImageView *>(this, "Image_lock");
   m_ImgLock->setLocalZOrder(1);
   m_ImgIcon = nullptr;
-  m_ShowPanel = GBase::DGetChildByName<ui::Layout *>(panel, "Panel_transparent");
+  m_ShowPanel = GBase::DGetChildByName<ui::Layout *>(this, "Panel_transparent");
   m_ShowPanel->setSwallowTouches(false);
-  addChild(panel);
 }
 
 
