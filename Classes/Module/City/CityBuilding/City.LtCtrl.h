@@ -12,5 +12,7 @@ class CityLtCtrl{
     static CityLtCtrl *Get();
     GString GetBuildStarLight(int32 pStarLv);
     int32 GetBuildStarColor(int32 pStarLv);
-  
+    bool IsOpenWL(EBuilding pBuilding){
+      return true;
+    };
 };

@@ -1,8 +1,18 @@
 #include "UIBuildingTipPanel.h"
 #include "UIBuildingTipButton.h"
+#include "Base/Common/Common.City.h"
 #include "Module/Building/IBuilding.h"
 #include "Module/Faction/Faction.Ctrl.h"
 #include "Module/Building/Building.Lib.h"
+#include "Module/Building/Building.Logic.h"
+#include "Module/City/CityBuilding/City.LtCtrl.h"
+#include "Module/Activity/ClientEvent.Mgr.h"
+#include "Module/Vip/PrivilegeGift.Ctrl.h"
+#include "Module/Guild/Alliance.Mgr.h"
+#include "Module/Player/LordInfo.Ctrl.h"
+#include "Module/World/WorldMap/WorldMap.Define.h"
+#include "Module/World/WorldWar/PyramidWar/ConquestWar.Ctrl.h"
+#include "Game/Config/FunUnLock/FunUnlock.Read.h"
 
 
 float UIBuildingTipPanel::ACTION_TIME = 0.13f;
@@ -27,15 +37,13 @@ void UIBuildingTipPanel::CreateUI(){
   _CircleFrameBg = GDisplay::Get()->NewSprite("frame_main_build_03.png");
   addChild(_CircleFrameBg);
   _CircleFrameBg->setPosition(0, -194);
-  // local imgNameBg = ccui.ImageView:create()
   _BuildingNameFrame = ui::ImageView::create();
-  // imgNameBg:loadTexture("title_main_build.png", ccui.TextureResType.plistType)
   _BuildingNameFrame->loadTexture("title_main_build.png", ui::Widget::TextureResType::PLIST);
   _BuildingNameFrame->setScale9Enabled(true);
   _BuildingNameFrame->setCapInsets(cocos2d::Rect(50, 26, 92, 4));
   _BuildingNameFrame->setContentSize(Size(192, 56));
   addChild(_BuildingNameFrame);
-  // imgNameBg:setPosition(cc.p(0, 165))
+
   _BuildingNameFrame->setPosition(Vec2(0, 165));
   _LabelBuildName = ui::Text::create();
   _LabelBuildName->setFontSize(22);
@@ -100,184 +108,195 @@ void UIBuildingTipPanel::RecycleAllBtns(){}
 void UIBuildingTipPanel::DelayInitView(){
   if(this->_RelyBuildCfgId == EBuilding::None)
     return;
-  auto l_RelyBuildData = FactionCtrl::Get()->getCityBuildTipsInfo(_RelyBuildCfgId);
-  _LabelBuildName->setString(Translate::i18n(l_RelyBuildData.BuildingName.c_str()));
+  auto lRelyBuildData = FactionCtrl::Get()->getCityBuildTipsInfo(_RelyBuildCfgId);
+  _LabelBuildName->setString(Translate::i18n(lRelyBuildData.BuildingName.c_str()));
   if(_LabelBuildName->getContentSize().width > 160){
     _BuildingNameFrame->setContentSize(Size(_LabelBuildName->getContentSize().width + 30, 56));
     _LabelBuildName->setPositionX(_BuildingNameFrame->getContentSize().width / 2);
   }
-  // if nil == buildEntity then
-  //   if relyBuildData.CityBuildingState == EnumCityBuildingStates.eCBS_Normal then
-  //     local OpList = self:fillBtnOpList({}, relyBuildData.NormalOperateList)
-  //     local buttonList = self:GetButtonArrayByOpList(OpList)
-  //     self:RearrangeBtnByCircle(buttonList)
-  //   end
-  //   return
-  // end
-  auto l_IdBuilding = _RelyBuildEntity->GetBuildingId();
-  auto l_BuildingIndex = _RelyBuildEntity->GetBuildingIndex();
-  auto l_BuildType = BuildingLib::Get()->DGetBuildTypeByBid(l_IdBuilding);
-  auto l_BuildingState = _RelyBuildEntity->GetState();
-  if(l_BuildingState == EBuildingState::Building){
-    if(!_RelyBuildEntity->GetBuildingQueue())
-      l_BuildingState = EBuildingState::Normal;
-  }else if(l_BuildingState == EBuildingState::Upgrading){
-    if(!_RelyBuildEntity->GetBuildingQueue())
-      l_BuildingState = EBuildingState::Normal;
-  }else if(l_BuildingState == EBuildingState::Demolishing){
-    if(!_RelyBuildEntity->GetBuildingQueue())
-      l_BuildingState = EBuildingState::Normal;
+
+  if(_RelyBuildEntity == nullptr){
+    if(lRelyBuildData._CityBuildingState == ECityBuildingState::Normal){
+      auto lOpList = FillBtnOpList({}, lRelyBuildData.NormalOperateList);
+      auto lButtonList = GetButtonArrayByOpList(lOpList);
+      RearrangeBtnByCircle(lButtonList);
+    }
+    return;
   }
-  if(l_IdBuilding == EBuilding::StarBraveStatue)
+
+  auto lIdBuilding    = _RelyBuildEntity->GetBuildingId();
+  auto lBuildingIndex = _RelyBuildEntity->GetBuildingIndex();
+  auto lBuildType     = BuildingLib::Get()->DGetBuildTypeByBid(lIdBuilding);
+  auto lBuildingState = _RelyBuildEntity->GetState();
+  
+  if(lBuildingState == EBuildingState::Building){
+    if(!_RelyBuildEntity->GetBuildingQueue())
+      lBuildingState = EBuildingState::Normal;
+  }else if(lBuildingState == EBuildingState::Upgrading){
+    if(!_RelyBuildEntity->GetBuildingQueue())
+      lBuildingState = EBuildingState::Normal;
+  }else if(lBuildingState == EBuildingState::Demolishing){
+    if(!_RelyBuildEntity->GetBuildingQueue())
+      lBuildingState = EBuildingState::Normal;
+  }
+  if(lIdBuilding == EBuilding::StarBraveStatue)
     _BuildingNameFrame->setPositionY(230);
 
-  //   if buildState == BUILD_STATE.NORMAL then
-  //   self.circleOffsetY = self.circleOffsetNormal
-  //   if true == buildEntity:getIsTraining() then
-  //     self.circleOffsetY = self.circleOffsetCooling
-  //     operateType = "TrainingOperateList"
-  //   else
-  //     operateType = "NormalOperateList"
-  //     if buildEntity and buildEntity:getBuildLv() >= CASTLE_MAXLV_NOWAR then
-  //       OpList[BOP_NAME.BOP_UPGRADE] = false
-  //       if cityltCtrl.isOpenWL(buildBid) and not buildLogic.buildLvIsFull(buildBid, iid) then
-  //         OpList[BOP_NAME.BOP_WAR] = true
-  //       end
-  //       if not buildLogic.isBuildingUnlock(buildBid, iid) or buildLogic.buildLvIsFull(buildBid, iid) then
-  //         OpList[BOP_NAME.BOP_WAR] = false
-  //       end
-  //     end
-  //     if buildEntity and buildLogic.buildLvIsFull(buildBid, iid) then
-  //       OpList[BOP_NAME.BOP_UPGRADE] = false
-  //     end
-  //   end
-  //   local cityCtrl = gametop.playertop_:getModule("cityCtrl")
-  //   local castleBcell = cityCtrl:getBuildCell(BUILDID.CASTLE, 0)
-  //   if tonumber(buildBid) == 30001 then
-  //     if tonumber(castleBcell.info.lv) >= CASTLE_MAXLV_NOWAR then
-  //       OpList[BOP_NAME.BOP_BADGEBOURSE] = true
-  //     end
-  //     OpList[BOP_NAME.BOP_FRIEND] = true
-  //     if clientEventMgr.judgeIsOpen(gActivityTimeActivityID.EXOTIC_PAVILION_ACTIVITY) then
-  //       OpList[BOP_NAME.BOP_FOREIGN_PAVILION] = true
-  //     end
-  //   end
-  //   if tonumber(buildBid) == BUILDID.CASTLE then
-  //     local privilegeGiftCtrl = gametop.playertop_:getModule("privilegeGiftCtrl")
-  //     local ret = privilegeGiftCtrl:getCurCanBuyRechargeID()
-  //     local starRet = privilegeGiftCtrl:getCurStarLvCanBuyRechargeID()
-  //     if ret and next(ret) then
-  //       OpList[BOP_NAME.BOP_CITY_GIFT] = true
-  //     end
-  //     if starRet and next(starRet) then
-  //       OpList[BOP_NAME.BOP_CITY_GIFT] = true
-  //     end
-  //   end
-  //   if tonumber(buildBid) == BUILDID.HERO_PRISON and IsArClient then
-  //     OpList[BOP_NAME.BOP_MONUMENT] = true
-  //   end
-  //   local allianceMgr = gametop.playertop_:getModule("allianceMgr")
-  //   local isJoinAllliance = allianceMgr:hasJoinAlliance()
-  //   local depotBcell = cityCtrl:getBuildCell(BUILDID.DEPOT, 0)
-  //   local conquestWarCtrl = gametop.playertop_:getModule("conquestWarCtrl")
-  //   if tonumber(buildBid) == BUILDID.DEPOT and tonumber(depotBcell.info.lv) >= DEPOT_LV_ALLIANCE_TRRASURE and isJoinAllliance then
-  //     OpList[BOP_NAME.BOP_ALLIANCE_TREASURE] = true
-  //   end
-  //   if tonumber(buildBid) == cityBuildConstDef.fixedBuildDef.ResurrectionHall then
-  //     local lordInfoCtrl = gametop.playertop_:getModule("lordInfoCtrl")
-  //     if lordInfoCtrl:getBaseInfo().isSrcKingdomWarEnabled then
-  //       OpList[BOP_NAME.BOP_RESUSCITATE] = true
-  //     end
-  //   end
-  //   if tonumber(buildBid) == cityBuildConstDef.fixedBuildDef.HuoChuang then
-  //     OpList[BOP_NAME.BOP_PREMIUM_VIP_MALL] = true
-  //   end
-  //   if tonumber(buildBid) == BUILDID.HALL_OF_WAR and SoraDIsMilitaryFOpen() then
-  //     OpList[BOP_NAME.BOP_MILITARY_FORTRESS] = true
-  //   end
-  //   if buildType == 1 then
-  //     if buildBid == BUILDID.FARM or buildBid == BUILDID.SAWMILL or buildBid == BUILDID.IRON_MINE or buildBid == BUILDID.STEEL or buildBid == BUILDID.CRYSTAL_MINE then
-  //       local boostToolNum = buildEntity:getBoostToolNum(buildBid)
-  //       if boostToolNum > 0 and false == buildEntity:getHasBuff() then
-  //         OpList.OpBoostByTool = true
-  //       end
-  //     elseif buildBid == BUILDID.HOSTPITAL and true == buildEntity:getIsTraining() and true == self:getHasAnySpeedUpTool() then
-  //       OpList.OpSpeedUpByTool = true
-  //     end
-  //   elseif buildType == 0 and true == buildEntity:getIsTraining() and true == self:getHasAnySpeedUpTool() then
-  //     OpList.OpSpeedUpByTool = true
-  //   end
-  // elseif buildState == BUILD_STATE.BUILDING then
-  //   operateType = "CoolingOperateList"
-  //   if true == self:getHasAnySpeedUpTool() then
-  //     OpList.OpSpeedUpByTool = true
-  //   end
-  //   self.circleOffsetY = self.circleOffsetCooling
-  //   local buttonList = self:GetButtonArrayByOpList(OpList)
-  //   self:RearrangeBtnByCircle(buttonList)
-  //   self.buttonList = buttonList
-  // elseif buildState == BUILD_STATE.UPGRADEING then
-  //   operateType = "CoolingOperateList"
-  //   if true == self:getHasAnySpeedUpTool() then
-  //     OpList.OpSpeedUpByTool = true
-  //   end
-  //   if tonumber(buildBid) == BUILDID.CASTLE then
-  //     local privilegeGiftCtrl = gametop.playertop_:getModule("privilegeGiftCtrl")
-  //     local ret = privilegeGiftCtrl:getCurCanBuyRechargeID()
-  //     if ret and next(ret) then
-  //       OpList[BOP_NAME.BOP_CITY_GIFT] = true
-  //     end
-  //   end
-  //   if tonumber(buildBid) == BUILDID.DEPOT then
-  //     local allianceMgr = gametop.playertop_:getModule("allianceMgr")
-  //     local isJoinAllliance = allianceMgr:hasJoinAlliance()
-  //     local depotBcell = cityCtrl:getBuildCell(BUILDID.DEPOT, 0)
-  //     local conquestWarCtrl = gametop.playertop_:getModule("conquestWarCtrl")
-  //     if tonumber(depotBcell.info.lv) >= DEPOT_LV_ALLIANCE_TRRASURE and isJoinAllliance then
-  //       OpList[BOP_NAME.BOP_ALLIANCE_TREASURE] = true
-  //     end
-  //   end
-  //   if tonumber(buildBid) == BUILDID.HALL_OF_WAR and SoraDIsMilitaryFOpen() then
-  //     OpList[BOP_NAME.BOP_MILITARY_FORTRESS] = true
-  //   end
-  //   self.circleOffsetY = self.circleOffsetCooling
-  // elseif buildState == BUILD_STATE.DEMOLISHING then
-  //   operateType = "CoolingOperateList"
-  //   if true == self:getHasAnySpeedUpTool() then
-  //     OpList.OpSpeedUpByTool = true
-  //   end
-  //   self.circleOffsetY = self.circleOffsetCooling
-  // else
-  //   return
-  // end
-  // if tonumber(buildBid) == BUILDID.WALLS then
-  //   local privilegeGiftCtrl = gametop.playertop_:getModule("privilegeGiftCtrl")
-  //   local ret = privilegeGiftCtrl:getCurWallGiftRechargeID()
-  //   if ret and next(ret) then
-  //     OpList[BOP_NAME.BOP_CITY_LEVEL_GIFT] = true
-  //   end
-  // end
-  // if not IsArClient and self:checkBuildMastery(buildBid, buildState) then
-  //   OpList[BOP_NAME.BOP_MASTERY] = true
-  // end
-  // if tonumber(buildBid) == BUILDID.CARGO_SHIP and self:checkExclusiveVip() then
-  //   OpList[BOP_NAME.BOP_EXCLUSIVE_VIP] = true
-  // end
-  // if tonumber(buildBid) == BUILDID.BLACK_SMITH then
-  //   OpList[BOP_NAME.BOP_ARTIFACT] = commonCheck.ARTIFACT
-  // end
-  // if tonumber(buildBid) == BUILDID.MAGIC_LAMP then
-  //   local breakQueue, classQueue, strengthQueue = buildEntity:getCoolingQueue()
-  //   if breakQueue ~= nil then
-  //     OpList[BOP_NAME.BOP_MAGICLAMP_BREAK] = true
-  //   end
-  //   if classQueue ~= nil then
-  //     OpList[BOP_NAME.BOP_MAGICLAMP_CLASS] = true
-  //   end
-  //   if strengthQueue ~= nil then
-  //     OpList[BOP_NAME.BOP_MAGICLAMP_STRENGTH] = true
-  //   end
-  // end
+  if(lBuildingState == EBuildingState::Normal)
+    _CircleOffsetY = _CircleOffsetNormal;
+
+  GString lOperateType = "";
+  GHashMap<EBuildingTips, bool> lOpList;
+  if(lBuildingState == EBuildingState::Normal){
+    if(_RelyBuildEntity->IsTraining()){
+      _CircleOffsetY = _CircleOffsetCooling;
+      lOperateType = "TrainingOperateList";
+    }else{
+      lOperateType = "NormalOperateList";
+      if(_RelyBuildEntity && _RelyBuildEntity->GetBuildingLvl() >= GBase::Const::Get()->CASTLE_MAXLV_NOWAR){
+        lOpList[EBuildingTips::OpUpgrade] = false;
+        if(CityLtCtrl::Get()->IsOpenWL(lIdBuilding) && !BuildingLogic::Get()->BuildLvIsFull(lIdBuilding, lBuildingIndex)){
+          lOpList[EBuildingTips::OpWar] = true;
+        }
+        if(!BuildingLogic::Get()->IsBuildingUnlock(lIdBuilding, lBuildingIndex) || BuildingLogic::Get()->BuildLvIsFull(lIdBuilding, lBuildingIndex)){
+          lOpList[EBuildingTips::OpWar] = false;
+        }
+      }
+      if(_RelyBuildEntity && BuildingLogic::Get()->BuildLvIsFull(lIdBuilding, lBuildingIndex)){
+        if(_RelyBuildEntity && BuildingLogic::Get()->BuildLvIsFull(lIdBuilding, lBuildingIndex)){
+          lOpList[EBuildingTips::OpUpgrade] = false;
+        }
+      }
+    }
+    
+    auto lCastleBcell = CityCtrl::Get()->GetBuildingCell(EBuilding::Castle, EBuildingIndex::None);
+    if(lIdBuilding == EBuilding::LeisureHouse){
+      if(lCastleBcell->_Info.buildingLvl >= GBase::Const::Get()->CASTLE_MAXLV_NOWAR){
+        lOpList[EBuildingTips::OpBadgeBourse] = true;
+      }
+      lOpList[EBuildingTips::OpFriend] = true;
+      if(ClientEventMgr::Get()->JudgeIsOpen(EActivityTime::EXOTIC_PAVILION_ACTIVITY)){
+        lOpList[EBuildingTips::OpForeignPavilion] = true;
+      }
+    }
+
+    if(lIdBuilding == EBuilding::Castle){
+      auto lRet = PrivilegeGiftCtrl::Get()->GetCurCanBuyRechargeID();
+      auto lStarRet = PrivilegeGiftCtrl::Get()->GetCurStarLvCanBuyRechargeID();
+      if(lRet.size() > 0)
+        lOpList[EBuildingTips::OpCityGift] = true;
+      if(lStarRet.size() > 0)
+        lOpList[EBuildingTips::OpCityGift] = true;
+    }
+    if(lIdBuilding == EBuilding::Prison && GBase::Const::Get()->IsArClient){
+      lOpList[EBuildingTips::OpMonument] = true;
+    }
+    
+    auto lIsJoinAlliance = AllianceManager::Get()->HasJoinAlliance();
+    auto lDepotBcell = CityCtrl::Get()->GetBuildingCell(EBuilding::Depot, EBuildingIndex::None);
+
+    if(
+      lIdBuilding == EBuilding::Depot 
+      && lDepotBcell->_Info.buildingLvl >= GBase::Const::Get()->DEPOT_LV_ALLIANCE_TRRASURE 
+      && lIsJoinAlliance){
+      lOpList[EBuildingTips::OpAllianceTreasure] = true;
+    }
+
+    if(lIdBuilding == EBuilding::ResurrectionHall){
+      if(LordInfoCtrl::Get()->GetBaseInfo().bIsSrcKingdomWarEnabled){
+        lOpList[EBuildingTips::OpResuscitate] = true;
+      }
+    }
+    
+    if(lIdBuilding == EBuilding::CargoShip){
+      lOpList[EBuildingTips::OpPremiumVipMall] = true;
+    }
+    if(lIdBuilding == EBuilding::HallOfWar && GBase::DIsMilitaryFOpen()){
+      lOpList[EBuildingTips::OpMilitaryFortress] = true;
+    }
+
+    if(lBuildType == EBuildingPlace::Outer){
+      auto lBid = lIdBuilding;
+      if(lBid == EBuilding::Farm || lBid == EBuilding::LumberMill || lBid == EBuilding::IronMine || lBid == EBuilding::SilverMine || lBid == EBuilding::CrystalMine){
+        auto lBoostToolNum = _RelyBuildEntity->GetBoostToolNum(lBid);
+        if(lBoostToolNum > 0 && !_RelyBuildEntity->GetHasBuff()){
+          lOpList[EBuildingTips::OpBoostByTool] = true;
+        }
+      } else if(lBid == EBuilding::FirstAidTent && _RelyBuildEntity->IsTraining() && GetHasAnySpeedUpTool()){
+        lOpList[EBuildingTips::OpSpeedUpByTool] = true;
+      }
+    }else if(lBuildType == EBuildingPlace::Inner && _RelyBuildEntity->IsTraining() && GetHasAnySpeedUpTool()){
+      lOpList[EBuildingTips::OpSpeedUpByTool] = true;
+    }
+
+  } else if(lBuildingState == EBuildingState::Building){
+    lOperateType = "CoolingOperateList";
+    if(GetHasAnySpeedUpTool()){
+      lOpList[EBuildingTips::OpSpeedUpByTool] = true;
+    }
+    _CircleOffsetY = _CircleOffsetCooling;
+    auto lButtonList = GetButtonArrayByOpList(lOpList);
+    RearrangeBtnByCircle(lButtonList);
+    _ButtonList = lButtonList;
+  } else if(lBuildingState == EBuildingState::Upgrading){
+    lOperateType = "CoolingOperateList";
+    if(GetHasAnySpeedUpTool()){
+      lOpList[EBuildingTips::OpSpeedUpByTool] = true;
+    }
+    if(lIdBuilding == EBuilding::Castle){
+      auto lRet = PrivilegeGiftCtrl::Get()->GetCurCanBuyRechargeID();
+      if(lRet.size() > 0)
+        lOpList[EBuildingTips::OpCityGift] = true;
+    }
+
+    if(lIdBuilding == EBuilding::Depot){
+      auto lIsJoinAlliance = AllianceManager::Get()->HasJoinAlliance();
+      auto lDepotBcell = CityCtrl::Get()->GetBuildingCell(EBuilding::Depot, EBuildingIndex::None);
+      if(lDepotBcell->_Info.buildingLvl >= GBase::Const::Get()->DEPOT_LV_ALLIANCE_TRRASURE && lIsJoinAlliance){
+        lOpList[EBuildingTips::OpAllianceTreasure] = true;
+      }
+    }
+    if(lIdBuilding == EBuilding::HallOfWar && GBase::DIsMilitaryFOpen()){
+      lOpList[EBuildingTips::OpMilitaryFortress] = true;
+    }
+    _CircleOffsetY = _CircleOffsetCooling;
+  } else if(lBuildingState == EBuildingState::Demolishing){
+    lOperateType = "CoolingOperateList";
+    if(GetHasAnySpeedUpTool()){
+      lOpList[EBuildingTips::OpSpeedUpByTool] = true;
+    }
+    _CircleOffsetY = _CircleOffsetCooling;
+  } else {
+    return;
+  }
+  
+  if(lIdBuilding == EBuilding::Wall){
+    auto lRet = PrivilegeGiftCtrl::Get()->GetCurWallGiftRechargeID();
+    if(lRet.size() > 0)
+      lOpList[EBuildingTips::OpCityLevelGift] = true;
+  } 
+
+  if(!GBase::Const::Get()->IsArClient && CheckBuildMastery(lIdBuilding, lBuildingState)){
+    lOpList[EBuildingTips::OpMastery] = true;
+  }
+  if(lIdBuilding == EBuilding::CargoShip && CheckExclusiveVip()){
+    lOpList[EBuildingTips::OpExclusiveVip] = true;
+  }
+  if(lIdBuilding == EBuilding::Blacksmith){
+    lOpList[EBuildingTips::OpArtifact] = true;
+  }
+  if(lIdBuilding == EBuilding::MagicLamp){
+    //   local breakQueue, classQueue, strengthQueue = buildEntity:getCoolingQueue()
+    //   if breakQueue ~= nil then
+    //     OpList[BOP_NAME.BOP_MAGICLAMP_BREAK] = true
+    //   end
+    //   if classQueue ~= nil then
+    //     OpList[BOP_NAME.BOP_MAGICLAMP_CLASS] = true
+    //   end
+    //   if strengthQueue ~= nil then
+    //     OpList[BOP_NAME.BOP_MAGICLAMP_STRENGTH] = true
+    //   end
+  }
   // local guideCtrl = SoraDGetCtrl("guideCtrl")
   // if commonCheck.BUILD_STAR and (buildBid == BUILDID.CASTLE or not guideCtrl:isGuideNotCompleted(gGuideModule.CITY_STAR_LV)) then
   //   local isFullLv = buildLogic.buildStarLvIsFull(buildBid, iid)
@@ -301,119 +320,108 @@ void UIBuildingTipPanel::DelayInitView(){
   //     end
   //   end
   // end
-  // if tonumber(buildBid) == BUILDID.STAR_BRAVE_STATUE then
-  //   if not SoraDIsBrave8Level() then
-  //     OpList[BOP_NAME.BOP_WARFRAMEFORG] = false
-  //     OpList[BOP_NAME.BOP_WARFRAMESTOREROOM] = false
-  //   end
-  //   if operateType == "TrainingOperateList" then
-  //     OpList[BOP_NAME.BOP_STATUEBRAVE] = false
-  //     if buildRead.getQueueType(buildBid) == gQueueTypeDef.craft_study then
-  //       OpList[BOP_NAME.BOP_WARFRAMEFORG] = false
-  //     else
-  //       OpList[BOP_NAME.BOP_PROCESSSTUDY] = false
-  //     end
-  //   elseif tonumber(buildEntity:getBuildStarState()) == BUILD_STAR_STATE.UPGRADEING then
-  //     OpList[BOP_NAME.BOP_WARFRAMEFORG] = false
-  //     OpList[BOP_NAME.BOP_PROCESSSTUDY] = false
-  //   end
-  // end
-  auto l_OpList = FillBtnOpList(l_RelyBuildData.NormalOperateList);
-
-  //   if buildState == BUILD_STATE.NORMAL then
-  //   local bid = tonumber(buildBid)
-  //   if worldMapDefine.isInWarForbidSoldier(true) then
-  //     if bid == BUILDID.STABLES or bid == BUILDID.RANGE or bid == BUILDID.CHARIOT_PLANT or bid == BUILDID.BARRACKS or bid == BUILDID.FORTRESS or bid == BUILDID.ELITE_PALACE then
-  //       OpList[BOP_NAME.BOP_SPEED_UP_BY_GOLD] = nil
-  //       OpList[BOP_NAME.BOP_SPEED_UP_BY_TOOL] = nil
-  //     elseif buildBid == BUILDID.MARKET then
-  //       OpList[BOP_NAME.BOP_TRADE] = nil
-  //     end
-  //   elseif worldMapDefine.isInLegendLord() and buildBid == BUILDID.MARKET then
-  //     OpList[BOP_NAME.BOP_TRADE] = nil
-  //   end
-  //   if worldMapDefine.isInRadiance() and buildBid == BUILDID.HOSTPITAL then
-  //     OpList[BOP_NAME.BOP_SPEED_UP_BY_GOLD] = nil
-  //   end
-  //   if buildBid == BUILDID.EMBASSY and worldMapDefine.inInCrossWar() then
-  //     OpList[BOP_NAME.BOP_INTETIOR] = nil
-  //   end
-  // end
-  // OpList[BOP_NAME.BOP_METEOR_MAGIC] = nil
-  
-  // local buttonList = self:GetButtonArrayByOpList(OpList)
-  auto l_ButtonList = GetButtonArrayByOpList(l_RelyBuildData.NormalOperateList);
-  // self:RearrangeBtnByCircle(buttonList)
-  RearrangeBtnByCircle(l_ButtonList);
-  // self.buttonList = buttonList
-}
-GHashMap<EBuildingTips , RBuildingTipConfig> 
-UIBuildingTipPanel::FillBtnOpList(GVector<EBuildingTips> p_TipsList){
-  GHashMap<EBuildingTips , RBuildingTipConfig> l_OpList;
-  for(auto l_OneTip : p_TipsList){
-    l_OpList.emplace(
-      l_OneTip, 
-      FactionCtrl::Get()->GetBuildTipButtonCfgById(l_OneTip)
-    );
+  if(lIdBuilding == EBuilding::StarBraveStatue){
+    if(!GBase::DIsBrave8Level()){
+      lOpList[EBuildingTips::OpWarframeForg] = false;
+      lOpList[EBuildingTips::OpWarframeStoreroom] = false;
+    }
+    if(lOperateType == "TrainingOperateList"){
+      lOpList[EBuildingTips::OpstatueBrave] = false;
+      if(_RelyBuildEntity->GetQueueType() == ETask::craft_study){
+        lOpList[EBuildingTips::OpWarframeForg] = false;
+      }else{
+        lOpList[EBuildingTips::OpProcessStudy] = false;
+      }
+    } else if(_RelyBuildEntity->GetBuildingStarState() == EBuildingStarState::UPGRADEING){
+      lOpList[EBuildingTips::OpWarframeForg] = false;
+      lOpList[EBuildingTips::OpProcessStudy] = false;
+    }
   }
-  return l_OpList;
-  //   dump(source, "source", 10)
-  // dump(baseCfg, "baseCfg", 10)
-  // local nationCtrl = SoraDGetCtrl("factionCtrl")
-  // local opList = {}
-  // for _, v in ipairs(baseCfg) do
-  //   if v ~= 0 then
-  //     local info = nationCtrl:getBuildTipButtonCfgById(v)
-  //     opList[info.OpName] = v
-  //   end
-  // end
-  // local BTBED = require_data("build_tips_btn_enum_data")
-  // for k, v in pairs(source) do
-  //   if v then
-  //     opList[k] = BTBED.data[k]
-  //   else
-  //     opList[k] = nil
-  //   end
-  // end
-  // for k, v in pairs(opList) do
-  //   local unlockLv = funUnlockRead.getLvByOpName(k)
-  //   if unlockLv and unlockLv > SoraDGetCastleLv() then
-  //     opList[k] = nil
-  //   end
-  // end
-  // return opList
+
+  lOpList = FillBtnOpList(lOpList, lOperateType);
+
+  if(lBuildingState == EBuildingState::Normal){
+    auto lBID = lIdBuilding;
+    if(WorldMapDefine::Get()->IsInWarForbidSoldier(true)){
+      if(
+        lBID == EBuilding::Stable 
+        || lBID == EBuilding::TargetRange 
+        || lBID == EBuilding::ChariotPlant 
+        || lBID == EBuilding::Barrack 
+        || lBID == EBuilding::Fortress 
+        || lBID == EBuilding::ElitePalace){
+          lOpList.erase(EBuildingTips::OpSpeedUpByGold);
+          lOpList.erase(EBuildingTips::OpSpeedUpByTool);
+        } else if(lBID == EBuilding::Market){
+          lOpList.erase(EBuildingTips::OpTrade);
+        }
+    }else if(WorldMapDefine::Get()->IsInLegendLord() && lBID == EBuilding::Market){
+      lOpList.erase(EBuildingTips::OpTrade);
+    }
+    if(WorldMapDefine::Get()->IsInRadiance() && lBID == EBuilding::FirstAidTent){
+      lOpList.erase(EBuildingTips::OpSpeedUpByGold);
+    }
+    if(lBID == EBuilding::Embassy && WorldMapDefine::Get()->InInCrossWar()){
+      lOpList.erase(EBuildingTips::OpIntetior);
+    }
+  }
+  lOpList.erase(EBuildingTips::OpMeteorMagic);
+  
+  auto l_ButtonList = GetButtonArrayByOpList(lOpList);
+  RearrangeBtnByCircle(l_ButtonList);
+  _ButtonList = l_ButtonList;
+}
+
+GHashMap<EBuildingTips, bool>
+UIBuildingTipPanel::FillBtnOpList(GHashMap<EBuildingTips, bool> pOpList, const GString &pBaseConfig){
+  auto lRelyBuildData = FactionCtrl::Get()->getCityBuildTipsInfo(_RelyBuildCfgId);
+  //pOpList should remove all false values
+  if(pBaseConfig == "NormalOperateList")
+    return FillBtnOpList(pOpList, lRelyBuildData.NormalOperateList);
+  if(pBaseConfig == "CoolingOperateList")
+    return FillBtnOpList(pOpList, lRelyBuildData.CoolingOperateList);
+  if(pBaseConfig == "TrainingOperateList")
+    return FillBtnOpList(pOpList, lRelyBuildData.TrainingOperateList);
+  return pOpList;
+}
+
+GHashMap<EBuildingTips, bool>
+UIBuildingTipPanel::FillBtnOpList(GHashMap<EBuildingTips, bool> pOpList, GVector<EBuildingTips> pBaseConfig){
+  for(auto lOneOp : pOpList.Keys()){
+    if(!pOpList[lOneOp])
+      pOpList.erase(lOneOp);
+  }
+  for(auto lOneOp : pOpList.Keys()){
+    auto lUnlockLv = FunUnlockRead::Get()->GetLvByOpName(lOneOp);
+    if(lUnlockLv > GBase::DGetCastleLv())
+      pOpList.erase(lOneOp);
+  }
+  return pOpList;
 }
 
 GVector<UIBuildingTipButton *>
-UIBuildingTipPanel::GetButtonArrayByOpList(GVector<EBuildingTips> p_TipsList){
-  GVector<UIBuildingTipButton *> l_ArrButtonList;
+UIBuildingTipPanel::GetButtonArrayByOpList(GHashMap<EBuildingTips, bool> pTipsHash){
+  GVector<UIBuildingTipButton *> lArrButtonList;
   // local arrOpList = {}
   // for k, v in pairs(opList) do
   //   table.insert(arrOpList, {OpName = k, btnId = v})
   // end
-  // table.sort(arrOpList, function(lhs, rhs)
-  //   local nationCtrl = SoraDGetCtrl("factionCtrl")
-  //   local lhsData = nationCtrl:getBuildTipButtonCfgById(lhs.btnId)
-  //   local rhsData = nationCtrl:getBuildTipButtonCfgById(rhs.btnId)
-  //   if SoraDFIsRA() then
-  //     return lhsData.OpSortIndex > rhsData.OpSortIndex
-  //   else
-  //     return lhsData.OpSortIndex < rhsData.OpSortIndex
-  //   end
-  // end)
-  for(auto l_OneTip : p_TipsList){
-    l_ArrButtonList.emplace_back(CreateButtonByOpType(l_OneTip));
+  auto lArrOpList = pTipsHash.Keys();
+  std::sort(lArrOpList.begin(), lArrOpList.end(), [](auto lhs, auto rhs){
+    auto lLhsData = FactionCtrl::Get()->GetBuildTipButtonCfgById(lhs);
+    auto lRhsData = FactionCtrl::Get()->GetBuildTipButtonCfgById(rhs);
+    if(GBase::DFIsRA()){
+      return lLhsData.OpSortIndex - lRhsData.OpSortIndex;
+    }else{
+      return lRhsData.OpSortIndex - lLhsData.OpSortIndex;
+    }
+  });
+
+  for(auto l_OneTip : lArrOpList){
+    lArrButtonList.emplace_back(CreateButtonByOpType(l_OneTip));
   }
-  //   for k, v in pairs(arrOpList) do
-  //   local config = op_config[v.OpName] or op_config.undefined
-  //   arrButtonList[#arrButtonList + 1] = self:createButtonByOpType({
-  //     opType = v,
-  //     buildEntity = self:getBuildEntity(),
-  //     handler = config.handler
-  //   })
-  // end
-  // return arrButtonList
-  return l_ArrButtonList;
+  
+  return lArrButtonList;
 }
 
 UIBuildingTipButton *UIBuildingTipPanel::CreateButtonByOpType(EBuildingTips p_Tip){
@@ -498,4 +506,16 @@ void UIBuildingTipPanel::HideTip(){
   stopAllActionsByTag(tag_act_tip_show_end);
   setVisible(false);
   RecycleAllBtns();
+}
+
+bool UIBuildingTipPanel::CheckBuildMastery(EBuilding pBuildingID, EBuildingState pState){
+  return false;
+}
+
+bool UIBuildingTipPanel::CheckExclusiveVip(){
+  return false;
+}
+
+bool UIBuildingTipPanel::GetHasAnySpeedUpTool(){
+  return true;
 }

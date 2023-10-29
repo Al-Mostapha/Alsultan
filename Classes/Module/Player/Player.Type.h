@@ -32,6 +32,7 @@ struct RLordBaseInfo {
     // rs.gold = gold
     // rs.isSrcKingWarEnabled = isSrcKingWarEnabled
     // rs.isSrcKingdomWarEnabled = isSrcKingdomWarEnabled
+    bool bIsSrcKingdomWarEnabled = false;
     // rs.hasBindAccountReward = hasBindAccountReward
     // rs.receiveBindPhone = receiveBindPhone
     // rs.isReachFullExp = leve >= levelMax

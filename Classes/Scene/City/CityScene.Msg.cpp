@@ -2,6 +2,7 @@
 #include "CityScene.View.h"
 #include "Base/Base.Lib.h"
 #include "Module/City/City.Func.h"
+#include "Base/Common/Common.City.h"
 #include "Module/UI/Part/City/Building/UIBuildingTipPanel.h"
 
 MainCityMsg *MainCityMsg::Get(){

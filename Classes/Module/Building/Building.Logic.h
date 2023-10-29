@@ -23,12 +23,12 @@ public:
   int32 IsWarLvl(uint32 p_BuildingLvl) { return false; }
   RWarLvlRet IsBuildIDWarLv(EBuilding p_Building, int32 p_BuildingLvl) {return RWarLvlRet();}
   bool IsShowUpgrade(EBuildingIndex p_BuildingIndex){ return true; }
-  bool BuildLvIsFull(EBuildingIndex p_BuildingIndex){ return false; }
+  bool BuildLvIsFull(EBuilding pBuildingID, EBuildingIndex p_BuildingIndex){ return false; }
   ITask *GetQueueType(EBuildingIndex p_BuildingIndex);
   int32 TransFormBuildLvToWarLv(int32 p_BLvl){ return p_BLvl; }
   int32 GetFreeSpeedUpTime(int32 p_Lvl = 0){return 0;}
   RWarLvlRet IsBuildWarLv(int32 p_Lvl){ return RWarLvlRet(); }
-  bool IsBuildingUnlock(EBuildingIndex p_BuildingIndex){ return false ;}
+  bool IsBuildingUnlock(EBuilding pBuildingID, EBuildingIndex p_BuildingIndex){ return false ;}
   GPair<ETask, GTime> GetIdleBuildQueue();
   EErrDef Build(
     EBuildingIndex p_Index, EOperateMode p_Mode, 

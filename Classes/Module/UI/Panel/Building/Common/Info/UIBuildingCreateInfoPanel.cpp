@@ -403,7 +403,8 @@ void UIBuildingCreateInfoPanel::InitUpgradeView(){
   auto l_Ret = BuildingLogic::Get()->IsBuildWarLv(l_BuildingCell->_Info.buildingLvl);
   if(l_Ret._IsWar){
     auto l_IId = _TableBuildInfo._BuildId._IID;
-    if(BuildingLogic::Get()->BuildLvIsFull(l_IId) || BuildingLogic::Get()->IsBuildingUnlock(l_IId)){
+    auto lBid = _TableBuildInfo._BuildId._Bid;
+    if(BuildingLogic::Get()->BuildLvIsFull(lBid, l_IId) || BuildingLogic::Get()->IsBuildingUnlock(lBid, l_IId)){
       RunActClose();
       return;
     }
@@ -1297,7 +1298,7 @@ void UIBuildingCreateInfoPanel::Upgrade(EOperateMode p_Mode){
     l_MsgData.Second = l_Iid;
     GBase::DSendMessage("MESSAGE_BUILD_UPGRADE", &l_MsgData);
     CityCtrl::Get()->UpgradeBuildReq(l_Iid, l_Bid, p_Mode);
-    auto l_IsFullLv = BuildingLogic::Get()->BuildLvIsFull(l_Iid);
+    auto l_IsFullLv = BuildingLogic::Get()->BuildLvIsFull(l_Bid, l_Iid);
     if((p_Mode == EOperateMode::Immediately || p_Mode == EOperateMode::FREE) && !l_IsFullLv){
     GBase::DRemoveAllPrePanelFromManager(this, true);
       _FirstRunWar = true;

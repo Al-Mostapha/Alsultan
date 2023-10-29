@@ -5,6 +5,7 @@
 #include "Module/UI/Panel/Lord/LordInfo/UILordPowerView.h"
 #include "Module/Vip/ExaltedPrivilege.Ctrl.h"
 #include "Base/Common/Common.Teml.h"
+#include "Base/Common/Common.City.h"
 #include "Engine/Engine.h"
 #include "Scene/Scene.Type.h"
 // #include "spine/SkeletonAnimation.h"

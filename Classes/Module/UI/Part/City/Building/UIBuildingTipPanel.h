@@ -29,6 +29,7 @@ public:
   class Sprite *_CircleFrameBg;
   ui::ImageView *_BuildingNameFrame;
   ui::Text *_LabelBuildName;
+  GVector<UIBuildingTipButton *> _ButtonList;
   // self.tbBtnInuse = {}
   // self.tbBtnNotUse = {}
   void CreateUI();
@@ -42,8 +43,12 @@ public:
   void RecycleAllBtns();
   void DelayInitView();
   void HideTip();
-  GHashMap<EBuildingTips , RBuildingTipConfig> FillBtnOpList(GVector<EBuildingTips> p_TipsList);
-  GVector<UIBuildingTipButton *>GetButtonArrayByOpList(GVector<EBuildingTips> p_TipsList);
+  GHashMap<EBuildingTips, bool> FillBtnOpList(GHashMap<EBuildingTips, bool> pOpList, GVector<EBuildingTips> pBaseConfig);
+  GHashMap<EBuildingTips, bool> FillBtnOpList(GHashMap<EBuildingTips, bool> pOpList, const GString &pBaseConfig);
+  GVector<UIBuildingTipButton *>GetButtonArrayByOpList(GHashMap<EBuildingTips, bool> pTipsHash);
   UIBuildingTipButton *CreateButtonByOpType(EBuildingTips p_Tip);
   void RearrangeBtnByCircle(GVector<UIBuildingTipButton *> p_BtnList);
+  bool CheckBuildMastery(EBuilding pBuildingID, EBuildingState pState);
+  bool CheckExclusiveVip();
+  bool GetHasAnySpeedUpTool();
 };

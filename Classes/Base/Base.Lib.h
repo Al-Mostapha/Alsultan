@@ -45,7 +45,6 @@ int32 PlaySound(const char* p_SoundName,  const GString &pIndex, float p_delay =
 int32 PlaySound(const char* p_SoundName,  int32 pIndex, float p_delay = 0.0f, bool p_Tag3d = false);
 const char* getSoundPath(const char* p_SoundName);
 void DFTarget(Node* p_node);
-EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building);
 bool IsTouchOnNode(Vec2 p_Point, Node* p_Node);
 
 float DGetAutoHeightLabel(ui::Text* p_Label, float p_Width = 0.0f);
@@ -55,8 +54,7 @@ void DSetTextWidthHeight(ui::Text* p_Label, Size p_Size);
 void DSetTextWidthHeight(Label* p_Label, Size p_Size);
 void DShowMsgTip(const GString& p_Message, const GString& p_Icon = "",  Node *p_Target = nullptr);
 
-GTuple<bool, int32, GString> DGetBuildWarLv(const uint32 p_BuildingLvl);
-GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building);
+
 
 bool DRemoveTimer(Node* p_Target, Scheduler* p_Scheduler);
 // this calld when player click on a building black smith
@@ -91,7 +89,7 @@ void DShowCastleUPView();
 void DShowRateStarView();
 class UIPanelBase* DCurrentTopPanelFromManager();
 
-bool DIsBrave8Level();
+
 void DMixtureGLONE(Sprite* p_Node);
 void DMixtureGLONEByParent(Node* p_Node);
 void DRemoveMessageByTarget(Node* p_Node);

@@ -39,19 +39,23 @@ enum class EBuilding  {
   ElitePalace = 302,
   Monument = 303,
   StarBraveStatue = 304,
+  NEBULA_PALACE = 305,
   LeisureHouse = 30001,
-  HIP = 30002, // El tager El ageeb
+  CargoShip = 30002, // El tager El ageeb HuoChuang
   PetHouse = 30003,
   ResurrectionHall = 30004,
   ServiceCenter = 30005,
   EpicBattle = 30006,
   Mastery = 30008,
+  MagicLamp = 30010,
   AreaLock_1221 = 1221,
   AreaLock_1222 = 1222,
   AreaLock_1223 = 1223,
   AreaLock_1224 = 1224,
-  NEBULA_PALACE
+  
 };
+
+
 
 enum class EBuildingPlace { // inner / outter
   Inner = 0,
@@ -169,6 +173,10 @@ enum class EBuildingViewModel {
   ViewModel_8 = 8
 };
 
+enum class EBuildingStarState{
+  NORMAL = 0,
+  UPGRADEING = 1
+};
 
 enum class EBuildingState {
   
@@ -186,6 +194,18 @@ enum class EBuildingState {
   Idle,
   Working, 
   Harvesting
+};
+
+enum class ECityBuildingState{
+  None = 0,
+  Normal = 1,
+  Upgrading_No_Alliance_Help = 2,
+  Upgrading_With_Alliance_Help = 3,
+  Cooling = 4
+};
+
+enum class EWatchTowerEffect{
+  None = 0
 };
 
 enum class EHarvestState{
@@ -290,3 +310,84 @@ enum class EBuildingUIType{
   UITypeRelyOn = 2
 };
 
+
+enum class EBuildingTips
+{
+	OpNone = 0,
+	OpBoostByTool = 1001,
+	OpBoost = 1002,
+	OpDetails = 1003,
+	OpSpeedUpByGold = 1004,
+	OpSpeedUpByTool = 1005,
+	OpUpgrade = 1006,
+	OpTrade = 1007,
+	OpAuction = 1008,
+	OpResearch = 1009,
+	OpBuild = 1010,
+	OpTrain = 1011,
+	OpHelp = 1012,
+	OpReinforcements = 1013,
+	OpWish = 1014,
+	OpAllianceBattle = 1015,
+	OpDefend = 1016,
+	OpMilitaryInfo = 1017,
+	OpCityInfo = 1018,
+	OpCityDecorate = 1019,
+	OpCityGift = 1020,
+	OpAllianceTreasure = 1021,
+	OpCityBuff = 1022,
+	OpHeal = 1023,
+	OpCollect = 1024,
+	OpForging = 1025,
+	OpStoragebox = 1026,
+	OpPyramid = 1027,
+	OpBadgeBourse = 1028,
+	OpFriend = 1029,
+	OpMilitaryPoint = 1030,
+	OpWar = 1031,
+	OpMonthGift = 1032,
+	OpDailySign = 1033,
+	OpResuscitate = 1034,
+	OpDailyReward = 1035,
+	OpPet = 1036,
+	OpPetMap = 1037,
+	OpPetExchange = 1038,
+	OpPremiumVipMall = 1039,
+	OpWarGem = 1040,
+	OpWarTechnology = 1041,
+	OpArena = 1042,
+	OpDiscuss = 1043,
+	OpSupport = 1044,
+	OpSpringOfLife = 1045,
+	OpFaction = 1046,
+	OpInfoCenter = 1047,
+	OpMonument = 1048,
+	OpTrainHall = 1049,
+	OpPrison = 1050,
+	OpMastery = 1051,
+	OpMainMastery = 1052,
+	OpDrawing = 1053,
+	OpArtifact = 1054,
+	OpMonumentLegend = 1055,
+	OpIntetior = 1056,
+	OpCounterSys = 1057,
+	OpExclusiveVip = 1058,
+	OpStarUpgrade = 1059,
+	OpStarSpeedUp = 1060,
+	OpEndlessTreasure = 1061,
+	OpProcessStudy = 1062,
+	OpWarframeForg = 1063,
+	OpWarframeStoreroom = 1064,
+	OpstatueBrave = 1065,
+	OpMilitaryFortress = 1066,
+  OpForeignPavilion = 1067,
+  OpNebulaTechnology = 1068,
+  OpNebulaTechnologyReward = 1069,
+  OpMeteorMagic = 1070,
+  OpMagicLamp = 1071,
+  OpMagicLampPray = 1072,
+  OpMagicLampBreak = 1073,
+  OpMagicLampStrength = 1074,
+  OpMagicLampClass = 1075,
+  OpCityLevelGift = 1076,
+};

@@ -11,6 +11,7 @@ struct RBuildingCellInfo {
   int32 buildingLvl;
   int32 starLvl;
   EBuildingState state;
+  EBuildingStarState stateEx;
   void FromJson(const XJson &pJson);
 };
 

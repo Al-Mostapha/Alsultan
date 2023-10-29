@@ -39,8 +39,6 @@ const char* getSoundPath(const char* p_SoundName) { return StringUtils::format("
 
 void DFTarget(Node* p_node) {}
 
-EBuildingPlace DGetBuildingTypeByIndex(EBuildingIndex p_Building) { return EBuildingPlace::Outer; }
-
 bool IsTouchOnNode(Vec2 p_Point, Node* p_Node) {
   bool l_IsOnNode = false;
   if (!p_Node) return l_IsOnNode;
@@ -104,10 +102,6 @@ void DShowMsgTip(const GString& p_Message, const GString& p_Icon, Node *p_Target
   l_Panel->ShowTip(p_Message, l_IconSprite);
 }
 
-GTuple<bool, int32, GString> DGetBuildWarLv(const uint32 p_BuildingLvl) { 
-  return {false, 1, "Desc or perc"}; 
-}
-GPair<int32, int32> DGetBuildStarLv(const EBuilding p_Building) { return GPair<int32, int32>::Make(0, 0); }
 void DGetEquip() {}
 bool DRemoveTimer(Node* p_Target, Scheduler* p_Scheduler) { return false; }
 
@@ -228,8 +222,6 @@ class UIPanelBase* DCurrentTopPanelFromManager() {
   return nullptr;
 }
 
-
-bool DIsBrave8Level() { return false; }
 
 void DMixtureGLONE(Sprite* p_Node) {
   if(!p_Node) return;

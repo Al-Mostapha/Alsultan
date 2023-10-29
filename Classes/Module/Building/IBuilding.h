@@ -96,6 +96,8 @@ class IBuilding : public cocos2d::Node ,public BuildingCell{
   virtual void setBuildingSleepSprite();
   virtual void setBuildingIconMiracle();
 
+  int32 GetBoostToolNum(EBuilding pBuilding = EBuilding::None);
+
   virtual void ShowNormalParticle();
   virtual void HideNormalParticle();
   virtual void ShowBrightParticle();
@@ -135,6 +137,7 @@ class IBuilding : public cocos2d::Node ,public BuildingCell{
   virtual bool RequestHelp() { return false; }
 
   virtual EBuildingState GetState() { return EBuildingState::None; }
+  virtual EBuildingStarState GetBuildingStarState() { return EBuildingStarState::NORMAL; }
   static Vector<SpriteFrame*> getAnimation(GString Frame, int32 start, int32 end);
 
   virtual void SMsgRemoveBuff(EventCustom* p_Event);

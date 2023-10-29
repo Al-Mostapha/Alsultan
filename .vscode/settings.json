@@ -94,7 +94,8 @@
     "set": "cpp",
     "any": "cpp",
     "valarray": "cpp",
-    "codecvt": "cpp"
+    "codecvt": "cpp",
+    "*.xsd": "cpp"
   },
   "search.exclude": {
     "**/build": true,

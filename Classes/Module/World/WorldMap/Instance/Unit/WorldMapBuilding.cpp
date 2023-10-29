@@ -1,4 +1,5 @@
 #include "WorldMapBuilding.h"
+#include "Base/Common/Common.City.h"
 #include "Module/Guild/Alliance.Read.h"
 #include "Module/World/Kingdom/KingdomMap.Ctrl.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"

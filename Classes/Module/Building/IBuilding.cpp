@@ -1,6 +1,7 @@
 #include "IBuilding.h"
 #include <memory>
 #include "Building.Event.h"
+#include "Base/Common/Common.City.h"
 #include "Module/Army/Army.Ctrl.h"
 #include "Module/Building/Building.Logic.h"
 #include "Module/Building/BuildingLib/StuffWorkshop.Ctrl.h"
@@ -1248,4 +1249,19 @@ bool IBuilding::CheckCanTrainOrUpgrade(){
   // end
   // return canTrainOrUpgrade
   return true;
+}
+
+int32 IBuilding::GetBoostToolNum(EBuilding pBuilding){
+  // if bid == nil then
+  //   bid = self:getBuildBid()
+  // end
+  // local gametop = gModuleMgr.getObject("gametop")
+  // local backpackCtrl = gametop.playertop_:getModule("backpackCtrl")
+  // local itemId = self:getBoostToolId(bid)
+  // local itemCount = 0
+  // if itemId ~= nil then
+  //   itemCount = backpackCtrl:getItemCount(itemId)
+  // end
+  // return itemCount
+  return 0;
 }

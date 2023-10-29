@@ -9,6 +9,7 @@ USING_NS_CC;
 struct RBuildingTipsBtnListData{
   int32 bid;
   EBuilding idBuilding;
+  ECityBuildingState _CityBuildingState = ECityBuildingState::None;
   GString BuildingName = "buildDes_name_101";
   GString PicFile;
   GString ImgFile;

@@ -1,6 +1,6 @@
 #pragma once 
 #include "Include/IncludeEngine.h"
-#include "Module/Building/BuildingTips/BuildingTips.Enum.h"
+#include "Module/Building/Building.Enum.h"
 
 class UIBuildingTipButton;
 class BuildingTipsHandle{

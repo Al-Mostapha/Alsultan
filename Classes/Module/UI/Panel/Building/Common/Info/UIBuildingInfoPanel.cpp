@@ -102,7 +102,7 @@ void UIBuildingInfoPanel::InitData(EBuildingIndex p_Index, IBuilding *p_Building
   auto l_IsNeedShow = false;
   if(_Building){
     if(_Building->GetState() == EBuildingState::Building || _Building->IsTraining()){
-      if(BuildingLogic::Get()->BuildLvIsFull(_BuildingIndex))
+      if(BuildingLogic::Get()->BuildLvIsFull(_Building->GetBuildingId() ,_BuildingIndex))
         l_IsNeedShow = true;
     }
   }
