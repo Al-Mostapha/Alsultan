@@ -143,7 +143,7 @@ struct RBuildingSpecs {
   int32 openWl = 0;
   int32 openStar = 0;
   int32 maxStarLv = 0;
-  bool isCanBuild = true;
+  int32 isCanBuild = 1; // 0, 1, 2
   const char *BuildingName = "Building Name";
   const char *BuildingIcon = "quest_building_114.png";
   const char *BuildingBrief = "";

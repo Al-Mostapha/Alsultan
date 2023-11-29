@@ -25,7 +25,7 @@ void UIMsgTip::ShowTip( GString p_Message, Node *p_Icon ){
 
   CCAssert(_Panel, "No Panel set");
   if(!_Panel){
-    Logger::Log("UIMsgTip Panel Not Found", ELogLvl::Error, true);
+    Logger::Get()->Log("UIMsgTip Panel Not Found", ELogLvl::Error, true);
     return;
   }
 

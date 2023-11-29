@@ -27,18 +27,18 @@ IRequest *BuildingService::GetBuildingList(int32 pCityId){
     },
     [pCityId](auto pJson, auto pReq){
       if(pJson.is_null()){
-        Logger::Log("GetBuildingList is null");
+        Logger::Get()->Log("GetBuildingList is null");
         return;
       }
       
       if(!CityStatic::Get()->GetCityList().Contains(pCityId)){
-        Logger::Log("GetBuildingList City is not found");
+        Logger::Get()->Log("GetBuildingList City is not found");
         return;
       }
 
       auto lState = pJson.value("State", "");
       if(lState != "Ok"){
-        Logger::Log("GetBuildingList State is not Success");
+        Logger::Get()->Log("GetBuildingList State is not Success");
         return;
       }
       

@@ -29,7 +29,7 @@ void IBuilding::RemoveBuildingTip() {}
 bool IBuilding::IgnoreClickEvent(Touch* p_Touch, Event* p_Event) const {
   auto l_TPoint = p_Touch->getLocation();
   if (!CityScene::Get()) {
-    Logger::Log("Current Scene is not CityScene", ELogLvl::Error, true);
+    Logger::Get()->Log("Current Scene is not CityScene", ELogLvl::Error, true);
     CCASSERT(CityScene::Get(), "Current Scene is not CityScene");
     return false;
   }

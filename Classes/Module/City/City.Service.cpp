@@ -22,12 +22,12 @@ IRequest *CityService::GetCityList()
     "/api/ACity/GetCityList", 
     [](const XJson &lJson, auto lReq){
       if(lJson.is_null()){
-        Logger::Log("GetCityList is null");
+        Logger::Get()->Log("GetCityList is null");
         return;
       }
       auto lState = lJson.value("State", "");
       if(lState != "Ok"){
-        Logger::Log("GetCityList State is not Success");
+        Logger::Get()->Log("GetCityList State is not Success");
         return;
       }
       auto lCityList = lJson.value("CityList", XJson::array());

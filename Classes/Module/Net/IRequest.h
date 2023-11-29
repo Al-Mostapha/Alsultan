@@ -11,6 +11,8 @@ class IResponse ;
 
 typedef std::function<void(IResponse *, class IRequest *)> ReqCallback;
 
+
+
 class IRequest : public Ref{
   public:
   GString _Url = "";
@@ -50,8 +52,20 @@ class IRequest : public Ref{
 
   GString GetRequestID() { return _RequestID; }
   void SetRequestID(const GString &pID) { _RequestID = pID; }
-
   
+  static GString GenerateUUID() {
+      char buffer[64];
+      snprintf(buffer, sizeof(buffer),
+              "%04X%04X-%04X-%04X-%04X-%04X%04X%04X",
+              rand() & 0xFFFF, rand() & 0xFFFF,
+              rand() & 0xFFFF,
+              ((rand() & 0x0FFF) | 0x4000),
+              rand() & 0x3FFF | 0x8000,
+              rand() & 0xFFFF, rand() & 0xFFFF, rand() & 0xFFFF);
+
+      return GString(buffer);
+  }
+    
 
   virtual void Send() = 0;
 

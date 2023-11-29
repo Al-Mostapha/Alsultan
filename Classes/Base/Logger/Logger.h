@@ -4,5 +4,6 @@
 
 class Logger{
 public:
-  static void Log(const GString &p_msg, ELogLvl p_LogLvl = ELogLvl::Debug, bool p_isBackTrace = false);
+  static Logger *Get();
+  void Log(const GString &p_msg, ELogLvl p_LogLvl = ELogLvl::Debug, bool p_isBackTrace = false);
 };

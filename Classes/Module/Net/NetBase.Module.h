@@ -30,7 +30,10 @@ public:
     IRequest *GetJson(
       const GString &url, const XJson &pParams,
       std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
-    static Net::HttpRequest *_createHttp(const GString &url);
+    IRequest *GetJsonFile(
+      const GString &url, 
+      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);  
+    Net::HttpRequest *_createHttp(const GString &url);
     static NetModule *getInstance();
     static bool getJson(const GString &url, JsonStrCallBack callback);
     static void _post();

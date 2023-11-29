@@ -10,7 +10,7 @@ RScienceCategory& ScienceStatic::getScienceCategory(EScienceType p_ScienceCatego
   if (!l_Instance.m_Science.Contains(p_ScienceCategory)) {
     uint32 l_SC = static_cast<uint32>(p_ScienceCategory);
     GString l_ErrorMsg = StringUtils::format("Trying To get Science Category From ScienceMap %d", l_SC);
-    Logger::Log(l_ErrorMsg, ELogLvl::Error, true);
+    Logger::Get()->Log(l_ErrorMsg, ELogLvl::Error, true);
     return l_Instance.m_InvalidScienceCategory;
   }
   return l_Instance.m_Science[p_ScienceCategory];
@@ -26,7 +26,7 @@ RScience& ScienceStatic::getScience(EScience p_ScienceType) {
   /* Not Found Science*/
   uint32 l_SC = static_cast<uint32>(p_ScienceType);
   GString l_ErrorMsg = StringUtils::format("Trying To get Science From ScienceMap %d", l_SC);
-  Logger::Log(l_ErrorMsg, ELogLvl::Error, true);
+  Logger::Get()->Log(l_ErrorMsg, ELogLvl::Error, true);
   return l_Instance.m_InvalidScience;
 }
 
@@ -40,7 +40,7 @@ RScienceLvlSpecs& ScienceStatic::getScienceLvlSpecs(EScience p_ScienceType, uint
   /* Not Found Science Lvl*/
   uint32 l_SC = static_cast<uint32>(p_ScienceType);
   GString l_ErrorMsg = StringUtils::format("Trying To get Science Lvl %d And ScienceLvl %d", l_SC, p_Lvl);
-  Logger::Log(l_ErrorMsg, ELogLvl::Error, true);
+  Logger::Get()->Log(l_ErrorMsg, ELogLvl::Error, true);
   return l_Instance.m_InvalidScienceLvlSpecs;
 }
 

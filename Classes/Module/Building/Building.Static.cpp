@@ -40,7 +40,7 @@ RBuildingSpecs& BuildingStatic::getBuildingSpecs(EBuilding p_BuildingType) {
   if (!l_Instance->m_BuildingInfo.Contains(p_BuildingType)) {
     uint32 l_BT = static_cast<uint32>(p_BuildingType);
     GString l_ErrorMsg = StringUtils::format("Trying To get Invalid Building Type %d", l_BT);
-    Logger::Log(l_ErrorMsg, ELogLvl::Error, true);
+    Logger::Get()->Log(l_ErrorMsg, ELogLvl::Error, true);
     return l_Instance->m_InvalidBuildingSpecs;
   }
   return l_Instance->m_BuildingInfo[p_BuildingType];
@@ -52,7 +52,7 @@ RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuilding p_BuildingType, 
   if (!l_BuildingUnit.Lvls.Contains(p_Lvl)) {
     uint32 l_BT = static_cast<uint32>(p_BuildingType);
     GString l_ErrorMsg = StringUtils::format("Trying To get Invalid Building Type %d And Lvl", l_BT, p_Lvl);
-    Logger::Log(l_ErrorMsg, ELogLvl::Error, true);
+    Logger::Get()->Log(l_ErrorMsg, ELogLvl::Error, true);
     return l_Instance->m_InvalidBuildingLvlSpecs;
   }
   return l_BuildingUnit.Lvls[p_Lvl];

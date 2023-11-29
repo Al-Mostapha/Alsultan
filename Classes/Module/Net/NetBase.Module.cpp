@@ -46,9 +46,10 @@ Net::HttpRequest *NetModule::_createHttp(const GString &url)
     return request;
 }
 
+
 bool NetModule::getJson(const GString &url, JsonStrCallBack callback)
 {
-    Net::HttpRequest *request = _createHttp(url);
+    Net::HttpRequest *request = nullptr;
     if (!request)
         return false;
     request->setRequestType(Net::HttpRequest::Type::GET);
@@ -83,10 +84,17 @@ bool NetModule::getJson(const GString &url, JsonStrCallBack callback)
     // request->setUrl("");
 }
 
+IRequest *NetModule::GetJsonFile(
+  const GString &url, 
+  std::function<void(const XJson &, IRequest *)> pCallback){
+    return nullptr;
+  }
+
 IRequest *NetModule::GetJson(
   const GString &url, std::function<void(const XJson &, IRequest *)>  pCallback){
   return GetJson(url, {}, pCallback);
 }
+
 IRequest *NetModule::GetJson(
   const GString &url, const XJson &pParams,
   std::function<void(const XJson &, IRequest *)>  pCallback){
