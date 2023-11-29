@@ -1,6 +1,7 @@
 #pragma once
 #include "IWorldMap.Com.h"
 #include "Base/Utils/MeshNode.h"
+#include "Base/Type/XTuple.h"
 
 USING_NS_CC;
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 #include "Army.Enum.h"
 #include "Module/Building/Building.Enum.h"
 #include "Module/CityResource/Resource.Enum.h"

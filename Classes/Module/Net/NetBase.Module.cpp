@@ -11,6 +11,10 @@ NetModule *NetModule::Get(){
     return l_Inst;
 }
 void NetModule::Init(){
+
+}
+
+void NetModule::StartGame(){
   _WsClient = WsClient::Create(GConfigModule::Config._WsConfig._Host, GConfigModule::Config._WsConfig._Port);
   _WsClient->Connect();
 }
@@ -120,4 +124,14 @@ IRequest *NetModule::GetJson(
   };
   lRequest->Send();
   return lRequest;
+}
+
+IRequest *NetModule::HttpGet(const GString &url, 
+  std::function<void(const XJson &, IRequest *)> pCallback){
+  return nullptr;
+}
+
+IRequest *HttpPost(const GString &url, const XJson &pParams,
+  std::function<void(const XJson &, IRequest *)> pCallback){
+  return nullptr;
 }

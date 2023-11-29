@@ -1,5 +1,6 @@
 #include "Science.Read.h"
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XMap.h"
 
 GMap<EScienceType, std::string> ETECHNOLOGY_ATTR = {
   { EScienceType::None,"none" },

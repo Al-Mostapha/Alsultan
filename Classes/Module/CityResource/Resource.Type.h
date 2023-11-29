@@ -1,6 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 #include "Resource.Enum.h"
 
 struct RResource

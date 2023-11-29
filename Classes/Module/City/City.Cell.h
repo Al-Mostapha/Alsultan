@@ -4,7 +4,7 @@
 #include "Module/Building/IBuilding.h"
 #include "Module/CityResource/CityResource.h"
 #include "Module/Task/ITask.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 
 class CityCell {
   public:

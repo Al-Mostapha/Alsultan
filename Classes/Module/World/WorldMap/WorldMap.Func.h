@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XTuple.h"
 
 USING_NS_CC;
 

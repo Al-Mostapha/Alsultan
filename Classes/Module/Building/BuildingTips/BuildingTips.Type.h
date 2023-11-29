@@ -2,7 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "Module/Building/Building.Enum.h"
 #include "BuildingTips.Enum.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 
 USING_NS_CC;
 

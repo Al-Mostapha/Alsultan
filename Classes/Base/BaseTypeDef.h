@@ -1,14 +1,11 @@
 #pragma once
+#include "Base.Events.h"
 #include <string>
 #include <vector>
-#include <map>
-#include <queue>
-#include <array>
 #include "cocos2d.h"
 #include "external/json/document.h"
 #include <time.h>
 #include <optional>
-#include <tuple>
 #include <variant>
 
 
@@ -31,24 +28,18 @@ typedef uint32 Guid;
 typedef rapidjson::Document GJsonObject;
 typedef int64 GTime;
 
-template <class T, int32 L>
-using GArray = std::array<T, L>;
+
 template <class T>
 using GVector = std::vector<T>;
 
-template <class K, class V>
-using GMap = std::map<K, V>;
 
-template <class K>
-using GQueue = std::queue<K>;
+
+
 template <class K>
 using GFunc = std::function<K>;
 
 template <class K>
 using GOpt = std::optional<K>;
-
-template <typename... Args>
-using GTuple = std::tuple<Args...>;
 
 template <typename... Args>
 using GVar = std::variant<Args...>;

@@ -1,5 +1,5 @@
 #include "Building.Cell.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 
 void BuildingCell::Upgrade(){
   

@@ -4,7 +4,7 @@
 #include "Include/IncludeBuildingBase.h"
 #include "Module/Army/Army.Type.h"
 #include "Module/CityResource/Resource.Type.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 
 struct RCity
 {

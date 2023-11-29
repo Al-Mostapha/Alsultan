@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "Global/Global.h"
 #include "Base/Containers/Pair.h"
+#include "Base/Type/XTuple.h"
 
 
 USING_NS_CC;

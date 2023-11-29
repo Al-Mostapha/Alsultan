@@ -1,7 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
 #include "Net.Enum.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 
 USING_NS_CC;
 

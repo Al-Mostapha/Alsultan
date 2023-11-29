@@ -1,6 +1,5 @@
 #pragma once
-#include "Base/BaseTypeDef.h"
-#include "XJson.Base.h"
+#include "Json/XJson.Base.h"
 
 using XJson = nlohmann::json;
 // class XJson : public Json{

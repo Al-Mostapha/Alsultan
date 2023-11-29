@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XMap.h"
 
 enum class EScience{
   None = 0,

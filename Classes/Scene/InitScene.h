@@ -1,13 +1,14 @@
 #pragma once
-
 #include "cocos2d.h"
-#include "ui/CocosGUI.h"
+#include "Base/Containers/HashMap.h"
+
 
 class InitScene : public cocos2d::Scene
 {
-public:
+  public:
     static cocos2d::Scene *createScene();
-    cocos2d::ui::ScrollView *BaseScrollLayer;
     virtual bool init();
+    void onEnter() override;
+    void Load();
     CREATE_FUNC(InitScene);
 };

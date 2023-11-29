@@ -1,4 +1,5 @@
 #include "LoginScene.h"
+#include "Base/Type/XMap.h"
 #include "Base/Common/Cach/InstanceCach.Mgr.h"
 #include "Base/Common/Fabric.h"
 #include "Base/Common/Common.Msg.h"

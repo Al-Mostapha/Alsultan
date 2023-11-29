@@ -1,5 +1,6 @@
 #include "Translate.h"
 #include "Include/IncludeBase.h"
+
 Translate::Translate(/* args */)
 {
 }

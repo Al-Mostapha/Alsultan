@@ -1,6 +1,7 @@
 
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XMap.h"
 class Translate
 {
 private:

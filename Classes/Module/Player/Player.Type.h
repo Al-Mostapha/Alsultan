@@ -4,7 +4,7 @@
 #include "Module/City/City.Type.h"
 #include "Module/Effect/Effect.Enum.h"
 #include "Lord.Enum.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 
 struct RPlayer
 {

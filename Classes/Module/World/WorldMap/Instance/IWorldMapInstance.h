@@ -1,4 +1,5 @@
 #pragma once
+#include "Base/Type/XTuple.h"
 #include "WorldMapInstance.Lod.h"
 #include "Module/UI/UIBasePanel.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
@@ -7,6 +8,7 @@
 #include "WorldInstance.Enum.h"
 #include "WorldMapBuildEmoji.h"
 #include "WorldMapBuildFireEffect.h"
+
 
 class WorldMapCell;
 

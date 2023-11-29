@@ -1,7 +1,7 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "network/HttpClient.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 
 namespace Net = cocos2d::network;
 typedef std::function<void(GJson *)> JsonStrCallBack;
@@ -22,6 +22,7 @@ public:
     ~NetModule();
     static NetModule *Get();
     void Init();
+    void StartGame();
     void SetHost(GString pHost);
     void SetWsPort(int32 pPort);
     IRequest *GetJson(
@@ -33,6 +34,11 @@ public:
     IRequest *GetJsonFile(
       const GString &url, 
       std::function<void(const XJson &, IRequest *)> pCallback = nullptr);  
+    IRequest *HttpGet(const GString &url, 
+      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
+    IRequest *HttpPost(const GString &url, const XJson &pParams = nullptr,
+      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
+      
     Net::HttpRequest *_createHttp(const GString &url);
     static NetModule *getInstance();
     static bool getJson(const GString &url, JsonStrCallBack callback);

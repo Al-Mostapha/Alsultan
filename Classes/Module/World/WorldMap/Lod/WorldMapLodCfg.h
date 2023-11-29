@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XTuple.h"
 #include "Base/Containers/HashMap.h" 
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 #include "platform/CCPlatformConfig.h"

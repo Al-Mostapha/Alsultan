@@ -1,8 +1,9 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XMap.h"
 #include "Base/Containers/HashMap.h"
 #include "Base/Json.h"
-#include "Base/Type/Json/XJson.h"
+#include "Base/Type/XJson.h"
 #include "Base/Reflect.h"
 #include "Module/Army/Army.Enum.h"
 #include "Building.Const.h"

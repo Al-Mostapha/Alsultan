@@ -1,4 +1,5 @@
 #include "Base.Lib.h"
+#include "Base/Type/XQueue.h"
 #include "Base/Common/Common.Enum.h"
 #include "Base/Common/Common.Teml.h"
 #include "AudioEngine.h"
