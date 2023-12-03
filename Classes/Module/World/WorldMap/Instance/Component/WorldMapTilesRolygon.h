@@ -1,7 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
-
-USING_NS_CC;
+#include "Base/Type/XOptional.h"
+#include "Base/Type/XEngine.h"
 
 class WorldMapTilesRolygon : public Node
 {

@@ -1,8 +1,10 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
 #include "Global/Global.h"
 #include "Base/Containers/Pair.h"
 #include "Base/Type/XTuple.h"
+#include "Base/Type/XOptional.h"
 
 
 USING_NS_CC;

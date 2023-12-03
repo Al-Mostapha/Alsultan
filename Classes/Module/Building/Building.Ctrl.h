@@ -1,5 +1,6 @@
 #pragma once 
 #include "Include/IncludeBase.h"
+#include "Base/Type/XVector.h"
 #include "Include/IncludeBuildingBase.h"
 #include "Base/Containers/Pair.h"
 

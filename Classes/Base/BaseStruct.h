@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Base/Type/XJson.h"
 #include "BaseTypeDef.h"
 
 struct GStruct {
@@ -14,8 +14,8 @@ struct GStruct {
 		return true;
 	}
 
-	bool fromJsonObject(GJsonObject& JsonObject) {
+	bool fromJsonObject(XJson& JsonObject) {
 		return true;
 	}
-} ;
+};
 

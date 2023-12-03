@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Base/Type/XVector.h"
 #include "Science/GuildScience.Enum.h"
 #include "Alliance.Enum.h"
 #include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"

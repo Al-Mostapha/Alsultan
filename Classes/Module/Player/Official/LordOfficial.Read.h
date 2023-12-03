@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XOptional.h"
 #include "Module/Player/Official/Official.Enum.h"
 
 class LordOfficialRead

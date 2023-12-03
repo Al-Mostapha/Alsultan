@@ -1,7 +1,8 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XEngine.h"
+#include "Base/Type/XFunction.h"
 
-USING_NS_CC;
 
 class XTransition{
   public:
@@ -9,6 +10,6 @@ class XTransition{
     Action *Sequence_(const Vector<FiniteTimeAction *> &pActions);
     Action *PlayAnimationOnce(
       Node *pTarget, Animation *pAnimation, bool pIsRemoveSelf = false,
-      const std::function<void()> & pOnComplete = nullptr, float pDelay = 0.0f);
+      const GFunc<void()> & pOnComplete = nullptr, float pDelay = 0.0f);
     Action *PlayAnimationForever(Node *pTarget, Animation *pAnimation, float pDelay = 0.f);
 };

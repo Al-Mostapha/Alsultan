@@ -1,5 +1,6 @@
 #pragma once
 #include "IWorldMap.Com.h"
+#include "Base/Type/XOptional.h"
 #include "Module/World/Kingdom/Kingdom.Type.h"
 
 

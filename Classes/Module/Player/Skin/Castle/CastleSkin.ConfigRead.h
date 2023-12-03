@@ -1,9 +1,10 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
-#include "Module/Building/Building.Enum.h"
+#include "Base/Type/XOptional.h"
 #include "Base/Type/XTuple.h"
+#include "Base/Type/XEngine.h"
+#include "Module/Building/Building.Enum.h"
 
-USING_NS_CC;
 
 class CastleSkinConfigRead
 {

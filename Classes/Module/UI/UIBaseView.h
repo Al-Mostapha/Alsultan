@@ -1,6 +1,9 @@
 #pragma once
+
 #include "Include/IncludeEngine.h"
+#include "Base/Type/XVector.h"
 #include "Base/BaseTypeDef.h"
+
 #define CreateUIPanel(__TYPE__)\
 static __TYPE__ *CreateBaseView(Size p_Size, bool p_IsColor = false, Node *p_Target = nullptr)\
 {\

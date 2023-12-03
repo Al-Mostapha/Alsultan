@@ -1,4 +1,5 @@
 #pragma once
+#include "Base/Type/XFunction.h"
 #include "Module/UI/UICCSView.h"
 #include "Module/UI/UIBasePanel.h"
 

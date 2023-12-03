@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Base/Type/XVector.h"
 #include <iostream>
 #include <string>
 #include <cstddef>

@@ -1,7 +1,6 @@
 #include "XScheduler.h"
 #include "Base/BaseTypeDef.h"
 
-USING_NS_CC;
 
 XScheduler *XScheduler::Get()
 {

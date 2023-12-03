@@ -1,5 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XEngine.h"
+#include "Base/Type/XVector.h"
 
 enum class ELayoutAlignment {Left = 0, Right = 1};
 

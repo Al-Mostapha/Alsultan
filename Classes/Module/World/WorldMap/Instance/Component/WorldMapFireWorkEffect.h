@@ -1,8 +1,8 @@
 #pragma once 
 #include "Base/BaseTypeDef.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "Base/Type/XEngine.h"
 
-USING_NS_CC;
 
 class WorldMapFireWorkEffect : public Node
 {

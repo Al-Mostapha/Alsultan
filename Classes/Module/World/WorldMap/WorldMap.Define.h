@@ -1,5 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
+#include "Base/Type/XOptional.h"
 #include "Global/Global.Enum.h"
 #include "Base/Common/Common.Type.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"

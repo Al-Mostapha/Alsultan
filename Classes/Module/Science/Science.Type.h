@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Base/Type/XVector.h"
 #include "Base/Containers/HashMap.h"
 #include "Module/Building/Building.Type.h"
 #include "Module/CityResource/Resource.Type.h"

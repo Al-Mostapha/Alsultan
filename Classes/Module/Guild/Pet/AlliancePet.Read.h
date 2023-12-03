@@ -1,8 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XEngine.h"
 #include "Base/Containers/HashMap.h"
-
-USING_NS_CC;
 
 struct RWorldMapAlliancePetOffset{
   float _Scale = 1;

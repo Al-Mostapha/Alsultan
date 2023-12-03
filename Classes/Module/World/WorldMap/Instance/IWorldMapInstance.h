@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/Type/XTuple.h"
+#include "Base/Type/XOptional.h"
 #include "WorldMapInstance.Lod.h"
 #include "Module/UI/UIBasePanel.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"

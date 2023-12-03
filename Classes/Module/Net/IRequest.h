@@ -1,11 +1,10 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
 #include "Base/Type/XMap.h"
+#include "Base/Type/XEngine.h"
 #include "Net.Enum.h"
 #include "Base/Containers/HashMap.h"
 #include "Base/Type/XJson.h"
-
-USING_NS_CC;
 
 
 class IResponse ;

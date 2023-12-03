@@ -1,5 +1,6 @@
 #pragma once 
 #include "Army.Type.h"
+#include "Base/Type/XVector.h"
 #include "Module/CityResource/Resource.Type.h"
 #include "Base/BaseTypeDef.h"
 #include "Base/Containers/Pair.h"

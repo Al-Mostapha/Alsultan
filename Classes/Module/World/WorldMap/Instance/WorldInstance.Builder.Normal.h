@@ -1,5 +1,7 @@
 #pragma once
+#include "Base/Type/XOptional.h"
 #include "IWorldInstance.Builder.h"
+
 
 class WorldInstanceBuilderNormal : public IWorldInstanceBuilder{
   public:

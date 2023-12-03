@@ -1,5 +1,6 @@
 #pragma once 
 #include "BaseTypeDef.h"
+#include "Base/Type/XVector.h"
 #include "cocos2d.h"
 USING_NS_CC;
 

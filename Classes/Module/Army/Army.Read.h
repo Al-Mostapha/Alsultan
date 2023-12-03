@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "cocos2d.h"
 #include "Army.Enum.h"
+#include "Army.Type.h"
 #include "Module/Building/Building.Enum.h"
 
 USING_NS_CC;

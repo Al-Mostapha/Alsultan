@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Official.Enum.h"
+#include "Base/Type/XVector.h"
 #include "Base/BaseTypeDef.h"
 #include "Module/Player/Buff/Buff.Enum.h"
 

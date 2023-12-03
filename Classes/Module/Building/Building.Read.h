@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
 #include "Module/Task/Task.Enum.h"
 #include "Building.Enum.h"
 #include "Module/Science/Science.Enum.h"

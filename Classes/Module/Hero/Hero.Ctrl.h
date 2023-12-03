@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Base/Type/XVector.h"
 #include "Module/Hero/Hero.Enum.h"
 
 

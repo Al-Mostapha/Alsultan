@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
 #include "Module/UI/UIBasePanel.h"
 #include "Base/Utils/String.Util.h"
 #include <type_traits>

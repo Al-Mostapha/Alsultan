@@ -1,10 +1,11 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
+#include "Base/Type/XEngine.h"
 #include "Module/Building/Building.Enum.h"
 #include "BuildingTips.Enum.h"
 #include "Base/Type/XJson.h"
 
-USING_NS_CC;
 
 struct RBuildingTipsBtnListData{
   int32 bid;

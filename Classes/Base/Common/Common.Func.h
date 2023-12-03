@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.Type.h"
+#include "Base/Type/XVector.h"
 #include "ui/CocosGUI.h"
 #include "Module/CityResource/Resource.Enum.h"
 

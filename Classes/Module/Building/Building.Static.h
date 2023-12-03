@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/Containers/HashMap.h"
+#include "Base/Type/XVector.h"
 #include "Building.Const.h"
 #include "Building.Enum.h"
 #include "Building.Type.h"

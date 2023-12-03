@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
 #include "Alliance.Enum.h"
+
 struct RAllianceMember{
   Guid AllianceID;
   Guid MemberID;

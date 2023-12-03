@@ -1,5 +1,6 @@
 #pragma once
 #include "Official.Type.h"
+#include "Base/Type/XOptional.h"
 
 class OfficialInfoRead
 {

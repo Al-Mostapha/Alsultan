@@ -1,9 +1,8 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
 #include "WorldInstance.Enum.h"
+#include "Base/Type/XEngine.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
-
-USING_NS_CC;
 
 class InstanceLodCfgShow{
   public:

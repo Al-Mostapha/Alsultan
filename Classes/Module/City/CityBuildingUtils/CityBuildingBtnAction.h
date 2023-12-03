@@ -1,6 +1,7 @@
 
 #pragma once
 #include "cocos2d.h"
+#include "Base/Type/XJson.h"
 #include "Include/IncludeBase.h"
 
 enum class ECityBtnAction
@@ -86,22 +87,21 @@ struct RCityBtnAction : GStruct
 	uint32 scale;
 	Vec2 offset;
 
-	bool fromJsonObject(GJsonObject &JsonObject)
+	bool fromJsonObject(XJson &JsonObject)
 	{
+		// btnId = JsonObject.HasMember("btnId") ? JsonObject["btnId"].GetInt() : -1;
+		// btnEnum = static_cast<ECityBtnAction>(JsonObject.HasMember("btnEnum") ? JsonObject["btnEnum"].GetInt() : 0);
+		// ActionName = JsonObject.HasMember("ActionName") ? JsonObject["ActionName"].GetString() : "";
+		// BtnDesc = JsonObject.HasMember("BtnDesc") ? JsonObject["BtnDesc"].GetString() : "";
+		// BtnImage = JsonObject.HasMember("BtnImage") ? JsonObject["BtnImage"].GetString() : "";
+		// ActionSortIndex = JsonObject.HasMember("ActionSortIndex") ? JsonObject["ActionSortIndex"].GetInt() : 0;
+		// scale = JsonObject.HasMember("scale") ? JsonObject["scale"].GetInt() : 0;
 
-		btnId = JsonObject.HasMember("btnId") ? JsonObject["btnId"].GetInt() : -1;
-		btnEnum = static_cast<ECityBtnAction>(JsonObject.HasMember("btnEnum") ? JsonObject["btnEnum"].GetInt() : 0);
-		ActionName = JsonObject.HasMember("ActionName") ? JsonObject["ActionName"].GetString() : "";
-		BtnDesc = JsonObject.HasMember("BtnDesc") ? JsonObject["BtnDesc"].GetString() : "";
-		BtnImage = JsonObject.HasMember("BtnImage") ? JsonObject["BtnImage"].GetString() : "";
-		ActionSortIndex = JsonObject.HasMember("ActionSortIndex") ? JsonObject["ActionSortIndex"].GetInt() : 0;
-		scale = JsonObject.HasMember("scale") ? JsonObject["scale"].GetInt() : 0;
-
-		if (JsonObject.HasMember("offset") && JsonObject["offset"].IsObject())
-		{
-			offset.x = (float) JsonObject["offset"].HasMember("x") ? (float) JsonObject["offset"]["x"].GetInt() : 0.0f;
-			offset.x = (float) JsonObject["offset"].HasMember("y") ? (float) JsonObject["offset"]["y"].GetInt() : 0.0f;
-		}
+		// if (JsonObject.HasMember("offset") && JsonObject["offset"].IsObject())
+		// {
+		// 	offset.x = (float) JsonObject["offset"].HasMember("x") ? (float) JsonObject["offset"]["x"].GetInt() : 0.0f;
+		// 	offset.x = (float) JsonObject["offset"].HasMember("y") ? (float) JsonObject["offset"]["y"].GetInt() : 0.0f;
+		// }
 		return true;
 	}
 

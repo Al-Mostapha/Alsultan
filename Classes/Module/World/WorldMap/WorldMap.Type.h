@@ -1,6 +1,8 @@
 #pragma once 
 
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
+#include "Base/Type/XEngine.h"
 #include "Base/Containers/HashMap.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 #include "Module/World/WorldMap/Instance/WorldInstance.Enum.h"
@@ -16,7 +18,6 @@
   #define MAX_DELINSTANCE 20
 #endif
 
-USING_NS_CC;
 
 class IWorldMapInstance;
 

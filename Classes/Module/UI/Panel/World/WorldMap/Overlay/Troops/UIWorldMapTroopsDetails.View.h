@@ -1,5 +1,6 @@
 #pragma once
 #include "Module/UI/UICCSView.h"
+#include "Base/Type/XOptional.h"
 #include "Module/UI/UITouchBaseView.h"
 #include "Module/World/WorldMap/WorldMap.Type.h"
 

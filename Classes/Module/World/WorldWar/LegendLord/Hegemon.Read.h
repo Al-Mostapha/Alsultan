@@ -1,5 +1,6 @@
 #pragma once
 #include "LegendLord.Enum.h"
+#include "Base/Type/XOptional.h"
 #include "Base/BaseTypeDef.h"
 #include "Module/Player/Official/Official.Type.h"
 

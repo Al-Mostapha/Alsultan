@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XFunction.h"
 #include "Common.Enum.h"
 
 struct RStyleFormat;

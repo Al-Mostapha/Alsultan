@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
 #include "Base/Type/XMap.h"
 #include "Base/Containers/HashMap.h"
 #include "Base/Json.h"

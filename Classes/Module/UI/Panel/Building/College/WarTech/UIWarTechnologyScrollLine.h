@@ -1,8 +1,8 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XEngine.h"
 #include "Module/Science/Science.Enum.h"
 
-USING_NS_CC;
 
 class UIWarTechnologyScrollLine : public Node {
 

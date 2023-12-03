@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/Containers/HashMap.h"
+#include "Base/Type/XVector.h"
 #include "network/WebSocket.h"
 #include "Base/BaseTypeDef.h"
 #include "Base/Json.h"

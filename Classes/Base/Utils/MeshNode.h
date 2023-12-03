@@ -1,7 +1,9 @@
 #pragma once
+#include "Base/Type/XVector.h"
 #include "Include/IncludeBase.h"
 #include "Include/IncludeEngine.h"
 #include "Base/Type/XTuple.h"
+#include "Base/Type/XOptional.h"
 
 typedef Sprite3D MeshNode;
 

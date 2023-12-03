@@ -1,7 +1,6 @@
 #pragma once
 #include "WindTower.Type.h"
-
-USING_NS_CC;
+#include "Base/Type/XEngine.h"
 
 class WindTowerCtrl{
 public:

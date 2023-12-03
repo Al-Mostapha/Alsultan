@@ -1,8 +1,7 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
 #include "CommandHall.Enum.h"
-
-USING_NS_CC;
+#include "Base/Type/XEngine.h"
 
 class CommandHallTaskNode : public Node{
   public:

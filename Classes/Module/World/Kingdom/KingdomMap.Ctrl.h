@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XOptional.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 #include "Module/World/Kingdom/KingdomMap.Enum.h"
 #include "Module/World/Kingdom/Kingdom.Type.h"

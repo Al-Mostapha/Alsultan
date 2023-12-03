@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XVector.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 
 struct RViewPieceIdEvAr{

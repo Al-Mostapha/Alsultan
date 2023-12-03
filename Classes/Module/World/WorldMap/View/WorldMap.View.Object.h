@@ -2,7 +2,6 @@
 #include "Module/World/WorldMap/WorldMap.Type.h"
 #include "ui/CocosGUI.h"
 
-USING_NS_CC;
 
 class IWorldMapComponent;
 class WorldMapView;

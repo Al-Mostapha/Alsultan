@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XOptional.h"
 #include "WorldInstance.Type.h"
 
 class IWorldMapInstance;

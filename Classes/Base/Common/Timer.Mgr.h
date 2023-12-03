@@ -1,7 +1,8 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XEngine.h"
 
-USING_NS_CC;
+
 
 namespace GBase{
 

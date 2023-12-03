@@ -2,6 +2,7 @@
 #include "Base/BaseTypeDef.h"
 #include "Alliance.Type.h"
 #include "Module/CityResource/Resource.Enum.h"
+#include "Base/Type/XOptional.h"
 
 class AllianceStrongholdMineRead
 {

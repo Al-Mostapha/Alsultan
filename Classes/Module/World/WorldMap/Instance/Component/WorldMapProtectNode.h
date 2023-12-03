@@ -1,7 +1,6 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
-
-USING_NS_CC;
+#include "Base/Type/XEngine.h"
 
 class WorldMapProtectNode : public Node
 {

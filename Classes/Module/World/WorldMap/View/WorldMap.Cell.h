@@ -1,14 +1,12 @@
 #pragma once
 #include "Base/BaseTypeDef.h"
+#include "Base/Type/XEngine.h"
 #include "Base/Type/XTuple.h"
+#include "Base/Type/XOptional.h"
 #include "ui/CocosGUI.h"
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 #include "Base/Containers/HashMap.h"
 
-
-
-
-USING_NS_CC;
 
 class WorldMapView;
 class UIWorldMapTip;

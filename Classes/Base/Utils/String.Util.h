@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+#include "Base/Type/XVector.h"
 #include "Base/BaseTypeDef.h"
 
 

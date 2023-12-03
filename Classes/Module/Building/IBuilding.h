@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include "Building.Read.h"
+#include "Base/Type/XVector.h"
 #include "Include/IncludeBase.h"
 #include "Include/IncludeBuildingBase.h"
 #include "Include/IncludeConfig.h"

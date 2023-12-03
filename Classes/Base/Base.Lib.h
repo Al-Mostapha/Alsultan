@@ -1,4 +1,5 @@
 #pragma once
+#include "Base/Type/XVector.h"
 #include "Base/Containers/HashMap.h"
 #include "Base/Containers/Pair.h"
 #include "Base/Utils/String.Util.h"
@@ -9,6 +10,7 @@
 #include "Module/World/WorldMap/WorldMap.Enum.h"
 #include "Global/Global.Enum.h"
 #include "Base/DateTime.h"
+#include "Type/XOptional.h"
 
 
 #undef PlaySound

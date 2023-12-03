@@ -2,8 +2,8 @@
 #include "Base/BaseTypeDef.h"
 #include "Net.Enum.h"
 #include "Base/Type/XJson.h"
+#include "Base/Type/XEngine.h"
 
-USING_NS_CC;
 
 class IResponse : public Ref{
   public:
