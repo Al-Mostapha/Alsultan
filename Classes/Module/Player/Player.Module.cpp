@@ -3,16 +3,27 @@
 #include "Module/Faction/Faction.Ctrl.h"
 #include "Base/Base.Lib.h"
 
-void PlayerTopModule::Ctor(){
+PlayerModule *PlayerModule::Get(){
+  static PlayerModule *s_PlayerModule =  new PlayerModule();
+  return s_PlayerModule;
+}
+
+void PlayerModule::Init(){
+}
+
+void PlayerModule::StartGame(){
+}
+
+void PlayerModule::Ctor(){
   _CityCtrl = CityCtrl::Get();
   _FactionCtrl = FactionCtrl::Get();
 }
 
-void PlayerTopModule::EnterGame(){
+void PlayerModule::EnterGame(){
   _CityCtrl->EnterGame();
 }
 
-void PlayerTopModule::InitCtrlData(){
+void PlayerModule::InitCtrlData(){
   //   SoraDSendMessage({
   //   msg = "MESSAGE_MAINSCEN_LOGINFINSH"
   // })
@@ -20,7 +31,7 @@ void PlayerTopModule::InitCtrlData(){
   GBase::DSendMessage("MESSAGE_MAINSCEN_LOGINFINSH");
 }
 
-void PlayerTopModule::InitDelayCtrlData(){
+void PlayerModule::InitDelayCtrlData(){
   //   local playerTopModule = include("PlayerTopModule")
   // for k, v in ipairs(playerTopModule.delayInitCall) do
   //   local ctrl = SoraDGetCtrl(v.name)

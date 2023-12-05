@@ -4,7 +4,7 @@
 #include "Player.Module.h"
 
 
-class PlayerTop : public IModule , public PlayerTopModule{
+class PlayerTop : public IModule , public PlayerModule{
   Guid m_IdPlayer;
   int32 m_IdKingdom;
   public:

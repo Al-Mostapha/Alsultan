@@ -13,7 +13,10 @@
 class BuildingModule
 {
 public:
-    static void init();
+    static BuildingModule *Get();
+    void Init();
+    void StartGame();
+    void JsonFileLoaded();
     static void buildCity();
     //static cocos2d::Vector<DSCityBuildingUnit *> getBuildingList(EBuilding buildingType);
     //static cocos2d::Vector<DSCityBuildingUnit *> getBuildingResList();

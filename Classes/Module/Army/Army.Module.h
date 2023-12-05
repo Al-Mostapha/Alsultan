@@ -4,5 +4,7 @@
 class ArmyModule
 {
 public:
-    static void init();
+    static ArmyModule *Get();
+    void Init();
+    void StartGame();
 };

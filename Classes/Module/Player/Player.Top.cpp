@@ -10,7 +10,7 @@ PlayerTop* PlayerTop::Get(){
 }
 
 void PlayerTop::Ctor(){
-  PlayerTopModule::Ctor();
+  PlayerModule::Ctor();
 }
 
 int32 PlayerTop::GetMapID(){
@@ -69,8 +69,8 @@ void PlayerTop::ModuleEnterGame(){
   //   for _, modulecell in ipairs(self.modules_ord) do
   //   modulecell:EnterGame()
   // end
-  PlayerTopModule::EnterGame();
-  PlayerTopModule::InitCtrlData();
+  PlayerModule::EnterGame();
+  PlayerModule::InitCtrlData();
   // local linkCtrl = self:getModule("linkCtrl")
   // linkCtrl:addEventListener(linkCtrl.EVENT_HEARTBEAT_TIMEOUT, handler(self, self.onHeartbeatTimeOut))
 }

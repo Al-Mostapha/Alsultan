@@ -2,12 +2,30 @@
 #include "Module/Building/Building.Service.h"
 #include "Module/Player/Player.Static.h"
 #include "Module/City/City.Module.h"
+#include "Base/Type/XEvent.h"
 
-void BuildingModule::init()
+BuildingModule *BuildingModule::Get()
 {
-    BuildingService::fetchBuildingInfo();
-    BuildingService::fetchCityBuilding(PlayerStatic::SultanPlayer.idCurrentCity);
+  static BuildingModule *s_BuildingModule =  new BuildingModule();
+  return s_BuildingModule;
+}
 
+void BuildingModule::Init()
+{
+  BuildingService::fetchBuildingInfo();
+  BuildingService::fetchCityBuilding(PlayerStatic::SultanPlayer.idCurrentCity);
+
+}
+
+void BuildingModule::StartGame()
+{
+  // Load();
+  XEvent::Get()->Listen(Event_OnJsonFileLoaded, std::bind(&BuildingModule::JsonFileLoaded, this));
+}
+
+void BuildingModule::JsonFileLoaded()
+{
+  // Load();
 }
 
 void BuildingModule::buildCity()

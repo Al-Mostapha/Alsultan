@@ -21,4 +21,5 @@ class BuildingStatic {
   static bool isValidBuildingLvl(EBuilding p_BuildingType, uint32 p_Lvl);
   static RBuildingSpecs &getBuildingSpecs(EBuilding p_BuildingType);
   static RBuildingLvlSpecs &getBuildingLvlSpec(EBuilding p_BuildingType, uint32 p_Lvl);
+  void GetFromJsonFile(const XJson &pJson);
 };

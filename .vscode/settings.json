@@ -106,7 +106,10 @@
     "Config": true
   },
   "files.exclude": {
+    "build": true,
+    "cocos2d": true,
     "libfairygui": true,
+    "proj.*": true,
     "Resources": true
   },
   

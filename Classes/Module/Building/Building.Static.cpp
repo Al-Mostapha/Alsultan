@@ -57,3 +57,8 @@ RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuilding p_BuildingType, 
   }
   return l_BuildingUnit.Lvls[p_Lvl];
 }
+
+
+void BuildingStatic::GetFromJsonFile(const XJson &pJson){
+  Logger::Get()->Log("BuildingStatic::GetFromJsonFile: " + pJson.dump());
+}

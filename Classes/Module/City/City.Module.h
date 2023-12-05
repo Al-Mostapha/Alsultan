@@ -15,23 +15,28 @@
 class CityModule
 {
 public:
-    static void GetPlayerCity(int32 idPayer)
-    {
-        NetModule::getJson(
-            "/api/City/getCity",
-            [](GJson *json)
-            {
-                if (json == nullptr)
-                    return;
-                // DSCity city;
-                // SultanPlayer.City.fromJson(json);
-                // SultanPlayer.City.CityBuilding.fromJson(json);
-                //  city.CityBuilding.fromJson(json);
-            });
-    }
-    static void showCityBuilding();
-    static void showCityEffect();
-    static RCity& getCurrentCity(){
-        return CityStatic::Get()->GetCurrentCity();
-    }
+
+  static CityModule *Get();
+  void Init();
+  void StartGame();
+
+  static void GetPlayerCity(int32 idPayer)
+  {
+    NetModule::getJson(
+      "/api/City/getCity",
+      [](GJson *json)
+      {
+          if (json == nullptr)
+              return;
+          // DSCity city;
+          // SultanPlayer.City.fromJson(json);
+          // SultanPlayer.City.CityBuilding.fromJson(json);
+          //  city.CityBuilding.fromJson(json);
+      });
+  }
+  static void showCityBuilding();
+  static void showCityEffect();
+  static RCity& getCurrentCity(){
+      return CityStatic::Get()->GetCurrentCity();
+  }
 };

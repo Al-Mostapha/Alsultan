@@ -3,6 +3,22 @@
 #include "Scene/CityScene.h"
 #include "Module/UI/Panel/Building/UIBuildCreatePanel.h"
 
+CityModule *CityModule::Get()
+{
+  static CityModule *s_CityModule = new CityModule();
+  return s_CityModule;
+}
+
+void CityModule::Init()
+{
+}
+
+
+void CityModule::StartGame()
+{
+  
+}
+
 void CityModule::showCityEffect()
 {
   EffectMainCityView::showPyramidHonourBuildEffect();
