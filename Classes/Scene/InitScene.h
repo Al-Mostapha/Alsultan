@@ -12,5 +12,6 @@ class InitScene : public cocos2d::Scene
     virtual bool init();
     void onEnter() override;
     void Load();
+    void JsonFileLoaded();
     CREATE_FUNC(InitScene);
 };

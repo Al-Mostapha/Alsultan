@@ -12,8 +12,8 @@ BuildingModule *BuildingModule::Get()
 
 void BuildingModule::Init()
 {
-  BuildingService::fetchBuildingInfo();
-  BuildingService::fetchCityBuilding(PlayerStatic::SultanPlayer.idCurrentCity);
+  // BuildingService::fetchBuildingInfo();
+  // BuildingService::fetchCityBuilding(PlayerStatic::SultanPlayer.idCurrentCity);
 
 }
 
@@ -26,6 +26,7 @@ void BuildingModule::StartGame()
 void BuildingModule::JsonFileLoaded()
 {
   // Load();
+  CCLOG("BuildingModule::JsonFileLoaded");
 }
 
 void BuildingModule::buildCity()

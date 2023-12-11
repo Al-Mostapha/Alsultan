@@ -1,27 +1,3 @@
-/****************************************************************************
- Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
-
-http://www.cocos2d-x.org
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
- ****************************************************************************/
-
 #include "Scene/CityScene.h"
 #include "../Bootstrap/BootstrapPlist.h"
 #include "City/CityScene.View.h"
@@ -40,6 +16,8 @@ THE SOFTWARE.
 #include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
 #include "Game/Guide/Guide.Ctrl.h"
 #include "Module/World/WorldMap/View/WorldMap.ViewFactory.h"
+#include <thread>
+
 USING_NS_CC;
 
 CityScene* CityScene::Get() {
@@ -65,21 +43,27 @@ void CityScene::LoadAsset() {
   // GDisplay::Get()->AddSpriteFrames("MainCity/mainCityInner.plist");
   // GDisplay::Get()->AddSpriteFrames("MainCity/mainCityOuter.plist");
   // GDisplay::Get()->AddSpriteFrames("MainCity/mainCityEffect.plist");
-  GDisplay::Get()->AddSpriteFrames("NormalUI/NormalUI0.plist");
-  GDisplay::Get()->AddSpriteFrames("NormalUI/NormalUI2.plist");
-  GDisplay::Get()->AddSpriteFrames("NormalUI/NormalUI4.plist");
-  GDisplay::Get()->AddSpriteFrames("CommonUI/CommonUI0.plist");
-  GDisplay::Get()->AddSpriteFrames("CommonUI/CommonUI2.plist");
-  GDisplay::Get()->AddSpriteFrames("SingleModule/iconBuilding.plist");
-  GDisplay::Get()->AddSpriteFrames("FrameAnimation/worldMapMonster.plist");
-  GDisplay::Get()->AddSpriteFrames("SingleModule/exclusiveVip.plist");
-  GDisplay::Get()->AddSpriteFrames("SingleModule/kingUI.plist");
-  GDisplay::Get()->AddSpriteFrames("worldMap/worldMapCastle.plist");
-  GDisplay::Get()->AddSpriteFrames("worldMap/worldMapCastleSkin1.plist");
-  GDisplay::Get()->AddSpriteFrames("worldMap/worldMapBuilding.plist");
-  GDisplay::Get()->AddSpriteFrames("SingleModule/armyIcon.plist");
-  GDisplay::Get()->AddSpriteFrames("FrameAnimation/mainCityOutGfsc.plist");
-  GDisplay::Get()->AddSpriteFrames("FrameAnimation/diaoxiangFA.plist");
+  GVector<GString> l_AssetList;
+  l_AssetList.push_back("NormalUI/NormalUI0.plist");
+  l_AssetList.push_back("NormalUI/NormalUI2.plist");
+  l_AssetList.push_back("NormalUI/NormalUI4.plist");
+  l_AssetList.push_back("CommonUI/CommonUI0.plist");
+  l_AssetList.push_back("CommonUI/CommonUI2.plist");
+  l_AssetList.push_back("SingleModule/iconBuilding.plist");
+  l_AssetList.push_back("FrameAnimation/worldMapMonster.plist");
+  l_AssetList.push_back("SingleModule/exclusiveVip.plist");
+  l_AssetList.push_back("SingleModule/kingUI.plist");
+  l_AssetList.push_back("worldMap/worldMapCastle.plist");
+  l_AssetList.push_back("worldMap/worldMapCastleSkin1.plist");
+  l_AssetList.push_back("worldMap/worldMapBuilding.plist");
+  l_AssetList.push_back("SingleModule/armyIcon.plist");
+  l_AssetList.push_back("FrameAnimation/mainCityOutGfsc.plist");
+  l_AssetList.push_back("FrameAnimation/diaoxiangFA.plist");
+  
+  for (auto l_Asset : l_AssetList) {
+    GDisplay::Get()->AddSpriteFrames(l_Asset);
+  }
+
 }
 
 // on "init" you need to initialize your instance

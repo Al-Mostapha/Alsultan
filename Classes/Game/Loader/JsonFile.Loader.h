@@ -8,8 +8,8 @@ class JsonFileLoader{
   public:
   static JsonFileLoader *Get();
   void Init();
-  void Load(GFunc<void()> p_Callback);
-  void SetFinishCallback(GFunc<void()> p_Callback);
+  void Load(const GFunc<void()> &pCallback = nullptr);
+  void SetFinishCallback(const GFunc<void()> &pCallback = nullptr);
   private:
     void Load(const GString &p_FileName, GFunc<void()> p_Callback);
     void LoadCityFiles();

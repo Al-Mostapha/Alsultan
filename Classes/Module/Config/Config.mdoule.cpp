@@ -1,5 +1,6 @@
 
 #include "Config.module.h"
+#include "Base/Type/XJson.h"
 #include "cocos/platform/CCFileUtils.h"
 USING_NS_CC;
 
@@ -12,18 +13,22 @@ void GConfigModule::init()
 
 void GConfigModule::loadNetConfig()
 {
-    FileUtils *fileUtils = cocos2d::FileUtils::getInstance();
-    GString filePath = fileUtils->fullPathForFilename("Config/Net.Config.json");
-    GString FileContent = fileUtils->getStringFromFile(filePath);
-    const char *json = FileContent.c_str();
-    rapidjson::Document document;
-    document.Parse(json);
-    if (document.HasParseError())
-    {
-        cocos2d::log("Error: %s\n", document.GetParseError());
+    FileUtils *lFileUtils = cocos2d::FileUtils::getInstance();
+    GString lFilePath = lFileUtils->fullPathForFilename("Config/Net.Config.json");
+    GString lFileContent = lFileUtils->getStringFromFile(lFilePath);
+    const char *lJsonStr = lFileContent.c_str();
+
+    if(!XJson::accept(lJsonStr)){
+        Logger::Get()->Log("Json is not valid");
         return;
     }
-    GConfigModule::Config.ApiConfig.ApiUrl = document["ApiUrl"].GetString();
-    GConfigModule::Config.ApiConfig.ApiPort = document["ApiPort"].GetString();
-    GConfigModule::Config.ApiConfig.ApiFullUrl = document["ApiFullUrl"].GetString();
+    
+    XJson lJsonDoc = XJson::parse(lJsonStr);
+    GConfigModule::Config._HttpConfig._Prorocole  = lJsonDoc["HttpConfig"].value("Protocole", "http");
+    GConfigModule::Config._HttpConfig._Host  = lJsonDoc["HttpConfig"].value("Host", "Invalid");
+    GConfigModule::Config._HttpConfig._Port  = lJsonDoc["HttpConfig"].value("Port", 0);
+    GConfigModule::Config._HttpConfig._Scope = lJsonDoc["HttpConfig"].value("Scope", "Invalid");
+    GConfigModule::Config._WsConfig._Host    = lJsonDoc["WsConfig"].value("Host", "Invalid");
+    GConfigModule::Config._WsConfig._Port    = lJsonDoc["WsConfig"].value("Port", 0);
+
 }

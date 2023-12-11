@@ -1,5 +1,5 @@
 #pragma once
 #include <functional>
 
-template <class K>
+template <typename K>
 using GFunc = std::function<K>;

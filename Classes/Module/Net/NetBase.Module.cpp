@@ -3,6 +3,8 @@
 #include <iostream>
 #include "WsClient.h"
 #include "WsRequest.h"
+#include "HttpRequest.h"
+#include "HttpResponse.h"
 #include "IResponse.h"
 #include "Module/Player/Player.Static.h"
 
@@ -18,6 +20,7 @@ void NetModule::StartGame(){
   _WsClient = WsClient::Create(GConfigModule::Config._WsConfig._Host, GConfigModule::Config._WsConfig._Port);
   _WsClient->Connect();
 }
+
 
 void NetModule::SetHost(GString pHost){
 
@@ -46,12 +49,12 @@ Net::HttpRequest *NetModule::_createHttp(const GString &url)
 {
 
     Net::HttpRequest *request = new Net::HttpRequest();
-    request->setUrl(GConfigModule::Config.ApiConfig.ApiFullUrl + url);
+    request->setUrl(url);
     return request;
 }
 
 
-bool NetModule::getJson(const GString &url, JsonStrCallBack callback)
+bool NetModule::getJson(const GString &pUrl, JsonStrCallBack callback)
 {
     Net::HttpRequest *request = nullptr;
     if (!request)
@@ -82,17 +85,18 @@ bool NetModule::getJson(const GString &url, JsonStrCallBack callback)
                 callback(nullptr);
             }
         });
+        
+    request->setUrl("");
     Net::HttpClient::getInstance()->send(request);
     request->release();
     return true;
-    // request->setUrl("");
 }
 
 IRequest *NetModule::GetJsonFile(
-  const GString &url, 
-  std::function<void(const XJson &, IRequest *)> pCallback){
-    return nullptr;
-  }
+  const GString &pUrl, 
+  const GFunc<void(const XJson &, IRequest *)> &pCallback){
+    return HttpGet(pUrl, pCallback);
+}
 
 IRequest *NetModule::GetJson(
   const GString &url, std::function<void(const XJson &, IRequest *)>  pCallback){
@@ -127,8 +131,36 @@ IRequest *NetModule::GetJson(
 }
 
 IRequest *NetModule::HttpGet(const GString &url, 
-  std::function<void(const XJson &, IRequest *)> pCallback){
-  return nullptr;
+  const GFunc<void(const XJson &, IRequest *)> &pOnSuccess,
+  const GFunc<void(ERequestError, GString)> &pOnError
+  ){
+    
+  HttpRequest *lRequest = HttpRequest::Create(url);
+  lRequest->_Method      = ERequestMethod::Get;
+  lRequest->_ContentType = ERequestContentType::Json;
+  lRequest->_Type        = ERequestType::Http;
+  lRequest->_Token       = PlayerStatic::Get()->GetPlayerToken();
+  lRequest->_Data        = "";
+  lRequest->_OnSuccess  = [=](IResponse *pResponse, IRequest *pRequest) {
+    if(!pResponse){
+      if(lRequest->_OnError)
+        lRequest->_OnError(ERequestError::NoResponse, "Response is null");
+      if(pOnError)
+        pOnError(ERequestError::NoResponse, "Response is null");
+      return;
+    }
+    if(!pResponse->IsJson()){
+      if(lRequest->_OnError)
+        lRequest->_OnError(ERequestError::NotJson, "Response is null");
+      if(pOnError)
+        pOnError(ERequestError::NotJson, "Response is null");
+      return;
+    }
+    pOnSuccess(pResponse->_Json, pRequest);
+  };
+  lRequest->Send();
+
+  return lRequest;
 }
 
 IRequest *HttpPost(const GString &url, const XJson &pParams,

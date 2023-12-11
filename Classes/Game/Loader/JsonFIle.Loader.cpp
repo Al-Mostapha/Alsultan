@@ -12,17 +12,17 @@ JsonFileLoader *JsonFileLoader::Get(){
 void JsonFileLoader::Init(){
 }
 
-void JsonFileLoader::Load(GFunc<void()> p_Callback){
+void JsonFileLoader::Load(const GFunc<void()> &pCallback){
   LoadCityFiles();
 }
 
 
-void JsonFileLoader::SetFinishCallback(GFunc<void()> p_Callback){
-  _CallBack = p_Callback;
+void JsonFileLoader::SetFinishCallback(const GFunc<void()> &pCallback){
+  _CallBack = pCallback;
 }
 
 void JsonFileLoader::LoadCityFiles(){
-  NetModule::Get()->GetJsonFile("/City/City.json", [this](auto pJson, auto pReq){
+  NetModule::Get()->GetJsonFile("/Static/Json/City/City.json", [this](auto pJson, auto pReq){
     if(pJson.is_null())
       Logger::Get()->Log("City.json Not loaded");
     Logger::Get()->Log("City.json loaded");
@@ -31,7 +31,7 @@ void JsonFileLoader::LoadCityFiles(){
 }
 
 void JsonFileLoader::LoadBuildingFiles(){
-  NetModule::Get()->GetJsonFile("/Building/Building.json", [this](auto pJson, auto pReq){
+  NetModule::Get()->GetJsonFile("/Static/Json/Building/Building.json", [this](auto pJson, auto pReq){
     if(pJson.is_null())
       Logger::Get()->Log("CityBuilding.json Not loaded");
     Logger::Get()->Log("CityBuilding.json loaded");
@@ -41,7 +41,7 @@ void JsonFileLoader::LoadBuildingFiles(){
 }
 
 void JsonFileLoader::LoadPlayerFiles(){
-  NetModule::Get()->GetJsonFile("/Player/Player.json", [this](auto pJson, auto pReq){
+  NetModule::Get()->GetJsonFile("/Static/Json/Player/Player.json", [this](auto pJson, auto pReq){
     if(pJson.is_null())
       Logger::Get()->Log("CityBuilding.json Not loaded");
     Logger::Get()->Log("CityBuilding.json loaded");

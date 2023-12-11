@@ -17,30 +17,40 @@
 // REFLECT_MEMBER(atkAdd)
 // REFLECT_END()
 
-RBuildingSpecs RBuildingSpecs::fromJson(GJson* json) {
-  RBuildingSpecs temp;
-  temp.index = json->GetInt("index");
-  temp.BuildingID = static_cast<EBuilding>(json->GetInt("BuildingID"));
-  temp.isDemolish = json->GetBool("isdemolish");
-  temp.isExchange = json->GetBool("isExchange");
-  temp.isBuild = json->GetBool("isBuild");
-  temp.isUpgrade = json->GetBool("isUpgrade");
-  temp.buildingType = static_cast<EBuilding>(json->GetInt("buildingType"));
-  temp.bType = static_cast<EBuildingPlace>(json->GetInt("bType"));
-  temp.maxCount = json->GetInt("maxCount");
-  temp.maxLvl = json->GetInt("maxLvl");
-  temp.initLvl = json->GetInt("initLvl");
-  temp.openWl = json->GetInt("openWl");
-  temp.openStar = json->GetInt("openStar");
-  temp.maxStarLv = json->GetInt("maxStarLv");
-  temp.BuildingName = json->GetString("BuildingName");
-  temp.BuildingIcon = json->GetString("BuildingIcon");
-  temp.BuildingBrief = json->GetString("BuildingBrief");
-  temp.UpgradeBrief = json->GetString("UpgradeBrief");
-  temp.Describe = json->GetString("Describe");
-  temp.WarDescribe = json->GetString("WarDescribe");
-  temp.StarDescribe = json->GetString("StarDescribe");
-  return temp;
+static RBuildingSpecs sDefaultBuildingSpecs;
+
+bool RBuildingSpecs::FromJson(const XJson& pJson) {
+  index = pJson.value("index", 0);
+  BuildingID = static_cast<EBuilding>(pJson.value("BuildingID", 0));
+  oldUnlocklevel = pJson.value("oldUnlocklevel", sDefaultBuildingSpecs.oldUnlocklevel);
+  oldShowlevel = pJson.value("oldShowlevel", sDefaultBuildingSpecs.oldShowlevel);
+  unlocklevel = pJson.value("unlocklevel", 0);
+  showlevel = pJson.value("showlevel", 0);
+  bType = static_cast<EBuildingPlace>(pJson.value("bType", 0));
+  isDemolish = pJson.value("isDemolish", false);
+  isExchange = pJson.value("isExchange", false);
+  isBuild = pJson.value("isBuild", false);
+  isUpgrade = pJson.value("isUpgrade", false);
+  maxCount = pJson.value("maxCount", 0);
+  maxLvl = pJson.value("maxLvl", 0);
+  initLvl = pJson.value("initLvl", 0);
+  openWl = pJson.value("openWl", 0);
+  openStar = pJson.value("openStar", 0);
+  maxStarLv = pJson.value("maxStarLv", 0);
+  isCanBuild = pJson.value("isCanBuild", sDefaultBuildingSpecs.isCanBuild);
+  addmaxstarlv = pJson.value("addmaxstarlv", 0);
+  BuildingName = pJson.value("BuildingName", "DefaultBuildingName").c_str();
+  BuildingIcon = pJson.value("BuildingIcon", "DefaultBuildingIcon").c_str();
+  BuildingBrief = pJson.value("BuildingBrief", "DefaultBuildingBrief").c_str();
+  UpgradeBrief = pJson.value("UpgradeBrief", "DefaultUpgradeBrief").c_str();
+  Describe = pJson.value("Describe", "DefaultDescribe").c_str();
+  WarDescribe = pJson.value("WarDescribe", "DefaultWarDescribe").c_str();
+  StarDescribe = pJson.value("StarDescribe", "DefaultStarDescribe").c_str();
+  TipButtons.FromJson(pJson["TipButtons"]);
+  for(auto [lLvl, lBuilding] : pJson["Lvls"].items()) {
+    Lvls[std::stoi(lLvl)].FromJson(lBuilding);
+  }
+  return true;
 }
 
 

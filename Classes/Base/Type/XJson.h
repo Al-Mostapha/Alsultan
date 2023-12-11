@@ -1,7 +1,16 @@
 #pragma once
+#include "Base/Logger/Logger.h"
+#define JSON_TRY_USER if(true)
+#define JSON_CATCH_USER(exception) if(false)
+#define JSON_THROW_USER(exception)                           \
+    {Logger::Get()->LogJsonError(exception);\
+    }
+
 #include "Json/XJson.Base.h"
 
 using XJson = nlohmann::json;
+
+
 // class XJson : public Json{
 //   nlohmann::json _Json;
 //   public:

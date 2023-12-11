@@ -377,19 +377,17 @@ bool MainCityView::IsNeedFirstFight(){
 }
 
 void MainCityView::LoadFixedBuilds(){
-//  print("mainCityView:loadFixedBuilds star")
-//   self:addBuild(cityBuildConstDef.fixedBuildDef.LeisureCenter, cityBuildConstDef.fixedBuildDef.LeisureCenter)
-//   self:addBuild(cityBuildConstDef.buildIndexDef.index_Material_WorkShop, BUILDID.MATERIAL_WORKSHOP)
-//   self:addBuild(cityBuildConstDef.fixedBuildDef.HuoChuang, cityBuildConstDef.fixedBuildDef.HuoChuang)
-//   self:addBuild(cityBuildConstDef.fixedBuildDef.ServiceCenter, cityBuildConstDef.fixedBuildDef.ServiceCenter)
-//   self:addBuild(cityBuildConstDef.buildIndexDef.index_PetCenter, cityBuildConstDef.fixedBuildDef.PetCenter)
-//   self:addBuild(cityBuildConstDef.buildIndexDef.index_ResurrectionHall, cityBuildConstDef.fixedBuildDef.ResurrectionHall)
-//   self:addBuild(cityBuildConstDef.buildIndexDef.index_EpicBattle, cityBuildConstDef.fixedBuildDef.EpicBattle)
-//   self:addBuild(cityBuildConstDef.buildIndexDef.index_Monument, BUILDID.MONUMENT)
-//   if not IsArClient then
-//     self:addBuild(cityBuildConstDef.buildIndexDef.index_Mastery, cityBuildConstDef.fixedBuildDef.Mastery)
-//   end
-//   print("mainCityView:loadFixedBuilds end")
+  AddBuilding(EBuildingIndex::LeisureCenter, EBuilding::LeisureHouse);
+  AddBuilding(EBuildingIndex::MaterialWorkShop, EBuilding::MaterialWorkShop);
+  AddBuilding(EBuildingIndex::HuoChuang, EBuilding::CargoShip);
+  AddBuilding(EBuildingIndex::ServiceCenter, EBuilding::ServiceCenter);
+  AddBuilding(EBuildingIndex::PetCenter, EBuilding::PetHouse);
+  AddBuilding(EBuildingIndex::ResurrectionHall, EBuilding::ResurrectionHall);
+  AddBuilding(EBuildingIndex::EpicBattle, EBuilding::EpicBattle);
+  AddBuilding(EBuildingIndex::Monument, EBuilding::Monument);
+  if(GBase::Const::Get()->IsArClient){
+    AddBuilding(EBuildingIndex::Mastery, EBuilding::Mastery);
+  }
 }
 
 void MainCityView::SetMainCityEnabled(bool p_Enabled){

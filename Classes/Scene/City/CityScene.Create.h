@@ -139,6 +139,8 @@ public:
   void KipchaksButtonCallFun(ui::Widget *p_Build, Ref * p_Ref, ui::Widget::TouchEventType p_Touch){}
   void KipchaksUpdate(){}
   void OtherBuildButtonCallFun(ui::Widget *p_Build, Ref * p_Ref, ui::Widget::TouchEventType p_Touch){}
+  
+  void UpdateBuildBtnVisible();
 private:
   void CreateGroupNode(ECityTargetGroupID p_GroupId, int32 p_ZOrder);
   void ShowFirstEnter();

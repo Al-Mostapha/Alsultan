@@ -1,6 +1,8 @@
 
 #include "InitScene.h"
 #include "Game/XGame.h"
+#include "Base/Type/XEvent.h"
+#include "CityScene.h"
 
 USING_NS_CC;
 
@@ -16,8 +18,7 @@ bool InitScene::init()
         return false;
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-    // Should put logo here
+    XEvent::Get()->Listen(Event_OnJsonFileLoaded, std::bind(&InitScene::JsonFileLoaded, this));
 
     return true;
 }
@@ -32,4 +33,9 @@ void InitScene::Load()
 {
     // Should load resources here
     
+}
+
+void InitScene::JsonFileLoaded()
+{
+    Director::getInstance()->replaceScene(CityScene::createScene());
 }

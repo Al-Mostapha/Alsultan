@@ -2,6 +2,8 @@
 #include "Include/IncludeBase.h"
 #include "network/HttpClient.h"
 #include "Base/Type/XJson.h"
+#include "Base/Type/XFunction.h"
+#include "Net.Enum.h"
 
 namespace Net = cocos2d::network;
 typedef std::function<void(GJson *)> JsonStrCallBack;
@@ -25,19 +27,22 @@ public:
     void StartGame();
     void SetHost(GString pHost);
     void SetWsPort(int32 pPort);
+
     IRequest *GetJson(
       const GString &url, 
-      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
+      GFunc<void(const XJson &, IRequest *)> pCallback = nullptr);
     IRequest *GetJson(
       const GString &url, const XJson &pParams,
-      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
+      GFunc<void(const XJson &, IRequest *)> pCallback = nullptr);
     IRequest *GetJsonFile(
       const GString &url, 
-      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);  
+      const GFunc<void(const XJson &, IRequest *)> &pCallback = nullptr);  
     IRequest *HttpGet(const GString &url, 
-      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
+      const GFunc<void(const XJson &, IRequest *)> &pOnSuc = nullptr,
+      const GFunc<void(ERequestError, GString)> &pOnError = nullptr
+      );
     IRequest *HttpPost(const GString &url, const XJson &pParams = nullptr,
-      std::function<void(const XJson &, IRequest *)> pCallback = nullptr);
+      GFunc<void(const XJson &, IRequest *)> pCallback = nullptr);
       
     Net::HttpRequest *_createHttp(const GString &url);
     static NetModule *getInstance();

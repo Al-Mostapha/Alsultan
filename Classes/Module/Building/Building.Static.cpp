@@ -19,7 +19,7 @@ GVector<EBuilding> BuildingStatic::BuildableList = {
 bool BuildingStatic::isValidBuilding(EBuilding p_BuildingType) {
   auto l_Instance = Get();
   for (auto& l_OneBuilding : l_Instance->m_BuildingInfo) {
-    if (l_OneBuilding.second.buildingType == p_BuildingType) return true;
+    if (l_OneBuilding.second.BuildingID == p_BuildingType) return true;
   }
   return false;
 }
@@ -61,4 +61,12 @@ RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuilding p_BuildingType, 
 
 void BuildingStatic::GetFromJsonFile(const XJson &pJson){
   Logger::Get()->Log("BuildingStatic::GetFromJsonFile: " + pJson.dump());
+  for(auto &[lBId, lBuilding] : pJson.items()){
+    auto lStrBuilduingType = lBuilding.value("BuildingID", "0");
+    auto lIntBuildingType = std::stoi(lStrBuilduingType);
+    auto lBuildingType = static_cast<EBuilding>(lIntBuildingType);
+    if(!m_BuildingInfo.Contains(lBuildingType))
+      m_BuildingInfo[lBuildingType] = {};
+    m_BuildingInfo[lBuildingType].FromJson(lBuilding);
+  }
 }

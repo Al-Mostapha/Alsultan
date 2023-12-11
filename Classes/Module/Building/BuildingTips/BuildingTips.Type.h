@@ -10,14 +10,14 @@
 struct RBuildingTipsBtnListData{
   int32 bid;
   EBuilding idBuilding;
-  ECityBuildingState _CityBuildingState = ECityBuildingState::None;
+  ECityBuildingState cityBuildingState = ECityBuildingState::None;
   GString BuildingName = "buildDes_name_101";
   GString PicFile;
   GString ImgFile;
   Vec2 Offset;
   Vec2 OffsetByzantine;
   bool bIsInnerBuilding;
-  bool bCanBuild;
+  int bCanBuild = 1;
   GVector<EBuildingTips> NormalOperateList = {
     EBuildingTips::OpDetails,
     EBuildingTips::OpUpgrade,
@@ -26,8 +26,26 @@ struct RBuildingTipsBtnListData{
   };
   GVector<EBuildingTips> CoolingOperateList;
   GVector<EBuildingTips> TrainingOperateList;
-  void FromJson(const XJson &pJson){
-    BuildingName = "Test";
+  bool FromJson(const XJson &pJson){
+		bid = pJson.value("bid", 0);
+    idBuilding = static_cast<EBuilding>(pJson.value("buildingID", 0));
+    cityBuildingState = static_cast<ECityBuildingState>(pJson.value("cityBuildingState", 0));
+    BuildingName = pJson.value("BuildingName", "buildDes_name_101").c_str();
+		PicFile = pJson.value("PicFile", "icon_building_details.png").c_str();
+		ImgFile = pJson.value("ImgFile", "icon_building_details.png").c_str();
+		Offset.x = pJson.at("Offset").at("x").get<float>();
+		Offset.y = pJson.at("Offset").at("y").get<float>();
+		OffsetByzantine.x = pJson.at("OffsetByzantine").at("x").get<float>();
+		OffsetByzantine.y = pJson.at("OffsetByzantine").at("y").get<float>();
+    bIsInnerBuilding = pJson.value("bIsInnerBuilding", false);
+    bCanBuild = pJson.value("bCanBuild", 1);
+    for(auto lOp : pJson["NormalOperateList"])
+			NormalOperateList.push_back(static_cast<EBuildingTips>(lOp.get<int>()));
+    for(auto lOp : pJson["CoolingOperateList"])
+			CoolingOperateList.push_back(static_cast<EBuildingTips>(lOp.get<int>()));
+		for(auto lOp : pJson["TrainingOperateList"])
+			TrainingOperateList.push_back(static_cast<EBuildingTips>(lOp.get<int>()));
+    return true;
   }
 };
 

@@ -11,9 +11,11 @@ class HttpRequest : public IRequest
   static HttpRequest *Create(const GString &pUrl, ReqCallback pSuccess);
   
   void Send() override;
-
+  public:
+    void SetUrl(const GString &pUrl) override;
   private:
     void SetHttpMethod();
     void SetHttpCallBack();
+
 
 };

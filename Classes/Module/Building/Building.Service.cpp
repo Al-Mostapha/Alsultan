@@ -85,7 +85,7 @@ void BuildingService::fetchBuildingInfo() {
         GJson doc;
         GJson* jsonObject = new GJson();
         jsonObject->CopyFrom(it->value, jsonObject->GetAllocator());
-        BuildingStatic::BuildingInfo[l_BuildingType] = RBuildingSpecs::fromJson(jsonObject);
+        //BuildingStatic::BuildingInfo[l_BuildingType] = RBuildingSpecs::FromJson(jsonObject);
       }
       CityLtCtrl::Get()->Init();
     } else

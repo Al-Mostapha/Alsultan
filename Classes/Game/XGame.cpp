@@ -16,6 +16,7 @@
 #include "Module/Task/Task.Module.h"
 #include "Module/World/World.Module.h"
 #include "Module/Player/Player.Module.h"
+#include "Loader/JsonFile.Loader.h"
 
 XGame *XGame::Get()
 {
@@ -30,6 +31,7 @@ void XGame::Init()
   GConfigModule::init();
   GModuleMgr::Get()->Init();
   NetModule::Get()->Init();
+  JsonFileLoader::Get()->Init();
 
   ArmyModule::Get()->Init();
   BuildingModule::Get()->Init();
@@ -44,7 +46,7 @@ void XGame::Init()
   WorldModule::Get()->Init();
   PlayerModule::Get()->Init();
   
-  NetModule::Get()->HttpGet("/AGame/GetGameState", [](auto pJson, auto pReq){
+  NetModule::Get()->HttpGet("/Api/AGame/GetGameState", [](auto pJson, auto pReq){
     if(pJson.is_null())
       return;
     auto l_State = pJson["State"].get<GString>();
@@ -76,7 +78,9 @@ void XGame::Init()
 
 void XGame::StartGame()
 {
+
   GModuleMgr::Get()->StartGame();
+  NetModule::Get()->StartGame();
   ArmyModule::Get()->StartGame();
   BuildingModule::Get()->StartGame();
   CityModule::Get()->StartGame();
@@ -91,4 +95,5 @@ void XGame::StartGame()
   PlayerModule::Get()->StartGame();
 
   XEvent::Get()->Fire(Event_OnGameStart);
+  JsonFileLoader::Get()->Load();
 }

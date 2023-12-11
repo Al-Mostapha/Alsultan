@@ -6,13 +6,11 @@ struct GConfig
 {
     struct
     {
-        GString ApiUrl;
-        GString ApiFullUrl;
-        GString ApiPort;
-        GString ApiHost;
-        GString ApiPath;
-        GString ApiVersion;
-    } ApiConfig;
+        GString _Prorocole;
+        GString _Host;
+        int32 _Port;
+        GString _Scope;
+    } _HttpConfig;
 
     struct {
         GString _Host = "localhost";

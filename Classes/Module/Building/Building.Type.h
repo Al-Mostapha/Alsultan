@@ -1,4 +1,5 @@
 #pragma once
+#include "BuildingTips/BuildingTips.Type.h"
 #include "Base/BaseTypeDef.h"
 #include "Base/Type/XVector.h"
 #include "Base/Type/XMap.h"
@@ -102,7 +103,7 @@ struct RBuildingLvlSpecs {
   RResource resCapacity;
   EWatchTowerEffect watchTowerEffect = EWatchTowerEffect::None;
   uint32 freeTime = 0;
-  static RBuildingLvlSpecs fromJson(GJson* json) { return RBuildingLvlSpecs(); }
+  bool FromJson(const XJson &pJson) { return false; }
 };
 
 struct RBuildingMoreInfoData{
@@ -133,12 +134,15 @@ struct RCityBuildingUnit {
 struct RBuildingSpecs {
   int32 index = 0;
   EBuilding BuildingID = EBuilding::None;
+  int oldUnlocklevel = 0;
+  int oldShowlevel = 0;
+  int unlocklevel = 0;
+  int showlevel = 0;
+  EBuildingPlace bType = EBuildingPlace::Inner;
   bool isDemolish = false;
   bool isExchange = false;
   bool isBuild = false;
   bool isUpgrade = false;
-  EBuilding buildingType = EBuilding::None;
-  EBuildingPlace bType = EBuildingPlace::Inner;
   int32 maxCount = 0;
   int32 maxLvl = 0;
   int32 initLvl = 0;
@@ -146,6 +150,7 @@ struct RBuildingSpecs {
   int32 openStar = 0;
   int32 maxStarLv = 0;
   int32 isCanBuild = 1; // 0, 1, 2
+  uint32 addmaxstarlv = 0;
   const char *BuildingName = "Building Name";
   const char *BuildingIcon = "quest_building_114.png";
   const char *BuildingBrief = "";
@@ -153,9 +158,9 @@ struct RBuildingSpecs {
   const char *Describe = "Describe";
   const char *WarDescribe = "";
   const char *StarDescribe = "";
+  RBuildingTipsBtnListData TipButtons;
   GHashMap<uint32, RBuildingLvlSpecs> Lvls;
-
-  static RBuildingSpecs fromJson(GJson* json) ;
+  bool FromJson(const XJson &json) ;
 };
 
 struct RCityBuilding {

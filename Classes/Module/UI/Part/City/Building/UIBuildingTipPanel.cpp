@@ -116,7 +116,7 @@ void UIBuildingTipPanel::DelayInitView(){
   }
 
   if(_RelyBuildEntity == nullptr){
-    if(lRelyBuildData._CityBuildingState == ECityBuildingState::Normal){
+    if(lRelyBuildData.cityBuildingState == ECityBuildingState::Normal){
       auto lOpList = FillBtnOpList({}, lRelyBuildData.NormalOperateList);
       auto lButtonList = GetButtonArrayByOpList(lOpList);
       RearrangeBtnByCircle(lButtonList);

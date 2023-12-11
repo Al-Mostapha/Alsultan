@@ -5,11 +5,12 @@
 #include "Net.Enum.h"
 #include "Base/Containers/HashMap.h"
 #include "Base/Type/XJson.h"
+#include "Base/Type/XFunction.h"
 
 
 class IResponse ;
 
-typedef std::function<void(IResponse *, class IRequest *)> ReqCallback;
+typedef GFunc<void(IResponse *, class IRequest *)> ReqCallback;
 
 
 
@@ -35,7 +36,7 @@ class IRequest : public Ref{
   public:
   IRequest() {}
   virtual ~IRequest() {}
-  virtual void SetUrl(GString p_Url) { _Url = p_Url; }
+  virtual void SetUrl(const GString &p_Url) { _Url = p_Url; }
   virtual void SetParams(GHashMap<GString, GString> p_Params) { _Params = p_Params; }
   virtual void SetMethod(ERequestMethod p_Method) { _Method = p_Method; }
   virtual void SetContentType(ERequestContentType p_ContentType) { _ContentType = p_ContentType; }

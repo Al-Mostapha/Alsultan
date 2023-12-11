@@ -64,12 +64,11 @@ bool CityCell::BuildingFound(EBuildingIndex p_Index){
 }
 
 void CityCell::FromJson(GJson *p_Json){
-    // local _citycell = cityCell.new()
+  // local _citycell = cityCell.new()
   // local cityinfo = data.cinfo
   // local buildlist = data.blist
- // AddBuilding(EBuildingIndex::ArrowTowerL,{{EBuilding::ArrowTower, EBuildingIndex::ArrowTowerL, 1}});
- // for k, v in ipairs(buildlist) do
-   //   local _buildcell = buildCell.new()
+  // for k, v in ipairs(buildlist) do
+  //   local _buildcell = buildCell.new()
   //   v.binfo.starLv = v.binfo.starLv or 0
   //   _buildcell.info = v.binfo
   //   _citycell:addBuild(v.binfo.index, _buildcell)

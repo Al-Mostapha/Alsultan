@@ -459,6 +459,9 @@ void CityFloor::InitWithBuildData() {
   EffectMainCityView::Get()->UpdateCommunityView(_CityView);
   EffectMainCityView::Get()->UpdateStarBraveStatueView(_CityView);
   //CityBuildingSpritePool::Get()->Init();
+
+  _CityView->UpdateBuildBtnVisible();
+  _CityView->LoadFixedBuilds();
   GBase::DSendMessage("MESSAGE_MAINCITYVIEW_UPDATE_WALL_EFFECT");
   _CityView->SetMainCityEnabled(false);
   auto l_ActDelay = DelayTime::create(0.1f);
@@ -493,7 +496,6 @@ void CityFloor::CreateInnerCityBuilds() {
       l_BuildEntity->InitWithBuildCell(&l_Build.second);
     }
   }
-  // CreateOuterCityBuilds();
 }
 
 void CityFloor::CreateOuterCityBuilds() {
@@ -501,6 +503,7 @@ void CityFloor::CreateOuterCityBuilds() {
   for (auto l_Build : l_BuildList) {
     auto l_BuildingIndex = static_cast<int32>(l_Build.second.GetBuildingIndex());
     if (l_BuildingIndex < 1100) continue;
+    if(BuildingLib::Get()->DIsFixedBuild(l_Build.second.GetBuildingIndex())) continue;
     auto l_CellIndexName = StringUtils::format("build_%d", l_BuildingIndex);
     auto l_BuildBtn = _CityView->GetBufferNodeByName(l_CellIndexName.c_str());
     if (!l_BuildBtn) continue;

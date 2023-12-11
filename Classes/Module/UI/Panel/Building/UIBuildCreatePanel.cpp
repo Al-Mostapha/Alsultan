@@ -118,12 +118,12 @@ void UIBuildCreatePanel::UpdateView(){
   m_BtnBuild->setTouchEnabled(m_CurrentBuilding.isCanBuild);
   m_BtnBuild->setBright(m_CurrentBuilding.isCanBuild);
 
-  bool l_ISCanBuild  = BuildingLib::isCanBuild(m_CurrentBuilding.buildingType);
+  bool l_ISCanBuild  = BuildingLib::isCanBuild(m_CurrentBuilding.BuildingID);
   if(!m_CurrentBuilding.isCanBuild){
     m_LabelNeed->setString("");
   }
 
-  auto l_IsCanBuild = BuildingLogic::Get()->IsCanBuild(m_CurrentBuilding.buildingType);
+  auto l_IsCanBuild = BuildingLogic::Get()->IsCanBuild(m_CurrentBuilding.BuildingID);
   m_CostBuildingUpgrade = l_IsCanBuild.Second;
 
   if(!m_CurrentBuilding.isCanBuild){
@@ -135,7 +135,7 @@ void UIBuildCreatePanel::UpdateView(){
 
   if(m_CurrentBuilding.bType == EBuildingPlace::Outer){
     m_LabelCount->setString(Translate::i18n("common_text_739", {
-      {"cur", std::to_string(BuildingCtrl::Get()->getBuildingCount(m_CurrentBuilding.buildingType))},
+      {"cur", std::to_string(BuildingCtrl::Get()->getBuildingCount(m_CurrentBuilding.BuildingID))},
       {"max",  std::to_string(m_CurrentBuilding.maxCount)},
     }));
   }
@@ -144,7 +144,7 @@ void UIBuildCreatePanel::UpdateView(){
     return;
     
   auto l_Index = m_CurrentBuilding.index;
-  auto l_BuildingType = m_CurrentBuilding.buildingType;
+  auto l_BuildingType = m_CurrentBuilding.BuildingID;
 /*
   SoraDSendMessage({
     msg = "MESSAGE_MAINCITYVIEW_ADD_BUILD_PREVIEW",
@@ -165,7 +165,7 @@ void UIBuildCreatePanel::SelectWheelByBuildingType(EBuilding p_BuildingType){
   
   auto l_CurIndex = 1;
   for(int l_I = 0; l_I < m_BuildableList.size(); l_I++){
-    if(p_BuildingType == m_BuildableList[l_I].buildingType){
+    if(p_BuildingType == m_BuildableList[l_I].BuildingID){
       l_CurIndex = l_I;
     }
   }
@@ -179,7 +179,7 @@ void UIBuildCreatePanel::CreateWheelScrollView(){
   GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
   for(auto l_BuildingUnit : m_BuildableList){
     UIBuildCreateScrollSingle *l_ScrollSingle = UIBuildCreateScrollSingle::Create();
-    l_ScrollSingle->initData(l_BuildingUnit.buildingType);
+    l_ScrollSingle->initData(l_BuildingUnit.BuildingID);
     l_ScrollViews.push_back(l_ScrollSingle);
   }
   if(l_ScrollViews.size() <= 0){

@@ -1017,3 +1017,41 @@ IBuilding* MainCityCreate::CreateBuildByCfgId(EBuilding p_Building, RBuildingCfg
   // return buildContentNode
   return nullptr;
 };
+
+void MainCityCreate::UpdateBuildBtnVisible(){
+
+  n_MainCityView;
+  // local self = mainCity
+  // local nebulaActivityCtrl = SoraDGetCtrl("nebulaActivityCtrl")
+  // local regionType = nebulaActivityCtrl:getKingdomRegionType()
+  // local buildList = cityCtrl:getBuildCellList(BUILDID.NEBULA_PALACE)
+  // local btn_1206 = self:getBufferNodeByName("build_1206")
+  // local isNebulaShow = #buildList > 0 and regionType == NEBULA_REGION_TYPE.HEGEMONY_REGION
+  // if btn_1206 then
+  //   btn_1206:setVisible(isNebulaShow)
+  // end
+  // local Node_market = self:getBufferNodeByName("Node_market")
+  // if Node_market then
+  //   Node_market:setVisible(not isNebulaShow)
+  // end
+  // local newCityBgNode = self:getBufferNodeByName("CCS_mainCityViewBG_bg")
+  // if newCityBgNode then
+  //   local bg = SoraDGetChildByName(newCityBgNode, "MainCityBG_06")
+  //   local nebulaAddBg = bg:getChildByName("NebulaAddBg")
+  //   if nebulaAddBg then
+  //     nebulaAddBg:setVisible(isNebulaShow)
+  //   elseif isNebulaShow then
+  //     nebulaAddBg = display.newSprite("#MainCityBG_06_1.png")
+  //     nebulaAddBg:setName("NebulaAddBg")
+  //     nebulaAddBg:setPosition(cc.p(446.5, 538))
+  //     nebulaAddBg:addTo(bg)
+  //   end
+  //   local magicLampAddBg = bg:getChildByName("magicLampAddBg")
+  //   if not magicLampAddBg then
+  //     magicLampAddBg = display.newSprite("#MainCityBG_06_2.png")
+  //     magicLampAddBg:setName("magicLampAddBg")
+  //     magicLampAddBg:setPosition(cc.p(766, 726))
+  //     magicLampAddBg:addTo(bg)
+  //   end
+  // end
+}

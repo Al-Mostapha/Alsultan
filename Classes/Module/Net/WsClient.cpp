@@ -42,7 +42,6 @@ bool WsClient::Connect()
 	try
 	{
 		this->_socket = new network::WebSocket();
-
 		return this->_socket->init(*this, this->_url);
 	}
 	catch (const std::exception&)
