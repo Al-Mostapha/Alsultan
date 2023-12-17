@@ -1,4 +1,5 @@
 #include "WorldMapMonster.h"
+#include "Base/Base.Geometry.h"
 #include "Base/Utils/XTransition.h"
 #include "Base/Common/Common.Func.h"
 #include "Base/Common/Common.Msg.h"

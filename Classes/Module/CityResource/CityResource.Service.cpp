@@ -6,7 +6,7 @@ void CityResourceService::getCityResource(int32 idCity)
 {
     NetModule::getJson(
         "/api/CityResource/getCityResource",
-        [](GJson *json)
+        [](const XJson &json)
         {
             if (json == nullptr)
             {

@@ -10,6 +10,7 @@
 #include "Scene/Scene.Type.h"
 
 #include "Scene/CityScene.h"
+#include "Module/Translation/Translate.h"
 
 bool GBase::DGotoWorldMapPoint(
   GOpt<Vec2> pPoint, bool pIsSelected, int32 pKingdomID,

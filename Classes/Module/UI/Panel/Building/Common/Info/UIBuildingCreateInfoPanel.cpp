@@ -1,4 +1,6 @@
 #include "UIBuildingCreateInfoPanel.h"
+#include "Base/Math/Math.Base.h"
+#include "Base/Base.Geometry.h"
 #include "Base/Common/Common.Msg.h"
 #include "Base/Common/Common.Teml.h"
 #include "Module/UI/Panel/Building/Common/Builder/UIBuilderActivePop.View.h"

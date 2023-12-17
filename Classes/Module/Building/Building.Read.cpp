@@ -1,5 +1,6 @@
 #include "Building.Read.h"
 #include "Building.Static.h"
+#include "Module/Translation/Translate.h"
 
 BuildingRead* BuildingRead::Get()
 {

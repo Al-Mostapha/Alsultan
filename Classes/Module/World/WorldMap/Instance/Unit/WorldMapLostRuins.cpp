@@ -1,5 +1,6 @@
 #include "WorldMapLostRuins.h"
 #include "Base/Utils/XTransition.h"
+#include "Base/Math/Math.Base.h"
 #include "Base/Functions/ServiceFunction.h"
 #include "Module/UI/EventCenter/EventTemplate/LostRuins/UILostRuinsMap.Tip.h"
 #include "Module/UI/EventCenter/EventTemplate/LostRuins/LostRuins.Ctrl.h"

@@ -18,7 +18,7 @@ GVector<EBuilding> BuildingStatic::BuildableList = {
 
 bool BuildingStatic::isValidBuilding(EBuilding p_BuildingType) {
   auto l_Instance = Get();
-  for (auto& l_OneBuilding : l_Instance->m_BuildingInfo) {
+  for (auto& l_OneBuilding : l_Instance->_BuildingInfo) {
     if (l_OneBuilding.second.BuildingID == p_BuildingType) return true;
   }
   return false;
@@ -26,7 +26,7 @@ bool BuildingStatic::isValidBuilding(EBuilding p_BuildingType) {
 
 bool BuildingStatic::isValidBuildingLvl(EBuilding p_BuildingType, uint32 p_Lvl) {
   auto l_Instance = Get();
-  for (auto& l_OneBuilding : l_Instance->m_BuildingInfo) {
+  for (auto& l_OneBuilding : l_Instance->_BuildingInfo) {
     for (auto& l_OneBuildingLvl : l_OneBuilding.second.Lvls)
       if (l_OneBuildingLvl.second.lvl == p_Lvl) return true;
   }
@@ -37,13 +37,13 @@ bool BuildingStatic::isValidBuildingLvl(EBuilding p_BuildingType, uint32 p_Lvl) 
 
 RBuildingSpecs& BuildingStatic::getBuildingSpecs(EBuilding p_BuildingType) {
   auto l_Instance = Get();
-  if (!l_Instance->m_BuildingInfo.Contains(p_BuildingType)) {
+  if (!l_Instance->_BuildingInfo.Contains(p_BuildingType)) {
     uint32 l_BT = static_cast<uint32>(p_BuildingType);
     GString l_ErrorMsg = StringUtils::format("Trying To get Invalid Building Type %d", l_BT);
     Logger::Get()->Log(l_ErrorMsg, ELogLvl::Error, true);
     return l_Instance->m_InvalidBuildingSpecs;
   }
-  return l_Instance->m_BuildingInfo[p_BuildingType];
+  return l_Instance->_BuildingInfo[p_BuildingType];
 }
 
 RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuilding p_BuildingType, uint32 p_Lvl) {
@@ -62,11 +62,21 @@ RBuildingLvlSpecs& BuildingStatic::getBuildingLvlSpec(EBuilding p_BuildingType, 
 void BuildingStatic::GetFromJsonFile(const XJson &pJson){
   Logger::Get()->Log("BuildingStatic::GetFromJsonFile: " + pJson.dump());
   for(auto &[lBId, lBuilding] : pJson.items()){
-    auto lStrBuilduingType = lBuilding.value("BuildingID", "0");
-    auto lIntBuildingType = std::stoi(lStrBuilduingType);
-    auto lBuildingType = static_cast<EBuilding>(lIntBuildingType);
-    if(!m_BuildingInfo.Contains(lBuildingType))
-      m_BuildingInfo[lBuildingType] = {};
-    m_BuildingInfo[lBuildingType].FromJson(lBuilding);
+    auto lBuildingID = lBuilding.value("buildingID", 0);
+    auto lBuildingType = static_cast<EBuilding>(lBuildingID);
+    if(!_BuildingInfo.Contains(lBuildingType))
+      _BuildingInfo[lBuildingType] = {};
+    _BuildingInfo[lBuildingType].FromJson(lBuilding);
+  }
+}
+
+void BuildingStatic::GetTipsFromJsonFile(const XJson &pJson){
+  Logger::Get()->Log("BuildingStatic::GetTipsFromJsonFile: " + pJson.dump());
+  for(auto &[lTipID, lTip] : pJson.items()){
+    auto lTipID = lTip.value("btnEnum", 0);
+    auto lTipType = static_cast<EBuildingTips>(lTipID);
+    if(!_BuildTipsConfig.Contains(lTipType))
+      _BuildTipsConfig[lTipType] = {};
+    _BuildTipsConfig[lTipType].FromJson(lTip);
   }
 }

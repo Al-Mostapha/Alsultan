@@ -1,4 +1,5 @@
 #include "WorldMap.ViewFactory.h"
+#include "Engine/Device.h"
 #include "Module/World/WorldMap/WorldMap.Util.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
 #include "Module/World/WorldWar/WorldWar.Def.h"

@@ -1,4 +1,6 @@
 #include "WorldMap.Cell.h"
+#include "Base/Base.Geometry.h"
+#include "Base/Math/Math.Base.h"
 #include "Module/World/WorldMap/IWorldMap.View.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
 #include "Engine/XTiledMap/XTileLayer.h"

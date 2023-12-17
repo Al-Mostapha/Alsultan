@@ -66,18 +66,17 @@ bool NetModule::getJson(const GString &pUrl, JsonStrCallBack callback)
             if (response->isSucceed())
             {
                 GString responseStr = GString(response->getResponseData()->begin(), response->getResponseData()->end());
-                GJson JsonObject;
-                JsonObject.Parse(responseStr.c_str());
-                if (JsonObject.HasParseError())
-                {
-                    cocos2d::log("Error: %s\n", JsonObject.GetParseError());
-                    if (callback)
-                        callback(nullptr);
-                    return;
-                }
+                XJson JsonObject = XJson::parse(responseStr.c_str());
+                // if (JsonObject.HasParseError())
+                // {
+                //     cocos2d::log("Error: %s\n", JsonObject.GetParseError());
+                //     if (callback)
+                //         callback(nullptr);
+                //     return;
+                // }
                 std::cout << responseStr;
                 cocos2d::log("Responce %s", response->getResponseData());
-                callback(&JsonObject);
+                callback(JsonObject);
             }
             else
             {

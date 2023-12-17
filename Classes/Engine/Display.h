@@ -5,6 +5,8 @@
 #include "Base/Type/XVector.h"
 #include "Base/Type/XOptional.h"
 #include "Include/IncludeBase.h"
+#include "Base/Base.Enum.h"
+
 USING_NS_CC;
 
 class MainScene;

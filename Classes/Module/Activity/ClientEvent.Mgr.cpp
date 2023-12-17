@@ -1,4 +1,5 @@
 #include "ClientEvent.Mgr.h"
+#include "Module/Translation/Translate.h"
 #include "ActivityShow.Ctrl.h"
 #include "Base/Base.Lib.h"
 

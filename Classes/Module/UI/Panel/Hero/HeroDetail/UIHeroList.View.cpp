@@ -1,4 +1,5 @@
 #include "UIHeroList.View.h"
+#include "Base/Math/Math.Base.h"
 #include "Base/Common/Common.Teml.h"
 #include "Module/Hero/Hero.LtCtrl.h"
 #include "Module/Hero/Hero.Ctrl.h"

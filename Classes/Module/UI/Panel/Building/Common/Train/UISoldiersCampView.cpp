@@ -1,4 +1,5 @@
 #include "UISoldiersCampView.h"
+#include "Base/Base.Geometry.h"
 #include "spine/spine-cocos2dx.h"
 #include "UISoldiersTrainScrollSingle.h"
 #include "UISoldiersDetail.View.h"

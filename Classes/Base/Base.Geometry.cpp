@@ -1,5 +1,6 @@
 #include "Base.Geometry.h"
 #include "Include/IncludeEngine.h"
+#include "Base/Math/Math.Base.h"
 namespace GBase {
 
   ELayoutAlignment DGetLayoutAlignment(){

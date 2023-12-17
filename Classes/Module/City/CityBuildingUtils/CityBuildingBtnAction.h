@@ -75,7 +75,7 @@ enum class ECityBtnAction
 	OpMilitaryFortress = 1066
 };
 
-struct RCityBtnAction : GStruct
+struct RCityBtnAction
 {
 
 	uint32 btnId;

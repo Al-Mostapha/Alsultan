@@ -6,7 +6,7 @@
 #include "Net.Enum.h"
 
 namespace Net = cocos2d::network;
-typedef std::function<void(GJson *)> JsonStrCallBack;
+typedef std::function<void(const XJson &)> JsonStrCallBack;
 class WsClient;
 class IRequest;
 class NetModule

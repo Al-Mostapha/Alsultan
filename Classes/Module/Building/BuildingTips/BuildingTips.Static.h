@@ -5,8 +5,6 @@
 
 class BuildingTipsStatic {
   private:
-  GHashMap<EBuilding, RBuildingTipsBtnListData> m_BuildTipsBtnListData;
-  GHashMap<EBuildingTips, RBuildingTipConfig> _BuildTipsConfig;
 
   public:
   static BuildingTipsStatic *Get();

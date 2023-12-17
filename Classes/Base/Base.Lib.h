@@ -11,6 +11,7 @@
 #include "Global/Global.Enum.h"
 #include "Base/DateTime.h"
 #include "Type/XOptional.h"
+#include "Base/Base.Enum.h"
 
 
 #undef PlaySound

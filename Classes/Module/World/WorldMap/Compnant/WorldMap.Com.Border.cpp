@@ -1,4 +1,6 @@
 #include "WorldMap.Com.Border.h"
+#include "Base/Math/Math.Base.h"
+#include "Base/Base.Geometry.h"
 #include "Module/World/WorldMap/WorldMap.Event.h"
 #include "Module/World/WorldMap/View/WorldMap.View.h"
 #include "Module/World/WorldMap/View/WorldMap.Cell.h"

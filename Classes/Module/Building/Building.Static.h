@@ -8,7 +8,8 @@
 
 class BuildingStatic {
   private:
-  GHashMap<EBuilding, RBuildingSpecs> m_BuildingInfo;
+  GHashMap<EBuilding, RBuildingSpecs> _BuildingInfo;
+  GHashMap<EBuildingTips, RBuildingTipConfig> _BuildTipsConfig;
   RBuildingSpecs m_InvalidBuildingSpecs;
   RBuildingLvlSpecs m_InvalidBuildingLvlSpecs;
 
@@ -21,5 +22,7 @@ class BuildingStatic {
   static bool isValidBuildingLvl(EBuilding p_BuildingType, uint32 p_Lvl);
   static RBuildingSpecs &getBuildingSpecs(EBuilding p_BuildingType);
   static RBuildingLvlSpecs &getBuildingLvlSpec(EBuilding p_BuildingType, uint32 p_Lvl);
+  GHashMap<EBuildingTips, RBuildingTipConfig> &GetBuildingTips(){ return _BuildTipsConfig; }
   void GetFromJsonFile(const XJson &pJson);
+  void GetTipsFromJsonFile(const XJson &pJson);
 };

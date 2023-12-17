@@ -1,4 +1,5 @@
 #include "WorldMapWindTower.h"
+#include "Base/Math/Math.Base.h"
 #include "Base/Functions/ServiceFunction.h"
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "Module/UI/EventCenter/EventTemplate/WindTower/WindTower.Ctrl.h"

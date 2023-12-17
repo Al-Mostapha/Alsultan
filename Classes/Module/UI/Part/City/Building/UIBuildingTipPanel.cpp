@@ -82,9 +82,6 @@ void UIBuildingTipPanel::SetRelyBuildEntity(IBuilding *p_Building){
 }
 
 void UIBuildingTipPanel::InitView(){
-  // if self.circleFrameBg then
-  //   self.circleFrameBg:setPosition(0, -self.circleRadius + 50 + self.circleOffsetY)
-  // enif
   if(_CircleFrameBg)
     _CircleFrameBg->setPosition(0, -_CircleRadius + 50 + _CircleOffsetY);
   if(_BuildingNameFrame)
@@ -387,6 +384,10 @@ UIBuildingTipPanel::FillBtnOpList(GHashMap<EBuildingTips, bool> pOpList, const G
 
 GHashMap<EBuildingTips, bool>
 UIBuildingTipPanel::FillBtnOpList(GHashMap<EBuildingTips, bool> pOpList, GVector<EBuildingTips> pBaseConfig){
+  for(auto lOneOp : pBaseConfig){
+    pOpList[lOneOp] = true;
+  }
+  
   for(auto lOneOp : pOpList.Keys()){
     if(!pOpList[lOneOp])
       pOpList.erase(lOneOp);

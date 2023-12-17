@@ -1,4 +1,5 @@
 #include "UIBag.View.h"
+#include "Base/Base.Geometry.h"
 #include "Base/Common/Common.Teml.h"
 #include "Module/Item/Config/ShopLt.Ctrl.h"
 

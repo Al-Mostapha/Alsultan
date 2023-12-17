@@ -8,6 +8,7 @@
 #include "CityScene.Msg.h"
 
 #include "Base/Common/Fabric.h"
+#include "Engine/Device.h"
 #include "Base/Common/Cach/InstanceCach.Mgr.h"
 
 #include "Module/UI/UIManger.h"

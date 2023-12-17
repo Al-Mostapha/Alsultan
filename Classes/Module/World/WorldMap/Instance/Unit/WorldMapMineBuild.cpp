@@ -1,4 +1,5 @@
 #include "WorldMapMineBuild.h"
+#include "Base/Math/Math.Base.h"
 #include "Module/Guild/AllianceStrongholdMine.Read.h"
 #include "Module/Guild/Alliance.Mgr.h"
 #include "Module/Guild/Relation/AllianceRelation.Ctrl.h"

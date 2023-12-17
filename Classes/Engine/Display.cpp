@@ -1,6 +1,7 @@
 #include "Display.h"
 #include "Device.h"
 #include "cocos2d.h"
+#include "Engine/Device.h"
 #include "Scene/Main/MainScene.h"
 
 #define CONFIG_SCREEN_WIDTH 640

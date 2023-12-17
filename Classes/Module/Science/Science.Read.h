@@ -20,7 +20,7 @@ public:
   EScienceType GetType(EScience p_Science){ return EScienceType::Resource; }
   RSingleData GetTypeTitleIcon(EScienceType){
     RSingleData l_Data;
-    l_Data._Title = Translate::i18n("common_text_045");
+    l_Data._Title = "common_text_045";
     l_Data._Icon = "icon_ranking_lord_power.png";
     l_Data._Color = Color3B(160, 250, 0);
     l_Data._Base = "frame_round_tech_04.png";

@@ -1,5 +1,6 @@
 #include "Base.Lib.h"
 #include "Base/Type/XQueue.h"
+#include "Base/Base.Geometry.h"
 #include "Base/Common/Common.Enum.h"
 #include "Base/Common/Common.Teml.h"
 #include "AudioEngine.h"
@@ -10,6 +11,7 @@
 #include "Module/UI/Common/Message/UIMsgTip.h"
 #include "Module/UI/MainUI/UISwitcher.h"
 #include "Scene/Login/LoginScene.h"
+#include "Base/Base.create.h"
 
 
 typedef std::function<void(EventCustom*)> FMsgCallBack;

@@ -1,4 +1,5 @@
 #include "UIBuildingInfoSingle.h"
+#include "Base/Base.Geometry.h"
 #include "Module/CityResource/Resource.Read.h"
 #include "Base/Common/Common.Teml.h"
 

@@ -352,7 +352,7 @@ struct RCityBuilding {
   }
 };
 
-struct RBuilding : public GStruct
+struct RBuilding
 {
 	int idBuilding;
 	GString BuildingName;

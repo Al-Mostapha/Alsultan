@@ -1,4 +1,6 @@
 #include "WorldMapBattery.h"
+#include "Engine/OS.h"
+#include "Base/Math/Math.Base.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
 #include "Module/Guild/Alliance.Read.h"
 #include "Module/Guild/Alliance.Mgr.h"

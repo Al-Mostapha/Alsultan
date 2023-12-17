@@ -12,6 +12,8 @@
 #include "Module/Player/Player.Static.h"
 #include "Module/City/City.Static.h"
 
+#include "malloc.h"
+
 class CityModule
 {
 public:
@@ -22,17 +24,17 @@ public:
 
   static void GetPlayerCity(int32 idPayer)
   {
-    NetModule::getJson(
-      "/api/City/getCity",
-      [](GJson *json)
-      {
-          if (json == nullptr)
-              return;
-          // DSCity city;
-          // SultanPlayer.City.fromJson(json);
-          // SultanPlayer.City.CityBuilding.fromJson(json);
-          //  city.CityBuilding.fromJson(json);
-      });
+    // NetModule::getJson(
+    //   "/api/City/getCity",
+    //   [](GJson *json)
+    //   {
+    //       if (json == nullptr)
+    //           return;
+    //       // DSCity city;
+    //       // SultanPlayer.City.fromJson(json);
+    //       // SultanPlayer.City.CityBuilding.fromJson(json);
+    //       //  city.CityBuilding.fromJson(json);
+    //   });
   }
   static void showCityBuilding();
   static void showCityEffect();

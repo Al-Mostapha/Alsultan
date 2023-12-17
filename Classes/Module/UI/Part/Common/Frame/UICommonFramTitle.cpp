@@ -1,4 +1,5 @@
 #include "UICommonFramTitle.h"
+#include "Base/Base.Geometry.h"
 #include "Global/Global.h"
 #include "Base/Common/Common.Teml.h"
 #include "Base/Base.create.h"

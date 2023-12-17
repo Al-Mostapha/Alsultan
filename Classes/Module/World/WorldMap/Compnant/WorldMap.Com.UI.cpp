@@ -1,5 +1,6 @@
 #include "WorldMap.Com.UI.h"
 #include "WorldMap.Com.Lod.h"
+#include "Base/Base.Geometry.h"
 #include "Engine/Engine.h"
 #include "Module/City/City.Ctrl.h"
 #include "Base/Common/Common.Teml.h"

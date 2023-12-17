@@ -1,5 +1,6 @@
 #include "UIMainBottom.h"
 #include "Base/Type/XMap.h"
+#include "Base/Base.Geometry.h"
 #include "Base/Common/Common.Teml.h"
 #include "Base/Type/EventArg/Alliance/AllianceInfo.EvtArg.h"
 #include "Base/Type/EventArg/Lord/ShowLordInfo.EvtArg.h"

@@ -1,4 +1,5 @@
 #include "UIBuildingCreateSingle.h"
+#include "Base/Base.Geometry.h"
 #include "Module/Building/Building.Read.h"
 #include "Module/Item/Item.Read.h"
 #include "Module/CityResource/Resource.Read.h"

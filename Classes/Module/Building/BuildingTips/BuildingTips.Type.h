@@ -53,44 +53,23 @@ struct RBuildingTipConfig
 {
 	uint32 btnId = 1003;
 	EBuildingTips btnEnum = EBuildingTips::OpDetails;
-	GString ActionName = "common_text_059";
-	GString BtnDesc = "common_text_059";
+	GString OpName = "common_text_059";
+	GString Desc = "common_text_059";
 	GString PicFile = "icon_building_details.png";
 	uint32 OpSortIndex = 30;
 	float scale = 0;
 	Vec2 offset = {5, 0};
 
-	// bool fromJsonObject(GJsonObject &JsonObject)
-	// {
-
-	// 	btnId = JsonObject.HasMember("btnId") ? JsonObject["btnId"].GetInt() : -1;
-	// 	btnEnum = static_cast<ECityBtnAction>(JsonObject.HasMember("btnEnum") ? JsonObject["btnEnum"].GetInt() : 0);
-	// 	ActionName = JsonObject.HasMember("ActionName") ? JsonObject["ActionName"].GetString() : "";
-	// 	BtnDesc = JsonObject.HasMember("BtnDesc") ? JsonObject["BtnDesc"].GetString() : "";
-	// 	BtnImage = JsonObject.HasMember("BtnImage") ? JsonObject["BtnImage"].GetString() : "";
-	// 	ActionSortIndex = JsonObject.HasMember("ActionSortIndex") ? JsonObject["ActionSortIndex"].GetInt() : 0;
-	// 	scale = JsonObject.HasMember("scale") ? JsonObject["scale"].GetInt() : 0;
-
-	// 	if (JsonObject.HasMember("offset") && JsonObject["offset"].IsObject())
-	// 	{
-	// 		offset.x = (float) JsonObject["offset"].HasMember("x") ? (float) JsonObject["offset"]["x"].GetInt() : 0.0f;
-	// 		offset.x = (float) JsonObject["offset"].HasMember("y") ? (float) JsonObject["offset"]["y"].GetInt() : 0.0f;
-	// 	}
-	// }
-
-	// GString toString()
-	// {
-
-	// 	return cocos2d::StringUtils::format(
-	// 		"RCityBtnAction :\
-	// 		 {btnId: %d, btnEnum: %d, ActionName: %s, BtnDesc: %s, BtnImage: %s, ActionSortIndex: %d, scale: %d, offset: %s}",
-	// 		btnId, 
-	// 		int(btnEnum),
-	// 		 ActionName.c_str(),
-	// 		  BtnDesc.c_str(), 
-	// 			BtnImage.c_str(),
-	// 			ActionSortIndex, 
-	// 			scale,
-	// 		cocos2d::StringUtils::format("{x: %d, y: %d}", offset.x, offset.y).c_str());
-	// }
+	bool FromJson(const XJson &pJson){
+		btnId = pJson.value("btnId", 0);
+    btnEnum = static_cast<EBuildingTips>(pJson.value("btnEnum", 0));
+    OpName = pJson.value("OpName", "None");
+    Desc = pJson.value("Desc", "None");
+    PicFile = pJson.value("PicFile", "None.png");
+    OpSortIndex = pJson.value("OpSortIndex", 0);
+    scale = pJson.value("scale", 0);
+    offset.x = pJson.at("offset").value("x", 0);
+    offset.y = pJson.at("offset").value("y", 0);
+    return true;
+	}
 };

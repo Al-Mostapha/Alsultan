@@ -1,4 +1,6 @@
 #include "WorldMap.View.h"
+#include "Base/Math/Math.Base.h"
+#include "Engine/OS.h"
 #include "WorldMap.ViewFactory.h"
 #include "WorldMapView.Def.h"
 #include "WorldMap.Cell.h"
