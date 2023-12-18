@@ -1,17 +1,14 @@
 #pragma once
 #include "Base/Type/XVector.h"
-#include "Base/Containers/HashMap.h"
 #include "Base/Containers/Pair.h"
 #include "Base/Utils/String.Util.h"
 #include "BaseTypeDef.h"
-#include "Include/IncludeEngine.h"
-#include "Common/Timer.Mgr.h"
-#include "Type/EventArg/Lord.EvtArg.h"
-#include "Module/World/WorldMap/WorldMap.Enum.h"
+#include "Base/Type/XEngine.h"
 #include "Global/Global.Enum.h"
-#include "Base/DateTime.h"
-#include "Type/XOptional.h"
+#include "Module/World/WorldMap/WorldMap.Enum.h"
 #include "Base/Base.Enum.h"
+#include "Base/Type/XOptional.h"
+#include "ui/CocosGUI.h"
 
 
 #undef PlaySound
@@ -22,6 +19,7 @@ enum class EBuildingIndex;
 enum class EFactionType;
 enum class EMsgBoxCallBack;
 struct RViewOtherData; 
+struct RUpdatePowerEvtArg; 
 class UIBaseView;
 class UIBasePanel;
 
@@ -29,23 +27,11 @@ class UIBasePanel;
 
 namespace GBase {
 
-struct RCreateLabelParm{
-  GString _Text;
-  GString FontName = "";
-  float _FontSize;
-  Size Dimensions = Size::ZERO;
-  TextHAlignment hAlignment = TextHAlignment::LEFT;
-  TextVAlignment vAlignment = TextVAlignment::TOP;
-  Color4B Color = Color4B::WHITE;
-  float x = 0;
-  float y = 0;
-  EUILabelType _UILabelType = EUILabelType::BMF;
-};
-
 int32 PlaySound();
 int32 PlaySound(const char* p_SoundName, bool p_IsLoop = false, float p_delay = 0.0f);
 int32 PlaySound(const char* p_SoundName,  const GString &pIndex, float p_delay = 0.0f, bool p_Tag3d = false);
 int32 PlaySound(const char* p_SoundName,  int32 pIndex, float p_delay = 0.0f, bool p_Tag3d = false);
+
 const char* getSoundPath(const char* p_SoundName);
 void DFTarget(Node* p_node);
 bool IsTouchOnNode(Vec2 p_Point, Node* p_Node);
@@ -77,7 +63,6 @@ void DCloseSwitcherView();
 void DAddMessage(Node* p_Node, const char* p_EventId, const std::function<void(EventCustom*)>& p_Callback);
 
 GString DConvertSecondToString(int p_Second);
-RenderTexture* DCreateScreenShot(bool p_IsBlur = false);
 GString DGetDefaultLanguage();
 void DSetDefaultLanguage(bool p_IsNeedUpdate = false, bool p_IsNeedRefresh = false);
 template <typename T> GOpt<T> DConfigGet(const char* p_Key, bool p_ByUid = false, bool p_ByLTID = false) { return {}; }
@@ -101,7 +86,7 @@ void DRemoveMessageFromTargetByName(Node* p_Node, const char* p_EventId);
 void DCloseLoading(Node* p_Parent = nullptr, const char* p_Mark = "", bool p_All = false);
 Node *DGetLoading(Node* p_Parent = nullptr);
 
-bool DPostCheckMaintain(int32 p_KingdomId = 0, GTime p_Time = GDateTime::Now());
+bool DPostCheckMaintain(int32 p_KingdomId = 0, GTime p_Time = 0);
 GString DFValueSuit(const GString& p_Value, const GString& p_Sign = "+");
 GString GetCCSPath(const char* p_CCSName);
 
@@ -118,8 +103,7 @@ bool SoraDIsBraveOpen();
 
 void DShowLordUPView();
 UIBaseView *DCurrentSceneShowView(const char *p_NameView = "");
-Node *DCreateCSBNode(const char *p_CSBName);
-Label *DCreateLabel(RCreateLabelParm p_Parm);
+
 
 void DFadeInOut(Node *p_Node/**Fade paramters*/);
 

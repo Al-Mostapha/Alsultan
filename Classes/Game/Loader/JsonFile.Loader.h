@@ -14,5 +14,6 @@ class JsonFileLoader{
     void Load(const GString &p_FileName, GFunc<void()> p_Callback);
     void LoadCityFiles();
     void LoadBuildingFiles();
+    void LoadBuildingTipFiles();
     void LoadPlayerFiles();
 };

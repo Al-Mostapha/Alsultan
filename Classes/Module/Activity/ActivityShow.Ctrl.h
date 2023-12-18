@@ -2,6 +2,7 @@
 #include "Include/IncludeBase.h"
 #include "Activity.Enum.h"
 #include "Activity.Type.h"
+#include "Base/Containers/HashMap.h"
 
 class ActivityShowCtrl {
   GHashMap<EActivityCenter, GHashMap<EActivityTime, bool>> m_ActivityGroup;

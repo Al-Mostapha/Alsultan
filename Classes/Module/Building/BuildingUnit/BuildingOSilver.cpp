@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BuildingOSilver.h"
+#include "Engine/Display.h"
 #include "Module/Building/Building.Event.h"
 
 BuildingOSilver::BuildingOSilver()

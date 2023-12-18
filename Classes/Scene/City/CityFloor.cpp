@@ -11,6 +11,7 @@
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "Game/Init/Game.Top.h"
 #include "Base/Common/Common.Teml.h"
+#include "Base/Common/Timer.Mgr.h"
 #include "Module/Player/Player.Top.h"
 #include "Module/Faction/Faction.Ctrl.h"
 #include "Module/Building/Building.Lib.h"

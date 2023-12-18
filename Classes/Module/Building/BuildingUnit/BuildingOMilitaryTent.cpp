@@ -2,6 +2,7 @@
 
 
 #include "BuildingOMilitaryTent.h"
+#include "Engine/Display.h"
 
 
 BuildingOMilitaryTent::BuildingOMilitaryTent() {

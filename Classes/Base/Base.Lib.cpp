@@ -1,5 +1,6 @@
 #include "Base.Lib.h"
 #include "Base/Type/XQueue.h"
+#include "Base/Base.Const.h"
 #include "Base/Base.Geometry.h"
 #include "Base/Common/Common.Enum.h"
 #include "Base/Common/Common.Teml.h"
@@ -12,6 +13,7 @@
 #include "Module/UI/MainUI/UISwitcher.h"
 #include "Scene/Login/LoginScene.h"
 #include "Base/Base.create.h"
+#include "Base/Common/Timer.Mgr.h"
 
 
 typedef std::function<void(EventCustom*)> FMsgCallBack;
@@ -159,46 +161,6 @@ void DAddMessage(Node* p_Node, const char* p_EventId, const std::function<void(E
 }
 
 GString DConvertSecondToString(int p_Second) { return ""; }
-RenderTexture* DCreateScreenShot(bool p_IsBlur) {
-  auto l_Width = GDisplay::Get()->size().width;
-  auto l_Height = GDisplay::Get()->size().height;
-  // TODO: 35056
-  auto l_RenderTexture = RenderTexture::create((int32)l_Width, (int32)l_Height, Texture2D::PixelFormat::RGBA8888 /*,35056*/);
-  // renderTexture:setKeepMatrix(true)
-  l_RenderTexture->begin();
-  l_RenderTexture->setKeepMatrix(true);
-  // renderTexture:beginWithClear(0, 0, 0, 0, 1, 0)
-  l_RenderTexture->beginWithClear(0, 0, 0, 0, 1, 0);
-  // cc.Director:getInstance():getRunningScene():visit()
-  Director::getInstance()->getRunningScene()->visit();
-  // renderTexture:endToLua()
-  l_RenderTexture->end();
-  // renderTexture:setPosition(cc.p(display.cx, display.cy))
-  l_RenderTexture->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
-  // local renderSprite = renderTexture:getSprite()
-  auto l_RenderSprite = l_RenderTexture->getSprite();
-  // if isBlur then
-
-  // end
-  if (p_IsBlur) {
-    //   local program = cc.GLProgram:createWithFilenames("Shaders/blur.vsh", "Shaders/blur.fsh")
-    //   local state = cc.GLProgramState:create(program)
-    //   state:setUniformVec2("resolution", {
-    //     x = display.size.width,
-    //     y = display.size.height
-    //   })
-    //   state:setUniformFloat("blurRadius", 20)
-    //   state:setUniformFloat("sampleNum", 10)
-    //   renderSprite:setGLProgramState(state)
-    // auto l_State = GLProgramState::create(l_Program);
-    // l_State->setUniformVec2("resolution", Vec2(GDisplay::Get()->size().width, GDisplay::Get()->size().height));
-    // l_State->setUniformFloat("blurRadius", 20);
-    // l_State->setUniformFloat("sampleNum", 10);
-    // l_RenderSprite->setGLProgramState(l_State);
-  }
-  // return renderTexture
-  return l_RenderTexture;
-}
 
 GString DGetDefaultLanguage() { return "en"; }
 void DSetDefaultLanguage(bool p_IsNeedUpdate, bool p_IsNeedRefresh) {}
@@ -343,27 +305,6 @@ void DShowLordUPView() {}
 
 UIBaseView* DCurrentSceneShowView(const char* p_ViewName) { return nullptr; }
 
-Node* DCreateCSBNode(const char* p_CSBName) { return CSLoader::createNode(p_CSBName); }
-
-Label* DCreateLabel(RCreateLabelParm p_Parm) {
-  auto l_Text = p_Parm._Text;
-  auto l_Font = p_Parm.FontName.empty() ? p_Parm.FontName : GDisplay::Get()->DefaultTTFFont;
-  auto l_Size = p_Parm._FontSize = 0 ? p_Parm._FontSize : GDisplay::Get()->DefaultTTFFontSize;
-  auto l_Color = p_Parm.Color != Color4B::WHITE ? p_Parm.Color : Color4B::WHITE;
-  auto l_TextAlign = p_Parm.hAlignment != TextHAlignment::LEFT ? p_Parm.hAlignment : TextHAlignment::LEFT;
-  auto l_TextValign = p_Parm.vAlignment != TextVAlignment::TOP ? p_Parm.vAlignment : TextVAlignment::TOP;
-  auto l_X = p_Parm.x;
-  auto l_Y = p_Parm.y;
-
-  auto l_Label = Label::createWithSystemFont(l_Text, l_Font, l_Size, p_Parm.Dimensions, l_TextAlign, l_TextValign);
-  if (l_Label) {
-    l_Label->setColor(Color3B(l_Color));
-    if (l_X && l_Y) {
-      l_Label->setPosition(l_X, l_Y);
-    }
-  }
-  return l_Label;
-}
 
 void DFadeInOut(Node* p_Node /**, float p_Time, float p_Delay, std::function<void()> p_CallBack*/) {
   // if(!p_Node) return;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Include/IncludeBase.h"
 #include "Base/Type/XOptional.h"
+#include "Base/Containers/HashMap.h"
 #include "Global.Enum.h"
 
 #define INIT_FALSE true

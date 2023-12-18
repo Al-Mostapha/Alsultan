@@ -1,5 +1,6 @@
 #pragma once
 #include "Include/IncludeBase.h"
+#include "Base/State/IState.h"
 
 namespace Building{
   class StateReset : public IState{

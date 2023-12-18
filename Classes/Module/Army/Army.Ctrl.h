@@ -2,6 +2,7 @@
 #include "Include/IncludeBase.h"
 #include "Army.Enum.h"
 #include "Module/Building/Building.Enum.h"
+#include "Base/Containers/HashMap.h"
 
 class ArmyCtrl { 
 public: 

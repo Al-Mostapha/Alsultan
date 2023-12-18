@@ -1,5 +1,6 @@
 #include "WorldMapFortress.h"
 #include "Global/Global.h"
+#include "Base/Base.create.h"
 #include "Module/Player/Player.Top.h"
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "Module/Guild/Alliance.Mgr.h"

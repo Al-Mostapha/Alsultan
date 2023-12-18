@@ -1,6 +1,7 @@
 
 #pragma once
 #include "Include/IncludeEngine.h"
+#include "Base/Containers/HashMap.h"
 #include "Module/Building/Building.Enum.h"
 
 class CityCommon{

@@ -1,4 +1,5 @@
 #include "WorldMapCastle.h"
+#include "Base/Base.create.h"
 #include "Engine/Base/UI/XUILabel.h"
 #include "Base/Common/Common.Func.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"

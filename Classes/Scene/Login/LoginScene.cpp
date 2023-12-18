@@ -1,5 +1,6 @@
 #include "LoginScene.h"
 #include "Base/Type/XMap.h"
+#include "Base/Sdk/Sdk.Manager.h"
 #include "Engine/Device.h"
 #include "Base/Common/Cach/InstanceCach.Mgr.h"
 #include "Base/Common/Fabric.h"

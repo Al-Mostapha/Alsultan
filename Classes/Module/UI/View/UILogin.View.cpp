@@ -1,10 +1,15 @@
 #include "UILogin.View.h"
 #include "Engine/Engine.h"
 #include "Engine/Device.h"
+#include "Base/Sdk/Sdk.Manager.h"
+#include "Base/Base.Const.h"
+#include "Base/Common/Timer.Mgr.h"
+#include "Base/Base.create.h"
 #include "Base/Math/Math.Base.h"
 #include "Base/Common/Common.City.h"
 #include "Scene/Login/LoginScene.h"
 #include "UILoginInput.h"
+
 // #include "spine/SkeletonAnimation.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"

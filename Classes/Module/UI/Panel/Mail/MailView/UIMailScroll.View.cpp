@@ -1,4 +1,5 @@
 #include "UIMailScroll.View.h"
+#include "Base/Common/Timer.Mgr.h"
 #include "Base/Common/Common.Teml.h"
 
 UIMailScrollView* UIMailScrollView::Create()

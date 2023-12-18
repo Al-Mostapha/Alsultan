@@ -1,5 +1,7 @@
 #include "UICollegeView.h"
 #include "Base/Base.Geometry.h"
+#include "Base/Base.Const.h"
+#include "Base/Common/Timer.Mgr.h"
 #include "UICollegeScrollSingle.h"
 #include "UICollegeWaitSingle.h"
 #include "UICollegeMainSingle.h"

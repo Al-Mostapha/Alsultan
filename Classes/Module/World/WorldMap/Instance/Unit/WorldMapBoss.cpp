@@ -6,6 +6,7 @@
 #include "Base/Utils/XTransition.h"
 #include "Base/Common/Common.Func.h"
 #include "Base/Common/Common.Msg.h"
+#include "Base/Base.create.h"
 #include "Base/Functions/ServiceFunction.h"
 #include "Module/Player/LordInfo.Ctrl.h"
 #include "Module/Player/Player.Top.h"

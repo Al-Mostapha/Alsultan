@@ -3,6 +3,7 @@
 #include "Base/Type/XVector.h"
 #include "Base/Type/XJson.h"
 #include "Army.Enum.h"
+#include "Base/Containers/HashMap.h"
 #include "Module/Building/Building.Enum.h"
 #include "Module/CityResource/Resource.Enum.h"
 

@@ -2,6 +2,7 @@
 #include "Module/World/WorldMap/View/WorldMap.View.h"
 #include "Engine/Display.h"
 #include "renderer/ccShaders.h"
+#include "Base/Base.create.h"
 #include "Module/World/WorldMap/Shader/Terrian.Shader.h"
 #include "Module/World/WorldMap/Shader/Terrian.Shader.Low.h"
 #include "Module/World/WorldMap/WorldMap.Util.h"

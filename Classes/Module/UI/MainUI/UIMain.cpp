@@ -4,6 +4,7 @@
 #include "UIPandectView.h"
 #include "Engine/Device.h"
 #include "Base/Base.Geometry.h"
+#include "Base/Sdk/Sdk.Manager.h"
 #include "Base/Common/Common.Enum.h"
 #include "Base/Common/Common.Teml.h"
 #include "Base/Common/Common.Msg.h"

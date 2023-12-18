@@ -1,5 +1,6 @@
 #include "WorldMap.Define.h"
 #include "Engine/Display.h"
+#include "Base/Containers/HashMap.h"
 #include "Base/Common/Common.Teml.h"
 
 WorldMapDefine * WorldMapDefine::Get(){

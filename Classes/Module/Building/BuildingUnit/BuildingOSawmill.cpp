@@ -2,6 +2,7 @@
 
 
 #include "BuildingOSawmill.h"
+#include "Engine/Display.h"
 #include "Module/Building/Building.Event.h"
 
 BuildingOSawmill::BuildingOSawmill() {

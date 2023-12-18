@@ -1,4 +1,5 @@
 #include "UICollegeMainSingle.h"
+#include "Base/Base.Const.h"
 #include "UICollegeStudyingView.h"
 #include "Module/Science/Science.Read.h"
 #include "Module/City/City.Ctrl.h"

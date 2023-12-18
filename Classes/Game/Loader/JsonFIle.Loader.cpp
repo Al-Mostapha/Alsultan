@@ -32,16 +32,20 @@ void JsonFileLoader::LoadCityFiles(){
 
 void JsonFileLoader::LoadBuildingFiles(){
   NetModule::Get()->GetJsonFile("/Static/Json/Building/Building.json", [this](auto pJson, auto pReq){
-    NetModule::Get()->GetJsonFile("/Static/Json/Building/BuildingTips.json", [this](auto pJson, auto pReq){
-      if(pJson.is_null())
-        Logger::Get()->Log("BuildingTips.json Not loaded");
-      Logger::Get()->Log("BuildingTips.json loaded");
-      BuildingStatic::Get()->GetTipsFromJsonFile(pJson);
-    });
     if(pJson.is_null())
       Logger::Get()->Log("CityBuilding.json Not loaded");
     Logger::Get()->Log("CityBuilding.json loaded");
     BuildingStatic::Get()->GetFromJsonFile(pJson);
+    LoadBuildingTipFiles();
+  });
+}
+
+void JsonFileLoader::LoadBuildingTipFiles(){
+  NetModule::Get()->GetJsonFile("/Static/Json/Building/BuildingTips.json", [this](auto pJson, auto pReq){
+    if(pJson.is_null())
+      Logger::Get()->Log("BuildingTips.json Not loaded");
+    Logger::Get()->Log("BuildingTips.json loaded");
+    //BuildingStatic::Get()->GetTipsFromJsonFile(pJson);
     LoadPlayerFiles();
   });
 }

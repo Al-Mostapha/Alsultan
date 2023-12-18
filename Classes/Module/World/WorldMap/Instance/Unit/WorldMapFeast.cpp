@@ -1,5 +1,6 @@
 #include "WorldMapFeast.h"
 #include "Global/Global.h"
+#include "Base/Base.create.h"
 #include "Module/Guild/Alliance.Read.h"
 #include "Module/Player/Player.Top.h"
 #include "Module/Guild/Alliance.Mgr.h"

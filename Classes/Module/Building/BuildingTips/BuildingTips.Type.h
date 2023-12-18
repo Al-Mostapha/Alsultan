@@ -67,9 +67,9 @@ struct RBuildingTipConfig
     Desc = pJson.value("Desc", "None");
     PicFile = pJson.value("PicFile", "None.png");
     OpSortIndex = pJson.value("OpSortIndex", 0);
-    scale = pJson.value("scale", 0);
-    offset.x = pJson.at("offset").value("x", 0);
-    offset.y = pJson.at("offset").value("y", 0);
+    scale = pJson.value("scale", 0.f);
+    offset.x = pJson.at("offset").value("x", 0.f);
+    offset.y = pJson.at("offset").value("y", 0.f);
     return true;
 	}
 };

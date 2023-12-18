@@ -1,4 +1,5 @@
 #pragma once
+#include "Base/Containers/HashMap.h"
 #include "Module/World/WorldMap/Instance/IWorldMapInstance.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
 

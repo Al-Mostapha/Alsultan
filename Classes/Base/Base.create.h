@@ -42,9 +42,26 @@ public:
 };
 
 namespace GBase{
+
+  struct RCreateLabelParm{
+  GString _Text;
+  GString FontName = "";
+  float _FontSize;
+  Size Dimensions = Size::ZERO;
+  TextHAlignment hAlignment = TextHAlignment::LEFT;
+  TextVAlignment vAlignment = TextVAlignment::TOP;
+  Color4B Color = Color4B::WHITE;
+  float x = 0;
+  float y = 0;
+  EUILabelType _UILabelType = EUILabelType::BMF;
+};
+
   GPair<Node *, XActionTimeLine *> DCreateAnimation(const char *p_FilePath, Node *p_Node = nullptr, bool p_Loop = true);
   GPair<Node *, XActionTimeLine *> DCreateAnimationEx(const char *p_FilePath, Node *p_Node = nullptr, bool p_Loop = true, float p_Speed = 1.0f, int32 p_StartIndex = -1, int32 p_EndIndex = -1);
   Sprite *CreateSprite(const char *p_SpritePath);
   Node *DFingerAction(bool p_IsHideEffect, bool p_IsStopAction, int32 p_ActionTimes = 0, bool p_IsHideFinger= false);
   Label *DCreateWaveLabel(const GString &pText, Node *pParent, const RCreateWaveLabelParam &pParam);
+  Node *DCreateCSBNode(const char *p_CSBName);
+  Label *DCreateLabel(RCreateLabelParm p_Parm);
+  RenderTexture* DCreateScreenShot(bool p_IsBlur = false);
 };

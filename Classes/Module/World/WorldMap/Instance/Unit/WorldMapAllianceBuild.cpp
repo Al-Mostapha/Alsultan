@@ -1,4 +1,5 @@
 #include "WorldMapAllianceBuild.h"
+#include "Base/Base.create.h"
 #include "Module/UI/Panel/World/WorldMap/Instance/Unit/AllianceBuild/UIWorldMapAllianceBuild.ProgressBar.h"
 #include "Module/UI/Panel/World/WorldMap/Instance/Unit/Boss/UIWorldMapBoss.ProgressBar.h"
 #include "Module/Guild/Alliance.Read.h"

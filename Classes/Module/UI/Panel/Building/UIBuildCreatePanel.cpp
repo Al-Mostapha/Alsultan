@@ -1,4 +1,5 @@
 #include "UIBuildCreatePanel.h"
+#include "Base/Base.create.h"
 #include "cocostudio/CocoStudio.h"
 #include "Include/IncludeConfig.h"
 #include "Include/IncludeBuildingFunc.h"

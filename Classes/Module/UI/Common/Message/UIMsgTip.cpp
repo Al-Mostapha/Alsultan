@@ -1,4 +1,5 @@
 #include "UIMsgTip.h"
+#include "Base/Logger/Logger.h"
 #include "Base/Common/Common.Teml.h"
 
 void UIMsgTip::InitPanel(){

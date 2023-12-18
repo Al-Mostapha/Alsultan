@@ -1,5 +1,7 @@
 #include "WorldMap.View.h"
 #include "Base/Math/Math.Base.h"
+#include "Base/Base.create.h"
+#include "Base/Common/Timer.Mgr.h"
 #include "Engine/OS.h"
 #include "WorldMap.ViewFactory.h"
 #include "WorldMapView.Def.h"

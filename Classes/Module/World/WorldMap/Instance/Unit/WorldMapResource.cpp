@@ -1,4 +1,5 @@
 #include "WorldMapResource.h"
+#include "Base/Base.create.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
 #include "Module/Player/Player.Top.h"
 #include "Module/Player/LordInfo.Ctrl.h"

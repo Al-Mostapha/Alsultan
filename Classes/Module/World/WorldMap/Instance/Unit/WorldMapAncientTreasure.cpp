@@ -1,4 +1,5 @@
 #include "WorldMapAncientTreasure.h"
+#include "Base/Base.create.h"
 #include "Module/Guild/Alliance.Read.h"
 #include "Module/Guild/Alliance.Mgr.h"
 #include "Module/Guild/Relation/AllianceRelation.Ctrl.h"

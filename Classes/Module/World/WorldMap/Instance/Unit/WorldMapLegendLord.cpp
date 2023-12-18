@@ -1,4 +1,5 @@
 #include "Global/Global.h"
+#include "Base/Base.create.h"
 #include "WorldMapLegendLord.h"
 #include "Base/Common/CommonCheck.h"
 #include "Module/City/City.Ctrl.h"

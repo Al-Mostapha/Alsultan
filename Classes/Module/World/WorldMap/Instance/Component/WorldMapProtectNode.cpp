@@ -1,4 +1,5 @@
 #include "WorldMapProtectNode.h"
+#include "Base/Base.create.h"
 #include "Base/Common/Common.Teml.h"
 #include "Base/Utils/XTransition.h"
 

@@ -1,4 +1,5 @@
 #include "WorldMapPyramidGloryBuild.h"
+#include "Base/Base.create.h"
 #include "Base/Math/Math.Base.h"
 #include "Module/UI/Panel/World/WorldWar/PyramidBattel/UIAlliancePBLHonor.View.h"
 

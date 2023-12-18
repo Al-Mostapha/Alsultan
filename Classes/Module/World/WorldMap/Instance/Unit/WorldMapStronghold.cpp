@@ -1,4 +1,5 @@
 #include "WorldMapStronghold.h"
+#include "Base/Base.create.h"
 #include "Base/Functions/ServiceFunction.h"
 #include "Module/Guild/AllianceStrongholdMine.Read.h"
 #include "Module/UI/Common/Timer/UITimerLabel.h"

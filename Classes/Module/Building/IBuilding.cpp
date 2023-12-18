@@ -1,6 +1,8 @@
 #include "IBuilding.h"
 #include <memory>
 #include "Building.Event.h"
+#include "Base/DateTime.h"
+#include "Base/Base.create.h"
 #include "Base/Common/Common.City.h"
 #include "Module/Army/Army.Ctrl.h"
 #include "Module/Building/Building.Logic.h"

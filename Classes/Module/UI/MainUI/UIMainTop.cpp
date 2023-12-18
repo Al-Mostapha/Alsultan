@@ -1,4 +1,6 @@
 #include "UIMainTop.h"
+#include "Base/Base.Const.h"
+#include "Base/Base.create.h"
 #include "Module/Activity/ActivityShow.Ctrl.h"
 #include "Module/Activity/ClientEvent.Mgr.h"
 #include "Module/UI/EventCenter/EventTemplate/LostRuins/LostRuins.Ctrl.h"

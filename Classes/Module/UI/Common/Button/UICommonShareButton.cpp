@@ -1,4 +1,7 @@
 #include "UICommonShareButton.h"
+#include "Base/Sdk/Sdk.Manager.h"
+#include "Base/Common/Timer.Mgr.h"
+#include "Base/Base.create.h"
 #include "Module/UI/Panel/Lord/Settings/Options/UIGameOptionsView.h"
 #include "Module/UI/Common/UICommonSharePic.h"
 

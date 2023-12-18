@@ -1,4 +1,5 @@
 #include "WorldMapChest.h"
+#include "Base/Base.create.h"
 #include "Base/Utils/XTransition.h"
 #include "Module/Player/Player.Top.h"
 #include "Module/UI/Panel/World/WorldMap/Instance/Unit/Chest/UIWorldMapChest.View.h"

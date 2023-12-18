@@ -1,5 +1,6 @@
-#include "Base/Base.create.h"
 #include "Module/Building/IBuilding.h"
+#include "Base/Base.create.h"
+#include "Engine/Display.h"
 
 ParticleSystemQuad* BaseCreate::createParticle(const std::string& Part, Vec2 Pos, Vec2 Scl, float rot) {
   auto Particle = ParticleSystemQuad::create(Part);
@@ -126,3 +127,66 @@ Label *GBase::DCreateWaveLabel(const GString &pText, Node *pParent, const RCreat
   return lWaveLabel;
 }
 
+
+Node* GBase::DCreateCSBNode(const char* p_CSBName) { return CSLoader::createNode(p_CSBName); }
+
+Label* GBase::DCreateLabel(RCreateLabelParm p_Parm) {
+  auto l_Text = p_Parm._Text;
+  auto l_Font = p_Parm.FontName.empty() ? p_Parm.FontName : GDisplay::Get()->DefaultTTFFont;
+  auto l_Size = p_Parm._FontSize = 0 ? p_Parm._FontSize : GDisplay::Get()->DefaultTTFFontSize;
+  auto l_Color = p_Parm.Color != Color4B::WHITE ? p_Parm.Color : Color4B::WHITE;
+  auto l_TextAlign = p_Parm.hAlignment != TextHAlignment::LEFT ? p_Parm.hAlignment : TextHAlignment::LEFT;
+  auto l_TextValign = p_Parm.vAlignment != TextVAlignment::TOP ? p_Parm.vAlignment : TextVAlignment::TOP;
+  auto l_X = p_Parm.x;
+  auto l_Y = p_Parm.y;
+
+  auto l_Label = Label::createWithSystemFont(l_Text, l_Font, l_Size, p_Parm.Dimensions, l_TextAlign, l_TextValign);
+  if (l_Label) {
+    l_Label->setColor(Color3B(l_Color));
+    if (l_X && l_Y) {
+      l_Label->setPosition(l_X, l_Y);
+    }
+  }
+  return l_Label;
+}
+
+RenderTexture* GBase::DCreateScreenShot(bool p_IsBlur) {
+  auto l_Width = GDisplay::Get()->size().width;
+  auto l_Height = GDisplay::Get()->size().height;
+  // TODO: 35056
+  auto l_RenderTexture = RenderTexture::create((int32)l_Width, (int32)l_Height, Texture2D::PixelFormat::RGBA8888 /*,35056*/);
+  // renderTexture:setKeepMatrix(true)
+  l_RenderTexture->begin();
+  l_RenderTexture->setKeepMatrix(true);
+  // renderTexture:beginWithClear(0, 0, 0, 0, 1, 0)
+  l_RenderTexture->beginWithClear(0, 0, 0, 0, 1, 0);
+  // cc.Director:getInstance():getRunningScene():visit()
+  Director::getInstance()->getRunningScene()->visit();
+  // renderTexture:endToLua()
+  l_RenderTexture->end();
+  // renderTexture:setPosition(cc.p(display.cx, display.cy))
+  l_RenderTexture->setPosition(Vec2(GDisplay::Get()->cx, GDisplay::Get()->cy));
+  // local renderSprite = renderTexture:getSprite()
+  auto l_RenderSprite = l_RenderTexture->getSprite();
+  // if isBlur then
+
+  // end
+  if (p_IsBlur) {
+    //   local program = cc.GLProgram:createWithFilenames("Shaders/blur.vsh", "Shaders/blur.fsh")
+    //   local state = cc.GLProgramState:create(program)
+    //   state:setUniformVec2("resolution", {
+    //     x = display.size.width,
+    //     y = display.size.height
+    //   })
+    //   state:setUniformFloat("blurRadius", 20)
+    //   state:setUniformFloat("sampleNum", 10)
+    //   renderSprite:setGLProgramState(state)
+    // auto l_State = GLProgramState::create(l_Program);
+    // l_State->setUniformVec2("resolution", Vec2(GDisplay::Get()->size().width, GDisplay::Get()->size().height));
+    // l_State->setUniformFloat("blurRadius", 20);
+    // l_State->setUniformFloat("sampleNum", 10);
+    // l_RenderSprite->setGLProgramState(l_State);
+  }
+  // return renderTexture
+  return l_RenderTexture;
+}

@@ -10,7 +10,7 @@ class ITask{
   GTime TimeStart;
   GTime TimeEndOrginal;
   virtual GTime GetRemainTime(){
-    return TimeEnd - GDateTime::Now();
+    return TimeEnd - 0;
   }
   virtual GTime GetTotalTime(){
     return 0;

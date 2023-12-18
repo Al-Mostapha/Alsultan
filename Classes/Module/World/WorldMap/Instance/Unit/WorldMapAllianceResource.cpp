@@ -1,5 +1,6 @@
 #include "WorldMapAllianceResource.h"
 #include "Base/Math/Math.Base.h"
+#include "Base/Base.create.h"
 #include "Engine/OS.h"
 #include "Module/World/WorldMap/WorldMap.Define.h"
 #include "Module/Guild/Alliance.Mgr.h"
