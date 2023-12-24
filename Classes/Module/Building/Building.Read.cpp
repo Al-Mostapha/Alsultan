@@ -17,23 +17,23 @@ GString BuildingRead::GetIcon(EBuilding p_Building){
 }
 
 GString BuildingRead::GetUpgradeStarDes(EBuilding p_Building){
-  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).StarDescribe);
+  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).StarDescribe.c_str());
 }
 
 GString BuildingRead::GetUpgradeDes(EBuilding p_Building){
-  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).UpgradeBrief);
+  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).UpgradeBrief.c_str());
 }
 
 GString BuildingRead::GetStarDes(EBuilding p_Building){
-  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).StarDescribe);
+  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).StarDescribe.c_str());
 }
 
 GString BuildingRead::GetWarDes(EBuilding p_Building){
-  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).WarDescribe);
+  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).WarDescribe.c_str());
 }
 
 GString BuildingRead::GetDes(EBuilding p_Building){
-  auto l_Des = Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).Describe);
+  auto l_Des = Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).Describe.c_str());
   if(p_Building == EBuilding::Embassy){
     if(GBase::DCheckIsOpenBuildStar()){
       l_Des += "\n" + Translate::i18n("common_text_4301");
@@ -46,11 +46,11 @@ GString BuildingRead::GetDes(EBuilding p_Building){
 }
 
 GString BuildingRead::GetBrief(EBuilding p_Building){
-  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).BuildingBrief);
+  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).BuildingBrief.c_str());
 }
 
 GString BuildingRead::GetName(EBuilding p_Building){
-  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).BuildingName);
+  return Translate::i18n(BuildingStatic::getBuildingSpecs(p_Building).BuildingName.c_str());
 }
 
 GString BuildingRead::GetName(int32 p_Building){

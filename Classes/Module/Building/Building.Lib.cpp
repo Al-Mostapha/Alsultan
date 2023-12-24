@@ -136,8 +136,9 @@ GVector<RCityBuildingUnit> BuildingLib::getBuildingResList() {
 GVector<RBuildingSpecs> BuildingLib::getCanBuildList(EBuildingPlace pBuildingPlace) {
   GVector<RBuildingSpecs> l_BuildableList;
   for (auto l_building : BuildingStatic::BuildableList) {
+    if(l_building == EBuilding::None) continue;
     // if (BuildingStatic::BuildingInfo.count(l_building)) 
-      l_BuildableList.push_back(BuildingStatic::BuildingInfo[l_building]);
+    l_BuildableList.push_back(BuildingStatic::Get()->getBuildingSpecs(l_building));
   }
   return l_BuildableList;
 }

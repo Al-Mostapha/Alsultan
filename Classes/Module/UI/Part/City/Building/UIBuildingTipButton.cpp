@@ -175,12 +175,10 @@ void UIBuildingTipButton::InitWithData(EBuildingTips p_Tip, IBuilding *p_Buildin
     l_IconFile = "icon_pet_exchange_enter.png";
   }
 
-  //_Icon->loadTexture(l_IconFile, TextureResType::PLIST);
-  // self.icon:ignoreContentAdaptWithSize(true)
+  _Icon->loadTexture(l_IconFile, TextureResType::PLIST);
   _Icon->ignoreContentAdaptWithSize(true);
   _Text->ignoreContentAdaptWithSize(true);
   _Text->setTextAreaSize({0, 0});
-  // self.text:setString(i18n(self.opType.Desc))
   _Text->setString(Translate::i18n(l_OpData.Desc.c_str()));
   // if bid == BUILDID.STAR_BRAVE_STATUE and self.opType.OpName == BOP_NAME.BOP_STARSPEEDUP then
   //   self.text:setString(i18n("common_text_018"))

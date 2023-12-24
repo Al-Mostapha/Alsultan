@@ -63,8 +63,8 @@ struct RBuildingTipConfig
 	bool FromJson(const XJson &pJson){
 		btnId = pJson.value("btnId", 0);
     btnEnum = static_cast<EBuildingTips>(pJson.value("btnEnum", 0));
-    OpName = pJson.value("OpName", "None");
-    Desc = pJson.value("Desc", "None");
+    OpName = pJson.value("ActionName", "None");
+    Desc = pJson.value("BtnDesc", "None");
     PicFile = pJson.value("PicFile", "None.png");
     OpSortIndex = pJson.value("OpSortIndex", 0);
     scale = pJson.value("scale", 0.f);

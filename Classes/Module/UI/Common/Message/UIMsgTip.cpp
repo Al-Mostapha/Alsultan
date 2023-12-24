@@ -4,21 +4,20 @@
 
 void UIMsgTip::InitPanel(){
 
-  Node *panel = CSLoader::createNode(CsbUiFilePath::UIMsgTipPanel);
-  if(!panel){
+  _Panel = CSLoader::createNode(CsbUiFilePath::UIMsgTipPanel);
+  if(!_Panel){
     cocos2d::log("UIMsgTipPanel::InitPanel error No find %s", CsbUiFilePath::UIMsgTipPanel.c_str());
     return;
   }
   m_ViewName  = "commonPromptTip";
   m_MaxHeight = 80.0f;
-  m_ImageIconBg = GBase::DGetChildByName<Sprite *>(panel, "Image_IconBg");
-  m_TextMessage = GBase::DGetChildByName<ui::Text *>(panel, "Text_message");
-  m_ImageBgL = GBase::DGetChildByName<ui::ImageView *>(panel, "Image_bg_1");
-  m_ImageBgR = GBase::DGetChildByName<ui::ImageView *>(panel, "Image_bg_1");
+  m_ImageIconBg = GBase::DGetChildByName<Sprite *>(_Panel, "Image_IconBg");
+  m_TextMessage = GBase::DGetChildByName<ui::Text *>(_Panel, "Text_message");
+  m_ImageBgL = GBase::DGetChildByName<ui::ImageView *>(_Panel, "Image_bg_1");
+  m_ImageBgR = GBase::DGetChildByName<ui::ImageView *>(_Panel, "Image_bg_1");
   if(m_ImageIconBg)
     m_ImageIconBg->setVisible(false);
-  _Panel->addChild(panel, 1);
-  addChild(_Panel);
+  addChild(_Panel, 1);
   //_Panel = panel;
 }
 

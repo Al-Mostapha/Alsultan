@@ -12,7 +12,7 @@ RBuildingTipsBtnListData BuildingTipsStatic::GetBuildTipsBtnListData(EBuilding p
 }
 
 RBuildingTipConfig BuildingTipsStatic::GetBuildTipButtonCfgById(EBuildingTips p_Tip){
-    if(BuildingStatic::Get()->GetBuildingTips().Contains(p_Tip))
+  if(BuildingStatic::Get()->GetBuildingTips().Contains(p_Tip))
     return BuildingStatic::Get()->GetBuildingTips()[p_Tip];
   return RBuildingTipConfig();
 }

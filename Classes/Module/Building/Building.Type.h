@@ -151,13 +151,13 @@ struct RBuildingSpecs {
   int32 maxStarLv = 0;
   int32 isCanBuild = 1; // 0, 1, 2
   uint32 addmaxstarlv = 0;
-  const char *BuildingName = "Building Name";
-  const char *BuildingIcon = "quest_building_114.png";
-  const char *BuildingBrief = "";
-  const char *UpgradeBrief = "";
-  const char *Describe = "Describe";
-  const char *WarDescribe = "";
-  const char *StarDescribe = "";
+  GString BuildingName = "Building Name";
+  GString BuildingIcon = "quest_building_114.png";
+  GString BuildingBrief = "";
+  GString UpgradeBrief = "";
+  GString Describe = "Describe";
+  GString WarDescribe = "";
+  GString StarDescribe = "";
   RBuildingTipsBtnListData TipButtons;
   GHashMap<uint32, RBuildingLvlSpecs> Lvls;
   bool FromJson(const XJson &json) ;

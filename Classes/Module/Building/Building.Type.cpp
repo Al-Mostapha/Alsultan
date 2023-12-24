@@ -39,13 +39,13 @@ bool RBuildingSpecs::FromJson(const XJson& pJson) {
   maxStarLv = pJson.value("maxStarLv", 0);
   isCanBuild = pJson.value("isCanBuild", sDefaultBuildingSpecs.isCanBuild);
   addmaxstarlv = pJson.value("addmaxstarlv", 0);
-  BuildingName = pJson.value("BuildingName", "DefaultBuildingName").c_str();
-  BuildingIcon = pJson.value("BuildingIcon", "DefaultBuildingIcon").c_str();
-  BuildingBrief = pJson.value("BuildingBrief", "DefaultBuildingBrief").c_str();
-  UpgradeBrief = pJson.value("UpgradeBrief", "DefaultUpgradeBrief").c_str();
-  Describe = pJson.value("Describe", "DefaultDescribe").c_str();
-  WarDescribe = pJson.value("WarDescribe", "DefaultWarDescribe").c_str();
-  StarDescribe = pJson.value("StarDescribe", "DefaultStarDescribe").c_str();
+  BuildingName = pJson.value("BuildingName", "DefaultBuildingName");
+  BuildingIcon = pJson.value("BuildingIcon", "DefaultBuildingIcon");
+  BuildingBrief = pJson.value("BuildingBrief", "DefaultBuildingBrief");
+  UpgradeBrief = pJson.value("UpgradeBrief", "DefaultUpgradeBrief");
+  Describe = pJson.value("Describe", "DefaultDescribe");
+  WarDescribe = pJson.value("WarDescribe", "DefaultWarDescribe");
+  StarDescribe = pJson.value("StarDescribe", "DefaultStarDescribe");
   TipButtons.FromJson(pJson["TipButtons"]);
   for(auto [lLvl, lBuilding] : pJson["Lvls"].items()) {
     Lvls[std::stoi(lLvl)].FromJson(lBuilding);
@@ -70,7 +70,7 @@ RCityBuildingUnit& RCityBuildingUnit::buildUnit() {
 
   auto _node = l_RunningScene->CityBuildingLayer->getChildByName(NodeName);
   if (!_node) {
-    cocos2d::log("Error: The Current Node Has No Name Node With %s", NodeName.c_str());
+    cocos2d::log("Error: The Current Node Has No Name Node With %s", NodeName);
     return *this;
   }
 

@@ -1,7 +1,7 @@
 #include "Building.Static.h"
 #include "Building.Enum.h"
 
-GHashMap<EBuilding, RBuildingSpecs> BuildingStatic::BuildingInfo;
+
 
 BuildingStatic *BuildingStatic::Get() {
   static BuildingStatic* l_Instance = new BuildingStatic();
@@ -9,12 +9,12 @@ BuildingStatic *BuildingStatic::Get() {
 }
 
 GVector<EBuilding> BuildingStatic::BuildableList = {
-        EBuilding::None,         EBuilding::Castle,       EBuilding::Wall,        EBuilding::ArrowTower, EBuilding::WatchTower,
-        EBuilding::Depot,        EBuilding::Embassy,      EBuilding::Market,      EBuilding::Institute,  EBuilding::TreasurePool,
-        EBuilding::Blacksmith,   EBuilding::Stable,       EBuilding::TargetRange, EBuilding::Barrack,    EBuilding::ChariotPlant,
-        EBuilding::Fortress,     EBuilding::DrillGrounds, EBuilding::HallOfWar,   EBuilding::TrainHall,  EBuilding::Prison,
-        EBuilding::Farm,         EBuilding::LumberMill,   EBuilding::IronMine,    EBuilding::SilverMine, EBuilding::MarchingTent,
-        EBuilding::FirstAidTent, EBuilding::CrystalMine,  EBuilding::Miracle,     EBuilding::ElitePalace};
+  EBuilding::Castle,       EBuilding::Wall,        EBuilding::ArrowTower, EBuilding::WatchTower,
+  EBuilding::Depot,        EBuilding::Embassy,      EBuilding::Market,      EBuilding::Institute,  EBuilding::TreasurePool,
+  EBuilding::Blacksmith,   EBuilding::Stable,       EBuilding::TargetRange, EBuilding::Barrack,    EBuilding::ChariotPlant,
+  EBuilding::Fortress,     EBuilding::DrillGrounds, EBuilding::HallOfWar,   EBuilding::TrainHall,  EBuilding::Prison,
+  EBuilding::Farm,         EBuilding::LumberMill,   EBuilding::IronMine,    EBuilding::SilverMine, EBuilding::MarchingTent,
+  EBuilding::FirstAidTent, EBuilding::CrystalMine,  EBuilding::Miracle,     EBuilding::ElitePalace};
 
 bool BuildingStatic::isValidBuilding(EBuilding p_BuildingType) {
   auto l_Instance = Get();

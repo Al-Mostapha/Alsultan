@@ -112,10 +112,10 @@ void UIBuildCreatePanel::SetBuildingTypeAndData(EBuildingPlace pType, EBuildingI
 
 void UIBuildCreatePanel::UpdateView(){
 
-  m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief));
+  m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief.c_str()));
   m_LabelCount->setVisible(m_CurrentBuilding.bType == EBuildingPlace::Outer);
   m_LabelNeed->setVisible(!m_CurrentBuilding.isCanBuild);
-  m_LabelName->setString(Translate::i18n(m_CurrentBuilding.BuildingName));
+  m_LabelName->setString(Translate::i18n(m_CurrentBuilding.BuildingName.c_str()));
   m_BtnBuild->setTouchEnabled(m_CurrentBuilding.isCanBuild);
   m_BtnBuild->setBright(m_CurrentBuilding.isCanBuild);
 
@@ -179,7 +179,7 @@ void UIBuildCreatePanel::CreateWheelScrollView(){
 
   GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
   for(auto l_BuildingUnit : m_BuildableList){
-    UIBuildCreateScrollSingle *l_ScrollSingle = UIBuildCreateScrollSingle::Create();
+    auto l_ScrollSingle = UIBuildCreateScrollSingle::Create();
     l_ScrollSingle->initData(l_BuildingUnit.BuildingID);
     l_ScrollViews.push_back(l_ScrollSingle);
   }

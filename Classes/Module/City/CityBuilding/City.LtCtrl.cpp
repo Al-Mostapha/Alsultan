@@ -18,7 +18,7 @@ CityLtCtrl *CityLtCtrl::Get(){
 }
 
 void CityLtCtrl::Init(){
-  for(auto l_OneBuildingInfo : BuildingStatic::Get()->BuildingInfo){
+  for(auto l_OneBuildingInfo : BuildingStatic::Get()->getBuildingSpecs()){
     BuildInfo.insert(l_OneBuildingInfo);
   }
 }

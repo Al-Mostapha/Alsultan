@@ -408,13 +408,14 @@ UIBuildingTipPanel::GetButtonArrayByOpList(GHashMap<EBuildingTips, bool> pTipsHa
   //   table.insert(arrOpList, {OpName = k, btnId = v})
   // end
   auto lArrOpList = pTipsHash.Keys();
-  std::sort(lArrOpList.begin(), lArrOpList.end(), [](auto lhs, auto rhs){
+  std::sort(lArrOpList.begin(), lArrOpList.end(), [](EBuildingTips lhs, EBuildingTips rhs){
     auto lLhsData = FactionCtrl::Get()->GetBuildTipButtonCfgById(lhs);
     auto lRhsData = FactionCtrl::Get()->GetBuildTipButtonCfgById(rhs);
+    return 0;
     if(GBase::DFIsRA()){
-      return lLhsData.OpSortIndex - lRhsData.OpSortIndex;
+      return (int)lLhsData.OpSortIndex - (int)lRhsData.OpSortIndex;
     }else{
-      return lRhsData.OpSortIndex - lLhsData.OpSortIndex;
+      return (int)lRhsData.OpSortIndex - (int)lLhsData.OpSortIndex;
     }
   });
 

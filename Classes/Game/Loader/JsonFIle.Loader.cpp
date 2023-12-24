@@ -45,7 +45,7 @@ void JsonFileLoader::LoadBuildingTipFiles(){
     if(pJson.is_null())
       Logger::Get()->Log("BuildingTips.json Not loaded");
     Logger::Get()->Log("BuildingTips.json loaded");
-    //BuildingStatic::Get()->GetTipsFromJsonFile(pJson);
+    BuildingStatic::Get()->GetTipsFromJsonFile(pJson);
     LoadPlayerFiles();
   });
 }

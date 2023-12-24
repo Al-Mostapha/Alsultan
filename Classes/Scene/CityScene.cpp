@@ -59,6 +59,7 @@ void CityScene::LoadAsset() {
   l_AssetList.push_back("SingleModule/armyIcon.plist");
   l_AssetList.push_back("FrameAnimation/mainCityOutGfsc.plist");
   l_AssetList.push_back("FrameAnimation/diaoxiangFA.plist");
+  l_AssetList.push_back("NormalUI/NormalUI3.plist");
   
   for (auto l_Asset : l_AssetList) {
     GDisplay::Get()->AddSpriteFrames(l_Asset);
