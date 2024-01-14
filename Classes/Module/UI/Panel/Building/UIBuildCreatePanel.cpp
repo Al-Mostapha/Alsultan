@@ -1,13 +1,14 @@
 #include "UIBuildCreatePanel.h"
+#include "Base/Base.Geometry.h"
 #include "Base/Base.create.h"
 #include "cocostudio/CocoStudio.h"
 #include "Include/IncludeConfig.h"
-#include "Include/IncludeBuildingFunc.h"
-#include "Module/UI/Panel/Building/UIBuildCreateScrollSingle.h"
-#include "Module/UI/Part/UIWheelScrollView.h"
 #include "Module/UI/UI.Create.h"
-#include "Base/Base.Geometry.h"
 #include "Base/Common/Common.Teml.h"
+#include "Include/IncludeBuildingFunc.h"
+#include "Module/UI/Part/UIWheelScrollView.h"
+#include "Module/UI/Panel/Building/UIBuildCreateScrollSingle.h"
+#include "Module/UI/Panel/Building/Common/Info/UIBuildingCreateInfoPanel.h"
 
 
 UIBuildCreatePanel *UIBuildCreatePanel::Create(){
@@ -33,11 +34,7 @@ void UIBuildCreatePanel::Ctor(){
   m_BackGround->setScale9Enabled(false);
   
   m_BtnBuild->setTitleText(Translate::i18n("common_text_042"));
-  m_BtnBuild->addTouchEventListener([this](Ref *pSender, ui::Widget::TouchEventType type){
-    if(type == ui::Widget::TouchEventType::ENDED){
-      cocos2d::log("UIBuildCreatePanel::initPanel build");
-    }
-  });
+  m_BtnBuild->addTouchEventListener(CC_CALLBACK_2(UIBuildCreatePanel::CreateButtonCallFunc, this));
 
   m_NodeTop->setContentSize(Size(640, Director::getInstance()->getVisibleSize().height - (m_NodeLeft->getPositionY() + 0.5 * m_NodeLeft->getContentSize().height)));
   m_NodeBottom->setContentSize(Size(640, m_NodeLeft->getPositionY() - 0.5 * m_NodeLeft->getContentSize().height));
@@ -48,15 +45,35 @@ void UIBuildCreatePanel::Ctor(){
   m_LabelDes->setOpacity(0);
   m_LabelCount->setOpacity(0);
   m_LabelNeed->setOpacity(0);
+
+  // SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_BUILD_CREATE_POINT", function(target, data)
+  //   if data.bid then
+  //     self:selectWheelByBid(data.bid)
+  //   elseif data.key and data.key == "wheel" then
+  //     self:createWheelGuide()
+  //   end
+  // end)
+  // SoraDAddMessage(self, "MESSAGE_MAINCITYVIEW_BUILD_CREATE_POINT_HIDE", function(target, data)
+  //   local node = self.nodeCenter:getChildByName("wheelGuideEffectNode")
+  //   if node then
+  //     self.nodeCenter:removeChild(node, true)
+  //   end
+  // end)
+  // SoraDAddMessage(self, "MESSAGE_SERVER_GUIDE_END", function(...)
+  //   local node = self.nodeCenter:getChildByName("wheelGuideEffectNode")
+  //   if node then
+  //     self.nodeCenter:removeChild(node, true)
+  //   end
+  // end)
 }
 
 void UIBuildCreatePanel::SetBuildingTypeAndData(EBuildingPlace pType, EBuildingIndex pIndex){
   _BuildingIndex = pIndex;
   _BuildingType = pType;
-  m_BuildableList = BuildingLib::getCanBuildList(pType);
-  if(m_SelectWheel == nullptr){
+  _BuildableList = BuildingLib::getCanBuildList(pType);
+  if(_SelectWheel == nullptr){
     CreateWheelScrollView();
-    m_SelectWheel->setVisible(false);
+    _SelectWheel->setVisible(false);
     runAction(
       Sequence::create(
         CallFunc::create( [this](){
@@ -76,10 +93,10 @@ void UIBuildCreatePanel::SetBuildingTypeAndData(EBuildingPlace pType, EBuildingI
         }),
         DelayTime::create(0.4f),
         CallFunc::create([this](){
-          this->m_SelectWheel->UnfoldAction(0.5);
-          this->m_SelectWheel->setVisible(true);
+          this->_SelectWheel->UnfoldAction(0.5);
+          this->_SelectWheel->setVisible(true);
         }),
-        DelayTime::create(0.6),
+        DelayTime::create(0.6f),
         // this is Guid
         /**cca.callFunc(function(...)
             local guideStep = SoraDIsGameGuide()
@@ -109,43 +126,60 @@ void UIBuildCreatePanel::SetBuildingTypeAndData(EBuildingPlace pType, EBuildingI
 }
 
 // createButtonCallFun
+void UIBuildCreatePanel::CreateButtonCallFunc(Ref *pSender, ui::Widget::TouchEventType pType){
+  if(pType != Widget::TouchEventType::ENDED)
+    return;
+  GBase::PlaySound();
+  _SelectWheel->selectedCellIndex(_CurrentIndex);
+  auto lPanel = UIBuildingCreateInfoPanel::Create();
+  lPanel->SetIsFromCreate(true);
+  lPanel->InitBuildData({
+    _CurrentBuilding.BuildingID,
+    _CostBuildingUpgrade,
+    {
+      _BuildingType,
+      _BuildingIndex
+    }
+  });
+  lPanel->Show();
+}
 
 void UIBuildCreatePanel::UpdateView(){
 
-  m_LabelDes->setString(Translate::i18n(m_CurrentBuilding.BuildingBrief.c_str()));
-  m_LabelCount->setVisible(m_CurrentBuilding.bType == EBuildingPlace::Outer);
-  m_LabelNeed->setVisible(!m_CurrentBuilding.isCanBuild);
-  m_LabelName->setString(Translate::i18n(m_CurrentBuilding.BuildingName.c_str()));
-  m_BtnBuild->setTouchEnabled(m_CurrentBuilding.isCanBuild);
-  m_BtnBuild->setBright(m_CurrentBuilding.isCanBuild);
+  m_LabelDes->setString(Translate::i18n(_CurrentBuilding.BuildingBrief.c_str()));
+  m_LabelCount->setVisible(_CurrentBuilding.bType == EBuildingPlace::Outer);
+  m_LabelNeed->setVisible(!_CurrentBuilding.isCanBuild);
+  m_LabelName->setString(Translate::i18n(_CurrentBuilding.BuildingName.c_str()));
+  m_BtnBuild->setTouchEnabled(_CurrentBuilding.isCanBuild);
+  m_BtnBuild->setBright(_CurrentBuilding.isCanBuild);
 
-  bool l_ISCanBuild  = BuildingLib::isCanBuild(m_CurrentBuilding.BuildingID);
-  if(!m_CurrentBuilding.isCanBuild){
+  bool l_ISCanBuild  = BuildingLib::isCanBuild(_CurrentBuilding.BuildingID);
+  if(!_CurrentBuilding.isCanBuild){
     m_LabelNeed->setString("");
   }
 
-  auto l_IsCanBuild = BuildingLogic::Get()->IsCanBuild(m_CurrentBuilding.BuildingID);
-  m_CostBuildingUpgrade = l_IsCanBuild.Second;
+  auto l_IsCanBuild = BuildingLogic::Get()->IsCanBuild(_CurrentBuilding.BuildingID);
+  _CostBuildingUpgrade = l_IsCanBuild.Second;
 
-  if(!m_CurrentBuilding.isCanBuild){
+  if(!_CurrentBuilding.isCanBuild){
     m_LabelNeed->setString(Translate::i18n("common_text_763", {
-      {"name", BuildingStatic::getBuildingSpecs(m_CostBuildingUpgrade._CostBuilding[0].TypeReq).BuildingName},
-      {"lvl",  std::to_string(m_CostBuildingUpgrade._CostBuilding[0].lvlReq)},
+      {"name", BuildingStatic::getBuildingSpecs(_CostBuildingUpgrade._CostBuilding[0].TypeReq).BuildingName},
+      {"lvl",  std::to_string(_CostBuildingUpgrade._CostBuilding[0].lvlReq)},
     }));
   }
 
-  if(m_CurrentBuilding.bType == EBuildingPlace::Outer){
+  if(_CurrentBuilding.bType == EBuildingPlace::Outer){
     m_LabelCount->setString(Translate::i18n("common_text_739", {
-      {"cur", std::to_string(BuildingCtrl::Get()->getBuildingCount(m_CurrentBuilding.BuildingID))},
-      {"max",  std::to_string(m_CurrentBuilding.maxCount)},
+      {"cur", std::to_string(BuildingCtrl::Get()->getBuildingCount(_CurrentBuilding.BuildingID))},
+      {"max",  std::to_string(_CurrentBuilding.maxCount)},
     }));
   }
 
   if(_BuildingIndex == EBuildingIndex::None)
     return;
     
-  auto l_Index = m_CurrentBuilding.index;
-  auto l_BuildingType = m_CurrentBuilding.BuildingID;
+  auto l_Index = _CurrentBuilding.index;
+  auto l_BuildingType = _CurrentBuilding.BuildingID;
 /*
   SoraDSendMessage({
     msg = "MESSAGE_MAINCITYVIEW_ADD_BUILD_PREVIEW",
@@ -155,30 +189,32 @@ void UIBuildCreatePanel::UpdateView(){
 }
 
 void UIBuildCreatePanel::WheelScrollBack(const RBuildingSpecs& p_BuildingInfoUnit, size_t p_Index){
-  m_CurrentIndex = p_Index;
-  m_CurrentBuilding = p_BuildingInfoUnit;
+  _CurrentIndex = p_Index;
+  _CurrentBuilding = p_BuildingInfoUnit;
   UpdateView();
 }
 
 void UIBuildCreatePanel::SelectWheelByBuildingType(EBuilding p_BuildingType){
-  if(!m_SelectWheel)
+  if(!_SelectWheel)
     return;
   
   auto l_CurIndex = 1;
-  for(int l_I = 0; l_I < m_BuildableList.size(); l_I++){
-    if(p_BuildingType == m_BuildableList[l_I].BuildingID){
+  for(int l_I = 0; l_I < _BuildableList.size(); l_I++){
+    if(p_BuildingType == _BuildableList[l_I].BuildingID){
       l_CurIndex = l_I;
     }
   }
-  m_SelectWheel->selectedCellIndex(l_CurIndex);
-  m_CurrentBuilding = m_BuildableList[l_CurIndex];
-  m_CurrentIndex = l_CurIndex;
+  _SelectWheel->selectedCellIndex(l_CurIndex);
+  _CurrentBuilding = _BuildableList[l_CurIndex];
+  _CurrentIndex = l_CurIndex;
 }
 
 void UIBuildCreatePanel::CreateWheelScrollView(){
 
   GVector<UIBuildCreateScrollSingle *> l_ScrollViews;
-  for(auto l_BuildingUnit : m_BuildableList){
+  for(auto l_BuildingUnit : _BuildableList){
+    if(l_BuildingUnit.BuildingID == EBuilding::None)
+      continue;
     auto l_ScrollSingle = UIBuildCreateScrollSingle::Create();
     l_ScrollSingle->initData(l_BuildingUnit.BuildingID);
     l_ScrollViews.push_back(l_ScrollSingle);
@@ -186,28 +222,28 @@ void UIBuildCreatePanel::CreateWheelScrollView(){
   if(l_ScrollViews.size() <= 0){
     return;
   }
-  if(m_SelectWheel){
-    m_SelectWheel->removeFromParent();
-    m_SelectWheel = nullptr;
+  if(_SelectWheel){
+    _SelectWheel->removeFromParent();
+    _SelectWheel = nullptr;
   }
   UIWheelScrollViewArgs l_WheelScrollViewArgs;
   l_WheelScrollViewArgs.m_WidgetArray = *(GVector<ui::Widget *> *) &l_ScrollViews; 
   auto l_Size = Size(500, std::max(600.0f, Director::getInstance()->getVisibleSize().height - 270));
   l_WheelScrollViewArgs.m_CellHeight = 130;
   l_WheelScrollViewArgs.m_CircleRadius = 450;
-  m_SelectWheel =  UICreate::Get()->DCreateWheelScrollView(
+  _SelectWheel =  UICreate::Get()->DCreateWheelScrollView(
     *(GVector<Node *> *) &l_ScrollViews, l_Size, 130.f, 450.f
   );
-  if(m_SelectWheel){
-    m_SelectWheel->SetItemSelectedListener([this](size_t p_Index, Node *p_Node){
-      WheelScrollBack(m_BuildableList[p_Index], p_Index);
+  if(_SelectWheel){
+    _SelectWheel->SetItemSelectedListener([this](size_t p_Index, Node *p_Node){
+      WheelScrollBack(_BuildableList[p_Index], p_Index);
     });
 
-    m_NodeCenter->addChild(m_SelectWheel, 0);
-    m_SelectWheel->setPosition(Vec2(0, std::min(-165.0f, 270.0f - m_NodeCenter->getPosition().y)));
-    m_SelectWheel->selectedCellIndex(std::min(m_CurrentIndex, (int)l_ScrollViews.size()));
-    m_SelectWheel->setInertiaValue(0.1);
-    GBase::DFTarget(m_SelectWheel);
+    m_NodeCenter->addChild(_SelectWheel, 0);
+    _SelectWheel->setPosition(Vec2(0, std::min(-165.0f, 270.0f - m_NodeCenter->getPosition().y)));
+    _SelectWheel->selectedCellIndex(std::min(_CurrentIndex, (int)l_ScrollViews.size()));
+    _SelectWheel->setInertiaValue(0.1);
+    GBase::DFTarget(_SelectWheel);
   }
   /*  This is Guide */
   // local curChapterID = newPlayerTaskCtrl:getCurChapterID()
@@ -251,8 +287,8 @@ void UIBuildCreatePanel::CreateWheelAction(){
       l_SpriteHand->setPosition(180, 135);
     }),
     FadeIn::create(0.2f),
-    ScaleTo::create(0.2, 1.2),
-    ScaleTo::create(0.2, 1.0),
+    ScaleTo::create(0.2f, 1.2f),
+    ScaleTo::create(0.2f, 1.0f),
     DelayTime::create(0.5),
     BezierTo::create(1.0, {
       GBase::DFPoint(185, 205, -10),
@@ -272,3 +308,84 @@ void UIBuildCreatePanel::CreateWheelAction(){
   );
   l_SpriteHand->runAction(l_HandAction);
 }
+
+// function BuildCreatePanel:gameGuide_getTarget(itemName, parameters)
+//   if itemName == "Button_build" then
+//     return SoraDGetChildByName(self, itemName)
+//   elseif itemName == "tent" then
+//     for i, v in ipairs(self.selectWheel.itemArray) do
+//       if v.tableSingleData.bid == BUILDID.MILITARY_TENT then
+//         return SoraDGetChildByName(v, "Image_lock")
+//       end
+//     end
+//   else
+//     return SoraDGetChildByName(self, itemName)
+//   end
+//   return nil
+// end
+// function BuildCreatePanel:createWheelGuide()
+//   if SoraDIsGameGuide() == 850101 and self.tableCurIndex == 2 then
+//     SoraDSendMessage({
+//       msg = "MESSAGE_SERVER_GUIDE_STEP_END",
+//       step = 850101
+//     })
+//     return
+//   end
+//   local effectNode = display.newNode()
+//   effectNode:setName("wheelGuideEffectNode")
+//   effectNode:addTo(self.nodeCenter, 99)
+//   local wheelBg = display.newSprite("#frame_build_orbit.png", 245, 270)
+//   wheelBg:setRotation(SoraDFSign(20))
+//   wheelBg:addTo(effectNode)
+//   local spriteHand = SoraDFingerAction()
+//   spriteHand:setPosition(cc.p(300, 400))
+//   spriteHand:setName("spriteHand")
+//   spriteHand:addTo(effectNode)
+//   SoraDFTarget(effectNode)
+//   SoraDFTarget(wheelBg, nil, true)
+//   SoraDFTarget(spriteHand)
+//   self:createWheelAction()
+//   self.btnBuild:setTouchEnabled(false)
+//   self.btnBuild:setBright(false)
+// end
+// function BuildCreatePanel:createWheelAction()
+//   if self.nodeCenter:getChildByName("wheelGuideEffectNode") == nil then
+//     return
+//   end
+//   local spriteHand = self.nodeCenter:getChildByName("wheelGuideEffectNode"):getChildByName("spriteHand")
+//   if spriteHand then
+//     if not (self.tableCurBuild.bid <= BUILDID.SAWMILL) or not SoraDFPoint(185, 345, -10) then
+//     end
+//     if not (self.tableCurBuild.bid <= BUILDID.SAWMILL) or not SoraDFPoint(185, 205, -10) then
+//     end
+//     if not (self.tableCurBuild.bid <= BUILDID.SAWMILL) or not SoraDFPoint(180, 135, -10) then
+//     end
+//     local newAction = cca.seq({
+//       cca.callFunc(function(...)
+//         if not (self.tableCurBuild.bid <= BUILDID.SAWMILL) or not SoraDFPoint(265, 395, -10) then
+//         end
+//         spriteHand:setPosition((SoraDFPoint(180, 135, -10)))
+//         spriteHand:setVisible(true)
+//       end),
+//       cca.fadeIn(0.2),
+//       cca.scaleTo(0.2, 1.2),
+//       cca.scaleTo(0.2, 1),
+//       cca.delay(0.5),
+//       cc.BezierTo:create(1, {
+//         SoraDFPoint(185, 205, -10),
+//         SoraDFPoint(185, 345, -10),
+//         (SoraDFPoint(265, 395, -10))
+//       }),
+//       cca.delay(0.5),
+//       cca.fadeOut(0.5),
+//       cca.callFunc(function(...)
+//         spriteHand:setVisible(false)
+//       end),
+//       cca.delay(0.5),
+//       cca.callFunc(function(...)
+//         self:createWheelAction()
+//       end)
+//     })
+//     spriteHand:runAction(newAction)
+//   end
+// end

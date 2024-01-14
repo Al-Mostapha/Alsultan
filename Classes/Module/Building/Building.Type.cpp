@@ -21,7 +21,7 @@ static RBuildingSpecs sDefaultBuildingSpecs;
 
 bool RBuildingSpecs::FromJson(const XJson& pJson) {
   index = pJson.value("index", 0);
-  BuildingID = static_cast<EBuilding>(pJson.value("BuildingID", 0));
+  BuildingID = static_cast<EBuilding>(pJson.value("buildingID", 0));
   oldUnlocklevel = pJson.value("oldUnlocklevel", sDefaultBuildingSpecs.oldUnlocklevel);
   oldShowlevel = pJson.value("oldShowlevel", sDefaultBuildingSpecs.oldShowlevel);
   unlocklevel = pJson.value("unlocklevel", 0);

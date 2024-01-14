@@ -23,11 +23,11 @@ private:
   ui::Layout *m_NodeRight;
   ui::Layout *m_NodeTop;
   ui::Layout *m_NodeBottom;
-  class UIWheelScrollView *m_SelectWheel;
-  GVector<RBuildingSpecs> m_BuildableList;
-  int m_CurrentIndex = 1;
-  RBuildingSpecs m_CurrentBuilding;
-  RCostBuildingUpgrade m_CostBuildingUpgrade;
+  class UIWheelScrollView *_SelectWheel;
+  GVector<RBuildingSpecs> _BuildableList;
+  int _CurrentIndex = 1;
+  RBuildingSpecs _CurrentBuilding;
+  RCostBuildingUpgrade _CostBuildingUpgrade;
   EBuildingIndex _BuildingIndex = EBuildingIndex::None;
   EBuildingPlace _BuildingType = EBuildingPlace::None;
 
@@ -42,6 +42,7 @@ public:
   void SelectWheelByBuildingType(EBuilding p_BuildingType);
   void ClickEffect(Node *p_Target);
   void CreateWheelAction();
+  void CreateButtonCallFunc(Ref *pSender, ui::Widget::TouchEventType pType);
 };
 
 

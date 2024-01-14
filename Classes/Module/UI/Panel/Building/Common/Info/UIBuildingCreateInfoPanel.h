@@ -10,6 +10,16 @@ class IBuilding;
 class UICommonResourcesMenu;
 class UICommonGoldNormalBtn;
 struct RCostBuildingUpgrade;
+
+struct RBuildCreateInfoInitData
+{
+  EBuilding _BuildId;
+  RCostBuildingUpgrade _BuildData;
+  struct {
+    EBuildingPlace _BuildType;
+    EBuildingIndex _BuildIndex;
+  } _BuildType;
+};
 class UIBuildingCreateInfoPanel : public UIBasePanel
 {
 
@@ -126,7 +136,7 @@ public:
   static UIBuildingCreateInfoPanel* Create();
   void Ctor() override;
   void InitUpgradeData(IBuilding *p_Building);
-  void InitBuildData(IBuilding *p_Building);
+  void InitBuildData(const RBuildCreateInfoInitData &pData);
   void InitWidget();
   void SuitView();
   void SetIsFromCreate(bool p_Val){ _IsFromCreate = p_Val;};
@@ -174,6 +184,7 @@ public:
   void ShowFingerClick(Vec2 p_Pos);
   void LightBlink(int32 p_Index);
   void ResBuyCallBack();
+
 
   void Build(EOperateMode p_Mode = EOperateMode::Normal);
   void BuildNow(EMsgBoxCallBack p_Call);

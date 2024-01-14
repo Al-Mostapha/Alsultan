@@ -212,10 +212,10 @@ void UIBuildingCreateInfoPanel::InitUpgradeData(IBuilding *p_Building){
   }
 }
 
-void UIBuildingCreateInfoPanel::InitBuildData(IBuilding *p_Building){
-  _TableBuildInfo._BuildId._Bid = p_Building->GetBuildingId();
-  _TableBuildInfo._BuildId._IID = p_Building->GetBuildingIndex();
-  _TableBuildInfo._BuildType._BuildIndex = p_Building->getParent()->getTag();
+void UIBuildingCreateInfoPanel::InitBuildData(const RBuildCreateInfoInitData &pData){
+  _TableBuildInfo._BuildId._Bid = pData._BuildId;
+  _TableBuildInfo._BuildId._IID = pData._BuildType._BuildIndex;
+  _TableBuildInfo._BuildType._BuildIndex = (int32)pData._BuildType._BuildIndex;
   _ViewType = EBuildingOperateType::Build;
   UpdateView();
   InitBuildView();
@@ -1034,6 +1034,7 @@ void UIBuildingCreateInfoPanel::BtnUpCallBack(Ref *p_Sender, ui::Widget::TouchEv
     //         end)
     //         return
     //       end
+    
     //       if commonCheck.CASTLE_LVUP_TIPS and tonumber(buildCell.info.lv) == CASTLE_LV7_LIMITED then
     //         SoraDShowMsgBox(i18n("common_text_928_ros"), i18n("common_text_204"), nil, function(type)
     //           if type == MSGBOX_CALLBACK_YES then
