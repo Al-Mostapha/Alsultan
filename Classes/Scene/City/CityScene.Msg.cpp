@@ -186,16 +186,15 @@ void MainCityMsg::SetOffsetContainerWithSelectBuild(EventCustom *p_Event){
     //     end
     //   end
   } else if(l_Data->_OffsetType == EMainCityViewOffsetType::Recover){
-    //   if self.isNeedRecover == false then
-    //     return
-    //   end
-    //   local scale = self.preZoomScale
-    //   local offset = self.preContainerOffset
-    //   self:setZoomScale(scale, true, self.zoomScaleDuration, true)
-    //   local zoomScale = self.viewScrollView:getZoomScale()
-    //   self:runContainerViewMove(offset, self.zoomScaleDuration)
-    //   self:disableMoveForDuration(self.zoomScaleDuration)
-    //   self.isNeedRecover = false
+    if(!_Self->_IsNeedRecover)
+      return;
+    auto lScale = _Self->_PreZoomScale;
+    auto lOffset = _Self->_PreContainerOffset;
+    _Self->SetZoomScale(lScale, true, _Self->_ZoomScaleDuration, true);
+    auto lZoomScale = _Self->_ViewScrollView->getZoomScale();
+    _Self->RunContainerViewMove(lOffset, _Self->_ZoomScaleDuration);
+    _Self->DisableMoveForDuration(_Self->_ZoomScaleDuration);
+    _Self->_IsNeedRecover = false;
   }
 }
 

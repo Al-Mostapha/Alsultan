@@ -1,4 +1,5 @@
 #include "UIBaseView.h"
+#include "Base/Common/Timer.Mgr.h"
 
 UIBaseView *UIBaseView::Create(Size p_Size, bool p_IsColor, Node *p_Target)
 {
@@ -64,7 +65,7 @@ bool UIBaseView::IsImageLoaded(GString p_ImageName)
   return m_ArrayImagesPath.find(p_ImageName) != m_ArrayImagesPath.end();
 }
 
-// function baseView:freeImages()
+void UIBaseView::FreeImages(){
 //   if not self.freeImagesOnExit then
 //     return
 //   end
@@ -81,18 +82,20 @@ bool UIBaseView::IsImageLoaded(GString p_ImageName)
 //       end
 //     end
 //   end
-// end
-// function baseView:onEnterOther()
-// end
-// function baseView:onExitOther()
-// end
-// function baseView:onEnter()
-//   self:onMessageListener()
-//   self:onEnterOther()
-// end
-// function baseView:onExit()
-//   SoraDRemoveMessageByTarget(self)
-//   SoraDManagerRemoveTimerByTarget(self)
-//   self:freeImages()
-//   self:onExitOther()
-// end
+}
+
+void UIBaseView::onEnter(){
+  ui::Layout::onEnter();
+  OnMessageListener();
+  OnEnterOther();
+}
+
+
+void UIBaseView::onExit(){
+  ui::Layout::onExit();
+  GBase::DRemoveMessageByTarget(this);
+  GBase::DManagerRemoveTimerByTarget(this);
+  FreeImages();
+  OnExitOther();
+}
+

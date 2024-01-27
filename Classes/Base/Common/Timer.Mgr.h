@@ -8,6 +8,7 @@ namespace GBase{
 
   bool DManagerFindTimerByTarget(const GString &p_Id);
   void DManagerRemoveTimerByTarget(const GString &p_Id);
+  void DManagerRemoveTimerByTarget(const Node *p_Id);
   void DManagerAddTimer(const GString &p_Id);
   int32 DCreateDelayTimer(Node *p_Target, const std::function<void()> &p_Func, float p_Delay);
   GString DCreateTimer(Node* p_Target, ccSchedulerFunc p_SchedulerFunc, bool p_PerFrame = false, int32 p_Priority = 0);

@@ -709,42 +709,7 @@ void LoginScene::ServerSocketLoginAgain(EventCustom* p_Event) {
 }
 
 void LoginScene::HideCurrentSceneViewAndMainUI(EventCustom* p_Event) {
-  auto l_GuideCtrl = GuideCtrl::Get();
-  if (l_GuideCtrl->GetCurMainCityGuideStep() != nullptr) return;
-  if (p_Event->getUserData() == nullptr) return;
-  auto l_HideData = static_cast<RHideMainUIEvtArg*>(p_Event->getUserData());
-  if (l_HideData->isHideCurrentSceneView != ENullBool::Null) {
-    if (l_HideData->isHideCurrentSceneView == ENullBool::True) {
-      ++m_IsHideCurrentSceneViewCount;
-    } else {
-      m_IsHideCurrentSceneViewCount = std::max(0, m_IsHideCurrentSceneViewCount - 1);
-    }
-    if (n_CurrentShowView) {
-      n_CurrentShowView->setVisible(m_IsHideCurrentSceneViewCount == 0);
-      std::unique_ptr<RShowViewHidedEvtArg> l_EventData(new RShowViewHidedEvtArg());
 
-      l_EventData->View = n_CurrentShowView;
-      l_EventData->isVisible = m_IsHideCurrentSceneViewCount == 0;
-      GBase::DSendMessage("MESSAGE_MAINSCEN_CURRENT_SHOWVIEW_HIDED", l_EventData.get());
-    }
-  }
-
-  if (CurrentMainUI() && l_HideData->isHideMainUI != ENullBool::Null) {
-    if (l_HideData->isHideMainUI == ENullBool::True)
-      ++m_IsHideMainUICount;
-    else
-      m_IsHideMainUICount = std::max(0, m_IsHideMainUICount - 1);
-    if (n_MainUIView) n_MainUIView->setVisible(m_IsHideMainUICount == 0);
-    std::unique_ptr<bool> l_IsHiddle(new bool(m_IsHideMainUICount != 0));
-    GBase::DSendMessage("MESSAGE_MAIN_UI_HIDDLE", l_IsHiddle.get());
-    auto l_GuideCtrl = GuideCtrl::Get();
-    auto l_NewPlayerTaskCtrl = PlayerTaskCtrl::Get();
-    if (CurrentMainUI()->isVisible() && GBase::DIsGameGuide() &&
-        (l_NewPlayerTaskCtrl->GetCurChapterID() > 4103000 || l_NewPlayerTaskCtrl->GetCurChapterID() == 0))
-      GBase::DSendMessage("MESSAGE_MAIN_AGREEMENT_BOX");
-
-    if (CurrentMainUI()->isVisible()) GBase::DSendMessage("MESSAGE_SERVER_EVENT_COMMON_RED_POINT_REFRESH");
-  }
 }
 
 void LoginScene::ShowServerMessageInfo(EventCustom* p_Event) {

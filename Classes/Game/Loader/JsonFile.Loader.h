@@ -16,4 +16,5 @@ class JsonFileLoader{
     void LoadBuildingFiles();
     void LoadBuildingTipFiles();
     void LoadPlayerFiles();
+    void LoadTranslation();
 };

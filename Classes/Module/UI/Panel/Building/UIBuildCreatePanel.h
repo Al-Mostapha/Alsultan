@@ -43,6 +43,7 @@ public:
   void ClickEffect(Node *p_Target);
   void CreateWheelAction();
   void CreateButtonCallFunc(Ref *pSender, ui::Widget::TouchEventType pType);
+  void OnExitPanel() override;
 };
 
 

@@ -29,6 +29,7 @@
 
 #include "Module/Player/Player.Top.h"
 #include "Module/Player/Player.Static.h"
+#include "Module/Player/Chapter/PlayerTask.Ctrl.h"
 #include "Module/World/WorldWar/AtlantisWar/AtlantisWar.Util.h"
 #include "Module/World/WorldMap/View/WorldMap.ViewFactory.h"
 #include "Module/Building/Building.Func.h"
@@ -677,6 +678,11 @@ void MainCityView::SetZoomScale(float p_Zoom, bool p_Anim, float p_Duration, boo
     _ViewScrollView->setZoomScaleInDuration(p_Zoom, p_Duration);
 }
 
+UIBaseView *MainCityView::CurrentMainUI() {
+  if (UIManger::Get()->GetProxy("mainUI")) return UIManger::Get()->GetProxy("mainUI");
+  return nullptr;
+}
+
 void MainCityView::RunContainerViewMove(Vec2 p_MoveToPos, float p_Duration){
   // self.containerView:stopAllActionsByTag(cityBuildConstDef.ActionTag.Tag_ContainerViewMove)
   _ContainerView->stopAllActionsByTag(1001);
@@ -703,4 +709,44 @@ void MainCityView::DisableMoveForDuration(float p_Duration){
   auto l_Seq = Sequence::create(l_Delay, l_CallFunc, nullptr);
   l_Seq->setTag(100);
   _ViewScrollView->runAction(l_Seq);
+}
+
+
+void MainCityView::HideCurrentSceneViewAndMainUI(EventCustom *p_Event){
+  auto l_GuideCtrl = GuideCtrl::Get();
+  if (l_GuideCtrl->GetCurMainCityGuideStep() != nullptr) return;
+  if (p_Event->getUserData() == nullptr) return;
+  auto l_HideData = static_cast<RHideMainUIEvtArg*>(p_Event->getUserData());
+  if (l_HideData->isHideCurrentSceneView != std::nullopt) {
+    if (l_HideData->isHideCurrentSceneView == true) {
+      ++_IsHideCurrentSceneViewCount;
+    } else {
+      _IsHideCurrentSceneViewCount = std::max(0, _IsHideCurrentSceneViewCount - 1);
+    }
+    if (_CurrentShowView) {
+      _CurrentShowView->setVisible(_IsHideCurrentSceneViewCount == 0);
+      static RShowViewHidedEvtArg l_EventData;
+
+      l_EventData.View = _CurrentShowView;
+      l_EventData.isVisible = _IsHideCurrentSceneViewCount == 0;
+      GBase::DSendMessage("MESSAGE_MAINSCEN_CURRENT_SHOWVIEW_HIDED", &l_EventData);
+    }
+  }
+
+  if (CurrentMainUI() && l_HideData->isHideMainUI != std::nullopt) {
+    if (l_HideData->isHideMainUI == true)
+      ++_IsHideMainUICount;
+    else
+      _IsHideMainUICount = std::max(0, _IsHideMainUICount - 1);
+    if (_MainUIView) _MainUIView->setVisible(_IsHideMainUICount == 0);
+    std::unique_ptr<bool> l_IsHiddle(new bool(_IsHideMainUICount != 0));
+    GBase::DSendMessage("MESSAGE_MAIN_UI_HIDDLE", l_IsHiddle.get());
+    auto l_GuideCtrl = GuideCtrl::Get();
+    auto l_NewPlayerTaskCtrl = PlayerTaskCtrl::Get();
+    if (CurrentMainUI()->isVisible() && GBase::DIsGameGuide() &&
+        (l_NewPlayerTaskCtrl->GetCurChapterID() > 4103000 || l_NewPlayerTaskCtrl->GetCurChapterID() == 0))
+      GBase::DSendMessage("MESSAGE_MAIN_AGREEMENT_BOX");
+
+    if (CurrentMainUI()->isVisible()) GBase::DSendMessage("MESSAGE_SERVER_EVENT_COMMON_RED_POINT_REFRESH");
+  }
 }

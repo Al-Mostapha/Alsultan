@@ -3,6 +3,7 @@
 #include "Game/XGame.h"
 #include "Base/Type/XEvent.h"
 #include "CityScene.h"
+#include "editor-support/cocosbuilder/CocosBuilder.h"
 
 USING_NS_CC;
 

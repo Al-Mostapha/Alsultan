@@ -103,7 +103,7 @@ public:
 
   void GotoForeBackGroud(EventCustom *p_Event){}
   void ShowView(EventCustom *p_Event);
-  void HideCurrentSceneViewAndMainUI(EventCustom *p_Event){}
+  void HideCurrentSceneViewAndMainUI(EventCustom *p_Event);
   void CreatMainView(EventCustom *p_Event);
   void LoginFinsh(EventCustom *p_Event){}
   void ServerSocketLoginFail(EventCustom *p_Event){}
@@ -123,6 +123,9 @@ public:
   void ServerGuideEnd(EventCustom *p_Event){}
   void UpdatePower(EventCustom *p_Event){}
   void UpdateEXP(EventCustom *p_Event){}
+
+
+  UIBaseView *CurrentMainUI();
 
 
   public:

@@ -2,8 +2,11 @@
 #include "Base/BaseTypeDef.h"
 #include "Common.Enum.h"
 #include "cocos2d.h"
+#include "Base/Type/XOptional.h"
 
 USING_NS_CC;
+
+class UIBaseView;
 
 struct RCreatEffctParam{
 
@@ -60,4 +63,16 @@ struct RFadeInOutParam{
   float _Delay = .5f;
   float _BeginOpacity = 1.f;
   float _EndOpacity = 1.f;
+};
+
+struct RHideMainUIEvtArg
+{
+  GOpt<bool> isHideCurrentSceneView;
+  GOpt<bool> isHideMainUI;
+};
+
+struct RShowViewHidedEvtArg
+{
+  UIBaseView *View = nullptr;
+  bool isVisible = false;
 };

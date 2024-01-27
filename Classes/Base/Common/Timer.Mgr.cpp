@@ -13,6 +13,11 @@ bool GBase::DManagerFindTimerByTarget(const GString &p_Target){
   return false;
 }
 
+void GBase::DManagerRemoveTimerByTarget(const Node *p_Target){
+ // convert Node * to string and call 
+  DManagerRemoveTimerByTarget("");
+}
+
 void GBase::DManagerRemoveTimerByTarget(const GString &p_Target){
   // local timerArray = SoraDTimerManager[target]
   // if timerArray then

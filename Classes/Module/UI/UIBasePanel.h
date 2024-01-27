@@ -43,12 +43,12 @@ public:
   UIBasePanel *Show(Node *p_Parent = nullptr, int32 p_ZOrder = 1);  
   Node *GameGuide_getTarget(GString p_Name);
 
-  void onExit() override;
 
   virtual void EndShow(){}
-  virtual void OnEnterPanel(){}
-  virtual void OnExitPanel(){}
-  virtual void OnEnterOther(){OnEnterPanel();}
+  virtual void OnExitOther();
+  virtual void OnEnterOther();
+  
   virtual void AddSubViews(){};
   virtual GString GetViewName() {return _Panel ?  _Panel->getName() : "";}
+
 };

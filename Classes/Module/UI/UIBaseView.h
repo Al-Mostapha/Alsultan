@@ -32,6 +32,8 @@ private:
   GSet<GString> m_ArrayImagesPath;
   bool m_ADType = false;
   int32 m_MenuID = 0;
+  
+
 public:
   bool m_FreeImagesOnExit = false;
   bool _IsHideCurrentSceneView = false;
@@ -46,4 +48,18 @@ public:
   void LoadImages(const GVector<GString> &p_ArrayImagesPath, CallBack p_CallBack = nullptr);
   bool IsImageLoaded(GString p_ImageName);
   GString GetViewName(){return getName();}
+  
+
+  virtual void OnEnterPanel(){}
+  virtual void OnEnterOther(){}
+  virtual void OnExitPanel(){}
+  virtual void OnExitOther(){}
+
+  virtual void OnMessageListener(){}
+  void onEnter() override;
+  void onExit() override;
+  
+  private:
+
+    void FreeImages();
 };

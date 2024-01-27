@@ -15,18 +15,9 @@ struct RLoginFailEvtArg
   int32 KingdomId;
 };
 
-struct RHideMainUIEvtArg
-{
-  ENullBool isHideCurrentSceneView = ENullBool::Null;
-  ENullBool isHideMainUI = ENullBool::Null;
-};
 
 
-struct RShowViewHidedEvtArg
-{
-  UIBaseView *View = nullptr;
-  bool isVisible = false;
-};
+
 
 struct RServerMessageInfo{
   int32 messageID;

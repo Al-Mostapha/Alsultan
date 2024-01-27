@@ -1,10 +1,12 @@
 #include "GamePanel.Mgr.h"
 #include "Module/UI/UIBasePanel.h"
 
-void GBase::DRemoveAllPrePanelFromManager(UIBasePanel *p_Panel, bool p_NotCoverSelf){
+void GBase::DRemoveAllPrePanelFromManager(UIBasePanel *pPanel, bool p_NotCoverSelf){
   //   if not panel then
   //   return
   // end
+  if(!pPanel)
+    return;
   // local allNum = #SoraDPanelManager
   // local needBreak = false
   // for i = 1, allNum do
@@ -27,4 +29,5 @@ void GBase::DRemoveAllPrePanelFromManager(UIBasePanel *p_Panel, bool p_NotCoverS
   //   end
   // end
   // SoraDWhenRemovePanelFromManager()
+  pPanel->removeFromParent();
 }

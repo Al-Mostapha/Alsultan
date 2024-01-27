@@ -17,6 +17,7 @@
 #include "Module/World/World.Module.h"
 #include "Module/Player/Player.Module.h"
 #include "Loader/JsonFile.Loader.h"
+#include "Module/Translation/Translate.h"
 
 XGame *XGame::Get()
 {
@@ -31,6 +32,7 @@ void XGame::Init()
   GConfigModule::init();
   GModuleMgr::Get()->Init();
   NetModule::Get()->Init();
+  Translate::Get()->Init();
   JsonFileLoader::Get()->Init();
 
   ArmyModule::Get()->Init();

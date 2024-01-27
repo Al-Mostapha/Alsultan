@@ -2,6 +2,7 @@
 #include "Base/Type/XEvent.h"
 #include "Module/Net/NetBase.Module.h"
 #include "Module/Building/Building.Static.h"
+#include "Module/Translation/Translate.h"
 
 
 JsonFileLoader *JsonFileLoader::Get(){
@@ -12,7 +13,12 @@ JsonFileLoader *JsonFileLoader::Get(){
 void JsonFileLoader::Init(){
 }
 
+void JsonFileLoader::LoadTranslation(){
+  Translate::Get()->LoadTranslation();
+}
+
 void JsonFileLoader::Load(const GFunc<void()> &pCallback){
+  LoadTranslation();
   LoadCityFiles();
 }
 

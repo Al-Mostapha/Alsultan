@@ -215,8 +215,11 @@ void UIBasePanel::ClosePanel(){
   removeFromParent();
 }
 
-void UIBasePanel::onExit(){
-  Node::onExit();
+void UIBasePanel::OnEnterOther(){
+  OnEnterPanel();
+}
+
+void UIBasePanel::OnExitOther(){
   if(_IsHaveTextField)
     CloseKeyBoard();
   OnExitPanel();
@@ -229,3 +232,5 @@ void UIBasePanel::onExit(){
     GPanelManger::Get()->DRemovePanelFromManager(this);
   // self:autoCheckTexMemary()
 }
+
+

@@ -1,6 +1,8 @@
 #include "UIBuildCreatePanel.h"
 #include "Base/Base.Geometry.h"
 #include "Base/Base.create.h"
+#include "Base/Base.View.h"
+#include "Base/Common/Common.Type.h"
 #include "cocostudio/CocoStudio.h"
 #include "Include/IncludeConfig.h"
 #include "Module/UI/UI.Create.h"
@@ -9,6 +11,8 @@
 #include "Module/UI/Part/UIWheelScrollView.h"
 #include "Module/UI/Panel/Building/UIBuildCreateScrollSingle.h"
 #include "Module/UI/Panel/Building/Common/Info/UIBuildingCreateInfoPanel.h"
+#include "Game/Common/GamePanel.Mgr.h"
+#include "Module/City/City.Func.Parm.h"
 
 
 UIBuildCreatePanel *UIBuildCreatePanel::Create(){
@@ -142,6 +146,7 @@ void UIBuildCreatePanel::CreateButtonCallFunc(Ref *pSender, ui::Widget::TouchEve
     }
   });
   lPanel->Show();
+  GBase::DRemoveAllPrePanelFromManager(this);
 }
 
 void UIBuildCreatePanel::UpdateView(){
@@ -255,6 +260,21 @@ void UIBuildCreatePanel::CreateWheelScrollView(){
   //   end
   // end
 
+}
+
+void UIBuildCreatePanel::OnExitPanel(){
+  GBase::DRemoveMessageFromTargetByName(this, "MESSAGE_RESOURCE_UPDATE");
+  GBase::DRemoveMessageFromTargetByName(this, "MESSAGE_ITEM_COUNT_CHANGE_BAG_BACK");
+  static RDoOffestMoveParam l_Param;
+  l_Param._OffsetType = EMainCityViewOffsetType::Recover;
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_OFFSET_BUILD", &l_Param);
+  GBase::DSendMessage("MESSAGE_MAINCITYVIEW_REMOVE_BUILD_PREVIEW", &_BuildingIndex);
+  GBase::DHideCurrentSceneViewAndMainUI({false, false});
+  // if SoraDIsGameGuide() == 12001 then
+  //   SoraDSendMessage({
+  //     msg = "MESSAGE_SERVER_CLOSE_GUIDE"
+  //   })
+  // end
 }
 
 void UIBuildCreatePanel::ClickEffect(Node *p_Target){

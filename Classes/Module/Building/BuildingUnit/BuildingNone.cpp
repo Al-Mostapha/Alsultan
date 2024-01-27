@@ -102,10 +102,6 @@ bool BuildingNone::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   auto lDelay1 = DelayTime::create(0.2);
   auto lDelay2 = DelayTime::create(0.1);
 
-  //   local callFunc2 = cca.callFunc(function()
-  //     SoraDCloseLoading(nil, 1000)
-
-  //   end)
   auto lCallFunc2 = CallFunc::create([&](){
     GBase::DCloseLoading(nullptr, "1000");
     if(lBuildingType == EBuildingPlace::Inner && BuildingSprite){
@@ -124,7 +120,7 @@ bool BuildingNone::Clicked(Ref* p_Ref, ui::Widget::TouchEventType p_Touch){
   m_IsBuildBtnEnabled = false;
   runAction(
     Sequence::create(
-      lCallFunc1, lDelay1,
+      lCallFunc1, lDelay1,              
       lCallFuncCreate, lDelay2,
       lCallFunc2, nullptr
     )
