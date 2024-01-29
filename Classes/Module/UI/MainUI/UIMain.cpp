@@ -362,11 +362,11 @@ void UIMain::ShowAgreementBox(EventCustom *p_Event){
   auto l_IsPop = LordInfoCtrl::Get()->GetUserAgreementPop();
   auto l_ShowPush = static_cast<bool*>(p_Event->getUserData());
   if(l_ShowPush == nullptr && l_IsPop && isVisible() && GBase::DCurrentTopPanelFromManager() == nullptr){
-  //   SoraDAddPopupWindow(function()
-  //     SoraDCreatePanel("commonAgreementBox"):show()
-  //   end, uiDequeTypeTab.AGREEMENT)
-  //   userSDKManager.onGuideEvent(2801)
-  }else if(
+    // SoraDAddPopupWindow(function()
+    //   SoraDCreatePanel("commonAgreementBox"):show()
+    // end, uiDequeTypeTab.AGREEMENT)
+    // userSDKManager.onGuideEvent(2801)
+  }else if(l_ShowPush != nullptr &&
     *l_ShowPush && isVisible() && 
     GDevice::Get()->Platform() == EPlatform::IOS &&
     GBase::DIsGameGuide() == false && GBase::DCurrentTopPanelFromManager() == nullptr

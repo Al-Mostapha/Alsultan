@@ -590,6 +590,7 @@ void UIMainBottom::OnMessageListener() {
 }
 
 void UIMainBottom::ShowOrHideGuideView(EventCustom* p_Event) {
+  return;
   auto l_GuideStep = GuideCtrl::Get()->GetCurForceGuideStep();
   _NodeQuestGuide->setVisible(false);
   _NodeAreaRb->setVisible(false);

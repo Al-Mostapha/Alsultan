@@ -145,7 +145,7 @@ public:
   void UpdateView();
   void InitUpgradeView();
   void InitBuildView();
-  void OnMessageListener();
+  void OnMessageListener() override;
   void OnWiseTutorClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
   void OnArtisanHouseClick(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
   void BtnUpCallBack(Ref *p_Sender, ui::Widget::TouchEventType p_Touch);
@@ -191,6 +191,6 @@ public:
   void Upgrade(EOperateMode p_Mode = EOperateMode::Normal);
   void UpgradeNow(EMsgBoxCallBack p_Call);
   void ReloadScroll(bool p_Force){}
-
+  
   void OnExitPanel() override;
 };

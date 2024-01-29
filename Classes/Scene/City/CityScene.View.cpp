@@ -746,7 +746,6 @@ void MainCityView::HideCurrentSceneViewAndMainUI(EventCustom *p_Event){
     if (CurrentMainUI()->isVisible() && GBase::DIsGameGuide() &&
         (l_NewPlayerTaskCtrl->GetCurChapterID() > 4103000 || l_NewPlayerTaskCtrl->GetCurChapterID() == 0))
       GBase::DSendMessage("MESSAGE_MAIN_AGREEMENT_BOX");
-
     if (CurrentMainUI()->isVisible()) GBase::DSendMessage("MESSAGE_SERVER_EVENT_COMMON_RED_POINT_REFRESH");
   }
 }

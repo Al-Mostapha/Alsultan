@@ -1,31 +1,31 @@
 #include "UIBuildingCreateInfoPanel.h"
+#include "UIBuildingCreateSingle.h"
+#include "Include/IncludeGlobal.h"
 #include "Base/Math/Math.Base.h"
 #include "Base/Common/Timer.Mgr.h"
-#include "Base/Base.create.h"
-#include "Base/Base.Geometry.h"
 #include "Base/Common/Common.Msg.h"
 #include "Base/Common/Common.Teml.h"
-#include "Module/UI/Panel/Building/Common/Builder/UIBuilderActivePop.View.h"
-#include "Module/UI/Part/Common/Button/UICommonGoldNormalBtn.h"
 #include "Base/Common/Common.Box.h"
+#include "Base/Common/Common.Func.h"
 #include "Game/Common/GamePanel.Mgr.h"
+#include "Base/Base.create.h"
+#include "Base/Base.Geometry.h"
 #include "UIBuildUnlockedSingleInfo.View.h"
 #include "Module/Building/Building.Logic.h"
 #include "Module/Building/IBuilding.h"
-#include "Module/UI/MainUI/UICommonResourcesMenu.h"
-#include "Base/Common/Common.Func.h"
 #include "Module/Activity/LuckyBless/LuckyBless.Ctrl.h"
 #include "Module/Activity/WiseTutor/WiseTutor.Ctrl.h"
 #include "Module/Building/Building.Read.h"
 #include "Module/Science/Science.Read.h"
 #include "Module/Army/Army.Read.h"
-#include "UIBuildingCreateSingle.h"
 #include "Module/City/City.Func.h"
 #include "Module/Effect/Effect.Ctrl.h"
-#include "Module/UI/Part/Common/Resource/UIBuildCreateResBuy.h"
 #include "Module/City/City.Cell.h"
 #include "Module/Item/Item.Ctrl.h"
-#include "Include/IncludeGlobal.h"
+#include "Module/UI/Panel/Building/Common/Builder/UIBuilderActivePop.View.h"
+#include "Module/UI/Part/Common/Button/UICommonGoldNormalBtn.h"
+#include "Module/UI/Part/Common/Resource/UIBuildCreateResBuy.h"
+#include "Module/UI/MainUI/UICommonResourcesMenu.h"
 
 float UIBuildingCreateInfoPanel::WELevelProMin = 25;
 float UIBuildingCreateInfoPanel::WELevelProMax = 100;
@@ -53,8 +53,7 @@ void UIBuildingCreateInfoPanel::Ctor(){
 
 void UIBuildingCreateInfoPanel::InitWidget(){
 //  local bg = SoraDGetChildByName(self, "Image_bbg")
-//   bg:setFillType(1)
-
+//  bg:setFillType(1)
   _NodeRescources = GBase::DGetExtendChildFromCCSByName<UICommonResourcesMenu>(this, "CCS_commonResourcesMenu_up");
   _NodeRescources->SetNeedScale(true);
   _LabelDes = GBase::DGetChildByName<ui::Text *>(this, "Text_des");
@@ -136,7 +135,7 @@ void UIBuildingCreateInfoPanel::InitWidget(){
   _IconWarCur->setVisible(false);
   _ImgLight->setVisible(false);
   _ImgLight->setLocalZOrder(1);
-   GBase::DGetChildByName<ui::Text *>(this, "Text_nextLv")->setString(Translate::i18n("common_text_280"));
+  GBase::DGetChildByName<ui::Text *>(this, "Text_nextLv")->setString(Translate::i18n("common_text_280"));
   _LabelNeed->setString(Translate::i18n("common_text_726"));
   _ImageR->setPositionX(_LabelNeed->getPositionX() + _LabelNeed->getContentSize().width/2 + 20);
   _ImageL->setPositionX(_LabelNeed->getPositionX() - _LabelNeed->getContentSize().width/2 - 20);
@@ -303,17 +302,17 @@ void UIBuildingCreateInfoPanel::UpdateView(){
   auto l_IsVisible = _ViewType == EBuildingOperateType::Upgrade || _ViewType == EBuildingOperateType::UpgradeStar;
   _LabelNextLvlValue->setVisible(l_IsVisible);
   _LabelNextLvl->setVisible(l_IsVisible);
-  _LabelDes->setVisible(l_IsVisible);
+  _LabelDes->setVisible(!l_IsVisible);
   if(_LabelNextLvl->isVisible()){
     _ImgDesBg->setPositionY(-75);
     _ImgFlag->setContentSize({_ImgFlag->getContentSize().width, 292});
     _ImgDesBg->setContentSize({_ImgDesBg->getContentSize().width, 196});
-    _LabelDes->setPositionX(-85);
+    _LabelDes->setPositionY(-85);
   }else{
     _ImgDesBg->setPositionY(-25);
     _ImgFlag->setContentSize({_ImgFlag->getContentSize().width, 292});
     _ImgDesBg->setContentSize({_ImgDesBg->getContentSize().width, 246});
-    _LabelDes->setPositionX(-35);
+    _LabelDes->setPositionY(-35);
   }
   if(_ViewType != EBuildingOperateType::Unlock){
     _BtnUpNow->SetGoldText(GStringUtils::FormatK(_TableBuildInfo._BuildData._ImmediatelyGold));

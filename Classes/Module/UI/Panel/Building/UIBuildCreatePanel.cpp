@@ -20,7 +20,7 @@ UIBuildCreatePanel *UIBuildCreatePanel::Create(){
 }
 
 void UIBuildCreatePanel::Ctor(){
-
+  BindBtnClose();
   m_LabelDes   = GBase::DGetChildByName<ui::Text *>(this, "Text_des");
   m_LabelCount = GBase::DGetChildByName<ui::Text *>(this,"Text_count");
   m_LabelNeed  = GBase::DGetChildByName<ui::Text *>(this,"Text_need");
@@ -146,7 +146,6 @@ void UIBuildCreatePanel::CreateButtonCallFunc(Ref *pSender, ui::Widget::TouchEve
     }
   });
   lPanel->Show();
-  GBase::DRemoveAllPrePanelFromManager(this);
 }
 
 void UIBuildCreatePanel::UpdateView(){
